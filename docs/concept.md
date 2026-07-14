@@ -95,6 +95,8 @@ Both stay in the mod shortlist (`F:\minecraft-repos\next-mod-concepts.md`) as st
 
 Keep internal seams clean so systems can split into their own mods later - candidates: the pressure system as a generic data-driven accumulation engine; Magnetism / Superposition stay parked in the shortlist. Don't pre-create repos for mods that don't exist. This supersedes the build-on-vs-new-mod question: not building on Create Recycle Everything (it can still appear in the pack as a mid-tier automation layer, not the foundation).
 
+**Features are config-gated.** Every major system ships behind a config flag with tunable rates (pressure variants, region weights, knowledge odds). This lets playtesting pick winners instead of deciding on paper - e.g. build creep, trash wind, AND sky-dumps, then tune. Guardrail: flags are for tuning, not for avoiding decisions; the pack ships one opinionated default experience. Defaults are the design.
+
 ## Open questions
 
 - **In-place vs frontier renewal:** is trash finite-per-chunk (expand outward) or does it actively re-bury a fixed base (the "garbage keeps coming" pressure)? Lean: the latter, but tune so it's pressure, not punishment.
