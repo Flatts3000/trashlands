@@ -256,6 +256,16 @@ Worldgen spec already locked (see Dimensions below: solid techno-organic waste r
 2. **The reason to go: first RF power and osmium originate here** (plus netherite-analog from the compacted depths and nether-tier salvage). This is where the energy tier begins - before the Nether, no RF (fuel/manual only, consistent with "no energy at tier 2"). The Nether unlocks RF generation.
 3. **It is solid, not mounds.** Do NOT think of the Nether in mound terms. Solid techno-organic fill with structure-voids; you tunnel through it. Different generation concept from the overworld's mounds-on-a-plain.
 
+## P3.6 - The garbage End build (locked 2026-07-14)
+
+Worldgen spec already locked (End-style islands of end-themed garbage, vanilla dragon/pillars/mobs, no liquid).
+
+1. **Role: the late-game materials capstone - the endpoint of the found economy.** Holds what nothing else does: elytra (dragon reward), ender-tier materials, shulker boxes (the endgame storage payoff), chorus. The last found materials before everything becomes made.
+2. **Access is earned per the locked bridge:** portal materials from high-tier recycling (obsidian made not found, eyes of ender from e-waste rare drops). End access naturally sits after the e-waste chain runs - you reach the End by having mastered recycling.
+3. **The dragon stays vanilla** (fight, drop, open the gateway) - gives the pack its one real boss beat, framed as the old world's last guardian. No new systems.
+
+**Twist tie-in (already true from worldgen):** the End being garbage too reinforces the reveal - nowhere pristine to escape to, not even here. Doesn't spoil it; a hindsight data point.
+
 ## Dimensions - Nether and End (locked 2026-07-13, specs revised same day)
 
 **Target: themed dimensions (Option 3).** Vanilla dimensions would leak free resources (quartz, gold, ancient debris) into a closed trash economy, so both get rebuilt to serve the fiction. Worldgen specs locked per-dimension below (four decisions each, mirroring P0.1).
