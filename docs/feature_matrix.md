@@ -29,7 +29,7 @@
 | Trash-tier tools (scrap knife, rebar sticks, prybar) | Easy | No trees, so tools must come from trash. Wood is a recovered treasure. |
 | Sorting Tarp (first station, manual sorting) | Medium | Ex Nihilo sieve shape, garbage flavor. |
 | Teardown machine (feed item -> components) | Medium | The Salvage mod's centerpiece block. |
-| Teardown-as-knowledge (recover recipes) | **Hard** | THE distinct axis and THE schedule risk. De-risk: v1 is hand-authored JSON unlock tables (item -> recipe it can teach), NOT automatic recipe introspection. Auto-derivation from recipe trees is a later upgrade if ever. |
+| Teardown-as-knowledge (recover recipes) | **Medium** (v1) | THE distinct axis. v1 rides vanilla `doLimitedCrafting` + recipe book grants (~1-2 wks on top of the bench); risks are the JEI locked-recipe overlay and FTB Teams sync. The Hard version (auto recipe introspection, gating other mods' machine recipes) stays maybe-never. Hand-authored JSON unlock tables only. |
 | Garbage regions (household / scrapyard / e-waste / slag / hazmat) | Medium | Region noise or custom biome source. Start with 2 (household + scrapyard); add the rest as content. |
 | Creep (garbage spreads onto exposed coarse dirt) | Medium | Sculk-like block-tick spread. The baseline pressure. |
 | Healed-land immunity (grass can't be re-buried) | Easy | One rule, but it IS the progression banking mechanic. Ships with creep. |
