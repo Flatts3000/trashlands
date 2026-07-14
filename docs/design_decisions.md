@@ -8,17 +8,16 @@ Running log of locked per-feature decisions from the feature-by-feature walkthro
 
 **As of 2026-07-14:** P0 fully locked (P0.1-P0.5). P1 fully locked (P1.1-P1.8). **P2 fully locked (P2.1-P2.8).** Dimensions, the knowledge system, mound regrowth, the material economy ([`material_economy.md`](material_economy.md)), and the narrative layer ([`the_twist.md`](the_twist.md), spoilers) are locked. Mod lineup so far: Create (belts/logistics), Mekanism (chemical/radiation endgame), Productive Frogs (reclamation crossover).
 
-**Resume here - P3 walkthrough, in matrix order:**
-1. Sky dumps (opt-in late farmable deliveries)
-2. Field Manual (knowledge book UI)
-3. Degraded recipes (jury-rigged variants, re-refine)
-4. Blueprint scraps (partial recipes, collect-3)
-5. The Incinerator / themed Nether build
-6. The garbage End build
-7. Frogs return to healed land (Productive Frogs)
-8. Win-condition tracking (cleared-land metric)
-9. Circular endgame (self-feeding economy)
-10. The final chapter (narrative frame + staged payoff - author vs the_twist.md)
+**Resume here - P3 walkthrough, in matrix order** (P3.1 sky dumps CUT - folded into regrowth):
+1. Field Manual (knowledge book UI)
+2. Degraded recipes (jury-rigged variants, re-refine)
+3. Blueprint scraps (partial recipes, collect-3)
+4. The themed Nether build
+5. The garbage End build
+6. Frogs return to healed land (Productive Frogs)
+7. Win-condition tracking (cleared-land metric)
+8. Circular endgame (self-feeding economy)
+9. The final chapter (narrative frame + staged payoff - author vs the_twist.md)
 
 **Open threads not on the matrix:** pack name (working: Trashlands), Nether theme name ("compacted depths" placeholder), the quest-narrator question (who wrote the quest book - see the_twist.md), where construction rubble lives (see material_economy.md).
 
@@ -231,6 +230,10 @@ Content and process, not new mechanics.
 5. **Community-extensible by design.** All datapack JSON (P0.5); the public schema lets pack users and addon authors add tables for untouched mods. Third-party teardown addons are a WANTED outcome, not a support burden.
 
 **P2 is now fully specified (P2.1-P2.8).**
+
+## P3.1 - Sky dumps - CUT/FOLDED (2026-07-14)
+
+Not a separate feature. Sky dumps ARE the regrowth delivery already locked in P1.6.6: falling blocks spawn at the highest world level and fall into place in the mound. No beacon system, no supply-drop event, no opt-in toggle - it's simply how mounds refill. Technical details (spawn timing, entity handling) worked out at implementation.
 
 ## Dimensions - Nether and End (locked 2026-07-13, specs revised same day)
 

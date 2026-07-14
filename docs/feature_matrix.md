@@ -53,7 +53,7 @@
 
 | Feature | Feasibility | Notes |
 |---|---|---|
-| Sky dumps (telegraphed mass garbage drop, farmable late) | Medium-Hard | Opt-in late-game deliveries only; never a threat. Default off. |
+| ~~Sky dumps~~ (CUT - folded into mound regrowth) | - | Not a separate feature; the falling-blocks-into-mound visual IS the regrowth delivery (P1.6.6). |
 | Field Manual (knowledge book UI that fills in) | Medium-Hard | v1 can be advancement toasts + quest book; dedicated UI later. |
 | Degraded recipes (jury-rigged variants, re-refine later) | Medium-Hard | Gives Upcycle tier meaning; adds recipe-variant complexity. |
 | Blueprint scraps (partial recipes, collect 3 to complete) | Medium | Collection meta on top of knowledge system; only after knowledge v1 proves fun. |
