@@ -1,6 +1,6 @@
 # Trashlands - Claude Code context
 
-**What this is:** a Minecraft **modpack concept** (working name "Trashlands" - not final). An infinite flat world of coarse dirt buried horizon-to-horizon under piles of **Blocks of Garbage** - a still-active dump you race to out-process. No ore, no trees; everything you build comes out of the trash. Rebuild, and eventually heal, a ruined world from its own garbage.
+**What this is:** a Minecraft **modpack concept** (working name "Trashlands" - not final). An endless coarse-dirt plain crowded with mounds of **Blocks of Garbage** that regrow to their original size - renewable quarries raining back down from space, never impending doom. No ore, no trees; everything you build comes out of the trash. Rebuild, and eventually heal, a ruined world from its own garbage - healing a mound's footprint retires it forever, so reclamation costs you income.
 
 **Status:** concept only (2026-07-13). **No code yet.** This repo is design docs.
 
@@ -19,9 +19,8 @@ Garbage + recycling. A **Salvage** loop: dig a Block of Garbage -> mixed trash -
 Prior-art pass is done (see concept.md): the near-exact mod, **Dumpster Diving**, is abandoned on MC 1.12.2 (2018-2020). Niche is open - this is the Productive Bees -> Productive Frogs move (rebuild a beloved-but-dead concept modern).
 
 ## Next actions
-1. Lock the "garbage keeps coming" mechanic (rate, wind-in vs dump, pressure not punishment).
-2. Sketch the tier-one loop end to end (spawn -> first sorted materials -> first machine).
-3. One-week feasibility slice: the custom garbage worldgen + one garbage block that tears down into sorted materials. Throwaway if the world doesn't *feel* right.
+1. Finish the feature-by-feature design walkthrough (docs/design_decisions.md is the log; P0 fully specified, P1 nearly done).
+2. One-week feasibility slice per the locked P0 spec: world preset + mounds + household garbage block + pick-through sorting + one teardown table. Throwaway if the world doesn't *feel* right.
 
 ## Conventions (this machine / Jason's mod work)
 - Target **NeoForge / MC 26.1** to match the Productive Frogs 2.x line (siblings: `../productive-frogs`, `../sky-frogs` - the proven pack+mod pattern to mirror).

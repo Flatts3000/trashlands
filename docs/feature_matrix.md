@@ -31,8 +31,8 @@
 | Teardown machine (feed item -> components) | Medium | The Salvage mod's centerpiece block. |
 | Teardown-as-knowledge (recover recipes) | **Medium** (v1) | THE distinct axis. v1 rides vanilla `doLimitedCrafting` + recipe book grants (~1-2 wks on top of the bench); risks are the JEI locked-recipe overlay and FTB Teams sync. The Hard version (auto recipe introspection, gating other mods' machine recipes) stays maybe-never. Hand-authored JSON unlock tables only. |
 | Garbage regions (household / scrapyard / e-waste / slag / hazmat) | Medium | Region noise or custom biome source. Start with 2 (household + scrapyard); add the rest as content. |
-| Creep (garbage spreads onto exposed coarse dirt) | Medium | Sculk-like block-tick spread. The baseline pressure. |
-| Healed-land immunity (grass can't be re-buried) | Easy | One rule, but it IS the progression banking mechanic. Ships with creep. |
+| Mound regrowth (mounds regenerate to original footprint, blocks fall from the sky) | Medium | Renewable quarries, not doom. Falling-block delivery from world top (deorbiting garbage). Needs original-bounds memory per mound. |
+| Healed-land immunity (grass + built blocks stop regrowth) | Easy | Grassing a mound's footprint retires it forever. The quarry-vs-heal tension is the pack's engine. |
 | Dimension lockout (Nether + End portals disabled by default) | Easy | Config flags. Plugs the vanilla-resource leak until the themed dimensions ship. |
 
 ## P2 - the full loop (makes it a complete pack)
@@ -40,7 +40,7 @@
 | Feature | Feasibility | Notes |
 |---|---|---|
 | Spawn-buried opening (dig up toward light) | Medium | Best first impression; needs safe-spawn logic. Slice can fake it manually first. |
-| Trash wind (weather event drops garbage + region loot) | Medium | The periodic threat that is also a delivery. |
+| Trash wind (weather flavor event, small scatter near existing mounds) | Medium | Demoted from threat to ambience. Never touches builds or cleared land. Config, conservative default. |
 | Tier 2 processing (melt plastic, smelt scrap, compost, crush glass) | Easy-Medium | Mix of Salvage machines and curated existing mods. |
 | Tier 3 logistics (conveyors/filters, hands-off sorting) | Easy | Pack curation - existing mods (Create et al.), not custom code. |
 | Reclamation chain (coarse dirt -> grass -> trees) | Medium | The visible win state. Needs a deliberate mechanic, not just bonemeal. |
@@ -53,7 +53,7 @@
 
 | Feature | Feasibility | Notes |
 |---|---|---|
-| Sky dumps (telegraphed mass garbage drop, farmable late) | Medium-Hard | Default-off until midgame or quest-unlocked. |
+| Sky dumps (telegraphed mass garbage drop, farmable late) | Medium-Hard | Opt-in late-game deliveries only; never a threat. Default off. |
 | Field Manual (knowledge book UI that fills in) | Medium-Hard | v1 can be advancement toasts + quest book; dedicated UI later. |
 | Degraded recipes (jury-rigged variants, re-refine later) | Medium-Hard | Gives Upcycle tier meaning; adds recipe-variant complexity. |
 | Blueprint scraps (partial recipes, collect 3 to complete) | Medium | Collection meta on top of knowledge system; only after knowledge v1 proves fun. |

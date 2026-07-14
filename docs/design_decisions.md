@@ -107,6 +107,17 @@ The batch tier of the sorting verb, designed with sifting's (Ex Nihilo lineage) 
 5. **Region identity readable from the horizon** - silhouette and palette do the telling. The art bar.
 6. **Biome-specific garbage blocks** (amends P0.3.4): each region has its own garbage block with its own textures and pull table. The drop table travels with the BLOCK, not the biome - haul e-waste blocks home and they still pull e-scrap. Region gating stays (you went there to get them); processing is location-free. Randomized texture variants apply within each region's block; the P0 slice block is the household one.
 
+## P1.6 + P1.7 - Mound regrowth + healed-land immunity (locked 2026-07-14)
+
+**Supersedes the "garbage keeps coming / race against the tide" pressure loop.** Trash is never impending doom.
+
+1. **Mounds regrow toward their original size and footprint - never beyond.** A mound is a renewable quarry; the mechanic exists so you never have to relocate for materials. No unbounded accretion, no new-mound seeding on cleared land.
+2. **Regrowth only fills exposed coarse dirt within the original bounds.** Grass and any built/placed blocks stop it. Kill a mound, grass its footprint, and it is retired forever.
+3. **The core tension this creates:** a regrowing mound is income; healed land is permanent but retires that income. Healing the world shrinks your garbage economy - full reclamation becomes affordable only when the circular economy (recycling your own outputs) can replace scavenging. Endgame thesis: not "you beat the tide" but "you no longer need the dump."
+4. **Trash wind and sky dumps demoted to optional flavor/farmable events** (config, conservative defaults; never threaten builds or cleared land). Wind = ambience + small scatter near existing mounds at most; dumps = opt-in late-game deliveries.
+5. **Regrowth rate config-exposed;** default slow enough to feel like recovery, not respawn (visible across sessions, not minutes).
+6. **Delivery: blocks fall from the top of the world,** as if deorbiting from space - falling-block entities spawn high above the mound and rain into place. Visible from afar (you can see which mounds are replenishing), reuses the garbage-block gravity from P0.3, and ties the lore together: the void-dumped garbage is still coming home.
+
 ### Buried-surprise candidates (brainstorm 2026-07-13)
 
 - **Loot pinatas:** appliances (fridge = preserved food, early food source; washer, stove - prybar targets), crushed cars (metal + battery chance), tire stacks, pipe bundles, wire spools.

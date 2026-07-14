@@ -47,15 +47,19 @@ The tech tree runs entirely on waste. Teardown doesn't just yield scrap - disass
 
 ---
 
-## The distinct mechanic: the garbage keeps coming
+## The renewal mechanic: mounds grow back (revised 2026-07-14)
 
-An infinite world reframes the renewable-trash problem into something better than a generator block: the world is a **still-active dump.** Trash re-accumulates - wind-blown drifts, periodic dumps burying your borders - so the game is a **race to out-process the incoming tide.**
+Trash is never impending doom. **Mounds regrow toward their original size and footprint - never beyond.** A mound is a **renewable quarry**; the mechanic exists so you never have to relocate for materials. Regrowth only fills exposed coarse dirt within the original bounds; grass and built blocks stop it, so killing a mound and grassing its footprint **retires it forever**.
 
-- Early game you're drowning in it.
-- Mid game you break even.
-- The **win** is when recycling finally outpaces accumulation and your cleared coarse-dirt frontier expands faster than it's buried.
+The tension this creates is the pack's engine:
 
-This pressure loop is thematically perfect (a fight against entropy) and structurally different from Sky Frogs' contained, vertical progression - this one is **horizontal, expansionist**. This is the pack's candidate distinct axis; verify against prior art before claiming it.
+- A regrowing mound is **income**. Healed land is **permanent, but retires that income**.
+- Healing the world shrinks your garbage economy - full reclamation is only affordable once the circular economy (recycling your own outputs) replaces scavenging.
+- The endgame thesis: not "you beat the tide" but **"you no longer need the dump."**
+
+**Delivery is the signature visual:** regrowth blocks fall from the top of the world into place, as if deorbiting - the void-dumped garbage of the old civilization still coming home. You can see which mounds are replenishing from across the map.
+
+(Supersedes the earlier "still-active dump / race to out-process the tide" pressure loop. Trash wind and sky dumps survive only as optional flavor/farmable events, config-gated, never a threat to builds or cleared land.)
 
 ---
 
