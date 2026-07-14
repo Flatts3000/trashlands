@@ -178,6 +178,14 @@ Nether and End portals disabled by config default until each themed dimension sh
 4. **Pack-tunes Create's leaks:** its crushing/washing chains route through our material streams, not around them. Create-spine materials (andesite, brass, zinc, copper) get bulk garbage streams - see the Create-spine section of [`material_economy.md`](material_economy.md) (found brass from fixtures; zinc from corrugated galvanized sheet; andesite from construction rubble/C&D debris).
 5. **Create tech is locked until studied.** Your first belt segment is torn down from a conveyor found in the scrapyard.
 
+## P2.4 - Reclamation chain (locked 2026-07-14)
+
+1. **Healing is a recipe, not a right-click:** compost (from organic muck) + clean water + seed. Muck becomes the healing currency; leachate purification (clean water is made, not found) becomes load-bearing.
+2. **Seeds are found, then made:** seed packets in household pulls, preserved pits from organics, rare intact saplings as cache-grade treasure; mid-tier greenhouse/nursery propagates recovered seed into self-sustaining lines.
+3. **Scale ladder:** manual per-block first (the first grass patch is a monument), then the tier-4/5 irrigator/soil-spreader (radius conversion consuming compost + clean water - how mound footprints retire at scale), region-scale healing reserved for the final chapter.
+4. **Green progression: grass -> crops -> trees.** Trees near-endgame (wood-as-treasure holds until tree farms); the first tree grown from recovered seed is a quest beat.
+5. **Healing yields nothing but land.** No drops, no rewards beyond immunity, retirement, and the final chapter's payoffs - keeps quarry-vs-heal honest.
+
 ## Dimensions - Nether and End (locked 2026-07-13, specs revised same day)
 
 **Target: themed dimensions (Option 3).** Vanilla dimensions would leak free resources (quartz, gold, ancient debris) into a closed trash economy, so both get rebuilt to serve the fiction. Worldgen specs locked per-dimension below (four decisions each, mirroring P0.1).
