@@ -98,6 +98,15 @@ The batch tier of the sorting verb, designed with sifting's (Ex Nihilo lineage) 
 
 **What learning means practically:** vanilla `doLimitedCrafting` + recipe book grants gate the crafting table; unlearned recipes produce nothing even with correct materials; JEI shows them greyed with the unlock hint ("salvage X to study this"). Learning migrates an item from the found economy (finite, scavenged) to the made economy (infinite, manufactured) - the arc of the pack is moving the whole catalog across that line. Tuning rule: found items must be common enough that studying never feels like burning your only copy.
 
+## P1.5 - Garbage regions (locked 2026-07-14)
+
+1. **Real biomes, not an overlay.** Hostility-by-region (P0.1) lives on biome spawn rules; biomes also buy tinting, ambience, structure placement, F3 debuggability, and biome-aware mod compat for free.
+2. **Launch trio: household sprawl (peaceful; fiber/plastic/organics), scrapyard (mildly hostile; metal, appliance-dense), e-waste dump (hostile; the precious chain).** Two regions can't show a gradient. Slag field + hazmat quarantine in P2, hazmat last (its identity is the hard gate).
+3. **Distance-banded distribution.** Spawn is always household; scrapyard within walking distance; e-waste further; slag/hazmat beyond a threshold. The map is the difficulty curve. Band radii config-tunable.
+4. **One region = one datapack bundle** (mound density/silhouette, block mix, pull tables, mob rules, palette/fog, surprise table). Adding a region is a content afternoon, not code.
+5. **Region identity readable from the horizon** - silhouette and palette do the telling. The art bar.
+6. **Biome-specific garbage blocks** (amends P0.3.4): each region has its own garbage block with its own textures and pull table. The drop table travels with the BLOCK, not the biome - haul e-waste blocks home and they still pull e-scrap. Region gating stays (you went there to get them); processing is location-free. Randomized texture variants apply within each region's block; the P0 slice block is the household one.
+
 ### Buried-surprise candidates (brainstorm 2026-07-13)
 
 - **Loot pinatas:** appliances (fridge = preserved food, early food source; washer, stove - prybar targets), crushed cars (metal + battery chance), tire stacks, pipe bundles, wire spools.
