@@ -168,6 +168,16 @@ Nether and End portals disabled by config default until each themed dimension sh
 4. **Purity as yield, not as parallel items.** Vanilla end products (iron, glass, bonemeal); the RATIO improves with tier (burn barrel 3 scrap -> 1 nugget; repaired furnace better; tier-4 machines approach lossless). No "reclaimed iron" item bloat. Identity lives in inputs/intermediates (scrap, cullet, muck, plastic sheet, rubber). Full material framework: [`material_economy.md`](material_economy.md).
 5. **No energy at tier 2.** Fuel and hands only; electricity is a later tier's identity.
 
+## P2.3 - Tier 3 logistics (locked 2026-07-14)
+
+**Create is in the pack for belts (real MRFs run on belts); belts/transport are NOT part of the Salvage mod.**
+
+1. **The seam rule: Salvage converts, Create moves.** Salvage machines turn garbage into components; Create (belts, funnels, brass tunnels, arms) routes them. The Salvage sorter has no internal filters - it dumps onto a belt and Create's filtering splits the stream.
+2. **Salvage machines never REQUIRE Create** (standalone-mod constraint). Own simple power (fuel now, energy later); hopper/automation-compatible at this tier by design (unlike the tarp). Create integration is the pack's job via recipe gating; optional kinetic compat module only if demand exists.
+3. **Two tier-3 machines: powered sorter** (automated pick-through, region tables intact) and **powered disassembler** (workbench successor; installed tool-heads replace the tool rack; still generates study progress - full vs reduced rate is a config, tune in playtest).
+4. **Pack-tunes Create's leaks:** its crushing/washing chains route through our material streams, not around them. Create-spine materials (andesite, brass, zinc, copper) get bulk garbage streams - see the Create-spine section of [`material_economy.md`](material_economy.md) (found brass from fixtures; zinc from corrugated galvanized sheet; andesite from construction rubble/C&D debris).
+5. **Create tech is locked until studied.** Your first belt segment is torn down from a conveyor found in the scrapyard.
+
 ## Dimensions - Nether and End (locked 2026-07-13, specs revised same day)
 
 **Target: themed dimensions (Option 3).** Vanilla dimensions would leak free resources (quartz, gold, ancient debris) into a closed trash economy, so both get rebuilt to serve the fiction. Worldgen specs locked per-dimension below (four decisions each, mirroring P0.1).

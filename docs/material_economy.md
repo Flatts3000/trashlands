@@ -60,6 +60,24 @@ Every vanilla material that has no honest garbage presence gets the same treatme
 | Wood | Pallet fragments, furniture (mid-tier treasure, locked P1.1) | Tree farms post-reclamation - trees are nearly endgame |
 | Diamond/gems | See gems table | Synthesis press |
 
+## The Create spine (belts are Create's job - locked P2.3 direction)
+
+Create's progression chokepoints are andesite alloy and brass. Both resolve inside the framework, plus one new principle:
+
+**Alloys obey found-to-made too - you can FIND an alloy before you can MAKE it.**
+
+| Need | Found source (early, bulk) | Made source (later) |
+|---|---|---|
+| Brass | Plumbing fixtures, faucets, valves, instruments, lamp bases - scrap brass is among the most-recycled metals IRL; scrapyard commons | Copper + zinc, Create's own mixer chain |
+| Bronze | Bushings, bearings, statues, bells | Copper + tin |
+| Zinc (bulk) | **Corrugated galvanized roofing sheet** (iconic dump material) - de-galvanize into zinc + clean steel | Battery chain stays the trickle source |
+| Andesite | **Construction rubble** (C&D debris - the largest real waste stream; currently a gap in our regions): concrete chunks/masonry crush to aggregate = gravel, sand, andesite | - (bulk found is enough) |
+| Copper (bulk) | Wire spools, motors (already in matrix) - must be pull-table commons | Mixed-scrap fine separation |
+
+**Volume principle:** Create-spine materials ride bulk commons (rubble, corrugated sheet, wire, fixtures), never rare extras. If automation materials are slot-machine pulls, the tier dies. Tune pull tables so the spine flows.
+
+**Open:** where construction rubble lives - seeded through scrapyard/slag pulls, or its own minor region (demolition yard) when regions expand.
+
 ## Open threads for later tiers
 
 - **Mixed-scrap fine separation** (copper/aluminum out of bulk scrap) is the tier 3-4 sorting payoff - possibly the Magnetism hook if that mod ever happens; works without it.
