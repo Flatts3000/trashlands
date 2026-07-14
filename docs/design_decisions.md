@@ -54,6 +54,22 @@ Reference sketch:
 
 **P0 is now fully specified.** Slice = world preset (P0.1) + mounds (P0.2) + one garbage block (P0.3) + pick-through sorting with one household loot table (P0.4) + one teardown table proving the data pipeline (P0.5).
 
+## P1.1 + P1.2 - Block variants and trash-tier tools (locked 2026-07-14)
+
+Variants and tools are one interlocking matrix:
+
+| Block | Tool to open efficiently | Character |
+|---|---|---|
+| Garbage (P0 block) | Hands slow, shovel fast | The bulk commodity |
+| Trash bags | Hands, instantly | Soft surface litter; quick small pulls |
+| Compacted bale | Scrap knife (cut strapping) | Dense; 2-3x the pulls of a garbage block |
+| Appliance | Prybar | Deterministic guts; ideal teardown input |
+
+1. **Starter tool trio from tier-zero materials:** scrap knife (bales, fiber), prybar (appliances, weak weapon), junk shovel (digs garbage fast). No pickaxe in the starter set - nothing to mine, and its absence tells the player that.
+2. **Rebar is the universal handle** (drops from scrap-metal pulls). Wood recovery stays a mid-tier treasure, not a tool gate.
+3. **Bags/bales feed sorting (random pulls); appliances feed teardown (deterministic + teaches chance).** Appliances are the on-ramp to the knowledge system.
+4. **Generation:** bags on mound surfaces, bales in mound cores (mound shape does the depth-reward work), appliances uncommon pocket finds. Region palettes reweight all three.
+
 ### Buried-surprise candidates (brainstorm 2026-07-13)
 
 - **Loot pinatas:** appliances (fridge = preserved food, early food source; washer, stove - prybar targets), crushed cars (metal + battery chance), tire stacks, pipe bundles, wire spools.
