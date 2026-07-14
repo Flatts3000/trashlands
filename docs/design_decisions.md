@@ -4,6 +4,26 @@ Running log of locked per-feature decisions from the feature-by-feature walkthro
 
 ---
 
+## Walkthrough status (the bookmark - update every session)
+
+**As of 2026-07-14:** P0 fully locked (P0.1-P0.5, the feasibility slice is specified). P1 fully locked (P1.1-P1.8). Dimensions, the knowledge system, mound regrowth, and the narrative layer ([`the_twist.md`](the_twist.md), spoilers) are locked.
+
+**Resume here - P2 walkthrough, in matrix order:**
+1. Spawn-buried opening
+2. Tier 2 processing (melt, smelt, compost, crush)
+3. Tier 3 logistics (curated mods)
+4. Reclamation chain (coarse dirt -> grass -> trees)
+5. Hazmat gating
+6. E-waste recovery chains
+7. Quest line
+8. Cross-mod teardown tables at scale
+
+Then P3: sky dumps, Field Manual, degraded recipes, blueprint scraps, frogs-return, win tracking, the themed dimension builds, the final chapter.
+
+**Open threads not on the matrix:** pack name (working: Trashlands), Nether theme name ("compacted depths" placeholder), the quest-narrator question (who wrote the quest book - see the_twist.md).
+
+---
+
 ## P0.1 - Custom world preset (locked 2026-07-13)
 
 1. **Vertical profile:** a few layers of coarse dirt, then several layers of deepslate, then a single bedrock layer. Solid all the way down - no caves, no voids, no ores. Digging down is pointless by design and the player discovers it fast.
@@ -17,6 +37,14 @@ Running log of locked per-feature decisions from the feature-by-feature walkthro
 2. **Mounds vary in height and width.** Short flat spreads and tall trash hills both generate. Density tunable via config; default dense enough that mounds crowd the horizon.
 3. **Stratification is by biome, not depth.** Garbage composition varies by region (the garbage-regions system), not by loose-on-top/compacted-below layering.
 4. **Buried surprises: yes.** Wanted; catalog below is candidates, not locked. Surprises live mostly inside mounds so every dig has slot-machine potential.
+
+### Buried-surprise candidates (brainstorm 2026-07-13)
+
+- **Loot pinatas:** appliances (fridge = preserved food, early food source; washer, stove - prybar targets), crushed cars (metal + battery chance), tire stacks, pipe bundles, wire spools.
+- **Knowledge caches:** filing cabinets / briefcases (documents teach recipes), dead computers and TVs (e-waste + data recovery), time capsules (rare; lore + a guaranteed full recipe). Blueprint scraps live here, not only in teardown machines.
+- **Utility finds:** broken machines repairable into working ones (find-and-fix beats craft for the fantasy - your first furnace might be excavated), dumpsters as working storage, mattresses as field respawn points.
+- **Hazards:** rusty chemical-waste barrels (leak if broken carelessly, but are chemical-tier inputs), pocketed garbage gas (fire/poison puff on careless digging).
+- **Lore set-dressing:** buried road segments, street lamps, bus stops, signage - the old world's skeleton.
 
 ## P0.3 - The Block of Garbage (locked 2026-07-14)
 
@@ -118,13 +146,9 @@ The batch tier of the sorting verb, designed with sifting's (Ex Nihilo lineage) 
 5. **Regrowth rate config-exposed;** default slow enough to feel like recovery, not respawn (visible across sessions, not minutes).
 6. **Delivery: blocks fall from the top of the world,** as if deorbiting from space - falling-block entities spawn high above the mound and rain into place. Visible from afar (you can see which mounds are replenishing), reuses the garbage-block gravity from P0.3, and ties the lore together: the void-dumped garbage is still coming home.
 
-### Buried-surprise candidates (brainstorm 2026-07-13)
+## P1.8 - Dimension lockout (locked 2026-07-14)
 
-- **Loot pinatas:** appliances (fridge = preserved food, early food source; washer, stove - prybar targets), crushed cars (metal + battery chance), tire stacks, pipe bundles, wire spools.
-- **Knowledge caches:** filing cabinets / briefcases (documents teach recipes), dead computers and TVs (e-waste + data recovery), time capsules (rare; lore + a guaranteed full recipe). Blueprint scraps live here, not only in teardown machines.
-- **Utility finds:** broken machines repairable into working ones (find-and-fix beats craft for the fantasy - your first furnace might be excavated), dumpsters as working storage, mattresses as field respawn points.
-- **Hazards:** rusty chemical-waste barrels (leak if broken carelessly, but are chemical-tier inputs), pocketed garbage gas (fire/poison puff on careless digging).
-- **Lore set-dressing:** buried road segments, street lamps, bus stops, signage - the old world's skeleton.
+Nether and End portals disabled by config default until each themed dimension ships. Decided within the Dimensions discussion below; nothing further to design here.
 
 ## Dimensions - Nether and End (locked 2026-07-13, specs revised same day)
 

@@ -1,22 +1,22 @@
 # Trashlands - Concept
 
-**Status:** concept / exploring (2026-07-13). No code. Working name "Trashlands" (rename freely - candidates: The Heap, Landfill Earth, Wasteworld).
+**Status:** design walkthrough in progress (updated 2026-07-14). No code. P0 + P1 fully specified in [`design_decisions.md`](design_decisions.md) (the per-feature log and session bookmark); [`feature_matrix.md`](feature_matrix.md) is the build order. Working name "Trashlands" (rename freely - candidates: The Heap, Landfill Earth, Wasteworld).
 **Relationship:** the showcase modpack for the **Salvage** mod. Garbage + recycling is the core to explore. Magnetism and Superposition are noted as optional, not explored (see the note below). Mod shortlist + design rules: `F:\minecraft-repos\next-mod-concepts.md`.
 
 ---
 
 ## The vision
 
-An **infinite flat world of coarse dirt, buried horizon-to-horizon under piles of Blocks of Garbage.** You spawn into an endless dump. No ore below you, no trees. Everything you will ever build comes out of the trash. **Rebuild - and eventually heal - a ruined world from its own garbage.**
+An **endless, gently rolling plain of coarse dirt, crowded to the horizon with mounds of Blocks of Garbage.** You spawn into an endless dump. No ore below you, no trees. Everything you will ever build comes out of the trash. **Rebuild - and eventually heal - a ruined world from its own garbage.**
 
-This replaces the skyblock framing. Skyblock is a genre; an endless coarse-dirt plain under garbage is a *place* you recognize the instant you spawn, and it makes the cleanup fantasy **spatial** - you watch coarse dirt reappear as you process the piles. Progress shows on the ground.
+This replaces the skyblock framing. Skyblock is a genre; an endless garbage-mound plain is a *place* you recognize the instant you spawn, and it makes the cleanup fantasy **spatial** - every mound you kill and grass over is land visibly, permanently healed. Progress shows on the ground.
 
 ---
 
 ## The world is the signature feature
 
 - **Custom flat world type:** a gently rolling coarse-dirt plain crowded with garbage mounds of every size - short flat spreads to tall trash hills - dense enough to crowd the horizon (no continuous burial; dirt shows between mounds). Clearing means removing mounds. Worldgen/datapack job; it is the whole brand. Full worldgen decisions: [`design_decisions.md`](design_decisions.md).
-- **Garbage regions (instead of biomes):** the piles vary by area, gating progression through the terrain -
+- **Garbage regions (real biomes, distance-banded from spawn):** each region has its own garbage blocks, textures, pull tables, and hostility; launch trio is household + scrapyard + e-waste -
   - **Household-refuse sprawl** - plastics, packaging, organics (starter).
   - **Scrapyard** - metal, appliances, ferrous scrap.
   - **E-waste dump** - circuit boards, batteries; the rare/precious-materials zone.
@@ -41,9 +41,9 @@ Lore in one sentence: a civilization that buried its overworld, compacted what w
 
 ## The core loop
 
-Break a Block of Garbage -> **mixed trash** -> **sort** -> **tear down / recycle** -> materials + recovered **know-how** -> craft/rebuild -> (your output eventually becomes trash again).
+Dig Blocks of Garbage (they drop themselves) -> **sort** (pick through by hand -> Sorting Tarp -> machines: same verb at three speeds) -> **tear down** found items at the Salvage Workbench -> materials + **schematics** (recovered recipes) -> craft/rebuild -> (your output eventually becomes trash again).
 
-The tech tree runs entirely on waste. Teardown doesn't just yield scrap - disassembling an unfamiliar item **teaches you how it was made** (the Salvage twist), so you reverse-engineer the old world by picking through its garbage.
+The tech tree runs entirely on waste. Teardown doesn't just yield scrap - studying an item **teaches you how it was made** (deterministic study points; knowledge is a physical, tradeable schematic), so you reverse-engineer the old world by picking through its garbage. Survival crafts are free; technology is locked until learned.
 
 ---
 
@@ -104,23 +104,23 @@ Both stay in the mod shortlist (`F:\minecraft-repos\next-mod-concepts.md`) as st
 - **Dumpster Diving** (CurseForge) - the near-exact core: dig **Garbage Blocks**, a **Landfill biome** with buried mounds, recycle scraps to resources (cans -> tin, tires -> rubber, circuit boards -> redstone). **But abandoned** - latest release is v1.3.3 for **MC 1.12.2, dated 2018-2020** (~6 years dead, ancient version). Proves the theme has appeal; leaves the niche empty on modern MC.
 - **Scraps and Shards** / **Create Recycle Everything** / **Overly Complicated Garbage** - cover pieces (worldgen scrap piles; universal item recycling via Create - a *living* base worth considering; garbage production/disposal), not a dedicated garbage-world progression.
 - Wasteland survival packs (Survive The Wasteland, Wastelands, Project X) - scarcity/scavenging theme, not garbage-block recycling. The "Garbage Disposal" / "Garbage Dump" packs read as casual/kitchen-sink.
-- **Verdict:** the **Productive Bees -> Productive Frogs pattern** - a beloved-but-dead concept (Dumpster Diving) to rebuild modern and better. Don't build ON the corpse; either a fresh **Salvage mod** (MC 26.1, teardown-as-knowledge) or a pack on a *living* base (Create Recycle Everything). Our two distinct axes - **teardown-as-knowledge** and the **still-active self-burying dump** - are unclaimed by anything current.
+- **Verdict:** the **Productive Bees -> Productive Frogs pattern** - a beloved-but-dead concept (Dumpster Diving) to rebuild modern and better. Don't build ON the corpse; a fresh **Salvage mod** (decided - see Architecture). Our two distinct axes - **teardown-as-knowledge** and **regrowing-mound quarries with the quarry-vs-heal tension** - are unclaimed by anything current.
 
 ## Architecture (decided 2026-07-13)
 
-**One mod + one pack, more mods later if earned.** A single fresh companion mod (working name **Salvage**, NeoForge / MC 26.1) owns all custom systems to start: the garbage worldgen (coarse-dirt world preset, Blocks of Garbage and variants, garbage regions), the teardown-as-knowledge loop, and eventually the "garbage keeps coming" pressure system. The pack owns curation, quests, tuning, and the cross-mod teardown tables (JSON datapack territory, extendable without mod releases).
+**One mod + one pack, more mods later if earned.** A single fresh companion mod (working name **Salvage**, NeoForge / MC 26.1) owns all custom systems to start: the garbage worldgen (coarse-dirt world preset, Blocks of Garbage and variants, garbage regions), the teardown-as-knowledge loop, and the mound-regrowth system. The pack owns curation, quests, tuning, and the cross-mod teardown tables (JSON datapack territory, extendable without mod releases).
 
-Keep internal seams clean so systems can split into their own mods later - candidates: the pressure system as a generic data-driven accumulation engine; Magnetism / Superposition stay parked in the shortlist. Don't pre-create repos for mods that don't exist. This supersedes the build-on-vs-new-mod question: not building on Create Recycle Everything (it can still appear in the pack as a mid-tier automation layer, not the foundation).
+Keep internal seams clean so systems can split into their own mods later - candidate: mound regrowth as a generic data-driven accumulation engine; Magnetism / Superposition stay parked in the shortlist. Don't pre-create repos for mods that don't exist. This supersedes the build-on-vs-new-mod question: not building on Create Recycle Everything (it can still appear in the pack as a mid-tier automation layer, not the foundation).
 
-**Features are config-gated.** Every major system ships behind a config flag with tunable rates (pressure variants, region weights, knowledge odds). This lets playtesting pick winners instead of deciding on paper - e.g. build creep, trash wind, AND sky-dumps, then tune. Guardrail: flags are for tuning, not for avoiding decisions; the pack ships one opinionated default experience. Defaults are the design.
+**Features are config-gated.** Every major system ships behind a config flag with tunable rates (regrowth rate, region band radii, knowledge odds). This lets playtesting pick winners instead of deciding on paper. Guardrail: flags are for tuning, not for avoiding decisions; the pack ships one opinionated default experience. Defaults are the design.
 
 ## Open questions
 
-- **In-place vs frontier renewal:** is trash finite-per-chunk (expand outward) or does it actively re-bury a fixed base (the "garbage keeps coming" pressure)? Lean: the latter, but tune so it's pressure, not punishment.
-- **Worldgen approach:** custom world-preset/dimension datapack for the coarse-dirt + garbage surface + regions.
+- **Pack name** (working: Trashlands) and the Nether theme's name ("compacted depths" placeholder).
+- **The quest-narrator question:** who wrote the quest book (see `the_twist.md` - spoilers).
+- P2/P3 features not yet walked through - see the bookmark in [`design_decisions.md`](design_decisions.md).
 
 ## Next actions
 
-1. Lock the "garbage keeps coming" mechanic (rate, wind-in vs dump, pressure tuning).
-2. Sketch the tier-one loop end to end (spawn -> first sorted materials -> first machine).
-3. One-week feasibility slice: the custom garbage worldgen + one garbage block that tears down into sorted materials. Throwaway if the world doesn't *feel* right.
+1. Resume the feature-by-feature walkthrough at P2 (bookmark and ordered list: [`design_decisions.md`](design_decisions.md)).
+2. One-week feasibility slice per the locked P0 spec. Throwaway if the world doesn't *feel* right.
