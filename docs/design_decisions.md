@@ -8,14 +8,13 @@ Running log of locked per-feature decisions from the feature-by-feature walkthro
 
 **As of 2026-07-14:** P0 fully locked (P0.1-P0.5). P1 fully locked (P1.1-P1.8). **P2 fully locked (P2.1-P2.8).** Dimensions, the knowledge system, mound regrowth, the material economy ([`material_economy.md`](material_economy.md)), and the narrative layer ([`the_twist.md`](the_twist.md), spoilers) are locked. Mod lineup so far: Create (belts/logistics), Mekanism (chemical/radiation endgame), Productive Frogs (reclamation crossover).
 
-**Resume here - P3 walkthrough** (P3.1 sky dumps CUT; P3.2 Field Manual, P3.3 degraded recipes CUT - all locked):
-1. Blueprint scraps (partial recipes, collect-3)
-2. The themed Nether build
-3. The garbage End build
-4. Frogs return to healed land (Productive Frogs)
-5. Win-condition tracking (cleared-land metric)
-6. Circular endgame (self-feeding economy)
-7. The final chapter (narrative frame + staged payoff - author vs the_twist.md)
+**Resume here - P3 walkthrough** (P3.1 sky dumps, P3.3 degraded recipes, P3.4 blueprint scraps all CUT; P3.2 Field Manual locked):
+1. The themed Nether build
+2. The garbage End build
+3. Frogs return to healed land (Productive Frogs)
+4. Win-condition tracking (cleared-land metric)
+5. Circular endgame (self-feeding economy)
+6. The final chapter (narrative frame + staged payoff - author vs the_twist.md)
 
 **Open threads not on the matrix:** pack name (working: Trashlands), Nether theme name ("compacted depths" placeholder), the quest-narrator question (who wrote the quest book - see the_twist.md), where construction rubble lives (see material_economy.md).
 
@@ -40,7 +39,7 @@ Running log of locked per-feature decisions from the feature-by-feature walkthro
 ### Buried-surprise candidates (brainstorm 2026-07-13)
 
 - **Loot pinatas:** appliances (fridge = preserved food, early food source; washer, stove - prybar targets), crushed cars (metal + battery chance), tire stacks, pipe bundles, wire spools.
-- **Knowledge caches:** filing cabinets / briefcases (documents teach recipes), dead computers and TVs (e-waste + data recovery), time capsules (rare; lore + a guaranteed full recipe). Blueprint scraps live here, not only in teardown machines.
+- **Knowledge caches:** filing cabinets / briefcases (drop schematic items), dead computers and TVs (e-waste + data recovery), time capsules (rare; a guaranteed full schematic). Caches drop whole schematics (P1.4.C), an alternative to studying the item yourself.
 - **Utility finds:** broken machines repairable into working ones (find-and-fix beats craft for the fantasy - your first furnace might be excavated), dumpsters as working storage, mattresses as field respawn points.
 - **Hazards:** rusty chemical-waste barrels (leak if broken carelessly, but are chemical-tier inputs), pocketed garbage gas (fire/poison puff on careless digging).
 - **Lore set-dressing:** buried road segments, street lamps, bus stops, signage - the old world's skeleton.
@@ -63,7 +62,7 @@ Running log of locked per-feature decisions from the feature-by-feature walkthro
 
 1. **Two systems, two formats.** Garbage-block pulls use vanilla loot tables (free tooling, modder familiarity). Teardown gets a custom recipe type (`salvage:teardown`). One format is not forced to do both jobs.
 2. **Output shape: fixed core + weighted extras.** Deterministic bones (plan an economy around it) plus chance-weighted bonuses (stays interesting).
-3. **`teaches` field in the schema from day one** even though the knowledge mechanic is P1: recipe(s) revealed, chance, `scraps_required` for the blueprint-scraps hook. The distinct axis is not retrofitted into a shipped schema.
+3. **`teaches` field in the schema from day one** even though the knowledge mechanic is P1: recipe(s) revealed, chance, `scraps_required` = how many teardowns of the item complete the study (P1.4.B deterministic study points; NOT a fragment/blueprint-scrap system - that was cut). The distinct axis is not retrofitted into a shipped schema.
 4. **`station` field for tier gating** (hand / tarp / machine / advanced) - one format covers the whole progression; pack authors gate cross-mod teardowns with one string.
 
 Reference sketch:
@@ -244,6 +243,10 @@ Not a separate feature. Sky dumps ARE the regrowth delivery already locked in P1
 ## P3.3 - Degraded recipes - CUT (2026-07-14)
 
 Cut. "Crude first, better later" is already delivered by purity-as-yield (P2.2: lossy -> efficient conversion) and the burn-barrel -> repaired-furnace arc. Degraded item variants would violate the anti-bloat rule (parallel weaker blocks = JEI/ID clutter) and add a second progress axis on top of study points. Where a crude tier genuinely adds flavor, it's a separate cheap recipe unlocked first via the knowledge system (e.g. "scrap furnace" before "furnace") using normal items - a content pattern, not a stat-degradation system.
+
+## P3.4 - Blueprint scraps - CUT (2026-07-14)
+
+Dropped. Redundant: deterministic study points (P1.4.B, `scraps_required`) already give the collect-to-complete feel, and knowledge caches already drop full schematic items (P1.4.C). A third fractional-knowledge acquisition path adds nothing the system needs. Remove the "blueprint scraps" and `scraps_required`-as-fragments framing from the schema notes; keep study points and whole-schematic caches only.
 
 ## Dimensions - Nether and End (locked 2026-07-13, specs revised same day)
 
