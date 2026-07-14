@@ -6,6 +6,7 @@
 
 ## Read first
 - [`docs/concept.md`](docs/concept.md) - the full design (vision, worldgen, the "garbage keeps coming" mechanic, tier spine, prior-art pass, open questions). **Start here.**
+- [`docs/feature_matrix.md`](docs/feature_matrix.md) - every feature by priority (P0 slice -> P3 polish) and feasibility. The build order.
 - [`README.md`](README.md) - the one-paragraph pitch.
 - `F:\minecraft-repos\next-mod-concepts.md` - the parent mod shortlist and the design rules (DNA criteria, "prior art informs, doesn't veto").
 
