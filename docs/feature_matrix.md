@@ -1,6 +1,6 @@
 # Feature matrix - priority x feasibility
 
-**Status:** brainstorm capture (2026-07-13). Nothing here is committed-to except P0. Every feature is config-gated per the architecture principle; priority here is about build order and what the pack's identity actually depends on.
+**Status:** build-order reference (updated 2026-07-14). The full feature-by-feature walkthrough is done except the parked endgame/postgame cluster; locked decisions and the session bookmark live in [`design_decisions.md`](design_decisions.md) - this matrix is the priority/feasibility view, that log is the source of truth for what's decided. Every feature is config-gated per the architecture principle.
 
 **Feasibility scale:**
 - **Easy** - datapack/JSON or a well-worn modding pattern (block registration, loot tables, world preset).
@@ -14,9 +14,9 @@
 | Feature | Feasibility | Notes |
 |---|---|---|
 | Custom flat world preset (coarse-dirt substrate) | Easy | World preset datapack. |
-| Garbage surface layer (piles/mounds horizon-to-horizon) | Medium | Custom surface rules + mound placement. The brand; must *feel* right or the pack dies here. |
-| Block of Garbage (one basic block) | Easy | Block + loot table. |
-| Mixed trash -> hand-sort into components | Easy | Item + loot-table-driven extraction. |
+| Garbage surface layer (variable mounds on a coarse-dirt plain, no continuous burial) | Medium | Custom surface rules + mound placement. The brand; must *feel* right or the pack dies here. |
+| Block of Garbage (one basic block; drops itself, gravity on) | Easy | Block + loot table. |
+| Pick-through hand-sorting (right-click a placed block for components) | Easy | Loot-table-driven extraction; block crumbles after 4-6 pulls. |
 | One hand-authored teardown table (JSON) | Easy | Proves the data-driven schema end to end. |
 
 **Slice exit test:** spawn, dig garbage, sort it, get sorted materials. If the world doesn't feel like an endless dump, stop and rethink before any P1 work.
@@ -30,7 +30,7 @@
 | Sorting Tarp (first station, manual sorting) | Medium | Ex Nihilo sieve shape, garbage flavor. |
 | Teardown machine (feed item -> components) | Medium | The Salvage mod's centerpiece block. |
 | Teardown-as-knowledge (recover recipes) | **Medium** (v1) | THE distinct axis. v1 rides vanilla `doLimitedCrafting` + recipe book grants (~1-2 wks on top of the bench); risks are the JEI locked-recipe overlay and FTB Teams sync. The Hard version (auto recipe introspection, gating other mods' machine recipes) stays maybe-never. Hand-authored JSON unlock tables only. |
-| Garbage regions (household / scrapyard / e-waste / slag / hazmat) | Medium | Region noise or custom biome source. Start with 2 (household + scrapyard); add the rest as content. |
+| Garbage regions (household / scrapyard / e-waste / slag / hazmat) | Medium | Real biomes, distance-banded from spawn; per-biome garbage blocks. Launch trio: household + scrapyard + e-waste; slag + hazmat in P2. |
 | Mound regrowth (mounds regenerate to original footprint, blocks fall from the sky) | Medium | Renewable quarries, not doom. Falling-block delivery from world top (deorbiting garbage). Needs original-bounds memory per mound. |
 | Healed-land immunity (grass + built blocks stop regrowth) | Easy | Grassing a mound's footprint retires it forever. The quarry-vs-heal tension is the pack's engine. |
 | Dimension lockout (Nether + End portals disabled by default) | Easy | Config flags. Plugs the vanilla-resource leak until the themed dimensions ship. |
@@ -39,30 +39,31 @@
 
 | Feature | Feasibility | Notes |
 |---|---|---|
-| Spawn-buried opening (dig up toward light) | Medium | Best first impression; needs safe-spawn logic. Slice can fake it manually first. |
-| Trash wind (weather flavor event, small scatter near existing mounds) | Medium | Demoted from threat to ambience. Never touches builds or cleared land. Config, conservative default. |
-| Tier 2 processing (melt plastic, smelt scrap, compost, crush glass) | Easy-Medium | Mix of Salvage machines and curated existing mods. |
-| Tier 3 logistics (conveyors/filters, hands-off sorting) | Easy | Pack curation - existing mods (Create et al.), not custom code. |
-| Reclamation chain (coarse dirt -> grass -> trees) | Medium | The visible win state. Needs a deliberate mechanic, not just bonemeal. |
-| Hazmat gating (protection gear unlocks the quarantine region) | Easy-Medium | Armor tag check. The hard gate for the rare-materials zone. |
-| E-waste recovery chains (gold from boards, lithium from batteries) | Easy | JSON content on existing machines. |
-| Quest line (FTB Quests, quest-voice spec) | Easy | Content work, large surface. Gate on tier spine being stable. |
-| Cross-mod teardown tables at pack scale | Easy per entry | The compat surface is the content; grows forever. Budget it like content, not code. |
+| Opening: clearing spawn + scripted deorbit spectacle | Medium | Spawn between mounds (buried-spawn cut, P2.1); distant sky-delivery in the first minute. |
+| Trash wind (optional weather flavor event, small scatter near mounds) | Medium | Demoted to ambience. Never touches builds or cleared land. Config, conservative default. |
+| Tier 2 processing (Burn Barrel + repaired furnace; purity-as-yield) | Easy-Medium | One custom machine; rest is vanilla stations unlocked via study. Fuel is junk, no energy. |
+| Tier 3 logistics (Create for belts; Salvage converts, Create moves) | Easy | Create in the pack; Salvage machines never require it. See material_economy.md Create spine. |
+| Reclamation chain (compost + clean water + seed -> grass -> crops -> trees) | Medium | Healing is a supply chain, yields only land. |
+| Hazmat gating (Mekanism radiation + hazmat suit carry it) | Easy-Medium | Salvage ships biome + blocks + caches only; Mekanism owns the systems. |
+| E-waste recovery chains (crude smelt early, Mekanism chemistry late) | Easy | Two-stage purity-as-yield; battery chain is its own mini-tree. |
+| Quest line (FTB Quests, quest-voice spec; hidden post-twist chapters) | Easy | Titled in the exile fiction; the twist delivery vehicle. See the_twist.md. |
+| Cross-mod teardown tables at pack scale (tag-driven + landmark handcraft) | Easy per entry | The compat surface is the content; grows forever. Budget it like content, not code. |
 
 ## P3 - polish and delight (after the pack is playable end to end)
 
 | Feature | Feasibility | Notes |
 |---|---|---|
 | ~~Sky dumps~~ (CUT - folded into mound regrowth) | - | Not a separate feature; the falling-blocks-into-mound visual IS the regrowth delivery (P1.6.6). |
-| Field Manual (knowledge book UI that fills in) | Medium-Hard | v1 can be advancement toasts + quest book; dedicated UI later. |
+| Field Manual (technical reference, no custom book) | Easy | Use whatever guide-book mod is updated for 26.x; NOT a lore vehicle (minimize-prose principle). |
 | ~~Degraded recipes~~ (CUT) | - | Redundant with purity-as-yield + burn-barrel arc; would violate anti-bloat. "Crude first" is a knowledge-unlock content pattern instead. |
 | ~~Blueprint scraps~~ (CUT) | - | Redundant: study points already collect-to-complete; caches drop whole schematics. |
-| Themed Nether (solid techno-organic waste, roof to floor; heat/energy tier) | Hard | Spec locked (see design_decisions.md). May pull forward if the energy tier needs it. |
-| Themed End (End-style islands of end-themed garbage, vanilla dragon) | Medium-Hard | Spec locked. Portal access earned through high-tier recycling. |
+| Themed Nether (solid techno-organic waste, roof to floor) | Hard | Spec locked. First RF power + osmium originate here; a mid-game resource stop, not parallel progression. |
+| Themed End (End-style islands of end-themed garbage, vanilla dragon) | Medium-Hard | Spec locked. The found-economy capstone; portal access earned through high-tier recycling. |
 | ~~Frogs return to healed land (Productive Frogs integration)~~ (CUT) | - | Crossover dropped. Life-returns beat stays vanilla. |
 | ~~Win-condition tracking (cleared-land metric, district map)~~ (CUT) | - | Progression is quest-based; no separate metric. |
 | ~~Circular endgame (self-feeding economy)~~ (CUT) | - | Dropped; endgame REOPENED for redesign (see design_decisions P3.9). |
-| The final chapter (narrative frame + staged payoff: sky clears, life waves, villagers settle, Gate monument) | Hard | Full spec in the_twist.md (spoilers). The Overworld Gate multiblock, deorbit-rain suppression over healed land, villager arrival are all real systems. |
+| The final chapter (narrative frame + staged payoff: sky clears, life waves, villagers settle, Gate monument) | Hard | **PARKED** - depends on the endgame redesign. Full spec in the_twist.md (spoilers). Overworld Gate multiblock, deorbit-rain suppression over healed land, quest-gated villager arrival are all real systems. |
+| **Endgame redesign** (leads into the Gate; resolves quarry-vs-heal affordability) | TBD | **PARKED / OPEN** - circular economy cut. Three seed directions in design_decisions P3.9; not chosen. |
 
 ## Parked (not in this pack unless the plan changes)
 
@@ -75,6 +76,7 @@
 
 ## Reading the matrix
 
-- **The one Hard item in P1 is the distinct axis.** Teardown-as-knowledge is why this pack exists, and it is the riskiest build. The de-risk is explicit: hand-authored JSON unlock tables first, automatic recipe introspection maybe never. If the hand-authored version isn't fun, the auto version won't save it.
+- **Teardown-as-knowledge is the distinct axis and the riskiest build**, though the walkthrough downgraded it P1-Hard -> Medium (it rides vanilla `doLimitedCrafting`). De-risk stays explicit: hand-authored JSON unlock tables first, automatic recipe introspection maybe never.
 - **Everything in P0 is Easy/Medium.** The thesis can be tested in a week without touching anything hard.
-- **P2/P3 lean on curation.** Tiers 3-5 are mostly existing mods + JSON; custom code stays concentrated in worldgen, pressure, and knowledge.
+- **The pack leans hard on curation.** Create carries logistics, Mekanism carries chemistry/radiation/energy; the Salvage mod deliberately doesn't build what the lineup ships. Custom code stays concentrated in worldgen, mound regrowth, and the knowledge system.
+- **P3 shrank in the walkthrough:** five features cut (sky dumps, degraded recipes, blueprint scraps, frogs crossover, win-tracking) as redundant or over-built; the endgame was reopened. The systems locked in P0-P2 already covered most of what P3 originally promised.

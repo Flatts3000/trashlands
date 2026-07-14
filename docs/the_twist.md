@@ -44,7 +44,7 @@ A twist that only subtracts the goal deflates the pack. Two design moves prevent
 
 1. **The sky clears.** Retiring mounds stops the deorbit rain over that land; fully healed regions get open blue sky and stars - the first time in the playthrough garbage isn't falling somewhere on screen. "You stopped the rain."
 2. **Life returns in waves:** grass, trees, then animals - vanilla life returning to land that was garbage.
-3. **People return.** Completing the reclamation quest line triggers villagers to arrive and settle the healed land, sustained by the circular economy - the "no longer need the dump" win condition made visible as a living village. (Quest-gated, not metric-gated - progression is quest-based.)
+3. **People return.** Completing the reclamation quest line triggers villagers to arrive and settle the healed land - the "no longer need the dump" win condition made visible as a living village. (Quest-gated, not metric-gated - progression is quest-based.)
 4. **The dead Gate stays standing as a monument** in the middle of the green. Final image: a village under a clear sky on land that was garbage. You didn't go home. You made it.
 
 The pack's promise ("get back to the overworld") is kept literally: the overworld comes back.

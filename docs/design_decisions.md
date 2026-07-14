@@ -8,11 +8,15 @@ Running log of locked per-feature decisions from the feature-by-feature walkthro
 
 **As of 2026-07-14:** P0 fully locked (P0.1-P0.5). P1 fully locked (P1.1-P1.8). **P2 fully locked (P2.1-P2.8).** Dimensions, the knowledge system, mound regrowth, the material economy ([`material_economy.md`](material_economy.md)), and the narrative layer ([`the_twist.md`](the_twist.md), spoilers) are locked. Mod lineup so far: Create (belts/logistics), Mekanism (chemical/radiation endgame). (Productive Frogs crossover dropped 2026-07-14.)
 
-**Resume here - P3 walkthrough** (P3.1 sky dumps, P3.3 degraded recipes, P3.4 blueprint scraps all CUT; P3.2 Field Manual locked):
-1. **ENDGAME REDESIGN** (open - circular economy cut in P3.9; needs a new mechanical endgame that leads into the Gate and resolves quarry-vs-heal affordability)
-2. The final chapter (narrative frame + staged payoff - author vs the_twist.md)
+**Walkthrough is COMPLETE except the endgame/postgame cluster, which is PARKED (Jason's call, 2026-07-14) - worry about it later.**
 
-(P3.5 Nether, P3.6 End DONE. P3.7 frogs, P3.8 win-tracking, P3.9 circular-economy CUT.)
+P3 results: P3.2 Field Manual locked; P3.5 Nether, P3.6 End DONE; P3.1 sky dumps, P3.3 degraded recipes, P3.4 blueprint scraps, P3.7 frogs, P3.8 win-tracking, P3.9 circular-economy all CUT.
+
+**Parked for a future session (do not resume until Jason reopens):**
+1. **Endgame redesign** - circular economy cut (P3.9); needs a new mechanical endgame that leads into the Overworld Gate and resolves quarry-vs-heal affordability. Three seed directions captured in chat: Gate-as-megaproject (throughput), Gate-as-one-of-everything (completion), Gate-as-power-problem (energy). Not chosen.
+2. **The final chapter / postgame** - narrative frame + staged payoff, authored against the_twist.md. Depends on the endgame being chosen first.
+
+Everything upstream of the endgame (P0, P1, P2, the material economy, dimensions, knowledge, regrowth, the twist framing) is locked and ready to prototype.
 
 **Open threads not on the matrix:** pack name (working: Trashlands), Nether theme name ("compacted depths" placeholder), the quest-narrator question (who wrote the quest book - see the_twist.md), where construction rubble lives (see material_economy.md).
 
@@ -46,7 +50,7 @@ Running log of locked per-feature decisions from the feature-by-feature walkthro
 
 1. **Drops itself.** The block is the unit of mixed trash: carry it, stack it, build with it (trash walls as first shelter), feed it whole into sorting stations. Loose mixed-trash items still exist (from bags, loot) but the block stays whole when dug.
 2. **Hand-breakable but slow; shovel-class fast.** Zero-barrier start. Tougher variants needing prybar/knife arrive in P1.
-3. **Gravity on, config-gated.** Gravel-style falling. Mounds slump when quarried; digging into a tall mound's base can bury you. Foreshadows the pressure system.
+3. **Gravity on, config-gated.** Gravel-style falling. Mounds slump when quarried; digging into a tall mound's base can bury you. Ties into mound regrowth (same falling-block behavior).
 4. **One block, randomized texture/model variants** (protruding bag, jutting pipe, compressed face) so mounds read as heterogeneous junk without multiplying block IDs. Region palettes come with the regions system.
 
 ## P0.4 - Mixed trash and hand-sorting (locked 2026-07-14)
@@ -137,7 +141,7 @@ The batch tier of the sorting verb, designed with sifting's (Ex Nihilo lineage) 
 
 1. **Mounds regrow toward their original size and footprint - never beyond.** A mound is a renewable quarry; the mechanic exists so you never have to relocate for materials. No unbounded accretion, no new-mound seeding on cleared land.
 2. **Regrowth only fills exposed coarse dirt within the original bounds.** Grass and any built/placed blocks stop it. Kill a mound, grass its footprint, and it is retired forever.
-3. **The core tension this creates:** a regrowing mound is income; healed land is permanent but retires that income. Healing the world shrinks your garbage economy - full reclamation becomes affordable only when the circular economy (recycling your own outputs) can replace scavenging. Endgame thesis: not "you beat the tide" but "you no longer need the dump."
+3. **The core tension this creates (locked):** a regrowing mound is income; healed land is permanent but retires that income. Healing the world shrinks your garbage economy, so full reclamation must become affordable somehow before the endgame - the mechanism that resolves this is OPEN (the circular economy that was going to carry it is cut; see P3.9). The tension itself stands. Endgame thesis: not "you beat the tide" but "you no longer need the dump."
 4. **Trash wind and sky dumps demoted to optional flavor/farmable events** (config, conservative defaults; never threaten builds or cleared land). Wind = ambience + small scatter near existing mounds at most; dumps = opt-in late-game deliveries.
 5. **Regrowth rate config-exposed;** default slow enough to feel like recovery, not respawn (visible across sessions, not minutes).
 6. **Delivery: blocks fall from the top of the world,** as if deorbiting from space - falling-block entities spawn high above the mound and rain into place. Visible from afar (you can see which mounds are replenishing), reuses the garbage-block gravity from P0.3, and ties the lore together: the void-dumped garbage is still coming home.

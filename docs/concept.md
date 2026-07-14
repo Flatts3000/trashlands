@@ -1,6 +1,6 @@
 # Trashlands - Concept
 
-**Status:** design walkthrough in progress (updated 2026-07-14). No code. P0 + P1 fully specified in [`design_decisions.md`](design_decisions.md) (the per-feature log and session bookmark); [`feature_matrix.md`](feature_matrix.md) is the build order. Working name "Trashlands" (rename freely - candidates: The Heap, Landfill Earth, Wasteworld).
+**Status:** design walkthrough complete except the parked endgame/postgame cluster (updated 2026-07-14). No code. P0-P2 + most of P3 fully specified in [`design_decisions.md`](design_decisions.md) (the per-feature log and session bookmark); [`feature_matrix.md`](feature_matrix.md) is the build order. Working name "Trashlands" (rename freely - candidates: The Heap, Landfill Earth, Wasteworld).
 **Relationship:** the showcase modpack for the **Salvage** mod. Garbage + recycling is the core to explore. Magnetism and Superposition are noted as optional, not explored (see the note below). Mod shortlist + design rules: `F:\minecraft-repos\next-mod-concepts.md`.
 
 ---
@@ -54,7 +54,7 @@ Trash is never impending doom. **Mounds regrow toward their original size and fo
 The tension this creates is the pack's engine:
 
 - A regrowing mound is **income**. Healed land is **permanent, but retires that income**.
-- Healing the world shrinks your garbage economy - full reclamation is only affordable once the circular economy (recycling your own outputs) replaces scavenging.
+- Healing the world shrinks your garbage economy - full reclamation must become affordable before the endgame (the resolving mechanism is currently open; see the P3.9 note in `design_decisions.md`).
 - The endgame thesis: not "you beat the tide" but **"you no longer need the dump."**
 
 **Delivery is the signature visual:** regrowth blocks fall from the top of the world into place, as if deorbiting - the void-dumped garbage of the old civilization still coming home. You can see which mounds are replenishing from across the map.
@@ -85,7 +85,7 @@ Both stay in the mod shortlist (`F:\minecraft-repos\next-mod-concepts.md`) as st
 3. **Sort & automate** - conveyors/filters separate mixed trash hands-off. The logistics tier.
 4. **Recover the good stuff** - gold from circuit boards, lithium from batteries, rare bits from e-waste; chemical recycling.
 5. **Upcycle** - turn recovered materials into real tech, closing loops earlier tiers couldn't.
-6. **Circular endgame + reclamation** - a self-feeding economy; the trash mountain visibly shrinks; **restore the land** (coarse dirt -> grass -> trees). Win by making the highest-tier tech from pure waste, and by carving a green clearing out of an endless dump.
+6. **Endgame + reclamation** - **restore the land** (coarse dirt -> grass -> crops -> trees), retiring garbage quarries permanently. The mechanical endgame (what you build toward, culminating in the Overworld Gate) is currently REOPENED - see the P3.9 note and bookmark in [`design_decisions.md`](design_decisions.md). The narrative endgame is spoiler-quarantined in `the_twist.md`.
 
 ---
 
@@ -93,7 +93,7 @@ Both stay in the mod shortlist (`F:\minecraft-repos\next-mod-concepts.md`) as st
 
 - **It's the Salvage mod's Sky Frogs** - pack as vehicle, mod as engine; the same one-two that already shipped.
 - **Cross-mod IS the content** - recycle any mod's items; the more mods in the pack, the bigger the teardown tree.
-- **Data-driven** - garbage-block loot/teardown tables, magnetic properties, recovery odds are all JSON.
+- **Data-driven** - garbage-block loot tables, teardown tables (with recipe-teaching), region weights, recovery odds are all JSON.
 - **Proven format** - a tiered, quest-driven progression pack (Sky Frogs shape) on a memorable custom world.
 - **A hook with a conscience** - "one man's trash," reclamation, healing a ruined world. Legible and shareable.
 

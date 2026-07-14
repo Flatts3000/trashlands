@@ -2,7 +2,7 @@
 
 **What this is:** a Minecraft **modpack concept** (working name "Trashlands" - not final). An endless coarse-dirt plain crowded with mounds of **Blocks of Garbage** that regrow to their original size - renewable quarries raining back down from space, never impending doom. No ore, no trees; everything you build comes out of the trash. Rebuild, and eventually heal, a ruined world from its own garbage - healing a mound's footprint retires it forever, so reclamation costs you income.
 
-**Status:** design walkthrough in progress (2026-07-14). **No code yet.** This repo is design docs. P0 + P1 are fully specified; resume the walkthrough at P2 via the bookmark in `docs/design_decisions.md`.
+**Status:** design walkthrough complete except the parked endgame/postgame cluster (2026-07-14). **No code yet.** This repo is design docs. P0-P2 and most of P3 are fully specified; the endgame is reopened and postgame/final-chapter is parked - see the bookmark in `docs/design_decisions.md`.
 
 ## Read first
 - [`docs/concept.md`](docs/concept.md) - the full design (vision, worldgen, mound regrowth, tier spine, prior-art pass, open questions). **Start here.**
@@ -21,8 +21,8 @@ Garbage + recycling. A **Salvage** loop: dig Blocks of Garbage (they drop themse
 Prior-art pass is done (see concept.md): the near-exact mod, **Dumpster Diving**, is abandoned on MC 1.12.2 (2018-2020). Niche is open - this is the Productive Bees -> Productive Frogs move (rebuild a beloved-but-dead concept modern).
 
 ## Next actions
-1. Resume the feature-by-feature walkthrough at **P2** - the bookmark and ordered list live at the top of `docs/design_decisions.md`. (P0 + P1 + dimensions + knowledge + regrowth + narrative are locked.)
-2. One-week feasibility slice per the locked P0 spec: world preset + mounds + household garbage block + pick-through sorting + one teardown table. Throwaway if the world doesn't *feel* right.
+1. **Design the endgame** (reopened - circular economy cut). Then the postgame/final chapter (against `the_twist.md`). Bookmark in `docs/design_decisions.md` has the three seed directions.
+2. One-week feasibility slice per the locked P0 spec: world preset + mounds + household garbage block + pick-through sorting + one teardown table. Throwaway if the world doesn't *feel* right. (Endgame is not on the slice's critical path - P0-P2 are fully specified.)
 
 ## Conventions (this machine / Jason's mod work)
 - Target **NeoForge / MC 26.1** to match the Productive Frogs 2.x line (siblings: `../productive-frogs`, `../sky-frogs` - the proven pack+mod pattern to mirror).
