@@ -248,6 +248,14 @@ Cut. "Crude first, better later" is already delivered by purity-as-yield (P2.2: 
 
 Dropped. Redundant: deterministic study points (P1.4.B, `scraps_required`) already give the collect-to-complete feel, and knowledge caches already drop full schematic items (P1.4.C). A third fractional-knowledge acquisition path adds nothing the system needs. Remove the "blueprint scraps" and `scraps_required`-as-fragments framing from the schema notes; keep study points and whole-schematic caches only.
 
+## P3.5 - The themed Nether build (locked 2026-07-14)
+
+Worldgen spec already locked (see Dimensions below: solid techno-organic waste roof to floor, lava pockets, embedded structures, vanilla mob rules - a dump you mine).
+
+1. **A mid-game resource stop, not a parallel progression.** Go for what only it has, then leave. The overworld carries progression; no second tech tree down there.
+2. **The reason to go: first RF power and osmium originate here** (plus netherite-analog from the compacted depths and nether-tier salvage). This is where the energy tier begins - before the Nether, no RF (fuel/manual only, consistent with "no energy at tier 2"). The Nether unlocks RF generation.
+3. **It is solid, not mounds.** Do NOT think of the Nether in mound terms. Solid techno-organic fill with structure-voids; you tunnel through it. Different generation concept from the overworld's mounds-on-a-plain.
+
 ## Dimensions - Nether and End (locked 2026-07-13, specs revised same day)
 
 **Target: themed dimensions (Option 3).** Vanilla dimensions would leak free resources (quartz, gold, ancient debris) into a closed trash economy, so both get rebuilt to serve the fiction. Worldgen specs locked per-dimension below (four decisions each, mirroring P0.1).

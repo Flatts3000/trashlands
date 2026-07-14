@@ -85,11 +85,13 @@ Mekanism's ore needs map to the later regions (decided 2026-07-14):
 | Need | Found source |
 |---|---|
 | Uranium | **Hazmat quarantine** - spent fuel containers, radioactive medical waste, reactor components. The hard-gate region's treasure: the reason to build protection is the fuel of the endgame. |
-| Osmium | **Industrial slag field** - catalyst beds, precision contacts, dense alloy scrap. |
+| Osmium | **The Nether (compacted depths)** - the dump you mine. Osmium and first RF power both originate here (see P3.5). |
 | Fluorite | Slag field - industrial flux, water-treatment chemicals. |
 | Lead / Tin | Already in the metals matrix (batteries, pipes / cans, solder). |
 
 Reframe: Mekanism's ore-multiplication machinery reads as ultimate recycling efficiency (purity-as-yield's top tier).
+
+**Energy note:** the first RF power originates in the Nether (P3.5). Tiers 1-2 are fuel/manual only (no energy); RF generation unlocks with Nether access, feeding the mid/late electrical tiers.
 
 ## Open threads for later tiers
 
