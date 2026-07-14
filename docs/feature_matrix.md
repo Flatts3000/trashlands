@@ -57,8 +57,8 @@
 | Field Manual (knowledge book UI that fills in) | Medium-Hard | v1 can be advancement toasts + quest book; dedicated UI later. |
 | Degraded recipes (jury-rigged variants, re-refine later) | Medium-Hard | Gives Upcycle tier meaning; adds recipe-variant complexity. |
 | Blueprint scraps (partial recipes, collect 3 to complete) | Medium | Collection meta on top of knowledge system; only after knowledge v1 proves fun. |
-| The Incinerator (themed Nether: ash wastes, slag flows, heat/energy tier) | Hard | Locked target (see design_decisions.md). May pull forward if the energy tier needs it. |
-| The Unspoiled World (themed End: the pristine green payoff) | Hard | Locked target. Portal access earned through high-tier recycling. |
+| Themed Nether (solid techno-organic waste, roof to floor; heat/energy tier) | Hard | Spec locked (see design_decisions.md). May pull forward if the energy tier needs it. |
+| Themed End (End-style islands of end-themed garbage, vanilla dragon) | Medium-Hard | Spec locked. Portal access earned through high-tier recycling. |
 | Frogs return to healed land (Productive Frogs integration) | Easy | One-line spawn condition, signature moment, cross-promo. |
 | Win-condition tracking (cleared-land metric, district map) | Medium | Nice scoreboard; not load-bearing. |
 | Circular endgame (self-feeding economy) | Medium | Mostly recipe/quest design, not new systems. |
