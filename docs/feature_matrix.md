@@ -59,7 +59,7 @@
 | ~~Blueprint scraps~~ (CUT) | - | Redundant: study points already collect-to-complete; caches drop whole schematics. |
 | Themed Nether (solid techno-organic waste, roof to floor; heat/energy tier) | Hard | Spec locked (see design_decisions.md). May pull forward if the energy tier needs it. |
 | Themed End (End-style islands of end-themed garbage, vanilla dragon) | Medium-Hard | Spec locked. Portal access earned through high-tier recycling. |
-| Frogs return to healed land (Productive Frogs integration) | Easy | One-line spawn condition, signature moment, cross-promo. |
+| ~~Frogs return to healed land (Productive Frogs integration)~~ (CUT) | - | Crossover dropped. Life-returns beat stays vanilla. |
 | Win-condition tracking (cleared-land metric, district map) | Medium | Nice scoreboard; not load-bearing. |
 | Circular endgame (self-feeding economy) | Medium | Mostly recipe/quest design, not new systems. |
 | The final chapter (narrative frame + staged payoff: sky clears, life waves, villagers settle, Gate monument) | Hard | Full spec in the_twist.md (spoilers). The Overworld Gate multiblock, deorbit-rain suppression over healed land, villager arrival are all real systems. |

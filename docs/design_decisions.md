@@ -6,15 +6,14 @@ Running log of locked per-feature decisions from the feature-by-feature walkthro
 
 ## Walkthrough status (the bookmark - update every session)
 
-**As of 2026-07-14:** P0 fully locked (P0.1-P0.5). P1 fully locked (P1.1-P1.8). **P2 fully locked (P2.1-P2.8).** Dimensions, the knowledge system, mound regrowth, the material economy ([`material_economy.md`](material_economy.md)), and the narrative layer ([`the_twist.md`](the_twist.md), spoilers) are locked. Mod lineup so far: Create (belts/logistics), Mekanism (chemical/radiation endgame), Productive Frogs (reclamation crossover).
+**As of 2026-07-14:** P0 fully locked (P0.1-P0.5). P1 fully locked (P1.1-P1.8). **P2 fully locked (P2.1-P2.8).** Dimensions, the knowledge system, mound regrowth, the material economy ([`material_economy.md`](material_economy.md)), and the narrative layer ([`the_twist.md`](the_twist.md), spoilers) are locked. Mod lineup so far: Create (belts/logistics), Mekanism (chemical/radiation endgame). (Productive Frogs crossover dropped 2026-07-14.)
 
 **Resume here - P3 walkthrough** (P3.1 sky dumps, P3.3 degraded recipes, P3.4 blueprint scraps all CUT; P3.2 Field Manual locked):
-1. The themed Nether build
-2. The garbage End build
-3. Frogs return to healed land (Productive Frogs)
-4. Win-condition tracking (cleared-land metric)
-5. Circular endgame (self-feeding economy)
-6. The final chapter (narrative frame + staged payoff - author vs the_twist.md)
+1. The themed Nether build [DONE - P3.5]
+2. The garbage End build [DONE - P3.6]
+3. Win-condition tracking (cleared-land metric)
+4. Circular endgame (self-feeding economy)
+5. The final chapter (narrative frame + staged payoff - author vs the_twist.md)
 
 **Open threads not on the matrix:** pack name (working: Trashlands), Nether theme name ("compacted depths" placeholder), the quest-narrator question (who wrote the quest book - see the_twist.md), where construction rubble lives (see material_economy.md).
 
@@ -265,6 +264,10 @@ Worldgen spec already locked (End-style islands of end-themed garbage, vanilla d
 3. **The dragon stays vanilla** (fight, drop, open the gateway) - gives the pack its one real boss beat, framed as the old world's last guardian. No new systems.
 
 **Twist tie-in (already true from worldgen):** the End being garbage too reinforces the reveal - nowhere pristine to escape to, not even here. Doesn't spoil it; a hindsight data point.
+
+## P3.7 - Frogs return / Productive Frogs crossover - CUT (2026-07-14)
+
+Dropped. The "life returns to healed land" payoff (twist doc) stays, but delivered with vanilla life, not a Productive Frogs integration. No cross-mod crossover in the pack.
 
 ## Dimensions - Nether and End (locked 2026-07-13, specs revised same day)
 

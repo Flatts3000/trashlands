@@ -43,7 +43,7 @@ A twist that only subtracts the goal deflates the pack. Two design moves prevent
 **2. The replacement payoff is bigger and SHOWN, staged across a playable final chapter:**
 
 1. **The sky clears.** Retiring mounds stops the deorbit rain over that land; fully healed regions get open blue sky and stars - the first time in the playthrough garbage isn't falling somewhere on screen. "You stopped the rain."
-2. **Life returns in waves:** grass, trees, then frogs (the Productive Frogs crossover lands here, as a story beat), then animals.
+2. **Life returns in waves:** grass, trees, then animals - vanilla life returning to land that was garbage.
 3. **People return.** Heal enough contiguous land and villagers arrive and settle it, sustained by the circular economy - the "no longer need the dump" win condition made visible as a living village.
 4. **The dead Gate stays standing as a monument** in the middle of the green. Final image: a village under a clear sky on land that was garbage. You didn't go home. You made it.
 
@@ -51,7 +51,7 @@ The pack's promise ("get back to the overworld") is kept literally: the overworl
 
 ## What the twist resolves
 
-- **The pristine-payoff open question** (design_decisions.md, Dimensions section): the green world is not a place you reach; it is the thing you make after the reveal. The final chapter pivots escape -> reclamation: heal the mounds, retire the quarries, frogs return. The quarry-vs-heal tension (P1.6) is the epilogue's gameplay.
+- **The pristine-payoff open question** (design_decisions.md, Dimensions section): the green world is not a place you reach; it is the thing you make after the reveal. The final chapter pivots escape -> reclamation: heal the mounds, retire the quarries, life returns. The quarry-vs-heal tension (P1.6) is the epilogue's gameplay.
 - **Why the End is garbage too:** they threw it into the void. Even the "way out" dimensions are part of the burial.
 
 ## Process rules (spoiler discipline)
