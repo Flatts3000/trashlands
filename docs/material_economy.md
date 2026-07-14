@@ -78,6 +78,19 @@ Create's progression chokepoints are andesite alloy and brass. Both resolve insi
 
 **Open:** where construction rubble lives - seeded through scrapyard/slag pulls, or its own minor region (demolition yard) when regions expand.
 
+## The Mekanism spine (Mekanism is in the pack lineup - later-tier processing/chemical endgame)
+
+Mekanism's ore needs map to the later regions (decided 2026-07-14):
+
+| Need | Found source |
+|---|---|
+| Uranium | **Hazmat quarantine** - spent fuel containers, radioactive medical waste, reactor components. The hard-gate region's treasure: the reason to build protection is the fuel of the endgame. |
+| Osmium | **Industrial slag field** - catalyst beds, precision contacts, dense alloy scrap. |
+| Fluorite | Slag field - industrial flux, water-treatment chemicals. |
+| Lead / Tin | Already in the metals matrix (batteries, pipes / cans, solder). |
+
+Reframe: Mekanism's ore-multiplication machinery reads as ultimate recycling efficiency (purity-as-yield's top tier).
+
 ## Open threads for later tiers
 
 - **Mixed-scrap fine separation** (copper/aluminum out of bulk scrap) is the tier 3-4 sorting payoff - possibly the Magnetism hook if that mod ever happens; works without it.
