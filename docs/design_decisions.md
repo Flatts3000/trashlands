@@ -32,6 +32,28 @@ Running log of locked per-feature decisions from the feature-by-feature walkthro
 3. **Junk is fuel, not worthless.** Burns poorly, compacts back into buildable trash blocks. Nothing is worthless; some things are barely worth anything - the pack's moral stance as an item.
 4. **Region-weighted pull tables from day one.** JSON per region; slice ships one (household). Scrapyard skews metal, e-waste skews e-scrap - regions gate materials.
 
+## P0.5 - Teardown table schema (locked 2026-07-14)
+
+1. **Two systems, two formats.** Garbage-block pulls use vanilla loot tables (free tooling, modder familiarity). Teardown gets a custom recipe type (`salvage:teardown`). One format is not forced to do both jobs.
+2. **Output shape: fixed core + weighted extras.** Deterministic bones (plan an economy around it) plus chance-weighted bonuses (stays interesting).
+3. **`teaches` field in the schema from day one** even though the knowledge mechanic is P1: recipe(s) revealed, chance, `scraps_required` for the blueprint-scraps hook. The distinct axis is not retrofitted into a shipped schema.
+4. **`station` field for tier gating** (hand / tarp / machine / advanced) - one format covers the whole progression; pack authors gate cross-mod teardowns with one string.
+
+Reference sketch:
+
+```json
+{
+  "type": "salvage:teardown",
+  "input": "minecraft:iron_door",
+  "station": "salvage:workbench",
+  "results": [ { "item": "salvage:scrap_metal", "count": 2 } ],
+  "extras": [ { "item": "salvage:hinge", "chance": 0.35 } ],
+  "teaches": [ { "recipe": "minecraft:iron_door", "chance": 0.25, "scraps_required": 3 } ]
+}
+```
+
+**P0 is now fully specified.** Slice = world preset (P0.1) + mounds (P0.2) + one garbage block (P0.3) + pick-through sorting with one household loot table (P0.4) + one teardown table proving the data pipeline (P0.5).
+
 ### Buried-surprise candidates (brainstorm 2026-07-13)
 
 - **Loot pinatas:** appliances (fridge = preserved food, early food source; washer, stove - prybar targets), crushed cars (metal + battery chance), tire stacks, pipe bundles, wire spools.
