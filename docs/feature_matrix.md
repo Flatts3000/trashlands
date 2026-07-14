@@ -33,6 +33,7 @@
 | Garbage regions (household / scrapyard / e-waste / slag / hazmat) | Medium | Region noise or custom biome source. Start with 2 (household + scrapyard); add the rest as content. |
 | Creep (garbage spreads onto exposed coarse dirt) | Medium | Sculk-like block-tick spread. The baseline pressure. |
 | Healed-land immunity (grass can't be re-buried) | Easy | One rule, but it IS the progression banking mechanic. Ships with creep. |
+| Dimension lockout (Nether + End portals disabled by default) | Easy | Config flags. Plugs the vanilla-resource leak until the themed dimensions ship. |
 
 ## P2 - the full loop (makes it a complete pack)
 
@@ -56,6 +57,8 @@
 | Field Manual (knowledge book UI that fills in) | Medium-Hard | v1 can be advancement toasts + quest book; dedicated UI later. |
 | Degraded recipes (jury-rigged variants, re-refine later) | Medium-Hard | Gives Upcycle tier meaning; adds recipe-variant complexity. |
 | Blueprint scraps (partial recipes, collect 3 to complete) | Medium | Collection meta on top of knowledge system; only after knowledge v1 proves fun. |
+| The Incinerator (themed Nether: ash wastes, slag flows, heat/energy tier) | Hard | Locked target (see design_decisions.md). May pull forward if the energy tier needs it. |
+| The Unspoiled World (themed End: the pristine green payoff) | Hard | Locked target. Portal access earned through high-tier recycling. |
 | Frogs return to healed land (Productive Frogs integration) | Easy | One-line spawn condition, signature moment, cross-promo. |
 | Win-condition tracking (cleared-land metric, district map) | Medium | Nice scoreboard; not load-bearing. |
 | Circular endgame (self-feeding economy) | Medium | Mostly recipe/quest design, not new systems. |

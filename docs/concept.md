@@ -26,6 +26,17 @@ This replaces the skyblock framing. Skyblock is a genre; an endless coarse-dirt 
 
 ---
 
+## Dimensions (decided 2026-07-13)
+
+Vanilla Nether/End would leak free resources into a closed trash economy, so both get themed (portals config-locked until each ships; portal materials ultimately come from high-tier recycling):
+
+- **The Incinerator (Nether):** a burning dump - ash wastes, slag flows. The mid-game heat-and-energy tier.
+- **The Unspoiled World (End):** the only pristine green place in existence; the emotional payoff destination of the cleanup fantasy. Elytra survives as pristine-world technology.
+
+Lore in one sentence: a civilization that buried its overworld and burned what it couldn't bury.
+
+---
+
 ## The core loop
 
 Break a Block of Garbage -> **mixed trash** -> **sort** -> **tear down / recycle** -> materials + recovered **know-how** -> craft/rebuild -> (your output eventually becomes trash again).
