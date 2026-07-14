@@ -1,0 +1,68 @@
+# Material economy - working doc
+
+**Status:** candidates, not locked (2026-07-14). The framework below came out of the P2.2 discussion; individual rows get locked as their tiers are designed. Companion to [`design_decisions.md`](design_decisions.md).
+
+---
+
+## The two governing principles
+
+**1. Purity as yield, not as parallel items** (locked in P2.2). Processed outputs are vanilla items wherever vanilla has them; what improves with tech tier is the conversion ratio, never a parallel "reclaimed X" item. Identity lives in the inputs and intermediates (scrap, cullet, muck, plastic sheet, rubber), which are ours.
+
+**2. The found-to-made arc applies to materials, not just recipes.** Every material has a **found source** (a thematic garbage stream) and eventually a **made source** (synthesis or refinement at higher tier). Early game you scavenge it; endgame you manufacture it. This mirrors the recipe knowledge arc - the whole catalog migrates from found economy to made economy.
+
+---
+
+## Metals - real recycling streams, carried by teardown tables
+
+Bulk **scrap metal** stays mixed and smelts to **iron** (the dominant metal of any real dump, and the yield-progression showcase: burn barrel lossy -> repaired furnace -> induction recycler near-lossless).
+
+Specific metals come from tearing down specific found components - no typed-scrap item bloat, no new mechanics, and adding a metal later is one component item + JSON tables. Real-world streams:
+
+| Metal | Garbage stream (found source) | Made source (late tier) |
+|---|---|---|
+| Iron/steel | Bulk scrap, appliances, rebar, crushed cars | - (the baseline) |
+| Copper | Wire spools, motors, pipes, transformers | Mixed-scrap fine separation |
+| Aluminum | Cans, window frames, foil | Mixed-scrap fine separation |
+| Lead | Car batteries, old pipes, CRT glass, wheel weights | Battery recycling chain |
+| Gold | Circuit boards, connectors (e-waste) | E-scrap chemical recovery |
+| Silver | Electronics, mirrors, photographic scrap | E-scrap chemical recovery |
+| Zinc | Galvanized steel coating, dry-cell batteries | De-galvanizing step |
+| Nickel / Lithium | Batteries (the battery chain is its own mini-tree) | Battery recycling chain |
+| Tin | Cans (tinplate), solder on boards | Solder reclaim |
+| Netherite / ancient debris | The Nether's compacted depths (dump you mine) | - |
+
+Side effect worth keeping: the player learns where metals actually live in real garbage. Material literacy is flavor AND tutorial.
+
+## Gems - the found-to-made arc in miniature
+
+| Tier | Diamond source |
+|---|---|
+| Early (found) | **Jewelry** in household pulls - rare; people really do throw out rings |
+| Mid (found, reliable) | **Industrial diamond tooling** - saw blades, drill bits, grinding wheels in scrapyard/slag field |
+| Late (made) | **The synthesis press** - carbon from junk/organics compressed to lab-grown diamond. Garbage into diamond is the pack's thesis as a single recipe. |
+
+- **Emerald:** jewelry stream early; villager economy returns post-reclamation (see the final chapter).
+- **Amethyst/quartz:** see quartz row below; decorative gems can ride the jewelry stream.
+
+## The vanilla problem materials
+
+Every vanilla material that has no honest garbage presence gets the same treatment: found stream + made path.
+
+| Material | Found source | Made source |
+|---|---|---|
+| Redstone | Electronics teardown (boards, motors, sensors) | E-scrap refinement |
+| Quartz | Circuit oscillators (real!), old clocks, countertops | Slag-field silica processing |
+| Glowstone | Lamps, CRT/fluorescent phosphor coatings | Chemical tier |
+| Lapis | Pigment containers, dyes, old paint | Chemical tier |
+| Coal | NOT found - junk is the early fuel (locked P0.4/P2.2) | Charcoal from recovered wood; carbon black from plastic processing |
+| Obsidian | Not found - made only (melt slag/glass; portal gate is earned) | Slag furnace |
+| Ender pearls | E-waste rare drop ("eyes of ender from e-waste" - locked in Dimensions bridge) | End access |
+| Wood | Pallet fragments, furniture (mid-tier treasure, locked P1.1) | Tree farms post-reclamation - trees are nearly endgame |
+| Diamond/gems | See gems table | Synthesis press |
+
+## Open threads for later tiers
+
+- **Mixed-scrap fine separation** (copper/aluminum out of bulk scrap) is the tier 3-4 sorting payoff - possibly the Magnetism hook if that mod ever happens; works without it.
+- **The battery chain** (lead, nickel, lithium, zinc) is dense enough to be its own quest arc inside e-waste.
+- **Washing/degreasing** ("oily scrap" from slag field needs cleaning before smelting well) - optional processing texture, parked for the slag region's identity.
+- **Ratio table per tier** (burn barrel -> furnace -> induction) needs real numbers when the economy is tuned against playtests.

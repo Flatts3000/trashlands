@@ -160,6 +160,14 @@ Nether and End portals disabled by config default until each themed dimension sh
 4. **First-minutes flow** rides existing locks: hand-dig, discover pick-through, tarp within 15 minutes.
 5. **Respawns are normal;** deorbit intro has a config skip for repeat players/servers.
 
+## P2.2 - Tier 2 processing (locked 2026-07-14)
+
+1. **Vanilla-first; custom only where vanilla has no verb.** Tier 2 adds one custom machine; everything else is vanilla stations (furnace, campfire, composter) unlocked via study - every unlock is recovering civilization, not learning a modded machine.
+2. **The one custom station: the Burn Barrel.** Junk-fired, slow, inefficient, unlocked almost immediately. The real furnace is the mid-tier-2 upgrade - excavated broken and REPAIRED (find-and-fix as a main-quest beat). Burn barrel -> repaired furnace is the tier's arc.
+3. **Fuel is junk** (+ plastic scrap). No trees, no coal; every worthless pull feeds the barrel. Organics compost, never burn.
+4. **Purity as yield, not as parallel items.** Vanilla end products (iron, glass, bonemeal); the RATIO improves with tier (burn barrel 3 scrap -> 1 nugget; repaired furnace better; tier-4 machines approach lossless). No "reclaimed iron" item bloat. Identity lives in inputs/intermediates (scrap, cullet, muck, plastic sheet, rubber). Full material framework: [`material_economy.md`](material_economy.md).
+5. **No energy at tier 2.** Fuel and hands only; electricity is a later tier's identity.
+
 ## Dimensions - Nether and End (locked 2026-07-13, specs revised same day)
 
 **Target: themed dimensions (Option 3).** Vanilla dimensions would leak free resources (quartz, gold, ancient debris) into a closed trash economy, so both get rebuilt to serve the fiction. Worldgen specs locked per-dimension below (four decisions each, mirroring P0.1).
