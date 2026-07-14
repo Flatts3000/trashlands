@@ -235,6 +235,12 @@ Content and process, not new mechanics.
 
 Not a separate feature. Sky dumps ARE the regrowth delivery already locked in P1.6.6: falling blocks spawn at the highest world level and fall into place in the mound. No beacon system, no supply-drop event, no opt-in toggle - it's simply how mounds refill. Technical details (spawn timing, entity handling) worked out at implementation.
 
+## P3.2 - Field Manual (locked 2026-07-14)
+
+1. **No custom guide book.** Use whatever guide-book mod is updated for MC 26.x at build time (Patchouli if available, else the current equivalent). Do NOT name-lock the mod or build a bespoke UI.
+2. **The knowledge system does not depend on a custom book.** Study progress (the 2/3 in-progress states) surfaces through existing tools where possible; the guide book is lore + reference, not a required knowledge UI.
+3. **The guide book is the lore delivery vehicle:** recovered documents, buried-world flavor, the narrator/archivist voice, and the twist's fair-play breadcrumbs (housing the clues, never stating the twist - spoiler discipline).
+
 ## Dimensions - Nether and End (locked 2026-07-13, specs revised same day)
 
 **Target: themed dimensions (Option 3).** Vanilla dimensions would leak free resources (quartz, gold, ancient debris) into a closed trash economy, so both get rebuilt to serve the fiction. Worldgen specs locked per-dimension below (four decisions each, mirroring P0.1).
