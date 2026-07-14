@@ -1,7 +1,7 @@
 # Trashlands - Concept
 
 **Status:** design walkthrough complete except the parked endgame/postgame cluster (updated 2026-07-14). No code. P0-P2 + most of P3 fully specified in [`design_decisions.md`](design_decisions.md) (the per-feature log and session bookmark); [`feature_matrix.md`](feature_matrix.md) is the build order. Working name "Trashlands" (rename freely - candidates: The Heap, Landfill Earth, Wasteworld).
-**Relationship:** the showcase modpack for the **Salvage** mod. Garbage + recycling is the core to explore. Magnetism and Superposition are noted as optional, not explored (see the note below). Mod shortlist + design rules: `F:\minecraft-repos\next-mod-concepts.md`.
+**Relationship:** the showcase modpack for the **Recompile** mod. Garbage + recycling is the core to explore. Magnetism and Superposition are noted as optional, not explored (see the note below). Mod shortlist + design rules: `F:\minecraft-repos\next-mod-concepts.md`.
 
 ---
 
@@ -41,7 +41,7 @@ Lore in one sentence: a civilization that buried its overworld, compacted what w
 
 ## The core loop
 
-Dig Blocks of Garbage (they drop themselves) -> **sort** (pick through by hand -> Sorting Tarp -> machines: same verb at three speeds) -> **tear down** found items at the Salvage Workbench -> materials + **schematics** (recovered recipes) -> craft/rebuild -> (your output eventually becomes trash again).
+Dig Blocks of Garbage (they drop themselves) -> **sort** (pick through by hand -> Sorting Tarp -> machines: same verb at three speeds) -> **tear down** found items at the Recompile Workbench -> materials + **schematics** (recovered recipes) -> craft/rebuild -> (your output eventually becomes trash again).
 
 The tech tree runs entirely on waste. Teardown doesn't just yield scrap - studying an item **teaches you how it was made** (deterministic study points; knowledge is a physical, tradeable schematic), so you reverse-engineer the old world by picking through its garbage. Survival crafts are free; technology is locked until learned.
 
@@ -63,7 +63,7 @@ The tension this creates is the pack's engine:
 
 ---
 
-## The core: garbage + recycling (Salvage)
+## The core: garbage + recycling (Recompile)
 
 Teardown-as-knowledge is the spine. Feed any item (or garbage block) into a reverse-rig; get components + a chance to learn its recipe and better variants. Factorio's Fulgora is the proven-fun reference; the distinct axis is **recovering recipes, not just materials**, plus **universal cross-mod teardown** (the compat surface is the content). The garbage-and-recycling design is where the real work goes.
 
@@ -91,7 +91,7 @@ Both stay in the mod shortlist (`F:\minecraft-repos\next-mod-concepts.md`) as st
 
 ## Why it fits Jason's proven pattern
 
-- **It's the Salvage mod's Sky Frogs** - pack as vehicle, mod as engine; the same one-two that already shipped.
+- **It's the Recompile mod's Sky Frogs** - pack as vehicle, mod as engine; the same one-two that already shipped.
 - **Cross-mod IS the content** - recycle any mod's items; the more mods in the pack, the bigger the teardown tree.
 - **Data-driven** - garbage-block loot tables, teardown tables (with recipe-teaching), region weights, recovery odds are all JSON.
 - **Proven format** - a tiered, quest-driven progression pack (Sky Frogs shape) on a memorable custom world.
@@ -104,11 +104,11 @@ Both stay in the mod shortlist (`F:\minecraft-repos\next-mod-concepts.md`) as st
 - **Dumpster Diving** (CurseForge) - the near-exact core: dig **Garbage Blocks**, a **Landfill biome** with buried mounds, recycle scraps to resources (cans -> tin, tires -> rubber, circuit boards -> redstone). **But abandoned** - latest release is v1.3.3 for **MC 1.12.2, dated 2018-2020** (~6 years dead, ancient version). Proves the theme has appeal; leaves the niche empty on modern MC.
 - **Scraps and Shards** / **Create Recycle Everything** / **Overly Complicated Garbage** - cover pieces (worldgen scrap piles; universal item recycling via Create - a *living* base worth considering; garbage production/disposal), not a dedicated garbage-world progression.
 - Wasteland survival packs (Survive The Wasteland, Wastelands, Project X) - scarcity/scavenging theme, not garbage-block recycling. The "Garbage Disposal" / "Garbage Dump" packs read as casual/kitchen-sink.
-- **Verdict:** the **Productive Bees -> Productive Frogs pattern** - a beloved-but-dead concept (Dumpster Diving) to rebuild modern and better. Don't build ON the corpse; a fresh **Salvage mod** (decided - see Architecture). Our two distinct axes - **teardown-as-knowledge** and **regrowing-mound quarries with the quarry-vs-heal tension** - are unclaimed by anything current.
+- **Verdict:** the **Productive Bees -> Productive Frogs pattern** - a beloved-but-dead concept (Dumpster Diving) to rebuild modern and better. Don't build ON the corpse; a fresh **Recompile mod** (decided - see Architecture). Our two distinct axes - **teardown-as-knowledge** and **regrowing-mound quarries with the quarry-vs-heal tension** - are unclaimed by anything current.
 
 ## Architecture (decided 2026-07-13)
 
-**One mod + one pack, more mods later if earned.** A single fresh companion mod (working name **Salvage**, NeoForge / MC 26.1) owns all custom systems to start: the garbage worldgen (coarse-dirt world preset, Blocks of Garbage and variants, garbage regions), the teardown-as-knowledge loop, and the mound-regrowth system. The pack owns curation, quests, tuning, and the cross-mod teardown tables (JSON datapack territory, extendable without mod releases).
+**One mod + one pack, more mods later if earned.** A single fresh companion mod (working name **Recompile**, NeoForge / MC 26.1) owns all custom systems to start: the garbage worldgen (coarse-dirt world preset, Blocks of Garbage and variants, garbage regions), the teardown-as-knowledge loop, and the mound-regrowth system. The pack owns curation, quests, tuning, and the cross-mod teardown tables (JSON datapack territory, extendable without mod releases).
 
 Keep internal seams clean so systems can split into their own mods later - candidate: mound regrowth as a generic data-driven accumulation engine; Magnetism / Superposition stay parked in the shortlist. Don't pre-create repos for mods that don't exist. This supersedes the build-on-vs-new-mod question: not building on Create Recycle Everything (it can still appear in the pack as a mid-tier automation layer, not the foundation).
 

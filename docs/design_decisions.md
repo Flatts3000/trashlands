@@ -62,7 +62,7 @@ Everything upstream of the endgame (P0, P1, P2, the material economy, dimensions
 
 ## P0.5 - Teardown table schema (locked 2026-07-14)
 
-1. **Two systems, two formats.** Garbage-block pulls use vanilla loot tables (free tooling, modder familiarity). Teardown gets a custom recipe type (`salvage:teardown`). One format is not forced to do both jobs.
+1. **Two systems, two formats.** Garbage-block pulls use vanilla loot tables (free tooling, modder familiarity). Teardown gets a custom recipe type (`recompile:teardown`). One format is not forced to do both jobs.
 2. **Output shape: fixed core + weighted extras.** Deterministic bones (plan an economy around it) plus chance-weighted bonuses (stays interesting).
 3. **`teaches` field in the schema from day one** even though the knowledge mechanic is P1: recipe(s) revealed, chance, `scraps_required` = how many teardowns of the item complete the study (P1.4.B deterministic study points; NOT a fragment/blueprint-scrap system - that was cut). The distinct axis is not retrofitted into a shipped schema.
 4. **`station` field for tier gating** (hand / tarp / machine / advanced) - one format covers the whole progression; pack authors gate cross-mod teardowns with one string.
@@ -71,11 +71,11 @@ Reference sketch:
 
 ```json
 {
-  "type": "salvage:teardown",
+  "type": "recompile:teardown",
   "input": "minecraft:iron_door",
-  "station": "salvage:workbench",
-  "results": [ { "item": "salvage:scrap_metal", "count": 2 } ],
-  "extras": [ { "item": "salvage:hinge", "chance": 0.35 } ],
+  "station": "recompile:workbench",
+  "results": [ { "item": "recompile:scrap_metal", "count": 2 } ],
+  "extras": [ { "item": "recompile:hinge", "chance": 0.35 } ],
   "teaches": [ { "recipe": "minecraft:iron_door", "chance": 0.25, "scraps_required": 3 } ]
 }
 ```
@@ -111,7 +111,7 @@ The batch tier of the sorting verb, designed with sifting's (Ex Nihilo lineage) 
 7. **In-world charm:** the junk heap on the tarp visibly shrinks as you sort.
 8. **Hopper compatibility off at this tier** (config-gated) - the tarp is manual by identity.
 
-## P1.4 - Salvage Workbench + teardown-as-knowledge (locked 2026-07-14)
+## P1.4 - Recompile Workbench + teardown-as-knowledge (locked 2026-07-14)
 
 1. **It's a workbench, not a machine.** Player-operated, hold-to-disassemble with progress bar (mirrors hold-to-sort). Powered automated disassembler is a tier-3+ upgrade - same ladder shape as sorting.
 2. **Tool rack:** 2-3 tool slots; racked tools (knife, prybar, later screwdriver/shears/torch) decide speed and which `extras` can drop. Tools matter at the bench, not just in the field.
@@ -170,10 +170,10 @@ Nether and End portals disabled by config default until each themed dimension sh
 
 ## P2.3 - Tier 3 logistics (locked 2026-07-14)
 
-**Create is in the pack for belts (real MRFs run on belts); belts/transport are NOT part of the Salvage mod.**
+**Create is in the pack for belts (real MRFs run on belts); belts/transport are NOT part of the Recompile mod.**
 
-1. **The seam rule: Salvage converts, Create moves.** Salvage machines turn garbage into components; Create (belts, funnels, brass tunnels, arms) routes them. The Salvage sorter has no internal filters - it dumps onto a belt and Create's filtering splits the stream.
-2. **Salvage machines never REQUIRE Create** (standalone-mod constraint). Own simple power (fuel now, energy later); hopper/automation-compatible at this tier by design (unlike the tarp). Create integration is the pack's job via recipe gating; optional kinetic compat module only if demand exists.
+1. **The seam rule: Recompile converts, Create moves.** Recompile machines turn garbage into components; Create (belts, funnels, brass tunnels, arms) routes them. The Recompile sorter has no internal filters - it dumps onto a belt and Create's filtering splits the stream.
+2. **Recompile machines never REQUIRE Create** (standalone-mod constraint). Own simple power (fuel now, energy later); hopper/automation-compatible at this tier by design (unlike the tarp). Create integration is the pack's job via recipe gating; optional kinetic compat module only if demand exists.
 3. **Two tier-3 machines: powered sorter** (automated pick-through, region tables intact) and **powered disassembler** (workbench successor; installed tool-heads replace the tool rack; still generates study progress - full vs reduced rate is a config, tune in playtest).
 4. **Pack-tunes Create's leaks:** its crushing/washing chains route through our material streams, not around them. Create-spine materials (andesite, brass, zinc, copper) get bulk garbage streams - see the Create-spine section of [`material_economy.md`](material_economy.md) (found brass from fixtures; zinc from corrugated galvanized sheet; andesite from construction rubble/C&D debris).
 5. **Create tech is locked until studied.** Your first belt segment is torn down from a conveyor found in the scrapyard.
@@ -188,16 +188,16 @@ Nether and End portals disabled by config default until each themed dimension sh
 
 ## P2.5 - Hazmat gating (locked 2026-07-14)
 
-**Mekanism carries the systems; Salvage ships only content.** (Same lesson as belts: don't build what the lineup ships.)
+**Mekanism carries the systems; Recompile ships only content.** (Same lesson as belts: don't build what the lineup ships.)
 
 1. **Hazard = Mekanism radiation**, emitted by radioactive debris seeded through the quarantine's mounds - including Mekanism's own radioactive waste barrels (which leak when broken - the chemical-drum idea, already implemented).
 2. **Gate = Mekanism's hazmat suit**, their immunity rules and tuning. The gate sits at Mekanism-tier progression, which is right: uranium is endgame fuel; the region guarding it should require midgame chemistry to enter.
-3. **Salvage's role: biome, garbage blocks, pull tables, caches.** Content, not systems. Standalone fallback (Salvage without Mekanism): config poison-on-contact block property, not a radiation engine.
+3. **Recompile's role: biome, garbage blocks, pull tables, caches.** Content, not systems. Standalone fallback (Recompile without Mekanism): config poison-on-contact block property, not a radiation engine.
 4. **Sealed containers are the best knowledge caches in the game** - high-tier schematics survived BECAUSE the area was quarantined. The region's second treasure alongside uranium.
 
 ## P2.6 - E-waste recovery chains (locked 2026-07-14)
 
-**Mekanism's chemical machinery is the recovery plant; Salvage ships inputs and tables.**
+**Mekanism's chemical machinery is the recovery plant; Recompile ships inputs and tables.**
 
 1. **Two-stage recovery, purity-as-yield:** crude board-smelting early (a little gold, a lot of loss); Mekanism dissolver/washer chains late (near-complete gold/silver/copper/rares from the same boards). Steepest yield curve in the pack - hoarding boards early pays off, an implicit lesson.
 2. **The battery chain is its own mini-tree:** car/lead-acid, dry-cell, lithium pack - distinct teardowns (lead, zinc, lithium, nickel) feeding Mekanism chemistry. Carries a quest arc inside the e-waste region.
@@ -224,7 +224,7 @@ Post-twist quests exist in the datapack but stay hidden until the reveal, using 
 
 Content and process, not new mechanics.
 
-1. **Budget it as content, forever.** Every mod added = a batch of teardown tables. A mod isn't "added" to the pack until its salvage tables exist - no craftable item should hit the workbench and get "no salvage value" (reads as broken, not authored).
+1. **Budget it as content, forever.** Every mod added = a batch of teardown tables. A mod isn't "added" to the pack until its teardown tables exist - no craftable item should hit the workbench and get "no salvage value" (reads as broken, not authored).
 2. **Tag-driven defaults do the heavy lifting.** Tables keyed on tags (`c:ingots/copper`, `c:storage_blocks/*`) cover thousands of items across all mods at once. Author tag rules once; per-item tables only for interesting exceptions. This is what makes scale tractable.
 3. **Tiered generation:** tag rules cover the long tail; hand-authored tables for landmark items (a Create arm, a Mekanism machine) where yields and `teaches` unlocks are worth designing. Tags for coverage, handcraft for what players care about.
 4. **A completeness check as a build step:** a script walks every pack item and flags craftables with no table and no matching tag rule - catches "no salvage value" gaps before players do. Keeps the compat promise honest as mods update.
