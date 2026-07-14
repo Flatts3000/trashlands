@@ -58,3 +58,4 @@ The pack's promise ("get back to the overworld") is kept literally: the overworl
 2. No other doc in this repo states or hints at the twist. Cross-reference this file by name only ("see the_twist.md").
 3. Quest-voice work on the final chapter happens against this file directly.
 4. Playtester builds that include the final chapter need spoiler-safe feedback channels.
+5. **Post-twist quests are hidden in FTB Quests until the Gate activates** (single reveal switch). But FTBQ visibility alone leaks - close every edge: post-twist content must ALSO be gated at the content layer (behind the Gate event), so reward-item names, advancement toasts, JEI recipes, and quest-book search can't surface it early. The book should read as complete at "The Way Home, Part VI" - the existence of more chapters is the surprise.

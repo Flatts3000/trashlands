@@ -204,6 +204,22 @@ Nether and End portals disabled by config default until each themed dimension sh
 3. **Data recovery:** dead computers/TVs give e-scrap + schematic chance - the region's knowledge role, distinct from hazmat's sealed-container jackpots.
 4. **Toxicity is flavor, not a system:** crude burning puffs smoke and brief nausea - a nudge toward the clean path. No new hazard systems.
 
+## P2.7 - The quest line (locked 2026-07-14)
+
+1. **Engine: FTB Quests.** NeoForge standard, datapack-driven, reward/unlock gating, and the quest-voice skill already targets it.
+2. **Structure mirrors the tier spine - chapter per tier - titled in the exile fiction.** Not "Tier 2: Processing" but "The Way Home, Part II." Every chapter framed as a step toward the Overworld Gate; the quest book is the delivery vehicle for the surface lie (see the_twist.md).
+3. **Quests teach, then get out of the way:** hand-holding early (pick-through, tarp, first study), tapering to loose objective lists by mid-game.
+4. **The narrator is a character** (previous scavenger? automated system? last archivist?). Lock that quests HAVE a narrator persona; specific identity is a twist-adjacent open thread for the quest-writing phase (did they know?).
+5. **The final chapter is authored against the_twist.md directly** - reveal beats + staged payoff. Playtesters who reach it need spoiler-safe feedback channels.
+
+### Spoiler-safe hidden chapters (locked 2026-07-14)
+
+Post-twist quests exist in the datapack but stay hidden until the reveal, using FTBQ chapter/quest visibility rules. Guardrails so hidden-in-FTBQ doesn't leak:
+
+- **Gate at the content layer too, not just the visibility flag.** FTBQ hiding leaks via reward-item names in inventory, advancement toasts, JEI recipes for post-twist blocks, and quest-book search. So post-twist content (reclamation-scale blocks, villager-return triggers, final materials) is locked behind the Gate event itself - nothing to stumble on early.
+- **The Gate activation is the single reveal switch** - one event unlocks the whole post-twist chapter tree at once.
+- **The book should LOOK complete before the twist.** "The Way Home, Part VI" reads as the final chapter and clearly builds a Gate; a savvy player expects Gate-completion to end the pack. The existence of more chapters is itself the surprise - design intent for the quest writer.
+
 ## Dimensions - Nether and End (locked 2026-07-13, specs revised same day)
 
 **Target: themed dimensions (Option 3).** Vanilla dimensions would leak free resources (quartz, gold, ancient debris) into a closed trash economy, so both get rebuilt to serve the fiction. Worldgen specs locked per-dimension below (four decisions each, mirroring P0.1).
