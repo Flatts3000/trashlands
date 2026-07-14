@@ -25,6 +25,13 @@ Running log of locked per-feature decisions from the feature-by-feature walkthro
 3. **Gravity on, config-gated.** Gravel-style falling. Mounds slump when quarried; digging into a tall mound's base can bury you. Foreshadows the pressure system.
 4. **One block, randomized texture/model variants** (protruding bag, jutting pipe, compressed face) so mounds read as heterogeneous junk without multiplying block IDs. Region palettes come with the regions system.
 
+## P0.4 - Mixed trash and hand-sorting (locked 2026-07-14)
+
+1. **Tier-zero sorting = picking through a placed block.** Right-click a placed garbage block with an empty hand; each pull yields one drop from its table; after 4-6 pulls the block is exhausted and crumbles. No UI, no station. The Sorting Tarp (P1) is the batch version, machines the automated version - same verb at three speeds.
+2. **Base material vocabulary (7):** scrap metal, plastic scrap, glass shards, organic muck, fiber scrap, e-scrap (rare), junk (filler majority). Every machine tier speaks this language; keep the set small and stable.
+3. **Junk is fuel, not worthless.** Burns poorly, compacts back into buildable trash blocks. Nothing is worthless; some things are barely worth anything - the pack's moral stance as an item.
+4. **Region-weighted pull tables from day one.** JSON per region; slice ships one (household). Scrapyard skews metal, e-waste skews e-scrap - regions gate materials.
+
 ### Buried-surprise candidates (brainstorm 2026-07-13)
 
 - **Loot pinatas:** appliances (fridge = preserved food, early food source; washer, stove - prybar targets), crushed cars (metal + battery chance), tire stacks, pipe bundles, wire spools.
