@@ -70,6 +70,19 @@ Variants and tools are one interlocking matrix:
 3. **Bags/bales feed sorting (random pulls); appliances feed teardown (deterministic + teaches chance).** Appliances are the on-ramp to the knowledge system.
 4. **Generation:** bags on mound surfaces, bales in mound cores (mound shape does the depth-reward work), appliances uncommon pocket finds. Region palettes reweight all three.
 
+## P1.3 - Sorting Tarp (locked 2026-07-14)
+
+The batch tier of the sorting verb, designed with sifting's (Ex Nihilo lineage) lessons baked in:
+
+1. **Form:** single flat block, tarp-with-junk-heap model. No multiblock ceremony at tier one.
+2. **Interaction:** small UI (input slots for garbage/bags/bales, outputs accumulate) - the interface pattern later machines inherit. **Hold-to-sort, never click-spam** (sieving's RSI lesson, fixed preemptively). One operation sorts one whole block vs 4-6 hand pulls.
+3. **Screen slot (mesh-tier lesson):** screens change *what*, not *how much* - a metal screen skews pulls toward scrap metal, an organics screen toward muck. Player-chosen filtering, no raw-value inflation; richer odds stay the machine tier's selling point.
+4. **Bales batch (compression lesson):** sorting a bale is one operation yielding 2-3 blocks' worth. Knife -> bale pipeline is the anti-tedium upgrade.
+5. **Recipe:** fiber scrap + rebar, pure tier-zero, buildable in the first 15 minutes.
+6. **Drop tables visible in JEI/EMI from day one.** Non-negotiable.
+7. **In-world charm:** the junk heap on the tarp visibly shrinks as you sort.
+8. **Hopper compatibility off at this tier** (config-gated) - the tarp is manual by identity.
+
 ### Buried-surprise candidates (brainstorm 2026-07-13)
 
 - **Loot pinatas:** appliances (fridge = preserved food, early food source; washer, stove - prybar targets), crushed cars (metal + battery chance), tire stacks, pipe bundles, wire spools.
