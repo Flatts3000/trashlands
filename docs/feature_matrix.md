@@ -62,6 +62,7 @@
 | Frogs return to healed land (Productive Frogs integration) | Easy | One-line spawn condition, signature moment, cross-promo. |
 | Win-condition tracking (cleared-land metric, district map) | Medium | Nice scoreboard; not load-bearing. |
 | Circular endgame (self-feeding economy) | Medium | Mostly recipe/quest design, not new systems. |
+| The final chapter (narrative frame + staged payoff: sky clears, life waves, villagers settle, Gate monument) | Hard | Full spec in the_twist.md (spoilers). The Overworld Gate multiblock, deorbit-rain suppression over healed land, villager arrival are all real systems. |
 
 ## Parked (not in this pack unless the plan changes)
 

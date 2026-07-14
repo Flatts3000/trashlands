@@ -146,7 +146,7 @@ Mechanical role unchanged: the mid-game heat-and-energy tier, plus nether-tier s
 3. **Liquid:** none.
 4. **Mobs:** vanilla End mobs.
 
-**Supersedes the "Unspoiled World" idea** - even the void got trashed. OPEN QUESTION: the pristine-green emotional payoff no longer has a dimension to live in; leading candidate is that the healed overworld itself is the payoff (the green place is the one you made). Decide in its own turn.
+**Supersedes the "Unspoiled World" idea** - even the void got trashed. The pristine-green payoff question is RESOLVED in [`the_twist.md`](the_twist.md) (full spoilers - the narrative frame, the final-chapter payoff, and the spoiler-discipline process rules live there).
 
 **Interim + bridge:** portals are config-locked by default until each themed dimension ships. When they unlock, portal materials come out of high-tier recycling (obsidian is made, not found; eyes of ender from e-waste rare drops), so arrival is an earned event.
 

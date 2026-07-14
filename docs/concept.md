@@ -33,7 +33,7 @@ Vanilla Nether/End would leak free resources into a closed trash economy, so bot
 - **Nether:** solid techno-organic waste from bedrock roof to floor, lava pockets, embedded structures. The overworld is a dump you clear; the Nether is a dump you mine. Mid-game heat-and-energy tier.
 - **End:** floating End-style islands of end-themed garbage, vanilla dragon and pillars. Even the void got trashed.
 
-Open: the pristine-green emotional payoff needs a home; leading candidate is the healed overworld itself.
+The pristine-green payoff question is resolved - see [`the_twist.md`](the_twist.md) (**full spoilers**; player-facing copy must not reference its contents).
 
 Lore in one sentence: a civilization that buried its overworld, compacted what wouldn't fit into the Nether, and threw the rest into the void.
 
