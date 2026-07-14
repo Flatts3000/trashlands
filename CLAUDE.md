@@ -28,5 +28,6 @@ Prior-art pass is done (see concept.md): the near-exact mod, **Dumpster Diving**
 - Target **NeoForge / MC 26.1** to match the Productive Frogs 2.x line (siblings: `../productive-frogs`, `../sky-frogs` - the proven pack+mod pattern to mirror).
 - Data-driven first (JSON content: garbage-block loot/teardown tables), shippable in small increments.
 - **No em-dashes or en-dashes, no emoji** in any authored text (Jason's hard rule). ASCII punctuation only.
+- **Minimize authored prose.** Only two sanctioned writing surfaces: quests and technical guidance. No ambient lore documents, archivist notes, or readable flavor text - players distrust AI writing. Carry meaning through environment and mechanics, not prose.
 - Pack-authored text (quests, changelogs, guides) uses the `quest-voice` skill + spec in `../mc-pack-toolkit`.
 - Docs in `/docs` are snake_case.

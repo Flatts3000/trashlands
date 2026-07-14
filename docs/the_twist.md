@@ -18,17 +18,19 @@ The last chapter reveals: **there is no overworld to return to. This IS the over
 
 ## Fair-play breadcrumbs (never hinted at, only legible in hindsight)
 
-1. **The buried world uses your recipes.** Recovered schematics feel strangely familiar - because this civilization was yours.
-2. **Lore set-dressing is evidence:** buried roads, street lamps, bus stops, signage with place names, preserved food in fridges. The old world's skeleton, in plain sight, for the entire playthrough.
-3. **A time capsule** with a child's drawing of green hills whose silhouette matches the local terrain.
-4. **The garbage falls from space.** Someone threw it from somewhere. The answer to "where?" was always "from here."
+**All breadcrumbs are environmental or mechanical - NOT written lore** (per the minimize-authored-prose principle). The twist must land without prose documents.
+
+1. **The buried world uses your recipes.** Recovered schematics are for ordinary vanilla/modded items - because this civilization was yours. Mechanical, no text needed.
+2. **Environmental set-dressing is evidence:** buried roads, street lamps, bus stops, signage, preserved food in fridges. The old world's skeleton, in plain sight, for the entire playthrough. Built from blocks, not readables.
+3. **A time capsule** containing a child's drawing (an image/painting item) of green hills whose silhouette matches the local terrain. Visual, not prose.
+4. **The garbage falls from space.** Someone threw it from somewhere. Shown, never narrated.
 5. **F3 says `minecraft:overworld` the whole time.** We deliberately keep the real dimension ID. The technically-minded have the answer from second one and won't believe it. This is a feature; do not "fix" it with a custom dimension ID.
 
 ## The reveal
 
-The Overworld Gate completes at the end of the tech tree. It activates - and opens onto coarse dirt and garbage mounds. A gate to the overworld goes *here*. The final recovered document lands it:
+The Overworld Gate completes at the end of the tech tree. It activates - and **opens onto coarse dirt and garbage mounds.** The environment carries the reveal: a gate to the overworld goes *here*. The player understands before any words.
 
-> The old civilization burned what it could (the Nether), buried the rest (this plain), launched themselves away, and never came back. Site designation: Overworld.
+The confirmation is a single quest beat (quests are a sanctioned writing surface), kept to a few punchy lines, not a lore dump - e.g. the destination readout resolving to `Site designation: Overworld`. Minimal text; the gut-punch is the Gate opening onto the same garbage you started in.
 
 There is no way home. **There is only home.**
 

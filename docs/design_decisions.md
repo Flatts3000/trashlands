@@ -8,18 +8,18 @@ Running log of locked per-feature decisions from the feature-by-feature walkthro
 
 **As of 2026-07-14:** P0 fully locked (P0.1-P0.5). P1 fully locked (P1.1-P1.8). **P2 fully locked (P2.1-P2.8).** Dimensions, the knowledge system, mound regrowth, the material economy ([`material_economy.md`](material_economy.md)), and the narrative layer ([`the_twist.md`](the_twist.md), spoilers) are locked. Mod lineup so far: Create (belts/logistics), Mekanism (chemical/radiation endgame), Productive Frogs (reclamation crossover).
 
-**Resume here - P3 walkthrough, in matrix order** (P3.1 sky dumps CUT - folded into regrowth):
-1. Field Manual (knowledge book UI)
-2. Degraded recipes (jury-rigged variants, re-refine)
-3. Blueprint scraps (partial recipes, collect-3)
-4. The themed Nether build
-5. The garbage End build
-6. Frogs return to healed land (Productive Frogs)
-7. Win-condition tracking (cleared-land metric)
-8. Circular endgame (self-feeding economy)
-9. The final chapter (narrative frame + staged payoff - author vs the_twist.md)
+**Resume here - P3 walkthrough** (P3.1 sky dumps CUT; P3.2 Field Manual, P3.3 degraded recipes CUT - all locked):
+1. Blueprint scraps (partial recipes, collect-3)
+2. The themed Nether build
+3. The garbage End build
+4. Frogs return to healed land (Productive Frogs)
+5. Win-condition tracking (cleared-land metric)
+6. Circular endgame (self-feeding economy)
+7. The final chapter (narrative frame + staged payoff - author vs the_twist.md)
 
 **Open threads not on the matrix:** pack name (working: Trashlands), Nether theme name ("compacted depths" placeholder), the quest-narrator question (who wrote the quest book - see the_twist.md), where construction rubble lives (see material_economy.md).
+
+**Governing principle - minimize authored prose (2026-07-14):** only two sanctioned writing surfaces - quests (quest-voice skill) and technical guidance (terse, functional). No ambient lore documents, archivist notes, or readable flavor text. Players distrust AI writing; every prose surface is a liability. Carry meaning through environment and mechanics, not writing.
 
 ---
 
@@ -239,7 +239,11 @@ Not a separate feature. Sky dumps ARE the regrowth delivery already locked in P1
 
 1. **No custom guide book.** Use whatever guide-book mod is updated for MC 26.x at build time (Patchouli if available, else the current equivalent). Do NOT name-lock the mod or build a bespoke UI.
 2. **The knowledge system does not depend on a custom book.** Study progress (the 2/3 in-progress states) surfaces through existing tools where possible; the guide book is lore + reference, not a required knowledge UI.
-3. **The guide book is the lore delivery vehicle:** recovered documents, buried-world flavor, the narrator/archivist voice, and the twist's fair-play breadcrumbs (housing the clues, never stating the twist - spoiler discipline).
+3. **The guide book is technical reference, NOT a lore vehicle.** Terse functional guidance (how to sort, study, process). Per the minimize-authored-prose principle, no ambient lore documents or archivist prose. Meaning is carried by environment and mechanics, not writing.
+
+## P3.3 - Degraded recipes - CUT (2026-07-14)
+
+Cut. "Crude first, better later" is already delivered by purity-as-yield (P2.2: lossy -> efficient conversion) and the burn-barrel -> repaired-furnace arc. Degraded item variants would violate the anti-bloat rule (parallel weaker blocks = JEI/ID clutter) and add a second progress axis on top of study points. Where a crude tier genuinely adds flavor, it's a separate cheap recipe unlocked first via the knowledge system (e.g. "scrap furnace" before "furnace") using normal items - a content pattern, not a stat-degradation system.
 
 ## Dimensions - Nether and End (locked 2026-07-13, specs revised same day)
 

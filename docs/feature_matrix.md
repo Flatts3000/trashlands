@@ -55,7 +55,7 @@
 |---|---|---|
 | ~~Sky dumps~~ (CUT - folded into mound regrowth) | - | Not a separate feature; the falling-blocks-into-mound visual IS the regrowth delivery (P1.6.6). |
 | Field Manual (knowledge book UI that fills in) | Medium-Hard | v1 can be advancement toasts + quest book; dedicated UI later. |
-| Degraded recipes (jury-rigged variants, re-refine later) | Medium-Hard | Gives Upcycle tier meaning; adds recipe-variant complexity. |
+| ~~Degraded recipes~~ (CUT) | - | Redundant with purity-as-yield + burn-barrel arc; would violate anti-bloat. "Crude first" is a knowledge-unlock content pattern instead. |
 | Blueprint scraps (partial recipes, collect 3 to complete) | Medium | Collection meta on top of knowledge system; only after knowledge v1 proves fun. |
 | Themed Nether (solid techno-organic waste, roof to floor; heat/energy tier) | Hard | Spec locked (see design_decisions.md). May pull forward if the energy tier needs it. |
 | Themed End (End-style islands of end-themed garbage, vanilla dragon) | Medium-Hard | Spec locked. Portal access earned through high-tier recycling. |
