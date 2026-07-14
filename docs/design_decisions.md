@@ -6,21 +6,21 @@ Running log of locked per-feature decisions from the feature-by-feature walkthro
 
 ## Walkthrough status (the bookmark - update every session)
 
-**As of 2026-07-14:** P0 fully locked (P0.1-P0.5, the feasibility slice is specified). P1 fully locked (P1.1-P1.8). Dimensions, the knowledge system, mound regrowth, and the narrative layer ([`the_twist.md`](the_twist.md), spoilers) are locked.
+**As of 2026-07-14:** P0 fully locked (P0.1-P0.5). P1 fully locked (P1.1-P1.8). **P2 fully locked (P2.1-P2.8).** Dimensions, the knowledge system, mound regrowth, the material economy ([`material_economy.md`](material_economy.md)), and the narrative layer ([`the_twist.md`](the_twist.md), spoilers) are locked. Mod lineup so far: Create (belts/logistics), Mekanism (chemical/radiation endgame), Productive Frogs (reclamation crossover).
 
-**Resume here - P2 walkthrough, in matrix order:**
-1. Spawn-buried opening
-2. Tier 2 processing (melt, smelt, compost, crush)
-3. Tier 3 logistics (curated mods)
-4. Reclamation chain (coarse dirt -> grass -> trees)
-5. Hazmat gating
-6. E-waste recovery chains
-7. Quest line
-8. Cross-mod teardown tables at scale
+**Resume here - P3 walkthrough, in matrix order:**
+1. Sky dumps (opt-in late farmable deliveries)
+2. Field Manual (knowledge book UI)
+3. Degraded recipes (jury-rigged variants, re-refine)
+4. Blueprint scraps (partial recipes, collect-3)
+5. The Incinerator / themed Nether build
+6. The garbage End build
+7. Frogs return to healed land (Productive Frogs)
+8. Win-condition tracking (cleared-land metric)
+9. Circular endgame (self-feeding economy)
+10. The final chapter (narrative frame + staged payoff - author vs the_twist.md)
 
-Then P3: sky dumps, Field Manual, degraded recipes, blueprint scraps, frogs-return, win tracking, the themed dimension builds, the final chapter.
-
-**Open threads not on the matrix:** pack name (working: Trashlands), Nether theme name ("compacted depths" placeholder), the quest-narrator question (who wrote the quest book - see the_twist.md).
+**Open threads not on the matrix:** pack name (working: Trashlands), Nether theme name ("compacted depths" placeholder), the quest-narrator question (who wrote the quest book - see the_twist.md), where construction rubble lives (see material_economy.md).
 
 ---
 
@@ -219,6 +219,18 @@ Post-twist quests exist in the datapack but stay hidden until the reveal, using 
 - **Gate at the content layer too, not just the visibility flag.** FTBQ hiding leaks via reward-item names in inventory, advancement toasts, JEI recipes for post-twist blocks, and quest-book search. So post-twist content (reclamation-scale blocks, villager-return triggers, final materials) is locked behind the Gate event itself - nothing to stumble on early.
 - **The Gate activation is the single reveal switch** - one event unlocks the whole post-twist chapter tree at once.
 - **The book should LOOK complete before the twist.** "The Way Home, Part VI" reads as the final chapter and clearly builds a Gate; a savvy player expects Gate-completion to end the pack. The existence of more chapters is itself the surprise - design intent for the quest writer.
+
+## P2.8 - Cross-mod teardown tables at scale (locked 2026-07-14)
+
+Content and process, not new mechanics.
+
+1. **Budget it as content, forever.** Every mod added = a batch of teardown tables. A mod isn't "added" to the pack until its salvage tables exist - no craftable item should hit the workbench and get "no salvage value" (reads as broken, not authored).
+2. **Tag-driven defaults do the heavy lifting.** Tables keyed on tags (`c:ingots/copper`, `c:storage_blocks/*`) cover thousands of items across all mods at once. Author tag rules once; per-item tables only for interesting exceptions. This is what makes scale tractable.
+3. **Tiered generation:** tag rules cover the long tail; hand-authored tables for landmark items (a Create arm, a Mekanism machine) where yields and `teaches` unlocks are worth designing. Tags for coverage, handcraft for what players care about.
+4. **A completeness check as a build step:** a script walks every pack item and flags craftables with no table and no matching tag rule - catches "no salvage value" gaps before players do. Keeps the compat promise honest as mods update.
+5. **Community-extensible by design.** All datapack JSON (P0.5); the public schema lets pack users and addon authors add tables for untouched mods. Third-party teardown addons are a WANTED outcome, not a support burden.
+
+**P2 is now fully specified (P2.1-P2.8).**
 
 ## Dimensions - Nether and End (locked 2026-07-13, specs revised same day)
 
