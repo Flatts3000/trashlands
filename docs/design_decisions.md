@@ -83,6 +83,21 @@ The batch tier of the sorting verb, designed with sifting's (Ex Nihilo lineage) 
 7. **In-world charm:** the junk heap on the tarp visibly shrinks as you sort.
 8. **Hopper compatibility off at this tier** (config-gated) - the tarp is manual by identity.
 
+## P1.4 - Salvage Workbench + teardown-as-knowledge (locked 2026-07-14)
+
+1. **It's a workbench, not a machine.** Player-operated, hold-to-disassemble with progress bar (mirrors hold-to-sort). Powered automated disassembler is a tier-3+ upgrade - same ladder shape as sorting.
+2. **Tool rack:** 2-3 tool slots; racked tools (knife, prybar, later screwdriver/shears/torch) decide speed and which `extras` can drop. Tools matter at the bench, not just in the field.
+3. **No teardown table = bench rejects it** ("no salvage value"); JEI makes supported items browsable. Config fallback (default off): unknown items shred to junk.
+
+### The knowledge system (locked 2026-07-14)
+
+- **A. Lock scope: survival free, technology locked.** Trash tools, tarp, torches, shelter craftable from minute one; furnaces, machines, redstone and up are locked until learned. "You remember how to survive; you've forgotten how to build a civilization."
+- **B. Deterministic study points; chance is only acceleration.** Each teardown advances that recipe (1/3, 2/3, learned); lucky insights grant double progress. No bad-streak misery; `scraps_required` models the threshold.
+- **C. Knowledge is a physical schematic item.** Study completion makes the bench emit a schematic; right-click to learn permanently. Tradeable between players, storable (library showcase), and the SAME item knowledge caches drop (filing cabinets, time capsules) - one knowledge currency, two sources: study or excavate.
+- **D. Team-shared by default** (FTB Teams), per-player via config.
+
+**What learning means practically:** vanilla `doLimitedCrafting` + recipe book grants gate the crafting table; unlearned recipes produce nothing even with correct materials; JEI shows them greyed with the unlock hint ("salvage X to study this"). Learning migrates an item from the found economy (finite, scavenged) to the made economy (infinite, manufactured) - the arc of the pack is moving the whole catalog across that line. Tuning rule: found items must be common enough that studying never feels like burning your only copy.
+
 ### Buried-surprise candidates (brainstorm 2026-07-13)
 
 - **Loot pinatas:** appliances (fridge = preserved food, early food source; washer, stove - prybar targets), crushed cars (metal + battery chance), tire stacks, pipe bundles, wire spools.
