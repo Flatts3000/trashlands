@@ -195,6 +195,15 @@ Nether and End portals disabled by config default until each themed dimension sh
 3. **Salvage's role: biome, garbage blocks, pull tables, caches.** Content, not systems. Standalone fallback (Salvage without Mekanism): config poison-on-contact block property, not a radiation engine.
 4. **Sealed containers are the best knowledge caches in the game** - high-tier schematics survived BECAUSE the area was quarantined. The region's second treasure alongside uranium.
 
+## P2.6 - E-waste recovery chains (locked 2026-07-14)
+
+**Mekanism's chemical machinery is the recovery plant; Salvage ships inputs and tables.**
+
+1. **Two-stage recovery, purity-as-yield:** crude board-smelting early (a little gold, a lot of loss); Mekanism dissolver/washer chains late (near-complete gold/silver/copper/rares from the same boards). Steepest yield curve in the pack - hoarding boards early pays off, an implicit lesson.
+2. **The battery chain is its own mini-tree:** car/lead-acid, dry-cell, lithium pack - distinct teardowns (lead, zinc, lithium, nickel) feeding Mekanism chemistry. Carries a quest arc inside the e-waste region.
+3. **Data recovery:** dead computers/TVs give e-scrap + schematic chance - the region's knowledge role, distinct from hazmat's sealed-container jackpots.
+4. **Toxicity is flavor, not a system:** crude burning puffs smoke and brief nausea - a nudge toward the clean path. No new hazard systems.
+
 ## Dimensions - Nether and End (locked 2026-07-13, specs revised same day)
 
 **Target: themed dimensions (Option 3).** Vanilla dimensions would leak free resources (quartz, gold, ancient debris) into a closed trash economy, so both get rebuilt to serve the fiction. Worldgen specs locked per-dimension below (four decisions each, mirroring P0.1).
