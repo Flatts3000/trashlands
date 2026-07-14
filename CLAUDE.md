@@ -2,13 +2,14 @@
 
 **What this is:** a Minecraft **modpack concept** (working name "Trashlands" - not final). An endless coarse-dirt plain crowded with mounds of **Blocks of Garbage** that regrow to their original size - renewable quarries raining back down from space, never impending doom. No ore, no trees; everything you build comes out of the trash. Rebuild, and eventually heal, a ruined world from its own garbage - healing a mound's footprint retires it forever, so reclamation costs you income.
 
-**Status:** design walkthrough complete except the parked endgame/postgame cluster (2026-07-14). **No code yet.** This repo is design docs. P0-P2 and most of P3 are fully specified; the endgame is reopened and postgame/final-chapter is parked - see the bookmark in `docs/design_decisions.md`.
+**Status:** design walkthrough complete except the parked endgame/postgame cluster (2026-07-14). **Pack infrastructure stood up** (packwiz pack under `pack/`, targeting MC 26.1.2 / NeoForge 26.1.2.76); the Recompile mod is being implemented in the sibling `../recompile` repo. This repo is design docs + the pack. P0-P2 and most of P3 are fully specified; the endgame is reopened and postgame/final-chapter is parked - see the bookmark in `docs/design_decisions.md`.
 
 ## Read first
 - [`docs/concept.md`](docs/concept.md) - the full design (vision, worldgen, mound regrowth, tier spine, prior-art pass, open questions). **Start here.**
 - [`docs/feature_matrix.md`](docs/feature_matrix.md) - every feature by priority (P0 slice -> P3 polish) and feasibility. The build order.
 - [`docs/design_decisions.md`](docs/design_decisions.md) - the per-feature locked-decisions log + **the session bookmark** (walkthrough status, what to resume next).
 - `docs/the_twist.md` - **FULL SPOILERS.** The hidden narrative layer. Read before writing any quest text or player-facing copy; never reference its contents anywhere else.
+- [`docs/pack_setup.md`](docs/pack_setup.md) - how the packwiz pack (`pack/`) is built and how to stand up a test instance once Recompile is playable.
 - [`README.md`](README.md) - the one-paragraph pitch.
 - `F:\minecraft-repos\next-mod-concepts.md` - the parent mod shortlist and the design rules (DNA criteria, "prior art informs, doesn't veto").
 

@@ -1,0 +1,6 @@
+# Files packwiz must never index into the pack (gitignore syntax).
+# packwiz does NOT read .gitignore, so tool caches that land under pack/ would
+# otherwise be hashed into index.toml and shipped to instances. Keep them out.
+.ruff_cache/
+__pycache__/
+.gitkeep
