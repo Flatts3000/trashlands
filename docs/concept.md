@@ -15,7 +15,7 @@ This replaces the skyblock framing. Skyblock is a genre; an endless coarse-dirt 
 
 ## The world is the signature feature
 
-- **Custom flat world type:** coarse-dirt substrate + a procedurally generated surface of Blocks of Garbage piled over everything. Worldgen/datapack job; it is the whole brand.
+- **Custom flat world type:** a gently rolling coarse-dirt plain crowded with garbage mounds of every size - short flat spreads to tall trash hills - dense enough to crowd the horizon (no continuous burial; dirt shows between mounds). Clearing means removing mounds. Worldgen/datapack job; it is the whole brand. Full worldgen decisions: [`design_decisions.md`](design_decisions.md).
 - **Garbage regions (instead of biomes):** the piles vary by area, gating progression through the terrain -
   - **Household-refuse sprawl** - plastics, packaging, organics (starter).
   - **Scrapyard** - metal, appliances, ferrous scrap.
