@@ -89,16 +89,19 @@ Both stay in the mod shortlist (`F:\minecraft-repos\next-mod-concepts.md`) as st
 - Wasteland survival packs (Survive The Wasteland, Wastelands, Project X) - scarcity/scavenging theme, not garbage-block recycling. The "Garbage Disposal" / "Garbage Dump" packs read as casual/kitchen-sink.
 - **Verdict:** the **Productive Bees -> Productive Frogs pattern** - a beloved-but-dead concept (Dumpster Diving) to rebuild modern and better. Don't build ON the corpse; either a fresh **Salvage mod** (MC 26.1, teardown-as-knowledge) or a pack on a *living* base (Create Recycle Everything). Our two distinct axes - **teardown-as-knowledge** and the **still-active self-burying dump** - are unclaimed by anything current.
 
+## Architecture (decided 2026-07-13)
+
+**One mod + one pack, more mods later if earned.** A single fresh companion mod (working name **Salvage**, NeoForge / MC 26.1) owns all custom systems to start: the garbage worldgen (coarse-dirt world preset, Blocks of Garbage and variants, garbage regions), the teardown-as-knowledge loop, and eventually the "garbage keeps coming" pressure system. The pack owns curation, quests, tuning, and the cross-mod teardown tables (JSON datapack territory, extendable without mod releases).
+
+Keep internal seams clean so systems can split into their own mods later - candidates: the pressure system as a generic data-driven accumulation engine; Magnetism / Superposition stay parked in the shortlist. Don't pre-create repos for mods that don't exist. This supersedes the build-on-vs-new-mod question: not building on Create Recycle Everything (it can still appear in the pack as a mid-tier automation layer, not the foundation).
+
 ## Open questions
 
-- **Build-on vs new-mod:** pack on a living recycling base (Create Recycle Everything) for speed, OR a fresh Salvage mod for ownership + the knowledge/recipe axis.
 - **In-place vs frontier renewal:** is trash finite-per-chunk (expand outward) or does it actively re-bury a fixed base (the "garbage keeps coming" pressure)? Lean: the latter, but tune so it's pressure, not punishment.
-- **Loader / MC version:** assume NeoForge / MC 26.1 to match the Productive Frogs 2.x line; confirm.
 - **Worldgen approach:** custom world-preset/dimension datapack for the coarse-dirt + garbage surface + regions.
 
 ## Next actions
 
-1. Prior-art pass (packs + the three mods' closest precedents).
-2. Lock the "garbage keeps coming" mechanic (rate, wind-in vs dump, pressure tuning).
-3. Sketch the tier-one loop end to end (spawn -> first sorted materials -> first machine).
-4. One-week feasibility slice: the custom garbage worldgen + one garbage block that tears down into sorted materials. Throwaway if the world doesn't *feel* right.
+1. Lock the "garbage keeps coming" mechanic (rate, wind-in vs dump, pressure tuning).
+2. Sketch the tier-one loop end to end (spawn -> first sorted materials -> first machine).
+3. One-week feasibility slice: the custom garbage worldgen + one garbage block that tears down into sorted materials. Throwaway if the world doesn't *feel* right.
