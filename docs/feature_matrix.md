@@ -61,7 +61,7 @@
 | Themed End (End-style islands of end-themed garbage, vanilla dragon) | Medium-Hard | Spec locked. Portal access earned through high-tier recycling. |
 | ~~Frogs return to healed land (Productive Frogs integration)~~ (CUT) | - | Crossover dropped. Life-returns beat stays vanilla. |
 | ~~Win-condition tracking (cleared-land metric, district map)~~ (CUT) | - | Progression is quest-based; no separate metric. |
-| Circular endgame (self-feeding economy) | Medium | Mostly recipe/quest design, not new systems. |
+| ~~Circular endgame (self-feeding economy)~~ (CUT) | - | Dropped; endgame REOPENED for redesign (see design_decisions P3.9). |
 | The final chapter (narrative frame + staged payoff: sky clears, life waves, villagers settle, Gate monument) | Hard | Full spec in the_twist.md (spoilers). The Overworld Gate multiblock, deorbit-rain suppression over healed land, villager arrival are all real systems. |
 
 ## Parked (not in this pack unless the plan changes)

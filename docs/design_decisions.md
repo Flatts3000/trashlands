@@ -9,10 +9,10 @@ Running log of locked per-feature decisions from the feature-by-feature walkthro
 **As of 2026-07-14:** P0 fully locked (P0.1-P0.5). P1 fully locked (P1.1-P1.8). **P2 fully locked (P2.1-P2.8).** Dimensions, the knowledge system, mound regrowth, the material economy ([`material_economy.md`](material_economy.md)), and the narrative layer ([`the_twist.md`](the_twist.md), spoilers) are locked. Mod lineup so far: Create (belts/logistics), Mekanism (chemical/radiation endgame). (Productive Frogs crossover dropped 2026-07-14.)
 
 **Resume here - P3 walkthrough** (P3.1 sky dumps, P3.3 degraded recipes, P3.4 blueprint scraps all CUT; P3.2 Field Manual locked):
-1. Circular endgame (self-feeding economy)
+1. **ENDGAME REDESIGN** (open - circular economy cut in P3.9; needs a new mechanical endgame that leads into the Gate and resolves quarry-vs-heal affordability)
 2. The final chapter (narrative frame + staged payoff - author vs the_twist.md)
 
-(P3.5 Nether, P3.6 End DONE. P3.7 frogs, P3.8 win-tracking CUT.)
+(P3.5 Nether, P3.6 End DONE. P3.7 frogs, P3.8 win-tracking, P3.9 circular-economy CUT.)
 
 **Open threads not on the matrix:** pack name (working: Trashlands), Nether theme name ("compacted depths" placeholder), the quest-narrator question (who wrote the quest book - see the_twist.md), where construction rubble lives (see material_economy.md).
 
@@ -271,6 +271,17 @@ Dropped. The "life returns to healed land" payoff (twist doc) stays, but deliver
 ## P3.8 - Win-condition tracking - CUT (2026-07-14)
 
 Dropped entirely. **Progression is quest-based** - the FTB Quests line is the only progress system. No cleared-land metric, survey tool, scoreboard, or contiguous-area tracking. Endgame payoffs (including the twist's villager return) are gated by completing reclamation quests, not by a measured land total.
+
+## P3.9 - Circular endgame - CUT, endgame REOPENED (2026-07-14)
+
+The self-feeding-economy framing is dropped. **The pack needs a different endgame** (Jason's call - to be designed).
+
+Dependencies this cut leaves OPEN (the circular economy was quietly carrying these - the replacement endgame must address them):
+1. **The mechanical climax of the tech tree** - what is the peak the progression builds toward?
+2. **The quarry-vs-heal resolution** - the circular economy was what made endgame healing affordable (once you manufacture inputs, retiring garbage quarries stops starving you). Without it, what makes full reclamation affordable rather than a permanent income sacrifice?
+3. **The Gate-completion trigger** - completing the Overworld Gate triggers the twist. The Gate is still a big materials sink / final quest, but its "what you must achieve to build it" content is now open.
+
+The twist, the final-chapter payoff, and the Gate-as-trigger all still stand (the_twist.md); what's open is the mechanical endgame that leads INTO the Gate.
 
 ## Dimensions - Nether and End (locked 2026-07-13, specs revised same day)
 
