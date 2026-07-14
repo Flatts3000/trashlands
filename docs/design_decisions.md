@@ -150,6 +150,16 @@ The batch tier of the sorting verb, designed with sifting's (Ex Nihilo lineage) 
 
 Nether and End portals disabled by config default until each themed dimension ships. Decided within the Dimensions discussion below; nothing further to design here.
 
+## P2.1 - The opening (locked 2026-07-14)
+
+**Spawn is between mounds, not inside one** (the buried-spawn idea is dead - it fought garbage gravity and the walkable-world principle).
+
+1. **Spawn in a natural clearing** in the household region: open coarse dirt, mounds on every horizon, a bag or two in reach, nearest mound within ~20 blocks. The place is the set piece.
+2. **Opening spectacle: a scripted deorbit delivery** lands on a distant mound within the first minute - shows the signature visual, teaches "mounds replenish," zero danger. One-time; natural regrowth cadence takes over after.
+3. **Quest book in inventory at spawn;** page one sells the exile lie ("they threw you away too"). "You arrived with the trash" survives as text/implication, not a playable burial.
+4. **First-minutes flow** rides existing locks: hand-dig, discover pick-through, tarp within 15 minutes.
+5. **Respawns are normal;** deorbit intro has a config skip for repeat players/servers.
+
 ## Dimensions - Nether and End (locked 2026-07-13, specs revised same day)
 
 **Target: themed dimensions (Option 3).** Vanilla dimensions would leak free resources (quartz, gold, ancient debris) into a closed trash economy, so both get rebuilt to serve the fiction. Worldgen specs locked per-dimension below (four decisions each, mirroring P0.1).
