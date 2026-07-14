@@ -186,6 +186,15 @@ Nether and End portals disabled by config default until each themed dimension sh
 4. **Green progression: grass -> crops -> trees.** Trees near-endgame (wood-as-treasure holds until tree farms); the first tree grown from recovered seed is a quest beat.
 5. **Healing yields nothing but land.** No drops, no rewards beyond immunity, retirement, and the final chapter's payoffs - keeps quarry-vs-heal honest.
 
+## P2.5 - Hazmat gating (locked 2026-07-14)
+
+**Mekanism carries the systems; Salvage ships only content.** (Same lesson as belts: don't build what the lineup ships.)
+
+1. **Hazard = Mekanism radiation**, emitted by radioactive debris seeded through the quarantine's mounds - including Mekanism's own radioactive waste barrels (which leak when broken - the chemical-drum idea, already implemented).
+2. **Gate = Mekanism's hazmat suit**, their immunity rules and tuning. The gate sits at Mekanism-tier progression, which is right: uranium is endgame fuel; the region guarding it should require midgame chemistry to enter.
+3. **Salvage's role: biome, garbage blocks, pull tables, caches.** Content, not systems. Standalone fallback (Salvage without Mekanism): config poison-on-contact block property, not a radiation engine.
+4. **Sealed containers are the best knowledge caches in the game** - high-tier schematics survived BECAUSE the area was quarantined. The region's second treasure alongside uranium.
+
 ## Dimensions - Nether and End (locked 2026-07-13, specs revised same day)
 
 **Target: themed dimensions (Option 3).** Vanilla dimensions would leak free resources (quartz, gold, ancient debris) into a closed trash economy, so both get rebuilt to serve the fiction. Worldgen specs locked per-dimension below (four decisions each, mirroring P0.1).
