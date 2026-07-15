@@ -125,6 +125,15 @@ Non-Minecraft games whose *proven-fun* loops map onto ours. Fulgora (above, line
 
 **Open question it sharpens (feeds the reopened P3.9 reclamation decision in `design_decisions.md`):** is reclamation ONE global index (PC's Ti - maximally legible) or **per-region with a global roll-up** (fits our region bands)? Lean per-region + a headline global number, so a player both sees local progress and has one score to chase.
 
+### WALL-E (Pixar, 2008) - the aesthetic + tonal anchor
+
+**What to steal:**
+1. **The cube-compactor visual is our block language, already proven iconic.** WALL-E's whole job is crushing trash into cubes and stacking them into towers. That is exactly our **Compacted Bale** block and the regrowing **mounds** - readable at a glance, stackable, memorable. Lean in: bales as a hero block, mound/tower silhouettes as the skyline.
+2. **A whole world's story told nearly wordless.** The film's first act runs on almost no dialogue - the ruined world and its abandoned objects carry everything. Gold standard for our minimize-authored-prose principle: build meaning from placed blocks and found objects, not readables.
+3. **Tone: melancholy + hope, not grimdark and not jokey.** A buried world whose throughline is care and restoration. Keeps us off both "gritty apocalypse" and "wacky trash," so the reclamation arc lands as earned and warm.
+
+**Discipline:** keep this a note on look, block language, and storytelling craft only. Any narrative resonance is handled in `the_twist.md` (name-reference only, per its process rules) and the sanctioned quest surface - do not draw story parallels here.
+
 ## Architecture (decided 2026-07-13)
 
 **One mod + one pack, more mods later if earned.** A single fresh companion mod (working name **Recompile**, NeoForge / MC 26.1) owns all custom systems to start: the garbage worldgen (coarse-dirt world preset, Blocks of Garbage and variants, garbage regions), the teardown-as-knowledge loop, and the mound-regrowth system. The pack owns curation, quests, tuning, and the cross-mod teardown tables (JSON datapack territory, extendable without mod releases).
