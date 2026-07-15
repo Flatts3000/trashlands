@@ -168,13 +168,15 @@ Minecraft ships a hunger bar, so the player will eat; the question is *what*, on
 
 3. **Forage - wild mushrooms.** Fungi are the decomposers of a waste world. Wild mushrooms grow on **mycelium patches between mounds that the player cannot pick up** - a growing substrate that lives in the terrain, not a portable resource (vanilla mycelium already drops nothing without silk-touch, so it is near-free). Early food is limited and in-place.
 
-4. **Farm - a first-party planter, gated behind knowledge.** Drop Botany Pots; build a first-party **scrap planter** as the hero growing item. Its recipe is **recovered through teardown-as-knowledge (P1.4), not craftable from minute one** - food progression hangs off the spine. Substrate comes from **`organic_muck` -> compost**, which finally gives that sorted material a job and makes farmed food a *processing output* (fits the recycling identity), not just loot. Farmed mushrooms -> mushroom stew, the reliable staple once you can grow.
+4. **Farm - a first-party planter, gated behind knowledge. DEFERRED (2026-07-14).** Drop Botany Pots; build a first-party **scrap planter** as the hero growing item. Its recipe is **recovered through teardown-as-knowledge (P1.4), not craftable from minute one** - food progression hangs off the spine. Substrate comes from **`organic_muck` -> compost**, which finally gives that sorted material a job and makes farmed food a *processing output* (fits the recycling identity), not just loot. Farmed mushrooms -> mushroom stew, the reliable staple once you can grow. **Deferred until the P1.4 knowledge system exists** so the gating is real rather than a stopgap recipe; compost + substrate come with it.
 
-5. **Roaches - infestation, not spawns.** A silverfish reskin, but do NOT ambient-spawn them (that fights the dead-quiet). Reuse silverfish's real mechanic: some garbage blocks are **infested** - break one and roaches swarm out. Tension and a gamble on certain blocks; vermin, not food.
+5. **Roaches - infestation, not spawns. DEFERRED (2026-07-14).** A silverfish reskin, but do NOT ambient-spawn them (that fights the dead-quiet). Reuse silverfish's real mechanic: some garbage blocks are **infested** - break one and roaches swarm out. Tension and a gamble on certain blocks; vermin, not food. Not in the first build. **Wrinkle to solve when it lands:** an infested garbage block must look **slightly** different from a regular one - a subtle visual tell - so the gamble is fair-play, not invisible (and not so obvious it reads as a separate block).
 
 **The food arc mirrors the game:** forage wild mushrooms + scavenge risky cans (survive) -> recover the planter recipe, compost muck, farm mushrooms (stabilize) -> reclaimed land brings livestock and crops back (payoff). Food heals as the world heals.
 
 **Ownership:** Recompile owns the tin-can items (sealed/opened, suspicious-stew effects), the scrap planter + muck-compost substrate, and the infested-block/roach behavior. Wild mushrooms + mycelium are vanilla. Reclaimed farming is the pack's job at the P2.4 payoff.
+
+**Build status (2026-07-14):** the **survive** tier is being implemented now - tin cans (scavenged risk food) + wild mushrooms on unpickable worldgen mycelium (forage). The **stabilize** tier (scrap planter + muck compost, point 4) is deferred until the P1.4 knowledge system, and roaches / infested blocks (point 5) are deferred - both recorded above.
 
 ## P2.1 - The opening (locked 2026-07-14)
 
