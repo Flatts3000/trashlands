@@ -98,7 +98,7 @@ Variants and tools are one interlocking matrix:
 3. **Bags/bales feed sorting (random pulls); appliances feed teardown (deterministic + teaches chance).** Appliances are the on-ramp to the knowledge system.
 4. **Generation:** bags on mound surfaces, bales in mound cores (mound shape does the depth-reward work), appliances uncommon pocket finds. Region palettes reweight all three.
 
-## P1.3 - Sorting Tarp (locked 2026-07-14)
+## P1.3 - Sorting Tarp (locked 2026-07-14; mechanic revised 2026-07-14 - see revision below)
 
 The batch tier of the sorting verb, designed with sifting's (Ex Nihilo lineage) lessons baked in:
 
@@ -110,6 +110,14 @@ The batch tier of the sorting verb, designed with sifting's (Ex Nihilo lineage) 
 6. **Drop tables visible in JEI/EMI from day one.** Non-negotiable.
 7. **In-world charm:** the junk heap on the tarp visibly shrinks as you sort.
 8. **Hopper compatibility off at this tier** (config-gated) - the tarp is manual by identity.
+
+**Revised 2026-07-14 - sieve-free, no-GUI, world-drop, no screen (supersedes points 1, 2, 3, 7; sharpens 8):**
+
+Two problems surfaced walking the concept: a mesh "sieve/screen" is the wrong real-world tool (sieves separate *fine* material by size - soil, ash; coarse mixed trash is hand-picked by material into sacks, never sieved), and any internal inventory is an automation surface that fights "manual by identity." The revised design:
+
+1. **Form: a jury-rigged sorting TABLE, not a flat tarp and not a sieve.** Waist-height, custom model + `VoxelShape`: a salvaged frame (crates / drums / bent rebar) with a worn tarp thrown over the top as the work surface, mixed junk spread on it, ringed by the mouths of striped woven-polypropylene bulk sacks - the iconic object of informal recycling, and welcome color against the muted palette. Keeps the "tarp" name/id (the tarp *is* the tabletop). Explicitly not a sieve: coarse trash is hand-sorted in real life.
+2. **Interaction: no GUI, no inventory.** Right-click holding a garbage block / bag / bale -> sift one batch -> sorted materials **drop into the world as item entities** (bales still batch 2-3x, point 4). Hold right-click to keep sifting. There is **no input slot, no output buffer, and no screen slot** - the block is stateless. The sorting act itself is the manual gate; collecting the drops is the player's logistics problem (the Create seam, ~line 175). Hopper-proof by construction, which promotes point 8's config-gated "manual" into a structural guarantee. Deletes the menu/screen GUI classes the first cut carried.
+3. **Screen dropped entirely (supersedes point 3).** With no sieve there is nothing for a screen to mesh, and any held-item slot reintroduces an automation surface. Player-chosen *what-you-recover* bias moves to a later tier (the powered sorter, or a possible magnet mechanic) - not the tarp. The `metal_screen` / `organics_screen` items are removed.
 
 ## P1.4 - Recompile Workbench + teardown-as-knowledge (locked 2026-07-14)
 
