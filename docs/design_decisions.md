@@ -6,7 +6,7 @@ Running log of locked per-feature decisions from the feature-by-feature walkthro
 
 ## Walkthrough status (the bookmark - update every session)
 
-**As of 2026-07-14:** P0 fully locked (P0.1-P0.5). P1 fully locked (P1.1-P1.8). **P2 fully locked (P2.1-P2.8).** Dimensions, the knowledge system, mound regrowth, the material economy ([`material_economy.md`](material_economy.md)), and the narrative layer ([`the_twist.md`](the_twist.md), spoilers) are locked. Mod lineup so far: Create (belts/logistics), Mekanism (chemical/radiation endgame). (Productive Frogs crossover dropped 2026-07-14.)
+**As of 2026-07-14:** P0 fully locked (P0.1-P0.5). P1 fully locked (P1.1-P1.9; food/foraging tier P1.9 and the sorting-tarp mechanic revision both added in a later 2026-07-14 session). **P2 fully locked (P2.1-P2.8).** Dimensions, the knowledge system, mound regrowth, the material economy ([`material_economy.md`](material_economy.md)), and the narrative layer ([`the_twist.md`](the_twist.md), spoilers) are locked. Mod lineup so far: Create (belts/logistics), Mekanism (chemical/radiation endgame). (Productive Frogs crossover dropped 2026-07-14.)
 
 **Walkthrough is COMPLETE except the endgame/postgame cluster, which is PARKED (Jason's call, 2026-07-14) - worry about it later.**
 
@@ -157,6 +157,24 @@ Two problems surfaced walking the concept: a mesh "sieve/screen" is the wrong re
 ## P1.8 - Dimension lockout (locked 2026-07-14)
 
 Nether and End portals disabled by config default until each themed dimension ships. Decided within the Dimensions discussion below; nothing further to design here.
+
+## P1.9 - Food, foraging, and the dead dump (locked 2026-07-14)
+
+Minecraft ships a hunger bar, so the player will eat; the question is *what*, on a dead garbage plain with no farms or animals. This tier answers it **without** becoming a survival-pressure pack (see `concept.md` "not hunger bars") - food is provided and thematic, never weaponized as a grind. Water stays a resource / purification thread, **not** a thirst meter (a hardcore thirst toggle is a config option only, default off).
+
+1. **The initial biome has NO ambient creature spawns - on purpose.** A silent garbage plain sells "dead world," and it makes the reclamation payoff land: the first animal, the first birdsong, the returning villagers all hit *because* their absence is the entire early game. So early food is forage + scavenge, never hunting. (Livestock and crops return only on healed land - the P2.4 payoff.) Vanilla mobs were considered and rejected: chickens read wrong (not gulls), spiders aren't edible - nothing fits, and nothing should yet.
+
+2. **Scavenge - tin cans (the risk staple).** Cans drop from the sort / pull tables (garbage, bags, and especially appliances - the "fridge = preserved food" note in P0.3). A can is **sealed (closed model) -> opened (open model)**; opening is a deliberate step (via the scrap knife - ties a tool to food). **An opened can behaves like Suspicious Stew:** a random effect on eating, so every can is a gamble. That IS the "eating sketchy food out of a dump" beat, mechanical not narrated. Suspicious Stew's own risk moves onto cans; clean cooked food is the safe upgrade you earn.
+
+3. **Forage - wild mushrooms.** Fungi are the decomposers of a waste world. Wild mushrooms grow on **mycelium patches between mounds that the player cannot pick up** - a growing substrate that lives in the terrain, not a portable resource (vanilla mycelium already drops nothing without silk-touch, so it is near-free). Early food is limited and in-place.
+
+4. **Farm - a first-party planter, gated behind knowledge.** Drop Botany Pots; build a first-party **scrap planter** as the hero growing item. Its recipe is **recovered through teardown-as-knowledge (P1.4), not craftable from minute one** - food progression hangs off the spine. Substrate comes from **`organic_muck` -> compost**, which finally gives that sorted material a job and makes farmed food a *processing output* (fits the recycling identity), not just loot. Farmed mushrooms -> mushroom stew, the reliable staple once you can grow.
+
+5. **Roaches - infestation, not spawns.** A silverfish reskin, but do NOT ambient-spawn them (that fights the dead-quiet). Reuse silverfish's real mechanic: some garbage blocks are **infested** - break one and roaches swarm out. Tension and a gamble on certain blocks; vermin, not food.
+
+**The food arc mirrors the game:** forage wild mushrooms + scavenge risky cans (survive) -> recover the planter recipe, compost muck, farm mushrooms (stabilize) -> reclaimed land brings livestock and crops back (payoff). Food heals as the world heals.
+
+**Ownership:** Recompile owns the tin-can items (sealed/opened, suspicious-stew effects), the scrap planter + muck-compost substrate, and the infested-block/roach behavior. Wild mushrooms + mycelium are vanilla. Reclaimed farming is the pack's job at the P2.4 payoff.
 
 ## P2.1 - The opening (locked 2026-07-14)
 
