@@ -106,6 +106,25 @@ Both stay in the mod shortlist (`F:\minecraft-repos\next-mod-concepts.md`) as st
 - Wasteland survival packs (Survive The Wasteland, Wastelands, Project X) - scarcity/scavenging theme, not garbage-block recycling. The "Garbage Disposal" / "Garbage Dump" packs read as casual/kitchen-sink.
 - **Verdict:** the **Productive Bees -> Productive Frogs pattern** - a beloved-but-dead concept (Dumpster Diving) to rebuild modern and better. Don't build ON the corpse; a fresh **Recompile mod** (decided - see Architecture). Our two distinct axes - **teardown-as-knowledge** and **regrowing-mound quarries with the quarry-vs-heal tension** - are unclaimed by anything current.
 
+## Cross-medium design influences (reviewed 2026-07-14)
+
+Non-Minecraft games whose *proven-fun* loops map onto ours. Fulgora (above, line ~68) is one; **The Planet Crafter** (Miju Games, 1.0 April 2024) is the closest whole-game match and worth mining.
+
+**What it is:** first-person survival + terraforming. Crash on a dead planet; raise a single global **Terraformation Index (Ti)** by running machines that pump out Oxygen/Heat/Pressure, then Biomass (plant/insect/animal). Ti climbs through named **stages** (Barren -> ... -> lush), and crossing thresholds both **unlocks new blueprint tiers** and **physically changes the world** (ice melts, lakes fill, grass and trees appear).
+
+**Direct parallels + what to steal:**
+1. **Blueprint microchips == teardown-as-knowledge, already shipped and validated.** You find microchips as loot in wrecks and spend them at a terminal to unlock recipes; they unlock in **tiers** (clear the whole current tier before the next opens; order within a tier is random). This is live proof that "find item -> gain recipe knowledge" carries a game. **Lesson:** tie knowledge gain to exploration + a deliberate station action, and let some recipes need multiple finds - a clean fit for our "study progress / 2-3 in-progress states."
+2. **One global metric gates content AND heals the world.** Ti is a single legible number that unlocks tiers and makes the world visibly recover. Our mound-regrowth + reclamation endgame wants exactly this. **Lesson:** expose ONE north-star "reclamation index"; make the world change **diegetic** (blocks regrow/heal), not a menu unlock. Reinforces the "delivery is the signature visual" call (line 60).
+3. **Recycler is materials-only.** PC breaks items into their base materials, full stop. That is precisely the axis we deliberately go *beyond* (recover the **recipe**, not just mats). **Lesson:** it confirms the differentiator - don't let teardown collapse into "just a recycler."
+4. **Survival-early -> automation-late arc.** Hand-gather -> auto-extractors/crafters, gated by Ti. Mirrors our tier spine (hand-sort -> sort & automate). **Lesson:** gate automation behind the reclamation metric so early friction earns the payoff.
+5. **Environmental storytelling for the ending.** PC hides its narrative in wrecks/logs and the finale recontextualizes everything - no exposition dumps. Direct support for our minimize-authored-prose rule and the `the_twist.md` quarantine: deliver the twist through the world.
+
+**What NOT to copy:**
+- **Survival meters (O2/water/food).** Trashlands is not a survival-pressure pack - the "still-active dump tide" pressure loop was already dropped (line 62). Keep tension in the quarry-vs-heal choice, not hunger bars.
+- **Single linear planet.** PC is one biome-planet on a linear Ti track; we have **region bands + cross-mod teardown breadth**. Don't flatten that breadth into one linear meter.
+
+**Open question it sharpens (feeds the reopened P3.9 reclamation decision in `design_decisions.md`):** is reclamation ONE global index (PC's Ti - maximally legible) or **per-region with a global roll-up** (fits our region bands)? Lean per-region + a headline global number, so a player both sees local progress and has one score to chase.
+
 ## Architecture (decided 2026-07-13)
 
 **One mod + one pack, more mods later if earned.** A single fresh companion mod (working name **Recompile**, NeoForge / MC 26.1) owns all custom systems to start: the garbage worldgen (coarse-dirt world preset, Blocks of Garbage and variants, garbage regions), the teardown-as-knowledge loop, and the mound-regrowth system. The pack owns curation, quests, tuning, and the cross-mod teardown tables (JSON datapack territory, extendable without mod releases).
