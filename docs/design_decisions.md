@@ -257,7 +257,7 @@ The mattress (P1.11) is the bed; this is the *walls*. Crude shelter was already 
 
 2. **It is also the material sink.** Answers the "1,000 stacks of scrap" overflow worry directly: building consumes the bulk the sort produces. Every family maps to a base material stream, so each is a sink for what you already drown in.
 
-3. **Tier-0 and ungated.** Crafted at the Scrap Crafting Table, no knowledge gate (shelter is free, tech is locked). Five families, each the full kit (block + slab + stairs + wall): **Pressed Junk** (the junk sink), **Scrap Plating**, **Corrugated Metal** (the iconic shanty aesthetic), **Plastic Panel**, and **Cullet Glass** (block + slab + stairs + **pane** - glass's honest thin form replaces the wall).
+3. **Tier-0 and ungated.** Crafted at the Scrap Crafting Table, no knowledge gate (shelter is free, tech is locked). Four full-kit families (block + slab + stairs + wall): **Pressed Junk** (the junk sink), **Scrap Plating**, **Corrugated Metal** (the iconic shanty aesthetic), **Plastic Panel** - plus **Cullet Glass** as **block + pane** only (glass has no honest slab or stairs form; vanilla ships neither).
 
 4. **Hand-breakable, drop themselves.** No pickaxe exists (P1.2) and reclaiming your own walls must not be punishing; the prybar is only the *faster* tool on metal, never required. This is not a teardown input - it is crafted (made economy), so the "nothing enters the found economy without a teardown exit" invariant does not apply.
 

@@ -27,7 +27,7 @@
 |---|---|---|
 | Garbage block variants (bags, bales, Bulky Waste) | Easy | Different break-tools gate early game instead of biomes. Appliance dropped 2026-07-15; Bulky Waste (P1.11) took its worldgen slot. |
 | Trash-tier tools (scrap knife, rebar sticks, prybar) | Easy | No trees, so tools must come from trash. Wood is a recovered treasure. |
-| Building blocks from scrap (P1.12) | Easy | Shipped 2026-07-16. Five families x full kit (block/slab/stairs/wall): pressed junk, scrap plating, corrugated metal, plastic panel, cullet glass (pane not wall). Tier-0, ungated; the deliberate shelter tier and the bulk-scrap material sink. Not defense (nothing threatens builds). |
+| Building blocks from scrap (P1.12) | Easy | Shipped 2026-07-16. Four full-kit families (block/slab/stairs/wall): pressed junk, scrap plating, corrugated metal, plastic panel; plus cullet glass as block + pane only. Tier-0, ungated; the deliberate shelter tier and the bulk-scrap material sink. Not defense (nothing threatens builds). |
 | Sorting Tarp (first station, manual sorting) | Medium | Ex Nihilo sieve shape, garbage flavor. |
 | Teardown machine (feed item -> components) | Medium | The Recompile mod's centerpiece block. |
 | Teardown-as-knowledge (recover recipes) | **Medium** (v1) | THE distinct axis. v1 rides vanilla `doLimitedCrafting` + recipe book grants (~1-2 wks on top of the bench); risks are the JEI locked-recipe overlay and FTB Teams sync. The Hard version (auto recipe introspection, gating other mods' machine recipes) stays maybe-never. Hand-authored JSON unlock tables only. |
