@@ -121,6 +121,13 @@ achievement per completed trophy; a dedicated "trophy case" or pedestal block to
 - **It's the found source for `rubber`** - already one of "our intermediates" in
   `material_economy.md` (scrap, cullet, muck, plastic sheet, **rubber**) but with no origin named.
   Tires are the obvious one. This is the strongest hook: it gives an orphaned material a home.
+- **The chain is decided:** a tire **cut with the scrap knife -> `rubber scrap`** (naming matches
+  the scrap family: scrap_metal, plastic_scrap, fiber_scrap), and **rubber scrap -> Create belts**.
+  The Create belt recipe normally uses **dried kelp**, which is nonsense in a treeless dump - so
+  the pack overrides it to eat rubber scrap. This is exactly the locked "pack-tunes Create; its
+  chains route through our material streams" direction (`material_economy.md`, Create-spine). It is
+  **pack content** (a Create recipe override); the mod ships `rubber_scrap` as a real item and does
+  not require Create (standalone fallback use TBD).
 - **Secondary yields, all real recycling streams:** **steel wire** from steel-belted radials (a
   little scrap metal), and **tire-derived fuel** - tires burn hot and dirty, which ties straight
   into the junk-fuel / burn-barrel line (P2.2). A hotter (dirtier) fuel than junk is a natural
@@ -135,9 +142,9 @@ achievement per completed trophy; a dedicated "trophy case" or pedestal block to
 material once something consumes it (see below).
 
 **Open questions:**
-- **What does `rubber` actually make?** The intermediate needs a downstream or it's a dead-end -
-  belts/conveyor, seals/gaskets, tubing, waterproof boots or a hazmat layer, Create/Mekanism
-  inputs. Worth deciding rubber's job when this lands.
+- ~~What does rubber make?~~ **Decided: Create belts** (rubber scrap overrides the dried-kelp belt
+  recipe). Still open: does `rubber_scrap` earn a **second, Create-free use** so the material isn't
+  a dead-end when Create is absent (seals, tubing, waterproof/hazmat gear)?
 - **Tires as fuel:** hotter than junk but dirty - a flavor/pollution angle, or just a better burn?
 - **Tire fire** as a config-gated hazard/flavor event (the notorious tire-dump fire) - never a
   threat to builds or cleared land, per the P2 pressure-loop rule. Optional set dressing.
