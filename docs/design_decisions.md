@@ -6,7 +6,7 @@ Running log of locked per-feature decisions from the feature-by-feature walkthro
 
 ## Walkthrough status (the bookmark - update every session)
 
-**As of 2026-07-14:** P0 fully locked (P0.1-P0.5). P1 fully locked (P1.1-P1.9; food/foraging tier P1.9 and the sorting-tarp mechanic revision both added in a later 2026-07-14 session). **P2 fully locked (P2.1-P2.8).** Dimensions, the knowledge system, mound regrowth, the material economy ([`material_economy.md`](material_economy.md)), and the narrative layer ([`the_twist.md`](the_twist.md), spoilers) are locked. Mod lineup so far: Create (belts/logistics), Mekanism (chemical/radiation endgame). (Productive Frogs crossover dropped 2026-07-14.)
+**As of 2026-07-15:** P0 fully locked (P0.1-P0.5). P1 fully locked (P1.1-P1.10; food/foraging tier P1.9 and the sorting-tarp mechanic revision both added in a later 2026-07-14 session; water P1.10 added 2026-07-15). **P2 fully locked (P2.1-P2.8).** **The knowledge system (P1.4) is under review** - see the note at the head of P1.4; its enforcement model does not survive contact with modded autocrafting, and its scope is being questioned. Dimensions, the knowledge system, mound regrowth, the material economy ([`material_economy.md`](material_economy.md)), and the narrative layer ([`the_twist.md`](the_twist.md), spoilers) are locked. Mod lineup so far: Create (belts/logistics), Mekanism (chemical/radiation endgame). (Productive Frogs crossover dropped 2026-07-14.)
 
 **Walkthrough is COMPLETE except the endgame/postgame cluster, which is PARKED (Jason's call, 2026-07-14) - worry about it later.**
 
@@ -121,7 +121,19 @@ Two problems surfaced walking the concept: a mesh "sieve/screen" is the wrong re
 
 **Recovery ladder (tuned 2026-07-15, in play):** the pull table says what is *in* a block; **the method decides how much of it you get out**. The ladder is **hand << tarp << automation**, and the lever is rolls per block, so retuning a table moves every tier together. First playtest exposed the ladder inverted: hand pulls averaged 4.9 / 2.5 / 6.9 (garbage / bag / bale) against a tarp giving 5 / 2 / 12, so the tarp was a wash on garbage blocks and *strictly worse* on bags - the station you crafted was a downgrade, and materials arrived far too fast. Now hand averages **1.9 / 1.5 / 2.9** against a tarp of **5 / 3 / 8**, a consistent **2.0-2.8x**. Hand must stay visibly worse: it needs no station, no hauling, and no cooldown. Automation must clear the tarp by a similar margin when it lands, so the tarp is deliberately not maxed out. (Averages are expected pulls over the crumble curve, not the max.)
 
-## P1.4 - Recompile Workbench + teardown-as-knowledge (locked 2026-07-14)
+## P1.4 - Recompile Workbench + teardown-as-knowledge (locked 2026-07-14; UNDER REVIEW 2026-07-15)
+
+> **Under review - do not build against this section yet.** Nothing below is retracted, but two problems surfaced walking it before implementation, and the second is the serious one.
+>
+> **1. The gate is at the wrong layer, and it cannot be fixed by effort.** The locked plan leans on `doLimitedCrafting` + recipe-book grants. That is real and it works - verified in the 26.1.2 source: `CraftingMenu.slotChangedCraftingGrid` only assembles a result if `resultSlots.setRecipeUsed(serverPlayer, recipe)` passes, which returns false when the rule is on and the player has not learned it. But look at the signature: `setRecipeUsed(**ServerPlayer**, ...)`. The gate is **player-scoped**, bolted on at the menu layer. A machine has no player, so Create's mechanical crafters, AE2 and Refined Storage do not bypass it by oversight - that gate structurally cannot see them. Create is in this pack's lineup, so the hole is real, not theoretical.
+>
+> One layer down, `Recipe.matches(input, **Level**)` takes no player, and *every* crafting system resolves through `RecipeManager.getRecipeFor(type, input, level)` -> `matches`. So a custom `CraftingRecipe` (still `RecipeType.CRAFTING`, so it works in every grid) checking **world/team** knowledge in `matches` would be obeyed by all of them, with no mixins. **The catch: that requires knowledge to be world/team state, never per-player** - point D's per-player config and an enforceable gate are the same problem wearing two hats. (Unverified: AE2 caches encoded patterns and may replay `assemble` without re-matching.)
+>
+> **2. The scope is the actual problem.** "The arc of the pack is moving the whole catalog across that line" is what generates every symptom: the authoring burden, the JEI greying, the artifact flood (sorting pays doors long after you have learned doors), and the leak mattering at all. Planet Crafter and Palworld - the reference points for this feel - gate a **curated spine of tens of nodes**, not every recipe in the game. Meanwhile this world already gates materials harder than any pack alive: **no ore, no wood, no coal**. No autocrafter can conjure matter. Material scarcity is the robust gate and it is already built; knowledge does not need to be DRM on ten thousand recipes.
+>
+> **The open identity question.** A first-principles pass (a real person in an infinite dump) suggests the sharper axis: in an infinite dump **materials are worthless and function is precious**. There is infinite scrap; there is not an infinite supply of *working motors*. That reframes teardown as recovering **function**, not recipes - you tear down a washing machine for the motor, which is a thing you cannot forge from any amount of scrap. It also makes sorting a **search engine** rather than a factory, and it needs no gating machinery at all, because "do you have a motor" is the most mod-proof gate there is. Whether the mod's axis stays **teardown-as-knowledge** or becomes **teardown-as-function** is unresolved, and the mod is named for the first one.
+
+
 
 1. **It's a workbench, not a machine.** Player-operated, hold-to-disassemble with progress bar (mirrors hold-to-sort). Powered automated disassembler is a tier-3+ upgrade - same ladder shape as sorting.
 2. **Tool rack:** 2-3 tool slots; racked tools (knife, prybar, later screwdriver/shears/torch) decide speed and which `extras` can drop. Tools matter at the bench, not just in the field.
@@ -179,6 +191,28 @@ Minecraft ships a hunger bar, so the player will eat; the question is *what*, on
 **Ownership:** Recompile owns the tin-can items (sealed/opened, suspicious-stew effects), the `dump_mushroom` plant + item, the scrap planter + muck-compost substrate, and the infested-block/roach behavior. The **mycelium substrate is vanilla**, and vanilla's own mushrooms are left untouched. Reclaimed farming is the pack's job at the P2.4 payoff.
 
 **Build status (2026-07-15):** the **survive** tier is **shipped** - tin cans (scavenged risk food) + dump mushrooms foraged from vanilla-mycelium patches. Mushroom density was tuned down ~5x after the first playtest (patches/chunk x patch area x per-cell chance compounded to ~38 per chunk, a mushroom field rather than a scavenge; now ~7). The **stabilize** tier (scrap planter + muck compost, point 4) is deferred until the P1.4 knowledge system, and roaches / infested blocks (point 5) are deferred - both recorded above.
+
+## P1.10 - Water (locked 2026-07-15)
+
+Water was a footnote under P1.9 ("a resource / purification thread, not a thirst meter"). It earns its own block because of a fact nobody had checked: **this world contains no water at all.**
+
+1. **Verified 2026-07-15, in the shipped worldgen:** `noise_settings/garbage.json` sets `sea_level: -64` and `default_fluid: minecraft:air`. There is no ocean, no lake, no spring, nothing to put a bucket in. Meanwhile `household_sprawl` sets `has_precipitation: true` (downfall 0.4) - **it rains.** So rain is not *a* source of water. It is the **only** one, and until something collects it, water does not exist in this game.
+
+2. **Water is NOT a survival mechanic. This is not reopened.** No thirst bar, no drinking (see `concept.md` "not hunger bars"; the hardcore thirst toggle stays a config option, default off). Water is a **processing input** - a thing you need to make other things work, never a meter you nurse.
+
+3. **First water comes from a rain collector** - improvised, pre-iron: a scrap frame with a tarp stretched over it, filling when it rains. It borrows the sorting table's visual language on purpose; both are the same real object, a tarp on a salvaged frame.
+
+4. **The ladder is already half vanilla.** `LayeredCauldronBlock.handlePrecipitation` means a vanilla cauldron *already* fills from rain, and a cauldron is 7 iron ingots - reachable only once you can smelt scrap. So:
+
+   **rain collector** (scrap + tarp, pre-iron, slow) -> **cauldron** (vanilla, iron) -> **pumps** (machines, much later).
+
+   Improvised -> found -> made. That is the same arc as the mattress (found mattress -> string -> a real bed) and the burn barrel (burn barrel -> repaired furnace). Three independent systems landing on the same shape is the pack's spine showing.
+
+5. **Do not ship the collector before something drinks it.** Nothing in the mod consumes water today, so a rain collector now is a block with no job - exactly what the anti-bloat rule exists to stop. It lands *with* its first consumer.
+
+6. **The first consumer should be washing salvage, not farmland.** Rinsing sorted plastic before it is worth anything is a real step in informal recycling - the same world the sorting table already borrows from. Water as the thing that turns dirty scrap into good scrap is native to this pack in a way that hydrating farmland is not. Farmland (the P1.9 planter tier) and Create/Mekanism are later consumers, not the first.
+
+**Ownership:** Recompile owns the rain collector. The cauldron and every fluid above it are vanilla and the mods' own.
 
 ## P2.1 - The opening (locked 2026-07-14)
 
