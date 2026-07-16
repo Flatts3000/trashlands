@@ -75,3 +75,37 @@ achievement per completed trophy; a dedicated "trophy case" or pedestal block to
 - Do partial sets show progress (e.g. a Jade/tooltip "3/6 pieces"), or is it silent until complete?
 - Whether pieces are also a **teardown** input later (a collectible you could tear down for its
   materials instead of trophying) - probably not; the trophy *is* the point.
+
+## I-3: Mounds of vanilla concrete
+
+**Idea:** worldgen **mounds made of vanilla concrete** - dig concrete out of the dump.
+
+**Fit / notes:**
+- **Fills a gap the design already named.** `material_economy.md` calls construction & demolition
+  debris "the largest real waste stream ... currently a gap in our regions," and lists concrete as
+  the source of aggregate (gravel / sand / **andesite** for the Create spine). Concrete mounds are
+  that stream, made concrete (literally).
+- **A found clean/colored building material** that complements the P1.12 scrap building blocks:
+  scrap reads as a shanty; vanilla concrete reads as *rebuilt* - smooth, painted, civic. And it
+  hands the player vanilla concrete without its normal craft (powder + dye + water), which fits
+  "the old world already made this; you're just recovering it."
+- **Two exits, both useful:** buildable directly (a real building palette), and **crushable to
+  aggregate** at tier 2 (gravel / sand / andesite), feeding the Create-spine materials the pack
+  otherwise has no honest stone source for (no ore, no stone).
+- Could be a **mound variant** scattered among garbage mounds, or the seed of the **demolition-yard
+  / construction-debris region** that `material_economy.md` leaves as an open "where rubble lives"
+  thread. Region is the stronger long-term home; a mound variant is the cheap first step.
+
+**Depends on:** nothing new (vanilla blocks + worldgen feature, reusing the `MoundFeature` shape).
+
+**Open questions:**
+- **The no-pickaxe wrinkle (important).** Vanilla concrete is `requiresCorrectToolForDrops` with a
+  pickaxe - which this world does not have. Found concrete would drop nothing by hand. Needs a fix:
+  a block-tag/hardness override so the shovel or prybar (or bare hand) frees it, same call we made
+  for the building blocks. Do NOT ship it pickaxe-gated by accident.
+- **Colors:** a grubby grey/mixed rubble palette (realistic C&D), or does this become the player's
+  full colored-concrete access? Rubble-grey early, full color as a later reward feels right.
+- **Reinforced concrete tie-in:** rebar already exists (the universal handle) - concrete + rebar as
+  a sturdier build block is an obvious pairing.
+- Mound variant now vs. holding it for the demolition-yard region (P1.5 regions).
+- Does concrete powder also appear (the pre-set stage), or only cured concrete?
