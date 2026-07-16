@@ -109,3 +109,37 @@ achievement per completed trophy; a dedicated "trophy case" or pedestal block to
   a sturdier build block is an obvious pairing.
 - Mound variant now vs. holding it for the demolition-yard region (P1.5 regions).
 - Does concrete powder also appear (the pre-set stage), or only cured concrete?
+
+## I-4: Mounds of tires
+
+**Idea:** worldgen **mounds of tires** - the iconic tire-dump pile.
+
+**Fit / notes:**
+- **Tire dumps are one of the most recognizable waste sights there is** (and a real environmental
+  blight - fire hazard, mosquito breeding). Perfect for a dump world, and the stacked-tire tower
+  reads instantly, like the Compacted Bale does for the WALL-E cube language.
+- **It's the found source for `rubber`** - already one of "our intermediates" in
+  `material_economy.md` (scrap, cullet, muck, plastic sheet, **rubber**) but with no origin named.
+  Tires are the obvious one. This is the strongest hook: it gives an orphaned material a home.
+- **Secondary yields, all real recycling streams:** **steel wire** from steel-belted radials (a
+  little scrap metal), and **tire-derived fuel** - tires burn hot and dirty, which ties straight
+  into the junk-fuel / burn-barrel line (P2.2). A hotter (dirtier) fuel than junk is a natural
+  mid-fuel step.
+- **Soft, so it fits the no-pickaxe world:** cut a tire with the **scrap knife** for rubber (the
+  same "cut it open" verb as the bale and the mattress), or hand-break. No tool wrinkle like the
+  concrete has.
+- **Decorative builds:** stacked tires are their own vernacular - retaining walls, playground
+  swings, planters. A tire block earns its place as deco even before the rubber matters.
+
+**Depends on:** nothing new. Reuses `MoundFeature` and the knife-cut verb; rubber becomes a real
+material once something consumes it (see below).
+
+**Open questions:**
+- **What does `rubber` actually make?** The intermediate needs a downstream or it's a dead-end -
+  belts/conveyor, seals/gaskets, tubing, waterproof boots or a hazmat layer, Create/Mekanism
+  inputs. Worth deciding rubber's job when this lands.
+- **Tires as fuel:** hotter than junk but dirty - a flavor/pollution angle, or just a better burn?
+- **Tire fire** as a config-gated hazard/flavor event (the notorious tire-dump fire) - never a
+  threat to builds or cleared land, per the P2 pressure-loop rule. Optional set dressing.
+- **Home:** mound variant now, or part of a **scrapyard / auto-wrecking region** where tires
+  cluster with cars and car batteries (the lead/battery stream)?
