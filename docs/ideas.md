@@ -178,3 +178,45 @@ really nails it). Everything else is a plain item + a use interaction + a recipe
 - **Does popping do anything** (a tiny effect, or an advancement - "Popped 100 bubbles")? Likely
   nothing but the sound and the smile; maybe one cheeky advancement.
 - **Multiplayer:** the pop is audible to nearby players (good - shared delight, or shared menace).
+
+## I-6: Roads like rivers between the mounds
+
+**Idea:** **roads** that wind between the mounds **like rivers** - a dump with real **space for
+vehicles to maneuver**.
+
+**Fit / notes:**
+- **Gives the infinite dump structure and orientation.** Today it's "coarse-dirt plain crowded
+  with mounds, dirt showing between them" (`concept.md`) - readable but formless. Roads turn that
+  negative space into a **network**: mounds cluster into "blocks," roads are the channels between,
+  and suddenly the player has landmarks in a world that is otherwise easy to get lost in. That
+  anti-getting-lost value is real in an *infinite* world.
+- **Authentic and on-brand.** Real dumps run on access roads for trucks, loaders, and dozers - and
+  WALL-E trundles the cleared lanes of a trash city. Roads are the infrastructure that sells "this
+  was an operating landfill," not just a random pile.
+- **This is a worldgen-architecture shift, not another feature.** The mounds are placed as isolated
+  domes (`MoundFeature`, no connectivity). Roads need **pathing/connectivity** - a river-like carve
+  or meander that routes *between* clusters. That's a different generation problem (closer to river
+  or structure-network gen than scattered features). The biggest cost of this idea is that
+  algorithm; call it out before committing.
+- **It forward-links to vehicles.** "Space to maneuver" implies a **traversal layer** - roads are
+  most meaningful with something to drive (Create contraptions/trains, or a vehicle mod). Roads are
+  useful *without* vehicles (navigation, flavor, content routing), but this idea is really the
+  first half of a "vehicles in the dump" direction. Worth naming that explicitly.
+- **Content routing:** roads are where the **big stuff** lives - abandoned trucks and cars, the
+  auto-wrecking cluster (ties to I-4 tires + car batteries). The road *is* the questline of finds.
+
+**Depends on:** a road/path worldgen generator (the hard part). Vehicles are a separate, larger
+direction this sets up but does not require.
+
+**Open questions:**
+- **How do roads generate?** River-style carve, organic meander, or a loose grid of "blocks"? Do
+  mounds get *re-placed* to cluster between roads, or do roads route around existing mounds?
+- **Road surface:** packed dirt / gravel / tire-tracked mud / cracked old-world asphalt (a found
+  material?). Should read as worn infrastructure, not a clean path.
+- **Vehicles: is this greenlighting a vehicle system?** If yes, what drives them - Create, a
+  vehicle mod, minecarts reflavored? That decision dwarfs the roads themselves.
+- **Do roads carry content** (abandoned vehicles as big finds, roadside debris), or are they purely
+  structural/navigational at first?
+- Interaction with **mound regrowth** (P1.6): do roads stay clear, or do regrowing mounds reclaim
+  them? A road that stays open is a permanent landmark; one that silts up reinforces the quarry-vs-
+  heal tension.
