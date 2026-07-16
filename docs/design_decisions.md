@@ -6,7 +6,7 @@ Running log of locked per-feature decisions from the feature-by-feature walkthro
 
 ## Walkthrough status (the bookmark - update every session)
 
-**As of 2026-07-15:** P0 fully locked (P0.1-P0.5). P1 fully locked (P1.1-P1.11; food/foraging tier P1.9 and the sorting-tarp mechanic revision both added in a later 2026-07-14 session; water P1.10 and Bulky Waste P1.11 added 2026-07-15, the latter superseding P1.1's appliance row). **P2 fully locked (P2.1-P2.8).** **The knowledge system (P1.4) is under review** - see the note at the head of P1.4; its enforcement model does not survive contact with modded autocrafting, and its scope is being questioned. Dimensions, the knowledge system, mound regrowth, the material economy ([`material_economy.md`](material_economy.md)), and the narrative layer ([`the_twist.md`](the_twist.md), spoilers) are locked. Mod lineup so far: Create (belts/logistics), Mekanism (chemical/radiation endgame). (Productive Frogs crossover dropped 2026-07-14.)
+**As of 2026-07-15:** P0 fully locked (P0.1-P0.5). P1 fully locked (P1.1-P1.11; food/foraging tier P1.9 and the sorting-tarp mechanic revision both added in a later 2026-07-14 session; water P1.10 and Bulky Waste P1.11 added 2026-07-15, the latter superseding P1.1's appliance row; building-blocks tier P1.12 added and shipped 2026-07-16). **P2 fully locked (P2.1-P2.8).** **The knowledge system (P1.4) is under review** - see the note at the head of P1.4; its enforcement model does not survive contact with modded autocrafting, and its scope is being questioned. Dimensions, the knowledge system, mound regrowth, the material economy ([`material_economy.md`](material_economy.md)), and the narrative layer ([`the_twist.md`](the_twist.md), spoilers) are locked. Mod lineup so far: Create (belts/logistics), Mekanism (chemical/radiation endgame). (Productive Frogs crossover dropped 2026-07-14.)
 
 **Walkthrough is COMPLETE except the endgame/postgame cluster, which is PARKED (Jason's call, 2026-07-14) - worry about it later.**
 
@@ -248,6 +248,22 @@ Water was a footnote under P1.9 ("a resource / purification thread, not a thirst
 7. **Multi-block finds use the vanilla bed trick, not entities.** A mattress is longer than one block; vanilla solved that for beds with two blocks (`FACING` + `PART`). That buys the silhouette, real sleep, real spawn and real gravity with zero surgery.
 
 **Ownership:** Recompile owns the Bulky Waste block and its table. The mattress is the table's first entry (see the shelter thread); cars, filing cabinets, time capsules and the rest of the P0.3 buried-surprise brainstorm are later lines in the same table, not new code.
+
+## P1.12 - Building blocks, the deliberate shelter tier (locked 2026-07-16)
+
+The mattress (P1.11) is the bed; this is the *walls*. Crude shelter was already free - P0.3 makes the Block of Garbage buildable and the P1.4-option-A scope locks "shelter craftable from minute one" - so this is not "add shelter," it is refining scrap into blocks you would **choose** to build a home from. Shipped in Recompile 2026-07-16.
+
+1. **Not defense - expression.** The starting biome is creature-free and P2's pressure loop is explicitly "never a threat to builds or cleared land," so shelter defends against nothing. It is the WALL-E move: rebuild a civilization from its own garbage. "You remember how to survive; you've forgotten how to build a civilization" (P1.4-A) is the frame.
+
+2. **It is also the material sink.** Answers the "1,000 stacks of scrap" overflow worry directly: building consumes the bulk the sort produces. Every family maps to a base material stream, so each is a sink for what you already drown in.
+
+3. **Tier-0 and ungated.** Crafted at the Scrap Crafting Table, no knowledge gate (shelter is free, tech is locked). Five families, each the full kit (block + slab + stairs + wall): **Pressed Junk** (the junk sink), **Scrap Plating**, **Corrugated Metal** (the iconic shanty aesthetic), **Plastic Panel**, and **Cullet Glass** (block + slab + stairs + **pane** - glass's honest thin form replaces the wall).
+
+4. **Hand-breakable, drop themselves.** No pickaxe exists (P1.2) and reclaiming your own walls must not be punishing; the prybar is only the *faster* tool on metal, never required. This is not a teardown input - it is crafted (made economy), so the "nothing enters the found economy without a teardown exit" invariant does not apply.
+
+5. **Costs are first-pass** (4 material -> 1 base; vanilla slab/stairs/wall ratios); a balance pass comes once the tier is played. Corrugated is a 1:1 reshape of plating - a second aesthetic, not a second cost.
+
+**Ownership:** Recompile owns all five families and their JSON. Region-specific building blocks (rebar concrete from C&D rubble, etc.) ride the regions system later; this is the household-tier starter set.
 
 ## P2.1 - The opening (locked 2026-07-14)
 
