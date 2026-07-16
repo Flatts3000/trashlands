@@ -39,3 +39,39 @@ get hungry. Gets **its own Curios slot**.
 - **Found or crafted (or both)?** Bulky Waste find vs. a scrap recipe - or found broken, repaired
   like the furnace (find-and-fix beat).
 - **Capacity** and whether it feeds from its own inventory only or also the hotbar.
+
+## I-2: Collectibles -> Trophies
+
+**Idea:** **collectible** items found in the garbage that you gather and craft into **trophies**.
+First example: collect **Rubik's Cube Pieces** and craft a **Rubik's Cube Trophy**.
+
+**Fit / notes:**
+- **This is the pack's thesis as a mechanic.** `concept.md`'s "why sifting garbage is fun" says
+  the pleasure is being *the one who spots it* - the asymmetric score (someone threw this away,
+  everyone walked past, you got it for the price of dirty hands). A rare collectible is exactly
+  that moment. The trophy is the tangible proof: "the world called this worthless and I proved it
+  wrong," made displayable.
+- **It is the WALL-E anchor, literally.** WALL-E's whole character is a trash-picker who *hoards
+  found curios* - the Zippo, the rubber duck, the spork. A shelf of dug-out trophies is the most
+  on-brand thing this pack could ship. `concept.md` already names WALL-E as the tonal anchor.
+- **It is a system, not one item.** Rubik's Cube is example #1; "collectible pieces -> display
+  trophy" is a **data-driven catalog** (loot-table lines + a recipe + a trophy block), the same
+  add-a-line-not-code shape as Bulky Waste finds. Candidates: rubber duck, hubcap, action figure,
+  cassette, snow globe, bowling trophy (a trophy of a trophy).
+- **Satisfies the found-economy invariant** ("nothing enters the found economy without an exit"):
+  the exit is **craft-into-trophy** - a display sink - so collectibles never become clutter.
+
+**Depends on:** nothing new (found item + crafted display block). Optional: an advancement/
+achievement per completed trophy; a dedicated "trophy case" or pedestal block to show them off.
+
+**Open questions:**
+- **Trademark:** "Rubik's Cube" is a registered mark - for a distributed pack use a generic name
+  (**Puzzle Cube**, "Twist Cube"). Applies to every real-brand collectible; keep names generic.
+- **Pieces per trophy** and how they're found: a flat rare drop, or a **region-flavored** rarity
+  (household -> toys, e-waste -> gadgets, scrapyard -> car/industrial curios)? Rarity must be low
+  enough that a find is an *event* - the whole point is that the junk is load-bearing.
+- **Trophy form:** a placeable **display block** (implied by "trophy"), pure cosmetic. Does
+  completing one grant anything (advancement, a quest reward), or is the flex the reward?
+- Do partial sets show progress (e.g. a Jade/tooltip "3/6 pieces"), or is it silent until complete?
+- Whether pieces are also a **teardown** input later (a collectible you could tear down for its
+  materials instead of trophying) - probably not; the trophy *is* the point.
