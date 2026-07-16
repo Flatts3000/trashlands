@@ -6,7 +6,7 @@ Running log of locked per-feature decisions from the feature-by-feature walkthro
 
 ## Walkthrough status (the bookmark - update every session)
 
-**As of 2026-07-15:** P0 fully locked (P0.1-P0.5). P1 fully locked (P1.1-P1.10; food/foraging tier P1.9 and the sorting-tarp mechanic revision both added in a later 2026-07-14 session; water P1.10 added 2026-07-15). **P2 fully locked (P2.1-P2.8).** **The knowledge system (P1.4) is under review** - see the note at the head of P1.4; its enforcement model does not survive contact with modded autocrafting, and its scope is being questioned. Dimensions, the knowledge system, mound regrowth, the material economy ([`material_economy.md`](material_economy.md)), and the narrative layer ([`the_twist.md`](the_twist.md), spoilers) are locked. Mod lineup so far: Create (belts/logistics), Mekanism (chemical/radiation endgame). (Productive Frogs crossover dropped 2026-07-14.)
+**As of 2026-07-15:** P0 fully locked (P0.1-P0.5). P1 fully locked (P1.1-P1.11; food/foraging tier P1.9 and the sorting-tarp mechanic revision both added in a later 2026-07-14 session; water P1.10 and Bulky Waste P1.11 added 2026-07-15, the latter superseding P1.1's appliance row). **P2 fully locked (P2.1-P2.8).** **The knowledge system (P1.4) is under review** - see the note at the head of P1.4; its enforcement model does not survive contact with modded autocrafting, and its scope is being questioned. Dimensions, the knowledge system, mound regrowth, the material economy ([`material_economy.md`](material_economy.md)), and the narrative layer ([`the_twist.md`](the_twist.md), spoilers) are locked. Mod lineup so far: Create (belts/logistics), Mekanism (chemical/radiation endgame). (Productive Frogs crossover dropped 2026-07-14.)
 
 **Walkthrough is COMPLETE except the endgame/postgame cluster, which is PARKED (Jason's call, 2026-07-14) - worry about it later.**
 
@@ -91,7 +91,7 @@ Variants and tools are one interlocking matrix:
 | Garbage (P0 block) | Hands slow, shovel fast | The bulk commodity |
 | Trash bags | Hands, instantly | Soft surface litter; quick small pulls |
 | Compacted bale | Scrap knife (cut strapping) | Dense; 2-3x the pulls of a garbage block |
-| Appliance | Prybar | Deterministic guts; ideal teardown input |
+| ~~Appliance~~ | ~~Prybar~~ | **Superseded by P1.11 - the appliance block is rolled into Bulky Waste; the appliance survives as an item in its table.** |
 
 1. **Starter tool trio from tier-zero materials:** scrap knife (bales, fiber), prybar (appliances, weak weapon), junk shovel (digs garbage fast). No pickaxe in the starter set - nothing to mine, and its absence tells the player that.
 2. **Rebar is the universal handle** (drops from scrap-metal pulls). Wood recovery stays a mid-tier treasure, not a tool gate.
@@ -213,6 +213,39 @@ Water was a footnote under P1.9 ("a resource / purification thread, not a thirst
 6. **The first consumer should be washing salvage, not farmland.** Rinsing sorted plastic before it is worth anything is a real step in informal recycling - the same world the sorting table already borrows from. Water as the thing that turns dirty scrap into good scrap is native to this pack in a way that hydrating farmland is not. Farmland (the P1.9 planter tier) and Create/Mekanism are later consumers, not the first.
 
 **Ownership:** Recompile owns the rain collector. The cauldron and every fluid above it are vanilla and the mods' own.
+
+## P1.11 - Bulky Waste (locked 2026-07-15)
+
+**One block: something big is buried here. Break it to find out what.** Named for the real thing - municipalities run "bulky waste collection" for exactly this category, the stuff too big for the bag, and every single thing we want inside it (mattress, appliance, furniture, car panel) is literally bulky waste. It borrows the same informal-recycling vocabulary as the sorting table and the bulk sacks.
+
+**Why this one survived every argument:** it is the first thing in the mod that is a **tell** - something you can *see* and *choose*, rather than a random number you wait on. It is the only idea on the table that passes the test in `concept.md` ("Why sifting garbage is fun"): the player is the filter, not the RNG. Everything below follows from protecting that.
+
+1. **The appliance rolls into it (supersedes the P1.1 appliance row).** "Known find vs unknown find" was a distinction that could not answer *why one bulky object gets its own block and the others do not*. There is now one bulky block; the **appliance survives as an item** in its loot table and remains the teardown on-ramp. Two consequences, accepted deliberately:
+   - **The appliance stops being placeable**, overwriting P0.3's "mining also drops the appliance, so it can be relocated whole". Its job is teardown input; setting it down was flavour.
+   - **It costs an approved texture and needs a new one.** `appliance_end`/`appliance_side` retire, because Bulky Waste must read as *unidentified big thing* or the slot machine spoils itself, and the appliance **item** needs its own icon for the first time (today it borrows the block model).
+
+2. **Sorting yields small things; digging yields big things.** Small manufactured stuff comes out of the pull tables, where you are picking through loose trash. Bulky stuff comes out of the ground, because that is where bulky stuff is. This also fixes a believability gap: pulling a mattress out of a 1m3 compressed cube is odd; digging out the corner of something big is exactly what a dump looks like.
+
+3. **No worldgen seeding system is needed, and this is the point.** Worldgen only ever places **one block type**. The find does not become a mattress or an engine until it is an **item in your hand**, so there are no per-find world models, no structure templates, no multi-block placement, and no entity question. **Adding a find is a loot-table line.** This is what P1.5.4's "content afternoon, not code" actually looks like.
+
+4. **Two rarity dials, and they do different jobs.**
+   - **Block frequency** = how often the *"something big is buried here"* beat fires.
+   - **Loot-table weights** = *which* thing it turns out to be.
+
+   The rarity of any given find is the **product**. So set the block by how often you want the *moment*, and put all the real rarity in the table. **Do not touch worldgen:** the appliance's existing 5% core chance is already playtested as "an uncommon pocket find" - measured 2026-07-15 at ~2.41 per mound, ~12 per chunk, against ~48.5 core-eligible cells per mound. Most mounds have a couple, so tearing into one pays off. The mattress is a *slice* of that 5%, not a new worldgen number.
+
+5. **The invariant: nothing enters the found economy without a teardown exit. Finds in, materials out.** If that holds, quantity stops mattering: 1,000 mattresses is 4,000 string, 1,000 doors is 2,000 scrap. A pile is not clutter, it is **unprocessed inventory** - which is what a scrapyard is. This retires two systems designed earlier the same day: knowledge-aware "curriculum" loot (which needed the player in the loot context, and an answer to "what does a machine know?"), and blueprints-as-flood-control (they may still exist, but they are no longer load-bearing).
+   - **Enforce it at load.** A startup check that every item reachable from a finds table has a `recompile:teardown` recipe, failing loudly. Otherwise the invariant is a comment, someone adds a find with no exit, and the flood quietly returns.
+   - **The exit must exist first.** The workbench is P1.4 and under review, so general finds wait for it. **The mattress is the exception** and can ship now: its exit is "break the placed block for string", which needs no bench.
+   - **Known tension (see `concept.md` Open questions):** this rule fixes the flood and *also* flattens judgment. If every object is worth grabbing, there is no decision. It stands until "is sifting the price or the game?" is answered.
+
+6. **Finds are blocks, never entities.** Settled on three independent grounds: **sleep is block-addressed** (`startSleepInBed(BlockPos)`, and `ServerPlayer` sets respawn from that same pos - an entity has no address in that system, so an entity mattress means reimplementing sleep and respawn validation); **gravity** (garbage blocks are `FallingBlock`s and mounds slump when quarried - an entity would hang in the air while the pile collapsed out from under it, so the objects in the world would stop obeying the world); and **rendering at dump scale** (5 mounds/chunk x ~3 finds = ~15/chunk, so ~6,600 entities in view at a 21-chunk render distance; blocks bake into the chunk mesh and cost nothing marginal).
+   - **The rule is stricter than "block not entity": baked JSON model, no BlockEntityRenderer.** A BER is a per-object draw call - exactly what we are avoiding. BlockEntities are fine when the block must *hold* something (the Scrap Barrel), never for rendering. (Verified 2026-07-15: in 26.1 `BaseEntityBlock` no longer forces `RenderShape.INVISIBLE` as it did in older versions, so a BE block renders from its model for free. Two versions ago the barrel would have been invisible.)
+   - **What we give up:** blockstates rotate models in 90-degree steps only, so no mattress flopped at 37 degrees. Chaos comes from **random model variants** instead - `garbage_block` already does this free (3 models x 4 rotations, picked per position by the blockstate).
+
+7. **Multi-block finds use the vanilla bed trick, not entities.** A mattress is longer than one block; vanilla solved that for beds with two blocks (`FACING` + `PART`). That buys the silhouette, real sleep, real spawn and real gravity with zero surgery.
+
+**Ownership:** Recompile owns the Bulky Waste block and its table. The mattress is the table's first entry (see the shelter thread); cars, filing cabinets, time capsules and the rest of the P0.3 buried-surprise brainstorm are later lines in the same table, not new code.
 
 ## P2.1 - The opening (locked 2026-07-14)
 
