@@ -107,7 +107,7 @@ The batch tier of the sorting verb, designed with sifting's (Ex Nihilo lineage) 
 3. **Screen slot (mesh-tier lesson):** screens change *what*, not *how much* - a metal screen skews pulls toward scrap metal, an organics screen toward muck. Player-chosen filtering, no raw-value inflation; richer odds stay the machine tier's selling point.
 4. **Bales batch (compression lesson):** sorting a bale is one operation yielding 2-3 blocks' worth. Knife -> bale pipeline is the anti-tedium upgrade.
 5. **Recipe:** fiber scrap + rebar, pure tier-zero, buildable in the first 15 minutes.
-6. **Drop tables visible in JEI/EMI from day one.** Non-negotiable.
+6. **Drop tables visible in JEI/EMI from day one.** Non-negotiable. *(Shipped 2026-07-16, JEI: Sorting/Cutting/Prying categories + the Scrap Crafting Table as the crafting station, plus Jade tool-hint and sort-progress tooltips. Reads bundled pull-table JSON, since loot tables are not client-synced - a datapack retune is not reflected in JEI, and remote-server pulls fall back to the mod defaults. EMI not wired; teardown JEI is still a Phase 3 item.)*
 7. **In-world charm:** the junk heap on the tarp visibly shrinks as you sort.
 8. **Hopper compatibility off at this tier** (config-gated) - the tarp is manual by identity.
 
