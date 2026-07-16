@@ -1,6 +1,8 @@
 # Trashlands - Concept
 
-**Status:** design walkthrough complete except the parked endgame/postgame cluster (updated 2026-07-14). No code. P0-P2 + most of P3 fully specified in [`design_decisions.md`](design_decisions.md) (the per-feature log and session bookmark); [`feature_matrix.md`](feature_matrix.md) is the build order. Working name "Trashlands" (rename freely - candidates: The Heap, Landfill Earth, Wasteworld).
+**Status:** design walkthrough complete except the parked endgame/postgame cluster (updated 2026-07-14). P0-P2 + most of P3 fully specified in [`design_decisions.md`](design_decisions.md) (the per-feature log and session bookmark); [`feature_matrix.md`](feature_matrix.md) is the build order. Working name "Trashlands" (rename freely - candidates: The Heap, Landfill Earth, Wasteworld).
+
+**Build status (2026-07-15):** the **pack** is not assembled. The **Recompile mod** is a playable alpha and has shipped the garbage world, the block family, the trash tools, the Sorting Tarp, the food tier and storage (see `../recompile/docs/roadmap.md`). First real playtests happened this day, and they moved two things from "designed" to "known": the early loop needed retuning against actual play, and **the core question of what makes sifting fun is now open** - see below, and the first entry under Open questions.
 **Relationship:** the showcase modpack for the **Recompile** mod. Garbage + recycling is the core to explore. Magnetism and Superposition are noted as optional, not explored (see the note below). Mod shortlist + design rules: `F:\minecraft-repos\next-mod-concepts.md`.
 
 ---
@@ -10,6 +12,38 @@
 An **endless, gently rolling plain of coarse dirt, crowded to the horizon with mounds of Blocks of Garbage.** You spawn into an endless dump. No ore below you, no trees. Everything you will ever build comes out of the trash. **Rebuild - and eventually heal - a ruined world from its own garbage.**
 
 This replaces the skyblock framing. Skyblock is a genre; an endless garbage-mound plain is a *place* you recognize the instant you spawn, and it makes the cleanup fantasy **spatial** - every mound you kill and grass over is land visibly, permanently healed. Progress shows on the ground.
+
+---
+
+## Why sifting garbage is fun (foundational + aspirational, 2026-07-15)
+
+**Foundational:** every mechanic in this pack should be able to answer to one of these four. **Aspirational:** the build does not honour them yet, and the first one it fails is the one that matters most. Arrived at by asking what is actually fun about picking through a dump *in real life*, not what is fun about a loot table.
+
+**1. You are the filter.** A mudlarker walks past ten thousand bottle caps and their eye stops on a Roman coin. A diver flips a lid and *sees* it in half a second. The junk is not the tedious part - the junk is **the field your attention crosses**, and crossing it is the skill. The pleasure is being **the one who spots it**: ninety-nine rejections a second, then *wait*.
+
+This is why the ratio matters and why nobody wants a dumpster full of treasure. **The junk is load-bearing.** It is what makes the find mean anything. Take the junk away and the coin is just a coin.
+
+**2. The score is asymmetric.** Not "I got a thing" - *someone paid for this, threw it away, everyone else walked past it, and I got it for the price of dirty hands.* Free ticket, real prize. There is a righteous edge to it: the world declared this worthless and you proved the world wrong. Divers describe the outrage and the delight in the same breath, because they are the same feeling.
+
+**3. Trash is honest.** People curate what they show you; their garbage is what they actually did. Archaeologists dig middens for exactly this reason - a dump is the most truthful museum a culture leaves behind. Half the fascination is never the object's value. It is *who was this person, and what happened to them.*
+
+**4. Resurrection.** The fridge only needed a relay. It was dead, and now it is not, and you did that. Scrappers rate this above the score.
+
+### The failure this exists to prevent
+
+**In real life you are the filter. In Ex Nihilo - and in what this pack has built so far - the RNG is the filter.** You click a box and wait to be told what you got. There is no scanning, no spotting, no moment of recognition, because there is nothing to *look at*: a Block of Garbage is an opaque cube that reveals nothing until a random number decides for you. Your attention is nowhere.
+
+So the tedium in sieving was never "too much junk". **It was that the player was not the one doing the looking.** That is the diagnosis this pack has to keep in front of it, because the symptom (tedium) invites the wrong fix (tune the drop rates), and rates cannot fix "the player is not looking". `design_decisions.md` P1.3 already carried the lesson - *"hold-to-sort, never click-spam (sieving's RSI lesson, fixed preemptively)"* - and the implementation drifted back into it anyway, one reasonable tuning decision at a time. By 2026-07-15 hand-sorting a stack of garbage was ~64 seconds of held right-click, and a stack through the Sorting Tarp sprayed ~384 item entities on the ground to walk around hoovering.
+
+### The test
+
+Any mechanic that produces or processes garbage should be asked:
+
+- **Is the player the filter, or is the RNG?** A *tell* - something visible you can spot and choose - beats a better drop table every time. Bulky waste survives every argument for this reason: it is the first thing in the mod you can *see* and *decide about*.
+- **Does the junk make the find mean something,** or is it just volume?
+- **Is the player looking, or waiting?**
+
+**Consequence for the loop:** the pack is an *infinite* dump. You can never sort it all and were never meant to. The game is therefore not "process the garbage" - it is **"know what is worth your time."** An expert scavenger walks past 99% of a dump without slowing down. That is the fantasy, and infinity makes it literal rather than a balance number.
 
 ---
 
@@ -144,6 +178,7 @@ Keep internal seams clean so systems can split into their own mods later - candi
 
 ## Open questions
 
+- **Is sifting the price, or is sifting the game? (opened 2026-07-15 - the big one.)** "Same verb at three speeds" (hand -> tarp -> machines) is a **ladder**, which says sifting is the *price* and the fun is buying your way out of it - Factorio's manual mining. That is a legitimate design, but it means the first hour must carry the whole fantasy and everything after is about escape, so sifting should be made *short*, never deep. The alternative is that sifting **is** the game, in which case it needs judgment back - and "everything found breaks down into materials", the rule that fixed the item-flood problem, has to go, because if every object is worth grabbing there is no decision left and sifting degrades into hoovering. Rarity, blueprints, the knowledge system and the flood all resolve differently depending on this answer. See "Why sifting garbage is fun" above.
 - **Pack name** (working: Trashlands) and the Nether theme's name ("compacted depths" placeholder).
 - **The quest-narrator question:** who wrote the quest book (see `the_twist.md` - spoilers).
 - P2/P3 features not yet walked through - see the bookmark in [`design_decisions.md`](design_decisions.md).
