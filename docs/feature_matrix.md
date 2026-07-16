@@ -25,7 +25,7 @@
 
 | Feature | Feasibility | Notes |
 |---|---|---|
-| Garbage block variants (bags, bales, appliances) | Easy | Different break-tools gate early game instead of biomes. |
+| Garbage block variants (bags, bales, Bulky Waste) | Easy | Different break-tools gate early game instead of biomes. Appliance dropped 2026-07-15; Bulky Waste (P1.11) took its worldgen slot. |
 | Trash-tier tools (scrap knife, rebar sticks, prybar) | Easy | No trees, so tools must come from trash. Wood is a recovered treasure. |
 | Sorting Tarp (first station, manual sorting) | Medium | Ex Nihilo sieve shape, garbage flavor. |
 | Teardown machine (feed item -> components) | Medium | The Recompile mod's centerpiece block. |

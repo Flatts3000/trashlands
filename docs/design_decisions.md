@@ -91,12 +91,12 @@ Variants and tools are one interlocking matrix:
 | Garbage (P0 block) | Hands slow, shovel fast | The bulk commodity |
 | Trash bags | Hands, instantly | Soft surface litter; quick small pulls |
 | Compacted bale | Scrap knife (cut strapping) | Dense; 2-3x the pulls of a garbage block |
-| ~~Appliance~~ | ~~Prybar~~ | **Superseded by P1.11 - the appliance block is rolled into Bulky Waste; the appliance survives as an item in its table.** |
+| ~~Appliance~~ | ~~Prybar~~ | **DROPPED 2026-07-15 - replaced by Bulky Waste (P1.11). Not rolled in: deleted.** |
 
-1. **Starter tool trio from tier-zero materials:** scrap knife (bales, fiber), prybar (appliances, weak weapon), junk shovel (digs garbage fast). No pickaxe in the starter set - nothing to mine, and its absence tells the player that.
+1. **Starter tool trio from tier-zero materials:** scrap knife (bales, fiber), prybar (**Bulky Waste**, weak weapon; also the Scrap Barrel's mining tool), junk shovel (digs garbage fast). No pickaxe in the starter set - nothing to mine, and its absence tells the player that.
 2. **Rebar is the universal handle** (drops from scrap-metal pulls). Wood recovery stays a mid-tier treasure, not a tool gate.
-3. **Bags/bales feed sorting (random pulls); appliances feed teardown (deterministic + teaches chance).** Appliances are the on-ramp to the knowledge system.
-4. **Generation:** bags on mound surfaces, bales in mound cores (mound shape does the depth-reward work), appliances uncommon pocket finds. Region palettes reweight all three.
+3. **Bags/bales feed sorting (random pulls); Bulky Waste feeds teardown.** *(Amended 2026-07-15: this said "appliances feed teardown ... appliances are the on-ramp to the knowledge system". The appliance is dropped and P1.4 is under review, so the on-ramp is whatever Bulky Waste turns out to hold.)*
+4. **Generation:** bags on mound surfaces, bales in mound cores (mound shape does the depth-reward work), **Bulky Waste an uncommon pocket find** (inheriting the appliance's playtested 5% - see P1.11). Region palettes reweight all three.
 
 ## P1.3 - Sorting Tarp (locked 2026-07-14; mechanic revised 2026-07-14 - see revision below)
 
@@ -178,7 +178,7 @@ Minecraft ships a hunger bar, so the player will eat; the question is *what*, on
 
 1. **The initial biome has NO ambient creature spawns - on purpose.** A silent garbage plain sells "dead world," and it makes the reclamation payoff land: the first animal, the first birdsong, the returning villagers all hit *because* their absence is the entire early game. So early food is forage + scavenge, never hunting. (Livestock and crops return only on healed land - the P2.4 payoff.) Vanilla mobs were considered and rejected: chickens read wrong (not gulls), spiders aren't edible - nothing fits, and nothing should yet.
 
-2. **Scavenge - tin cans (the risk staple).** Cans drop from the sort / pull tables (garbage, bags, and especially appliances - the "fridge = preserved food" note in P0.3). A can is **sealed (closed model) -> opened (open model)**; opening is a deliberate step (via the scrap knife - ties a tool to food). **An opened can behaves like Suspicious Stew:** a random effect on eating, so every can is a gamble. That IS the "eating sketchy food out of a dump" beat, mechanical not narrated. Suspicious Stew's own risk moves onto cans; clean cooked food is the safe upgrade you earn.
+2. **Scavenge - tin cans (the risk staple).** Cans drop from the sort / pull tables (garbage and bags). *(Amended 2026-07-15: "and especially appliances - the fridge = preserved food note in P0.3" is dropped with the appliance. If a fridge ever lands as a Bulky Waste line, preserved food comes back with it.)* A can is **sealed (closed model) -> opened (open model)**; opening is a deliberate step (via the scrap knife - ties a tool to food). **An opened can behaves like Suspicious Stew:** a random effect on eating, so every can is a gamble. That IS the "eating sketchy food out of a dump" beat, mechanical not narrated. Suspicious Stew's own risk moves onto cans; clean cooked food is the safe upgrade you earn.
 
 3. **Forage - a first-party edible mushroom.** Fungi are the decomposers of a waste world. **Vanilla mushrooms are not edible raw** (and stew needs a bowl - no wood here), and globally patching vanilla food via `ModifyDefaultComponentsEvent` would leak into any world that loads Recompile - a bad standalone-mod smell. So ship our **own `dump_mushroom`**: a plant block whose item is both placeable *and* edible (low nutrition - the humble staple; the *risk* lives on cans, not here). It grows on **patches of plain vanilla `minecraft:mycelium` between mounds** - a growing substrate that lives in the terrain, not a portable resource (mycelium needs Silk Touch, so it is not a casual pickup). Worldgen scatters the patches + mushrooms; vanilla mushrooms are left untouched. Early food is limited and in-place. *(Revised 2026-07-15: a bespoke `garbage_mycelium` / `spore_crust` block was built and then removed - vanilla mycelium already reads as fungal crust and is safe here, because it only spreads onto plain `minecraft:dirt` and this world's surface is coarse dirt, so a patch stays a patch. First-party is for what vanilla lacks; the mushroom is the part vanilla lacks.)*
 
@@ -216,13 +216,15 @@ Water was a footnote under P1.9 ("a resource / purification thread, not a thirst
 
 ## P1.11 - Bulky Waste (locked 2026-07-15)
 
-**One block: something big is buried here. Break it to find out what.** Named for the real thing - municipalities run "bulky waste collection" for exactly this category, the stuff too big for the bag, and every single thing we want inside it (mattress, appliance, furniture, car panel) is literally bulky waste. It borrows the same informal-recycling vocabulary as the sorting table and the bulk sacks.
+**One block: something big is buried here. Break it to find out what.** Named for the real thing - municipalities run "bulky waste collection" for exactly this category, the stuff too big for the bag, and every single thing we want inside it (mattress, fridge, sofa, car panel) is literally bulky waste. It borrows the same informal-recycling vocabulary as the sorting table and the bulk sacks.
 
 **Why this one survived every argument:** it is the first thing in the mod that is a **tell** - something you can *see* and *choose*, rather than a random number you wait on. It is the only idea on the table that passes the test in `concept.md` ("Why sifting garbage is fun"): the player is the filter, not the RNG. Everything below follows from protecting that.
 
-1. **The appliance rolls into it (supersedes the P1.1 appliance row).** "Known find vs unknown find" was a distinction that could not answer *why one bulky object gets its own block and the others do not*. There is now one bulky block; the **appliance survives as an item** in its loot table and remains the teardown on-ramp. Two consequences, accepted deliberately:
-   - **The appliance stops being placeable**, overwriting P0.3's "mining also drops the appliance, so it can be relocated whole". Its job is teardown input; setting it down was flavour.
-   - **It costs an approved texture and needs a new one.** `appliance_end`/`appliance_side` retire, because Bulky Waste must read as *unidentified big thing* or the slot machine spoils itself, and the appliance **item** needs its own icon for the first time (today it borrows the block model).
+1. **The appliance is DROPPED, not rolled in (supersedes the P1.1 appliance row).** "Known find vs unknown find" was a distinction that could not answer *why one bulky object gets its own block and the others do not* - and once that fell, the appliance had nothing left. It was a **vague abstraction sitting between the player and a specific thing**: "an appliance" is not a fridge or a washer or a motor, it is a placeholder for one. Bulky Waste drops concrete objects, so the placeholder has no job. The block, the item, and `appliance_end`/`appliance_side` (approved earlier the same day) all go. Its 5% worldgen slot is inherited by Bulky Waste, and P0.3's "mining also drops the appliance, so it can be relocated whole" dies with it.
+
+   *(Fridges, washers and stoves are not gone as **fiction** - they are candidate lines in the Bulky Waste table, alongside the rest of the P0.3 buried-surprise brainstorm. What is gone is a generic item pretending to be all of them.)*
+
+   **The table ships with exactly one entry: the mattress.** It gets populated as we go, which is the entire point of the design - a find is a table line. Shipping a one-entry table is not a stub, it is the system working.
 
 2. **Sorting yields small things; digging yields big things.** Small manufactured stuff comes out of the pull tables, where you are picking through loose trash. Bulky stuff comes out of the ground, because that is where bulky stuff is. This also fixes a believability gap: pulling a mattress out of a 1m3 compressed cube is odd; digging out the corner of something big is exactly what a dump looks like.
 
