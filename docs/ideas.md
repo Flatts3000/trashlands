@@ -150,3 +150,31 @@ material once something consumes it (see below).
   threat to builds or cleared land, per the P2 pressure-loop rule. Optional set dressing.
 - **Home:** mound variant now, or part of a **scrapyard / auto-wrecking region** where tires
   cluster with cars and car batteries (the lead/battery stream)?
+
+## I-5: Bubble wrap you can actually pop
+
+**Idea:** **bubble wrap** found in the trash that you can **actually pop** - right-click, it pops,
+it's satisfying.
+
+**Fit / notes:**
+- **Pure charm, and that is the point.** `concept.md`'s "why sifting is fun" says the junk is
+  load-bearing - it's the field your attention crosses, and part of the delight is the honest,
+  human debris itself. Bubble wrap is the platonic packaging-trash object; being able to *pop it*
+  is exactly the kind of delightful, no-reason interaction that makes the world feel real rather
+  than a loot spreadsheet. Not every found object needs a mechanical payoff - some are just joy.
+- **On-stream:** household / packaging refuse (plastics, packaging - the starter region's flavor).
+  Common, low-value filler, which is what makes the actual finds mean something.
+- **It still has an economy exit** (satisfies the found-economy invariant): pop it all down to
+  **popped bubble wrap**, which shreds to **plastic scrap**. So the arc is *play with it, then
+  recycle it* - the joy first, the material after. Elegant: the toy and the sink are the same item.
+
+**Depends on:** a custom **pop sound event** (the whole payoff is the sound; no vanilla sound
+really nails it). Everything else is a plain item + a use interaction + a recipe.
+
+**Open questions:**
+- **Finite or infinite pop?** Finite (each pop consumes a bubble; N pops -> popped wrap -> plastic
+  scrap) gives it the clean exit above. Infinite (a forever fidget toy) is pure joy but leaves a
+  never-consumed item - probably finite, with the popping being the fun on the way to the scrap.
+- **Does popping do anything** (a tiny effect, or an advancement - "Popped 100 bubbles")? Likely
+  nothing but the sound and the smile; maybe one cheeky advancement.
+- **Multiplayer:** the pop is audible to nearby players (good - shared delight, or shared menace).
