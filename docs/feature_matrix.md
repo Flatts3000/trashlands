@@ -1,6 +1,6 @@
 # Feature matrix - priority x feasibility
 
-**Status:** build-order reference (updated 2026-07-14). The full feature-by-feature walkthrough is done except the parked endgame/postgame cluster; locked decisions and the session bookmark live in [`design_decisions.md`](design_decisions.md) - this matrix is the priority/feasibility view, that log is the source of truth for what's decided. Every feature is config-gated per the architecture principle.
+**Status:** build-order reference (updated 2026-07-17). The full feature-by-feature walkthrough is done except the parked endgame/postgame cluster; locked decisions and the session bookmark live in [`design_decisions.md`](design_decisions.md) - this matrix is the priority/feasibility view, that log is the source of truth for what's decided. Every feature is config-gated per the architecture principle. Per-feature **shipped status** is tracked in the Recompile roadmap (`../../recompile/docs/roadmap.md`); the notes below carry ship dates where a row has landed.
 
 **Feasibility scale:**
 - **Easy** - datapack/JSON or a well-worn modding pattern (block registration, loot tables, world preset).
@@ -28,8 +28,11 @@
 | Garbage block variants (bags, bales, Bulky Waste) | Easy | Different break-tools gate early game instead of biomes. Appliance dropped 2026-07-15; Bulky Waste (P1.11) took its worldgen slot. |
 | Trash-tier tools (scrap knife, rebar sticks, prybar) | Easy | No trees, so tools must come from trash. Wood is a recovered treasure. |
 | Building blocks from scrap (P1.12) | Easy | Shipped 2026-07-16. Four full-kit families (block/slab/stairs/wall): pressed junk, scrap plating, corrugated metal, plastic panel; plus cullet glass as block + pane only. Tier-0, ungated; the deliberate shelter tier and the bulk-scrap material sink. Not defense (nothing threatens builds). |
+| Food, the survive tier (P1.9) | Easy-Medium | Shipped 2026-07-15. Creature-free biome; scavenged tin cans (Suspicious-Stew risk, knife-opened) + foraged dump mushrooms on vanilla mycelium. Planter/compost deferred to the knowledge tier. |
+| Water, the Rain Collector (P1.10) | Medium | Shipped 2026-07-16. The world has no water; a scrap frame + tarp fills a real water tank from rain (26.1 transfer API), dispenses water bottles, moves water through pipes/buckets. Water survives break/replace (item component). |
+| Lighting - Scrap Torch + Oily Rag (P1.4-A) | Easy | Shipped 2026-07-17. No wood/coal: Oily Rag (fiber + muck) is the "coal" fuel (charcoal parity); Scrap Torch = oily rag on rebar, a 1:1 vanilla-torch reskin. Refined lantern parked. |
 | Sorting Tarp (first station, manual sorting) | Medium | Ex Nihilo sieve shape, garbage flavor. |
-| Teardown machine (feed item -> components) | Medium | The Recompile mod's centerpiece block. |
+| Teardown machine (feed item -> components) | Medium | Shipped 2026-07-16 - the Recompile Workbench, materials-only and GUI-free (hold-to-disassemble; tools rest on the table). The knowledge axis is the next row. |
 | Teardown-as-knowledge (recover recipes) | **Medium** (v1) | THE distinct axis. v1 rides vanilla `doLimitedCrafting` + recipe book grants (~1-2 wks on top of the bench); risks are the JEI locked-recipe overlay and FTB Teams sync. The Hard version (auto recipe introspection, gating other mods' machine recipes) stays maybe-never. Hand-authored JSON unlock tables only. |
 | Garbage regions (household / scrapyard / e-waste / slag / hazmat) | Medium | Real biomes, distance-banded from spawn; per-biome garbage blocks. Launch trio: household + scrapyard + e-waste; slag + hazmat in P2. |
 | Mound regrowth (mounds regenerate to original footprint, blocks fall from the sky) | Medium | Renewable quarries, not doom. Falling-block delivery from world top (deorbiting garbage). Needs original-bounds memory per mound. |
@@ -42,7 +45,7 @@
 |---|---|---|
 | Opening: clearing spawn + scripted deorbit spectacle | Medium | Spawn between mounds (buried-spawn cut, P2.1); distant sky-delivery in the first minute. |
 | Trash wind (optional weather flavor event, small scatter near mounds) | Medium | Demoted to ambience. Never touches builds or cleared land. Config, conservative default. |
-| Tier 2 processing (Burn Barrel + repaired furnace; purity-as-yield) | Easy-Medium | One custom machine; rest is vanilla stations unlocked via study. Fuel is junk, no energy. |
+| Tier 2 processing (Burn Barrel + repaired furnace; purity-as-yield) | Easy-Medium | Burn Barrel **shipped 2026-07-17** (pulled ahead): a manual-only (non-automatable) vanilla-furnace reskin, `scrap -> copper nugget` (copper-first inversion). Repaired furnace + the metal-tier split remain. Fuel: Oily Rag + junk, no energy. |
 | Tier 3 logistics (Create for belts; Recompile converts, Create moves) | Easy | Create in the pack; Recompile machines never require it. See material_economy.md Create spine. |
 | Reclamation chain (compost + clean water + seed -> grass -> crops -> trees) | Medium | Healing is a supply chain, yields only land. |
 | Hazmat gating (Mekanism radiation + hazmat suit carry it) | Easy-Medium | Recompile ships biome + blocks + caches only; Mekanism owns the systems. |
