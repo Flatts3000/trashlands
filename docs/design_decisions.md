@@ -148,6 +148,33 @@ Two problems surfaced walking the concept: a mesh "sieve/screen" is the wrong re
 
 **What learning means practically:** vanilla `doLimitedCrafting` + recipe book grants gate the crafting table; unlearned recipes produce nothing even with correct materials; JEI shows them greyed with the unlock hint ("salvage X to study this"). Learning migrates an item from the found economy (finite, scavenged) to the made economy (infinite, manufactured) - the arc of the pack is moving the whole catalog across that line. Tuning rule: found items must be common enough that studying never feels like burning your only copy.
 
+**Build status - materials teardown SHIPPED (Recompile 2026-07-16); knowledge axis NOT built.**
+The workbench was built as **teardown-for-materials only**, deliberately deferring the whole
+knowledge subsection above (which stays under review). What shipped:
+
+- **GUI-free - the "no machine GUI" principle is upheld.** An earlier iteration explored a real
+  machine screen (input slot, tool-rack slots, output slots, an 80-tick furnace timer) and was
+  **walked back**. The bench is stateless-feeling like the Sorting Tarp: **hold right-click with a
+  found item** to run a breakdown, **outputs pop into the world**, no screen, no buffer, no
+  hopper automation (it exposes no item-handler capability - a powered disassembler stays tier-3+).
+- **The tool rack renders on the table, not in a GUI (realizes P1.4 point 2).** Up to two tools -
+  **scrap knife + prybar** (shovel and rebar excluded; they do not disassemble) - rest on the
+  block via a **baked multipart model** driven by `has_knife`/`has_prybar` blockstate booleans -
+  **no BlockEntityRenderer** (P1.11.6). The BlockEntity holds the real tool stacks so durability
+  survives; each breakdown spends one durability on the required tool. *(Tool-modifies-`extras` is
+  deferred; v1 uses the tool as a gate + durability sink only.)*
+- **Data-driven, materials-only.** The `recompile:teardown` schema gained two optional,
+  backward-compatible fields: `tool` (the racked tool a recipe needs) and `ticks` (breakdown time,
+  default 80). `results`/`extras` are read; **`teaches` is parsed but ignored** - dormant until the
+  axis is decided.
+- **The mattress migrated onto the bench** (its in-hand knife-cut retired): mattress + knife -> 4
+  string + 2 fiber + 1 scrap_metal. This makes the P1.11.5 invariant true (the general finds exit
+  now exists) and **bench-gates string** (the Rain Collector's input).
+
+**Still open, still deferred:** the knowledge subsection (A-D) and the identity question
+(knowledge vs function). Building the bench pre-commits none of it - that axis layers onto the same
+block once decided, or never. Do not build against the knowledge subsection until it is resolved.
+
 ## P1.5 - Garbage regions (locked 2026-07-14)
 
 1. **Real biomes, not an overlay.** Hostility-by-region (P0.1) lives on biome spawn rules; biomes also buy tinting, ambience, structure placement, F3 debuggability, and biome-aware mod compat for free.
