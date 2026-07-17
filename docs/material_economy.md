@@ -14,14 +14,14 @@
 
 ## Metals - real recycling streams, carried by teardown tables
 
-Bulk **scrap metal** stays mixed and smelts to **iron** (the dominant metal of any real dump, and the yield-progression showcase: burn barrel lossy -> repaired furnace -> induction recycler near-lossless).
+Bulk **scrap metal** smelts to **copper** in a basic furnace (the Burn Barrel) - a **gameplay-gating** call (owner, 2026-07-17) that inverts the old iron-baseline. Copper is the accessible everyman metal; **iron becomes the gated upgrade**, from a better process than the barrel, not basic smelting. The yield ladder (burn barrel lossy -> repaired furnace -> induction recycler near-lossless) stands and now doubles as a **metal-tier** ladder: copper first, iron later. Realism is traded for sequencing - a real dump smelts mostly to iron, but copper-first is a cleaner Create on-ramp (copper feeds the brass/casing side early; iron gates Create's core, since andesite alloy needs an iron nugget).
 
 Specific metals come from tearing down specific found components - no typed-scrap item bloat, no new mechanics, and adding a metal later is one component item + JSON tables. Real-world streams:
 
 | Metal | Garbage stream (found source) | Made source (late tier) |
 |---|---|---|
-| Iron/steel | Bulk scrap, appliances, rebar, crushed cars | - (the baseline) |
-| Copper | Wire spools, motors, pipes, transformers | Mixed-scrap fine separation |
+| Copper | Bulk scrap in a basic furnace (the everyman metal, copper-first); wire spools, motors, pipes, transformers | Mixed-scrap fine separation |
+| Iron/steel | **Gated** - a better smelter than the burn barrel (upper rungs of the ladder, or teardown finds; open) | - |
 | Aluminum | Cans, window frames, foil | Mixed-scrap fine separation |
 | Lead | Car batteries, old pipes, CRT glass, wheel weights | Battery recycling chain |
 | Gold | Circuit boards, connectors (e-waste) | E-scrap chemical recovery |

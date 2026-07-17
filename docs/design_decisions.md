@@ -312,6 +312,23 @@ The mattress (P1.11) is the bed; this is the *walls*. Crude shelter was already 
 4. **Purity as yield, not as parallel items.** Vanilla end products (iron, glass, bonemeal); the RATIO improves with tier (burn barrel 3 scrap -> 1 nugget; repaired furnace better; tier-4 machines approach lossless). No "reclaimed iron" item bloat. Identity lives in inputs/intermediates (scrap, cullet, muck, plastic sheet, rubber). Full material framework: [`material_economy.md`](material_economy.md).
 5. **No energy at tier 2.** Fuel and hands only; electricity is a later tier's identity.
 
+**Build status - the Burn Barrel SHIPPED (Recompile 2026-07-17), with amendments.** It was built as a
+**vanilla-furnace reskin** (an `AbstractFurnace` block/entity on `RecipeType.SMELTING`, the vanilla
+furnace screen) rather than a bespoke slow machine. Two deviations from the locked points above:
+
+- **"Worse" = not automatable, not slow (amends point 2).** The barrel runs at normal furnace speed;
+  its downgrade is that it exposes **no slots to any face** - hoppers, Create, and pipes cannot touch
+  it, so it is loaded and emptied **by hand only**. Automation is the reward for a later, better
+  furnace. (This keeps the "machines are automation-compatible, unlike the tarp" line of P2.3 as a
+  *tier-3* property, not a tier-2 one - the first smelter is deliberately manual.)
+- **Copper-first, and a nugget (amends point 4).** `scrap_metal -> minecraft:copper_nugget`, per the
+  copper-first inversion (see [`material_economy.md`](material_economy.md)) - copper, not iron, and a
+  nugget keeps it lossy. Iron's home is the open gated question.
+- **Fuel is the Oily Rag + junk (amends point 3).** The Oily Rag (P1.4-A lighting: fiber + muck, the
+  world's "coal") is the good fuel at charcoal parity; junk is the weak filler. Plastic is unused.
+
+The excavated-and-repaired vanilla furnace (the tier's second rung) is still unbuilt.
+
 ## P2.3 - Tier 3 logistics (locked 2026-07-14)
 
 **Create is in the pack for belts (real MRFs run on belts); belts/transport are NOT part of the Recompile mod.**
