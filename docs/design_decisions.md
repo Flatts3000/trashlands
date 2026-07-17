@@ -214,6 +214,8 @@ Water was a footnote under P1.9 ("a resource / purification thread, not a thirst
 
 **Ownership:** Recompile owns the rain collector. The cauldron and every fluid above it are vanilla and the mods' own.
 
+**Amendment (shipped 2026-07-16):** point 5 was overridden by the owner - the Rain Collector **ships standalone**, not gated on a consumer. Its job is producing **water bottles** (glass bottle in -> water bottle out) plus bucket/pipe transfer; washing salvage (point 6) stays the intended first *processing* consumer but is decoupled from shipping the block. It was built as a **real fluid tank** (26.1's new transfer `ResourceHandler` API, water-only), so it already plugs into the pump end of the ladder - and it is a 1x2x1 structure (solid base holding the tank + a draped tarp catching the rain). Open thread carried forward: water bottles have no vanilla consumer yet in this pack (brewing/thirst gated), so a downstream for water (washing, concrete-mixing, etc.) still needs picking.
+
 ## P1.11 - Bulky Waste (locked 2026-07-15)
 
 **One block: something big is buried here. Break it to find out what.** Named for the real thing - municipalities run "bulky waste collection" for exactly this category, the stuff too big for the bag, and every single thing we want inside it (mattress, fridge, sofa, car panel) is literally bulky waste. It borrows the same informal-recycling vocabulary as the sorting table and the bulk sacks.
