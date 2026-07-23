@@ -87,8 +87,9 @@ Trash is never impending doom. **Mounds regrow toward their original size and fo
 
 The tension this creates is the pack's engine:
 
-- A regrowing mound is **income**. Healed land is **permanent, but retires that income**.
-- Healing the world shrinks your garbage economy - full reclamation must become affordable before the endgame (the resolving mechanism is currently open; see the P3.9 note in `design_decisions.md`).
+- A regrowing mound is **income**. Retiring it **trades** that income for the biological economy healed land produces - wood, crops, food, animal products (P2.4-R). Quarry-vs-heal is a pacing choice, "what do I need now", not a tax on progressing.
+- **But healed ground is held, not owned** (P1.7-R). The junkyard fights back: coarse earth takes back grass that borders unhealed ground, so a healed patch erodes from its edge inward unless you climb the reclamation ladder. Cover buys a turn; only trees lock a border for good. Builds are never touched, and it stops while you are away.
+- The two permanences pull apart: **mound retirement is permanent, the green surface is contested.** Erosion reverts grass to plain coarse dirt, never back to a mound bed - a retired mound stays retired.
 - The endgame thesis: not "you beat the tide" but **"you no longer need the dump."**
 
 **Delivery is the signature visual:** regrowth blocks fall from the top of the world into place, as if deorbiting - the void-dumped garbage of the old civilization still coming home. You can see which mounds are replenishing from across the map.

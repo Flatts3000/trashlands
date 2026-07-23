@@ -6,14 +6,14 @@ Running log of locked per-feature decisions from the feature-by-feature walkthro
 
 ## Walkthrough status (the bookmark - update every session)
 
-**As of 2026-07-15:** P0 fully locked (P0.1-P0.5). P1 fully locked (P1.1-P1.11; food/foraging tier P1.9 and the sorting-tarp mechanic revision both added in a later 2026-07-14 session; water P1.10 and Bulky Waste P1.11 added 2026-07-15, the latter superseding P1.1's appliance row; building-blocks tier P1.12 added and shipped 2026-07-16). **P2 fully locked (P2.1-P2.8).** **The knowledge system (P1.4) is under review** - see the note at the head of P1.4; its enforcement model does not survive contact with modded autocrafting, and its scope is being questioned. Dimensions, the knowledge system, mound regrowth, the material economy ([`material_economy.md`](material_economy.md)), and the narrative layer ([`the_twist.md`](the_twist.md), spoilers) are locked. Mod lineup so far: Create (belts/logistics), Mekanism (chemical/radiation endgame). (Productive Frogs crossover dropped 2026-07-14.)
+**As of 2026-07-23:** P2.4 item 5 revised - see **P2.4-R** (healing pays out via the returning overworld; machine-per-rung ladder; global index rejected). P1.7 healed-land immunity revised - see **P1.7-R** (the junkyard fights back: healed *surface* is contested at the frontier, the rung ladder is the defence, mound retirement stays permanent; **shipped** as Recompile Phase 2.10 ahead of Phase 5). P0 fully locked (P0.1-P0.5). P1 fully locked (P1.1-P1.11; food/foraging tier P1.9 and the sorting-tarp mechanic revision both added in a later 2026-07-14 session; water P1.10 and Bulky Waste P1.11 added 2026-07-15, the latter superseding P1.1's appliance row; building-blocks tier P1.12 added and shipped 2026-07-16). **P2 fully locked (P2.1-P2.8).** **The knowledge system (P1.4) is under review** - see the note at the head of P1.4; its enforcement model does not survive contact with modded autocrafting, and its scope is being questioned. Dimensions, the knowledge system, mound regrowth, the material economy ([`material_economy.md`](material_economy.md)), and the narrative layer ([`the_twist.md`](the_twist.md), spoilers) are locked. Mod lineup so far: Create (belts/logistics), Mekanism (chemical/radiation endgame). (Productive Frogs crossover dropped 2026-07-14.)
 
 **Walkthrough is COMPLETE except the endgame/postgame cluster, which is PARKED (Jason's call, 2026-07-14) - worry about it later.**
 
 P3 results: P3.2 Field Manual locked; P3.5 Nether, P3.6 End DONE; P3.1 sky dumps, P3.3 degraded recipes, P3.4 blueprint scraps, P3.7 frogs, P3.8 win-tracking, P3.9 circular-economy all CUT.
 
 **Parked for a future session (do not resume until Jason reopens):**
-1. **Endgame redesign** - circular economy cut (P3.9); needs a new mechanical endgame that leads into the Overworld Gate and resolves quarry-vs-heal affordability. Three seed directions captured in chat: Gate-as-megaproject (throughput), Gate-as-one-of-everything (completion), Gate-as-power-problem (energy). Not chosen.
+1. **Endgame redesign** - circular economy cut (P3.9); needs a new mechanical endgame that leads into the Overworld Gate. Three seed directions captured in chat: Gate-as-megaproject (throughput), Gate-as-one-of-everything (completion), Gate-as-power-problem (energy). Not chosen. **The quarry-vs-heal affordability half of this is CLOSED (2026-07-23, P2.4-R): healed land is a second economy, so reclamation trades income rather than sacrificing it.** What remains parked is the mechanical endgame itself.
 2. **The final chapter / postgame** - narrative frame + staged payoff, authored against the_twist.md. Depends on the endgame being chosen first.
 
 Everything upstream of the endgame (P0, P1, P2, the material economy, dimensions, knowledge, regrowth, the twist framing) is locked and ready to prototype.
@@ -186,6 +186,8 @@ block once decided, or never. Do not build against the knowledge subsection unti
 
 ## P1.6 + P1.7 - Mound regrowth + healed-land immunity (locked 2026-07-14)
 
+> **The healed-land-immunity half is superseded (2026-07-23).** Healed *surface* is now contested - see [P1.7-R](#p17-r---the-junkyard-fights-back-revised-2026-07-23) below. Item 1, the mound layer of item 2, and items 4-6 stand unchanged; item 3's "healed land is permanent" is revised.
+
 **Supersedes the "garbage keeps coming / race against the tide" pressure loop.** Trash is never impending doom.
 
 1. **Mounds regrow toward their original size and footprint - never beyond.** A mound is a renewable quarry; the mechanic exists so you never have to relocate for materials. No unbounded accretion, no new-mound seeding on cleared land.
@@ -194,6 +196,24 @@ block once decided, or never. Do not build against the knowledge subsection unti
 4. **Trash wind and sky dumps demoted to optional flavor/farmable events** (config, conservative defaults; never threaten builds or cleared land). Wind = ambience + small scatter near existing mounds at most; dumps = opt-in late-game deliveries.
 5. **Regrowth rate config-exposed;** default slow enough to feel like recovery, not respawn (visible across sessions, not minutes).
 6. **Delivery: blocks fall from the top of the world,** as if deorbiting from space - falling-block entities spawn high above the mound and rain into place. Visible from afar (you can see which mounds are replenishing), reuses the garbage-block gravity from P0.3, and ties the lore together: the void-dumped garbage is still coming home.
+
+## P1.7-R - The junkyard fights back (revised 2026-07-23)
+
+**Revises P1.6/P1.7 items 2-3.** "Grass its footprint and it is retired forever" made reclamation a one-time purchase: you paid once and the world stayed bought. The junkyard should push back, so **healed ground is held, not owned.**
+
+**Why this is safe to reverse now.** The original rule exists because P1.7 item 3 made healing *cost* you income - permanence was the compensation for a pure loss. P2.4-R removed the loss: healed land is a second economy, so retiring a mound trades income rather than sacrificing it. With the tax gone, the compensation is no longer owed.
+
+**This does not reinstate "race against the tide."** That loop was rejected because trash was impending doom - unbounded, threatening builds, punishing absence. None of that returns: the fight is bounded to a moving edge, builds are untouchable, and it stops while you are away.
+
+1. **Contested frontier only.** Coarse earth takes back grass that **borders unhealed ground**. Interior grass is safe until the front reaches it. Erosion therefore marches inward ring by ring - a visible advancing edge, which reads as a fight, where grass rotting at random would read as decay.
+2. **Builds are never touched.** P1.6 item 4's clause holds absolutely: grass is the only target. Nothing the player placed is ever taken.
+3. **The rung ladder is the defence, and this is the point.** Bare rung-1 grass reverts; rung-2 cover **absorbs the hit** and is stripped instead, leaving the soil; rung-3 trees hold the ground **permanently**. Permanence is *earned at the top of the ladder* rather than granted at the bottom. This gives P2.4-R's rungs 2-3 a job beyond yield, and makes wood-as-treasure (P2.4-R item 7) load-bearing: a ring of trees is the only thing that locks a border for good.
+4. **Cover absorbs rather than resists.** Deliberately not a lowered probability - the plant is torn out and the soil survives, so a border visibly goes bare before it goes brown. A warning the player can read instead of a dice roll they cannot.
+5. **Two kinds of permanence, and only one is contested.** **Mound retirement stays permanent** - encroachment reverts grass to *plain* coarse dirt, never back to the mound bed, so healing a footprint retires that mound forever even if the surface later erodes. Only the green is a fight. The endgame thesis is untouched: not "you beat the tide" but "you no longer need the dump."
+6. **It stops while you are away.** Sampling is anchored to players, so an unattended base cannot rot in your absence - and the fight happens where you can watch it, which is the whole point.
+7. **Rates are config, and untuned.** Defaults are the design per the architecture principle, but the actual numbers join the pre-beta balance pass with every other placeholder weight.
+
+**Status: SHIPPED in Recompile as Phase 2.10** (`RCEncroachment`), ahead of Phase 5, so the reclamation machines are built against a frontier that already moves. Needs no saved state - coarse dirt is the universal world surface, so "am I on the frontier" is a local neighbour check. Three block tags plus a biome tag are the whole tuning surface; inert outside the garbage biomes.
 
 ## P1.8 - Dimension lockout (locked 2026-07-14)
 
@@ -341,11 +361,34 @@ The excavated-and-repaired vanilla furnace (the tier's second rung) is still unb
 
 ## P2.4 - Reclamation chain (locked 2026-07-14)
 
+> **Item 5 is superseded (2026-07-23).** Healing now pays out - see [P2.4-R](#p24-r---reclamation-as-economy-replacement-revised-2026-07-23) below. Items 1-4 stand.
+
 1. **Healing is a recipe, not a right-click:** compost (from organic muck) + clean water + seed. Muck becomes the healing currency; leachate purification (clean water is made, not found) becomes load-bearing.
 2. **Seeds are found, then made:** seed packets in household pulls, preserved pits from organics, rare intact saplings as cache-grade treasure; mid-tier greenhouse/nursery propagates recovered seed into self-sustaining lines.
 3. **Scale ladder:** manual per-block first (the first grass patch is a monument), then the tier-4/5 irrigator/soil-spreader (radius conversion consuming compost + clean water - how mound footprints retire at scale), region-scale healing reserved for the final chapter.
 4. **Green progression: grass -> crops -> trees.** Trees near-endgame (wood-as-treasure holds until tree farms); the first tree grown from recovered seed is a quest beat.
-5. **Healing yields nothing but land.** No drops, no rewards beyond immunity, retirement, and the final chapter's payoffs - keeps quarry-vs-heal honest.
+5. ~~**Healing yields nothing but land.** No drops, no rewards beyond immunity, retirement, and the final chapter's payoffs - keeps quarry-vs-heal honest.~~ **SUPERSEDED 2026-07-23 by P2.4-R.**
+
+## P2.4-R - Reclamation as economy replacement (revised 2026-07-23)
+
+**Revises P2.4 item 5.** "Healing yields nothing but land" made the pack's emotional core cost resources and return nothing - elegant, and anti-fun. The fix keeps the no-bolted-on-reward spirit: healing still drops nothing, the *land itself* becomes productive.
+
+1. **The reward is the returning overworld.** Grass, vegetation, trees, animals are the payout. No drops, no points, no metric - the land starts producing, and that is the whole reward.
+2. **Economy replacement, not income sacrifice.** Garbage is the mineral economy (scrap, cloth, glass, metal); healed land is the biological one (wood, crops, food, animal products). Retiring a mound **trades** income rather than losing it, so quarry-vs-heal becomes a pacing choice ("what do I need now") instead of a tax on progressing. **This closes the P3.9 affordability question** (bookmark parked item 1): full reclamation is affordable because the late economy is a *different* economy, not because the early one scales. Matches the endgame thesis already on record - not "you beat the tide" but "you no longer need the dump."
+3. **Nothing renews on its own - one machine per rung.** Explicitly rejected: spontaneous spread or free regrowth of vegetation, trees, or mobs. Every green block is paid for. The rung ladder is a machine ladder, each consuming compost + clean water (+ power at tier) per item 1, so healing stays a recipe:
+   - **Soil spreader** - coarse dirt -> grass over a radius (item 3's tier-4/5 spreader, unchanged)
+   - **Vegetation seeder** - tall grass and flowers over healed grass
+   - **Nursery** - saplings and trees over vegetated land
+   - **Animal rung** (name TBD) - brings livestock to qualifying land
+4. **Each machine requires the previous rung's terrain in range.** The nursery does nothing over coarse dirt. Preconditions are terrain state - not a counter, not a quest flag - so the ladder stays physical and legible on the ground.
+5. **Higher rungs require a minimum contiguous qualifying area.** The spatial choice: concentrate healing to reach a rung, or spread thin and stay low. Thresholds are JSON; packs retune. This is the reclamation-side analogue of quarry-vs-heal.
+6. **Explicitly rejected: a global Terraformation Index.** Planet Crafter's north-star number is a *goal*, and goals belong in the pack (quests), not the mod - a mod that ships its own progress metric stops being an engine other packs can reuse. Staging comes from the machine ladder and the area thresholds instead.
+7. **Wood-as-treasure survives with a better shape.** Item 4 held trees near-endgame. Keep the nursery expensive, but gate it on healed area rather than on time: wood becomes scarcity the player can attack, not scarcity that is simply withheld. The first tree is still a monument.
+8. **Life-returns moves from spectacle to reward ladder.** [`the_twist.md`](the_twist.md)'s final chapter is unchanged (sky clears, villagers settle, the Gate); the earlier rungs come forward out of the endgame and become the mid-game payout. P1.9's no-ambient-spawns decision is what makes the first animal land.
+
+**Why this shape:** Planet Crafter is the terraforming analog on record (concept.md prior-art pass). Its engagement comes from paid, staged, visible transformation - machines you build and feed, thresholds that change the world. concept.md already extracted the diegetic half of that lesson; the locked decisions then went the other way. This restores it and deliberately drops the index half per the mod/pack split.
+
+**Build order:** soil -> vegetation -> nursery -> animals.
 
 ## P2.5 - Hazmat gating (locked 2026-07-14)
 
