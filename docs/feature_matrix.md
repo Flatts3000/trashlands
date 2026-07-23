@@ -35,8 +35,8 @@
 | Teardown machine (feed item -> components) | Medium | Shipped 2026-07-16 - the Recompile Workbench, materials-only and GUI-free (hold-to-disassemble; tools rest on the table). The knowledge axis is the next row. |
 | Teardown-as-knowledge (recover recipes) | **Medium** (v1) | THE distinct axis. v1 rides vanilla `doLimitedCrafting` + recipe book grants (~1-2 wks on top of the bench); risks are the JEI locked-recipe overlay and FTB Teams sync. The Hard version (auto recipe introspection, gating other mods' machine recipes) stays maybe-never. Hand-authored JSON unlock tables only. |
 | Garbage regions (household / scrapyard / e-waste / slag / hazmat) | Medium | Real biomes, distance-banded from spawn; per-biome garbage blocks. Launch trio: household + scrapyard + e-waste; slag + hazmat in P2. |
-| Mound regrowth (mounds regenerate to original footprint, blocks fall from the sky) | Medium | Renewable quarries, not doom. Falling-block delivery from world top (deorbiting garbage). Needs original-bounds memory per mound. |
-| Healed-land immunity (grass + built blocks stop regrowth) | Easy | Grassing a mound's footprint retires it forever. The quarry-vs-heal tension is the pack's engine. |
+| Mound regrowth (mounds regenerate to original footprint, blocks fall from the sky) | Medium | Renewable quarries, not doom. Falling-block delivery from world top (deorbiting garbage). Original-bounds memory settled as a `mound_bed` blockstate carrying the cell's original height - no SavedData. Blocked on art. |
+| ~~Healed-land immunity (grass + built blocks stop regrowth)~~ -> **Encroachment** | Easy | **Inverted and SHIPPED 2026-07-23** (P1.7-R): healed *surface* is contested, not immune. Coarse earth takes back soil bordering unhealed ground; the rung ladder is the defence (cover absorbs a hit, trees lock a border). Builds untouched, stops while you are away, wet farmland holds. **Mound retirement stays permanent** - only the green is a fight. |
 | Dimension lockout (Nether + End portals disabled by default) | Easy | Config flags. Plugs the vanilla-resource leak until the themed dimensions ship. |
 
 ## P2 - the full loop (makes it a complete pack)
@@ -47,7 +47,7 @@
 | Trash wind (optional weather flavor event, small scatter near mounds) | Medium | Demoted to ambience. Never touches builds or cleared land. Config, conservative default. |
 | Tier 2 processing (Burn Barrel + repaired furnace; purity-as-yield) | Easy-Medium | Burn Barrel **shipped 2026-07-17** (pulled ahead): a manual-only (non-automatable) vanilla-furnace reskin, `scrap -> copper nugget` (copper-first inversion). Repaired furnace + the metal-tier split remain. Fuel: Oily Rag + junk, no energy. |
 | Tier 3 logistics (Create for belts; Recompile converts, Create moves) | Easy | Create in the pack; Recompile machines never require it. See material_economy.md Create spine. |
-| Reclamation chain (compost + clean water + seed -> grass -> crops -> trees) | Medium | Healing is a supply chain, yields only land. |
+| Reclamation chain (compost + clean water + seed -> grass -> crops -> trees) | Medium | Healing is a supply chain. One machine per rung (nothing renews on its own); the payout is the returning overworld - healed land is the second economy (P2.4-R). |
 | Hazmat gating (Mekanism radiation + hazmat suit carry it) | Easy-Medium | Recompile ships biome + blocks + caches only; Mekanism owns the systems. |
 | E-waste recovery chains (crude smelt early, Mekanism chemistry late) | Easy | Two-stage purity-as-yield; battery chain is its own mini-tree. |
 | Quest line (FTB Quests, quest-voice spec; hidden post-twist chapters) | Easy | Titled in the exile fiction; the twist delivery vehicle. See the_twist.md. |
