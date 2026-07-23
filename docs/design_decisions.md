@@ -6,7 +6,7 @@ Running log of locked per-feature decisions from the feature-by-feature walkthro
 
 ## Walkthrough status (the bookmark - update every session)
 
-**As of 2026-07-23:** P2.4 item 5 revised - see **P2.4-R** (healing pays out via the returning overworld; machine-per-rung ladder; global index rejected). P1.7 healed-land immunity revised - see **P1.7-R** (the junkyard fights back: healed *surface* is contested at the frontier, the rung ladder is the defence, mound retirement stays permanent; **shipped** as Recompile Phase 2.10 ahead of Phase 5). P0 fully locked (P0.1-P0.5). P1 fully locked (P1.1-P1.11; food/foraging tier P1.9 and the sorting-tarp mechanic revision both added in a later 2026-07-14 session; water P1.10 and Bulky Waste P1.11 added 2026-07-15, the latter superseding P1.1's appliance row; building-blocks tier P1.12 added and shipped 2026-07-16). **P2 fully locked (P2.1-P2.8).** **The knowledge system (P1.4) is under review** - see the note at the head of P1.4; its enforcement model does not survive contact with modded autocrafting, and its scope is being questioned. Dimensions, the knowledge system, mound regrowth, the material economy ([`material_economy.md`](material_economy.md)), and the narrative layer ([`the_twist.md`](the_twist.md), spoilers) are locked. Mod lineup so far: Create (belts/logistics), Mekanism (chemical/radiation endgame). (Productive Frogs crossover dropped 2026-07-14.)
+**As of 2026-07-23:** P2.4 item 5 revised - see **P2.4-R** (healing pays out via the returning overworld; machine-per-rung ladder; global index rejected). P2.4 item 2's sapling clause superseded - see **P2.4-R2** (saplings are never obtainable; the tree planter is the only source of trees, **shipped**). P1.7 healed-land immunity revised - see **P1.7-R** (the junkyard fights back: healed *surface* is contested at the frontier, the rung ladder is the defence, mound retirement stays permanent; **shipped** as Recompile Phase 2.10 ahead of Phase 5). P0 fully locked (P0.1-P0.5). P1 fully locked (P1.1-P1.11; food/foraging tier P1.9 and the sorting-tarp mechanic revision both added in a later 2026-07-14 session; water P1.10 and Bulky Waste P1.11 added 2026-07-15, the latter superseding P1.1's appliance row; building-blocks tier P1.12 added and shipped 2026-07-16). **P2 fully locked (P2.1-P2.8).** **The knowledge system (P1.4) is under review** - see the note at the head of P1.4; its enforcement model does not survive contact with modded autocrafting, and its scope is being questioned. Dimensions, the knowledge system, mound regrowth, the material economy ([`material_economy.md`](material_economy.md)), and the narrative layer ([`the_twist.md`](the_twist.md), spoilers) are locked. Mod lineup so far: Create (belts/logistics), Mekanism (chemical/radiation endgame). (Productive Frogs crossover dropped 2026-07-14.)
 
 **Walkthrough is COMPLETE except the endgame/postgame cluster, which is PARKED (Jason's call, 2026-07-14) - worry about it later.**
 
@@ -366,7 +366,7 @@ The excavated-and-repaired vanilla furnace (the tier's second rung) is still unb
 > **Item 5 is superseded (2026-07-23).** Healing now pays out - see [P2.4-R](#p24-r---reclamation-as-economy-replacement-revised-2026-07-23) below. Items 1-4 stand.
 
 1. **Healing is a recipe, not a right-click:** compost (from organic muck) + clean water + seed. Muck becomes the healing currency; leachate purification (clean water is made, not found) becomes load-bearing.
-2. **Seeds are found, then made:** seed packets in household pulls, preserved pits from organics, rare intact saplings as cache-grade treasure; mid-tier greenhouse/nursery propagates recovered seed into self-sustaining lines.
+2. **Seeds are found, then made:** seed packets in household pulls, preserved pits from organics, ~~rare intact saplings as cache-grade treasure~~ (**the sapling clause is SUPERSEDED 2026-07-23 by P2.4-R2** - saplings are never obtainable as items; crop seeds are unaffected); mid-tier greenhouse/nursery propagates recovered seed into self-sustaining lines.
 3. **Scale ladder:** manual per-block first (the first grass patch is a monument), then the tier-4/5 irrigator/soil-spreader (radius conversion consuming compost + clean water - how mound footprints retire at scale), region-scale healing reserved for the final chapter.
 4. **Green progression: grass -> crops -> trees.** Trees near-endgame (wood-as-treasure holds until tree farms); the first tree grown from recovered seed is a quest beat.
 5. ~~**Healing yields nothing but land.** No drops, no rewards beyond immunity, retirement, and the final chapter's payoffs - keeps quarry-vs-heal honest.~~ **SUPERSEDED 2026-07-23 by P2.4-R.**
@@ -391,6 +391,22 @@ The excavated-and-repaired vanilla furnace (the tier's second rung) is still unb
 **Why this shape:** Planet Crafter is the terraforming analog on record (concept.md prior-art pass). Its engagement comes from paid, staged, visible transformation - machines you build and feed, thresholds that change the world. concept.md already extracted the diegetic half of that lesson; the locked decisions then went the other way. This restores it and deliberately drops the index half per the mod/pack split.
 
 **Build order:** soil -> vegetation -> nursery -> animals.
+
+## P2.4-R2 - Saplings are machine-only (locked 2026-07-23)
+
+**Supersedes the sapling clause of P2.4 item 2.** A **player can never obtain a sapling as an item.** Saplings exist only in an already-planted state, and the tree planter (P2.4-R's nursery rung) is the only thing that can place one.
+
+**The hole this closes.** Vanilla lets a sapling be planted *and grown* on raw coarse dirt - `#minecraft:supports_vegetation` reaches coarse dirt through `#minecraft:dirt`, and 26.1's tree feature has no ground-material check at all. So a findable sapling could be planted on virgin garbage-world ground and grown into a tree, which under [P1.7-R](#p17-r---the-junkyard-fights-back-revised-2026-07-23) **permanently anchors the frontier**: rung 3 with no rung 1 or 2, and no machine. That directly contradicts P2.4-R item 3, "every green block is paid for by a machine the player built and feeds."
+
+1. **Gate on placement, not on soil.** Enforcement is "what can place a sapling", not "what soil accepts one". Deliberately *not* a vanilla tag override, so planting behaves normally on every soil the player actually heals.
+2. **The tree planter is the only source of trees in the game.** Wood stays metered by a machine rather than by the scarcity of a findable item - which is what P2.4 item 4's wood-as-treasure wanted, now mechanical rather than conventional.
+3. **A tree farm is a planter running, not hand-replanting.** You cannot replant a chopped tree yourself; automated wood means a planter consuming compost + clean water indefinitely.
+4. **Saplings do not protect ground.** They stay strippable cover under P1.7-R, so coarse earth can still take ground with a sapling planted on it. The planter's own placement rules govern where trees can be established (Jason, 2026-07-23).
+5. **Crop seeds are untouched.** P2.4 item 2's seed packets and preserved pits stand; only the sapling clause is superseded.
+
+**Consequence to watch:** until the planter ships, P1.7-R's rung-3 anchor is unreachable, so the encroachment frontier has **no permanent stop**. Correct today (the world has no trees), but it makes the planter the load-bearing rung rather than the last one.
+
+**Status: SHIPPED in Recompile** as a global loot modifier stripping `#minecraft:saplings` from every loot roll - one invariant rather than ~22 loot-table overrides, so it also covers azalea, the mangrove propagule, chest loot, and any modded tree a pack adds later.
 
 ## P2.5 - Hazmat gating (locked 2026-07-14)
 
