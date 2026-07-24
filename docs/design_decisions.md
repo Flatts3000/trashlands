@@ -569,6 +569,12 @@ architecture, tests): `../recompile/docs/workstation_spec.md`. This section is t
    capstone and **feeds the P1.4 knowledge review** - craft-from-storage is exactly the autocrafting
    recipe-locking cannot survive.
 
+   **The payoff QoL: shift-right-click the Sorting Tarp files your whole scrap haul.** One action
+   walks the player inventory and sends every binnable stack to its matching bin (overflow / bin-less
+   scrap to the barrel). It is the reason to build the workstation - dump a scavenging run into
+   storage with one click. (Open: whether it auto-binds an empty bin per material, or only fills bins
+   already bound.)
+
 6. **A placement outline is added to the multiblock framework** (Powah-style, so every multiblock
    benefits): holding the core item ghosts the blueprint at the aimed spot, green where clear and red
    where blocked. A held-item world preview, not a BlockEntityRenderer.
