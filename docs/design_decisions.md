@@ -6,7 +6,7 @@ Running log of locked per-feature decisions from the feature-by-feature walkthro
 
 ## Walkthrough status (the bookmark - update every session)
 
-**As of 2026-07-24:** Rung 1 (the Grass Spreader) **built and shipped** - see **P2.4-R3** (a *drip irrigator* fed by an incorporated Water Tank; consumes nothing; machine-only; the rungs are **multiblocks** built from a shared inert component vocabulary; the Pump is teardown-only, out of a Washing Machine found in Bulky Waste, so rung 1 sits behind the teardown spine. Items 1, 5, 7 revised and item 8 **closed** in the build - the spreader and collector are deliberately siblings, not an ordered chain). P2.4 item 5 revised - see **P2.4-R** (healing pays out via the returning overworld; machine-per-rung ladder; global index rejected). P2.4 item 2's sapling clause superseded - see **P2.4-R2** (saplings are never obtainable; the tree planter is the only source of trees, **shipped**). P1.7 healed-land immunity revised - see **P1.7-R** (the junkyard fights back: healed *surface* is contested at the frontier, the rung ladder is the defence, mound retirement stays permanent; **shipped** as Recompile Phase 2.10 ahead of Phase 5). P0 fully locked (P0.1-P0.5). P1 fully locked (P1.1-P1.11; food/foraging tier P1.9 and the sorting-tarp mechanic revision both added in a later 2026-07-14 session; water P1.10 and Bulky Waste P1.11 added 2026-07-15, the latter superseding P1.1's appliance row; building-blocks tier P1.12 added and shipped 2026-07-16). **P2 fully locked (P2.1-P2.8).** **The knowledge system (P1.4) is under review** - see the note at the head of P1.4; its enforcement model does not survive contact with modded autocrafting, and its scope is being questioned. Dimensions, the knowledge system, mound regrowth, the material economy ([`material_economy.md`](material_economy.md)), and the narrative layer ([`the_twist.md`](the_twist.md), spoilers) are locked. Mod lineup so far: Create (belts/logistics), Mekanism (chemical/radiation endgame). (Productive Frogs crossover dropped 2026-07-14.)
+**As of 2026-07-24:** Rung 1 (the Grass Spreader) **built and shipped** - see **P2.4-R3** (a *drip irrigator* fed by an incorporated Water Tank; consumes nothing; machine-only; the rungs are **multiblocks** built from a shared inert component vocabulary; the Pump is teardown-only, out of a Washing Machine found in Bulky Waste, so rung 1 sits behind the teardown spine. Items 1, 5, 7 revised and item 8 **closed** in the build - the spreader and collector are deliberately siblings, not an ordered chain). P2.4 item 5 revised - see **P2.4-R** (healing pays out via the returning overworld; machine-per-rung ladder; global index rejected). P2.4 item 2's sapling clause superseded - see **P2.4-R2** (saplings are never obtainable; the tree planter is the only source of trees, **shipped**). P1.7 healed-land immunity revised - see **P1.7-R** (the junkyard fights back: healed *surface* is contested at the frontier, the rung ladder is the defence, mound retirement stays permanent; **shipped** as Recompile Phase 2.10 ahead of Phase 5). P0 fully locked (P0.1-P0.5). P1 fully locked (P1.1-P1.11; food/foraging tier P1.9 and the sorting-tarp mechanic revision both added in a later 2026-07-14 session; water P1.10 and Bulky Waste P1.11 added 2026-07-15, the latter superseding P1.1's appliance row; building-blocks tier P1.12 added and shipped 2026-07-16). **P2 fully locked (P2.1-P2.8);** the **Scrap Bin** (P2.9, storage) locked-and-specced 2026-07-24. **The knowledge system (P1.4) is under review** - see the note at the head of P1.4; its enforcement model does not survive contact with modded autocrafting, and its scope is being questioned. Dimensions, the knowledge system, mound regrowth, the material economy ([`material_economy.md`](material_economy.md)), and the narrative layer ([`the_twist.md`](the_twist.md), spoilers) are locked. Mod lineup so far: Create (belts/logistics), Mekanism (chemical/radiation endgame). (Productive Frogs crossover dropped 2026-07-14.)
 
 **Walkthrough is COMPLETE except the endgame/postgame cluster, which is PARKED (Jason's call, 2026-07-14) - worry about it later.**
 
@@ -482,6 +482,52 @@ Content and process, not new mechanics.
 5. **Community-extensible by design.** All datapack JSON (P0.5); the public schema lets pack users and addon authors add tables for untouched mods. Third-party teardown addons are a WANTED outcome, not a support burden.
 
 **P2 is now fully specified (P2.1-P2.8).**
+
+## P2.9 - The Scrap Bin (locked 2026-07-24)
+
+Bulk single-type storage. Engine spec (models, blockstates, tests):
+`../recompile/docs/scrap_bin_spec.md`. This section is the locked design.
+
+1. **Role: the tool the hoarding loop wants.** P2.6 deliberately rewards stockpiling boards (late
+   Mekanism chains recover far more from the same board than early crude smelting), so bulk
+   commodity storage is a designed need, not just convenience. The Scrap Bin complements the Scrap
+   Barrel rather than replacing it: the barrel is general 27-slot storage (`ChestMenu`), the bin is
+   **one type, enormous capacity, no screen**.
+
+2. **One craftable bin that binds on first insert.** Empty it is a neutral "put salvage here" box;
+   the first salvage inserted binds it to that material and it takes that material's color. One
+   recipe, one block - not a block per material.
+
+3. **Color is the identifier, and it is a blockstate, not a render.** The bound material is a
+   `content` blockstate that selects a **statically tinted** model, so a wall of bins reads by hue
+   across a room. This keeps the block inside the mod's no-BER rule (a live item-on-face render is
+   exactly the per-object draw call that rule forbids). Colors are **material-matched** - the bin is
+   the color of what is inside - so no palette is invented and it is self-documenting. Fill is a
+   second blockstate (composter-style level in a window); Jade gives the exact count.
+
+4. **Acceptance is an open tag; color is a finite enum.** The bin accepts an item only if it is in
+   `#recompile:binnable` (default: the bulk material vocabulary, not finds/food/tools), and packs
+   extend the tag without a mod release. A blockstate can only tint a finite known set, so
+   binnable-but-uncolored modded scrap binds to the **neutral grey bin** - still held, still named by
+   Jade, just no bespoke color. Honest fallback, not a wall.
+
+5. **Binding is sticky.** A placed bin emptied by withdrawal **stays bound** (refill without
+   re-binding); broken while empty it drops a **blank, unbound** bin; broken with contents the
+   dropped item **carries its scrap and its binding** (the Rain Collector's break-survives
+   data-component pattern), so a full tote of sorted metal can be relocated whole.
+
+6. **Hopper in, no automation out.** The bin is the **sink** of a sorting pipeline, never a source a
+   machine pulls from: a future sorter can fill it, but nothing extracts. You spend your stockpile by
+   hand. Consistent with the mod's manual-engagement stance (the Burn Barrel is manual-only) while
+   still enabling the satisfying auto-sort-into-bins pipeline.
+
+7. **Screen-free, which is the most on-brand storage the mod has.** Deposit and withdraw are world
+   interactions (click to deposit, empty-hand to withdraw, sneak for one) - no custom GUI, the
+   Sorting Tarp's stateless philosophy applied to storage.
+
+**Open (curation, not blocking):** whether the processed intermediates (`rebar`, `scrap_plating`,
+`cullet_glass`) belong in `#binnable` or it is the raw materials only. Numbers (capacity, recipe
+cost) join the pre-beta balance pass.
 
 ## P3.1 - Sky dumps - CUT/FOLDED (2026-07-14)
 
