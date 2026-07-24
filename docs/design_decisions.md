@@ -561,10 +561,11 @@ architecture, tests): `../recompile/docs/workstation_spec.md`. This section is t
 
 4. **The blueprint:** a front counter at hand level (Scrap Crafting Table, Recompile Workbench,
    Sorting Tarp, Burn Barrel, Scrap Barrel) with a back-and-up shelf of **Scrap Bins**, one per
-   material, held up on **Machine Frames**. **6 wide, symmetric:** six material bins on the shelf, `junk` at hand
-   level in the counter (bulk filler, easiest reach), and the **Workstation Core at the back-centre**
-   (off the counter, so both rows stay 6 wide) - the controller behind the bench. 19 blocks, 7 bins.
-   Bins bind at runtime (the blueprint requires "a bin," you bind each by use).
+   material, held up on **Machine Frames**. A compact **6 wide x 2 deep x 2 tall** box, 18 blocks: a front
+   counter (5 workstations + the `junk` bin at hand level), a back row of the **Workstation Core + 5
+   frames**, six material bins on top of that back row (one sits on the core itself - it doubles as a
+   shelf leg), and air over the counter. 7 bins total. Bins bind at runtime (the blueprint requires
+   "a bin," you bind each by use).
 
 5. **What flows where** (decided 2026-07-24): the Sorting Tarp sifts into the bins; the Workbench and
    the **Burn Barrel auto-route** their outputs to storage (the Burn Barrel is the one genuinely
