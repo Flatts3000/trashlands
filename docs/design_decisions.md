@@ -559,9 +559,9 @@ architecture, tests): `../recompile/docs/workstation_spec.md`. This section is t
 
 4. **The blueprint:** a front counter at hand level (Scrap Crafting Table, Recompile Workbench,
    Sorting Tarp, Burn Barrel, Scrap Barrel) with a back-and-up shelf of **Scrap Bins**, one per
-   material, held up on **Machine Frames**. Bins bind at runtime (the blueprint requires "a bin," you
-   bind each by use). Bin-count-vs-counter-width, the core's exact position, and the numbers are open
-   in the spec.
+   material, held up on **Machine Frames** - **six material bins on the shelf, `junk` at hand level in the
+   counter** (bulk filler, easiest reach). Bins bind at runtime (the blueprint requires "a bin," you
+   bind each by use). The core's exact cell and the numbers are open in the spec.
 
 5. **What flows where** (build cheapest first): the Sorting Tarp sifts into the bins, the Workbench and
    (weighing hardest against the seam rule, being time-based) the Burn Barrel route outputs to storage,
