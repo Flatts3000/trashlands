@@ -499,15 +499,17 @@ Bulk single-type storage. Engine spec (models, blockstates, tests):
    recipe, one block - not a block per material.
 
 3. **Color is the identifier, and it is a blockstate, not a render.** The bound material is a
-   `content` blockstate that selects a **statically tinted** model, so a wall of bins reads by hue
-   across a room. This keeps the block inside the mod's no-BER rule (a live item-on-face render is
+   `content` blockstate; the color is applied at render by a `tintindex` handler (the mechanism
+   vanilla grass and water use, **not** a BER), so one texture set serves every material and a wall
+   of bins reads by hue across a room. This keeps the block inside the mod's no-BER rule (a live item-on-face render is
    exactly the per-object draw call that rule forbids). Colors are **material-matched** - the bin is
    the color of what is inside - so no palette is invented and it is self-documenting. Fill is a
    second blockstate (composter-style level in a window); Jade gives the exact count.
 
 4. **Acceptance is an open tag; color is a finite enum.** The bin accepts an item only if it is in
-   `#recompile:binnable` (default: the bulk material vocabulary, not finds/food/tools), and packs
-   extend the tag without a mod release. A blockstate can only tint a finite known set, so
+   `#recompile:binnable` (default: the **seven raw materials pulled from garbage** - not rebar, tin
+   cans, glass bottles, crafted intermediates, finds, food or tools), and packs extend the tag
+   without a mod release. A blockstate can only tint a finite known set, so
    binnable-but-uncolored modded scrap binds to the **neutral grey bin** - still held, still named by
    Jade, just no bespoke color. Honest fallback, not a wall.
 
@@ -525,9 +527,9 @@ Bulk single-type storage. Engine spec (models, blockstates, tests):
    interactions (click to deposit, empty-hand to withdraw, sneak for one) - no custom GUI, the
    Sorting Tarp's stateless philosophy applied to storage.
 
-**Open (curation, not blocking):** whether the processed intermediates (`rebar`, `scrap_plating`,
-`cullet_glass`) belong in `#binnable` or it is the raw materials only. Numbers (capacity, recipe
-cost) join the pre-beta balance pass.
+**`#binnable` locked to the raw material vocabulary** (2026-07-24): the scrap you pull from garbage,
+minus rebar and the containers (tin cans, glass bottles). Numbers (capacity, recipe cost) join the
+pre-beta balance pass.
 
 ## P3.1 - Sky dumps - CUT/FOLDED (2026-07-14)
 
