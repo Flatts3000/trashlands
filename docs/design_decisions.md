@@ -555,25 +555,29 @@ architecture, tests): `../recompile/docs/workstation_spec.md`. This section is t
    auto-assemble** mechanic with `formed == component` for every cell, so **no block is replaced, no
    formed model exists** - every member keeps its own model, interface, and behavior. The only new
    logic is the core linking the members into one shared-storage system. A new **Workstation Core**
-   block is the controller (the functional blocks may not be cores).
+   block is the controller (the functional blocks may not be cores). One framework change is required:
+   `form()` must **preserve stateful components** (skip the block-set when the cell's block already
+   matches), or forming would wipe the barrel's contents and the bins' bindings.
 
 4. **The blueprint:** a front counter at hand level (Scrap Crafting Table, Recompile Workbench,
    Sorting Tarp, Burn Barrel, Scrap Barrel) with a back-and-up shelf of **Scrap Bins**, one per
-   material, held up on **Machine Frames** - **six material bins on the shelf, `junk` at hand level in the
-   counter** (bulk filler, easiest reach). Bins bind at runtime (the blueprint requires "a bin," you
-   bind each by use). The core's exact cell and the numbers are open in the spec.
+   material, held up on **Machine Frames**. **6 wide, symmetric:** six material bins on the shelf, `junk` at hand
+   level in the counter (bulk filler, easiest reach), and the **Workstation Core at the back-centre**
+   (off the counter, so both rows stay 6 wide) - the controller behind the bench. 19 blocks, 7 bins.
+   Bins bind at runtime (the blueprint requires "a bin," you bind each by use).
 
-5. **What flows where** (build cheapest first): the Sorting Tarp sifts into the bins, the Workbench and
-   (weighing hardest against the seam rule, being time-based) the Burn Barrel route outputs to storage,
-   and the Scrap Crafting Table reads ingredients from the connected storage. That last one is the
-   capstone and **feeds the P1.4 knowledge review** - craft-from-storage is exactly the autocrafting
-   recipe-locking cannot survive.
+5. **What flows where** (decided 2026-07-24): the Sorting Tarp sifts into the bins; the Workbench and
+   the **Burn Barrel auto-route** their outputs to storage (the Burn Barrel is the one genuinely
+   time-based flow, the deliberate exception to manual-first, only while part of a workstation); and
+   the Scrap Crafting Table **reads ingredients from the bins and the Scrap Barrel in v1**. That last
+   is the capstone but **does NOT hit the P1.4 problem** - that is about *automated* crafters with no
+   player; craft-from-storage is manual and player-scoped, so a recipe-lock still applies.
 
-   **The payoff QoL: shift-right-click the Sorting Tarp files your whole scrap haul.** One action
-   walks the player inventory and sends every binnable stack to its matching bin (overflow / bin-less
-   scrap to the barrel). It is the reason to build the workstation - dump a scavenging run into
-   storage with one click. (Open: whether it auto-binds an empty bin per material, or only fills bins
-   already bound.)
+   **The payoff QoL: shift-right-click the Sorting Tarp files your whole scrap haul.** One action sends
+   every binnable stack to its matching bin, **auto-binding an empty bin** for any material without
+   one, overflow to the barrel. Machine outputs do NOT auto-bind (bound bins, else barrel) - only the
+   file-all binds. It is the reason to build the workstation: dump a scavenging run into storage with
+   one click.
 
 6. **A placement outline is added to the multiblock framework** (Powah-style, so every multiblock
    benefits): holding the core item ghosts the blueprint at the aimed spot, green where clear and red
