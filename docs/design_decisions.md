@@ -523,9 +523,10 @@ Bulk single-type storage. Engine spec (models, blockstates, tests):
    hand. Consistent with the mod's manual-engagement stance (the Burn Barrel is manual-only) while
    still enabling the satisfying auto-sort-into-bins pipeline.
 
-7. **Screen-free, which is the most on-brand storage the mod has.** Deposit and withdraw are world
-   interactions (click to deposit, empty-hand to withdraw, sneak for one) - no custom GUI, the
-   Sorting Tarp's stateless philosophy applied to storage.
+7. **Screen-free, and the controls are Functional Storage's** (adopted wholesale, 2026-07-24 build):
+   right-click deposits a stack, double-right-click dumps all matching, left-click extracts one,
+   sneak+left-click a stack. No custom GUI - the Sorting Tarp's stateless philosophy applied to
+   storage. **Built and shipped on branch `feat/scrap-bin`.**
 
 **`#binnable` locked to the raw material vocabulary** (2026-07-24): the scrap you pull from garbage,
 minus rebar and the containers (tin cans, glass bottles). Numbers (capacity, recipe cost) join the
