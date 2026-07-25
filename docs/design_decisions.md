@@ -568,11 +568,19 @@ held-item placement guideline.
 4. **What flows where** (decided 2026-07-24): the Sorting Tarp sifts into the bins; the Workbench and
    the **Burn Barrel auto-route** their outputs to storage (the Burn Barrel is the one genuinely
    time-based flow, the deliberate exception to manual-first, only while wired to storage); and the
-   Scrap Crafting Table **reads ingredients from the connected bins and the Scrap Barrel in v1** (not
-   built). That last **does NOT hit the P1.4 problem** - that is about *automated* crafters with no
-   player; craft-from-storage is manual and player-scoped, so a recipe-lock still applies. Only two of
-   the six member types are routing sinks (a Scrap Bin, and the Scrap Barrel by block id); the Burn
-   Barrel conducts but is never a sink - routing must not land in its furnace slots.
+   Scrap Crafting Table **crafts from the connected bins and the Scrap Barrel** (shift-clicking the
+   result restocks the grid from storage between crafts). That last **does NOT hit the P1.4 problem** -
+   that is about *automated* crafters with no player; craft-from-storage is manual and player-scoped, so
+   a recipe-lock still applies. Only two of the six member types are routing sinks (a Scrap Bin, and the
+   Scrap Barrel by block id); the Burn Barrel conducts but is never a sink - routing must not land in
+   its furnace slots.
+
+   **The crafting table gets the mod's one custom screen** (recorded reversal of the
+   no-custom-machine-screen rule): a Tinkers-Crafting-Station-style connected-storage panel showing the
+   connected bins' materials + counts, so opening the table shows what the network holds. Justified by
+   the proven pattern, scoped to this one block. Vanilla `CraftingMenu` hard-locks its menu type, so the
+   crafting menu is reimplemented over `AbstractContainerMenu`; the panel is read-only in v1
+   (deposit/withdraw stay on the file-all + hopper-in).
 
    **The payoff QoL: shift-right-click the Sorting Tarp files your whole scrap haul.** One action sends
    every binnable stack to its matching bin, **auto-binding an empty bin** for any material without one,
@@ -585,10 +593,9 @@ held-item placement guideline.
    where clear and red where blocked. A held-item particle preview, not a BlockEntityRenderer. The
    network itself needs no preview - you just set blocks next to each other.
 
-**Built** (network + flows 1-3 + file-all, GameTested) on `feat/workstation` 2026-07-24; flow 4
-(craft-from-storage) is the remaining capstone. Guardrails: bounded to the connected cluster,
-standalone-first, members keep their manual interfaces - the network adds reach, not automation of the
-hand.
+**Built** (all four flows + file-all + the crafting-station panel, GameTested) on `feat/workstation`
+2026-07-24. Guardrails: bounded to the connected cluster, standalone-first, members keep their manual
+interfaces - the network adds reach, not automation of the hand.
 
 ## P3.1 - Sky dumps - CUT/FOLDED (2026-07-14)
 
