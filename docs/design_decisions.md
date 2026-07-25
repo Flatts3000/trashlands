@@ -6,7 +6,7 @@ Running log of locked per-feature decisions from the feature-by-feature walkthro
 
 ## Walkthrough status (the bookmark - update every session)
 
-**As of 2026-07-24:** Rung 1 (the Grass Spreader) **built and shipped** - see **P2.4-R3** (a *drip irrigator* fed by an incorporated Water Tank; consumes nothing; machine-only; the rungs are **multiblocks** built from a shared inert component vocabulary; the Pump is teardown-only, out of a Washing Machine found in Bulky Waste, so rung 1 sits behind the teardown spine. Items 1, 5, 7 revised and item 8 **closed** in the build - the spreader and collector are deliberately siblings, not an ordered chain). P2.4 item 5 revised - see **P2.4-R** (healing pays out via the returning overworld; machine-per-rung ladder; global index rejected). P2.4 item 2's sapling clause superseded - see **P2.4-R2** (saplings are never obtainable; the tree planter is the only source of trees, **shipped**). P1.7 healed-land immunity revised - see **P1.7-R** (the junkyard fights back: healed *surface* is contested at the frontier, the rung ladder is the defence, mound retirement stays permanent; **shipped** as Recompile Phase 2.10 ahead of Phase 5). P0 fully locked (P0.1-P0.5). P1 fully locked (P1.1-P1.11; food/foraging tier P1.9 and the sorting-tarp mechanic revision both added in a later 2026-07-14 session; water P1.10 and Bulky Waste P1.11 added 2026-07-15, the latter superseding P1.1's appliance row; building-blocks tier P1.12 added and shipped 2026-07-16). **P2 fully locked (P2.1-P2.8);** the **Scrap Bin** (P2.9, storage) locked-and-shipped 2026-07-24; the **Scrap Workstation** (P2.10, a standalone local-logistics cluster of the scrap blocks) locked-and-specced 2026-07-24. **The knowledge system (P1.4) is under review** - see the note at the head of P1.4; its enforcement model does not survive contact with modded autocrafting, and its scope is being questioned. Dimensions, the knowledge system, mound regrowth, the material economy ([`material_economy.md`](material_economy.md)), and the narrative layer ([`the_twist.md`](the_twist.md), spoilers) are locked. Mod lineup so far: Create (belts/logistics), Mekanism (chemical/radiation endgame). (Productive Frogs crossover dropped 2026-07-14.)
+**As of 2026-07-24:** Rung 1 (the Grass Spreader) **built and shipped** - see **P2.4-R3** (a *drip irrigator* fed by an incorporated Water Tank; consumes nothing; machine-only; the rungs are **multiblocks** built from a shared inert component vocabulary; the Pump is teardown-only, out of a Washing Machine found in Bulky Waste, so rung 1 sits behind the teardown spine. Items 1, 5, 7 revised and item 8 **closed** in the build - the spreader and collector are deliberately siblings, not an ordered chain). P2.4 item 5 revised - see **P2.4-R** (healing pays out via the returning overworld; machine-per-rung ladder; global index rejected). P2.4 item 2's sapling clause superseded - see **P2.4-R2** (saplings are never obtainable; the tree planter is the only source of trees, **shipped**). P1.7 healed-land immunity revised - see **P1.7-R** (the junkyard fights back: healed *surface* is contested at the frontier, the rung ladder is the defence, mound retirement stays permanent; **shipped** as Recompile Phase 2.10 ahead of Phase 5). P0 fully locked (P0.1-P0.5). P1 fully locked (P1.1-P1.11; food/foraging tier P1.9 and the sorting-tarp mechanic revision both added in a later 2026-07-14 session; water P1.10 and Bulky Waste P1.11 added 2026-07-15, the latter superseding P1.1's appliance row; building-blocks tier P1.12 added and shipped 2026-07-16). **P2 fully locked (P2.1-P2.8);** the **Scrap Bin** (P2.9, storage) locked-and-shipped 2026-07-24; the **Scrap Network** (P2.10, an adjacency-connected local-logistics cluster of the scrap blocks - reversed 2026-07-24 from an earlier fixed-multiblock design) locked-and-built 2026-07-24. **The knowledge system (P1.4) is under review** - see the note at the head of P1.4; its enforcement model does not survive contact with modded autocrafting, and its scope is being questioned. Dimensions, the knowledge system, mound regrowth, the material economy ([`material_economy.md`](material_economy.md)), and the narrative layer ([`the_twist.md`](the_twist.md), spoilers) are locked. Mod lineup so far: Create (belts/logistics), Mekanism (chemical/radiation endgame). (Productive Frogs crossover dropped 2026-07-14.)
 
 **Walkthrough is COMPLETE except the endgame/postgame cluster, which is PARKED (Jason's call, 2026-07-14) - worry about it later.**
 
@@ -532,61 +532,63 @@ Bulk single-type storage. Engine spec (models, blockstates, tests):
 minus rebar and the containers (tin cans, glass bottles). Numbers (capacity, recipe cost) join the
 pre-beta balance pass.
 
-## P2.10 - The Scrap Workstation (locked 2026-07-24)
+## P2.10 - The Scrap Network (locked 2026-07-24)
 
-A connected cluster of the scrap-interaction blocks - storage, smelter, teardown table, sorter,
-crafting table - that assembles from a template and behaves as one system. Engine spec (blueprint,
-architecture, tests): `../recompile/docs/workstation_spec.md`. This section is the locked design.
+Scrap blocks placed touching each other form one connected cluster, and junk routes between them - no
+controller, no blueprint, no saved structure. Engine spec (routing, tests): `../recompile/docs/scrap_network_spec.md`.
+This section is the locked design.
+
+**Reversal (2026-07-24, same session):** P2.10 was first specced and built as a rigid **multiblock** -
+a Workstation Core you place, a fixed 6x2x2 / 18-block blueprint, auto-assemble, form/disband, and
+facing-aware placement. That was the wrong model: it dictated one prescribed bench when the point is
+for players to **arrange their scrap blocks however they like**. Adjacency delivers that; the core, the
+blueprint, the auto-assemble, and the facing machinery were all dropped. What survived: the routing
+rules, the file-all payoff, and (generalized off the deleted workstation onto every multiblock) the
+held-item placement guideline.
 
 1. **It fills the logistics void Create's absence leaves, standalone.** "Recompile converts, Create
    moves" (P2.3) assumed Create is in the lineup; **Create is not ported to 26.1**, so the rule
    currently defers all item movement to an absent mod, leaving the player hand-shuffling stacks. The
-   Workstation is a **local, bounded** answer that honors the harder constraint ("Recompile machines
-   never REQUIRE Create"): it needs no other mod, and it does not try to be Create. When Create
-   arrives they coexist - Create is world-spanning belt transport, the Workstation is a kitchen where
-   everything is in arm's reach.
+   network is a **local, bounded** answer that honors the harder constraint ("Recompile machines never
+   REQUIRE Create"): it needs no other mod. When Create arrives they coexist - Create is world-spanning
+   belt transport, the network is a kitchen where everything is in arm's reach.
 
-2. **This deliberately revises P1.3, P2.3, and the Workbench/Burn Barrel no-item-handler notes** -
-   only *inside a formed workstation*. A standalone Sorting Tarp still drops on the floor; a standalone
-   Workbench still pops outputs into the world. The revision is scoped to the cluster and its rationale
-   (Create's absence) is on the record so the *why* survives.
+2. **This deliberately revises P1.3, P2.3, and the Workbench/Burn Barrel no-item-handler notes** - only
+   *inside a connected network*. A standalone Sorting Tarp still drops on the floor; a standalone
+   Workbench still pops outputs into the world. The revision is scoped to the cluster.
 
-3. **Template + network, not a merged machine.** It reuses the multiblock **core + blueprint +
-   auto-assemble** mechanic with `formed == component` for every cell, so **no block is replaced, no
-   formed model exists** - every member keeps its own model, interface, and behavior. The only new
-   logic is the core linking the members into one shared-storage system. A new **Workstation Core**
-   block is the controller (the functional blocks may not be cores). One framework change is required:
-   `form()` must **preserve stateful components** (skip the block-set when the cell's block already
-   matches), or forming would wipe the barrel's contents and the bins' bindings.
+3. **Auto-adjacency, flood-fill, no saved state.** Any scrap blocks sharing a face are one network - no
+   tool, no controller, no link step; face adjacency only. Membership is a block tag,
+   `#recompile:scrap_connectable`: **Scrap Bin, Scrap Barrel, Sorting Tarp, Recompile Workbench, Burn
+   Barrel, Scrap Crafting Table** (Machine Frame is **not** a member; it was only the old blueprint's
+   shelf support and is now unused). Each interaction floods outward from the acting block and reads the
+   members live - no BlockEntity for the structure, nothing serialised. Open by design: a pack adds a
+   modded scrap block to the tag without a mod release.
 
-4. **The blueprint:** a front counter at hand level (Scrap Crafting Table, Recompile Workbench,
-   Sorting Tarp, Burn Barrel, Scrap Barrel) with a back-and-up shelf of **Scrap Bins**, one per
-   material, held up on **Machine Frames**. A compact **6 wide x 2 deep x 2 tall** box, 18 blocks: a front
-   counter (5 workstations + the `junk` bin at hand level), a back row of the **Workstation Core + 5
-   frames**, six material bins on top of that back row (one sits on the core itself - it doubles as a
-   shelf leg), and air over the counter. 7 bins total. Bins bind at runtime (the blueprint requires
-   "a bin," you bind each by use).
-
-5. **What flows where** (decided 2026-07-24): the Sorting Tarp sifts into the bins; the Workbench and
+4. **What flows where** (decided 2026-07-24): the Sorting Tarp sifts into the bins; the Workbench and
    the **Burn Barrel auto-route** their outputs to storage (the Burn Barrel is the one genuinely
-   time-based flow, the deliberate exception to manual-first, only while part of a workstation); and
-   the Scrap Crafting Table **reads ingredients from the bins and the Scrap Barrel in v1**. That last
-   is the capstone but **does NOT hit the P1.4 problem** - that is about *automated* crafters with no
-   player; craft-from-storage is manual and player-scoped, so a recipe-lock still applies.
+   time-based flow, the deliberate exception to manual-first, only while wired to storage); and the
+   Scrap Crafting Table **reads ingredients from the connected bins and the Scrap Barrel in v1** (not
+   built). That last **does NOT hit the P1.4 problem** - that is about *automated* crafters with no
+   player; craft-from-storage is manual and player-scoped, so a recipe-lock still applies. Only two of
+   the six member types are routing sinks (a Scrap Bin, and the Scrap Barrel by block id); the Burn
+   Barrel conducts but is never a sink - routing must not land in its furnace slots.
 
    **The payoff QoL: shift-right-click the Sorting Tarp files your whole scrap haul.** One action sends
-   every binnable stack to its matching bin, **auto-binding an empty bin** for any material without
-   one, overflow to the barrel. Machine outputs do NOT auto-bind (bound bins, else barrel) - only the
-   file-all binds. It is the reason to build the workstation: dump a scavenging run into storage with
-   one click.
+   every binnable stack to its matching bin, **auto-binding an empty bin** for any material without one,
+   overflow to the barrel. Machine outputs do NOT auto-bind (bound bins, else barrel) - only the
+   file-all binds. It is the reason to build a network: dump a scavenging run into storage with one
+   click.
 
-6. **A placement outline is added to the multiblock framework** (Powah-style, so every multiblock
-   benefits): holding the core item ghosts the blueprint at the aimed spot, green where clear and red
-   where blocked. A held-item world preview, not a BlockEntityRenderer.
+5. **The placement guideline survives, generalized to every multiblock.** Holding a multiblock core
+   (Rain Collector, Grass Spreader, any future one) dusts each blueprint cell at the aimed spot, green
+   where clear and red where blocked. A held-item particle preview, not a BlockEntityRenderer. The
+   network itself needs no preview - you just set blocks next to each other.
 
-**Not built.** Ship after the Scrap Bin (P2.9, done). Guardrails: bounded to the connected cluster,
-standalone-first, members keep their manual interfaces - the workstation adds reach, not automation of
-the hand.
+**Built** (network + flows 1-3 + file-all, GameTested) on `feat/workstation` 2026-07-24; flow 4
+(craft-from-storage) is the remaining capstone. Guardrails: bounded to the connected cluster,
+standalone-first, members keep their manual interfaces - the network adds reach, not automation of the
+hand.
 
 ## P3.1 - Sky dumps - CUT/FOLDED (2026-07-14)
 
