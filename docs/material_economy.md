@@ -22,6 +22,35 @@ Specific metals come from tearing down specific found components - no typed-scra
 |---|---|---|
 | Copper | Bulk scrap in a basic furnace (the everyman metal, copper-first); wire spools, motors, pipes, transformers | Mixed-scrap fine separation |
 | Iron/steel | **Gated** - a better smelter than the burn barrel (upper rungs of the ladder, or teardown finds; open) | - |
+
+> **How steel recycling actually works** (researched 2026-07-30, while deciding what a cut Steel I-Beam should
+> drop). Recorded because it constrains the Makeshift Forge (#50) and the beam's drop, and both were about to
+> be specced against the wrong metallurgy.
+>
+> 1. **Cut on site.** Demolition crews cut structural steel with oxy-fuel torches (oxy-acetylene/oxy-propane)
+>    or hydraulic shears, into manageable lengths. The Cutting Torch is accurate.
+> 2. **Graded, not melted on site.** Cut steel becomes a graded scrap commodity under real ISRI grades:
+>    **P&S (Plate & Structural)** is exactly this - cut beams, channels, angles, plate, specified by max
+>    length. **HMS 1/HMS 2** (Heavy Melting Steel) are the other big ferrous grades; HMS 1 is clean, thick and
+>    uncoated, HMS 2 allows galvanized and thinner stock.
+> 3. **Remelted in an Electric Arc Furnace.** Scrap steel goes to an **EAF**, melted by graphite electrodes.
+>    Roughly 70% of US steel is made this way, ~30% globally.
+> 4. **A blast furnace does NOT do this.** A blast furnace *reduces iron ore into pig iron* with coke - it is
+>    virgin production from ore. Basic oxygen furnaces take scrap only as coolant alongside molten pig iron.
+>    **So #50 framed as "blast-furnace tier" is the wrong machine for recycling** - the ladder's own
+>    "induction recycler" is the right end of it.
+> 5. **It never goes back to ore.** Recycled steel is already-reduced metal: there is no smelting step, only
+>    remelting, carbon/alloy adjustment and casting. Melt loss is a few percent, and recycling uses roughly
+>    60-75% less energy than making steel from ore. **A beam dropping `raw_iron` is backwards** - recycled
+>    structural steel never becomes ore.
+> 6. **Contamination is the real constraint.** Copper is the villain: copper from wiring and motors cannot be
+>    removed by melting and permanently degrades the steel ("tramp elements"). Zinc from galvanized stock
+>    fumes off and is captured as EAF dust, which is then processed *for* its zinc - which is exactly the
+>    "de-galvanize into zinc + clean steel" line already in the bulk table below.
+>
+> **Open, not decided:** the beam currently drops `raw_iron`, which fails both the gate above and the
+> metallurgy. A graded steel-scrap item remelted in a proper furnace is the realistic shape, but it is
+> coupled to #50 - a Forge-only item is dead until the Forge ships. Deferred to #50 rather than guessed at.
 | Aluminum | Cans, window frames, foil | Mixed-scrap fine separation |
 | Lead | Car batteries, old pipes, CRT glass, wheel weights | Battery recycling chain |
 | Gold | Circuit boards, connectors (e-waste) | E-scrap chemical recovery |
