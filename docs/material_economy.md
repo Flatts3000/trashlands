@@ -14,7 +14,7 @@
 
 ## Metals - real recycling streams, carried by teardown tables
 
-Bulk **scrap metal** smelts to **copper** in a basic furnace (the Burn Barrel) - a **gameplay-gating** call (owner, 2026-07-17) that inverts the old iron-baseline. Copper is the accessible everyman metal; **iron becomes the gated upgrade**, from a better process than the barrel, not basic smelting. The yield ladder (burn barrel lossy -> repaired furnace -> induction recycler near-lossless) stands and now doubles as a **metal-tier** ladder: copper first, iron later. Realism is traded for sequencing - a real dump smelts mostly to iron, but copper-first is a cleaner Create on-ramp (copper feeds the brass/casing side early; iron gates Create's core, since andesite alloy needs an iron nugget).
+Bulk **scrap metal** smelts to **copper** in a basic furnace (the Burn Barrel) - a **gameplay-gating** call (owner, 2026-07-17) that inverts the old iron-baseline. Copper is the accessible everyman metal; **iron becomes the gated upgrade**, from a better process than the barrel, not basic smelting. The yield ladder (burn barrel lossy -> **Cupola Furnace**) stands and now doubles as a **metal-tier** ladder: copper first, iron later. Reaching iron means **upgrading the Burn Barrel to the Cupola Furnace using materials from the demolition-yard biome** - the metal tier and the region gate are the same step (owner, 2026-07-30). **What sits above the Cupola is deliberately undecided**; the old third rung named an electric machine this world has no grid for. Realism is traded for sequencing - a real dump smelts mostly to iron, but copper-first is a cleaner Create on-ramp (copper feeds the brass/casing side early; iron gates Create's core, since andesite alloy needs an iron nugget).
 
 Specific metals come from tearing down specific found components - no typed-scrap item bloat, no new mechanics, and adding a metal later is one component item + JSON tables. Real-world streams:
 
@@ -132,4 +132,4 @@ Reframe: Mekanism's ore-multiplication machinery reads as ultimate recycling eff
 - **Mixed-scrap fine separation** (copper/aluminum out of bulk scrap) is the tier 3-4 sorting payoff - possibly the Magnetism hook if that mod ever happens; works without it.
 - **The battery chain** (lead, nickel, lithium, zinc) is dense enough to be its own quest arc inside e-waste.
 - **Washing/degreasing** ("oily scrap" from slag field needs cleaning before smelting well) - optional processing texture, parked for the slag region's identity.
-- **Ratio table per tier** (burn barrel -> furnace -> induction) needs real numbers when the economy is tuned against playtests.
+- **Ratio table per tier** (burn barrel -> Cupola Furnace) needs real numbers when the economy is tuned against playtests.
