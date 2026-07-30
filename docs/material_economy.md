@@ -37,8 +37,13 @@ Specific metals come from tearing down specific found components - no typed-scra
 >    Roughly 70% of US steel is made this way, ~30% globally.
 > 4. **A blast furnace does NOT do this.** A blast furnace *reduces iron ore into pig iron* with coke - it is
 >    virgin production from ore. Basic oxygen furnaces take scrap only as coolant alongside molten pig iron.
->    **So #50 framed as "blast-furnace tier" is the wrong machine for recycling** - the ladder's own
->    "induction recycler" is the right end of it.
+>    **So #50 framed as "blast-furnace tier" is the wrong machine for recycling.** The right machine is a
+>    **cupola furnace**: a coke-fired shaft furnace whose entire job is remelting scrap iron and steel. It is
+>    non-electric and predates the electric era - EAFs and induction are simply its modern replacements.
+>    (Owner call, 2026-07-30: name it the **Remelt Furnace** and build it as a retinted blast furnace.
+>    "Induction recycler" implies a grid, and this world's only power is solar panels.) Mechanically that is
+>    the Burn Barrel's own pattern with `RecipeType.BLASTING` + `BlastFurnaceMenu`, and a blast furnace's
+>    fuel-and-forced-air read is a fair cupola.
 > 5. **It never goes back to ore.** Recycled steel is already-reduced metal: there is no smelting step, only
 >    remelting, carbon/alloy adjustment and casting. Melt loss is a few percent, and recycling uses roughly
 >    60-75% less energy than making steel from ore. **A beam dropping `raw_iron` is backwards** - recycled
