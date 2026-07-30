@@ -53,9 +53,11 @@ Specific metals come from tearing down specific found components - no typed-scra
 >    fumes off and is captured as EAF dust, which is then processed *for* its zinc - which is exactly the
 >    "de-galvanize into zinc + clean steel" line already in the bulk table below.
 >
-> **Open, not decided:** the beam currently drops `raw_iron`, which fails both the gate above and the
-> metallurgy. A graded steel-scrap item remelted in a proper furnace is the realistic shape, but it is
-> coupled to #50 - a Forge-only item is dead until the Forge ships. Deferred to #50 rather than guessed at.
+> **Settled 2026-07-30:** the beam drops a **Steel Offcut** (`recompile:steel_offcut`), not `raw_iron`,
+> which has left the mod entirely. The offcut remelts to iron on `BLASTING` - so the Cupola Furnace and
+> nothing else, since a vanilla blast furnace costs 5 iron ingots. What unblocked the decision was the Burn
+> Barrel going refuse-only in the same change: that already made raw iron unrefinable until #50, so swapping
+> it for a correct item cost nothing extra.
 | Aluminum | Cans, window frames, foil | Mixed-scrap fine separation |
 | Lead | Car batteries, old pipes, CRT glass, wheel weights | Battery recycling chain |
 | Gold | Circuit boards, connectors (e-waste) | E-scrap chemical recovery |

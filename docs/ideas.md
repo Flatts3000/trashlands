@@ -42,6 +42,17 @@ get hungry. Gets **its own Curios slot**.
 
 ## I-2: Collectibles -> Trophies
 
+**Status: v1 BUILT 2026-07-26** (Recompile `docs/collectibles_spec.md`). The **Puzzle Cube** shipped as
+the reference artifact: nine `puzzle_cube_piece` (rare pull-stream drops) fill the 3x3 grid on the Scrap
+Crafting Table into the cube. The cube is a **placeable full block, not an item trophy** - two states,
+solved and scrambled, that craft into each other; a `block/cube` with six per-face 3x3 sticker textures
+so it renders as a real 3D cube in hand, world, and on a **Display Pedestal** (the mod's one
+BlockEntityRenderer, a scoped reversal of P1.11.6). Locked decisions: **per-collectible pieces** (not a
+generic shard); a single pedestal that shows **any item** (owner's call - a general curio shelf, not
+tag-gated); trademark = generic names; **all art procedural** (a twisty cube failed as AI and as a
+downsampled 3D icon at 16px - fixed geometry draws crisper as code); completion reward deferred (the flex
+is the display). More artifacts + advancements are v2.
+
 **Idea:** **collectible** items found in the garbage that you gather and craft into **trophies**.
 First example: collect **Rubik's Cube Pieces** and craft a **Rubik's Cube Trophy**.
 

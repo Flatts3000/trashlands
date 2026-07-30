@@ -78,7 +78,7 @@ Reached by travelling: `RegionBiomeSource` places `demolition_yard` on a distanc
 | Stone shards -> stone types | Sifting Rubble | Travel |
 | Reinforced concrete, more rebar | Sledgehammer | Copper sledgehammer |
 | **Cutting Torch** | Copper pipe + plastic scrap + rebar + oily rag | **Copper**, not iron |
-| Raw iron (unrefined) | Cutting Steel I-Beams | Cutting Torch |
+| **Steel Offcut** (unrefined) | Cutting Steel I-Beams | Cutting Torch |
 
 > **The Cutting Torch costs copper, not iron** (owner, 2026-07-30). It used to cost an iron ingot, which
 > became circular the moment iron moved behind the Cupola: the torch would have needed iron in order to cut
@@ -91,10 +91,10 @@ same step** (owner, 2026-07-30).
 
 | Material | Source | Gated behind |
 |---|---|---|
-| **Iron ingot** | Raw iron from beams | Cupola Furnace |
+| **Iron ingot** | Steel Offcut from beams | Cupola Furnace |
 | Iron nugget | Rebar (9 per ingot - a trickle) | Cupola Furnace |
 
-> **Currently a dead end.** Beams drop raw iron and *nothing* refines it until this ships. That is a
+> **Currently a dead end.** Beams drop Steel Offcuts and *nothing* refines them until this ships. That is a
 > deliberate "you found it, now build the smelter" beat, but it does mean raw iron stockpiles with no use on
 > `main` today. It is the single most load-bearing unbuilt thing in the economy.
 >
@@ -123,3 +123,5 @@ Kept as worked examples, because each was invisible until traced.
 
 - **2026-07-30** - Created. Captures the Burn Barrel refuse-only gate, the torch's copper substitution,
   rebar -> iron nugget moving to the Cupola, and the ladder ending at the Cupola.
+- **2026-07-30** - Steel Offcut replaces raw iron as the beam's drop. `minecraft:raw_iron` has left the mod
+  entirely; the offcut remelts to iron in the Cupola and nowhere else.
