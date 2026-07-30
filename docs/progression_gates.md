@@ -84,22 +84,29 @@ Reached by travelling: `RegionBiomeSource` places `demolition_yard` on a distanc
 > became circular the moment iron moved behind the Cupola: the torch would have needed iron in order to cut
 > the steel that is the only source of iron. Copper breaks the circle.
 
-## Tier 4 - the Cupola Furnace (#50, NOT BUILT)
+## Tier 4 - the Cupola Furnace
 
-Upgrade from the Burn Barrel using demolition-yard materials. **The metal tier and the region gate are the
-same step** (owner, 2026-07-30).
+Upgrade from the Burn Barrel using demolition-yard materials (any concrete + copper pipe + the barrel
+itself). **The metal tier and the region gate are the same step** (owner, 2026-07-30).
+
+A **true upgrade, not a second appliance**: an unrestricted smelting furnace that does everything the barrel
+does, everything the barrel refuses, and iron. It also automates, which the barrel deliberately does not - so
+upgrading buys a metal tier and a machine tier at once, and you stop needing the barrel entirely.
 
 | Material | Source | Gated behind |
 |---|---|---|
 | **Iron ingot** | Steel Offcut from beams | Cupola Furnace |
 | Iron nugget | Rebar (9 per ingot - a trickle) | Cupola Furnace |
 
-> **Currently a dead end.** Beams drop Steel Offcuts and *nothing* refines them until this ships. That is a
-> deliberate "you found it, now build the smelter" beat, but it does mean raw iron stockpiles with no use on
-> `main` today. It is the single most load-bearing unbuilt thing in the economy.
+> **The Cupola contains no iron in its recipe**, deliberately. It is the only iron source, so any iron in
+> its recipe would recreate exactly the circle the torch's copper substitution removed.
 >
-> **The Cupola must not cost iron.** It is the only iron source, so any iron in its recipe recreates exactly
-> the circle the torch's copper substitution just removed.
+> **How iron is actually gated - and how fragile that is.** The iron recipes are ordinary `smelting`. What
+> gates them is that the Burn Barrel refuses them (refuse-only allowlist) and **no other furnace exists in
+> this world**. A vanilla furnace needs `#minecraft:stone_crafting_materials` - cobblestone, cobbled
+> deepslate or blackstone. None are obtainable: there is no cobblestone anywhere in the mod, and no pickaxe
+> to turn shard-built deepslate into cobbled deepslate. **Adding any cobblestone source, or any pickaxe
+> before iron, opens the gate silently and nothing will fail.** Check this page before adding either.
 
 ## Above the Cupola
 
@@ -117,11 +124,14 @@ Kept as worked examples, because each was invisible until traced.
 |---|---|
 | Torch needs iron -> iron needs beams -> beams need torch | **Broken 2026-07-30** by costing the torch copper |
 | Cupola refines iron -> Cupola recipe needs iron | **Open risk.** Must be avoided when #50 is specced |
-| Burn Barrel gates iron -> Burn Barrel is the only smelter | **Broken 2026-07-30** by moving iron to BLASTING, which only the Cupola will run |
+| Burn Barrel gates iron -> Burn Barrel is the only smelter | **Broken 2026-07-30** by shipping the Cupola in the same change |
+| Cupola gates iron -> a vanilla furnace would bypass it | **Holds today** only because no cobblestone and no pickaxe exist. Fragile; see Tier 4 |
 
 ## Changelog
 
 - **2026-07-30** - Created. Captures the Burn Barrel refuse-only gate, the torch's copper substitution,
   rebar -> iron nugget moving to the Cupola, and the ladder ending at the Cupola.
+- **2026-07-30** - Cupola Furnace built. Unrestricted smelting furnace, automates, no iron in its recipe.
+  Iron recipes are plain smelting; the gate is the barrel's allowlist plus the absence of any other furnace.
 - **2026-07-30** - Steel Offcut replaces raw iron as the beam's drop. `minecraft:raw_iron` has left the mod
   entirely; the offcut remelts to iron in the Cupola and nowhere else.
