@@ -75,8 +75,11 @@ Reached by travelling: `RegionBiomeSource` places `demolition_yard` on a distanc
 
 | Material | Source | Gated behind |
 |---|---|---|
-| Stone shards -> stone types | Sifting Rubble | Travel |
-| Reinforced concrete, more rebar | Sledgehammer | Copper sledgehammer |
+| Stone shards -> stone types | Sifting Rubble (rubble piles) | Travel |
+| **Steel I-Beam** | Steel piles | Travel |
+| **Reinforced Concrete** | Steel piles | Travel |
+| Gravel, sand, concrete powder, rebar | Sledgehammering Reinforced Concrete | Copper sledgehammer |
+| **Concrete** | concrete powder + water | Rain Collector |
 | **Cutting Torch** | Copper pipe + plastic scrap + rebar + oily rag | **Copper**, not iron |
 | **Steel Offcut** (unrefined) | Cutting Steel I-Beams | Cutting Torch |
 
@@ -126,11 +129,14 @@ Kept as worked examples, because each was invisible until traced.
 | Cupola refines iron -> Cupola recipe needs iron | **Open risk.** Must be avoided when #50 is specced |
 | Burn Barrel gates iron -> Burn Barrel is the only smelter | **Broken 2026-07-30** by shipping the Cupola in the same change |
 | Cupola gates iron -> a vanilla furnace would bypass it | **Holds today** only because no cobblestone and no pickaxe exist. Fragile; see Tier 4 |
+| Cupola needs concrete -> concrete needs Reinforced Concrete -> nothing placed it | **Broken 2026-07-30** by the steel pile. The recipe had been written against materials the biome was *meant* to have; nothing checked it was in the world, and iron was unreachable in survival with every test green |
 
 ## Changelog
 
 - **2026-07-30** - Created. Captures the Burn Barrel refuse-only gate, the torch's copper substitution,
   rebar -> iron nugget moving to the Cupola, and the ladder ending at the Cupola.
+- **2026-07-30** - Steel piles placed in the demolition yard: the survival source of Steel I-Beams and
+  Reinforced Concrete. Closes the gap where the Cupola's recipe called for concrete that nothing produced.
 - **2026-07-30** - Cupola Furnace built. Unrestricted smelting furnace, automates, no iron in its recipe.
   Iron recipes are plain smelting; the gate is the barrel's allowlist plus the absence of any other furnace.
 - **2026-07-30** - Steel Offcut replaces raw iron as the beam's drop. `minecraft:raw_iron` has left the mod
