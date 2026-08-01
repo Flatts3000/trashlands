@@ -100,9 +100,11 @@ Reached by travelling: `RegionBiomeSource` places `demolition_yard` on a distanc
 Upgrade from the Burn Barrel using demolition-yard materials (any concrete + copper pipe + the barrel
 itself). **The metal tier and the region gate are the same step** (owner, 2026-07-30).
 
-A **true upgrade, not a second appliance**: an unrestricted smelting furnace that does everything the barrel
-does, everything the barrel refuses, and iron. It also automates, which the barrel deliberately does not - so
-upgrading buys a metal tier and a machine tier at once, and you stop needing the barrel entirely.
+A **metal furnace**: `RecipeType.BLASTING`, so it melts scrap into copper and offcuts and rebar into iron,
+and it does not cook. Food and refuse stay with the Burn Barrel, which is still craftable on its own. It also
+automates, which the barrel deliberately does not, so upgrading buys a metal tier and a machine tier at once.
+
+(It was an unrestricted smelting furnace until 2026-08-01. See the gate note below for why that changed.)
 
 | Material | Source | Gated behind |
 |---|---|---|
@@ -112,12 +114,24 @@ upgrading buys a metal tier and a machine tier at once, and you stop needing the
 > **The Cupola contains no iron in its recipe**, deliberately. It is the only iron source, so any iron in
 > its recipe would recreate exactly the circle the torch's copper substitution removed.
 >
-> **How iron is actually gated - and how fragile that is.** The iron recipes are ordinary `smelting`. What
-> gates them is that the Burn Barrel refuses them (refuse-only allowlist) and **no other furnace exists in
-> this world**. A vanilla furnace needs `#minecraft:stone_crafting_materials` - cobblestone, cobbled
-> deepslate or blackstone. None are obtainable: there is no cobblestone anywhere in the mod, and no pickaxe
-> to turn shard-built deepslate into cobbled deepslate. **Adding any cobblestone source, or any pickaxe
-> before iron, opens the gate silently and nothing will fail.** Check this page before adding either.
+> **How iron is gated: a recipe type.** Both iron recipes are `minecraft:blasting` and the Cupola is a
+> `RecipeType.BLASTING` machine. A vanilla furnace cannot run a blasting recipe at all, and a vanilla blast
+> furnace costs **5 iron ingots**, so it is circular and unreachable before iron. The gate is a property of
+> the machine, and no fact about what the world can produce has to hold for it to work.
+>
+> **The previous gate failed silently, and it is the worked example for why this page exists** (recompile
+> #91, 2026-08-01). It was: iron recipes are ordinary `smelting`, gated because the barrel refuses them and
+> *no other furnace exists*. That second clause died when the Tree Nursery shipped. Wood makes a wooden
+> pickaxe; plain `deepslate` is in `mineable/pickaxe` and in **no** `needs_*_tool` tag, so a wooden pickaxe
+> drops cobbled deepslate; and that is in `#minecraft:stone_crafting_materials`. `stone_from_shards` was a
+> second route and world deepslate two blocks down a third. Worst of all, **`rebar` is a weight-40 entry in
+> `household_pulls`** - the starting biome's stream - so a player could stockpile it on day one and make
+> iron at rung 4 with no demolition yard, no Cutting Torch and no Cupola.
+>
+> The old note here warned in bold that adding a pickaxe before iron would open the gate silently. It then
+> happened, from an unrelated feature, and every test stayed green for weeks. **A gate built from the
+> absence of a material dies the moment anything adds the material.** The mod now asserts it instead:
+> `no_smelting_recipe_turns_a_mod_item_into_iron`.
 
 ## Above the Cupola
 
