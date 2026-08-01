@@ -41,8 +41,16 @@ Available at spawn, no tools required.
 | The seven base materials | Pull streams: scrap metal, plastic scrap, glass shards, organic muck, fiber scrap, e-scrap, junk |
 | Rebar | Scrap-metal pull stream. The universal handle - this world's stick |
 | Dump mushrooms, tin cans | Foraging and pulls |
+| **Raw Roach** | Disturbed out of a Block of Garbage while picking through (#78) |
 
 **Not available:** wood, stone, ore, any metal. There are no trees and nothing to mine.
+
+> **Roaches are the earliest renewable food in the game** (2026-07-31, #78), and that is a deliberate
+> exception to how thin tier 0 is. Everything else here is *found* - a can, a mushroom - and renewable
+> protein otherwise waits until rung 5 behind the Compost Heap, Fertilizer and the whole reclamation
+> ladder. Cooked Roach is pinned at the tin can's nutrition rather than above it, and the drop requires a
+> player kill so it cannot be farmed. Those two constraints are what keep it from undercutting the ladder;
+> raising either is a progression change, not a tuning pass.
 
 ## Tier 1 - trash tools
 
