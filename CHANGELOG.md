@@ -9,7 +9,15 @@ and ASCII punctuation only.
 ## [Unreleased]
 
 ### Added
-- (nothing yet)
+- **Spawn Detective** - point it at a block, pick a mob, and it tells you which rule is stopping that
+  mob from spawning there: the mob cap, the light level, the floor, the biome's spawn list, the
+  chunk not ticking, or another mod's veto. Useful once you start baiting animals onto reclaimed
+  ground and one of them refuses to settle.
+- **FTB Chunks** - a minimap, and chunk claiming for servers. The plain has no landmarks and the
+  mounds grow back, so knowing where you have been is a real problem.
+- **FTB Essentials** - `/home`, `/tpa`, and `/back`. `/back` picks up where GraveStone leaves off.
+- **FTB Quests** and its dependencies (FTB Library, FTB Teams) - the quest engine. **No quests are
+  written yet**, so the book opens empty for now.
 
 ## [0.1.0] - 2026-08-02
 

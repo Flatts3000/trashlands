@@ -107,11 +107,13 @@ towards, not something you start with.
 | [Jade](https://www.curseforge.com/minecraft/mc-mods/jade) | Tooltips. Tells you which tool a block wants and how far along a sort is. |
 | [Modonomicon](https://www.curseforge.com/minecraft/mc-mods/modonomicon) | Runs the in-game guidebook. |
 | [Pipez](https://www.curseforge.com/minecraft/mc-mods/pipez) | Item, fluid, and energy pipes. Every machine's automation behaviour is written against it. |
+| [Spawn Detective](https://github.com/Flatts3000/spawn-detective) | Point it at a block, pick a mob, and it tells you which rule is stopping that mob spawning there. Handy once you are baiting animals onto reclaimed ground. |
 
-Plus a quality-of-life layer that stays out of the way: AppleSkin, Mouse Tweaks, Inventory
-Essentials, Controlling, Toast Control, Clumps, TrashSlot, Trash Cans, GraveStone, Simple Backups,
-Extreme Sound Muffler, and the performance set (FerriteCore, ModernFix, Lithium, Sodium, and the
-Fast* recipe caches). None of it changes how the pack plays.
+Plus FTB Chunks for the minimap, FTB Essentials for `/home` and `/back`, and a quality-of-life
+layer that stays out of the way: AppleSkin, Mouse Tweaks, Inventory Essentials, Controlling, Toast
+Control, Clumps, TrashSlot, Trash Cans, GraveStone, Simple Backups, Extreme Sound Muffler, and the
+performance set (FerriteCore, ModernFix, Lithium, Sodium, and the Fast* recipe caches). None of it
+changes how the pack plays.
 
 ## Links
 
