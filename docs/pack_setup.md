@@ -45,7 +45,7 @@ tools/
 
 ## The mod lineup
 
-**45 mods**: the core six, a quality-of-life layer, the FTB stack, a tech and gadget layer, world-type enforcement, KubeJS, and six auto-pulled libraries. Locked
+**43 mods**: the core six, a quality-of-life layer, the FTB stack, a tech and gadget layer, world-type enforcement, and six auto-pulled libraries. Locked
 2026-08-02.
 
 ### Core - Recompile, the four it integrates with, and our own diagnostic
@@ -177,6 +177,26 @@ confirm the button is gone.
 - **AE2 and other FE/energy mods** - they interoperate automatically, because Recompile consumes FE
   through `Capabilities.Energy.BLOCK` with zero mod dependencies. Powah was in this list until
   2026-08-02, when power was brought into the alpha; AE2 stays out for now.
+- **KubeJS - added and removed the same day (2026-08-02). It crashes the game on load.** KubeJS
+  `26.1.2-8.0.4` bundles `better-advanced-tooltips-2601.1.0-build.8` as a jar-in-jar, and that
+  nested mod's `ItemStackMixin` fails its injection check on this Minecraft build:
+
+  ```
+  Critical injection failure: Callback method bat$getTooltipLines(I)I in
+  betteradvancedtooltips.mixins.json:ItemStackMixin failed injection check,
+  (0/1) succeeded. Scanned 0 target(s). No refMap loaded.
+  ```
+
+  "Scanned 0 target(s)" means the mixin never found its target class, which is a version mismatch in
+  the bundled mod, not in KubeJS itself. There is no newer build to move to: all five 26.1.2 KubeJS
+  releases are **beta**, and 8.0.4 is the latest. A jar-in-jar cannot be excluded from a packwiz
+  pin, so the only fix is to drop KubeJS.
+
+  It was added speculatively ("we will want it later"), not to satisfy anything shipping - the
+  world-type lock uses Default World Type, not KubeJS. **Recheck when KubeJS ships a non-beta 26.1.2
+  build, or one whose bundled tooltip mod is fixed.** Verify by launching, not by the pack audit:
+  `check_pack_deps.py` passed cleanly with KubeJS in, because a jar-in-jar mixin failure is a
+  runtime fault, not a dependency or loader-range problem.
 - **FTB Ultimine** - hold a key to break a whole vein. Digging Blocks of Garbage out of mounds *is*
   the core loop here, so ungated it takes a mound down in one hold and rewrites the pick-through
   economy. Gated off garbage it has almost nothing left to do, because there is no ore and no wood.
@@ -234,7 +254,7 @@ install task fail** ("Failed to launch modpack. An unexpected error occurred.").
 3. Name the instance **`Trashlands`** (the default `tools/sync_instance.py` looks for
    `<home>/curseforge/minecraft/Instances/Trashlands`).
 
-The manifest carries `neoforge-26.1.2.94`, so the app installs that loader and all 45 mods itself.
+The manifest carries `neoforge-26.1.2.94`, so the app installs that loader and all 43 mods itself.
 If the app cannot find that NeoForge build in its catalog the import will say so - see the loader
 note below.
 

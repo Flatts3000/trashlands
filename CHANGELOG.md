@@ -20,7 +20,6 @@ and ASCII punctuation only.
   written yet**, so the book opens empty for now.
 - **Power, and the tools that run on it** - Powah for generation and storage, then Building Gadgets,
   Charging Gadgets, Mining Gadgets, LaserIO, and Just Dire Things.
-- **KubeJS**, for pack-side recipe and data overrides.
 
 ### Changed
 - **New worlds are always the garbage world now.** The world type is fixed to Recompile's Garbage

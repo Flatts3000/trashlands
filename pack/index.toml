@@ -129,11 +129,6 @@ hash = "361a24fe140c23c623e8929519e9809b8570c76353688cb53381ae7756654485"
 metafile = true
 
 [[files]]
-file = "mods/kubejs.pw.toml"
-hash = "04b9bc450a5cd1f4d687a1d937c5f0de62c568063405a793e7f3596849785f7e"
-metafile = true
-
-[[files]]
 file = "mods/laserio.pw.toml"
 hash = "7b10b2f9479245472877fb03f6ced88c08fc08b7fb13ae6eab2ad56dabba2a69"
 metafile = true
@@ -181,11 +176,6 @@ metafile = true
 [[files]]
 file = "mods/recompile.pw.toml"
 hash = "388cbfdca249ecc80f0bbd56216aba914359abaca4b31cc43f79c72f167b3a13"
-metafile = true
-
-[[files]]
-file = "mods/rhino.pw.toml"
-hash = "985a99f7465b68e43b98f3dbe1081b7113d957c7926a8caab163503528910f42"
 metafile = true
 
 [[files]]
