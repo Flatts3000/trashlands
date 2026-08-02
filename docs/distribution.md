@@ -34,9 +34,9 @@ non-FTB equivalents - a different quest engine and a standalone minimap. Not pla
 ## Setup checklist (one-time, before v0.1.0)
 
 - [x] **GitHub repo** - `Flatts3000/trashlands`, public.
-- [x] **Pack fills out** - five mods pinned via `packwiz curseforge add`, `pack.toml` at `0.1.0`.
-- [x] **Icon** - `pack/icon.png`, 400x400, 335 KB. Placeholder; see
-  [`cf_submission_checklist.md`](./cf_submission_checklist.md).
+- [x] **Pack filled out** - 43 mods pinned via `packwiz curseforge add`.
+- [x] **Icon** - `pack/icon.png`, 512x512, 316 KB. The TRASH / LANDS wordmark; see
+  [`branding.md`](./branding.md).
 - [x] **Release pipeline** - `.github/workflows/release.yml`, tag-driven.
 - [x] **CurseForge project created** - project ID **`1636627`**
   ([Authors Console](https://authors.curseforge.com/#/projects/1636627/files)). Awaiting moderation

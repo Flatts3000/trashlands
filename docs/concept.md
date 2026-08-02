@@ -1,8 +1,10 @@
 # Trashlands - Concept
 
-**Status:** design walkthrough complete except the parked endgame/postgame cluster (updated 2026-07-14). P0-P2 + most of P3 fully specified in [`design_decisions.md`](design_decisions.md) (the per-feature log and session bookmark); [`feature_matrix.md`](feature_matrix.md) is the build order. Working name "Trashlands" (rename freely - candidates: The Heap, Landfill Earth, Wasteworld).
+**Status:** design walkthrough complete except the parked endgame/postgame cluster (updated 2026-07-14). P0-P2 + most of P3 fully specified in [`design_decisions.md`](design_decisions.md) (the per-feature log and session bookmark); [`feature_matrix.md`](feature_matrix.md) is the build order. The name **Trashlands is locked** as of 2026-08-02 - the CurseForge slug is claimed, so it is no longer up for renaming.
 
-**Build status (2026-07-15):** the **pack** is not assembled. The **Recompile mod** is a playable alpha and has shipped the garbage world, the block family, the trash tools, the Sorting Tarp, the food tier and storage (see `../recompile/docs/roadmap.md`). First real playtests happened this day, and they moved two things from "designed" to "known": the early loop needed retuning against actual play, and **the core question of what makes sifting fun is now open** - see below, and the first entry under Open questions.
+**Build status (2026-08-02):** the **pack is assembled and released**. `v0.1.0` shipped to CurseForge (project `1636627`) and GitHub Releases: 43 mods on Minecraft 26.1.2 / NeoForge 26.1.2.94, world type locked to the garbage world, a Welcome quest chapter, and a tag-driven release pipeline. See [`pack_setup.md`](pack_setup.md) for the lineup and [`release_checklist.md`](release_checklist.md) for how it ships.
+
+The **Recompile mod** is a playable alpha at v0.4.0 and has shipped the garbage world, the block family, the trash tools, the Sorting Tarp, the food tier and storage, the reclamation ladder, collectibles, and the guidebook (see `../recompile/docs/roadmap.md`). The first playtests (2026-07-15) moved two things from "designed" to "known": the early loop needed retuning against actual play, and **the core question of what makes sifting fun is now open** - see below, and the first entry under Open questions.
 **Relationship:** the showcase modpack for the **Recompile** mod. Garbage + recycling is the core to explore. Magnetism and Superposition are noted as optional, not explored (see the note below). Mod shortlist + design rules: `F:\minecraft-repos\next-mod-concepts.md`.
 
 ---
@@ -171,7 +173,7 @@ Non-Minecraft games whose *proven-fun* loops map onto ours. Fulgora (above, line
 
 ## Architecture (decided 2026-07-13)
 
-**One mod + one pack, more mods later if earned.** A single fresh companion mod (working name **Recompile**, NeoForge / MC 26.1) owns all custom systems to start: the garbage worldgen (coarse-dirt world preset, Blocks of Garbage and variants, garbage regions), the teardown-as-knowledge loop, and the mound-regrowth system. The pack owns curation, quests, tuning, and the cross-mod teardown tables (JSON datapack territory, extendable without mod releases).
+**One mod + one pack, more mods later if earned.** A single companion mod, **Recompile** (NeoForge / MC 26.1, released on CurseForge as project `1625740`), owns all custom systems to start: the garbage worldgen (coarse-dirt world preset, Blocks of Garbage and variants, garbage regions), the teardown-as-knowledge loop, and the mound-regrowth system. The pack owns curation, quests, tuning, and the cross-mod teardown tables (JSON datapack territory, extendable without mod releases).
 
 Keep internal seams clean so systems can split into their own mods later - candidate: mound regrowth as a generic data-driven accumulation engine; Magnetism / Superposition stay parked in the shortlist. Don't pre-create repos for mods that don't exist. This supersedes the build-on-vs-new-mod question: not building on Create Recycle Everything (it can still appear in the pack as a mid-tier automation layer, not the foundation).
 

@@ -1,10 +1,24 @@
 # Default to auto line endings
 * text=auto
 
-# Source / text files - always LF
+# Source / text files - always LF.
+#
+# Every extension that can appear under pack/ MUST be listed here. packwiz hashes
+# working-tree BYTES into pack/index.toml, so a file git checks out as CRLF on
+# Windows gets a different hash than the LF blob the index was built from - the
+# pack's own integrity index is then wrong on a fresh clone, and packwiz-installer
+# rejects the files it just fetched. `* text=auto` is NOT enough: it normalizes to
+# LF in the repo but still checks out CRLF on Windows.
+#
+# tools/pack_refresh.py normalizes these on disk; these rules are the other half.
 *.md text eol=lf
 *.toml text eol=lf
 *.json text eol=lf
+*.json5 text eol=lf
+*.snbt text eol=lf
+*.txt text eol=lf
+*.cfg text eol=lf
+*.js text eol=lf
 *.mcmeta text eol=lf
 *.java text eol=lf
 *.gradle text eol=lf

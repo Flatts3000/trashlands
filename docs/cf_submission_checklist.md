@@ -10,15 +10,14 @@ and versioning policy are in [`distribution.md`](./distribution.md); the per-rel
 
 ## Before you start
 
-- [x] **Pack icon ready** - `pack/icon.png`, 400x400 RGB PNG, 335 KB. Under CurseForge's 500 KB
-  ceiling. Cropped from `../recompile/docs/cf image gallery/01-garbage-world.jpg` (an in-game
-  screenshot with no HUD), so it is not AI-generated and carries no trademarked asset. **It is a
-  placeholder** - a real logo with a wordmark would serve the listing better; swap it in whenever
-  one exists, the file path does not change.
-- [x] **`pack/pack.toml` version = `0.1.0`** - the manifest version CurseForge reads.
+- [x] **Pack icon ready** - `pack/icon.png`, 512x512 RGB PNG, 316 KB, under CurseForge's 500 KB
+  ceiling. The TRASH / LANDS wordmark over the garbage world, built by `tools/make_logo.py` from a
+  Minecraft Title Generator render. Not AI-generated; see [`branding.md`](./branding.md).
+- [x] **`pack/pack.toml` version** matches the tag being shipped - the manifest version CurseForge reads.
 - [x] **Export builds clean** - `packwiz refresh && packwiz curseforge export` from `pack/` produces
-  `Trashlands-0.1.0.zip`, ~1 KB, manifest + modlist only. **No `.jar` anywhere in the zip** - the
-  five mods are CurseForge project/file references. `release.yml` asserts this.
+  `Trashlands-<version>.zip`, manifest + modlist + a small `overrides/` (icon, configs, quest
+  chapter, resource pack). **No `.jar` anywhere in the zip** - the mods are all CurseForge
+  project/file references. `release.yml` asserts this.
 - [ ] **CurseForge account** in good standing (no active project bans).
 
 ## Step 1 - Create the project
@@ -64,7 +63,7 @@ python tools/cf_release.py --zip "pack/Trashlands-0.1.0.zip" --project <id> \
 ```
 
 **Release type is `alpha` for the 0.x line.** Mark it explicitly so players arrive with the right
-expectations - the pack has no quest book and its balance numbers are first-pass.
+expectations - the quest book holds only a welcome page, and the balance numbers are first-pass.
 
 The web-form fallback, if both of the above fail:
 
@@ -85,7 +84,8 @@ The web-form fallback, if both of the above fail:
   mod's page and show the same content the pack ships.
 - [ ] **Cross-link from the Recompile mod page** - "Featured in the Trashlands modpack", pointing at
   the new slug. Recompile is project `1625740`.
-- [ ] **Update `docs/distribution.md`** with the live slug and project id.
+- [x] **Update `docs/distribution.md`** with the live slug and project id - done, it records
+  `1636627` and the repo variable/secret setup.
 
 ## What CurseForge bounces you for
 
