@@ -5,6 +5,14 @@ file = "config/defaultworldtype/client-config.toml"
 hash = "647ebef0a380431fc5d1fd993ce77bc9e2bb483d862e6778fe0a2b1b8542f0ed"
 
 [[files]]
+file = "config/ftbquests/quests/chapters/welcome.snbt"
+hash = "4120bac4dc24288d2c7cc92213fc125611a01884e79f3c5482cf724649c32c71"
+
+[[files]]
+file = "config/ftbquests/quests/lang/en_us.snbt"
+hash = "8d8b6128771707e921cf9a40d7e6b1a17505b7e48bcc815ed55cc1c3371be7fc"
+
+[[files]]
 file = "icon.png"
 hash = "419e177ba000a25bb6e07ff4d0804a42910fa4e6de2727e5344e98b1c1be2368"
 
@@ -222,3 +230,15 @@ metafile = true
 file = "mods/trashslot.pw.toml"
 hash = "71c920bbbf7464754a2e7beb48e8dae545795cc6c36206623a45188a8072e03b"
 metafile = true
+
+[[files]]
+file = "options.txt"
+hash = "eb15a0f4657e8f36b955dfeca5114ce1ea30b336323c15485b2ec9d1ddc951c5"
+
+[[files]]
+file = "resourcepacks/trashlands/assets/trashlands/textures/quests/discord.png"
+hash = "317716854cc50fc09f751b375c8e598e2e6fd966d1e7c51f4b751935e2cb58e4"
+
+[[files]]
+file = "resourcepacks/trashlands/pack.mcmeta"
+hash = "dd0c5dc9c6ad6b2e15c5f62b6047b528937b5845ad525b7502399d99bfa405d2"
