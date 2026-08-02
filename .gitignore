@@ -11,3 +11,11 @@ __pycache__/
 # Release scratch written by .github/workflows/release.yml
 /release_notes.md
 /cf_meta.json
+
+# Playwright MCP writes snapshots, console logs, and screenshots into the working
+# directory. Rendering the logo through Blockbench web left 14 PNGs and a base64
+# dump in the repo root, and only a manual clean-up kept them out of the commit.
+/.playwright-mcp/
+/page-*.yml
+/console-*.log
+
