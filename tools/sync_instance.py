@@ -163,15 +163,23 @@ def check_loader(instance: Path, mc_pin: str, loader_pin: str) -> bool:
 
     effective = app_loader or loader
     if effective:
-        have, want = version_tuple(effective), version_tuple(loader_pin)
-        # Compare only the loader digits (drop a leading MC-derived prefix mismatch
-        # by comparing the full tuples, which for NeoForge already encode MC).
-        if have and want and have < want:
-            print(f"\n  MISMATCH: instance loader {effective} is BELOW the pack pin "
-                  f"{loader_pin}.\n  Mods that require a newer loader will not load, and "
-                  "NeoForge does not warn about it.\n  Fix the instance's loader in the "
-                  "CurseForge app before trusting any test.")
+        # Check the loader FAMILY before comparing numbers. Version digits are not
+        # comparable across families: forge-47.3.27 parses to (47, 3, 27), which is
+        # numerically greater than the NeoForge pin (26, 1, 2, 94), so a Forge
+        # instance would pass a purely numeric check. And a Fabric instance would be
+        # reported as "NeoForge build too old", which is the wrong diagnosis.
+        if not effective.lower().startswith("neoforge"):
+            print(f"\n  MISMATCH: instance loader is {effective}, but this pack is "
+                  "NeoForge.\n  Recreate the instance on NeoForge in the CurseForge app.")
             ok = False
+        else:
+            have, want = version_tuple(effective), version_tuple(loader_pin)
+            if have and want and have < want:
+                print(f"\n  MISMATCH: instance loader {effective} is BELOW the pack pin "
+                      f"{loader_pin}.\n  Mods that require a newer loader will not load, and "
+                      "NeoForge does not warn about it.\n  Fix the instance's loader in the "
+                      "CurseForge app before trusting any test.")
+                ok = False
     if app_loader and loader and app_loader != loader:
         print(f"\n  NOTE: the app store ({app_loader}) and the instance json ({loader}) "
               "disagree.\n  The app store is what launches. Set the version in the "
