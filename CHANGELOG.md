@@ -13,10 +13,11 @@ and ASCII punctuation only.
 
 ## [0.1.0] - 2026-08-02
 
-First alpha. The pack is Recompile plus the four mods it integrates with, on a garbage world.
+First alpha. Recompile and the four mods it integrates with, on a garbage world, plus a
+quality-of-life layer that stays out of the way.
 
 ### Added
-- Minecraft 26.1.2 on NeoForge 26.1.2.76.
+- Minecraft 26.1.2 on NeoForge 26.1.2.94.
 - **Recompile 0.4.0** - the garbage world, Blocks of Garbage and hand sorting, trash tools, the
   Sorting Tarp and Recompile Workbench, the Scrap Network, the Cupola Furnace and the demolition
   yard, water and food, the reclamation ladder from Grass Spreader through animals, collectibles,

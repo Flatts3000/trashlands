@@ -50,6 +50,13 @@ jobs:
           go install github.com/packwiz/packwiz@latest
           echo "$(go env GOPATH)/bin" >> "$GITHUB_PATH"
 
+      # packwiz-installer is a jar, and tools/check_pack_deps.py drives it to resolve
+      # the pinned mods before reading their metadata.
+      - uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: "21"
+
       - name: Guard - pack.toml version matches the tag
         run: |
           pack_ver=$(grep -E '^version *= *' pack/pack.toml | head -1 | sed -E 's/.*"([^"]+)".*/\1/')
@@ -74,6 +81,15 @@ jobs:
             exit 1
           fi
           echo "index is current."
+
+      # Downloads every pinned jar and reads its neoforge.mods.toml. Catches a mod
+      # whose required `neoforge [X,)` sits above the pack's pin - which NeoForge does
+      # NOT warn about, it just declines to load the mod, so the pack ships looking
+      # fine and missing something. v0.1.0's first lineup pinned 26.1.2.76 with JEI
+      # needing [26.1.2.81,) and Balm [26.1.2.93,). Also runs on PRs (validate-pack.yml);
+      # repeated here because shipping an unloadable pack is worse than a slow release.
+      - name: Guard - pinned pack can actually load
+        run: python3 tools/check_pack_deps.py
 
       - name: Build CurseForge export
         id: build

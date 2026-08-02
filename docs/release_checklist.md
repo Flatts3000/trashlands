@@ -37,9 +37,24 @@ Two pins drift silently and both ship to every new downloader.
    move the pack with it. Sky Frogs shipped v1.5.3 with an untested loader because its dev instance
    was on a different build than the pack pinned - the launch test was worthless.
 
-3. **Everything else.** `cd pack && packwiz update --all`. Then check no mod now demands a newer
-   loader than the pin: a mod declaring `neoforge [X,)` above the pin does not warn, it refuses to
-   load.
+3. **Everything else.** `cd pack && packwiz update --all`, then:
+
+   ```sh
+   python tools/check_pack_deps.py     # must exit 0
+   ```
+
+   This downloads every pinned jar and reads its `neoforge.mods.toml`, failing if a required
+   dependency is missing from the pack or if any mod needs a loader newer than the pin. **A mod
+   declaring `neoforge [X,)` above the pin does not warn, it refuses to load**, so the pack boots
+   looking correct with a mod silently absent. `v0.1.0`'s first lineup pinned `26.1.2.76` while JEI
+   needed `[26.1.2.81,)` and Balm needed `[26.1.2.93,)`.
+
+   The pin is the highest lower bound any bundled mod requires - not Recompile's build number. Raise
+   `[versions] neoforge` in `pack/pack.toml` to whatever the tool names, then re-run
+   `tools/pack_refresh.py`.
+
+   The same check runs on every PR (`validate-pack.yml`) and as a release guard, so this step is
+   belt-and-braces rather than the only line of defence.
 
 ## 1. Cut the release (on `main`, clean tree)
 
