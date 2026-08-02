@@ -5,6 +5,38 @@ file = "config/defaultworldtype/client-config.toml"
 hash = "647ebef0a380431fc5d1fd993ce77bc9e2bb483d862e6778fe0a2b1b8542f0ed"
 
 [[files]]
+file = "config/fancymenu/assets/discord_color.png"
+hash = "59c8f01b45d6a42b517bd4c36ff0d9c355538a14d33a9e907ba734768f494865"
+
+[[files]]
+file = "config/fancymenu/assets/discord_gray.png"
+hash = "0816d3148a6ee128db4f4f63eb0e369e3b12e2a0f9033727f3772356eeb91cd3"
+
+[[files]]
+file = "config/fancymenu/assets/github_color.png"
+hash = "1a47b29fdd65a7ac03af9c75337bd6d732374c4a3c5ba7e545aa77a8998f55d2"
+
+[[files]]
+file = "config/fancymenu/assets/github_gray.png"
+hash = "1d5be92bff09cfc3cb90bd7b0fd78f2a29f555bec27c8d00fdd7ec68d714076c"
+
+[[files]]
+file = "config/fancymenu/assets/wordmark.png"
+hash = "2dbe9767b596910834dfae8364b455e6d5a6d6d9bae9808db5cce151115313f3"
+
+[[files]]
+file = "config/fancymenu/customizablemenus.txt"
+hash = "4c68ab99c906dd487952f61bf33c0635039a8bbff3f02099e3cd8272fe51b4aa"
+
+[[files]]
+file = "config/fancymenu/customization/trashlands_title.txt"
+hash = "09f2c6355beb78112baca4525d796772d1df6b2387f71c4ae2a1e9dec45c5de8"
+
+[[files]]
+file = "config/fancymenu/options.txt"
+hash = "6975be9194248b1c650cdf3a2d038e5e9628abcece1b95767196f82086fdab8f"
+
+[[files]]
 file = "config/ftbquests/quests/chapters/welcome.snbt"
 hash = "4120bac4dc24288d2c7cc92213fc125611a01884e79f3c5482cf724649c32c71"
 
@@ -59,6 +91,11 @@ metafile = true
 [[files]]
 file = "mods/extreme-sound-muffler.pw.toml"
 hash = "0b57b31298be758c33b18b2b7a6ef26585a7e6cf917295fa5227a84301485907"
+metafile = true
+
+[[files]]
+file = "mods/fancymenu.pw.toml"
+hash = "2dd840e5e71929e083fa01d6601300ffbe24cc29aa15b5699e9ae5a8d6b84057"
 metafile = true
 
 [[files]]
@@ -137,6 +174,11 @@ hash = "361a24fe140c23c623e8929519e9809b8570c76353688cb53381ae7756654485"
 metafile = true
 
 [[files]]
+file = "mods/konkrete.pw.toml"
+hash = "01b7b91829fdaa0283035295e022d76a23e5315cdf74c0926f1670c0135c55f1"
+metafile = true
+
+[[files]]
 file = "mods/laserio.pw.toml"
 hash = "7b10b2f9479245472877fb03f6ced88c08fc08b7fb13ae6eab2ad56dabba2a69"
 metafile = true
@@ -144,6 +186,11 @@ metafile = true
 [[files]]
 file = "mods/lithium.pw.toml"
 hash = "f132cefe224931138a7cf95a03dd30e8986329aa8d13d809e0e8129033fa7e9f"
+metafile = true
+
+[[files]]
+file = "mods/melody.pw.toml"
+hash = "95aed3a748b3bb244b11b6a9328d1bf09440a2ed61ff12a3f644a9761610773f"
 metafile = true
 
 [[files]]

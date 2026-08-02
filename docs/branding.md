@@ -85,9 +85,41 @@ Tunables if the framing needs to change:
 python tools/make_logo.py --width-pct 0.86 --bottom-pct 0.08 --anchor 0.35
 ```
 
+## The title screen
+
+FancyMenu takes over `net.minecraft.client.gui.screens.TitleScreen`, configured under
+`pack/config/fancymenu/`:
+
+| Path | What |
+|---|---|
+| `customization/trashlands_title.txt` | the layout, ported from Sky Frogs' `sky_frogs_title.txt` |
+| `assets/wordmark.png` | the pack wordmark, currently a copy of `branding/wordmark_two_row.png` |
+| `assets/discord_{gray,color}.png`, `github_{gray,color}.png` | the two link buttons, hover pairs |
+| `customizablemenus.txt`, `options.txt` | which screens FancyMenu owns, and `modpack_mode` |
+
+Layout, all positions in FancyMenu's anchor space:
+
+- **wordmark** - `top-centered`, 240x125 at (-120, 18)
+- **Discord** and **GitHub** buttons - `bottom-right`, 96x23 at (-106, -68) and (-106, -40)
+- **the vanilla Minecraft logo** - pushed to `y = -9999` with `stay_on_screen = false`, so it does
+  not sit on top of the wordmark. FancyMenu clamps an off-screen element back into view unless
+  `stay_on_screen` is off, so both changes are needed.
+
+**The wordmark box is sized for the two-row render, not Sky Frogs'.** Sky Frogs uses a 308x56 box,
+which is 5.5:1, matching its single-row 2048x373 wordmark. Ours is `wordmark_two_row.png` at
+2048x1068, or 1.918:1, so the box is 240x125 instead. Dropping the two-row image into a 5.5:1 box
+squashes it flat.
+
+**A single-row `TRASHLANDS` render would suit a title screen better** and would let the layout use
+Sky Frogs' proportions directly. Same tool and settings as above, one text row. Not done yet, and
+the two-row version is a reasonable stand-in until it is - do not slice it out of the two-row render.
+
 ## Still open
 
 - **CurseForge banner** (512x288) and a **hero shot** (1280x720) are not made. The CF page currently
   runs on the logo plus the gallery screenshots.
+- **Title-screen background** - the layout has no custom background, so the vanilla panorama shows
+  through. `branding.md` lists a proper panorama as a v1.x item; a static background is the cheaper
+  first pass.
 - The gallery shots live in the mod's repo (`../recompile/docs/cf image gallery/`). The pack borrows
   them; it does not own a gallery of its own yet.
