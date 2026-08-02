@@ -29,7 +29,7 @@ pack/
   icon.png           # the CurseForge project logo (512x512), built by tools/make_logo.py
   .packwizignore     # keep tool caches out of the index
   mods/              # one *.pw.toml per mod
-  config/            # mod config overrides, shipped as export overrides (empty today)
+  config/            # mod config overrides, shipped as export overrides (world-type lock lives here)
 branding/
   wordmark_two_row.png  # the Minecraft Title Generator render (see docs/branding.md)
   backdrop.jpg          # in-game screenshot the logo sits on
@@ -45,7 +45,7 @@ tools/
 
 ## The mod lineup
 
-**34 mods**: the core six, a quality-of-life layer, the FTB stack, and four auto-pulled libraries. Locked
+**45 mods**: the core six, a quality-of-life layer, the FTB stack, a tech and gadget layer, world-type enforcement, KubeJS, and six auto-pulled libraries. Locked
 2026-08-02.
 
 ### Core - Recompile, the four it integrates with, and our own diagnostic
@@ -72,7 +72,7 @@ has a 26.1.2 NeoForge build on CurseForge. Nothing here touches the economy.
 | Death and safety | GraveStone, Simple Backups |
 | Audio | Extreme Sound Muffler |
 
-Auto-pulled libraries: Balm, Placebo, SuperMartijn642's Core Lib, SuperMartijn642's Config Lib.
+Auto-pulled libraries: Balm, Placebo, SuperMartijn642's Core Lib, SuperMartijn642's Config Lib, Cloth Config, GuideME.
 
 ### FTB stack
 
@@ -93,6 +93,75 @@ CurseForge-exclusive**, which is what closes the Modrinth door - see
 > unfinished. Before the next release, either author at least a first chapter or drop
 > `ftb-quests-forge` from the pin set. This is a release blocker, not a nice-to-have.
 
+### Tech and gadgets
+
+Added 2026-08-02 (owner call). Power arrives with **Powah**, which is what makes the rest work -
+every gadget here runs on FE, and Recompile consumes FE through `Capabilities.Energy.BLOCK` with no
+mod dependency, so they interoperate for free.
+
+| Mod | Note |
+|---|---|
+| **Powah! (Rearchitected)** | FE generation and storage. Slug is `powah-rearchitected`; plain `powah` has no 26.1.2 build. Pulls Cloth Config and GuideME. **Alpha build** (7.0.4-alpha), same caveat as Sodium. |
+| **Building Gadgets** | Build, copy, and paste from blocks already in your inventory. Creates nothing, so it speeds up building with salvage without giving materials away. |
+| **Charging Gadgets** | A charging pad for the rest. Pure enabler. |
+| **Mining Gadgets** | Powered mining laser with configurable area. |
+| **LaserIO** | Long-range item, fluid, and energy routing with filters. |
+| **Just Dire Things** | Direwolf20's kit: powered tool and armor tiers, block breakers/placers/swappers/clickers/droppers, and its own four-material ladder (Ferricore, Blazegold, Celestigem, Eclipse Alloy). |
+
+**Concerns raised and overridden (owner call).** Recorded so the reasoning is not lost if any of
+these turn out badly in playtest:
+
+- **Mining Gadgets** is the objection that retired FTB Ultimine, with more force: digging Blocks of
+  Garbage out of mounds *is* the core loop, and this is that with power and an area.
+- **LaserIO** is the objection that retired Sophisticated Storage: it outclasses Pipez and does far
+  more than Recompile's Scrap Network, which risks making the pack's own storage tier skippable.
+- **Just Dire Things** roots its progression in `Raw <X> Ore` items and ships Ore Miner / Ore Scanner
+  / Ore X-Ray upgrades, in a pack with no ore. Wiring its four materials into garbage loot and
+  teardown tables would fix that and is arguably good content, since cross-mod teardown is the
+  stated compat surface. Not done.
+
+**Open, deliberately parked:** Powah ships uraninite ore worldgen - `#minecraft:is_overworld`,
+replacing `deepslate_ore_replaceables`, 6 veins per chunk from world bottom to y=20 - so it will
+generate in the deepslate band of this world. Powah exposes `uraninite_veins_per_chunk` config keys
+(dense and poor variants too), so setting them to 0 is the likely fix, but the config file does not
+exist until the mod runs once. Resolve after a first launch.
+
+### World type - only Garbage World
+
+The pack must never generate anything but Recompile's garbage world. Recompile alone does not
+enforce that, and correctly so: it registers `recompile:garbage` and adds it to
+`#minecraft:normal` with `"replace": false`, which **appends** it to the World Type button next to
+Default, Superflat, Amplified, and the rest. That keeps the mod usable in any pack. Enforcement is
+the pack's job.
+
+**Default World Type** (`defaultworldtype`) does it, configured in
+`pack/config/defaultworldtype/client-config.toml`:
+
+```toml
+world-preset = "recompile:garbage"      # the type selected by default
+disable-button = true                   # hides the preset selection button entirely
+allowed-world-types = ["recompile:garbage"]   # whitelist; empty would mean all
+```
+
+All three together, deliberately: the whitelist removes the alternatives, the disabled button
+removes the control, and the default covers a player who never touches either.
+
+**This is a CLIENT config**, so it governs singleplayer world creation. A dedicated server picks its
+generator from `server.properties` instead:
+
+```properties
+level-type=recompile:garbage
+```
+
+That line has to go into the server pack when one is built - see
+[`distribution.md`](./distribution.md#not-built-yet).
+
+**Verify in game after any change here.** The config is written from the mod's own schema (read out
+of `de/melanx/defaultworldtype/ClientConfig`, keys `world-preset` / `disable-button` /
+`allowed-world-types`, flat with no section). If a future version renames a key, NeoForge silently
+falls back to the default and the World Type button quietly comes back. Open Create New World and
+confirm the button is gone.
+
 ### Considered and cut
 
 - **Forgiving Void** - Sky Frogs skyblock baggage. It catches void falls, and this world seals the
@@ -105,9 +174,9 @@ CurseForge-exclusive**, which is what closes the Modrinth door - see
 - **Create and Mekanism** - not options on 26.1.2, neither has a NeoForge build past 1.21.1. This was
   checked, not assumed (`../recompile/docs/hydroponics_spec.md`). An older version of this file named
   both as the planned lineup; that plan is dead until they port.
-- **Powah, AE2, and other FE/energy mods** - they interoperate automatically, because Recompile
-  consumes FE through `Capabilities.Energy.BLOCK` with zero mod dependencies. Left out on purpose:
-  *when* the player gets power is a pack decision, and the alpha has not made it.
+- **AE2 and other FE/energy mods** - they interoperate automatically, because Recompile consumes FE
+  through `Capabilities.Energy.BLOCK` with zero mod dependencies. Powah was in this list until
+  2026-08-02, when power was brought into the alpha; AE2 stays out for now.
 - **FTB Ultimine** - hold a key to break a whole vein. Digging Blocks of Garbage out of mounds *is*
   the core loop here, so ungated it takes a mound down in one hold and rewrites the pick-through
   economy. Gated off garbage it has almost nothing left to do, because there is no ore and no wood.
@@ -165,7 +234,7 @@ install task fail** ("Failed to launch modpack. An unexpected error occurred.").
 3. Name the instance **`Trashlands`** (the default `tools/sync_instance.py` looks for
    `<home>/curseforge/minecraft/Instances/Trashlands`).
 
-The manifest carries `neoforge-26.1.2.94`, so the app installs that loader and all 34 mods itself.
+The manifest carries `neoforge-26.1.2.94`, so the app installs that loader and all 45 mods itself.
 If the app cannot find that NeoForge build in its catalog the import will say so - see the loader
 note below.
 

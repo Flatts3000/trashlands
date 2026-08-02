@@ -1,6 +1,10 @@
 hash-format = "sha256"
 
 [[files]]
+file = "config/defaultworldtype/client-config.toml"
+hash = "647ebef0a380431fc5d1fd993ce77bc9e2bb483d862e6778fe0a2b1b8542f0ed"
+
+[[files]]
 file = "icon.png"
 hash = "419e177ba000a25bb6e07ff4d0804a42910fa4e6de2727e5344e98b1c1be2368"
 
@@ -15,6 +19,21 @@ hash = "67bf5dd466a47439b026bb81c8ca53f863fd56f3c104b18dfe5c317c4a8cef3c"
 metafile = true
 
 [[files]]
+file = "mods/building-gadgets.pw.toml"
+hash = "5e63f44ba5113b18ee66c51f06c5e7a56112784130aa9051d9bedaaf64654933"
+metafile = true
+
+[[files]]
+file = "mods/charging-gadgets.pw.toml"
+hash = "97fe38c7f7f4405fe493dc933060c0adf3cddfc1252ffc66be5127035bd1d2c4"
+metafile = true
+
+[[files]]
+file = "mods/cloth-config.pw.toml"
+hash = "d0fae735921d88b89506a481b8368899b0f694a31188d7447428e472e476184d"
+metafile = true
+
+[[files]]
 file = "mods/clumps.pw.toml"
 hash = "430d0ebb018edf74670f7a2aafb5c02b9907cddfd726dd47ec406b534618c955"
 metafile = true
@@ -22,6 +41,11 @@ metafile = true
 [[files]]
 file = "mods/controlling.pw.toml"
 hash = "8cd3a3e3f55d69d8fbb6aab75a721aaf7a8c1ec9d1bc64065380dcc9fdc39530"
+metafile = true
+
+[[files]]
+file = "mods/defaultworldtype.pw.toml"
+hash = "c4ef0a6503dd9511520d47f8c1938e5910cdcc85ded4040525a47f02f3d8869d"
 metafile = true
 
 [[files]]
@@ -80,6 +104,11 @@ hash = "e83ebef0d099ac46d8a01f95bc8216b23ee14319fb16514bc368d39ea01675de"
 metafile = true
 
 [[files]]
+file = "mods/guideme.pw.toml"
+hash = "8291833f453296384c8000f604a9d7bbe9d39109acb26dd45bdf4ac0fbe8c070"
+metafile = true
+
+[[files]]
 file = "mods/inventory-essentials.pw.toml"
 hash = "55fe94b8a562c2200f5502c37eb1bda44b4b447881e005a45413a0ef7d3a159e"
 metafile = true
@@ -95,8 +124,28 @@ hash = "9c3494a766f2d34b652cbcb80c7a7544439654bb173c0e7c708d86a8d0834d50"
 metafile = true
 
 [[files]]
+file = "mods/just-dire-things.pw.toml"
+hash = "361a24fe140c23c623e8929519e9809b8570c76353688cb53381ae7756654485"
+metafile = true
+
+[[files]]
+file = "mods/kubejs.pw.toml"
+hash = "04b9bc450a5cd1f4d687a1d937c5f0de62c568063405a793e7f3596849785f7e"
+metafile = true
+
+[[files]]
+file = "mods/laserio.pw.toml"
+hash = "7b10b2f9479245472877fb03f6ced88c08fc08b7fb13ae6eab2ad56dabba2a69"
+metafile = true
+
+[[files]]
 file = "mods/lithium.pw.toml"
 hash = "f132cefe224931138a7cf95a03dd30e8986329aa8d13d809e0e8129033fa7e9f"
+metafile = true
+
+[[files]]
+file = "mods/mining-gadgets.pw.toml"
+hash = "45eacc5e1b7609b23a466e88a3708a6cd56d136dba1d379a52af4adf724ec246"
 metafile = true
 
 [[files]]
@@ -125,8 +174,18 @@ hash = "7f58f69079e947900d188726ed7c6b347d8b6c43082930e4aa2fea3f48102f97"
 metafile = true
 
 [[files]]
+file = "mods/powah-rearchitected.pw.toml"
+hash = "d362035cf6b4e6cb522aa3f1e874666163d612c2df5b98ce29109c42b928fcdc"
+metafile = true
+
+[[files]]
 file = "mods/recompile.pw.toml"
 hash = "388cbfdca249ecc80f0bbd56216aba914359abaca4b31cc43f79c72f167b3a13"
+metafile = true
+
+[[files]]
+file = "mods/rhino.pw.toml"
+hash = "985a99f7465b68e43b98f3dbe1081b7113d957c7926a8caab163503528910f42"
 metafile = true
 
 [[files]]

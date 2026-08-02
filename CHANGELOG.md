@@ -18,6 +18,14 @@ and ASCII punctuation only.
 - **FTB Essentials** - `/home`, `/tpa`, and `/back`. `/back` picks up where GraveStone leaves off.
 - **FTB Quests** and its dependencies (FTB Library, FTB Teams) - the quest engine. **No quests are
   written yet**, so the book opens empty for now.
+- **Power, and the tools that run on it** - Powah for generation and storage, then Building Gadgets,
+  Charging Gadgets, Mining Gadgets, LaserIO, and Just Dire Things.
+- **KubeJS**, for pack-side recipe and data overrides.
+
+### Changed
+- **New worlds are always the garbage world now.** The world type is fixed to Recompile's Garbage
+  World and the world-type button is gone from world creation, so there is no way to start a normal
+  Minecraft world by accident.
 
 ## [0.1.0] - 2026-08-02
 
