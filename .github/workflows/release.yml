@@ -1,0 +1,253 @@
+name: Release
+
+# Tag-driven release. Cut one with:
+#   (bump pack/pack.toml version + update CHANGELOG.md, commit, then)
+#   git tag vX.Y.Z && git push origin vX.Y.Z
+#
+# This builds the CurseForge export, creates a GitHub release with the zip and the
+# matching CHANGELOG section, and uploads the file to CurseForge.
+#
+# Ported from ../sky-frogs/.github/workflows/release.yml, with two deliberate changes:
+#   1. CurseForge game-version ids are RESOLVED FROM THE API, not hardcoded. Sky Frogs
+#      pins [11779, 10150] (MC 1.21.1 + NeoForge); those are wrong for any other MC
+#      version and go stale silently. See the resolve step for why the id lookup has to
+#      filter on version TYPE.
+#   2. CF_PROJECT_ID is a repo VARIABLE, not a hardcoded env value, so the project id can
+#      be set once the CurseForge project is approved without editing this file.
+#
+# Repo settings consumed (both optional - the run degrades instead of failing):
+#   secret  CF_API_TOKEN    the CurseForge *upload* token (same one in recompile/.env
+#                           as CURSEFORGE_API_KEY - same author account)
+#   var     CF_PROJECT_ID   the numeric project id from the CurseForge project page
+# If either is unset the CurseForge step is skipped with a warning and the GitHub
+# release still ships; upload the zip by hand or with `python tools/cf_release.py`.
+
+on:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: write # create GitHub releases
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Resolve version from tag
+        id: ver
+        run: echo "version=${GITHUB_REF_NAME#v}" >> "$GITHUB_OUTPUT"
+
+      - uses: actions/setup-go@v6
+        with:
+          go-version: stable
+          cache: false # no go.sum in this repo (packwiz is `go install`-ed); skip the cache restore
+
+      - name: Install packwiz
+        run: |
+          go install github.com/packwiz/packwiz@latest
+          echo "$(go env GOPATH)/bin" >> "$GITHUB_PATH"
+
+      - name: Guard - pack.toml version matches the tag
+        run: |
+          pack_ver=$(grep -E '^version *= *' pack/pack.toml | head -1 | sed -E 's/.*"([^"]+)".*/\1/')
+          if [ "$pack_ver" != "${{ steps.ver.outputs.version }}" ]; then
+            echo "::error::pack.toml version ($pack_ver) does not match tag (${{ steps.ver.outputs.version }}). Bump pack.toml before tagging."
+            exit 1
+          fi
+
+      # A committed index.toml that does not match the committed pack files ships hashes
+      # no file actually has, and packwiz-installer then rejects the very jars it just
+      # downloaded. `packwiz refresh` is idempotent when the index is current, so any
+      # diff here means someone edited the pack without running tools/pack_refresh.py.
+      # Catching it at release time is the last chance before it reaches players.
+      - name: Guard - committed index.toml is current
+        run: |
+          cd pack
+          packwiz refresh
+          cd ..
+          if ! git diff --quiet -- pack/index.toml pack/pack.toml; then
+            echo "::error::pack/index.toml (or pack.toml's index hash) was stale. Run 'python tools/pack_refresh.py' and commit the result."
+            git --no-pager diff -- pack/index.toml pack/pack.toml
+            exit 1
+          fi
+          echo "index is current."
+
+      - name: Build CurseForge export
+        id: build
+        run: |
+          cd pack
+          packwiz curseforge export
+          zip=$(ls *.zip)
+          echo "zip_path=pack/$zip" >> "$GITHUB_OUTPUT"
+          echo "built: pack/$zip"
+          # A manifest-only export contains no jars. If one appears, a mod was added from
+          # a non-CurseForge source and packwiz inlined the jar into overrides/ - which
+          # CurseForge rejects on redistribution grounds. Fail here, not in moderation.
+          if unzip -l "$zip" | grep -qi '\.jar$'; then
+            echo "::error::the export contains .jar files. Every mod must be sourced from CurseForge (packwiz curseforge add), or CF will reject the upload."
+            unzip -l "$zip" | grep -i '\.jar$'
+            exit 1
+          fi
+
+      - name: Extract changelog section
+        env:
+          VERSION: ${{ steps.ver.outputs.version }}
+        run: |
+          python3 - <<'PY'
+          import os, re
+          version = os.environ["VERSION"]
+          text = open("CHANGELOG.md", encoding="utf-8").read()
+          # The lookahead must also accept end-of-file. Sky Frogs' version requires a
+          # FOLLOWING "## [" section, which the very first release does not have - so
+          # v0.1.0 would silently fall back to the bare "Release 0.1.0" string.
+          m = re.search(r"## \[" + re.escape(version) + r"\][^\n]*\n(.*?)(?=\n## \[|\Z)", text, re.S)
+          cl = (m.group(1).strip() if m else f"Release {version}")
+          open("release_notes.md", "w", encoding="utf-8").write(cl)
+          print("changelog chars:", len(cl))
+          PY
+
+      # Build the CurseForge metadata. The game-version ids are looked up rather than
+      # hardcoded, because a single MC version name exists MULTIPLE times in CurseForge's
+      # version list under different types, and only one of them is valid for a modpack:
+      #
+      #   26.1.2 -> id 16082 (type 83806, slug "minecraft-26-1")   <- correct
+      #          -> id 16085 (type 1, the mod-class version)        -> errorCode 1009
+      #          -> id 16130 (type 615, slug "addons")              -> errorCode 1009
+      #
+      # So matching on name alone picks the wrong id roughly two times in three. The
+      # filter is: the version's type slug must start with "minecraft-", which selects the
+      # MC release-series type and nothing else. NeoForge comes from the "modloader" type.
+      #
+      # A Java-version id must NOT be sent for a modpack - CurseForge rejects it. Java is
+      # implied by the loader. (Mod uploads are the opposite; see recompile's release.yml.)
+      - name: Build CurseForge metadata
+        id: cfmeta
+        if: vars.CF_PROJECT_ID != ''
+        env:
+          CF_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
+          VERSION: ${{ steps.ver.outputs.version }}
+        run: |
+          if [ -z "$CF_API_TOKEN" ]; then
+            echo "::warning::CF_API_TOKEN not set - skipping CurseForge metadata build."
+            exit 0
+          fi
+          python3 - <<'PY'
+          import json, os, re, sys, urllib.request
+
+          token = os.environ["CF_API_TOKEN"]
+          version = os.environ["VERSION"]
+
+          pack = open("pack/pack.toml", encoding="utf-8").read()
+          mc_version = re.search(r'^minecraft\s*=\s*"([^"]+)"', pack, re.M).group(1)
+
+          def api(path):
+              req = urllib.request.Request(
+                  f"https://minecraft.curseforge.com/api/game/{path}",
+                  headers={"X-Api-Token": token})
+              return json.load(urllib.request.urlopen(req))
+
+          types = api("version-types")
+          versions = api("versions")
+
+          # Type ids for the MC release-series types and for the modloader type.
+          # Snapshot types are excluded by substring, not by an exact slug: the slug
+          # carries the series ("minecraft-26-snapshots"), so an equality check would
+          # silently stop matching on the next MC major.
+          mc_type_ids = {t["id"] for t in types
+                         if (t.get("slug") or "").startswith("minecraft-")
+                         and "snapshot" not in (t.get("slug") or "")}
+          loader_type_ids = {t["id"] for t in types if (t.get("slug") or "") == "modloader"}
+
+          mc_id = next((v["id"] for v in versions
+                        if v.get("name") == mc_version
+                        and v.get("gameVersionTypeID") in mc_type_ids), None)
+          loader_id = next((v["id"] for v in versions
+                            if v.get("name") == "NeoForge"
+                            and v.get("gameVersionTypeID") in loader_type_ids), None)
+
+          # Fail HERE rather than on the upload. CurseForge's 400 arrives after the file
+          # has already been transferred and its errorCode says nothing about which id was
+          # bad unless you already know the answer.
+          if mc_id is None:
+              sys.exit(f"::error::no CurseForge modpack-class id for Minecraft {mc_version}")
+          if loader_id is None:
+              sys.exit("::error::no CurseForge id resolved for the NeoForge modloader")
+
+          print(f"resolved gameVersions: MC {mc_version}={mc_id}, NeoForge={loader_id}")
+
+          json.dump({
+              "changelog": open("release_notes.md", encoding="utf-8").read(),
+              "changelogType": "markdown",
+              "displayName": f"Trashlands {version}",
+              "gameVersions": [mc_id, loader_id],
+              # 0.x is an alpha: the pack is unfinished and says so on the tin.
+              "releaseType": "alpha" if version.startswith("0.") else "release",
+          }, open("cf_meta.json", "w", encoding="utf-8"))
+          PY
+          echo "ready=1" >> "$GITHUB_OUTPUT"
+
+      # Deliberately AFTER the metadata build and BEFORE the upload. Resolving the
+      # game-version ids is the step that hard-fails on a CurseForge-side surprise, and
+      # publishing the GitHub release first would mean that failure lands on a tag that
+      # has already shipped - which is exactly how Recompile v0.4.0 went out before its
+      # CurseForge upload came back "errorCode 1021". Everything that can fail cheaply
+      # now fails before anything is public.
+      - name: Create GitHub release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          prerelease=""
+          case "${{ steps.ver.outputs.version }}" in
+            0.*|*-*) prerelease="--prerelease" ;;
+          esac
+          gh release create "${GITHUB_REF_NAME}" \
+            --title "${GITHUB_REF_NAME}" \
+            --notes-file release_notes.md \
+            $prerelease \
+            "${{ steps.build.outputs.zip_path }}"
+
+      - name: Upload to CurseForge
+        id: cf
+        if: steps.cfmeta.outputs.ready == '1'
+        env:
+          CF_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
+          CF_PROJECT_ID: ${{ vars.CF_PROJECT_ID }}
+        run: |
+          resp=$(curl -s -w '\n%{http_code}' -X POST \
+            -H "X-Api-Token: $CF_API_TOKEN" \
+            -F "metadata=<cf_meta.json" \
+            -F "file=@${{ steps.build.outputs.zip_path }}" \
+            "https://minecraft.curseforge.com/api/projects/${CF_PROJECT_ID}/upload-file")
+          body=$(printf '%s' "$resp" | sed '$d')
+          code=$(printf '%s' "$resp" | tail -n1)
+          echo "HTTP $code: $body"
+          if [ "$code" != "200" ]; then
+            echo "::error::CurseForge upload failed (HTTP $code): $body"
+            exit 1
+          fi
+          fileid=$(printf '%s' "$body" | python3 -c "import sys, json; print(json.load(sys.stdin)['id'])")
+          url="https://www.curseforge.com/minecraft/modpacks/trashlands/files/$fileid"
+          echo "### CurseForge file [$fileid]($url)" >> "$GITHUB_STEP_SUMMARY"
+
+      # The GitHub release is the real artifact channel until the CurseForge project is
+      # approved, so a missing project id is a notice, not a failure. Once CF_PROJECT_ID
+      # is set this step goes quiet.
+      - name: Note - CurseForge upload skipped
+        if: vars.CF_PROJECT_ID == '' || steps.cfmeta.outputs.ready != '1'
+        run: |
+          {
+            echo "## CurseForge upload skipped"
+            echo
+            echo "\`${GITHUB_REF_NAME}\` shipped to GitHub Releases only."
+            echo
+            echo "To enable CurseForge uploads:"
+            echo "1. Create the project (see \`docs/cf_submission_checklist.md\`)."
+            echo "2. \`gh variable set CF_PROJECT_ID --body '<numeric id>'\`"
+            echo "3. \`gh secret set CF_API_TOKEN\` (the CurseForge upload token)."
+            echo
+            echo "Meanwhile, upload by hand: \`python tools/cf_release.py --zip <path> --project <id>\`"
+          } >> "$GITHUB_STEP_SUMMARY"
+          echo "::notice::CurseForge upload skipped - CF_PROJECT_ID variable or CF_API_TOKEN secret not set."
