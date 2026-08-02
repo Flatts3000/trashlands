@@ -13,10 +13,11 @@ and ASCII punctuation only.
 
 ## [0.1.0] - 2026-08-02
 
-First alpha. The pack is Recompile plus the four mods it integrates with, on a garbage world.
+First alpha. Recompile and the four mods it integrates with, on a garbage world, plus a
+quality-of-life layer that stays out of the way.
 
 ### Added
-- Minecraft 26.1.2 on NeoForge 26.1.2.76.
+- Minecraft 26.1.2 on NeoForge 26.1.2.94.
 - **Recompile 0.4.0** - the garbage world, Blocks of Garbage and hand sorting, trash tools, the
   Sorting Tarp and Recompile Workbench, the Scrap Network, the Cupola Furnace and the demolition
   yard, water and food, the reclamation ladder from Grass Spreader through animals, collectibles,
@@ -27,6 +28,17 @@ First alpha. The pack is Recompile plus the four mods it integrates with, on a g
 - **Modonomicon 2.2.0** - the engine the guidebook runs on. Without it the guide is inert data.
 - **Pipez 1.2.31** - item, fluid, and energy pipes. Every Recompile block's automation behaviour is
   written and tested against it, so what connects and what refuses to connect is deliberate.
+
+### Quality of life
+- **Inventory and UI** - AppleSkin (food values on the HUD), Mouse Tweaks and Inventory Essentials
+  (drag-move and bulk transfers), Controlling and Searchables (search the keybind list), Toast
+  Control (mute advancement popups), Clumps (XP orbs merge instead of piling up).
+- **Storage cleanup** - TrashSlot and Trash Cans, for the parts of the trash you actually do not want.
+- **Performance** - FerriteCore and ModernFix (memory and load time), Lithium (tick optimisation),
+  FastFurnace, FastWorkbench and FastSuite (recipe lookup caching), Sodium (rendering).
+- **Death and safety** - GraveStone keeps your items and XP where you died. Simple Backups takes
+  automatic world snapshots.
+- **Extreme Sound Muffler** - mute individual sounds, globally or by radius.
 
 ### Known gaps
 - Teardown returns materials, not recipes. Recovering the recipe off a torn-down item is the mod's

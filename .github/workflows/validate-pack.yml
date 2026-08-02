@@ -1,0 +1,61 @@
+name: Validate Pack
+
+# Proves the pinned pack can actually load.
+#
+# packwiz resolves files; it never opens a jar. So nothing in the normal workflow
+# notices when a mod declares `neoforge [X,)` above the pack's pin - and NeoForge
+# does not warn about that, it silently refuses to load the mod. The pack boots
+# looking fine, minus a mod.
+#
+# That is how the first Trashlands lineup pinned 26.1.2.76 while JEI needed
+# [26.1.2.81,) and Balm needed [26.1.2.93,). JEI is core to the pack. Sky Frogs
+# hit the same class of bug twice via Apotheosis, and carries the check as a
+# heredoc in its release checklist that a human has to remember to paste.
+#
+# tools/check_pack_deps.py downloads every pinned jar and reads its
+# neoforge.mods.toml. It runs here on any change to the pinned set, and again in
+# release.yml, because shipping a pack that boots with mods missing is the worst
+# outcome available.
+
+on:
+  pull_request:
+    paths:
+      - "pack/pack.toml"
+      - "pack/mods/**"
+      - "tools/check_pack_deps.py"
+      - ".github/workflows/validate-pack.yml"
+  push:
+    branches: [main]
+    paths:
+      - "pack/pack.toml"
+      - "pack/mods/**"
+      - "tools/check_pack_deps.py"
+  workflow_dispatch:
+
+jobs:
+  deps:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+
+      - uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: "21"
+
+      - uses: actions/setup-go@v6
+        with:
+          go-version: stable
+          cache: false
+
+      - name: Install packwiz
+        run: |
+          go install github.com/packwiz/packwiz@latest
+          echo "$(go env GOPATH)/bin" >> "$GITHUB_PATH"
+
+      - name: Audit dependencies and loader pin
+        run: python tools/check_pack_deps.py

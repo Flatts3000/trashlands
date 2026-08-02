@@ -1,0 +1,13 @@
+name = "FastFurnace"
+filename = "FastFurnace-26.1.2-10.0.0.jar"
+side = "both"
+
+[download]
+hash-format = "sha1"
+hash = "4c7aa4d342aa18fdee72eb3ef701eb824846cf40"
+mode = "metadata:curseforge"
+
+[update]
+[update.curseforge]
+file-id = 8262840
+project-id = 299540
