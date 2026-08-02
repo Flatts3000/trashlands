@@ -119,7 +119,66 @@ working-tree bytes; git stores LF. If the game (or an editor) rewrote a pack fil
 refresh records the CRLF hash and the committed index points at a hash no committed file has. The
 wrapper normalizes first.
 
-## Building a test instance
+## The CurseForge dev instance (the everyday test loop)
+
+The primary local test setup. Create it once, then `tools/sync_instance.py` keeps its mods
+matching the working tree without re-importing anything.
+
+### Creating it (once, in the CurseForge app)
+
+The instance itself has to be made in the app - the loader is installed from CurseForge's own
+catalog, and **hand-placing NeoForge installer output under `Install/versions/` makes the app's
+install task fail** ("Failed to launch modpack. An unexpected error occurred."). Let the app do it.
+
+**Import the export.** This is the recommended path because it produces exactly what a player gets:
+
+1. Build the zip: `cd pack && packwiz curseforge export` -> `pack/Trashlands-<version>.zip`.
+2. CurseForge app > Minecraft > **Create Custom Profile** > **Import** > pick that zip.
+3. Name the instance **`Trashlands`** (the default `tools/sync_instance.py` looks for
+   `<home>/curseforge/minecraft/Instances/Trashlands`).
+
+The manifest carries `neoforge-26.1.2.94`, so the app installs that loader and all 28 mods itself.
+If the app cannot find that NeoForge build in its catalog the import will say so - see the loader
+note below.
+
+**Or build it by hand:** Create Custom Profile > Minecraft `26.1.2` > NeoForge `26.1.2.94` > create,
+then run `python tools/sync_instance.py` to pull the mods in.
+
+### Syncing it (every time the pack changes)
+
+```sh
+python tools/sync_instance.py            # client-side mods
+python tools/sync_instance.py --side both
+python tools/sync_instance.py --instance "C:/.../Instances/Other"
+```
+
+It refuses to run while that instance's Minecraft is open (loaded jars are locked), refreshes the
+index, serves the working-tree pack, and drives packwiz-installer. It is idempotent - a run where
+every jar is already present and hash-matching downloads nothing.
+
+Two guards it runs that bare packwiz does not:
+
+- **Before syncing, it checks the instance's loader against the pack pin.** An instance on a
+  different NeoForge build than the pack makes a test worthless: it either fails for an unrelated
+  reason or passes on a loader you are not shipping. Sky Frogs shipped v1.5.3 with no valid launch
+  test for exactly this. Override with `--force` if you know why you want the mismatch.
+- **After syncing, it audits the instance** with `check_pack_deps.py`, so a mod needing a newer
+  loader than the instance has is named now rather than silently not loading in-game.
+
+### The loader is stored twice, and the app's copy wins
+
+CurseForge records an instance's loader in **both** `<instance>/minecraftinstance.json` and the
+app-level store at
+`%LOCALAPPDATA%\Overwolf\Curse\GameInstances\MinecraftGameInstance.json`. The app-level copy is what
+launches. Editing only the instance's own json reads back fine and then reverts on launch.
+`sync_instance.py` reads both and says so if they disagree - but **change the version in the app**,
+not by editing json.
+
+That app store is a flat JSON list of instance objects, and instances are matched on resolved
+`installPath` rather than name: names are not unique enough (this machine has both `Sky Frogs` and
+`Sky Frogs (1)`).
+
+## Other ways to build a test instance
 
 **A. Prism / MultiMC + packwiz-installer (live-updating):**
 
