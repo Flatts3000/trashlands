@@ -115,7 +115,9 @@ release -> CurseForge metadata (game-version ids resolved from the API) -> Curse
 
 - [ ] **The knowledge half of teardown shipped.** Recovering a recipe off a torn-down item is the
       mod's distinct axis. Until it exists, the pack's own pitch is only half true.
-- [ ] **A quest book.** FTB Quests or the equivalent on 26.1.x, carrying the progression spine.
+- [ ] **Quest content.** FTB Quests is now bundled, so the *engine* is in - what is missing is the
+      chapters. Until they exist the book opens empty, which reads as broken. This is a blocker on
+      the very next release, not just on 1.0: author a first chapter or drop the mod.
 - [ ] **One balance pass across all loot tables and recipes together** - the standing gate in
       `../recompile/docs/roadmap.md`. Every drop rate and recipe cost shipped so far is a first-pass
       placeholder chosen to prove a mechanic. Tuning is pack responsibility even though the numbers

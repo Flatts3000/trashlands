@@ -16,17 +16,20 @@ the reason is stated.
 **CurseForge is the player-facing channel.** GitHub Releases mirrors each tag's zip for rollback and
 source-of-truth artifact hosting.
 
-### Modrinth is open to us, unlike Sky Frogs
+### CurseForge only
 
-Worth recording, because the constraint that rules Modrinth out for Sky Frogs does not apply here.
-Sky Frogs cannot ship to Modrinth: the FTB utility stack is CurseForge-only, `packwiz modrinth
-export` inlines CF-only mods as `overrides/mods/*.jar`, and Modrinth's uploader rejects that on
-redistribution grounds.
+**Closed 2026-08-02, when the FTB stack was added.** Modrinth is not an option, for exactly the
+reason it is not one for Sky Frogs: the FTB utility mods are **CurseForge-exclusive**.
+`packwiz modrinth export` inlines a CF-only mod into the zip as a real `overrides/mods/*.jar`, and
+Modrinth's uploader rejects that on redistribution grounds.
 
-Every mod in the Trashlands lineup - Recompile, JEI, Jade, Modonomicon, Pipez - is published on
-**both** platforms. So a Modrinth release is mechanically possible whenever it is wanted. It is not
-set up today; the alpha is going to one place first so there is one thing to watch. Revisit if the
-lineup stays CF/Modrinth-dual after the pack grows.
+This was briefly open. Until the FTB stack landed, every mod in the lineup was published on both
+platforms and a Modrinth release was mechanically possible. FTB Quests is the design's named quest
+engine and the narrative's vehicle, so the trade was made knowingly: the quest book is worth more
+than the second storefront.
+
+Reopening it would mean dropping FTB Library, Quests, Teams, Chunks, and Essentials and finding
+non-FTB equivalents - a different quest engine and a standalone minimap. Not planned.
 
 ## Setup checklist (one-time, before v0.1.0)
 

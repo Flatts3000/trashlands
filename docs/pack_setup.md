@@ -26,22 +26,29 @@ and reproducible.
 pack/
   pack.toml          # packwiz manifest (versions, name, version)
   index.toml         # file hash index - regenerate with tools/pack_refresh.py, never by hand
-  icon.png           # the CurseForge project logo (400x400)
+  icon.png           # the CurseForge project logo (512x512), built by tools/make_logo.py
   .packwizignore     # keep tool caches out of the index
   mods/              # one *.pw.toml per mod
-  config/            # mod config overrides, shipped as export overrides (empty today)
+  config/            # mod config overrides, shipped as export overrides (world-type lock lives here)
+branding/
+  wordmark_two_row.png  # the Minecraft Title Generator render (see docs/branding.md)
+  backdrop.jpg          # in-game screenshot the logo sits on
+  logo.png              # 512 master composite
 tools/
   pack_refresh.py    # LF-normalize + packwiz refresh. Use this, not bare `packwiz refresh`.
+  check_pack_deps.py # prove the pinned pack can actually load (deps + loader pin)
+  sync_instance.py   # push the pinned mods into the CurseForge dev instance
+  make_logo.py       # rebuild icon.png from the wordmark + backdrop
   cf_release.py      # manual CurseForge upload (the tag-driven workflow is the normal path)
   packwiz-installer-bootstrap.jar
 ```
 
 ## The mod lineup
 
-**28 mods**: the core five, a quality-of-life layer, and four auto-pulled libraries. Locked
+**43 mods**: the core six, a quality-of-life layer, the FTB stack, a tech and gadget layer, world-type enforcement, and six auto-pulled libraries. Locked
 2026-08-02.
 
-### Core - Recompile and the four it integrates with
+### Core - Recompile, the four it integrates with, and our own diagnostic
 
 | Mod | CF project | Why it is in |
 |---|---|---|
@@ -50,6 +57,7 @@ tools/
 | **Jade** | 324717 | Recompile ships 15 Jade providers: tool hints, sort progress, machine status, generator rates. |
 | **Modonomicon** | 538392 | The engine the in-game guidebook runs on. The guide is `mod_loaded`-gated data - inert without it. |
 | **Pipez** | 443900 | Recompile's automation policy (`../recompile/docs/automation_policy_spec.md`) is written and tested against it. Which blocks accept pipes and which refuse to even connect is a per-block decision, and Pipez is how it was found and is verified. |
+| **Spawn Detective** | 1621450 | Ours (`../spawn-detective`). Answers "why won't this mob spawn here" by replaying the real natural-spawn pipeline against one block and one mob and naming the rule that rejected it. Directly relevant to the reclamation ladder's animals rung, where baits only settle a mob once the ground, spacing, and player-distance gates all pass - Recompile's Jade provider names that blocker for baits, and this answers the same question for anything else. One item, one command, no world content. |
 
 ### Quality of life
 
@@ -64,7 +72,95 @@ has a 26.1.2 NeoForge build on CurseForge. Nothing here touches the economy.
 | Death and safety | GraveStone, Simple Backups |
 | Audio | Extreme Sound Muffler |
 
-Auto-pulled libraries: Balm, Placebo, SuperMartijn642's Core Lib, SuperMartijn642's Config Lib.
+Auto-pulled libraries: Balm, Placebo, SuperMartijn642's Core Lib, SuperMartijn642's Config Lib, Cloth Config, GuideME.
+
+### FTB stack
+
+Added 2026-08-02 after confirming the whole FTB line has 26.1.2 NeoForge builds. **These are
+CurseForge-exclusive**, which is what closes the Modrinth door - see
+[`distribution.md`](./distribution.md#curseforge-only).
+
+| Mod | Why it is in |
+|---|---|
+| **FTB Library** | Required by the rest. Not a choice. |
+| **FTB Quests** | The design's named quest engine, and the vehicle the narrative rides on. The engine is in; **the quest content is not written yet** - see the warning below. |
+| **FTB Teams** | Required by Quests for team-scoped progress. |
+| **FTB Chunks** | The minimap is the real reason. An endless coarse-dirt plain where mounds regrow is a world you constantly re-navigate, and there are no natural landmarks to steer by. Chunk claiming matters on servers. |
+| **FTB Essentials** | `/home`, `/tpa`, `/back`. `/back` pairs with GraveStone on a death run. |
+
+> **FTB Quests ships an EMPTY book until quests are written.** A player opening a quest book with
+> nothing in it is worse than a pack with no quest book at all - it reads as broken rather than as
+> unfinished. Before the next release, either author at least a first chapter or drop
+> `ftb-quests-forge` from the pin set. This is a release blocker, not a nice-to-have.
+
+### Tech and gadgets
+
+Added 2026-08-02 (owner call). Power arrives with **Powah**, which is what makes the rest work -
+every gadget here runs on FE, and Recompile consumes FE through `Capabilities.Energy.BLOCK` with no
+mod dependency, so they interoperate for free.
+
+| Mod | Note |
+|---|---|
+| **Powah! (Rearchitected)** | FE generation and storage. Slug is `powah-rearchitected`; plain `powah` has no 26.1.2 build. Pulls Cloth Config and GuideME. **Alpha build** (7.0.4-alpha), same caveat as Sodium. |
+| **Building Gadgets** | Build, copy, and paste from blocks already in your inventory. Creates nothing, so it speeds up building with salvage without giving materials away. |
+| **Charging Gadgets** | A charging pad for the rest. Pure enabler. |
+| **Mining Gadgets** | Powered mining laser with configurable area. |
+| **LaserIO** | Long-range item, fluid, and energy routing with filters. |
+| **Just Dire Things** | Direwolf20's kit: powered tool and armor tiers, block breakers/placers/swappers/clickers/droppers, and its own four-material ladder (Ferricore, Blazegold, Celestigem, Eclipse Alloy). |
+
+**Concerns raised and overridden (owner call).** Recorded so the reasoning is not lost if any of
+these turn out badly in playtest:
+
+- **Mining Gadgets** is the objection that retired FTB Ultimine, with more force: digging Blocks of
+  Garbage out of mounds *is* the core loop, and this is that with power and an area.
+- **LaserIO** is the objection that retired Sophisticated Storage: it outclasses Pipez and does far
+  more than Recompile's Scrap Network, which risks making the pack's own storage tier skippable.
+- **Just Dire Things** roots its progression in `Raw <X> Ore` items and ships Ore Miner / Ore Scanner
+  / Ore X-Ray upgrades, in a pack with no ore. Wiring its four materials into garbage loot and
+  teardown tables would fix that and is arguably good content, since cross-mod teardown is the
+  stated compat surface. Not done.
+
+**Open, deliberately parked:** Powah ships uraninite ore worldgen - `#minecraft:is_overworld`,
+replacing `deepslate_ore_replaceables`, 6 veins per chunk from world bottom to y=20 - so it will
+generate in the deepslate band of this world. Powah exposes `uraninite_veins_per_chunk` config keys
+(dense and poor variants too), so setting them to 0 is the likely fix, but the config file does not
+exist until the mod runs once. Resolve after a first launch.
+
+### World type - only Garbage World
+
+The pack must never generate anything but Recompile's garbage world. Recompile alone does not
+enforce that, and correctly so: it registers `recompile:garbage` and adds it to
+`#minecraft:normal` with `"replace": false`, which **appends** it to the World Type button next to
+Default, Superflat, Amplified, and the rest. That keeps the mod usable in any pack. Enforcement is
+the pack's job.
+
+**Default World Type** (`defaultworldtype`) does it, configured in
+`pack/config/defaultworldtype/client-config.toml`:
+
+```toml
+world-preset = "recompile:garbage"      # the type selected by default
+disable-button = true                   # hides the preset selection button entirely
+allowed-world-types = ["recompile:garbage"]   # whitelist; empty would mean all
+```
+
+All three together, deliberately: the whitelist removes the alternatives, the disabled button
+removes the control, and the default covers a player who never touches either.
+
+**This is a CLIENT config**, so it governs singleplayer world creation. A dedicated server picks its
+generator from `server.properties` instead:
+
+```properties
+level-type=recompile:garbage
+```
+
+That line has to go into the server pack when one is built - see
+[`distribution.md`](./distribution.md#not-built-yet).
+
+**Verify in game after any change here.** The config is written from the mod's own schema (read out
+of `de/melanx/defaultworldtype/ClientConfig`, keys `world-preset` / `disable-button` /
+`allowed-world-types`, flat with no section). If a future version renames a key, NeoForge silently
+falls back to the default and the World Type button quietly comes back. Open Create New World and
+confirm the button is gone.
 
 ### Considered and cut
 
@@ -75,6 +171,38 @@ Auto-pulled libraries: Balm, Placebo, SuperMartijn642's Core Lib, SuperMartijn64
 - **Waystones** - travel cost between mounds is plausibly part of the pacing. Revisit after playtest.
 - **Item Collectors, Simple Magnets** - mild automation of the pickup loop, and they overlap.
 - **OpenBlocks Elevator** - mounds are 3 to 15 blocks tall; there is nothing to ride up.
+- **Create and Mekanism** - not options on 26.1.2, neither has a NeoForge build past 1.21.1. This was
+  checked, not assumed (`../recompile/docs/hydroponics_spec.md`). An older version of this file named
+  both as the planned lineup; that plan is dead until they port.
+- **AE2 and other FE/energy mods** - they interoperate automatically, because Recompile consumes FE
+  through `Capabilities.Energy.BLOCK` with zero mod dependencies. Powah was in this list until
+  2026-08-02, when power was brought into the alpha; AE2 stays out for now.
+- **KubeJS - added and removed the same day (2026-08-02). It crashes the game on load.** KubeJS
+  `26.1.2-8.0.4` bundles `better-advanced-tooltips-2601.1.0-build.8` as a jar-in-jar, and that
+  nested mod's `ItemStackMixin` fails its injection check on this Minecraft build:
+
+  ```
+  Critical injection failure: Callback method bat$getTooltipLines(I)I in
+  betteradvancedtooltips.mixins.json:ItemStackMixin failed injection check,
+  (0/1) succeeded. Scanned 0 target(s). No refMap loaded.
+  ```
+
+  "Scanned 0 target(s)" means the mixin never found its target class, which is a version mismatch in
+  the bundled mod, not in KubeJS itself. There is no newer build to move to: all five 26.1.2 KubeJS
+  releases are **beta**, and 8.0.4 is the latest. A jar-in-jar cannot be excluded from a packwiz
+  pin, so the only fix is to drop KubeJS.
+
+  It was added speculatively ("we will want it later"), not to satisfy anything shipping - the
+  world-type lock uses Default World Type, not KubeJS. **Recheck when KubeJS ships a non-beta 26.1.2
+  build, or one whose bundled tooltip mod is fixed.** Verify by launching, not by the pack audit:
+  `check_pack_deps.py` passed cleanly with KubeJS in, because a jar-in-jar mixin failure is a
+  runtime fault, not a dependency or loader-range problem.
+- **FTB Ultimine** - hold a key to break a whole vein. Digging Blocks of Garbage out of mounds *is*
+  the core loop here, so ungated it takes a mound down in one hold and rewrites the pick-through
+  economy. Gated off garbage it has almost nothing left to do, because there is no ore and no wood.
+- **FTB Ranks** - server permission ranks. Nothing to permission yet.
+- **FTB Filter System** - smart item filters for routers and AE-style storage. The pack has neither.
+- **FTB XMod Compat** - glue between FTB mods and mods we do not ship.
 - **No 26.1.2 build on CurseForge** (recheck later): Crafting Tweaks, Jade Addons, Torchmaster,
   Polymorph, Supplementaries, Chipped, Functional Storage, More Overlays Updated, Fast Leaf Decay,
   Configured, Bookshelf, Inventory Tweaks Refoxed.
@@ -90,17 +218,6 @@ mod `side = "both"`. Several here are client-only in practice (Sodium, Mouse Twe
 AppleSkin, Extreme Sound Muffler, TrashSlot). That costs nothing today, but a server pack resolves
 jars by `side` - so the tags in `pack/mods/*.pw.toml` have to be corrected by hand before one is
 built, or the server ships client mods and crashes on boot.
-
-### Mods considered and not included
-
-- **Create and Mekanism.** Not options on 26.1.2 - neither has a NeoForge build past 1.21.1. This
-  was checked, not assumed (`../recompile/docs/hydroponics_spec.md`). The older plan in this file
-  named both; that plan is dead until they port.
-- **Powah, AE2, and other FE/energy mods.** They interoperate automatically, because Recompile
-  consumes FE through `Capabilities.Energy.BLOCK` with zero mod dependencies. Left out of the alpha
-  on purpose: *when* the player gets power is a pack decision, and the alpha has not made it.
-- **FTB Quests.** The quest line is the design's narrative vehicle but there is no quest book in the
-  alpha. It is a 1.0 gate, not an alpha item.
 
 ## Everyday commands
 
@@ -137,7 +254,7 @@ install task fail** ("Failed to launch modpack. An unexpected error occurred.").
 3. Name the instance **`Trashlands`** (the default `tools/sync_instance.py` looks for
    `<home>/curseforge/minecraft/Instances/Trashlands`).
 
-The manifest carries `neoforge-26.1.2.94`, so the app installs that loader and all 28 mods itself.
+The manifest carries `neoforge-26.1.2.94`, so the app installs that loader and all 43 mods itself.
 If the app cannot find that NeoForge build in its catalog the import will say so - see the loader
 note below.
 

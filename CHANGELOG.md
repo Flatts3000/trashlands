@@ -9,7 +9,22 @@ and ASCII punctuation only.
 ## [Unreleased]
 
 ### Added
-- (nothing yet)
+- **Spawn Detective** - point it at a block, pick a mob, and it tells you which rule is stopping that
+  mob from spawning there: the mob cap, the light level, the floor, the biome's spawn list, the
+  chunk not ticking, or another mod's veto. Useful once you start baiting animals onto reclaimed
+  ground and one of them refuses to settle.
+- **FTB Chunks** - a minimap, and chunk claiming for servers. The plain has no landmarks and the
+  mounds grow back, so knowing where you have been is a real problem.
+- **FTB Essentials** - `/home`, `/tpa`, and `/back`. `/back` picks up where GraveStone leaves off.
+- **FTB Quests** and its dependencies (FTB Library, FTB Teams) - the quest engine. **No quests are
+  written yet**, so the book opens empty for now.
+- **Power, and the tools that run on it** - Powah for generation and storage, then Building Gadgets,
+  Charging Gadgets, Mining Gadgets, LaserIO, and Just Dire Things.
+
+### Changed
+- **New worlds are always the garbage world now.** The world type is fixed to Recompile's Garbage
+  World and the world-type button is gone from world creation, so there is no way to start a normal
+  Minecraft world by accident.
 
 ## [0.1.0] - 2026-08-02
 

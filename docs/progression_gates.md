@@ -141,6 +141,38 @@ rung can be added if a real power system justifies one.
 
 ---
 
+## The bed, and the blueprint gate
+
+**Shipped 2026-08-02 (Recompile #95).** Beds are the first thing in this world gated on *knowledge*
+rather than on materials, so they do not sit on the metal ladder above and are recorded separately.
+
+| Want | Source | Gated by |
+|---|---|---|
+| **Idea Fragment** | Tearing a Dirty Mattress down at the Recompile Workbench, 25% a go | Prybar (to find the mattress), Scrap Knife (to tear it) |
+| **Clean Mattress blueprint** | 4 fragments about it, crafted together | Four successful rolls |
+| **Filing Cabinet** | Bulky Waste find, weight 2 | Prybar. Optional - carrying the sheet also works |
+| **Clean Mattress** | 3 wool + 3 string, **Scrap Crafting Table only, blueprint in reach** | The blueprint |
+| **String** | 2 Fiber Scrap, or 4 from a mattress teardown | Nothing |
+| **Wool** | 4 string, vanilla | Nothing |
+| **Any bed** | Clean Mattress + 3 planks; dye the mattress to pick the colour | **Planks**, so the Tree Nursery |
+
+**Three circles to not re-open.**
+
+- *Bed needs planks -> planks need a tree -> the Tree Nursery needs an Unknown Seedling.* **Holds**, and
+  deliberately: the mattress is a day-one find, so a player can hold the blueprint for hours before they
+  can use the bed. That is the intended shape - the knowledge arrives early and the materials arrive
+  late - but it means **anything that made planks harder would silently push beds out of reach**.
+- *Wool used to make a bed directly.* All sixteen recipes are deleted, which also deleted every
+  **coloured** bed. The colour ladder came back by dyeing the Clean Mattress; if the dye recipes are
+  ever cut, the world has exactly one bed colour.
+- *A vanilla crafting table would bypass the blueprint.* **Cannot**, and needs no guard: blueprint
+  recipes are their own recipe type, so a vanilla table does not resolve them at all. This is a
+  stronger gate than the Cupola's, which the table above still lists as fragile.
+
+**One thing that is NOT a gate and looks like one.** Fiber Scrap now makes string, which makes wool.
+Wool is therefore day-one cheap. That was fine to do only because wool no longer makes a bed - under
+the old recipes it would have handed every player a bed on the first afternoon.
+
 ## Known circles and near-misses
 
 Kept as worked examples, because each was invisible until traced.
@@ -151,9 +183,15 @@ Kept as worked examples, because each was invisible until traced.
 | Cupola refines iron -> Cupola recipe needs iron | **Open risk.** Must be avoided when #50 is specced |
 | Burn Barrel gates iron -> Burn Barrel is the only smelter | **Broken 2026-07-30** by shipping the Cupola in the same change |
 | Cupola gates iron -> a vanilla furnace would bypass it | **Holds today** only because no cobblestone and no pickaxe exist. Fragile; see Tier 4 |
+| Bed needs a blueprint -> blueprint needs mattress teardowns -> mattresses are a day-one find | **Holds by design.** The knowledge arrives early and the planks arrive late; the wait is the shape, not a bug |
 | Cupola needs concrete -> concrete needs Reinforced Concrete -> nothing placed it | **Broken 2026-07-30** by the steel pile. The recipe had been written against materials the biome was *meant* to have; nothing checked it was in the world, and iron was unreachable in survival with every test green |
 
 ## Changelog
+
+- **2026-08-02** - The blueprint gate (Recompile #95). Beds move behind knowledge: Idea Fragments from
+  mattress teardowns, a Clean Mattress blueprint, and the mod's own crafting table. The sixteen
+  wool-to-bed recipes are gone and colour returns through dyeing the mattress. Fiber Scrap now makes
+  string, which makes wool cheap - safe only because wool no longer makes a bed.
 
 - **2026-07-30** - Created. Captures the Burn Barrel refuse-only gate, the torch's copper substitution,
   rebar -> iron nugget moving to the Cupola, and the ladder ending at the Cupola.
