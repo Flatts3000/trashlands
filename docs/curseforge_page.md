@@ -81,7 +81,8 @@ This is an alpha and it is short in specific places.
 
 - **Teardown gives you materials, not recipes.** Recovering the *recipe* off a torn-down item is the
   mod's main idea and it is still being built. Right now the workbench is a disassembler.
-- **No quest book.** Progression is the guidebook and whatever you work out.
+- **Barely any quests.** There is a quest book, but it holds a welcome page and not much else.
+  Progression is the guidebook and whatever you work out.
 - **Balance numbers are first-pass.** Drop rates, recipe costs, and teardown yields were picked to
   prove the mechanic, not tuned against real play. Expect them to move.
 

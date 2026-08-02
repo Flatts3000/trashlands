@@ -28,7 +28,9 @@ Prior-art pass is done (see concept.md): the near-exact mod, **Dumpster Diving**
 ## The alpha mod lineup (locked 2026-08-02)
 **43 mods.** Core six: **Recompile** (1625740) plus the four it actually integrates with - **JEI** (Recompile ships a JEI plugin), **Jade** (15 providers), **Modonomicon** (the guidebook engine), **Pipez** (the automation policy is written and tested against it) - and **Spawn Detective** (1621450, ours, `../spawn-detective`), which names the rule blocking a mob from spawning at a given block; the animals rung of the reclamation ladder is exactly that question. Then a **QoL layer** ported from the Sky Frogs stack and filtered to what has a 26.1.2 CurseForge build (inventory/UI, performance, GraveStone, Simple Backups, sound muffling), the **FTB stack** (Library, Quests, Teams, Chunks, Essentials), and four auto-pulled libraries. Full table and the considered-but-cut list are in `docs/pack_setup.md`.
 
-**Two consequences of the FTB stack.** It is CurseForge-exclusive, so **Modrinth is closed to this pack** (`docs/distribution.md`). And **FTB Quests currently ships an empty book** - authoring at least a first chapter, or dropping the mod, is a blocker on the next release, not a nice-to-have.
+**One consequence of the FTB stack.** It is CurseForge-exclusive, so **Modrinth is closed to this pack** (`docs/distribution.md`).
+
+**Quest content** is `pack/config/ftbquests/quests/` - chapters in `chapters/*.snbt`, text in `lang/en_us.snbt` keyed by quest id. Today: one **Welcome** chapter, one quest, plus the Discord link as a clickable image. That exists so the book is not empty; the `The Way Home` spine (per `the_twist.md`) is unwritten. Use the `quest-voice` skill for any quest text.
 
 Cut on purpose: **Sophisticated Storage** (would make Recompile's Scrap Network dead content), **Waystones** (travel cost may be pacing), **Forgiving Void** (skyblock baggage - this world seals the void under bedrock).
 

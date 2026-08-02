@@ -88,10 +88,18 @@ CurseForge-exclusive**, which is what closes the Modrinth door - see
 | **FTB Chunks** | The minimap is the real reason. An endless coarse-dirt plain where mounds regrow is a world you constantly re-navigate, and there are no natural landmarks to steer by. Chunk claiming matters on servers. |
 | **FTB Essentials** | `/home`, `/tpa`, `/back`. `/back` pairs with GraveStone on a death run. |
 
-> **FTB Quests ships an EMPTY book until quests are written.** A player opening a quest book with
-> nothing in it is worse than a pack with no quest book at all - it reads as broken rather than as
-> unfinished. Before the next release, either author at least a first chapter or drop
-> `ftb-quests-forge` from the pin set. This is a release blocker, not a nice-to-have.
+**Quest content** lives in `pack/config/ftbquests/quests/`: chapters in `chapters/*.snbt`, all text in
+`lang/en_us.snbt` keyed by quest id (`quest.<ID>.title`, `.quest_subtitle`, `.quest_desc`). Written
+against the `quest-voice` spec in `../mc-pack-toolkit`.
+
+Today that is one chapter, **Welcome**, with a single quest and the Discord link. It exists so the
+book is not empty - an empty quest book reads as broken rather than unfinished, which is worse than
+shipping no book at all. The chapter spine proper (`The Way Home`, parts one to six, per
+`the_twist.md`) is unwritten.
+
+**The Discord link is a clickable image on the chapter canvas**, copied from how Sky Frogs does it.
+Sky Frogs stores the icon under `pack/kubejs/assets/kubejs/...` and lets KubeJS provide the
+namespace; this pack has no KubeJS, so the icon ships in a resource pack instead - see below.
 
 ### Tech and gadgets
 
@@ -125,6 +133,29 @@ replacing `deepslate_ore_replaceables`, 6 veins per chunk from world bottom to y
 generate in the deepslate band of this world. Powah exposes `uraninite_veins_per_chunk` config keys
 (dense and poor variants too), so setting them to 0 is the likely fix, but the config file does not
 exist until the mod runs once. Resolve after a first launch.
+
+### The pack resource pack, and why options.txt ships
+
+`pack/resourcepacks/trashlands/` carries pack-owned client assets. Right now that is one file, the
+Discord icon the quest book's clickable image points at (`trashlands:textures/quests/discord.png`).
+
+`pack_format` is **84**, matching Recompile's own `pack.mcmeta` for this Minecraft version. Getting
+that number wrong does not error - the pack just lists as Incompatible and the image renders as a
+missing texture, which looks worse than no image. (JEI and Jade ship 46 and 31; those are stale
+values that only work because a mod-bundled pack loads regardless of format. A user resource pack in
+`resourcepacks/` does not get that pass.)
+
+**A resource pack in `resourcepacks/` is not enabled by default**, so `pack/options.txt` ships one
+line to force it on:
+
+```
+resourcePacks:["vanilla","file/trashlands"]
+```
+
+Two consequences worth knowing. Minecraft fills in every other option with its defaults on first
+run, so this does not pin unrelated settings. But `options.txt` is a CurseForge override, so it is
+written **at install time only** - a player who later disables the pack keeps it disabled, and the
+quest book's Discord icon breaks for them with no error.
 
 ### World type - only Garbage World
 

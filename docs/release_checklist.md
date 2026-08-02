@@ -115,9 +115,10 @@ release -> CurseForge metadata (game-version ids resolved from the API) -> Curse
 
 - [ ] **The knowledge half of teardown shipped.** Recovering a recipe off a torn-down item is the
       mod's distinct axis. Until it exists, the pack's own pitch is only half true.
-- [ ] **Quest content.** FTB Quests is now bundled, so the *engine* is in - what is missing is the
-      chapters. Until they exist the book opens empty, which reads as broken. This is a blocker on
-      the very next release, not just on 1.0: author a first chapter or drop the mod.
+- [ ] **Quest content.** The engine is in and the book is no longer empty - a **Welcome** chapter
+      ships with one quest and the Discord link, which cleared the release blocker. What is missing
+      is the spine: `The Way Home`, parts one to six, per `the_twist.md`. Write it against the
+      `quest-voice` spec; the twist means the final chapters are authored against that file directly.
 - [ ] **One balance pass across all loot tables and recipes together** - the standing gate in
       `../recompile/docs/roadmap.md`. Every drop rate and recipe cost shipped so far is a first-pass
       placeholder chosen to prove a mechanic. Tuning is pack responsibility even though the numbers

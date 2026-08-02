@@ -1,0 +1,11 @@
+{
+	chapter.7A55E0BA6E000001.title: "Welcome"
+	quest.7A55E0BA6E000010.title: "Welcome to Trashlands"
+	quest.7A55E0BA6E000010.quest_desc: [
+		"There is no ore here and no trees. Everything you build starts as a Block of Garbage you dug out of a mound."
+		""
+		"Dig one up, place it, and right-click it empty-handed to pull things out. It crumbles after a few pulls, so a Sorting Tarp is the first thing worth building."
+		""
+		"The guidebook covers the rest."
+	]
+}
