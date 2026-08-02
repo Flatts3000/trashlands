@@ -93,26 +93,36 @@ FancyMenu takes over `net.minecraft.client.gui.screens.TitleScreen`, configured 
 | Path | What |
 |---|---|
 | `customization/trashlands_title.txt` | the layout, ported from Sky Frogs' `sky_frogs_title.txt` |
-| `assets/wordmark.png` | the pack wordmark, currently a copy of `branding/wordmark_two_row.png` |
+| `assets/wordmark.png` | the title wordmark, a copy of `branding/wordmark_single_row.png` |
 | `assets/discord_{gray,color}.png`, `github_{gray,color}.png` | the two link buttons, hover pairs |
 | `customizablemenus.txt`, `options.txt` | which screens FancyMenu owns, and `modpack_mode` |
 
 Layout, all positions in FancyMenu's anchor space:
 
-- **wordmark** - `top-centered`, 240x125 at (-120, 18)
+- **wordmark** - `top-centered`, 320x49 at (-160, 30)
 - **Discord** and **GitHub** buttons - `bottom-right`, 96x23 at (-106, -68) and (-106, -40)
-- **the vanilla Minecraft logo** - pushed to `y = -9999` with `stay_on_screen = false`, so it does
-  not sit on top of the wordmark. FancyMenu clamps an off-screen element back into view unless
+- **the vanilla Minecraft logo** - pushed to `y = -9999` with `stay_on_screen = false`, so the
+  wordmark can take its place. FancyMenu clamps an off-screen element back into view unless
   `stay_on_screen` is off, so both changes are needed.
 
-**The wordmark box is sized for the two-row render, not Sky Frogs'.** Sky Frogs uses a 308x56 box,
-which is 5.5:1, matching its single-row 2048x373 wordmark. Ours is `wordmark_two_row.png` at
-2048x1068, or 1.918:1, so the box is 240x125 instead. Dropping the two-row image into a 5.5:1 box
-squashes it flat.
+### Two wordmarks, two jobs
 
-**A single-row `TRASHLANDS` render would suit a title screen better** and would let the layout use
-Sky Frogs' proportions directly. Same tool and settings as above, one text row. Not done yet, and
-the two-row version is a reasonable stand-in until it is - do not slice it out of the two-row render.
+| File | Size | Aspect | Used by |
+|---|---|---|---|
+| `branding/wordmark_two_row.png` | 2048x1068 | 1.918:1 | the square pack icon, via `tools/make_logo.py` |
+| `branding/wordmark_single_row.png` | 2006x308 | 6.513:1 | the title screen |
+
+**A title screen needs the single-row shape.** Two rows is inherently about 1.9:1, so at any width
+that reads well it is tall enough to run into the menu column - the first attempt used the two-row
+render at 240x125 and landed on top of Singleplayer, Multiplayer, and Realms. Sky Frogs sizes its
+box 308x56 for the same reason: wide and short clears the buttons.
+
+The box is 320x49 rather than Sky Frogs' 308x56 because the renders differ slightly in aspect -
+6.513:1 here against their 5.49:1. Match the box to whatever the render actually is; a mismatch
+stretches the letters.
+
+**Render the row count you need.** Do not slice a single row out of the two-row render: the rows sit
+at different depths from the camera, so cutting one out warps its perspective.
 
 ## Still open
 
