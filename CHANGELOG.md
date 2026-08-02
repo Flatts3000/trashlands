@@ -9,7 +9,8 @@ and ASCII punctuation only.
 ## [Unreleased]
 
 ### Added
-- (nothing yet)
+- **A proper title screen.** The pack wordmark replaces the Minecraft logo, with Discord and
+  GitHub buttons in the corner. Runs on FancyMenu.
 
 ## [0.2.0] - 2026-08-02
 

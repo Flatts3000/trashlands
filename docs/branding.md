@@ -85,9 +85,51 @@ Tunables if the framing needs to change:
 python tools/make_logo.py --width-pct 0.86 --bottom-pct 0.08 --anchor 0.35
 ```
 
+## The title screen
+
+FancyMenu takes over `net.minecraft.client.gui.screens.TitleScreen`, configured under
+`pack/config/fancymenu/`:
+
+| Path | What |
+|---|---|
+| `customization/trashlands_title.txt` | the layout, ported from Sky Frogs' `sky_frogs_title.txt` |
+| `assets/wordmark.png` | the title wordmark, a copy of `branding/wordmark_single_row.png` |
+| `assets/discord_{gray,color}.png`, `github_{gray,color}.png` | the two link buttons, hover pairs |
+| `customizablemenus.txt`, `options.txt` | which screens FancyMenu owns, and `modpack_mode` |
+
+Layout, all positions in FancyMenu's anchor space:
+
+- **wordmark** - `top-centered`, 320x49 at (-160, 30)
+- **Discord** and **GitHub** buttons - `bottom-right`, 96x23 at (-106, -68) and (-106, -40)
+- **the vanilla Minecraft logo** - pushed to `y = -9999` with `stay_on_screen = false`, so the
+  wordmark can take its place. FancyMenu clamps an off-screen element back into view unless
+  `stay_on_screen` is off, so both changes are needed.
+
+### Two wordmarks, two jobs
+
+| File | Size | Aspect | Used by |
+|---|---|---|---|
+| `branding/wordmark_two_row.png` | 2048x1068 | 1.918:1 | the square pack icon, via `tools/make_logo.py` |
+| `branding/wordmark_single_row.png` | 2006x308 | 6.513:1 | the title screen |
+
+**A title screen needs the single-row shape.** Two rows is inherently about 1.9:1, so at any width
+that reads well it is tall enough to run into the menu column - the first attempt used the two-row
+render at 240x125 and landed on top of Singleplayer, Multiplayer, and Realms. Sky Frogs sizes its
+box 308x56 for the same reason: wide and short clears the buttons.
+
+The box is 320x49 rather than Sky Frogs' 308x56 because the renders differ slightly in aspect -
+6.513:1 here against their 5.49:1. Match the box to whatever the render actually is; a mismatch
+stretches the letters.
+
+**Render the row count you need.** Do not slice a single row out of the two-row render: the rows sit
+at different depths from the camera, so cutting one out warps its perspective.
+
 ## Still open
 
 - **CurseForge banner** (512x288) and a **hero shot** (1280x720) are not made. The CF page currently
   runs on the logo plus the gallery screenshots.
+- **Title-screen background** - the layout has no custom background, so the vanilla panorama shows
+  through. `branding.md` lists a proper panorama as a v1.x item; a static background is the cheaper
+  first pass.
 - The gallery shots live in the mod's repo (`../recompile/docs/cf image gallery/`). The pack borrows
   them; it does not own a gallery of its own yet.

@@ -156,6 +156,17 @@ rather than on materials, so they do not sit on the metal ladder above and are r
 | **Wool** | 4 string, vanilla | Nothing |
 | **Any bed** | Clean Mattress + 3 planks; dye the mattress to pick the colour | **Planks**, so the Tree Nursery |
 
+**The Hydroponics Bay is gated the same way (2026-08-02).**
+
+| Want | Source | Gated by |
+|---|---|---|
+| **Hydroponics Bay blueprint** | 6 Idea Fragments from tearing down broken washing machines | Prybar (the find and the teardown) |
+| **Hydroponics Bay** | 6 glass + 2 copper pipe + 1 Machine Frame, **blueprint in reach** | The blueprint, **and glass** - so the demolition yard for sand |
+
+That is two gates on one machine and it is deliberate: the yard supplies the sand, the dump supplies
+the knowledge, and neither substitutes for the other. Worth watching in playtest - it is the deepest
+thing in the mod and the first object behind two unrelated gates at once.
+
 **Three circles to not re-open.**
 
 - *Bed needs planks -> planks need a tree -> the Tree Nursery needs an Unknown Seedling.* **Holds**, and

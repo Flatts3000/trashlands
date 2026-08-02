@@ -8,9 +8,9 @@ Mine a mound and it grows back. Heal the ground underneath it and it is gone for
 tension the pack runs on: garbage is your only income, and the only way to make the world green is
 to give that income up.
 
-- **Status:** **alpha, released.** `v0.1.0` shipped 2026-08-02 to
+- **Status:** **alpha, released.** Latest is `v0.2.0` (2026-08-02), on
   [GitHub Releases](https://github.com/Flatts3000/trashlands/releases) and CurseForge (project
-  `1636627`). The pack is 43 mods on Minecraft 26.1.2 / NeoForge 26.1.2.94, and releases are
+  `1636627`). The pack is 46 mods on Minecraft 26.1.2 / NeoForge 26.1.2.94, and releases are
   tag-driven - see [`docs/release_checklist.md`](docs/release_checklist.md).
 - **The engine:** [Recompile](https://github.com/Flatts3000/recompile), a standalone NeoForge mod
   that owns the garbage world, teardown, the machines, and the reclamation ladder. Trashlands is its
