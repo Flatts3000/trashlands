@@ -108,6 +108,11 @@ towards, not something you start with.
 | [Modonomicon](https://www.curseforge.com/minecraft/mc-mods/modonomicon) | Runs the in-game guidebook. |
 | [Pipez](https://www.curseforge.com/minecraft/mc-mods/pipez) | Item, fluid, and energy pipes. Every machine's automation behaviour is written against it. |
 
+Plus a quality-of-life layer that stays out of the way: AppleSkin, Mouse Tweaks, Inventory
+Essentials, Controlling, Toast Control, Clumps, TrashSlot, Trash Cans, GraveStone, Simple Backups,
+Extreme Sound Muffler, and the performance set (FerriteCore, ModernFix, Lithium, Sodium, and the
+Fast* recipe caches). None of it changes how the pack plays.
+
 ## Links
 
 - **Source and design docs:** <https://github.com/Flatts3000/trashlands>

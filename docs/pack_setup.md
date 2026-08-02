@@ -32,7 +32,10 @@ tools/
 
 ## The mod lineup
 
-Five mods: Recompile and the four it integrates with. Locked 2026-08-02.
+**28 mods**: the core five, a quality-of-life layer, and four auto-pulled libraries. Locked
+2026-08-02.
+
+### Core - Recompile and the four it integrates with
 
 | Mod | CF project | Why it is in |
 |---|---|---|
@@ -42,9 +45,45 @@ Five mods: Recompile and the four it integrates with. Locked 2026-08-02.
 | **Modonomicon** | 538392 | The engine the in-game guidebook runs on. The guide is `mod_loaded`-gated data - inert without it. |
 | **Pipez** | 443900 | Recompile's automation policy (`../recompile/docs/automation_policy_spec.md`) is written and tested against it. Which blocks accept pipes and which refuse to even connect is a per-block decision, and Pipez is how it was found and is verified. |
 
-**Adding a mod:** always `packwiz curseforge add <slug>`, never `packwiz modrinth add`. A
-Modrinth-sourced mod gets inlined into the CurseForge export as a real jar, which CurseForge rejects
-on redistribution grounds. The release workflow greps the export for `.jar` and fails the run.
+### Quality of life
+
+Ported from the Sky Frogs QoL stack (`../sky-frogs/docs/mod_list.md` section 5), filtered to what
+has a 26.1.2 NeoForge build on CurseForge. Nothing here touches the economy.
+
+| Group | Mods |
+|---|---|
+| Inventory and UI | AppleSkin, Mouse Tweaks, Inventory Essentials, Controlling, Searchables, Toast Control, Clumps |
+| Cleanup | TrashSlot, Trash Cans |
+| Performance | FerriteCore, ModernFix, Lithium, FastFurnace, FastWorkbench, FastSuite, Sodium |
+| Death and safety | GraveStone, Simple Backups |
+| Audio | Extreme Sound Muffler |
+
+Auto-pulled libraries: Balm, Placebo, SuperMartijn642's Core Lib, SuperMartijn642's Config Lib.
+
+### Considered and cut
+
+- **Forgiving Void** - Sky Frogs skyblock baggage. It catches void falls, and this world seals the
+  void under bedrock, so it would never fire.
+- **Sophisticated Backpacks / Storage** - strictly better than Recompile's Scrap Bins, Scrap Barrels,
+  and Scrap Network, which would make the pack's own storage tier dead content.
+- **Waystones** - travel cost between mounds is plausibly part of the pacing. Revisit after playtest.
+- **Item Collectors, Simple Magnets** - mild automation of the pickup loop, and they overlap.
+- **OpenBlocks Elevator** - mounds are 3 to 15 blocks tall; there is nothing to ride up.
+- **No 26.1.2 build on CurseForge** (recheck later): Crafting Tweaks, Jade Addons, Torchmaster,
+  Polymorph, Supplementaries, Chipped, Functional Storage, More Overlays Updated, Fast Leaf Decay,
+  Configured, Bookshelf, Inventory Tweaks Refoxed.
+
+### Rules for adding one
+
+**Always `packwiz curseforge add <slug>`, never `packwiz modrinth add`.** A Modrinth-sourced mod
+gets inlined into the CurseForge export as a real jar, which CurseForge rejects on redistribution
+grounds. The release workflow greps the export for `.jar` and fails the run.
+
+**Side tags are unreliable.** CurseForge does not report client/server split, so packwiz marks every
+mod `side = "both"`. Several here are client-only in practice (Sodium, Mouse Tweaks, Controlling,
+AppleSkin, Extreme Sound Muffler, TrashSlot). That costs nothing today, but a server pack resolves
+jars by `side` - so the tags in `pack/mods/*.pw.toml` have to be corrected by hand before one is
+built, or the server ships client mods and crashes on boot.
 
 ### Mods considered and not included
 

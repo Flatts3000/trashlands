@@ -26,7 +26,9 @@ Garbage + recycling. A **Recompile** loop: dig Blocks of Garbage (they drop them
 Prior-art pass is done (see concept.md): the near-exact mod, **Dumpster Diving**, is abandoned on MC 1.12.2 (2018-2020). Niche is open - this is the Productive Bees -> Productive Frogs move (rebuild a beloved-but-dead concept modern).
 
 ## The alpha mod lineup (locked 2026-08-02)
-Five mods: **Recompile** (1625740) plus the four it actually integrates with - **JEI** (Recompile ships a JEI plugin), **Jade** (15 providers), **Modonomicon** (the guidebook engine), **Pipez** (the automation policy is written and tested against it). Rationale and the considered-but-excluded list are in `docs/pack_setup.md`.
+**28 mods.** Core five: **Recompile** (1625740) plus the four it actually integrates with - **JEI** (Recompile ships a JEI plugin), **Jade** (15 providers), **Modonomicon** (the guidebook engine), **Pipez** (the automation policy is written and tested against it). Then a **QoL layer** ported from the Sky Frogs stack and filtered to what has a 26.1.2 CurseForge build (inventory/UI, performance, GraveStone, Simple Backups, sound muffling), plus four auto-pulled libraries. Full table and the considered-but-cut list are in `docs/pack_setup.md`.
+
+Cut on purpose: **Sophisticated Storage** (would make Recompile's Scrap Network dead content), **Waystones** (travel cost may be pacing), **Forgiving Void** (skyblock baggage - this world seals the void under bedrock).
 
 **Create and Mekanism are dead on 26.1.2** - neither has a NeoForge build past 1.21.1 (checked, `../recompile/docs/hydroponics_spec.md`). Any doc still planning them is stale. Energy mods (Powah, AE2) interoperate for free via `Capabilities.Energy.BLOCK` but are deliberately out of the alpha: *when* the player gets power is a pack decision that has not been made.
 

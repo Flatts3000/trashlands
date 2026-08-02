@@ -5,6 +5,61 @@ file = "icon.png"
 hash = "451d26fa6316dfbe537ff829fd3ea03fa75237837bdbcee40396ce97b155a8e3"
 
 [[files]]
+file = "mods/appleskin.pw.toml"
+hash = "de7c7b5b18ca4d989b40dc3a2d2f6508af2af418558ae4f08af2c2b4635648b1"
+metafile = true
+
+[[files]]
+file = "mods/balm.pw.toml"
+hash = "67bf5dd466a47439b026bb81c8ca53f863fd56f3c104b18dfe5c317c4a8cef3c"
+metafile = true
+
+[[files]]
+file = "mods/clumps.pw.toml"
+hash = "430d0ebb018edf74670f7a2aafb5c02b9907cddfd726dd47ec406b534618c955"
+metafile = true
+
+[[files]]
+file = "mods/controlling.pw.toml"
+hash = "8cd3a3e3f55d69d8fbb6aab75a721aaf7a8c1ec9d1bc64065380dcc9fdc39530"
+metafile = true
+
+[[files]]
+file = "mods/extreme-sound-muffler.pw.toml"
+hash = "0b57b31298be758c33b18b2b7a6ef26585a7e6cf917295fa5227a84301485907"
+metafile = true
+
+[[files]]
+file = "mods/fastfurnace.pw.toml"
+hash = "1420e732d2f962c9904130c9676a08d82f869aa1b5b3220b198f3df3c739ae1d"
+metafile = true
+
+[[files]]
+file = "mods/fastsuite.pw.toml"
+hash = "0232af23ad668a5d94a51f37d3e03eda9236c032ea606e9cf9b09e3042db8d93"
+metafile = true
+
+[[files]]
+file = "mods/fastworkbench.pw.toml"
+hash = "786493a1d2e274d1e1b5b9aed4f88d622c455120a11097148d59aea65c43bdc1"
+metafile = true
+
+[[files]]
+file = "mods/ferritecore.pw.toml"
+hash = "c2d1674a4d1466e09946819d58436b555256613d2cbcb8f12e26d950bd76d8ef"
+metafile = true
+
+[[files]]
+file = "mods/gravestone-mod.pw.toml"
+hash = "e83ebef0d099ac46d8a01f95bc8216b23ee14319fb16514bc368d39ea01675de"
+metafile = true
+
+[[files]]
+file = "mods/inventory-essentials.pw.toml"
+hash = "55fe94b8a562c2200f5502c37eb1bda44b4b447881e005a45413a0ef7d3a159e"
+metafile = true
+
+[[files]]
 file = "mods/jade.pw.toml"
 hash = "eb8caa143023cd8e8ff9cc11510a6d84291f7899446231b57d1dc80f73cdd365"
 metafile = true
@@ -15,8 +70,23 @@ hash = "9c3494a766f2d34b652cbcb80c7a7544439654bb173c0e7c708d86a8d0834d50"
 metafile = true
 
 [[files]]
+file = "mods/lithium.pw.toml"
+hash = "f132cefe224931138a7cf95a03dd30e8986329aa8d13d809e0e8129033fa7e9f"
+metafile = true
+
+[[files]]
+file = "mods/modernfix.pw.toml"
+hash = "f77005f5ab1ac9093bc780b3eeeece73b7f68acb39ca3edc1bbd16621a879f8d"
+metafile = true
+
+[[files]]
 file = "mods/modonomicon.pw.toml"
 hash = "87a1a454e591a15bc8b2f2436cdf7c56a53b4cf7c06f86f5e8a914e414e285e9"
+metafile = true
+
+[[files]]
+file = "mods/mouse-tweaks.pw.toml"
+hash = "81d8d5d155a09efd87fcf2f06ef76c650313af0a9848175333df78b573782c58"
 metafile = true
 
 [[files]]
@@ -25,6 +95,51 @@ hash = "f0419946c97099f88c5d78523915a02859e4f7bcf91cfaa69c4611ce3b72ea48"
 metafile = true
 
 [[files]]
+file = "mods/placebo.pw.toml"
+hash = "7f58f69079e947900d188726ed7c6b347d8b6c43082930e4aa2fea3f48102f97"
+metafile = true
+
+[[files]]
 file = "mods/recompile.pw.toml"
 hash = "388cbfdca249ecc80f0bbd56216aba914359abaca4b31cc43f79c72f167b3a13"
+metafile = true
+
+[[files]]
+file = "mods/searchables.pw.toml"
+hash = "82e084e5fe83f87a01bc7f030f5ca0d59274122e6d634bdcb5d4c9cb3385dd71"
+metafile = true
+
+[[files]]
+file = "mods/simple-backups.pw.toml"
+hash = "e9d478702b88f597efca337f1e6e14cc870060ae2cbf4f7e1f7dd99cfc604e30"
+metafile = true
+
+[[files]]
+file = "mods/sodium.pw.toml"
+hash = "3c6a61247a60ff1df7c7dfefa5bc77e202b61d75338156387edcd9869b1b775b"
+metafile = true
+
+[[files]]
+file = "mods/supermartijn642s-config-lib.pw.toml"
+hash = "52da0337280b1cbb949d3d54676f7250d075004a0304f562ebbc32870a21f2bd"
+metafile = true
+
+[[files]]
+file = "mods/supermartijn642s-core-lib.pw.toml"
+hash = "a87b1814b4fcf583001dcf7fef683dc258ffceaefc2e6651a05b41c2cc161d13"
+metafile = true
+
+[[files]]
+file = "mods/toast-control.pw.toml"
+hash = "0ea5e6f4152b6cc6556bf25f02e1cbb9d5348a58410c6fc70a77b303577e4890"
+metafile = true
+
+[[files]]
+file = "mods/trash-cans.pw.toml"
+hash = "dde3963c20af19b3128d9fce105a8c36b4dea2fbb79d11578f99441dee0c9024"
+metafile = true
+
+[[files]]
+file = "mods/trashslot.pw.toml"
+hash = "71c920bbbf7464754a2e7beb48e8dae545795cc6c36206623a45188a8072e03b"
 metafile = true
