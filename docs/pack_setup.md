@@ -37,7 +37,7 @@ Five mods: Recompile and the four it integrates with. Locked 2026-08-02.
 | Mod | CF project | Why it is in |
 |---|---|---|
 | **Recompile** | 1625740 | The pack. Garbage world, teardown, reclamation, machines. |
-| **Just Enough Items** | 238222 | Recompile ships a JEI plugin: Sorting, Cutting, Prying, and Salvage categories, plus the Scrap Crafting Table as a station. |
+| **Just Enough Items** | 238222 | Recompile ships a JEI plugin. At the pinned 0.4.0 it registers six categories - sorting, cutting, burning, torch_cutting, prying, teardown - plus the Scrap Crafting Table as a station. (`SalvageRecipe` is the shared recipe class behind them, not a category.) |
 | **Jade** | 324717 | Recompile ships 15 Jade providers: tool hints, sort progress, machine status, generator rates. |
 | **Modonomicon** | 538392 | The engine the in-game guidebook runs on. The guide is `mod_loaded`-gated data - inert without it. |
 | **Pipez** | 443900 | Recompile's automation policy (`../recompile/docs/automation_policy_spec.md`) is written and tested against it. Which blocks accept pipes and which refuse to even connect is a per-block decision, and Pipez is how it was found and is verified. |

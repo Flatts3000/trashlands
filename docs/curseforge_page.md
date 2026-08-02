@@ -70,7 +70,7 @@ on ground green enough to hold them.
 - **Demolition yard** - rubble, steel beams, a cutting torch, reinforced concrete.
 - **The Cupola Furnace** - how you get iron without an ore vein.
 - **The Scrap Network** - Scrap Bins that bind to a material, plus barrels for the overflow.
-- **Water and food** - a Rain Collector, because the water here does not refill an infinite source.
+- **Water and food** - a Rain Collector, and food that does not start with a wheat farm.
 - **Collectibles** - a Puzzle Cube in nine pieces, rare intact finds, and a Display Pedestal that
   floats and spins whatever you put on it.
 - **An in-game guidebook** that covers the systems, so you are not reading a wiki in another window.
@@ -95,14 +95,15 @@ Bug reports and balance complaints are useful right now, more than they will be 
 4. Build a Sorting Tarp so the blocks stop crumbling on you.
 5. Open the guidebook for the rest.
 
-Rain is your water. Plan for that before you plan anything else.
+Food and water come out of the same mounds as everything else. Farmland is something you build
+towards, not something you start with.
 
 ## Mods
 
 | Mod | What it does here |
 |---|---|
 | [Recompile](https://www.curseforge.com/minecraft/mc-mods/recompile) | The world, the garbage, the machines, the reclamation ladder. Everything above. |
-| [Just Enough Items](https://www.curseforge.com/minecraft/mc-mods/jei) | Recipes, plus the pack's own Sorting, Cutting, and Prying categories. |
+| [Just Enough Items](https://www.curseforge.com/minecraft/mc-mods/jei) | Recipes, plus the pack's own categories for sorting, prying, cutting, burning, and teardown. |
 | [Jade](https://www.curseforge.com/minecraft/mc-mods/jade) | Tooltips. Tells you which tool a block wants and how far along a sort is. |
 | [Modonomicon](https://www.curseforge.com/minecraft/mc-mods/modonomicon) | Runs the in-game guidebook. |
 | [Pipez](https://www.curseforge.com/minecraft/mc-mods/pipez) | Item, fluid, and energy pipes. Every machine's automation behaviour is written against it. |

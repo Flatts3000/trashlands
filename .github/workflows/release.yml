@@ -109,20 +109,6 @@ jobs:
           print("changelog chars:", len(cl))
           PY
 
-      - name: Create GitHub release
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: |
-          prerelease=""
-          case "${{ steps.ver.outputs.version }}" in
-            0.*|*-*) prerelease="--prerelease" ;;
-          esac
-          gh release create "${GITHUB_REF_NAME}" \
-            --title "${GITHUB_REF_NAME}" \
-            --notes-file release_notes.md \
-            $prerelease \
-            "${{ steps.build.outputs.zip_path }}"
-
       # Build the CurseForge metadata. The game-version ids are looked up rather than
       # hardcoded, because a single MC version name exists MULTIPLE times in CurseForge's
       # version list under different types, and only one of them is valid for a modpack:
@@ -202,6 +188,26 @@ jobs:
           }, open("cf_meta.json", "w", encoding="utf-8"))
           PY
           echo "ready=1" >> "$GITHUB_OUTPUT"
+
+      # Deliberately AFTER the metadata build and BEFORE the upload. Resolving the
+      # game-version ids is the step that hard-fails on a CurseForge-side surprise, and
+      # publishing the GitHub release first would mean that failure lands on a tag that
+      # has already shipped - which is exactly how Recompile v0.4.0 went out before its
+      # CurseForge upload came back "errorCode 1021". Everything that can fail cheaply
+      # now fails before anything is public.
+      - name: Create GitHub release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          prerelease=""
+          case "${{ steps.ver.outputs.version }}" in
+            0.*|*-*) prerelease="--prerelease" ;;
+          esac
+          gh release create "${GITHUB_REF_NAME}" \
+            --title "${GITHUB_REF_NAME}" \
+            --notes-file release_notes.md \
+            $prerelease \
+            "${{ steps.build.outputs.zip_path }}"
 
       - name: Upload to CurseForge
         id: cf
