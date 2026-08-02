@@ -1,2 +1,30 @@
 hash-format = "sha256"
-files = []
+
+[[files]]
+file = "icon.png"
+hash = "451d26fa6316dfbe537ff829fd3ea03fa75237837bdbcee40396ce97b155a8e3"
+
+[[files]]
+file = "mods/jade.pw.toml"
+hash = "eb8caa143023cd8e8ff9cc11510a6d84291f7899446231b57d1dc80f73cdd365"
+metafile = true
+
+[[files]]
+file = "mods/jei.pw.toml"
+hash = "9c3494a766f2d34b652cbcb80c7a7544439654bb173c0e7c708d86a8d0834d50"
+metafile = true
+
+[[files]]
+file = "mods/modonomicon.pw.toml"
+hash = "87a1a454e591a15bc8b2f2436cdf7c56a53b4cf7c06f86f5e8a914e414e285e9"
+metafile = true
+
+[[files]]
+file = "mods/pipez.pw.toml"
+hash = "f0419946c97099f88c5d78523915a02859e4f7bcf91cfaa69c4611ce3b72ea48"
+metafile = true
+
+[[files]]
+file = "mods/recompile.pw.toml"
+hash = "388cbfdca249ecc80f0bbd56216aba914359abaca4b31cc43f79c72f167b3a13"
+metafile = true

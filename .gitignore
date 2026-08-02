@@ -1,3 +1,13 @@
 .idea/
 __pycache__/
 *.pyc
+
+# packwiz export artifacts - built by `packwiz curseforge export`, published from CI.
+# Committing one would ship a stale pack zip that nothing regenerates.
+/pack/*.zip
+/pack/*.mrpack
+/dist/
+
+# Release scratch written by .github/workflows/release.yml
+/release_notes.md
+/cf_meta.json
