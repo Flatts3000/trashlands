@@ -267,3 +267,59 @@ jobs:
             echo "Meanwhile, upload by hand: \`python tools/cf_release.py --zip <path> --project <id>\`"
           } >> "$GITHUB_STEP_SUMMARY"
           echo "::notice::CurseForge upload skipped - CF_PROJECT_ID variable or CF_API_TOKEN secret not set."
+
+      # Full release notes -> the Discord #changelog channel. The #announcements
+      # GitHub-release embed truncates long bodies, so this posts the whole CHANGELOG
+      # section, chunked under Discord's 2000-char message cap on line boundaries.
+      #
+      # The webhook is Terraform-managed in ../sky-frogs-community
+      # (discord_webhook.changelog); the secret comes from
+      # `terraform output -raw changelog_webhook_url`. Shared with Sky Frogs and
+      # Ribbit Survival - one #changelog carries every pack.
+      #
+      # `if: always()` so the notes still land when the CurseForge upload failed: a
+      # release that shipped to GitHub is still a release players want to read about.
+      - name: Post release notes to Discord changelog
+        if: always()
+        env:
+          DISCORD_CHANGELOG_WEBHOOK: ${{ secrets.DISCORD_CHANGELOG_WEBHOOK }}
+          VERSION: ${{ steps.ver.outputs.version }}
+        run: |
+          if [ -z "$DISCORD_CHANGELOG_WEBHOOK" ]; then
+            echo "::warning::DISCORD_CHANGELOG_WEBHOOK not set - skipping the Discord changelog post."
+            exit 0
+          fi
+          if [ ! -f release_notes.md ]; then
+            echo "::warning::release_notes.md missing - the changelog extract step did not run. Skipping."
+            exit 0
+          fi
+          python3 - <<'PY'
+          import json, os, time, urllib.request
+
+          hook = os.environ["DISCORD_CHANGELOG_WEBHOOK"]
+          version = os.environ["VERSION"]
+          notes = open("release_notes.md", encoding="utf-8").read().strip()
+          repo = os.environ.get("GITHUB_REPOSITORY", "Flatts3000/trashlands")
+          gh_url = f"https://github.com/{repo}/releases/tag/v{version}"
+
+          header = f"# Trashlands v{version}\n<{gh_url}>"
+          chunks, cur = [header], ""
+          for line in notes.splitlines():
+              if len(cur) + len(line) + 1 > 1900:   # headroom under the 2000 cap
+                  chunks.append(cur)
+                  cur = line
+              else:
+                  cur = f"{cur}\n{line}" if cur else line
+          if cur:
+              chunks.append(cur)
+
+          for chunk in chunks:
+              payload = json.dumps({"content": chunk, "allowed_mentions": {"parse": []}}).encode()
+              req = urllib.request.Request(
+                  hook, data=payload,
+                  headers={"Content-Type": "application/json", "User-Agent": "trashlands-release"})
+              with urllib.request.urlopen(req) as resp:
+                  resp.read()
+              time.sleep(1)   # stay friendly with the webhook rate limit
+          print(f"posted {len(chunks)} message(s) to #changelog")
+          PY
