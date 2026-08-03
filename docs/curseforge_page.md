@@ -122,7 +122,11 @@ changes how the pack plays.
 - **Bugs and balance feedback:** <https://github.com/Flatts3000/trashlands/issues>
 - **The mod on its own:** <https://www.curseforge.com/minecraft/mc-mods/recompile>
 
-## License
+## Art and licensing
+
+No AI-generated art. Anything sourced from elsewhere is public domain or CC0: the paintings are PD
+works off Wikimedia, the collectibles are ported from CC0 asset kits, and the rest was made for the
+mod.
 
 Pack content is MIT. Each bundled mod keeps its own license - check that mod's CurseForge page for
 its terms.
