@@ -44,9 +44,6 @@ Minecraft 26.1.2, NeoForge 26.1.2.94, 46 mods.
 A coarse-dirt plain covered in garbage mounds. No ore generates, no trees grow, and the world
 contains no water. Materials come from Blocks of Garbage dug out of the mounds.
 
-Mined mounds regrow to their original size. Healing the ground a mound stood on retires it
-permanently.
-
 New worlds always use the Garbage world type. The world-type button is removed from world creation.
 
 ## The loop
@@ -79,7 +76,7 @@ Erosion rules:
 - Placed blocks never erode.
 - Erosion does not run while you are logged off.
 - Wet farmland does not erode. Dry farmland does, and a crop on it drops rather than being destroyed.
-- Soil reverts to plain coarse dirt, never back to a mound. A retired mound stays retired.
+- Soil reverts to plain coarse dirt.
 
 ## Contents
 
@@ -103,8 +100,11 @@ Erosion rules:
 
 ## Not in yet
 
-This is an alpha. Two specific gaps:
+This is an alpha. Three specific gaps:
 
+- **Mounds do not regrow.** Renewable mounds, and the choice between keeping one as a quarry or
+  healing its footprint to retire it, are designed and not built. Garbage in a world is currently
+  finite.
 - **The quest book holds a welcome page.** Progression is the guidebook.
 - **Balance numbers are first-pass.** Drop rates, recipe costs, and teardown yields were picked to
   prove the mechanics, not tuned against play. Expect them to move.
