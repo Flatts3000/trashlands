@@ -9,8 +9,49 @@ and ASCII punctuation only.
 ## [Unreleased]
 
 ### Added
-- **A proper title screen.** The pack wordmark replaces the Minecraft logo, with Discord and
-  GitHub buttons in the corner. Runs on FancyMenu.
+- (nothing yet)
+
+## [0.3.0] - 2026-08-03
+
+Teardown finally teaches you something. Recompile 0.5.0 brings blueprints, which is the idea the
+whole pack was named after.
+
+### Added
+- **Blueprints.** Tearing anything down at the Recompile Workbench now gives you an Idea Fragment
+  toward whatever that recipe teaches. Collect enough about one thing and they craft into a
+  blueprint sheet, which unlocks the recipe at the Scrap Crafting Table. Every teardown counts;
+  there is no chance roll.
+- **The Filing Cabinet**, found in Bulky Waste. It stores sheets, condenses loose fragments on its
+  own, and works from anywhere in your scrap cluster, so you do not carry sheets around.
+- **The Hydroponics Bay.** Grows a crop from water and power with no soil. The crop you put in is
+  never consumed, and a second slot catches byproducts. It is the first machine that spends power.
+- **Recovered paintings.** Six real works turn up in Bulky Waste, and unlike vanilla paintings they
+  keep which one they are when you break and replace them.
+- **A proper title screen.** The pack wordmark replaces the Minecraft logo, with Discord and GitHub
+  buttons in the corner.
+- **A much fuller guidebook** - twelve systems that had no entry now have one, and the four
+  multiblocks have 3D pages that project the build into the world in front of you.
+
+### Changed
+- **Water no longer spreads.** Two source blocks will not fill in a third, so every bucket you pour
+  out is a bucket gone. The Rain Collector stays worth having.
+- **Iron needs a Cupola Furnace.** Rebar and Steel Offcuts became blasting recipes, so an ordinary
+  furnace will not smelt them any more.
+- **Beds are made differently.** The wool-to-bed recipes are gone; a bed is a Clean Mattress plus
+  three planks, and Clean Mattresses come from a blueprint. Coloured beds want the matching colour
+  of mattress.
+- **Roaches are far rarer** - about one per 128 blocks of garbage instead of one per 16.
+- **Fertilizer speeds up crops and saplings** the way bone meal would, which matters because this
+  world has no bone meal and cannot have any.
+
+### Fixed
+- Biomes have names again instead of showing `biome.recompile.household_sprawl`.
+
+### Heads up if you already have a world
+Three of these reach worlds made before this release: water stops spreading, iron stops smelting in
+an ordinary furnace, and the old bed recipes disappear. Nothing breaks and nothing is lost - if you
+are sleeping in a Dirty Mattress it keeps working - but if you were about to craft a vanilla bed you
+will need to tear down Dirty Mattresses at the Workbench first.
 
 ## [0.2.0] - 2026-08-02
 
