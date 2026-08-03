@@ -167,6 +167,37 @@ That is two gates on one machine and it is deliberate: the yard supplies the san
 the knowledge, and neither substitutes for the other. Worth watching in playtest - it is the deepest
 thing in the mod and the first object behind two unrelated gates at once.
 
+## The gem tier (2026-08-03)
+
+Past iron the world had nothing at all: no gold, no diamond, no redstone, no lapis, no amethyst, and
+worldgen carries no ores. This is the first thing above iron. Spec: `../recompile/docs/gem_tier_spec.md`.
+
+| Want | Source | Gated by |
+|---|---|---|
+| **Industrial scrap** | Picking a Mechanical Waste pile bare-hand | **The demolition yard**, so travel. Nothing else |
+| **Amethyst** | 12 Quartz Grit in a Separator | The Separator, and power |
+| **Diamond** | 16 Spent Abrasive in a Separator | The Separator, and power |
+| **Redstone** | 16 Magnet Scrap in a Separator | The Separator, power, **and the pull weights** - magnet scrap is the rare entry |
+| **The Separator** | 4 iron + 2 Steel I-Beam + 1 Machine Frame, plus 3 beams and 8 frames to build | **Iron**, so the Cupola |
+
+**The gate is arithmetic, and that is the whole point.** It is not "you cannot get diamond", it is "one
+piece of scrap is worth nothing". A ratio has no failure mode that an absence has: if another mod floods
+the player with circuit boards, they reach the gem using that mod's boards, which is correct rather than
+a leak. This is the direct answer to how the first iron gate died (#91), and it is why **this gate must
+never be re-expressed as a missing item or an uncraftable machine.**
+
+**Redstone is the one that matters** and it is gated in the loot table, not the recipe. It drags fifteen
+vanilla items behind it, so it is the automation tier in a single material. But a player needs redstone in
+*quantity*, so making one unit cost thirty inputs would be punishing rather than gating. The scarcity
+lives in `mechanical_pulls` instead.
+
+**Nothing precious ever falls out of the pile.** `mechanical_waste_never_drops_a_gem` asserts it, and
+`no_teardown_recipe_yields_a_gated_material` asserts the other door is shut - teardown is an allowlist, so
+the jukebox can hold a diamond (#117) without leaking one.
+
+**Not gated by this tier:** enchanting. It needs obsidian as well as diamond and lapis, and obsidian is
+deliberately out of scope. The gem tier can ship complete with enchanting still unreachable.
+
 **Three circles to not re-open.**
 
 - *Bed needs planks -> planks need a tree -> the Tree Nursery needs an Unknown Seedling.* **Holds**, and
