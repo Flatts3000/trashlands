@@ -3,6 +3,10 @@
 Source of truth for the Trashlands CurseForge listing. Edit here, then paste to CurseForge.
 The step-by-step for the first submission is in [`cf_submission_checklist.md`](./cf_submission_checklist.md).
 
+**Voice for this page: spec sheet, not sales copy.** State what the pack contains and how it
+behaves. No prose paragraphs where a list works, no selling, and no personifying blocks or the
+world. "Coarse dirt reverts grass at the frontier" - not "the junkyard takes it back".
+
 ---
 
 ## Project creation form (paste-ready)
@@ -26,7 +30,8 @@ so it does not say "Minecraft" or "modpack".
 **Category caveat:** CurseForge's modpack category list is only visible in the dropdown (the public
 categories API needs a Core API key, which is separate from the upload token). `Small / Light` and
 `Tech` are the intended picks; if the dropdown names them differently, match the closest and update
-this table. `Quests` does **not** apply to the alpha - there is no quest mod in the lineup yet.
+this table. `Quests` now applies as far as the mod list goes (FTB Quests is in), but the book holds
+one page, so it stays off until there is real quest content.
 
 ---
 
@@ -34,87 +39,103 @@ this table. `Quests` does **not** apply to the alpha - there is no quest mod in 
 
 # Trashlands
 
-A coarse-dirt plain with garbage mounds on it. There is no ore and no wood. Everything you build
-starts as a Block of Garbage you dug out of a mound and picked apart by hand.
+Minecraft 26.1.2, NeoForge 26.1.2.94, 46 mods.
 
-Mine a mound and it grows back. Heal the ground underneath it and it is gone for good. That is the
-tension the pack runs on: garbage is your only income, and the only way to make the world green is
-to give that income up.
+A coarse-dirt plain covered in garbage mounds. No ore generates, no trees grow, and the world
+contains no water. Materials come from Blocks of Garbage dug out of the mounds.
+
+Mined mounds regrow to their original size. Healing the ground a mound stood on retires it
+permanently.
+
+New worlds always use the Garbage world type. The world-type button is removed from world creation.
 
 ## The loop
 
-Dig Blocks of Garbage. Sort them. Bare hands work but the block crumbles after a few pulls, so you
-build a Sorting Tarp, then better tools, then machines that do it while you are somewhere else.
-
-Sorting gives you the base materials plus whatever was buried in the block: bags, bales, Bulky
-Waste, and found items that came out of the old world intact. Found items go to the Recompile
-Workbench, where holding right-click with the right tool takes them back apart into what they were
-made of.
-
-There is no pickaxe in the early game. That is deliberate. Nothing here is worth mining.
+1. Dig a Block of Garbage out of a mound.
+2. Sort it. Sorting by hand works, but the block crumbles after a few pulls. A Sorting Tarp stops
+   the crumbling, and later machines sort unattended.
+3. Sorting returns base materials plus what was buried in the block: bags, bales, Bulky Waste, and
+   intact found items.
+4. Take found items apart at the Recompile Workbench by holding right-click with the matching tool.
+   You get the materials they were made of.
+5. Teardown also returns Idea Fragments. Enough fragments toward one recipe craft into a blueprint
+   sheet, which unlocks that recipe at the Scrap Crafting Table. Every teardown counts; there is no
+   chance roll.
 
 ## Reclamation
 
-Grass does not spread on this world. A Grass Spreader puts it down, and the coarse earth takes it
-back from the edges unless you hold the border. Bare grass reverts first. Plant cover absorbs a hit
-and gets stripped instead. Trees hold a border permanently.
+Grass does not spread on this world. Dirt, podzol, mud, and moss all revert to coarse dirt at the
+frontier. The reclamation ladder determines what survives:
 
-So every green block is paid for by a machine you built and keep running. Nothing renews on its own.
-Your builds are never touched, and nothing erodes while you are logged off.
+| Rung | Behaviour |
+|---|---|
+| Grass Spreader | Multiblock drip irrigator. Converts coarse dirt to grass within a radius. Consumes nothing once built. |
+| Plant cover | Erodes first, leaving the soil under it intact. A border loses its plants before it loses its grass. |
+| Trees | Stop erosion permanently. The Tree Nursery is the only source; saplings are not obtainable. |
 
-Past the grass: vegetation, farmland, a Compost Heap, a Tree Nursery, and baits that settle animals
-on ground green enough to hold them.
+Erosion rules:
 
-## What else is in
+- Only soil bordering unhealed ground erodes. Interior ground is unaffected until the edge reaches it.
+- Placed blocks never erode.
+- Erosion does not run while you are logged off.
+- Wet farmland does not erode. Dry farmland does, and a crop on it drops rather than being destroyed.
+- Soil reverts to plain coarse dirt, never back to a mound. A retired mound stays retired.
+
+## Contents
 
 - **Demolition yard** - rubble, steel beams, a cutting torch, reinforced concrete.
-- **The Cupola Furnace** - how you get iron without an ore vein.
-- **The Scrap Network** - Scrap Bins that bind to a material, plus barrels for the overflow.
-- **Water and food** - a Rain Collector, and food that does not start with a wheat farm.
-- **Collectibles** - a Puzzle Cube in nine pieces, rare intact finds, and a Display Pedestal that
-  floats and spins whatever you put on it.
-- **An in-game guidebook** that covers the systems, so you are not reading a wiki in another window.
+- **Cupola Furnace** - iron without an ore vein. Rebar and Steel Offcuts are blasting recipes, so an
+  ordinary furnace will not smelt them.
+- **Scrap Network** - Scrap Bins bound to one material each, plus barrels for overflow. The Filing
+  Cabinet stores blueprint sheets and works from anywhere in the cluster.
+- **Hydroponics Bay** - grows a crop from water and power with no soil. The input crop is not
+  consumed. A second slot catches byproducts.
+- **Water** - a Rain Collector is the only source. Water does not spread, so two source blocks will
+  not fill in a third.
+- **Food** - tin cans, which apply a random effect on eating the way Suspicious Stew does, and
+  foraged dump mushrooms. No thirst bar.
+- **Collectibles** - a Puzzle Cube in nine pieces, intact found objects, six recovered paintings
+  that keep their variant when broken and replaced, and a Display Pedestal.
+- **Power and gadgets** - Powah for FE generation and storage, plus Building Gadgets, Mining
+  Gadgets, Charging Gadgets, LaserIO, and Just Dire Things.
+- **Guidebook** - in-game, covers every system. Multiblock entries have 3D pages that project the
+  build into the world in front of you.
 
-## What is not in yet
+## Not in yet
 
-This is an alpha and it is short in specific places.
+This is an alpha. Two specific gaps:
 
-- **Teardown gives you materials, not recipes.** Recovering the *recipe* off a torn-down item is the
-  mod's main idea and it is still being built. Right now the workbench is a disassembler.
-- **Barely any quests.** There is a quest book, but it holds a welcome page and not much else.
-  Progression is the guidebook and whatever you work out.
+- **The quest book holds a welcome page.** Progression is the guidebook.
 - **Balance numbers are first-pass.** Drop rates, recipe costs, and teardown yields were picked to
-  prove the mechanic, not tuned against real play. Expect them to move.
-
-Bug reports and balance complaints are useful right now, more than they will be later.
+  prove the mechanics, not tuned against play. Expect them to move.
 
 ## Getting started
 
 1. Dig a Block of Garbage out of a mound with your hands.
 2. Place it, then right-click it empty-handed to pull items out. It crumbles after a few pulls.
 3. Craft the Scrap Crafting Table, then a prybar and a scrap knife.
-4. Build a Sorting Tarp so the blocks stop crumbling on you.
-5. Open the guidebook for the rest.
+4. Build a Sorting Tarp.
+5. The guidebook covers the rest.
 
-Food and water come out of the same mounds as everything else. Farmland is something you build
-towards, not something you start with.
+Food and water come out of the same mounds as everything else. Farmland is built towards, not
+started with.
 
 ## Mods
 
-| Mod | What it does here |
+| Mod | Role here |
 |---|---|
-| [Recompile](https://www.curseforge.com/minecraft/mc-mods/recompile) | The world, the garbage, the machines, the reclamation ladder. Everything above. |
-| [Just Enough Items](https://www.curseforge.com/minecraft/mc-mods/jei) | Recipes, plus the pack's own categories for sorting, prying, cutting, burning, and teardown. |
-| [Jade](https://www.curseforge.com/minecraft/mc-mods/jade) | Tooltips. Tells you which tool a block wants and how far along a sort is. |
-| [Modonomicon](https://www.curseforge.com/minecraft/mc-mods/modonomicon) | Runs the in-game guidebook. |
-| [Pipez](https://www.curseforge.com/minecraft/mc-mods/pipez) | Item, fluid, and energy pipes. Every machine's automation behaviour is written against it. |
-| [Spawn Detective](https://github.com/Flatts3000/spawn-detective) | Point it at a block, pick a mob, and it tells you which rule is stopping that mob spawning there. Handy once you are baiting animals onto reclaimed ground. |
+| [Recompile](https://www.curseforge.com/minecraft/mc-mods/recompile) | The world type, the garbage, the machines, teardown, the reclamation ladder. Everything above. |
+| [Just Enough Items](https://www.curseforge.com/minecraft/mc-mods/jei) | Recipes, plus Recompile's own categories for sorting, prying, cutting, burning, and teardown. |
+| [Jade](https://www.curseforge.com/minecraft/mc-mods/jade) | Block tooltips: which tool a block requires, and how far a sort has progressed. |
+| [Modonomicon](https://www.curseforge.com/minecraft/mc-mods/modonomicon) | The guidebook engine. |
+| [Pipez](https://www.curseforge.com/minecraft/mc-mods/pipez) | Item, fluid, and energy pipes. Every Recompile block's automation behaviour is written and tested against it. |
+| [Spawn Detective](https://github.com/Flatts3000/spawn-detective) | Reports which rule is blocking a given mob from spawning at a given block. Relevant once you are baiting animals onto reclaimed ground. |
 
-Plus FTB Chunks for the minimap, FTB Essentials for `/home` and `/back`, and a quality-of-life
-layer that stays out of the way: AppleSkin, Mouse Tweaks, Inventory Essentials, Controlling, Toast
-Control, Clumps, TrashSlot, Trash Cans, GraveStone, Simple Backups, Extreme Sound Muffler, and the
-performance set (FerriteCore, ModernFix, Lithium, Sodium, and the Fast* recipe caches). None of it
-changes how the pack plays.
+Also in: Powah, Building Gadgets, Mining Gadgets, Charging Gadgets, LaserIO, Just Dire Things, FTB
+Quests, FTB Chunks, FTB Essentials, FTB Teams, AppleSkin, Mouse Tweaks, Inventory Essentials,
+Controlling, Searchables, Toast Control, Clumps, TrashSlot, Trash Cans, GraveStone, Simple Backups,
+Extreme Sound Muffler, FancyMenu, Default World Type, and the performance set (FerriteCore,
+ModernFix, Lithium, Sodium, FastFurnace, FastWorkbench, FastSuite).
 
 ## Links
 
@@ -124,9 +145,8 @@ changes how the pack plays.
 
 ## Art and licensing
 
-No AI-generated art. Anything sourced from elsewhere is public domain or CC0: the paintings are PD
-works off Wikimedia, the collectibles are ported from CC0 asset kits, and the rest was made for the
-mod.
+Art sourced from elsewhere is public domain or CC0. The paintings are PD works off Wikimedia and the
+collectibles are ported from CC0 asset kits. The rest was made for the mod.
 
 Pack content is MIT. Each bundled mod keeps its own license - check that mod's CurseForge page for
 its terms.
