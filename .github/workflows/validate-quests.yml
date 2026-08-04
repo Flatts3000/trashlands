@@ -1,0 +1,64 @@
+name: Validate Quests
+
+# Static checks on the quest book. Separate from validate-pack.yml on purpose:
+# that workflow needs Java, Go, packwiz, and downloads every pinned jar, which is
+# a lot of machinery to make someone wait on for a typo in a description. This
+# one is Python and nothing else.
+#
+# What it catches is the class of quest bug that is SILENT in game:
+#
+#   - an id whose first hex digit is 8-F parses as a negative long, so FTB
+#     regenerates it on load and every dependency pointing at it disappears
+#   - text authored inline in a chapter file instead of the lang file does not
+#     render, and gets wiped on the next save
+#   - a lang key for an id that no longer exists never renders at all
+#   - a chapter image with no matching file draws a missing-texture square
+#
+# None of these log an error. The book just comes out wrong.
+#
+# NOT run here: the voice linter. It lives in the mc-pack-toolkit sibling repo,
+# which is local-only with no git remote, so Actions cannot reach it. Voice
+# linting is a local step until that repo is published - see docs/quest_voice.md
+# for the command. The scorer below is self-contained and does run.
+
+on:
+  pull_request:
+    paths:
+      - "pack/config/ftbquests/**"
+      - "pack/resourcepacks/**"
+      - "tools/validate_quests.py"
+      - "tools/score_quest_voice.py"
+      - ".github/workflows/validate-quests.yml"
+  push:
+    branches: [main]
+    paths:
+      - "pack/config/ftbquests/**"
+      - "pack/resourcepacks/**"
+      - "tools/validate_quests.py"
+      - "tools/score_quest_voice.py"
+  workflow_dispatch:
+
+jobs:
+  quests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+
+      - name: Validate quest structure
+        run: python tools/validate_quests.py
+
+      # Advisory, never fails the build. Shape uniformity is a judgement call, and
+      # a number that blocks a merge gets gamed rather than read. It goes in the
+      # step summary so a reviewer sees the trend on the PR.
+      - name: Score quest voice
+        run: |
+          {
+            echo '## Quest voice'
+            echo '```'
+            python tools/score_quest_voice.py
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
