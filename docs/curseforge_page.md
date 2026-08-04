@@ -53,8 +53,9 @@ New worlds always use the Garbage world type. The world-type button is removed f
    the crumbling, and later machines sort unattended.
 3. Sorting returns base materials plus what was buried in the block: bags, bales, Bulky Waste, and
    intact found items.
-4. Take found items apart at the Recompile Workbench by holding right-click with the matching tool.
-   You get the materials they were made of.
+4. Take found items apart at the Recompile Workbench. Rack a Scrap Knife or Prybar on the bench
+   first by right-clicking it with the tool, then hold right-click with the item. You get the
+   materials it was made of.
 5. Teardown also returns Idea Fragments. Enough fragments toward one recipe craft into a blueprint
    sheet, which unlocks that recipe at the Scrap Crafting Table. Every teardown counts; there is no
    chance roll.
