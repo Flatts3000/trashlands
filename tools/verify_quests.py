@@ -22,7 +22,7 @@ Setup, once:
      Never into pack/mods - that directory is shipped to players, and this mod
      opens a socket that executes arbitrary commands. check_pack_deps.py fails the
      build if it ever appears in the pack index.
-  2. In the CurseForge app, Instance settings -> Java, add:  -Ddevbridge.port=25580
+  2. In the CurseForge app, Instance settings -> Java, add:  -Ddevbridge.port=8604
      Without that property the mod opens no socket at all.
   3. Launch the instance and load a world.
 
@@ -47,7 +47,7 @@ component key is uncompletable in exactly the way a wrong item id is.
 Usage
 -----
     python tools/verify_quests.py
-    python tools/verify_quests.py --port 25580
+    python tools/verify_quests.py --port 8604
 
 Exit codes: 0 = every id resolved, 1 = at least one did not, 2 = could not connect.
 """
@@ -69,7 +69,18 @@ except ImportError:  # noqa: BLE001
 if hasattr(sys.stdout, "reconfigure"):
     sys.stdout.reconfigure(encoding="utf-8")
 
-DEFAULT_PORT = 25580
+# Claimed for this project: `ports claim Trashlands --service devbridge --band tool`.
+# NOT devbridge's own default of 25580, and that is the point. The port is baked
+# into the mod as a default, so every project using it lands on the same number -
+# the Recompile repo's gradle dev client holds 25580 on this machine, and the first
+# run of this tool connected to that and reported a clean pass about the wrong game.
+#
+# Worth knowing: `ports check` will not catch a repeat. devbridge binds the JVM's
+# loopback address, which is ::1 here, and the ports helper only sees IPv4
+# listeners - it reports 25580 as free while a game is listening on it. The
+# sentinel check below is the real guard; the claimed port just stops the clash
+# happening in the first place.
+DEFAULT_PORT = 8604
 
 # A tag no entity carries, so the selector is always empty. The command still
 # parses fully, which is the whole point - parsing is what validates the item.
