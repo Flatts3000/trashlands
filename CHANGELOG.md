@@ -9,7 +9,31 @@ and ASCII punctuation only.
 ## [Unreleased]
 
 ### Added
-- (nothing yet)
+- **Gems, out of the demolition yard.** Recompile 0.6.0 adds Mechanical Waste and the Separator, a
+  multiblock that pulls amethyst, diamond and redstone back out of industrial scrap. The ratios are
+  the gate: 12 quartz grit for an amethyst, 16 spent abrasive for a diamond, 16 magnet scrap for
+  redstone. Magnet scrap is the rare one, so redstone is the thing you work toward.
+- **The Separator also sorts garbage unattended**, at exactly the Sorting Tarp's rate. It runs while
+  you are elsewhere; it does not yield more.
+- **Printers** turn up in Bulky Waste. Tearing one down gives paper, plastic, scrap, an ink sac, and
+  about half the time a lapis lazuli. Ink is the only black dye in this world, so printers are the
+  only route to grey and black beds.
+- **Shears, flint and steel, and a spyglass** now turn up in the dump, already worn.
+- **Cats, dogs and pigeons** live on the plain, rarely. A pigeon will walk to a pile of garbage and
+  peck something out of it, without wearing the pile down.
+
+### Changed
+- **A Dirty Mattress is spent by sleeping on it.** It survives one night and breaks when you get up.
+  Sneak-right-click to set spawn without burning it; setting spawn is not sleeping.
+- **A pickaxe returns a Steel I-Beam** instead of destroying it, so a girder can be moved.
+- **Leads are Rope and bundles are Luggage**, with new art. Searching JEI for "lead" or "bundle"
+  still finds them.
+- **Shift-clicking a craft no longer empties the Scrap Network.** One shift-click is one batch.
+- FTB Chunks, FTB Library, and FTB Quests moved up a patch version each.
+
+### Heads up if you already have a world
+Dirty Mattresses now wear out. Nothing breaks, but a mattress you were treating as a permanent bed
+will be gone after one night.
 
 ## [0.3.0] - 2026-08-03
 
