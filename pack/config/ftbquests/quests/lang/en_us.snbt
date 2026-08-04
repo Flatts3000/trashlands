@@ -8,6 +8,12 @@
 		""
 		"This quest book is nearly empty so far. The Salvager's Manual is the real guide, and the last quest here is making one."
 	]
+	quest.7A55E0BA6E000015.title: "Join the Discord"
+	quest.7A55E0BA6E000015.quest_desc: [
+		"This is an alpha and the numbers in it are first-pass. Bug reports and balance complaints are both useful."
+		""
+		"Click the Discord badge above this quest, or type discord.gg/r6MhZ73nsM into your browser."
+	]
 	quest.7A55E0BA6E000011.title: "Nothing to Mine"
 	quest.7A55E0BA6E000011.quest_desc: [
 		"No trees to chop, no ore to mine, no stone. Looking for a cave will not help."

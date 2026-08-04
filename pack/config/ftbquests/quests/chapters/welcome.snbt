@@ -15,7 +15,7 @@
 			rotation: 0.0d
 			width: 1.0d
 			x: 3.0d
-			y: 0.0d
+			y: -1.5d
 		}
 	]
 	order_index: 0
@@ -28,6 +28,14 @@
 			size: 1.5d
 			tasks: [{ id: "7A55E0BA6E000080", type: "checkmark" }]
 			x: 0.0d
+			y: 0.0d
+		}
+		{
+			icon: { id: "minecraft:paper" }
+			id: "7A55E0BA6E000015"
+			shape: "diamond"
+			tasks: [{ id: "7A55E0BA6E000086", type: "checkmark" }]
+			x: 3.0d
 			y: 0.0d
 		}
 		{

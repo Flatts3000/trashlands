@@ -38,11 +38,11 @@ hash = "6975be9194248b1c650cdf3a2d038e5e9628abcece1b95767196f82086fdab8f"
 
 [[files]]
 file = "config/ftbquests/quests/chapters/welcome.snbt"
-hash = "26edb61b3415b260f449ad055ba62a385dab0f61397496ba71af91473b7efb7e"
+hash = "9841e920dc2e1fff9858b6ab5fe21a25d03ab9e951ef8272a7b170f41df2830e"
 
 [[files]]
 file = "config/ftbquests/quests/lang/en_us.snbt"
-hash = "bb7e22d2f2f2e7edb3ae1e4b006492d68bcc762fe7424a76a48b5e98ce3dd104"
+hash = "96444322e72d38e8cb7899c380393dcd99e2d7b12167fc10a3be77533f635e1d"
 
 [[files]]
 file = "icon.png"
