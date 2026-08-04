@@ -120,7 +120,7 @@ metafile = true
 
 [[files]]
 file = "mods/ftb-chunks-forge.pw.toml"
-hash = "4f1f4a26215197e8aff25016aaea2dddc1d49f063ea6b67817e7f14e43e92459"
+hash = "697b067fd2bc849ef12157ecd2b1ba8a17e289e369d238f709700b4d37c5dc79"
 metafile = true
 
 [[files]]
@@ -130,12 +130,12 @@ metafile = true
 
 [[files]]
 file = "mods/ftb-library-forge.pw.toml"
-hash = "868f7b6d9439905137ae87cffaa8311de01a405bea152d2c3b664764a2fd2fac"
+hash = "facc609e77625b3571b3dfb49b56bf63c756859f640fac7ad90ece82b4bf4be4"
 metafile = true
 
 [[files]]
 file = "mods/ftb-quests-forge.pw.toml"
-hash = "0f4726bff31af417b3db08c8483147ccf993c23702da3fd229e3b98ab21e5193"
+hash = "82b33212cd74a7670abbd249a24df696b3ae2f23ede7a7f5b57246f115b16b5e"
 metafile = true
 
 [[files]]
@@ -230,7 +230,7 @@ metafile = true
 
 [[files]]
 file = "mods/recompile.pw.toml"
-hash = "403006be699fdb1b90c9a3b33b303443913d5cfdb0f150cd6443e16a2d59a5cb"
+hash = "ec5f4805c83b5887495041ad4735707085710772e97ac5ff717fe80898806d2b"
 metafile = true
 
 [[files]]
