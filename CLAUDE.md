@@ -11,6 +11,7 @@ On the design side: walkthrough complete except the parked endgame/postgame clus
 - [`docs/feature_matrix.md`](docs/feature_matrix.md) - every feature by priority (P0 slice -> P3 polish) and feasibility. The build order.
 - [`docs/design_decisions.md`](docs/design_decisions.md) - the per-feature locked-decisions log + **the session bookmark** (walkthrough status, what to resume next).
 - `docs/the_twist.md` - **FULL SPOILERS.** The hidden narrative layer. Read before writing any quest text or player-facing copy; never reference its contents anywhere else.
+- [`docs/quest_voice.md`](docs/quest_voice.md) - how quest text is written here, and the Sky Frogs failure it exists to avoid. Read before authoring any player-facing copy.
 - [`docs/pack_setup.md`](docs/pack_setup.md) - the locked mod lineup, packwiz commands, and how to stand up a test instance.
 - [`docs/distribution.md`](docs/distribution.md) + [`docs/release_checklist.md`](docs/release_checklist.md) - how releases ship, and the CurseForge API traps (game-version ids are resolved, never hardcoded).
 - [`docs/curseforge_page.md`](docs/curseforge_page.md) - the CurseForge listing copy. Edit here, paste to CF.
@@ -30,7 +31,7 @@ Prior-art pass is done (see concept.md): the near-exact mod, **Dumpster Diving**
 
 **One consequence of the FTB stack.** It is CurseForge-exclusive, so **Modrinth is closed to this pack** (`docs/distribution.md`).
 
-**Quest content** is `pack/config/ftbquests/quests/` - chapters in `chapters/*.snbt`, text in `lang/en_us.snbt` keyed by quest id. Today: one **Welcome** chapter, one quest, plus the Discord link as a clickable image. That exists so the book is not empty; the `The Way Home` spine (per `the_twist.md`) is unwritten. Use the `quest-voice` skill for any quest text.
+**Quest content** is `pack/config/ftbquests/quests/` - chapters in `chapters/*.snbt`, text in `lang/en_us.snbt` keyed by quest id. Today: one **Welcome** chapter, one quest, plus the Discord link as a clickable image. That exists so the book is not empty; the `The Way Home` spine (per `the_twist.md`) is unwritten. **Read [`docs/quest_voice.md`](docs/quest_voice.md) before writing any quest text**, and use the `quest-voice` skill - the pack doc carries this world's register (flat and practical, not Sky Frogs' dry wit) and the failure it is avoiding.
 
 Cut on purpose: **Sophisticated Storage** (would make Recompile's Scrap Network dead content), **Waystones** (travel cost may be pacing), **Forgiving Void** (skyblock baggage - this world seals the void under bedrock).
 
