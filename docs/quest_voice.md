@@ -104,20 +104,25 @@ the book. Read that file before writing any chapter; never restate its contents 
 Structure follows [`progression_gates.md`](progression_gates.md), which is already the traced order.
 Classification decides how much copy each chapter earns (see `quest-voice/review_protocol.md`).
 
-| Chapter | Covers | Class |
-|---|---|---|
-| The Way Home, Part I | Tier 0-1: pulls, base materials, trash tools, Sorting Tarp, Scrap Crafting Table, cans and mushrooms, Rain Collector | TEACH-heavy |
-| Part II | Tier 2: Burn Barrel, copper, cooking | TEACH-heavy |
-| Part III | Tier 3: demolition yard, rubble and stone, steel piles, Cutting Torch, concrete | PIVOT |
-| Part IV | Tier 4: Cupola Furnace and iron, teardown and blueprints, the Scrap Network | TEACH-heavy |
-| Part V | The gem tier: Mechanical Waste, the Separator, power | PIVOT |
-| Part VI | Reclamation ladder, Hydroponics Bay | PIVOT |
+| Chapter | Covers | Class | State |
+|---|---|---|---|
+| Welcome | Orientation, the no-trees gotcha, the guidebook handoff | TEACH-heavy | written |
+| Salvage | Tier 0-1: trash tools, Bulky Waste, food, Sorting Tarp, Scrap Crafting Table, Workbench, Rain Collector | TEACH-heavy | written |
+| (tier 2) | Burn Barrel, copper, cooking | TEACH-heavy | |
+| (tier 3) | Demolition yard, rubble and stone, steel piles, Cutting Torch, concrete | PIVOT | |
+| (tier 4) | Cupola Furnace and iron, blueprints, the Scrap Network | TEACH-heavy | |
+| (gem tier) | Mechanical Waste, the Separator, power | PIVOT | |
+| (reclamation) | The ladder, Hydroponics Bay | PIVOT | |
 
 TEACH-heavy chapters get full decomposition and a line-by-line read. PIVOT chapters get a
 hand-written opener and templated steps. A pure checklist family gets titles only.
 
-Part VI is unwritten until the endgame is designed. The book reads as complete at whatever part is
-current.
+**Chapter names are operational, not `The Way Home, Part I..VI`, and that is deliberate for now.**
+The escape framing in [`the_twist.md`](the_twist.md) needs somewhere to go, and the endgame is
+reopened with the postgame parked, so the arc currently has no destination. Sky Bees Reborn's corpus
+entry is flagged for exactly this: it opens on a "looming over the void" fiction and drops it after
+the welcome screen. Renaming chapters is a one-line change in `lang/en_us/chapter.json5` whenever the
+ending exists; rewriting bodies written to the wrong frame is not.
 
 ## Mechanics
 
