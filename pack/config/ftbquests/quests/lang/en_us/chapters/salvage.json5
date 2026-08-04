@@ -1,0 +1,50 @@
+{
+  "quest.7A55E0BA6E000020.title": "The Scrap Crafting Table",
+  "quest.7A55E0BA6E000020.quest_desc": [
+    "There is no wood in this world, so there is no vanilla crafting table.",
+    "",
+    "This one is two Scrap Metal over two Fiber Scrap, which fits the 2x2 grid in your inventory. Everything with a 3x3 recipe waits on it.",
+  ],
+  "quest.7A55E0BA6E000021.title": "Prybar",
+  "quest.7A55E0BA6E000021.quest_desc": [
+    "Two Scrap Metal and a Rebar, small enough for your inventory grid. It opens Bulky Waste, and nothing else does.",
+  ],
+  "quest.7A55E0BA6E000022.title": "Scrap Knife",
+  "quest.7A55E0BA6E000022.quest_desc": [
+    "Cuts open Tin Cans. It also racks on the Recompile Workbench, which is how you take things apart.",
+  ],
+  "quest.7A55E0BA6E000023.title": "Open Bulky Waste",
+  "quest.7A55E0BA6E000023.quest_desc": [
+    "Right-click it with a Prybar. It opens in one action, drops a single find, and breaks. Mining it by hand gives nothing at all.",
+    "",
+    "Most finds are ordinary. About one in ten comes from a better pool, and those are worth going out of your way for.",
+  ],
+  "quest.7A55E0BA6E000024.title": "Something to Eat",
+  "quest.7A55E0BA6E000024.quest_desc": [
+    "Nothing spawns in the garbage biome, so there is nothing to hunt.",
+    "",
+    "A sealed can is not food yet. Cut it open with the Scrap Knife first, then eat what is inside. Dump Mushrooms grow on the mycelium between mounds, and they place back down, so a patch you replant keeps feeding you.",
+  ],
+  "quest.7A55E0BA6E000025.title": "The Sorting Tarp",
+  "quest.7A55E0BA6E000025.quest_desc": [
+    "Right-click it holding a stack of garbage, bags, or bales and it sifts the lot at once, with no block crumbling in your hands.",
+    "",
+    "It has no screen and stores nothing. Everything lands on the ground around it, so stand somewhere you do not mind covering, or put a Scrap Barrel beside it.",
+  ],
+  "quest.7A55E0BA6E000026.title": "The Recompile Workbench",
+  "quest.7A55E0BA6E000026.quest_desc": [
+    "Rack a Scrap Knife or a Prybar on it first, by right-clicking the bench with the tool. Then hold right-click with whatever you want taken apart.",
+    "",
+    "The racked tool wears down as it works, and a broken one stops the line.",
+  ],
+  "quest.7A55E0BA6E000027.title": "Junk Shovel",
+  "quest.7A55E0BA6E000027.quest_desc": [
+    "Digs the coarse dirt and the mounds faster. Nothing else needs it.",
+  ],
+  "quest.7A55E0BA6E000028.title": "The Rain Collector",
+  "quest.7A55E0BA6E000028.quest_desc": [
+    "There are no rivers or springs here. Rain is the only water in the world, and this is what catches it.",
+    "",
+    "It needs a Pump, and the only Pump comes out of a Washing Machine torn down at the Workbench. Leave the collector under open sky and it fills when it rains.",
+  ],
+}
