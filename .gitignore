@@ -12,10 +12,6 @@ __pycache__/
 /release_notes.md
 /cf_meta.json
 
-# The local verification server built by tools/dev_server.py: a full NeoForge
-# install, every server-side mod jar, a generated RCON password, and a world.
-# None of it belongs in the repo, and the password especially does not.
-/build/
 
 # Playwright MCP writes snapshots, console logs, and screenshots into the working
 # directory. Rendering the logo through Blockbench web left 14 PNGs and a base64

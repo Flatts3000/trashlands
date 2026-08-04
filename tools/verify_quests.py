@@ -7,34 +7,47 @@ tools/validate_quests.py checks structure and cannot check meaning: it has no it
 registry, so `recompile:e_scrap` is an assertion nobody has tested. When a mod
 renames or removes an item, an FTB Quests task referencing the old id **fails
 silently**. Nothing logs, the book still opens, and the quest simply cannot be
-completed by anyone, ever. The pack that ships it looks fine right up until a
-player is stuck.
+completed by anyone, ever. Only the game knows what is registered.
 
-That is exactly the class of bug the gamebridge handoff points at, and it needs a
-running game to catch, because only the game knows what is registered.
+Why devbridge and not RCON
+--------------------------
+This runs against the singleplayer test instance. A singleplayer world has no RCON
+and cannot get one: its integrated server listens on nothing, so there is no remote
+command interface to connect to. Reaching one needs mod code inside the game, which
+is what devbridge is.
+
+Setup, once:
+
+  1. Copy F:/devbridge/build/libs/devbridge-*.jar into the INSTANCE's mods folder.
+     Never into pack/mods - that directory is shipped to players, and this mod
+     opens a socket that executes arbitrary commands. check_pack_deps.py fails the
+     build if it ever appears in the pack index.
+  2. In the CurseForge app, Instance settings -> Java, add:  -Ddevbridge.port=25580
+     Without that property the mod opens no socket at all.
+  3. Launch the instance and load a world.
 
 How an id is tested
 -------------------
 By handing it to the command parser and reading what comes back. `give` takes an
-item argument, and the parser rejects an unknown id *before* it looks for a player,
-so on a server with nobody connected:
+item argument, and an unknown id is a *parse* error, reported before the command
+looks for anything to give to:
 
-    give @a recompile:e_scrap   ->  "No player was found"          id is fine
-    give @a recompile:nonsense  ->  "Unknown item 'recompile:...'"  id is dead
+    give @a[tag=...] recompile:e_scrap   ->  "No player was found"      id is live
+    give @a[tag=...] recompile:nonsense  ->  "Unknown item '...'"       id is dead
 
-Nothing is granted either way, since @a matches nobody. That is deliberate: the
-check has no side effects on the world, so it is safe to run against a server you
-care about.
+**The selector matches nobody on purpose.** In singleplayer there is a real player
+connected, so a bare `@a` would actually hand them every item in the quest book.
+A tag nothing carries keeps the check side-effect free, which is what makes it
+safe to run against a world you care about rather than a scratch one.
 
-Component filters are checked the same way and for the same reason. The Salvager's
-Manual task matches `modonomicon:modonomicon` carrying a `modonomicon:book_id`
-component; a task whose component key is wrong is uncompletable in a way that looks
-exactly like a task whose item is wrong.
+Component filters go through the same path. The Salvager's Manual task matches
+`modonomicon:modonomicon` carrying a `modonomicon:book_id` component, and a wrong
+component key is uncompletable in exactly the way a wrong item id is.
 
 Usage
 -----
-    python tools/dev_server.py --accept-eula --run     # in one terminal
-    python tools/verify_quests.py                      # in another
+    python tools/verify_quests.py
+    python tools/verify_quests.py --port 25580
 
 Exit codes: 0 = every id resolved, 1 = at least one did not, 2 = could not connect.
 """
@@ -48,7 +61,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 import validate_quests as vq  # noqa: E402  (JSON5 parser + chapter loading)
 
 try:
-    from gamebridge import Rcon, RconError
+    from gamebridge.devbridge import DevBridge, DevBridgeError
 except ImportError:  # noqa: BLE001
     sys.exit("gamebridge is not installed. Run:\n"
              "  pip install -e F:/minecraft-repos/mc-pack-toolkit/gamebridge")
@@ -56,8 +69,23 @@ except ImportError:  # noqa: BLE001
 if hasattr(sys.stdout, "reconfigure"):
     sys.stdout.reconfigure(encoding="utf-8")
 
-REPO = Path(__file__).resolve().parent.parent
-DEFAULT_PROPERTIES = REPO / "build" / "server" / "server.properties"
+DEFAULT_PORT = 25580
+
+# A tag no entity carries, so the selector is always empty. The command still
+# parses fully, which is the whole point - parsing is what validates the item.
+NOBODY = "@a[tag=trashlands_verify_nobody]"
+
+# Proof that the game on the other end is THIS pack. devbridge listens on a fixed
+# port, and more than one Minecraft on this machine can have it: the Recompile mod
+# repo's gradle dev client runs devbridge on the same 25580. Connecting to that one
+# and reporting a clean pass is a real failure mode - it happened on the first run
+# of this tool, and every id in the Welcome chapter resolved there, because that
+# world has Recompile and Modonomicon loaded too.
+#
+# FTB Quests is in the pack and not in the mod dev run, so its book item
+# distinguishes them. Any pack-only item would do; this one is certain to stay,
+# since a pack without FTB Quests has no quest book to verify.
+SENTINEL = "ftbquests:book"
 
 # The parser's way of saying an id is not registered. Matched case-insensitively
 # against the whole reply, so wording drift across versions is less likely to turn
@@ -66,22 +94,12 @@ UNKNOWN_MARKERS = ("unknown item", "unknown registry", "can't find element",
                    "unknown data component", "did you mean")
 
 
-def read_properties(path: Path) -> dict:
-    out = {}
-    for line in path.read_text(encoding="utf-8").splitlines():
-        line = line.strip()
-        if line and not line.startswith("#") and "=" in line:
-            k, v = line.split("=", 1)
-            out[k.strip()] = v.strip()
-    return out
-
-
 def item_argument(item: dict) -> str:
     """Render an FTB Quests item spec as a Minecraft item argument.
 
     1.20.5+ syntax: `namespace:id[component=value,...]`. Values are quoted, which
     is valid for the string components used here; a component holding a compound
-    would need more, and gets a clear failure rather than a wrong pass.
+    would need more, and gets a visible note rather than a wrong pass.
     """
     ident = item.get("id")
     if not isinstance(ident, str):
@@ -91,9 +109,6 @@ def item_argument(item: dict) -> str:
         parts = [f'{k}="{v}"' for k, v in components.items() if isinstance(v, str)]
         if len(parts) == len(components):
             return f"{ident}[{','.join(parts)}]"
-        # A non-string component value: check the bare id rather than emit a
-        # malformed argument, and say so, because a silently-skipped filter is
-        # the thing this tool exists to prevent.
         print(f"  note: {ident} has a non-string component; checking the id only")
     return ident
 
@@ -102,7 +117,7 @@ def collect_items(chapters) -> list[tuple[str, str]]:
     """Every distinct (item argument, where it came from) in the book.
 
     Icons count. A quest whose icon item was removed renders as a missing-texture
-    block in the book, which is not fatal but is visible to every player.
+    square in the book, which is not fatal but every player sees it.
     """
     found: dict[str, str] = {}
 
@@ -127,9 +142,13 @@ def collect_items(chapters) -> list[tuple[str, str]]:
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__,
                                  formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("--properties", type=Path, default=DEFAULT_PROPERTIES,
-                    help="server.properties to read connection settings from "
-                         "(default: the dev_server.py one)")
+    ap.add_argument("--port", type=int, default=DEFAULT_PORT,
+                    help=f"devbridge port (default {DEFAULT_PORT}; must match "
+                         f"-Ddevbridge.port on the instance)")
+    # "localhost", not the v4 literal: the mod binds the JVM's loopback address,
+    # which is ::1 when the JVM prefers IPv6, and dialling 127.0.0.1 then gets
+    # "connection refused" from a socket that is up and healthy.
+    ap.add_argument("--host", default="localhost")
     args = ap.parse_args()
 
     chapters = vq.load_chapters()
@@ -141,40 +160,42 @@ def main() -> int:
         print("no item references in the quest book - nothing to verify")
         return 0
 
-    if not args.properties.is_file():
-        print(f"no server.properties at {args.properties}\n"
-              "Start the verification server first:\n"
-              "  python tools/dev_server.py --accept-eula --run")
-        return 2
-    props = read_properties(args.properties)
-    if props.get("enable-rcon", "false").lower() != "true":
-        print(f"RCON is disabled in {args.properties}")
-        return 2
-
+    bridge = DevBridge(host=args.host, port=args.port, timeout=30.0)
     try:
-        rcon = Rcon(host="127.0.0.1", port=int(props.get("rcon.port", 25575)),
-                    password=props.get("rcon.password", ""), timeout=10.0)
-        rcon.connect()
-    except (RconError, OSError) as exc:
-        print(f"could not reach the server over RCON: {exc}\n"
-              "Is it running? `python tools/dev_server.py --run`")
+        bridge.connect()
+    except (DevBridgeError, OSError) as exc:
+        print(f"could not reach devbridge on {args.host}:{args.port} - {exc}\n\n"
+              "Check, in order:\n"
+              "  1. the instance is running and a world is loaded\n"
+              "  2. devbridge-*.jar is in the INSTANCE's mods folder (not pack/mods)\n"
+              "  3. -Ddevbridge.port=%d is set in the CurseForge app's Java args\n"
+              "     (without it the mod opens no socket)" % args.port)
         return 2
 
     bad = []
-    with rcon:
+    with bridge:
+        probe = str(bridge.command(f"give {NOBODY} {SENTINEL}")).lower()
+        if any(m in probe for m in UNKNOWN_MARKERS):
+            print(f"connected on port {args.port}, but {SENTINEL} is not registered "
+                  f"there.\n\nThat game is not this pack. The likeliest cause is the "
+                  f"Recompile mod repo's\ngradle dev client, which runs devbridge on "
+                  f"the same port. Close it, or point\nthis at the pack instance with "
+                  f"--port.\n\nRefusing to report a pass from the wrong game.")
+            return 2
+
         print(f"checking {len(items)} item reference(s)\n")
         for arg, where in items:
-            reply = rcon.command(f"give @a {arg}")
-            low = reply.lower()
+            reply = bridge.command(f"give {NOBODY} {arg}")
+            low = str(reply).lower()
             ok = not any(m in low for m in UNKNOWN_MARKERS)
             print(f"  {'ok  ' if ok else 'FAIL'}  {arg}")
             if not ok:
-                bad.append((arg, where, reply.strip()))
+                bad.append((arg, where, str(reply).strip()))
 
     if bad:
         print(f"\n{len(bad)} unresolved reference(s):")
         for arg, where, reply in bad:
-            print(f"  {arg}\n    used by: {where}\n    server:  {reply}")
+            print(f"  {arg}\n    used by: {where}\n    game:    {reply}")
         return 1
 
     print(f"\nall {len(items)} item reference(s) resolve")
