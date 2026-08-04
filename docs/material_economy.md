@@ -89,7 +89,7 @@ Every vanilla material that has no honest garbage presence gets the same treatme
 | Redstone | Electronics teardown (boards, motors, sensors) | E-scrap refinement |
 | Quartz | Circuit oscillators (real!), old clocks, countertops | Slag-field silica processing |
 | Glowstone | Lamps, CRT/fluorescent phosphor coatings | Chemical tier |
-| Lapis | Pigment containers, dyes, old paint | Chemical tier |
+| Lapis | **Printer teardown** (shipped #112) - toner is pigment, and cyan toner is phthalocyanine blue | Chemical tier |
 | Coal | NOT found - junk is the early fuel (locked P0.4/P2.2) | Charcoal from recovered wood; carbon black from plastic processing |
 | Obsidian | Not found - made only (melt slag/glass; portal gate is earned) | Slag furnace |
 | Ender pearls | E-waste rare drop ("eyes of ender from e-waste" - locked in Dimensions bridge) | End access |

@@ -179,6 +179,8 @@ worldgen carries no ores. This is the first thing above iron. Spec: `../recompil
 | **Diamond** | 16 Spent Abrasive in a Separator | The Separator, and power |
 | **Redstone** | 16 Magnet Scrap in a Separator | The Separator, power, **and the pull weights** - magnet scrap is the rare entry |
 | **The Separator** | 4 iron + 2 Steel I-Beam + 1 Machine Frame, plus 3 beams and 8 frames to build | **Iron**, so the Cupola |
+| **Lapis** | Tearing down a **Printer** at the Recompile Workbench (about half of them carry one) | Nothing but finding one. A Bulky Waste spine find, so it arrives long before the yard |
+| **Ink, so black and grey dye** | The same Printer teardown, every time | The same. This is the only ink in the world |
 
 **The gate is arithmetic, and that is the whole point.** It is not "you cannot get diamond", it is "one
 piece of scrap is worth nothing". A ratio has no failure mode that an absence has: if another mod floods
@@ -194,6 +196,13 @@ lives in `mechanical_pulls` instead.
 **Nothing precious ever falls out of the pile.** `mechanical_waste_never_drops_a_gem` asserts it, and
 `no_teardown_recipe_yields_a_gated_material` asserts the other door is shut - teardown is an allowlist, so
 the jukebox can hold a diamond (#117) without leaking one.
+
+**Lapis is deliberately not in this tier** (owner, 2026-08-02; shipped #112, 2026-08-04). It comes out of
+a Printer instead, and the two halves of the rule above now differ: the pile must still never drop lapis,
+but a teardown may. Lapis is a pigment, so it belongs in a printer and does not belong in machinery, which
+contains none of it; vanilla puts it at `needs_stone_tool` beside iron and copper rather than beside
+diamond, so arriving before the yard is where vanilla already has it. It costs no control, because its one
+real job is enchanting and that still needs obsidian.
 
 **Not gated by this tier:** enchanting. It needs obsidian as well as diamond and lapis, and obsidian is
 deliberately out of scope. The gem tier can ship complete with enchanting still unreachable.
