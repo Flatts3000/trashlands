@@ -1,0 +1,161 @@
+{
+  id: "7A55E0BA6E000001",
+  group: "",
+  order_index: 0,
+  filename: "welcome",
+  icon: {
+    id: "recompile:garbage_block",
+    count: 1,
+  },
+  default_quest_shape: "",
+  default_hide_dependency_lines: false,
+  autofocus_id: "7A55E0BA6E000010",
+  images: [
+    {
+      x: 3.0,
+      y: -1.5,
+      width: 1.0,
+      height: 1.0,
+      rotation: 0.0,
+      image: "trashlands:textures/quests/discord.png",
+      id: "7A55E0BA6E000090",
+    },
+  ],
+  quests: [
+    {
+      x: 0.0,
+      y: 0.0,
+      shape: "hexagon",
+      size: 1.5,
+      id: "7A55E0BA6E000010",
+      icon: {
+        id: "recompile:garbage_block",
+        count: 1,
+      },
+      tasks: [
+        {
+          id: "7A55E0BA6E000080",
+          type: "checkmark",
+        },
+      ],
+    },
+    {
+      x: 3.0,
+      y: 0.0,
+      shape: "diamond",
+      id: "7A55E0BA6E000015",
+      icon: {
+        id: "minecraft:paper",
+        count: 1,
+      },
+      tasks: [
+        {
+          id: "7A55E0BA6E000086",
+          type: "checkmark",
+        },
+      ],
+    },
+    {
+      x: -1.5,
+      y: 1.5,
+      shape: "diamond",
+      id: "7A55E0BA6E000011",
+      icon: {
+        id: "minecraft:coarse_dirt",
+        count: 1,
+      },
+      dependencies: [
+        "7A55E0BA6E000010",
+      ],
+      tasks: [
+        {
+          id: "7A55E0BA6E000081",
+          type: "checkmark",
+        },
+      ],
+    },
+    {
+      x: 0.0,
+      y: 1.5,
+      id: "7A55E0BA6E000012",
+      icon: {
+        id: "recompile:garbage_block",
+        count: 1,
+      },
+      dependencies: [
+        "7A55E0BA6E000010",
+      ],
+      tasks: [
+        {
+          id: "7A55E0BA6E000082",
+          type: "item",
+          item: {
+            id: "recompile:garbage_block",
+            count: 1,
+          },
+        },
+      ],
+    },
+    {
+      x: 0.0,
+      y: 3.0,
+      id: "7A55E0BA6E000013",
+      icon: {
+        id: "recompile:e_scrap",
+        count: 1,
+      },
+      dependencies: [
+        "7A55E0BA6E000012",
+      ],
+      tasks: [
+        {
+          id: "7A55E0BA6E000083",
+          type: "item",
+          item: {
+            id: "recompile:e_scrap",
+            count: 1,
+          },
+        },
+        {
+          id: "7A55E0BA6E000084",
+          type: "item",
+          item: {
+            id: "recompile:fiber_scrap",
+            count: 1,
+          },
+        },
+      ],
+    },
+    {
+      x: 0.0,
+      y: 4.5,
+      shape: "hexagon",
+      size: 1.25,
+      id: "7A55E0BA6E000014",
+      icon: {
+        id: "modonomicon:modonomicon",
+        count: 1,
+        components: {
+          "modonomicon:book_id": "recompile:guide",
+        },
+      },
+      dependencies: [
+        "7A55E0BA6E000013",
+      ],
+      tasks: [
+        {
+          id: "7A55E0BA6E000085",
+          type: "item",
+          match_components: "strict",
+          item: {
+            id: "modonomicon:modonomicon",
+            count: 1,
+            components: {
+              "modonomicon:book_id": "recompile:guide",
+            },
+          },
+        },
+      ],
+    },
+  ],
+}

@@ -37,12 +37,24 @@ file = "config/fancymenu/options.txt"
 hash = "6975be9194248b1c650cdf3a2d038e5e9628abcece1b95767196f82086fdab8f"
 
 [[files]]
-file = "config/ftbquests/quests/chapters/welcome.snbt"
-hash = "9841e920dc2e1fff9858b6ab5fe21a25d03ab9e951ef8272a7b170f41df2830e"
+file = "config/ftbquests/quests/chapter_groups.json5"
+hash = "0a11b89d5d2a66d384297eba3321fdcbc8e3704e7741172b1e770f4ad189a907"
 
 [[files]]
-file = "config/ftbquests/quests/lang/en_us.snbt"
-hash = "96444322e72d38e8cb7899c380393dcd99e2d7b12167fc10a3be77533f635e1d"
+file = "config/ftbquests/quests/chapters/welcome.json5"
+hash = "c41a50a9b085d0610d0c288b639634810fe44f5affcc06e4c5b50114762dabf7"
+
+[[files]]
+file = "config/ftbquests/quests/data.json5"
+hash = "cc44f23da962e50f59fd00114686a78fc7837d9376b21d05dd88b667aeb6de15"
+
+[[files]]
+file = "config/ftbquests/quests/lang/en_us/chapter.json5"
+hash = "b045c7ffda50a0458f4a45f7aa21a6e9b735890abbf18aacc7b0af53023bfe54"
+
+[[files]]
+file = "config/ftbquests/quests/lang/en_us/chapters/welcome.json5"
+hash = "413ef5a43c65c28a5f14c27654d9e6e69503b7f43e5a3acfa7413db897deddd5"
 
 [[files]]
 file = "icon.png"

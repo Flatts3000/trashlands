@@ -34,11 +34,13 @@ REPO = Path(__file__).resolve().parent.parent
 def set_root(repo: Path) -> None:
     """Point every path at `repo`. Overridable so the checks can be exercised
     against a throwaway tree - a validator nobody has seen fail is not evidence."""
-    global REPO, QUESTS, CHAPTERS_DIR, LANG_FILE, RESOURCEPACKS
+    global REPO, QUESTS, CHAPTERS_DIR, LANG_DIR, DATA_FILE, GROUPS_FILE, RESOURCEPACKS
     REPO = repo
     QUESTS = REPO / "pack" / "config" / "ftbquests" / "quests"
     CHAPTERS_DIR = QUESTS / "chapters"
-    LANG_FILE = QUESTS / "lang" / "en_us.snbt"
+    LANG_DIR = QUESTS / "lang" / "en_us"
+    DATA_FILE = QUESTS / "data.json5"
+    GROUPS_FILE = QUESTS / "chapter_groups.json5"
     RESOURCEPACKS = REPO / "pack" / "resourcepacks"
 
 
@@ -56,11 +58,17 @@ INLINE_TEXT_KEYS = ("title", "subtitle", "description")
 
 
 # --------------------------------------------------------------------------- #
-# Minimal SNBT parser (carried from sky-frogs/tools/validate_quests.py)
+# Minimal JSON5 parser
 # --------------------------------------------------------------------------- #
-# FTB SNBT is relaxed JSON: unquoted keys, members separated by whitespace and/or
-# commas, numbers carry a type suffix (0.0d, 1.5d, 12b). Only structure matters
-# here, so scalars stay raw strings.
+# FTB Quests on MC 26.x stores quests as JSON5 (de.marhali.json5): unquoted keys,
+# trailing commas, // and /* */ comments, no type suffixes on numbers. There is no
+# .snbt string anywhere in the 26.1.2.3 jar - SNBT belongs to the previous major
+# version, and Sky Frogs is not a format reference for this pack.
+#
+# The tolerant reader below started as that pack's SNBT parser, which is close
+# enough to JSON5 to keep: both allow unquoted keys and treat commas as
+# separators. Comment skipping is the addition. Only structure matters here, so
+# scalars stay raw strings.
 class SNBTError(Exception):
     pass
 
@@ -76,8 +84,23 @@ class SNBT:
         return self._value()
 
     def _ws(self):
-        while self.i < self.n and self.s[self.i] in " \t\r\n,":
-            self.i += 1
+        """Skip whitespace, commas, and JSON5 comments."""
+        while self.i < self.n:
+            c = self.s[self.i]
+            if c in " \t\r\n,":
+                self.i += 1
+            elif c == "/" and self.i + 1 < self.n:
+                nxt = self.s[self.i + 1]
+                if nxt == "/":
+                    end = self.s.find("\n", self.i)
+                    self.i = self.n if end < 0 else end + 1
+                elif nxt == "*":
+                    end = self.s.find("*/", self.i + 2)
+                    self.i = self.n if end < 0 else end + 2
+                else:
+                    return
+            else:
+                return
 
     def _value(self):
         self._ws()
@@ -123,7 +146,7 @@ class SNBT:
 
     def _key(self) -> str:
         self._ws()
-        if self.s[self.i] == '"':
+        if self.s[self.i] in "\"'":
             return self._string()
         j = self.i
         while self.i < self.n and self.s[self.i] not in " \t\r\n:":
@@ -174,13 +197,28 @@ class Chapter:
 def load_chapters() -> list[Chapter]:
     if not CHAPTERS_DIR.is_dir():
         return []
-    return [Chapter(p) for p in sorted(CHAPTERS_DIR.glob("*.snbt"))]
+    return [Chapter(p) for p in sorted(CHAPTERS_DIR.glob("*.json5"))]
 
 
 def load_lang() -> dict:
-    if not LANG_FILE.is_file():
-        return {}
-    return SNBT(LANG_FILE.read_text(encoding="utf-8")).parse()
+    """Merge every lang file under lang/en_us/ into one key -> value map.
+
+    26.x splits translations across chapter.json5, chapter_group.json5,
+    file.json5, reward_table.json5, and one file per chapter under chapters/.
+    Which file a key lives in does not matter to any check here; that a key
+    resolves to a real object does.
+    """
+    out: dict = {}
+    if not LANG_DIR.is_dir():
+        return out
+    for p in sorted(LANG_DIR.rglob("*.json5")):
+        try:
+            data = SNBT(p.read_text(encoding="utf-8")).parse()
+        except SNBTError as e:
+            raise SNBTError(f"{p.name}: {e}") from e
+        if isinstance(data, dict):
+            out.update(data)
+    return out
 
 
 # --------------------------------------------------------------------------- #
@@ -237,25 +275,44 @@ def check_dependencies(chapters, out):
                                 f"a quest in any chapter"))
 
 
-def check_inline_text(chapters, out):
-    """Text authored in a chapter file instead of the lang file.
+def check_required_files(out):
+    """data.json5 and chapter_groups.json5 must exist.
 
-    FTB extracts titles/subtitles/descriptions into lang/en_us.snbt keyed by id on
-    world load. Anything left inline does not render and gets wiped on the next
-    save, so the work is lost with no error.
+    Without data.json5, readDataFull throws FileNotFoundException before a single
+    chapter is read and the book loads completely empty. This repo shipped v0.2.0
+    and v0.3.0 with no data file at all, so the Welcome chapter those releases
+    advertised has never been visible to a player. Nothing else catches it: the
+    pack builds, the export is valid, and the only evidence is a stack trace in
+    the client log.
+    """
+    if not DATA_FILE.is_file():
+        out.append((ERROR, "NO-DATA-FILE", DATA_FILE.name,
+                    "quests/data.json5 is missing. FTB Quests fails to load the "
+                    "whole file and the book renders empty, with no in-game error."))
+    if not GROUPS_FILE.is_file():
+        out.append((ERROR, "NO-GROUPS-FILE", GROUPS_FILE.name,
+                    "quests/chapter_groups.json5 is missing"))
+
+
+def check_inline_text(chapters, out):
+    """Text authored in a chapter file instead of the lang files.
+
+    Titles, subtitles, and descriptions are translation keys resolved out of
+    lang/<locale>/. Text left inline in a chapter is not read.
     """
     for ch in chapters:
         for key in INLINE_TEXT_KEYS:
             if key in ch.data:
                 out.append((ERROR, "LANG-INLINE", f"{ch.name}:{ch.line_of(key)}",
                             f"chapter carries inline {key!r}; author it in "
-                            f"lang/en_us.snbt as chapter.{ch.data.get('id')}.{key}"))
+                            f"lang/en_us/chapter.json5 as "
+                            f"chapter.{ch.data.get('id')}.{key}"))
         for q in ch.quests:
             for key in INLINE_TEXT_KEYS:
                 if key in q:
                     out.append((ERROR, "LANG-INLINE", f"{ch.name}:{ch.line_of(key)}",
-                                f"quest {q.get('id')} carries inline {key!r}; author "
-                                f"it in lang/en_us.snbt"))
+                                f"quest {q.get('id')} carries inline {key!r}; "
+                                f"author it in lang/en_us/chapters/{ch.name}"))
 
 
 def check_lang(chapters, lang, out):
@@ -270,14 +327,15 @@ def check_lang(chapters, lang, out):
 
     titled = set()
     for key in lang:
-        m = re.match(r"^(chapter|quest)\.([0-9A-Fa-f]+)\.(\w+)$", key)
+        m = re.match(r"^(chapter|quest|task|reward|chapter_group|reward_table)"
+                     r"\.([0-9A-Fa-f]+)\.(\w+)$", key)
         if not m:
-            out.append((WARN, "LANG-KEY-SHAPE", LANG_FILE.name,
+            out.append((WARN, "LANG-KEY-SHAPE", "lang/en_us",
                         f"key {key!r} does not look like <chapter|quest>.<id>.<field>"))
             continue
         _kind, qid, field = m.groups()
         if qid not in known:
-            out.append((ERROR, "LANG-ORPHAN", LANG_FILE.name,
+            out.append((ERROR, "LANG-ORPHAN", "lang/en_us",
                         f"key {key!r} references id {qid}, which no chapter or quest "
                         f"defines. It will never render."))
         if field == "title":
@@ -287,16 +345,20 @@ def check_lang(chapters, lang, out):
         for q in ch.quests:
             if q.get("id") not in titled:
                 out.append((WARN, "LANG-NO-TITLE", ch.name,
-                            f"quest {q.get('id')} has no title in lang/en_us.snbt"))
+                            f"quest {q.get('id')} has no title in lang/en_us/"))
 
 
 def check_dashes(out):
     """House rule: ASCII punctuation only, no em-dashes or en-dashes."""
-    for path in sorted(QUESTS.rglob("*.snbt")):
+    # Relative path, not just the name: a chapter and its lang file share a
+    # basename (chapters/welcome.json5 and lang/en_us/chapters/welcome.json5),
+    # so "welcome.json5:4" does not say which file to open.
+    for path in sorted(QUESTS.rglob("*.json5")):
+        rel = path.relative_to(QUESTS).as_posix()
         text = path.read_text(encoding="utf-8")
         for n, line in enumerate(text.splitlines(), 1):
             if EM_EN_DASH.search(line):
-                out.append((ERROR, "DASH", f"{path.name}:{n}",
+                out.append((ERROR, "DASH", f"{rel}:{n}",
                             "em-dash or en-dash; use a hyphen, comma, colon, or "
                             "restructure"))
 
@@ -343,6 +405,7 @@ def main() -> int:
         return 1
 
     out: list[tuple[str, str, str, str]] = []
+    check_required_files(out)
     check_ids(chapters, out)
     check_dependencies(chapters, out)
     check_inline_text(chapters, out)

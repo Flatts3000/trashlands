@@ -58,22 +58,27 @@ DASH_REVEAL_RE = re.compile(r"\S - \S")
 
 
 def load_lang_text():
-    """quest id -> title / subtitle / description, from the committed lang file."""
-    if not vq.LANG_FILE.is_file():
-        return {}, {}, {}
-    text = vq.LANG_FILE.read_text(encoding="utf-8")
+    """quest id -> title / subtitle / description.
+
+    Reuses the validator's lang loader, which merges every file under
+    lang/<locale>/. 26.x splits translations across several files and one per
+    chapter, so scraping a single file with a regex would silently miss most of
+    the book - and silently-missing is how a voice metric ends up reassuring.
+    """
+    lang = vq.load_lang()
     titles, subs, descs = {}, {}, {}
-    for m in re.finditer(r"quest\.([0-9A-F]+)\.title: " + STR_RE, text):
-        titles[m.group(1)] = m.group(2)
-    for m in re.finditer(r"quest\.([0-9A-F]+)\.quest_subtitle: " + STR_RE, text):
-        subs[m.group(1)] = m.group(2)
-    # quest_desc is an array of quoted strings, written multi-line or single-line.
-    # Match the run of quoted strings between brackets so both shapes parse and a
-    # "]" inside a string cannot end the match early.
-    desc_re = re.compile(r"quest\.([0-9A-F]+)\.quest_desc: \[((?:\s*" + STR_RE + r")*\s*)\]")
-    for m in desc_re.finditer(text):
-        parts = re.findall(STR_RE, m.group(2))
-        descs[m.group(1)] = " ".join(p for p in parts if p != "")
+    for key, value in lang.items():
+        m = re.match(r"^quest\.([0-9A-Fa-f]+)\.(title|quest_subtitle|quest_desc)$", key)
+        if not m:
+            continue
+        qid, field = m.group(1).upper(), m.group(2)
+        if field == "title" and isinstance(value, str):
+            titles[qid] = value
+        elif field == "quest_subtitle" and isinstance(value, str):
+            subs[qid] = value
+        elif field == "quest_desc":
+            parts = value if isinstance(value, list) else [value]
+            descs[qid] = " ".join(p for p in parts if isinstance(p, str) and p != "")
     return titles, subs, descs
 
 
