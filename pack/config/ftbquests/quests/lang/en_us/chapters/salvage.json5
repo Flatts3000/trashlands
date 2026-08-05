@@ -1,4 +1,30 @@
 {
+  "quest.7A55E0BA6E00002B.title": "Scrap Barrel",
+  "quest.7A55E0BA6E00002B.quest_desc": [
+    "Eight Scrap Metal in a ring. Every vanilla container needs wood, so this is the first storage this world has.",
+    "",
+    "It opens the ordinary chest screen and holds a chest's worth of anything. One beside the Sorting Tarp is the difference between sorting and standing in a pile of your own scrap.",
+  ],
+  "quest.7A55E0BA6E00002C.title": "The Burn Barrel",
+  "quest.7A55E0BA6E00002C.quest_desc": [
+    "Seven Scrap Metal. It is the first smelter in the world and opens the ordinary furnace screen.",
+    "",
+    "It takes refuse and food and nothing else, so Scrap Metal and anything edible will burn where other metals will not. Pipes and hoppers cannot reach it either, so you load and empty it by hand.",
+    "",
+    "Fuel is the Oily Rag, made from Fiber Scrap and Organic Muck. There is no coal or wood here to burn instead.",
+  ],
+  "quest.7A55E0BA6E00002D.title": "Copper",
+  "quest.7A55E0BA6E00002D.quest_desc": [
+    "Burn Scrap Metal in the barrel and it comes back as copper nuggets. Nine of those make an ingot, which is a great deal of scrap for a little metal.",
+    "",
+    "Copper is what this world runs on. Iron exists, but it is out past the demolition yard behind a furnace you cannot build yet.",
+  ],
+  "quest.7A55E0BA6E00002E.title": "A Bucket of Water",
+  "quest.7A55E0BA6E00002E.quest_desc": [
+    "Three copper ingots make a bucket. Fill it at the Rain Collector and you have water you can carry.",
+    "",
+    "Almost everything past this point wants water, metal, or both.",
+  ],
   "quest.7A55E0BA6E00002A.title": "Dirty Mattress",
   "quest.7A55E0BA6E00002A.quest_desc": [
     "The commonest thing in Bulky Waste, and the only bed until you can make a clean one.",

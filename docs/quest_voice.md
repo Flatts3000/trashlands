@@ -102,15 +102,21 @@ the book. Read that file before writing any chapter; never restate its contents 
 ## Chapters
 
 Structure follows [`progression_gates.md`](progression_gates.md), which is already the traced order.
+
+**A chapter ends on an object the player can hold, not on a tier boundary.** Salvage
+runs to a Bucket of Water because that is one thing that required both halves of the
+chapter - scrap smelted into copper on one side, a found Pump and collected rain on
+the other. Tiers are a design vocabulary; they do not mean anything to someone
+reading the book.
 Classification decides how much copy each chapter earns (see `quest-voice/review_protocol.md`).
 
 | Chapter | Covers | Class | State |
 |---|---|---|---|
 | Welcome | Orientation, the no-trees gotcha, the guidebook handoff | TEACH-heavy | written |
-| Salvage | Tier 0-1: trash tools, Bulky Waste, food, Sorting Tarp, Scrap Crafting Table, Workbench, Rain Collector | TEACH-heavy | written |
-| (tier 2) | Burn Barrel, copper, cooking | TEACH-heavy | |
-| (tier 3) | Demolition yard, rubble and stone, steel piles, Cutting Torch, concrete | PIVOT | |
-| (tier 4) | Cupola Furnace and iron, blueprints, the Scrap Network | TEACH-heavy | |
+| Salvage | Everything up to your first Bucket of Water: trash tools, Bulky Waste, food, storage, the Sorting Tarp, the Workbench, the Pump and Rain Collector, the Burn Barrel and copper | TEACH-heavy | written |
+| (network) | The Scrap Network and the storage tier - issue #11 | TEACH-heavy | |
+| (the yard) | Demolition yard, rubble and stone, steel piles, Cutting Torch, concrete | PIVOT | |
+| (iron) | Cupola Furnace and iron, blueprints | TEACH-heavy | |
 | (gem tier) | Mechanical Waste, the Separator, power | PIVOT | |
 | (reclamation) | The ladder, Hydroponics Bay | PIVOT | |
 
