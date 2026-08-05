@@ -323,6 +323,8 @@
     {
       x: -1.5,
       y: 7.5,
+      shape: "hexagon",
+      size: 1.25,
       id: "7A55E0BA6E000028",
       icon: {
         id: "recompile:rain_collector",
