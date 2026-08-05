@@ -22,6 +22,13 @@
       dependencies: [
         "7A55E0BA6E000020",
       ],
+      rewards: [
+        {
+          id: "7A55E0BA6E0000DE",
+          type: "xp",
+          xp: 25,
+        },
+      ],
       tasks: [
         {
           id: "7A55E0BA6E0000AC",
@@ -44,6 +51,13 @@
       dependencies: [
         "7A55E0BA6E000020",
       ],
+      rewards: [
+        {
+          id: "7A55E0BA6E0000E2",
+          type: "xp",
+          xp: 25,
+        },
+      ],
       tasks: [
         {
           id: "7A55E0BA6E0000AD",
@@ -65,6 +79,13 @@
       },
       dependencies: [
         "7A55E0BA6E00002C",
+      ],
+      rewards: [
+        {
+          id: "7A55E0BA6E0000E3",
+          type: "xp",
+          xp: 50,
+        },
       ],
       tasks: [
         {
@@ -91,6 +112,13 @@
         "7A55E0BA6E000028",
         "7A55E0BA6E00002D",
       ],
+      rewards: [
+        {
+          id: "7A55E0BA6E0000E4",
+          type: "xp",
+          xp: 100,
+        },
+      ],
       tasks: [
         {
           id: "7A55E0BA6E0000AF",
@@ -112,6 +140,13 @@
       },
       dependencies: [
         "7A55E0BA6E000023",
+      ],
+      rewards: [
+        {
+          id: "7A55E0BA6E0000DA",
+          type: "xp",
+          xp: 25,
+        },
       ],
       tasks: [
         {
@@ -136,6 +171,13 @@
         "7A55E0BA6E000026",
         "7A55E0BA6E000021",
       ],
+      rewards: [
+        {
+          id: "7A55E0BA6E0000E0",
+          type: "xp",
+          xp: 50,
+        },
+      ],
       tasks: [
         {
           id: "7A55E0BA6E0000AA",
@@ -157,6 +199,13 @@
         id: "recompile:scrap_crafting_table",
         count: 1,
       },
+      rewards: [
+        {
+          id: "7A55E0BA6E0000D6",
+          type: "xp",
+          xp: 25,
+        },
+      ],
       tasks: [
         {
           id: "7A55E0BA6E0000A0",
@@ -176,6 +225,13 @@
         id: "recompile:prybar",
         count: 1,
       },
+      rewards: [
+        {
+          id: "7A55E0BA6E0000D7",
+          type: "xp",
+          xp: 25,
+        },
+      ],
       tasks: [
         {
           id: "7A55E0BA6E0000A1",
@@ -195,6 +251,13 @@
         id: "recompile:scrap_knife",
         count: 1,
       },
+      rewards: [
+        {
+          id: "7A55E0BA6E0000D8",
+          type: "xp",
+          xp: 25,
+        },
+      ],
       tasks: [
         {
           id: "7A55E0BA6E0000A2",
@@ -217,6 +280,13 @@
       dependencies: [
         "7A55E0BA6E000021",
       ],
+      rewards: [
+        {
+          id: "7A55E0BA6E0000D9",
+          type: "xp",
+          xp: 25,
+        },
+      ],
       tasks: [
         {
           id: "7A55E0BA6E0000A3",
@@ -234,6 +304,13 @@
       },
       dependencies: [
         "7A55E0BA6E000022",
+      ],
+      rewards: [
+        {
+          id: "7A55E0BA6E0000DB",
+          type: "xp",
+          xp: 25,
+        },
       ],
       tasks: [
         {
@@ -265,6 +342,13 @@
       dependencies: [
         "7A55E0BA6E000027",
       ],
+      rewards: [
+        {
+          id: "7A55E0BA6E0000DD",
+          type: "xp",
+          xp: 25,
+        },
+      ],
       tasks: [
         {
           id: "7A55E0BA6E0000A6",
@@ -287,6 +371,13 @@
       dependencies: [
         "7A55E0BA6E000020",
       ],
+      rewards: [
+        {
+          id: "7A55E0BA6E0000DF",
+          type: "xp",
+          xp: 25,
+        },
+      ],
       tasks: [
         {
           id: "7A55E0BA6E0000A7",
@@ -308,6 +399,13 @@
       },
       dependencies: [
         "7A55E0BA6E000020",
+      ],
+      rewards: [
+        {
+          id: "7A55E0BA6E0000DC",
+          type: "xp",
+          xp: 25,
+        },
       ],
       tasks: [
         {
@@ -332,6 +430,13 @@
       },
       dependencies: [
         "7A55E0BA6E000029",
+      ],
+      rewards: [
+        {
+          id: "7A55E0BA6E0000E1",
+          type: "xp",
+          xp: 50,
+        },
       ],
       tasks: [
         {
