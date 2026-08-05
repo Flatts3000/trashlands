@@ -282,10 +282,11 @@ water, or shallow water over an ash bed.
   Filtering or evaporating it is a real treatment process and would give the water tier something
   to work against.
 
+**Status:** ~~Region or feature?~~ **Decided (owner, 2026-08-05): feature, not region.** Sparse
+pools scattered through `household_sprawl` and the demolition yard - the counter-argument's side,
+since leachate forms at every dump. Tracked as Recompile #156.
+
 **Open questions:**
-- **Region or feature?** Filed here as a biome per the owner's framing, but leachate pools form at
-  *every* dump, so scattered pools in `household_sprawl` may be the truer read. A dedicated region
-  would be the pond field at the low point of a landfill, which is a real place but a narrower one.
 - **Custom fluid, or a retextured/tinted stand-in?** Same cost question as I-7, and the two should
   probably answer it the same way.
 - **Does it interact with encroachment?** Ground that leaches is ground that stays hostile. There
