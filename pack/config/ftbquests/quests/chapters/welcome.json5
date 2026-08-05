@@ -18,6 +18,7 @@
       height: 1.0,
       rotation: 0.0,
       image: "trashlands:textures/quests/discord.png",
+      text: "Join the Discord",
       id: "7A55E0BA6E000090",
       click_action: {
         type: "open_uri",
