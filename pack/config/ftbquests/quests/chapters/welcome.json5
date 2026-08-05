@@ -115,13 +115,6 @@
         id: "recompile:garbage_block",
         count: 1,
       },
-      rewards: [
-        {
-          id: "7A55E0BA6E0000D0",
-          type: "xp",
-          xp: 10,
-        },
-      ],
       tasks: [
         {
           id: "7A55E0BA6E000080",
