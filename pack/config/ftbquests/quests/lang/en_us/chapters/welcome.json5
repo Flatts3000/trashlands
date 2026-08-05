@@ -19,7 +19,7 @@
   "quest.7A55E0BA6E000017.quest_desc": [
     "There is no water anywhere in this world to start with. Rain is the only source early on, and the Rain Collector is what catches it.",
     "",
-    "Two source blocks will not fill in a third either. That vanilla trick is switched off in this pack, so every bucket you pour out is a bucket gone.",
+    "Two source blocks will not fill in a third. That vanilla trick is switched off here, so water never multiplies - what you collect is what you have.",
     "",
     "There is no thirst bar, so nothing bad happens while you have none. It starts to matter when you build something that drinks.",
   ],

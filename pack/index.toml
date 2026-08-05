@@ -62,7 +62,7 @@ hash = "7cb7178be76467f1653392f3020ec99aba5720c95714f7cc43867e2dd3db323e"
 
 [[files]]
 file = "config/ftbquests/quests/lang/en_us/chapters/welcome.json5"
-hash = "bfa33893d222dd647486f667c04dee54ee0d57ae98ea47da4e47b16c118cc362"
+hash = "35374ee6e89529d46e9fada49fe23315e1ddb651c9e3e14c0451f733acd4809d"
 
 [[files]]
 file = "icon.png"
