@@ -29,6 +29,25 @@
   quests: [
     {
       x: -2.0,
+      y: 3.0,
+      shape: "gear",
+      id: "7A55E0BA6E000018",
+      icon: {
+        id: "minecraft:coarse_dirt",
+        count: 1,
+      },
+      dependencies: [
+        "7A55E0BA6E000010",
+      ],
+      tasks: [
+        {
+          id: "7A55E0BA6E000089",
+          type: "checkmark",
+        },
+      ],
+    },
+    {
+      x: -2.0,
       y: 0.0,
       shape: "gear",
       id: "7A55E0BA6E000016",
