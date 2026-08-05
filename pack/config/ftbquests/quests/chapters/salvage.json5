@@ -12,6 +12,97 @@
   autofocus_id: "7A55E0BA6E000020",
   quests: [
     {
+      x: 2.0,
+      y: 3.0,
+      id: "7A55E0BA6E00002B",
+      icon: {
+        id: "recompile:scrap_barrel",
+        count: 1,
+      },
+      dependencies: [
+        "7A55E0BA6E000020",
+      ],
+      tasks: [
+        {
+          id: "7A55E0BA6E0000AC",
+          type: "item",
+          item: {
+            id: "recompile:scrap_barrel",
+            count: 1,
+          },
+        },
+      ],
+    },
+    {
+      x: 1.5,
+      y: 6.0,
+      id: "7A55E0BA6E00002C",
+      icon: {
+        id: "recompile:burn_barrel",
+        count: 1,
+      },
+      dependencies: [
+        "7A55E0BA6E000020",
+      ],
+      tasks: [
+        {
+          id: "7A55E0BA6E0000AD",
+          type: "item",
+          item: {
+            id: "recompile:burn_barrel",
+            count: 1,
+          },
+        },
+      ],
+    },
+    {
+      x: 1.5,
+      y: 7.5,
+      id: "7A55E0BA6E00002D",
+      icon: {
+        id: "minecraft:copper_ingot",
+        count: 1,
+      },
+      dependencies: [
+        "7A55E0BA6E00002C",
+      ],
+      tasks: [
+        {
+          id: "7A55E0BA6E0000AE",
+          type: "item",
+          item: {
+            id: "minecraft:copper_ingot",
+            count: 1,
+          },
+        },
+      ],
+    },
+    {
+      x: 0.0,
+      y: 9.0,
+      shape: "hexagon",
+      size: 1.5,
+      id: "7A55E0BA6E00002E",
+      icon: {
+        id: "minecraft:water_bucket",
+        count: 1,
+      },
+      dependencies: [
+        "7A55E0BA6E000028",
+        "7A55E0BA6E00002D",
+      ],
+      tasks: [
+        {
+          id: "7A55E0BA6E0000AF",
+          type: "item",
+          item: {
+            id: "minecraft:water_bucket",
+            count: 1,
+          },
+        },
+      ],
+    },
+    {
       x: -2.0,
       y: 3.0,
       id: "7A55E0BA6E00002A",
@@ -34,7 +125,7 @@
       ],
     },
     {
-      x: 0.0,
+      x: -1.5,
       y: 6.0,
       id: "7A55E0BA6E000029",
       icon: {
@@ -230,7 +321,7 @@
       ],
     },
     {
-      x: 0.0,
+      x: -1.5,
       y: 7.5,
       shape: "hexagon",
       size: 1.25,
