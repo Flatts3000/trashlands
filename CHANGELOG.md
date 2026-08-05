@@ -9,6 +9,13 @@ and ASCII punctuation only.
 ## [Unreleased]
 
 ### Added
+- (nothing yet)
+
+## [0.4.0] - 2026-08-05
+
+A quest book you can follow, and mounds that grow back.
+
+### Added
 - **A quest book with something in it.** Two chapters and 21 quests, from your first Block of
   Garbage to your first Bucket of Water. **Welcome** covers what this world is, what spawns here,
   where the water is, and the fact that coarse dirt takes green ground back. **Salvage** runs the
