@@ -130,7 +130,15 @@ class SNBT:
             if self.i >= self.n or self.s[self.i] != ":":
                 raise SNBTError(f"expected ':' after key {key!r}")
             self.i += 1
-            d[key] = self._value()
+            value = self._value()
+            # FTB parses these with a STRICT json5 reader that rejects a repeated key
+            # outright, and drops the whole chapter when it sees one. This reader is
+            # tolerant, so without the check a duplicate silently overwrites and the
+            # file looks fine here while the chapter never loads in game. That is
+            # exactly what happened to welcome.json5.
+            if key in d:
+                raise SNBTError(f"duplicate key {key!r} - FTB rejects the whole file")
+            d[key] = value
 
     def _arr(self) -> list:
         self.i += 1
