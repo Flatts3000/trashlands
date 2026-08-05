@@ -5,7 +5,7 @@
     "",
     "Everything you build starts as a Block of Garbage you dug out of a mound.",
     "",
-    "This book is nearly empty so far. The Salvager's Manual is the real guide, and the last quest here is making one.",
+    "The Salvager's Manual comes with this quest. It is the real guide to the pack; this book is nearly empty so far."
   ],
   "quest.7A55E0BA6E000015.title": "Join the Discord",
   "quest.7A55E0BA6E000015.quest_desc": [
@@ -20,11 +20,5 @@
     "The value is inside it. Hold right-click on the block with an empty hand and it pulls one item at a time until it crumbles. Left-click only picks it back up; the sorting is all on the right button.",
     "",
     "What comes out is random, so this takes a few blocks.",
-  ],
-  "quest.7A55E0BA6E000014.title": "The Salvager's Manual",
-  "quest.7A55E0BA6E000014.quest_desc": [
-    "E-Scrap and Fiber Scrap, in any arrangement.",
-    "",
-    "The manual covers every system in the pack and is where progression is explained. Keep it on you.",
   ],
 }

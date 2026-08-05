@@ -46,7 +46,7 @@ hash = "22c478a79a405242b4b687ede75d11c1ed51af84492bed3241939edefa335a44"
 
 [[files]]
 file = "config/ftbquests/quests/chapters/welcome.json5"
-hash = "1923eccd7a2541845465860a6187b85a0ebba19ae41639dd8fdab95fed017bab"
+hash = "feb29db5f8128dab4d02c44a8e8d0c79821dd7f9f9076a2ee16b9a991b19ff07"
 
 [[files]]
 file = "config/ftbquests/quests/data.json5"
@@ -62,7 +62,7 @@ hash = "937acb467d6bb4be65ed0ec18feee285caf10f137d473a01d7182564e7a2622b"
 
 [[files]]
 file = "config/ftbquests/quests/lang/en_us/chapters/welcome.json5"
-hash = "157c8bac82fcee9e56507b9b7183212aac5daefb3c64a39af2d7d85af36d02ec"
+hash = "e46b3a431e841079e08c37a6e11c7f2b6db00cda3fb081019d9c388f606fd637"
 
 [[files]]
 file = "icon.png"
@@ -161,6 +161,11 @@ metafile = true
 [[files]]
 file = "mods/ftb-teams-forge.pw.toml"
 hash = "cb69112ea7c492ee73426fb503af2d834c8bafcd8341188c99ea6dc56d38de6f"
+metafile = true
+
+[[files]]
+file = "mods/ftb-xmod-compat.pw.toml"
+hash = "bc0d71f6578c076e65815d58b56aec73d2f93eb20f71e8fe551e0ecfc64ba7c1"
 metafile = true
 
 [[files]]
