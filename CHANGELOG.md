@@ -9,6 +9,17 @@ and ASCII punctuation only.
 ## [Unreleased]
 
 ### Added
+- **A quest book with something in it.** Two chapters and 21 quests, from your first Block of
+  Garbage to your first Bucket of Water. **Welcome** covers what this world is, what spawns here,
+  where the water is, and the fact that coarse dirt takes green ground back. **Salvage** runs the
+  whole early game: the trash tools, Bulky Waste, food, storage, the Sorting Tarp, the Workbench,
+  and the two lines that meet at a bucket, one through a found Pump and rain, the other through the
+  Burn Barrel and copper.
+- **The Salvager's Manual is handed to you** on the first quest instead of being something you have
+  to work out how to craft.
+- **Quests pay XP**, weighted by what they ask. Ten for something you only have to read, a hundred
+  for the Bucket of Water.
+- **FTB XMod Compat**, which is what lets JEI work inside the quest book.
 - **Mounds grow back.** Recompile 0.7.0 makes a quarried mound rebuild itself toward the footprint
   and height it had, delivered as garbage falling out of the sky, so you can see across the plain
   which ones are refilling. It never grows past what it was and never seeds a new one.
@@ -85,6 +96,10 @@ whole pack was named after.
   world has no bone meal and cannot have any.
 
 ### Fixed
+- **The pack's resource pack now loads at all.** It declared `pack_format` where Minecraft 26.1
+  wants `min_format` and `max_format`, so the game rejected it on every launch and quietly removed
+  it from your options. The Discord badge in the quest book has been a missing-texture square in
+  every release that shipped it.
 - Biomes have names again instead of showing `biome.recompile.household_sprawl`.
 
 ### Heads up if you already have a world
