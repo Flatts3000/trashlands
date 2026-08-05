@@ -120,14 +120,14 @@
     },
     {
       x: 0.0,
-      y: 1.5,
+      y: 3.0,
       id: "7A55E0BA6E000025",
       icon: {
         id: "recompile:sorting_tarp",
         count: 1,
       },
       dependencies: [
-        "7A55E0BA6E000020",
+        "7A55E0BA6E000027",
       ],
       tasks: [
         {
@@ -142,7 +142,7 @@
     },
     {
       x: 0.0,
-      y: 3.0,
+      y: 4.5,
       id: "7A55E0BA6E000026",
       icon: {
         id: "recompile:recompile_workbench",
@@ -163,9 +163,8 @@
       ],
     },
     {
-      x: 2.0,
-      y: 3.0,
-      shape: "diamond",
+      x: 0.0,
+      y: 1.5,
       id: "7A55E0BA6E000027",
       icon: {
         id: "recompile:junk_shovel",
@@ -187,7 +186,7 @@
     },
     {
       x: 0.0,
-      y: 4.5,
+      y: 6.0,
       shape: "hexagon",
       size: 1.25,
       id: "7A55E0BA6E000028",
