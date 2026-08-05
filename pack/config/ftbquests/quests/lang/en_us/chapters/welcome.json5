@@ -11,21 +11,19 @@
   "quest.7A55E0BA6E000015.quest_desc": [
     "This is an alpha and the numbers in it are first-pass. Bug reports and balance complaints are both useful.",
     "",
-    "The Discord is at discord.gg/r6MhZ73nsM.",
-  ],
-  "quest.7A55E0BA6E000011.title": "Nothing to Mine",
-  "quest.7A55E0BA6E000011.quest_desc": [
-    "No trees to chop, no ore to mine, no stone. Looking for a cave will not help.",
-    "",
-    "It all comes out of the mounds instead, and you dig those with your hands.",
+    "Click the Discord badge above this quest. It opens the invite in your browser.",
   ],
   "quest.7A55E0BA6E000012.title": "Dig a Block of Garbage",
   "quest.7A55E0BA6E000012.quest_desc": [
-    "Bare hands are enough, and the block drops itself. It falls like gravel, so mind what is above you.",
+    "Break one out of a mound with your bare hands. No tool needed, and the block drops itself.",
+    "",
+    "It falls like gravel, so mind what is above you.",
   ],
   "quest.7A55E0BA6E000013.title": "Pick It Apart",
   "quest.7A55E0BA6E000013.quest_desc": [
-    "Place the block back down and right-click it with an empty hand. One item per click, and after a handful of pulls the block crumbles and is gone.",
+    "Place the block down, then hold right-click on it with an empty hand. It pulls one item at a time, and after a handful the block crumbles and is gone.",
+    "",
+    "Left-click only picks the block back up. The sorting is all on right-click.",
     "",
     "What comes out is random. E-Scrap and Fiber Scrap are what you want here.",
   ],

@@ -13,12 +13,19 @@
   images: [
     {
       x: 3.0,
-      y: -1.5,
+      y: -0.9,
       width: 1.0,
       height: 1.0,
       rotation: 0.0,
       image: "trashlands:textures/quests/discord.png",
       id: "7A55E0BA6E000090",
+      hover: [
+        "Join the Discord",
+      ],
+      click_action: {
+        type: "open_uri",
+        data: "https://discord.gg/r6MhZ73nsM",
+      },
     },
   ],
   quests: [
@@ -51,25 +58,6 @@
       tasks: [
         {
           id: "7A55E0BA6E000086",
-          type: "checkmark",
-        },
-      ],
-    },
-    {
-      x: -1.5,
-      y: 1.5,
-      shape: "diamond",
-      id: "7A55E0BA6E000011",
-      icon: {
-        id: "minecraft:coarse_dirt",
-        count: 1,
-      },
-      dependencies: [
-        "7A55E0BA6E000010",
-      ],
-      tasks: [
-        {
-          id: "7A55E0BA6E000081",
           type: "checkmark",
         },
       ],
