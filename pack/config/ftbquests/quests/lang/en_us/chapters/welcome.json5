@@ -13,19 +13,13 @@
     "",
     "Click the Discord badge above this quest. It opens the invite in your browser.",
   ],
-  "quest.7A55E0BA6E000012.title": "Dig a Block of Garbage",
+  "quest.7A55E0BA6E000012.title": "Pick Through the Garbage",
   "quest.7A55E0BA6E000012.quest_desc": [
-    "Break one out of a mound with your bare hands. No tool needed, and the block drops itself.",
+    "Break a Block of Garbage out of a mound with your bare hands. No tool needed, and it falls like gravel, so mind what is above you.",
     "",
-    "It falls like gravel, so mind what is above you.",
-  ],
-  "quest.7A55E0BA6E000013.title": "Pick It Apart",
-  "quest.7A55E0BA6E000013.quest_desc": [
-    "Place the block down, then hold right-click on it with an empty hand. It pulls one item at a time, and after a handful the block crumbles and is gone.",
+    "The value is inside it. Hold right-click on the block with an empty hand and it pulls one item at a time until it crumbles. Left-click only picks it back up; the sorting is all on the right button.",
     "",
-    "Left-click only picks the block back up. The sorting is all on right-click.",
-    "",
-    "What comes out is random. E-Scrap and Fiber Scrap are what you want here.",
+    "What comes out is random, so this takes a few blocks.",
   ],
   "quest.7A55E0BA6E000014.title": "The Salvager's Manual",
   "quest.7A55E0BA6E000014.quest_desc": [

@@ -75,48 +75,66 @@
       ],
       tasks: [
         {
-          id: "7A55E0BA6E000082",
+          id: "7A55E0BA6E0000B0",
           type: "item",
           item: {
-            id: "recompile:garbage_block",
-            count: 1,
-          },
-        },
-      ],
-    },
-    {
-      x: 0.0,
-      y: 3.0,
-      id: "7A55E0BA6E000013",
-      icon: {
-        id: "recompile:e_scrap",
-        count: 1,
-      },
-      dependencies: [
-        "7A55E0BA6E000012",
-      ],
-      tasks: [
-        {
-          id: "7A55E0BA6E000083",
-          type: "item",
-          item: {
-            id: "recompile:e_scrap",
+            id: "recompile:junk",
             count: 1,
           },
         },
         {
-          id: "7A55E0BA6E000084",
+          id: "7A55E0BA6E0000B1",
+          type: "item",
+          item: {
+            id: "recompile:scrap_metal",
+            count: 1,
+          },
+        },
+        {
+          id: "7A55E0BA6E0000B2",
+          type: "item",
+          item: {
+            id: "recompile:rebar",
+            count: 1,
+          },
+        },
+        {
+          id: "7A55E0BA6E0000B3",
+          type: "item",
+          item: {
+            id: "recompile:plastic_scrap",
+            count: 1,
+          },
+        },
+        {
+          id: "7A55E0BA6E0000B4",
+          type: "item",
+          item: {
+            id: "recompile:glass_shards",
+            count: 1,
+          },
+        },
+        {
+          id: "7A55E0BA6E0000B5",
           type: "item",
           item: {
             id: "recompile:fiber_scrap",
             count: 1,
           },
         },
+        {
+          id: "7A55E0BA6E0000B6",
+          type: "item",
+          item: {
+            id: "recompile:organic_muck",
+            count: 1,
+          },
+        }
       ],
     },
     {
       x: 0.0,
-      y: 4.5,
+      y: 3.0,
       shape: "hexagon",
       size: 1.25,
       id: "7A55E0BA6E000014",
@@ -128,7 +146,7 @@
         },
       },
       dependencies: [
-        "7A55E0BA6E000013",
+        "7A55E0BA6E000012",
       ],
       tasks: [
         {
