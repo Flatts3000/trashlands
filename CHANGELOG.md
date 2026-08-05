@@ -9,6 +9,24 @@ and ASCII punctuation only.
 ## [Unreleased]
 
 ### Added
+- **A quest book with something in it.** Two chapters and 21 quests, from your first Block of
+  Garbage to your first Bucket of Water. **Welcome** covers what this world is, what spawns here,
+  where the water is, and the fact that coarse dirt takes green ground back. **Salvage** runs the
+  whole early game: the trash tools, Bulky Waste, food, storage, the Sorting Tarp, the Workbench,
+  and the two lines that meet at a bucket, one through a found Pump and rain, the other through the
+  Burn Barrel and copper.
+- **The Salvager's Manual is handed to you** on the first quest instead of being something you have
+  to work out how to craft.
+- **Quests pay XP**, weighted by what they ask. Ten for something you only have to read, a hundred
+  for the Bucket of Water.
+- **FTB XMod Compat**, which is what lets JEI work inside the quest book.
+- **Mounds grow back.** Recompile 0.7.0 makes a quarried mound rebuild itself toward the footprint
+  and height it had, delivered as garbage falling out of the sky, so you can see across the plain
+  which ones are refilling. It never grows past what it was and never seeds a new one.
+- **Healing a mound retires it for good.** The dark earth under a footprint is Mound Ground, and
+  greening it with the Grass Spreader ends that mound permanently. A regrowing mound is income and
+  healed ground is not, so the trade the pack is named for is now a decision you make rather than
+  one the world makes for you.
 - **Gems, out of the demolition yard.** Recompile 0.6.0 adds Mechanical Waste and the Separator, a
   multiblock that pulls amethyst, diamond and redstone back out of industrial scrap. The ratios are
   the gate: 12 quartz grit for an amethyst, 16 spent abrasive for a diamond, 16 magnet scrap for
@@ -23,6 +41,11 @@ and ASCII punctuation only.
   peck something out of it, without wearing the pile down.
 
 ### Changed
+- **Bare hands no longer carry a pile away.** A Block of Garbage or Stone Rubble wants a shovel,
+  Mechanical Waste wants a pickaxe, and a Compacted Bale wants the Scrap Knife. Any vanilla shovel
+  or pickaxe does. Swing without one and the pile stays put and tells you what it wants. Sorting is
+  untouched: every pile still picks through bare-handed at the same rate, so sorting is free and
+  hauling is not. Trash Bags still come up by hand.
 - **A Dirty Mattress is spent by sleeping on it.** It survives one night and breaks when you get up.
   Sneak-right-click to set spawn without burning it; setting spawn is not sleeping.
 - **A pickaxe returns a Steel I-Beam** instead of destroying it, so a girder can be moved.
@@ -32,6 +55,10 @@ and ASCII punctuation only.
 - FTB Chunks, FTB Library, and FTB Quests moved up a patch version each.
 
 ### Heads up if you already have a world
+**Mound regrowth needs a new world.** The memory of what a mound was is written into the ground when
+the world generates, so a save made before this update has none and its mounds stay finite. Nothing
+breaks; the mounds simply do not come back.
+
 Dirty Mattresses now wear out. Nothing breaks, but a mattress you were treating as a permanent bed
 will be gone after one night.
 
@@ -69,6 +96,10 @@ whole pack was named after.
   world has no bone meal and cannot have any.
 
 ### Fixed
+- **The pack's resource pack now loads at all.** It declared `pack_format` where Minecraft 26.1
+  wants `min_format` and `max_format`, so the game rejected it on every launch and quietly removed
+  it from your options. The Discord badge in the quest book has been a missing-texture square in
+  every release that shipped it.
 - Biomes have names again instead of showing `biome.recompile.household_sprawl`.
 
 ### Heads up if you already have a world
