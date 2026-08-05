@@ -37,12 +37,32 @@ file = "config/fancymenu/options.txt"
 hash = "6975be9194248b1c650cdf3a2d038e5e9628abcece1b95767196f82086fdab8f"
 
 [[files]]
-file = "config/ftbquests/quests/chapters/welcome.snbt"
-hash = "4120bac4dc24288d2c7cc92213fc125611a01884e79f3c5482cf724649c32c71"
+file = "config/ftbquests/quests/chapter_groups.json5"
+hash = "0a11b89d5d2a66d384297eba3321fdcbc8e3704e7741172b1e770f4ad189a907"
 
 [[files]]
-file = "config/ftbquests/quests/lang/en_us.snbt"
-hash = "8d8b6128771707e921cf9a40d7e6b1a17505b7e48bcc815ed55cc1c3371be7fc"
+file = "config/ftbquests/quests/chapters/salvage.json5"
+hash = "4062681fcc31b777869e15cad481027d1de989e1a86a0ac128754589acb5cf7a"
+
+[[files]]
+file = "config/ftbquests/quests/chapters/welcome.json5"
+hash = "f7d506a396356648ebc7e296cabf58e713ca2900fbd9da70c46651c77fe08640"
+
+[[files]]
+file = "config/ftbquests/quests/data.json5"
+hash = "cc44f23da962e50f59fd00114686a78fc7837d9376b21d05dd88b667aeb6de15"
+
+[[files]]
+file = "config/ftbquests/quests/lang/en_us/chapter.json5"
+hash = "1fe911ca29fdcc7063e286b1501614e6bc5058b91b1d8c3386eaf58c9c804213"
+
+[[files]]
+file = "config/ftbquests/quests/lang/en_us/chapters/salvage.json5"
+hash = "f1c6155ec262f7267e83b7b47acdab999d76c8e7165421fa8a43b8c2684c0da9"
+
+[[files]]
+file = "config/ftbquests/quests/lang/en_us/chapters/welcome.json5"
+hash = "35374ee6e89529d46e9fada49fe23315e1ddb651c9e3e14c0451f733acd4809d"
 
 [[files]]
 file = "icon.png"
@@ -141,6 +161,11 @@ metafile = true
 [[files]]
 file = "mods/ftb-teams-forge.pw.toml"
 hash = "cb69112ea7c492ee73426fb503af2d834c8bafcd8341188c99ea6dc56d38de6f"
+metafile = true
+
+[[files]]
+file = "mods/ftb-xmod-compat.pw.toml"
+hash = "bc0d71f6578c076e65815d58b56aec73d2f93eb20f71e8fe551e0ecfc64ba7c1"
 metafile = true
 
 [[files]]
@@ -288,4 +313,4 @@ hash = "317716854cc50fc09f751b375c8e598e2e6fd966d1e7c51f4b751935e2cb58e4"
 
 [[files]]
 file = "resourcepacks/trashlands/pack.mcmeta"
-hash = "dd0c5dc9c6ad6b2e15c5f62b6047b528937b5845ad525b7502399d99bfa405d2"
+hash = "7f7ceb318f2e6bdd2ed4b21f796ecec2fb700c9a35dbc7a81b4c00d49cfaafd6"

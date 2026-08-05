@@ -1,6 +1,7 @@
 {
   "pack": {
-    "pack_format": 84,
-    "description": "Trashlands pack assets"
+    "description": "Trashlands pack assets",
+    "min_format": 84,
+    "max_format": 84
   }
 }

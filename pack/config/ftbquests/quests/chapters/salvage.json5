@@ -1,0 +1,257 @@
+{
+  id: "7A55E0BA6E000002",
+  group: "",
+  order_index: 1,
+  filename: "salvage",
+  icon: {
+    id: "recompile:scrap_crafting_table",
+    count: 1,
+  },
+  default_quest_shape: "",
+  default_hide_dependency_lines: false,
+  autofocus_id: "7A55E0BA6E000020",
+  quests: [
+    {
+      x: -2.0,
+      y: 3.0,
+      id: "7A55E0BA6E00002A",
+      icon: {
+        id: "recompile:mattress",
+        count: 1,
+      },
+      dependencies: [
+        "7A55E0BA6E000023",
+      ],
+      tasks: [
+        {
+          id: "7A55E0BA6E0000AB",
+          type: "item",
+          item: {
+            id: "recompile:mattress",
+            count: 1,
+          },
+        },
+      ],
+    },
+    {
+      x: 0.0,
+      y: 6.0,
+      id: "7A55E0BA6E000029",
+      icon: {
+        id: "recompile:pump",
+        count: 1,
+      },
+      dependencies: [
+        "7A55E0BA6E000026",
+        "7A55E0BA6E000021",
+      ],
+      tasks: [
+        {
+          id: "7A55E0BA6E0000AA",
+          type: "item",
+          item: {
+            id: "recompile:pump",
+            count: 1,
+          },
+        },
+      ],
+    },
+    {
+      x: 0.0,
+      y: 0.0,
+      shape: "hexagon",
+      size: 1.5,
+      id: "7A55E0BA6E000020",
+      icon: {
+        id: "recompile:scrap_crafting_table",
+        count: 1,
+      },
+      tasks: [
+        {
+          id: "7A55E0BA6E0000A0",
+          type: "item",
+          item: {
+            id: "recompile:scrap_crafting_table",
+            count: 1,
+          },
+        },
+      ],
+    },
+    {
+      x: -2.0,
+      y: 0.0,
+      id: "7A55E0BA6E000021",
+      icon: {
+        id: "recompile:prybar",
+        count: 1,
+      },
+      tasks: [
+        {
+          id: "7A55E0BA6E0000A1",
+          type: "item",
+          item: {
+            id: "recompile:prybar",
+            count: 1,
+          },
+        },
+      ],
+    },
+    {
+      x: 2.0,
+      y: 0.0,
+      id: "7A55E0BA6E000022",
+      icon: {
+        id: "recompile:scrap_knife",
+        count: 1,
+      },
+      tasks: [
+        {
+          id: "7A55E0BA6E0000A2",
+          type: "item",
+          item: {
+            id: "recompile:scrap_knife",
+            count: 1,
+          },
+        },
+      ],
+    },
+    {
+      x: -2.0,
+      y: 1.5,
+      id: "7A55E0BA6E000023",
+      icon: {
+        id: "recompile:bulky_waste",
+        count: 1,
+      },
+      dependencies: [
+        "7A55E0BA6E000021",
+      ],
+      tasks: [
+        {
+          id: "7A55E0BA6E0000A3",
+          type: "checkmark",
+        },
+      ],
+    },
+    {
+      x: 2.0,
+      y: 1.5,
+      id: "7A55E0BA6E000024",
+      icon: {
+        id: "recompile:tin_can_open",
+        count: 1,
+      },
+      dependencies: [
+        "7A55E0BA6E000022",
+      ],
+      tasks: [
+        {
+          id: "7A55E0BA6E0000A4",
+          type: "item",
+          item: {
+            id: "recompile:tin_can_open",
+            count: 1,
+          },
+        },
+        {
+          id: "7A55E0BA6E0000A5",
+          type: "item",
+          item: {
+            id: "recompile:dump_mushroom",
+            count: 1,
+          },
+        },
+      ],
+    },
+    {
+      x: 0.0,
+      y: 3.0,
+      id: "7A55E0BA6E000025",
+      icon: {
+        id: "recompile:sorting_tarp",
+        count: 1,
+      },
+      dependencies: [
+        "7A55E0BA6E000027",
+      ],
+      tasks: [
+        {
+          id: "7A55E0BA6E0000A6",
+          type: "item",
+          item: {
+            id: "recompile:sorting_tarp",
+            count: 1,
+          },
+        },
+      ],
+    },
+    {
+      x: 0.0,
+      y: 4.5,
+      id: "7A55E0BA6E000026",
+      icon: {
+        id: "recompile:recompile_workbench",
+        count: 1,
+      },
+      dependencies: [
+        "7A55E0BA6E000020",
+      ],
+      tasks: [
+        {
+          id: "7A55E0BA6E0000A7",
+          type: "item",
+          item: {
+            id: "recompile:recompile_workbench",
+            count: 1,
+          },
+        },
+      ],
+    },
+    {
+      x: 0.0,
+      y: 1.5,
+      id: "7A55E0BA6E000027",
+      icon: {
+        id: "recompile:junk_shovel",
+        count: 1,
+      },
+      dependencies: [
+        "7A55E0BA6E000020",
+      ],
+      tasks: [
+        {
+          id: "7A55E0BA6E0000A8",
+          type: "item",
+          item: {
+            id: "recompile:junk_shovel",
+            count: 1,
+          },
+        },
+      ],
+    },
+    {
+      x: 0.0,
+      y: 7.5,
+      shape: "hexagon",
+      size: 1.25,
+      id: "7A55E0BA6E000028",
+      icon: {
+        id: "recompile:rain_collector",
+        count: 1,
+      },
+      dependencies: [
+        "7A55E0BA6E000029",
+      ],
+      tasks: [
+        {
+          id: "7A55E0BA6E0000A9",
+          type: "item",
+          item: {
+            id: "recompile:rain_collector",
+            count: 1,
+          },
+        },
+      ],
+    },
+  ],
+}

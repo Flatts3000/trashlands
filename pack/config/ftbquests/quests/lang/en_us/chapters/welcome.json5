@@ -1,0 +1,48 @@
+{
+  "quest.7A55E0BA6E000018.title": "The Ground Takes It Back",
+  "quest.7A55E0BA6E000018.quest_desc": [
+    "Grass does not spread in this world, and coarse dirt reclaims what does grow. Ground you make green erodes from its edge inward.",
+    "",
+    "Only soil next to unhealed ground goes. The interior keeps until the edge reaches it, anything you placed is never touched, and none of it happens while you are logged off.",
+    "",
+    "This is a long way off yet. It matters once you start reclaiming ground, and the machines that heal it are the same ones that hold it.",
+  ],
+  "quest.7A55E0BA6E000016.title": "What Spawns Here",
+  "quest.7A55E0BA6E000016.quest_desc": [
+    "Nothing hostile spawns on the dump, so you do not need a shelter. You may find some friendly mobs out there, rarely, and none of them are food.",
+    "",
+    "Sleep anyway. Phantoms still come for anyone who has gone a few nights without it, which is vanilla and unchanged here.",
+    "",
+    "The demolition yard is not like this. Things spawn there, and in numbers, so go with something to hit them with.",
+  ],
+  "quest.7A55E0BA6E000017.title": "Water",
+  "quest.7A55E0BA6E000017.quest_desc": [
+    "There is no water anywhere in this world to start with. Rain is the only source early on, and the Rain Collector is what catches it.",
+    "",
+    "Two source blocks will not fill in a third. That vanilla trick is switched off here, so water never multiplies - what you collect is what you have.",
+    "",
+    "There is no thirst bar, so nothing bad happens while you have none. It starts to matter when you build something that drinks.",
+  ],
+  "quest.7A55E0BA6E000010.title": "Welcome to Trashlands",
+  "quest.7A55E0BA6E000010.quest_desc": [
+    "A coarse dirt plain with mounds of garbage on it. No ore under it, no trees on it.",
+    "",
+    "Everything you build starts as a Block of Garbage you dug out of a mound.",
+    "",
+    "The Salvager's Manual comes with this quest. It is the real guide to the pack; this book is nearly empty so far."
+  ],
+  "quest.7A55E0BA6E000015.title": "Join the Discord",
+  "quest.7A55E0BA6E000015.quest_desc": [
+    "This is an alpha and the numbers in it are first-pass. Bug reports and balance complaints are both useful.",
+    "",
+    "Click the Discord badge above this quest. It opens the invite in your browser.",
+  ],
+  "quest.7A55E0BA6E000012.title": "Pick Through the Garbage",
+  "quest.7A55E0BA6E000012.quest_desc": [
+    "Hold right-click on a Block of Garbage where it stands in the mound. It pulls one item at a time, and after two or three the block is gone.",
+    "",
+    "Bare hands are all it takes to sort. Carrying a block away is different: breaking one needs a shovel, and without one you get nothing. Trash Bags are the exception and come up bare-handed.",
+    "",
+    "What comes out is random, so this takes a few blocks.",
+  ],
+}

@@ -199,6 +199,33 @@ def audit(mods_dir: Path) -> int:
     return 0
 
 
+# Dev-only mods that must never reach players. A mod repo keeps these in a
+# gitignored run/mods, so nothing there can ship by accident. This is a pack: its
+# pack/mods IS the deliverable, and anything indexed there goes out to every
+# player who installs Trashlands. devbridge in particular opens a socket that
+# executes arbitrary commands, so it belongs in the test instance's mods folder,
+# placed by hand, and nowhere else.
+#
+# Guarded here rather than on a checklist because this runs in both
+# validate-pack.yml and release.yml already, so the coverage is free and it
+# cannot be forgotten under deadline.
+DEV_ONLY_MODS = ("devbridge",)
+
+
+def check_no_dev_mods() -> int:
+    index = PACK / "index.toml"
+    if not index.is_file():
+        return 0
+    text = index.read_text(encoding="utf-8").lower()
+    hits = [name for name in DEV_ONLY_MODS if name in text]
+    if hits:
+        print(f"1: dev-only mod(s) indexed in the pack: {', '.join(hits)}")
+        print("   pack/mods is shipped to players. Remove the entry (packwiz remove "
+              "<name>) and keep the jar in the test instance's mods folder instead.")
+        return 1
+    return 0
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__,
                                      formatter_class=argparse.RawDescriptionHelpFormatter)
@@ -207,6 +234,9 @@ def main() -> int:
                         help=f"port for `packwiz serve` (default {DEFAULT_PORT}, the registered one)")
     parser.add_argument("--keep", action="store_true", help="keep the resolved jars for inspection")
     args = parser.parse_args()
+
+    if check_no_dev_mods() != 0:
+        return 1
 
     if args.mods_dir:
         return audit(Path(args.mods_dir))
