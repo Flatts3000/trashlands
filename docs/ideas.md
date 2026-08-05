@@ -231,3 +231,64 @@ direction this sets up but does not require.
 - Interaction with **mound regrowth** (P1.6): do roads stay clear, or do regrowing mounds reclaim
   them? A road that stays open is a permanent landmark; one that silts up reinforces the quarry-vs-
   heal tension.
+
+## I-7: Coal ash ponds
+
+**Idea:** a frontier region of **coal ash impoundments** - flat grey slurry ponds behind low
+embankments, the residue of a power station that is no longer there.
+
+**Fit / notes:**
+- **It is a genuinely distinct silhouette.** Every region so far is a pile of something. An ash
+  pond is the opposite: dead flat, wet, and enormous, held in by a berm you can walk the top of.
+  That reads as a different kind of wrong from a mound field, which is what a frontier region has
+  to earn.
+- **The real material is useful and boring in the right way.** Fly ash is a cement extender, so
+  the region ties straight into the concrete line (I-3, and the reinforced concrete already
+  shipped). Ash plus the demolition yard's stone is a more honest concrete chain than either alone.
+- **Bottom ash and fly ash are different products**, which gives the region two outputs without
+  inventing anything: gritty bottom ash for aggregate, fine fly ash for the binder.
+- **The hazard writes itself and is historically real.** Kingston, Tennessee, 2008: an ash pond
+  embankment failed and released over a billion gallons. A region where the ground you are standing
+  on is the wall holding the pond back is a strong place to stand.
+- **Coal is deliberately not found in this world** (locked P0.4/P2.2 - junk is the early fuel). An
+  ash region is the residue of coal without ever handing the player coal, which fits that lock
+  rather than fighting it.
+
+**Depends on:** the region system (shipped, Phase 4). A pond needs a water-like fill that is not
+water, or shallow water over an ash bed.
+
+**Open questions:**
+- **Is the pond liquid?** A custom fluid is real cost. Shallow vanilla water over an ash floor may
+  read well enough and costs nothing.
+- **Does standing in it hurt you?** The P2 pressure-loop rule says never a threat to builds or
+  cleared land, but a personal hazard is a different question and may be fine.
+- **What gates it?** The demolition yard gates on travel distance. A second region at a similar
+  onset would compete with it rather than follow it.
+- Relationship to I-3 concrete: does ash *replace* part of that chain or feed it?
+
+## I-8: Leachate pools
+
+**Idea:** **pools of leachate** - the liquid that drains out of a dump - as terrain.
+
+**Fit / notes:**
+- **This is the most honest thing a landfill produces.** Rain falls through refuse, picks up
+  everything soluble on the way down, and comes out the bottom as a dark liquid that is the single
+  biggest reason engineered landfills have liners at all. A dump world without it is a dump world
+  with the consequences edited out.
+- **It is the natural antagonist to the water economy.** P1.10 made clean water something you
+  collect and defend. Leachate is water that has been ruined by exactly the material the player
+  spends all day handling, which makes it thematically load-bearing rather than set dressing.
+- **Possible mechanic, not yet a design:** leachate as an *input* rather than only a hazard.
+  Filtering or evaporating it is a real treatment process and would give the water tier something
+  to work against.
+
+**Open questions:**
+- **Region or feature?** Filed here as a biome per the owner's framing, but leachate pools form at
+  *every* dump, so scattered pools in `household_sprawl` may be the truer read. A dedicated region
+  would be the pond field at the low point of a landfill, which is a real place but a narrower one.
+- **Custom fluid, or a retextured/tinted stand-in?** Same cost question as I-7, and the two should
+  probably answer it the same way.
+- **Does it interact with encroachment?** Ground that leaches is ground that stays hostile. There
+  may be a link to `#hostile_ground` here, or that may be one system too many.
+- What does contact do - damage, an effect, nothing? The P2 rule constrains threats to builds and
+  cleared land, not to the player personally.
