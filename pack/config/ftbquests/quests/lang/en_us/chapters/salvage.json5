@@ -23,13 +23,17 @@
   "quest.7A55E0BA6E000024.quest_desc": [
     "Nothing spawns in the garbage biome, so there is nothing to hunt.",
     "",
-    "A sealed can is not food yet. Cut it open with the Scrap Knife first, then eat what is inside. Dump Mushrooms grow on the mycelium between mounds, and they place back down, so a patch you replant keeps feeding you.",
+    "A sealed can is not food yet. Hold the can and right-click with a Scrap Knife anywhere in your inventory - you do not have to hold the knife, and it is not used up.",
+    "",
+    "Dump Mushrooms grow on the mycelium between mounds, and they place back down, so a patch you replant keeps feeding you.",
   ],
   "quest.7A55E0BA6E000025.title": "The Sorting Tarp",
   "quest.7A55E0BA6E000025.quest_desc": [
-    "Right-click it holding a stack of garbage, bags, or bales and it sifts the lot at once, with no block crumbling in your hands.",
+    "Right-click the tarp with a Block of Garbage, a Trash Bag, or a Compacted Bale in hand and it sifts that one straight out. Hold right-click to keep feeding it.",
     "",
-    "It has no screen and stores nothing. Everything lands on the ground around it, so stand somewhere you do not mind covering, or put a Scrap Barrel beside it.",
+    "Feeding it blocks means carrying them, so this pairs with the Junk Shovel. A Compacted Bale needs a Scrap Knife to pick up at all.",
+    "",
+    "Nothing crumbles in your hands this way, which is the point of it. It has no screen and stores nothing, so everything lands on the ground around it - stand somewhere you do not mind covering, or put a Scrap Barrel beside it.",
   ],
   "quest.7A55E0BA6E000026.title": "The Recompile Workbench",
   "quest.7A55E0BA6E000026.quest_desc": [
@@ -39,7 +43,9 @@
   ],
   "quest.7A55E0BA6E000027.title": "Junk Shovel",
   "quest.7A55E0BA6E000027.quest_desc": [
-    "Digs the coarse dirt and the mounds faster. Nothing else needs it.",
+    "This is how you carry garbage rather than sorting it where it stands. A Block of Garbage or a pile of Stone Rubble breaks to nothing without a shovel in hand; any shovel will do.",
+    "",
+    "It digs the coarse dirt faster too.",
   ],
   "quest.7A55E0BA6E000028.title": "The Rain Collector",
   "quest.7A55E0BA6E000028.quest_desc": [

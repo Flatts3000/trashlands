@@ -1,4 +1,18 @@
 {
+  "quest.7A55E0BA6E000016.title": "What Spawns Here",
+  "quest.7A55E0BA6E000016.quest_desc": [
+    "Nothing hostile spawns on the dump. You do not need a shelter, and night is only dark.",
+    "",
+    "Cats, dogs and pigeons turn up rarely. They are the only things living out here, and none of them are food.",
+    "",
+    "The demolition yard is not like this. Zombies, skeletons, spiders and creepers spawn there four at a time, so go there with something to hit them with.",
+  ],
+  "quest.7A55E0BA6E000017.title": "Water",
+  "quest.7A55E0BA6E000017.quest_desc": [
+    "This world has no water in it at all. Rain is the only source there will ever be.",
+    "",
+    "There is no thirst bar, so nothing bad happens while you have none. It starts to matter when you build something that drinks, and the Rain Collector is what fills it.",
+  ],
   "quest.7A55E0BA6E000010.title": "Welcome to Trashlands",
   "quest.7A55E0BA6E000010.quest_desc": [
     "A coarse dirt plain with mounds of garbage on it. No ore under it, no trees on it.",
@@ -15,9 +29,9 @@
   ],
   "quest.7A55E0BA6E000012.title": "Pick Through the Garbage",
   "quest.7A55E0BA6E000012.quest_desc": [
-    "Break a Block of Garbage out of a mound with your bare hands. No tool needed, and it falls like gravel, so mind what is above you.",
+    "Hold right-click on a Block of Garbage where it stands in the mound. It pulls one item at a time, and after two or three the block is gone.",
     "",
-    "The value is inside it. Hold right-click on the block with an empty hand and it pulls one item at a time until it crumbles. Left-click only picks it back up; the sorting is all on the right button.",
+    "Bare hands are all it takes to sort. Carrying a block away is different: breaking one needs a shovel, and without one you get nothing. Trash Bags are the exception and come up bare-handed.",
     "",
     "What comes out is random, so this takes a few blocks.",
   ],

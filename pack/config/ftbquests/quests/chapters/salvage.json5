@@ -84,11 +84,7 @@
       tasks: [
         {
           id: "7A55E0BA6E0000A3",
-          type: "item",
-          item: {
-            id: "recompile:bulky_waste",
-            count: 1,
-          },
+          type: "checkmark",
         },
       ],
     },

@@ -28,6 +28,44 @@
   ],
   quests: [
     {
+      x: -2.0,
+      y: 0.0,
+      shape: "gear",
+      id: "7A55E0BA6E000016",
+      icon: {
+        id: "minecraft:wolf_spawn_egg",
+        count: 1,
+      },
+      dependencies: [
+        "7A55E0BA6E000010",
+      ],
+      tasks: [
+        {
+          id: "7A55E0BA6E000087",
+          type: "checkmark",
+        },
+      ],
+    },
+    {
+      x: -2.0,
+      y: 1.5,
+      shape: "gear",
+      id: "7A55E0BA6E000017",
+      icon: {
+        id: "minecraft:water_bucket",
+        count: 1,
+      },
+      dependencies: [
+        "7A55E0BA6E000010",
+      ],
+      tasks: [
+        {
+          id: "7A55E0BA6E000088",
+          type: "checkmark",
+        },
+      ],
+    },
+    {
       x: 0.0,
       y: 0.0,
       shape: "hexagon",
