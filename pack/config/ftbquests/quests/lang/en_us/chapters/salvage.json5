@@ -1,4 +1,18 @@
 {
+  "quest.7A55E0BA6E00002A.title": "Dirty Mattress",
+  "quest.7A55E0BA6E00002A.quest_desc": [
+    "The commonest thing in Bulky Waste, and the only bed until you can make a clean one.",
+    "",
+    "Sleeping on it breaks it when you get up. Sneak-right-click instead to set your spawn point, which does not wear it out, so one mattress can be your respawn and still be there tomorrow.",
+    "",
+    "Tearing one down at the Workbench with a Scrap Knife gives an idea toward the Clean Mattress. Four of those and you can make the real thing.",
+  ],
+  "quest.7A55E0BA6E000029.title": "The Pump",
+  "quest.7A55E0BA6E000029.quest_desc": [
+    "Find a Washing Machine in Bulky Waste and tear it down at the Workbench with a Prybar racked. It gives one Pump, plus scrap and plastic.",
+    "",
+    "There is no recipe for a Pump and no other source. The Rain Collector needs one and so does the Hydroponics Bay later, so this find gates both.",
+  ],
   "quest.7A55E0BA6E000020.title": "The Scrap Crafting Table",
   "quest.7A55E0BA6E000020.quest_desc": [
     "There is no wood in this world, so there is no vanilla crafting table.",
@@ -11,7 +25,9 @@
   ],
   "quest.7A55E0BA6E000022.title": "Scrap Knife",
   "quest.7A55E0BA6E000022.quest_desc": [
-    "Cuts open Tin Cans. It also racks on the Recompile Workbench, which is how you take things apart.",
+    "One Scrap Metal over one Rebar, small enough for your inventory grid.",
+    "",
+    "It opens sealed Tin Cans, and it is the only thing that will pick up or sort a Compacted Bale.",
   ],
   "quest.7A55E0BA6E000023.title": "Open Bulky Waste",
   "quest.7A55E0BA6E000023.quest_desc": [
@@ -37,7 +53,9 @@
   ],
   "quest.7A55E0BA6E000026.title": "The Recompile Workbench",
   "quest.7A55E0BA6E000026.quest_desc": [
-    "Rack a Scrap Knife or a Prybar on it first, by right-clicking the bench with the tool. Then hold right-click with whatever you want taken apart.",
+    "Rack both tools on it by right-clicking the bench with each in turn. It has a slot for a Scrap Knife and a slot for a Prybar, and different finds want different tools.",
+    "",
+    "Then hold right-click with whatever you want taken apart.",
     "",
     "The racked tool wears down as it works, and a broken one stops the line.",
   ],
@@ -51,6 +69,6 @@
   "quest.7A55E0BA6E000028.quest_desc": [
     "There are no rivers or springs here. Rain is the only water in the world, and this is what catches it.",
     "",
-    "It needs a Pump, and the only Pump comes out of a Washing Machine torn down at the Workbench. Leave the collector under open sky and it fills when it rains.",
+    "Leave it under open sky and it fills when it rains. Break it and the water it holds comes with it, so a move costs nothing.",
   ],
 }
