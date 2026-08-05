@@ -63,7 +63,8 @@ python tools/cf_release.py --zip "pack/Trashlands-0.1.0.zip" --project <id> \
 ```
 
 **Release type is `alpha` for the 0.x line.** Mark it explicitly so players arrive with the right
-expectations - the quest book holds only a welcome page, and the balance numbers are first-pass.
+expectations - the quest book covers the first two chapters and stops at your first Bucket of
+Water, and the balance numbers are first-pass.
 
 The web-form fallback, if both of the above fail:
 

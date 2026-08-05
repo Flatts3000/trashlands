@@ -45,7 +45,7 @@ tools/
 
 ## The mod lineup
 
-**46 mods**: the core six, a quality-of-life layer, the FTB stack, a tech and gadget layer, world-type enforcement, and six auto-pulled libraries. Locked
+**47 mods**: the core six, a quality-of-life layer, the FTB stack, a tech and gadget layer, world-type enforcement, and six auto-pulled libraries. Locked
 2026-08-02.
 
 ### Core - Recompile, the four it integrates with, and our own diagnostic
@@ -83,8 +83,9 @@ CurseForge-exclusive**, which is what closes the Modrinth door - see
 | Mod | Why it is in |
 |---|---|
 | **FTB Library** | Required by the rest. Not a choice. |
-| **FTB Quests** | The design's named quest engine, and the vehicle the narrative rides on. The engine is in; **the quest content is not written yet** - see the warning below. |
+| **FTB Quests** | The design's named quest engine, and the vehicle the narrative rides on. **Welcome** and **Salvage** ship as of v0.4.0, 21 quests to the first Bucket of Water. |
 | **FTB Teams** | Required by Quests for team-scoped progress. |
+| **FTB XMod Compat** | Wires FTB Quests to JEI: the bookmark key works inside the quest book, and an item task can convert to a tag filter. Cut on 2026-08-02 as "glue between FTB mods and mods we do not ship", which was wrong - JEI is core to this pack. Added 2026-08-04; must track the FTB Quests version. |
 | **FTB Chunks** | The minimap is the real reason. An endless coarse-dirt plain where mounds regrow is a world you constantly re-navigate, and there are no natural landmarks to steer by. Chunk claiming matters on servers. |
 | **FTB Essentials** | `/home`, `/tpa`, `/back`. `/back` pairs with GraveStone on a death run. |
 
@@ -233,7 +234,6 @@ confirm the button is gone.
   economy. Gated off garbage it has almost nothing left to do, because there is no ore and no wood.
 - **FTB Ranks** - server permission ranks. Nothing to permission yet.
 - **FTB Filter System** - smart item filters for routers and AE-style storage. The pack has neither.
-- **FTB XMod Compat** - glue between FTB mods and mods we do not ship.
 - **No 26.1.2 build on CurseForge** (recheck later): Crafting Tweaks, Jade Addons, Torchmaster,
   Polymorph, Supplementaries, Chipped, Functional Storage, More Overlays Updated, Fast Leaf Decay,
   Configured, Bookshelf, Inventory Tweaks Refoxed.
@@ -285,7 +285,7 @@ install task fail** ("Failed to launch modpack. An unexpected error occurred.").
 3. Name the instance **`Trashlands`** (the default `tools/sync_instance.py` looks for
    `<home>/curseforge/minecraft/Instances/Trashlands`).
 
-The manifest carries `neoforge-26.1.2.94`, so the app installs that loader and all 46 mods itself.
+The manifest carries `neoforge-26.1.2.94`, so the app installs that loader and all 47 mods itself.
 If the app cannot find that NeoForge build in its catalog the import will say so - see the loader
 note below.
 

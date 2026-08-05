@@ -52,6 +52,47 @@ Available at spawn, no tools required.
 > player kill so it cannot be farmed. Those two constraints are what keep it from undercutting the ladder;
 > raising either is a progression change, not a tuning pass.
 
+## Moving a pile is its own gate (2026-08-05, Recompile 0.7.0)
+
+**Sorting is free; hauling is not.** Every pile still picks through bare-handed at the same rate, but
+carrying one away needs a tool, and swinging without it leaves the pile standing and says what it
+wants.
+
+| Pile | Picks up with | Sorts with |
+|---|---|---|
+| Trash Bag | bare hands | bare hand |
+| Block of Garbage | any shovel | bare hand |
+| Stone Rubble | any shovel | bare hand |
+| Mechanical Waste | any pickaxe | bare hand |
+| Compacted Bale | Scrap Knife | Scrap Knife |
+
+Any vanilla shovel or pickaxe works; the Junk Shovel is not special-cased. **This makes the Junk
+Shovel load-bearing rather than a convenience** - it is the first tool that lets a player move
+garbage at all, and the Sorting Tarp is unusable without one, since feeding the tarp means carrying
+blocks to it.
+
+**Rebar is the scarcest of the base materials, despite being the crafting spine.** It is weight 40 in
+`household_pulls` against junk's 200 and scrap metal's 75 - roughly 7% of pulls. "The universal
+handle" describes its job, not its supply, and anything costing several rebar costs more than it
+looks.
+
+## Mounds regrow, and healing retires them (2026-08-05, Recompile 0.7.0)
+
+Phase 5 shipped, so the pack's central tension is finally live rather than designed.
+
+| Want | Source | Gated by |
+|---|---|---|
+| A mound that refills | Quarry it and wait | Nothing. Regrowth runs only near a player |
+| A mound gone for good | Green its **Mound Ground** with the Grass Spreader | The reclamation ladder, so rung 1 |
+
+**Mound Ground** is the dark earth under a footprint: coarse dirt with a different name and a darker
+face, same hardness and same shovel. Dark ground means that mound comes back. Encroachment can take
+the grass back but never back to Mound Ground, so only the green is contested and a retired mound
+stays retired.
+
+**It needs a new world.** The memory of what a mound was is written when the world generates, so a
+save made before 0.7.0 has none and its mounds stay finite.
+
 ## Tier 1 - trash tools
 
 | Material | Source | Gated behind |
@@ -238,6 +279,11 @@ Kept as worked examples, because each was invisible until traced.
 | Cupola needs concrete -> concrete needs Reinforced Concrete -> nothing placed it | **Broken 2026-07-30** by the steel pile. The recipe had been written against materials the biome was *meant* to have; nothing checked it was in the world, and iron was unreachable in survival with every test green |
 
 ## Changelog
+
+- **2026-08-05** - Recompile 0.7.0. Mound regrowth and Mound Ground ship, so quarry-versus-heal is a
+  live decision. Moving a pile now needs a tool while sorting stays bare-handed, which promotes the
+  Junk Shovel from convenience to gate. Recorded that rebar is the scarcest base material at weight
+  40, against the "universal handle" framing that reads as though it were common.
 
 - **2026-08-02** - The blueprint gate (Recompile #95). Beds move behind knowledge: Idea Fragments from
   mattress teardowns, a Clean Mattress blueprint, and the mod's own crafting table. The sixteen

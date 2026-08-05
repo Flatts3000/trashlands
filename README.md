@@ -8,17 +8,17 @@ Mine a mound and it grows back. Heal the ground underneath it and it is gone for
 tension the pack runs on: garbage is your only income, and the only way to make the world green is
 to give that income up.
 
-- **Status:** **alpha, released.** Latest is `v0.2.0` (2026-08-02), on
+- **Status:** **alpha, released.** Latest is `v0.4.0` (2026-08-05), on
   [GitHub Releases](https://github.com/Flatts3000/trashlands/releases) and CurseForge (project
-  `1636627`). The pack is 46 mods on Minecraft 26.1.2 / NeoForge 26.1.2.94, and releases are
+  `1636627`). The pack is 47 mods on Minecraft 26.1.2 / NeoForge 26.1.2.94, and releases are
   tag-driven - see [`docs/release_checklist.md`](docs/release_checklist.md).
 - **The engine:** [Recompile](https://github.com/Flatts3000/recompile), a standalone NeoForge mod
   that owns the garbage world, teardown, the machines, and the reclamation ladder. Trashlands is its
   showcase pack (the Productive Frogs -> Sky Frogs pattern).
 - **The distinct hook:** teardown-as-knowledge - recover *recipes*, not just materials - on a world
   of regrowing garbage mounds. Keep a mound as a renewable quarry, or heal its footprint and retire
-  it forever. The endgame is not beating a tide; it is no longer needing the dump. The knowledge
-  half is still being built; the alpha's workbench returns materials only.
+  it forever. The endgame is not beating a tide; it is no longer needing the dump. Both halves are built: teardown returns materials and Idea Fragments, and mounds regrow so the
+  quarry-versus-heal choice is a real one.
 
 ## Docs
 
