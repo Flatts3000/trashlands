@@ -57,7 +57,7 @@
     "",
     "Then hold right-click with whatever you want taken apart.",
     "",
-    "The racked tool wears down as it works, and a broken one stops the line.",
+    "The racked tool wears down as it works. When it breaks, nothing comes apart until you rack another.",
   ],
   "quest.7A55E0BA6E000027.title": "Junk Shovel",
   "quest.7A55E0BA6E000027.quest_desc": [
