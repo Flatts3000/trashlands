@@ -111,7 +111,7 @@ class SNBT:
             return self._obj()
         if c == "[":
             return self._arr()
-        if c == '"':
+        if c in "\"'":
             return self._string()
         return self._scalar()
 
@@ -154,6 +154,7 @@ class SNBT:
         return self.s[j:self.i]
 
     def _string(self) -> str:
+        quote = self.s[self.i]          # JSON5 allows ' as well as "
         self.i += 1
         out = []
         while self.i < self.n:
@@ -161,7 +162,7 @@ class SNBT:
             if c == "\\":
                 self.i += 1
                 out.append(self.s[self.i] if self.i < self.n else "")
-            elif c == '"':
+            elif c == quote:
                 self.i += 1
                 return "".join(out)
             else:
