@@ -90,6 +90,7 @@ Every vanilla material that has no honest garbage presence gets the same treatme
 | Quartz | Circuit oscillators (real!), old clocks, countertops | Slag-field silica processing |
 | Glowstone | Lamps, CRT/fluorescent phosphor coatings | Chemical tier |
 | Lapis | **Printer teardown** (shipped #112) - toner is pigment, and cyan toner is phthalocyanine blue | Chemical tier |
+| Dyes | **Printer teardown** - toner carries all sixteen colours, cyan/magenta/yellow far more often than the rest. Blue and black arrive as their pigment (lapis, ink sac) because vanilla already grinds each into its dye | Vegetation rung flowers (dandelion, poppy, oxeye, cornflower) plus vanilla combination crafting |
 | Coal | NOT found - junk is the early fuel (locked P0.4/P2.2) | Charcoal from recovered wood; carbon black from plastic processing |
 | Obsidian | Not found - made only (melt slag/glass; portal gate is earned) | Slag furnace |
 | Ender pearls | E-waste rare drop ("eyes of ender from e-waste" - locked in Dimensions bridge) | End access |
