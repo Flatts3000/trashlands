@@ -290,6 +290,11 @@ since leachate forms at every dump. Tracked as Recompile #156.
 - **Custom fluid, or a retextured/tinted stand-in?** Same cost question as I-7, and the two should
   probably answer it the same way.
 - **Does it interact with encroachment?** Ground that leaches is ground that stays hostile. There
-  may be a link to `#hostile_ground` here, or that may be one system too many.
+  may be a link to `#hostile_ground` here, or that may be one system too many. **One half is already
+  decided (owner, 2026-08-05): a pool does not irrigate**, so it never defends farmland from
+  encroachment and is never a source of clean water. NeoForge routes farmland hydration through
+  `FluidType.canHydrate`, which defaults to false, *not* through the `#minecraft:water` tag - so a
+  custom fluid is safe without doing anything, and only literal tinted water re-opens it. See
+  Recompile #156.
 - What does contact do - damage, an effect, nothing? The P2 rule constrains threats to builds and
   cleared land, not to the player personally.
