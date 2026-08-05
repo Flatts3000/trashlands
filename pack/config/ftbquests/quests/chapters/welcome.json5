@@ -33,7 +33,7 @@
       shape: "gear",
       id: "7A55E0BA6E000016",
       icon: {
-        id: "minecraft:wolf_spawn_egg",
+        id: "minecraft:torch",
         count: 1,
       },
       dependencies: [
