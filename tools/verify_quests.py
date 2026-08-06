@@ -28,21 +28,38 @@ Setup, once:
 
 How an id is tested
 -------------------
-By handing it to the command parser and reading what comes back. `give` takes an
-item argument, and an unknown id is a *parse* error, reported before the command
-looks for anything to give to:
+By handing it to the command parser and asking devbridge whether it ran. An
+unknown id is a *parse* error, so the command never executes; a live id parses,
+runs, and reports that the selector matched nobody:
 
-    give @a[tag=...] recompile:e_scrap   ->  "No player was found"      id is live
-    give @a[tag=...] recompile:nonsense  ->  "Unknown item '...'"       id is dead
+    give @a[tag=...] recompile:e_scrap   ->  executed=True   id is live
+    give @a[tag=...] recompile:nonsense  ->  executed=False  id is dead
+
+No output is read. Wording can change between versions; whether a command ran
+cannot.
 
 **The selector matches nobody on purpose.** In singleplayer there is a real player
 connected, so a bare `@a` would actually hand them every item in the quest book.
 A tag nothing carries keeps the check side-effect free, which is what makes it
 safe to run against a world you care about rather than a scratch one.
 
-Component filters go through the same path. The Salvager's Manual task matches
-`modonomicon:modonomicon` carrying a `modonomicon:book_id` component, and a wrong
-component key is uncompletable in exactly the way a wrong item id is.
+What this does and does not cover
+---------------------------------
+Measured against a running game, not assumed:
+
+    bad item id        recompile:not_a_real_item                    CAUGHT
+    bad component key  modonomicon:modonomicon[nosuch:x="y"]        CAUGHT
+    bad component VALUE modonomicon:modonomicon[book_id="nope:no"]  NOT CAUGHT
+
+A wrong component *value* parses fine, because the value is just a string and the
+parser has no idea which strings name a real book. So the Salvager's Manual task
+is verified as far as "that item and that component exist" and no further - if
+`recompile:guide` were renamed, this tool would still say ok and the quest would
+be uncompletable.
+
+An earlier version of this file claimed component filters were covered "in
+exactly the way a wrong item id is". They are not, and a check that overstates
+its reach is worse than one that admits a gap.
 
 Usage
 -----
@@ -60,11 +77,23 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import validate_quests as vq  # noqa: E402  (JSON5 parser + chapter loading)
 
+GAMEBRIDGE_INSTALL = ('  pip install "gamebridge @ '
+                      'git+https://github.com/Flatts3000/devbridge.git#subdirectory=gamebridge"')
+
 try:
     from gamebridge.devbridge import DevBridge, DevBridgeError
 except ImportError:  # noqa: BLE001
-    sys.exit("gamebridge is not installed. Run:\n"
-             "  pip install -e F:/minecraft-repos/mc-pack-toolkit/gamebridge")
+    sys.exit("gamebridge is not installed. Run:\n" + GAMEBRIDGE_INSTALL)
+
+# `run` arrived with devbridge 0.5.0. `command` alone returns only the output text,
+# which cannot distinguish a command that failed to parse from one that ran and
+# matched nothing - and that distinction is the entire basis of the check below.
+# Without this guard the failure is a bare AttributeError from inside the loop,
+# which says nothing about the cause.
+if not hasattr(DevBridge, "run"):
+    sys.exit("this needs gamebridge from devbridge 0.5.0 or later: DevBridge.run is\n"
+             "missing, so a dead item id cannot be told from a live one. Reinstall:\n"
+             + GAMEBRIDGE_INSTALL.replace("pip install", "pip install --force-reinstall"))
 
 if hasattr(sys.stdout, "reconfigure"):
     sys.stdout.reconfigure(encoding="utf-8")
@@ -98,11 +127,17 @@ NOBODY = "@a[tag=trashlands_verify_nobody]"
 # since a pack without FTB Quests has no quest book to verify.
 SENTINEL = "ftbquests:book"
 
-# The parser's way of saying an id is not registered. Matched case-insensitively
-# against the whole reply, so wording drift across versions is less likely to turn
-# a real failure into a silent pass.
-UNKNOWN_MARKERS = ("unknown item", "unknown registry", "can't find element",
-                   "unknown data component", "did you mean")
+# devbridge 0.5.0 reports whether a command ran, so this no longer reads English.
+#
+# `executed` is the whole test. An unknown item id fails to PARSE, so the command
+# never runs and executed is false. A live id parses, runs, finds no player behind
+# the selector, and reports failure - executed true, success false. Two different
+# things that produced identical-looking prose before.
+#
+# The string matching this replaces was the weakest part of the tool: a reworded
+# vanilla message would have turned a real failure into a silent pass, which is
+# the exact fault it existed to catch. devbridge removed the same pattern from its
+# own `check` verb in #56.
 
 
 def item_argument(item: dict) -> str:
@@ -185,8 +220,7 @@ def main() -> int:
 
     bad = []
     with bridge:
-        probe = str(bridge.command(f"give {NOBODY} {SENTINEL}")).lower()
-        if any(m in probe for m in UNKNOWN_MARKERS):
+        if not bridge.run(f"give {NOBODY} {SENTINEL}").get("executed"):
             print(f"connected on port {args.port}, but {SENTINEL} is not registered "
                   f"there.\n\nThat game is not this pack. The likeliest cause is the "
                   f"Recompile mod repo's\ngradle dev client, which runs devbridge on "
@@ -196,12 +230,11 @@ def main() -> int:
 
         print(f"checking {len(items)} item reference(s)\n")
         for arg, where in items:
-            reply = bridge.command(f"give {NOBODY} {arg}")
-            low = str(reply).lower()
-            ok = not any(m in low for m in UNKNOWN_MARKERS)
+            reply = bridge.run(f"give {NOBODY} {arg}")
+            ok = bool(reply.get("executed"))
             print(f"  {'ok  ' if ok else 'FAIL'}  {arg}")
             if not ok:
-                bad.append((arg, where, str(reply).strip()))
+                bad.append((arg, where, str(reply.get("output", "")).strip()))
 
     if bad:
         print(f"\n{len(bad)} unresolved reference(s):")
