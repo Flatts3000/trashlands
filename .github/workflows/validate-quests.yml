@@ -28,6 +28,7 @@ on:
       - "pack/resourcepacks/**"
       - "tools/validate_quests.py"
       - "tools/score_quest_voice.py"
+      - "tools/verify_quests.py"
       - ".github/workflows/validate-quests.yml"
   push:
     branches: [main]
@@ -36,6 +37,7 @@ on:
       - "pack/resourcepacks/**"
       - "tools/validate_quests.py"
       - "tools/score_quest_voice.py"
+      - "tools/verify_quests.py"
   workflow_dispatch:
 
 jobs:
@@ -47,6 +49,12 @@ jobs:
       - uses: actions/setup-python@v6
         with:
           python-version: "3.12"
+
+      # verify_quests.py needs a running game, so CI cannot execute it. Compiling it
+      # is still worth doing: without this the file is in no path filter at all, and
+      # a syntax error in it reaches main with nothing to say so.
+      - name: Compile the quest tools
+        run: python -m compileall -q tools/verify_quests.py tools/validate_quests.py tools/score_quest_voice.py
 
       - name: Validate quest structure
         run: python tools/validate_quests.py
