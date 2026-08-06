@@ -77,11 +77,23 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import validate_quests as vq  # noqa: E402  (JSON5 parser + chapter loading)
 
+GAMEBRIDGE_INSTALL = ('  pip install "gamebridge @ '
+                      'git+https://github.com/Flatts3000/devbridge.git#subdirectory=gamebridge"')
+
 try:
     from gamebridge.devbridge import DevBridge, DevBridgeError
 except ImportError:  # noqa: BLE001
-    sys.exit("gamebridge is not installed. Run:\n"
-             "  pip install -e F:/minecraft-repos/mc-pack-toolkit/gamebridge")
+    sys.exit("gamebridge is not installed. Run:\n" + GAMEBRIDGE_INSTALL)
+
+# `run` arrived with devbridge 0.5.0. `command` alone returns only the output text,
+# which cannot distinguish a command that failed to parse from one that ran and
+# matched nothing - and that distinction is the entire basis of the check below.
+# Without this guard the failure is a bare AttributeError from inside the loop,
+# which says nothing about the cause.
+if not hasattr(DevBridge, "run"):
+    sys.exit("this needs gamebridge from devbridge 0.5.0 or later: DevBridge.run is\n"
+             "missing, so a dead item id cannot be told from a live one. Reinstall:\n"
+             + GAMEBRIDGE_INSTALL.replace("pip install", "pip install --force-reinstall"))
 
 if hasattr(sys.stdout, "reconfigure"):
     sys.stdout.reconfigure(encoding="utf-8")
