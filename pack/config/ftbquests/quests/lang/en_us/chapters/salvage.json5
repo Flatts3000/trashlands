@@ -23,7 +23,7 @@
   "quest.7A55E0BA6E00002E.quest_desc": [
     "Three copper ingots make a bucket. Fill it at the Rain Collector and you have water you can carry.",
     "",
-    "Almost everything past this point wants water, metal, or both.",
+    "The bucket and the collector both start as copper, so the Burn Barrel is behind all of it.",
   ],
   "quest.7A55E0BA6E00002A.title": "Dirty Mattress",
   "quest.7A55E0BA6E00002A.quest_desc": [
@@ -37,7 +37,7 @@
   "quest.7A55E0BA6E000029.quest_desc": [
     "Find a Washing Machine in Bulky Waste and tear it down at the Workbench with a Prybar racked. It gives one Pump, plus scrap and plastic.",
     "",
-    "There is no recipe for a Pump and no other source. The Rain Collector needs one and so does the Hydroponics Bay later, so this find gates both.",
+    "There is no recipe for a Pump and no other source. It is a component of the Grass Spreader, the machine that waters coarse dirt back into grass, so keep the one you get - washing machines are not common enough to want to go hunting one later.",
   ],
   "quest.7A55E0BA6E000020.title": "The Scrap Crafting Table",
   "quest.7A55E0BA6E000020.quest_desc": [
@@ -93,8 +93,8 @@
   ],
   "quest.7A55E0BA6E000028.title": "The Rain Collector",
   "quest.7A55E0BA6E000028.quest_desc": [
-    "There are no rivers or springs here. Rain is the only water in the world, and this is what catches it.",
+    "A Water Tank and a copper pipe. The tank is plastic scrap, rebar and scrap metal, so the copper is the only part you had to smelt for.",
     "",
-    "Leave it under open sky and it fills when it rains. Break it and the water it holds comes with it, so a move costs nothing.",
+    "Leave it under open sky and it fills when it rains. Break it and the water it holds comes with it, so moving it costs nothing.",
   ],
 }
