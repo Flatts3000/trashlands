@@ -617,6 +617,55 @@ held-item placement guideline.
 2026-07-24. Guardrails: bounded to the connected cluster, standalone-first, members keep their manual
 interfaces - the network adds reach, not automation of the hand.
 
+## P2.11 - The dump gives objects, machines give materials (locked 2026-08-07)
+
+**The rule.** A **manufactured object a person would throw away is FOUND, never crafted.**
+Materials, and recombinations of materials, are crafted from what the dump yields.
+
+This is the line between the two halves of the economy, and it is deliberately not the one that was
+first proposed ("the player crafts nothing vanilla"). That version reversed **P2.2 purity-as-yield**,
+which says processed outputs are vanilla items wherever vanilla has them, and it would have deleted
+the backbone of progression: Steel Offcut to iron, stone shards to stone, the Separator's scrap to
+diamond and redstone. The mod's own proof of concept breaks it too - a bed is a *vanilla* item,
+crafted, from a modded mattress and vanilla planks.
+
+**The test is "would a person throw this away?"** A bucket, a rug, a bottle, a door, a boat, a sign:
+yes. An iron ingot, a stone block, a dye, a plank: no - nobody discards stock. That is the same
+concrete-object test **P1.11 item 1** used to kill the generic appliance, so it is already the house
+way of drawing this line.
+
+1. **This formalises what the mod already does by instinct.** The pull streams are already almost
+   entirely finished goods - bell, book, bookshelf, bowl, bundle, chest, flint and steel, glass
+   bottle, jukebox, lead, leather armour, music discs, painting, shears, spyglass, **wool carpets**.
+   What is missing is the other half: every one of those recipes is still live, so the found version
+   competes with a craftable one. **That is what makes finding one feel worthless**, and closing it
+   is the entire payoff of this rule.
+
+2. **Enforce by material scarcity first, recipe override only when forced.** The glass bottle is
+   already effectively found-only and nothing was deleted to do it: vanilla's recipe needs
+   `minecraft:glass` and this world only has `cullet_glass`. The recipe survives and its input does
+   not. That costs no files and cannot drift. An override (a file at the vanilla recipe id, the way
+   the sixteen beds are done) is needed only where the inputs must exist anyway - a bucket needs iron
+   and iron has to be reachable.
+
+3. **Building blocks are materials, not objects.** Stone to stone bricks stays craftable, or the pack
+   loses its creative half. This is consistent rather than an exception: the stone came from shards,
+   so the dump already gave it to you, and recombining what you earned is ordinary.
+
+4. **The rule only became safe once mounds regrow.** A found-only economy is finite unless its source
+   renews, so before **P1.6 / Recompile Phase 5** (shipped 2026-08-05) this would have been a slow
+   soft-lock rather than a design. It is worth stating because the ordering was luck, not plan.
+
+5. **The risk is a soft-lock on an object you never roll**, and the mitigation is weights plus
+   regrowth rather than a special case. It belongs to the pre-beta balance pass (Recompile #36) with
+   every other placeholder number.
+
+6. **Mechanically enforceable, and that is the point of writing it this way.** A test can walk every
+   enabled recipe and flag any finished good that still has a live crafting route. A rule CI holds is
+   worth more than a rule in a document, and this repo has already been bitten by the alternative -
+   the Pump spent months in the vocabulary being used by nothing while the guidebook claimed it gated
+   two machines.
+
 ## P3.1 - Sky dumps - CUT/FOLDED (2026-07-14)
 
 Not a separate feature. Sky dumps ARE the regrowth delivery already locked in P1.6.6: falling blocks spawn at the highest world level and fall into place in the mound. No beacon system, no supply-drop event, no opt-in toggle - it's simply how mounds refill. Technical details (spawn timing, entity handling) worked out at implementation.
