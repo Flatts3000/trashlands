@@ -666,6 +666,26 @@ way of drawing this line.
    the Pump spent months in the vocabulary being used by nothing while the guidebook claimed it gated
    two machines.
 
+**BUILT 2026-08-08** (Recompile #161), on the owner ruling that decided the case: **players should
+find buckets, not craft them.** Membership is the `#recompile:found_only` item tag; enforcement is
+`FoundNotCraftedTests`, which walks every loaded recipe and fails if anything in the tag is craftable,
+paired with a twin that fails if anything in the tag has no loot source. Building it corrected two
+things this entry got wrong, both worth keeping:
+
+7. **Scarcity is not enforcement, and point 6's "material scarcity is free" half was false.** The
+   reference case was vanilla's glass bottle, said to be already unobtainable because the world has no
+   `minecraft:glass`. Measured, it is obtainable: stone shards craft `minecraft:stone`, which is in
+   `#minecraft:stone_crafting_materials`, which crafts a **vanilla furnace**, which smelts the sand
+   Reinforced Concrete drops. This is the same failure as the iron gate's first design (Recompile #91)
+   - a gate built from the absence of a material dies the moment anything adds the material, and
+   neither failure announces itself. Recipes get disabled explicitly.
+
+8. **The starter list was half the work, and inspection could not have found the rest.** It named the
+   bucket and the carpets. The sweep found **35 live routes**: sixteen `<colour>_carpet`, sixteen
+   `dye_*_carpet` (a whole second family nobody had listed), vanilla's bucket, a **copper** bucket
+   recipe Recompile ships itself, and the glass bottle. Driving the test red and reading what it names
+   is the method; guessing the list is not.
+
 ## P3.1 - Sky dumps - CUT/FOLDED (2026-07-14)
 
 Not a separate feature. Sky dumps ARE the regrowth delivery already locked in P1.6.6: falling blocks spawn at the highest world level and fall into place in the mound. No beacon system, no supply-drop event, no opt-in toggle - it's simply how mounds refill. Technical details (spawn timing, entity handling) worked out at implementation.
