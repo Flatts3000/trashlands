@@ -58,7 +58,7 @@ hash = "1fe911ca29fdcc7063e286b1501614e6bc5058b91b1d8c3386eaf58c9c804213"
 
 [[files]]
 file = "config/ftbquests/quests/lang/en_us/chapters/salvage.json5"
-hash = "e5a89b8fa71104ee729646cf61719de066c7127d82b27c397a4d6580156adeba"
+hash = "075beab8d07c1d0fb9dddf1e1bfdfdd7f631b63d58ef406044c03fb64132b9d1"
 
 [[files]]
 file = "config/ftbquests/quests/lang/en_us/chapters/welcome.json5"
