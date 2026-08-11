@@ -85,6 +85,22 @@ checked before it ships, against:
 - `../recompile/` - the code and the specs. The design docs describe the intended end state, which is
   not the same as what ships. Check the roadmap phase status and the source.
 
+**Check the version the pack PINS, not `../recompile/` as it sits.** That sibling repo is a live
+working tree: it runs ahead of the last release, another session may be part-way through an edit in
+it, and neither state is what a player has. Read the pinned tag - `git show v0.8.0:path/to/file` -
+and only then the working tree, to see what is coming.
+
+_This is not hypothetical. On 2026-08-11 the bucket's drop rate was read out of an uncommitted
+rebalance in that repo and shipped as "roughly one pull in fourteen hundred". The pinned build had it
+at one in fifty-two; the finished rebalance landed on one in twenty-five hundred. Three different
+numbers, and the one that reached players matched neither._
+
+**Do not quote a drop rate as "one in N".** Recompile #174 diagnosed exactly this in its own docs: a
+rate in that form reads as rare and was never converted into anything a person experiences. Sorting
+runs about five pulls a second, so "one pull in fourteen hundred" is roughly five minutes, not a
+grind. Either give the number in time a player feels, or give no number - and prefer no number while
+a system is being balanced, because it will be wrong again by the next release.
+
 Two rules that come out of this directly, both now in the canonical spec:
 
 - **Do not personify.** Blocks and the world do not want, fight, or take. "Coarse dirt reverts grass
