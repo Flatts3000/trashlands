@@ -190,7 +190,7 @@ metafile = true
 
 [[files]]
 file = "mods/jei.pw.toml"
-hash = "9c3494a766f2d34b652cbcb80c7a7544439654bb173c0e7c708d86a8d0834d50"
+hash = "07846cb18e00cc84166f141913da307fc3880d797f38878ae3b38e54dbe4a091"
 metafile = true
 
 [[files]]
@@ -230,7 +230,7 @@ metafile = true
 
 [[files]]
 file = "mods/modonomicon.pw.toml"
-hash = "87a1a454e591a15bc8b2f2436cdf7c56a53b4cf7c06f86f5e8a914e414e285e9"
+hash = "95753f0c01b2215d656d3cf790c76bcac8fd5ff07a9a232cdf4247bfa9f92c61"
 metafile = true
 
 [[files]]
@@ -255,7 +255,7 @@ metafile = true
 
 [[files]]
 file = "mods/recompile.pw.toml"
-hash = "37cf0d8dd8afc18c43d8d2deff540bb00d1196ff631f5b3fa690c0367bb1acbf"
+hash = "158c466d70eeb0082099383e3c87a3be556125fe095fa7e4dd0cc1b5c1f1098d"
 metafile = true
 
 [[files]]
@@ -270,7 +270,7 @@ metafile = true
 
 [[files]]
 file = "mods/sodium.pw.toml"
-hash = "3c6a61247a60ff1df7c7dfefa5bc77e202b61d75338156387edcd9869b1b775b"
+hash = "b2327412e91caae91500cb1ea0965a579829c15403a9cd897f8eda2d44b8e16a"
 metafile = true
 
 [[files]]
@@ -285,7 +285,7 @@ metafile = true
 
 [[files]]
 file = "mods/supermartijn642s-core-lib.pw.toml"
-hash = "a87b1814b4fcf583001dcf7fef683dc258ffceaefc2e6651a05b41c2cc161d13"
+hash = "788a21fa12d196275b39f5debb1ce6b3efdf4a6881c2ab5aaf04fe207b6e2f98"
 metafile = true
 
 [[files]]
