@@ -17,7 +17,13 @@
     "",
     "A Scrap Barrel touching it is the one way out. The two are one Scrap Network then, and finished smelts move across into the barrel as they come, so you are not standing over it waiting to collect.",
     "",
-    "Fuel is the Oily Rag, made from Fiber Scrap and Organic Muck. There is no coal or wood here to burn instead.",
+    "It does not run without fuel, and there is no coal or wood in this world to feed it.",
+  ],
+  "quest.7A55E0BA6E00002F.title": "Fuel",
+  "quest.7A55E0BA6E00002F.quest_desc": [
+    "Fiber Scrap and Organic Muck, in any arrangement. Both come out of the same garbage you are already sorting, so fuel is never the thing that stops you.",
+    "",
+    "One rag burns as long as charcoal does - eight items smelted. Junk burns too, at two items a piece, which is worth knowing when you are standing in a pile of it and short of rags.",
   ],
   "quest.7A55E0BA6E00002D.title": "Copper",
   "quest.7A55E0BA6E00002D.quest_desc": [
@@ -27,9 +33,11 @@
   ],
   "quest.7A55E0BA6E00002E.title": "A Bucket of Water",
   "quest.7A55E0BA6E00002E.quest_desc": [
-    "Three copper ingots make a bucket. Fill it at the Rain Collector and you have water you can carry.",
+    "There is no recipe for a bucket. It is a found item, and a rare one - roughly one pull in fourteen hundred out of household garbage, and nothing else in this world drops one.",
     "",
-    "The bucket and the collector both start as copper, so the Burn Barrel is behind all of it.",
+    "So this is the long quest of the chapter. Keep a Sorting Tarp running and it will turn up in the sorting you were doing anyway; going looking for it specifically gets you no closer.",
+    "",
+    "Fill it at the Rain Collector and you have water you can carry.",
   ],
   "quest.7A55E0BA6E00002A.title": "Dirty Mattress",
   "quest.7A55E0BA6E00002A.quest_desc": [

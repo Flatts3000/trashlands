@@ -12,7 +12,7 @@
   autofocus_id: "7A55E0BA6E000020",
   quests: [
     {
-      x: -1.0,
+      x: 4.0,
       y: 4.5,
       id: "7A55E0BA6E00002B",
       icon: {
@@ -20,7 +20,7 @@
         count: 1,
       },
       dependencies: [
-        "7A55E0BA6E000020",
+        "7A55E0BA6E000027",
       ],
       rewards: [
         {
@@ -41,7 +41,7 @@
       ],
     },
     {
-      x: 3.0,
+      x: 0.0,
       y: 1.5,
       id: "7A55E0BA6E00002C",
       icon: {
@@ -70,15 +70,44 @@
       ],
     },
     {
-      x: 3.0,
+      x: 0.0,
       y: 3.0,
+      id: "7A55E0BA6E00002F",
+      icon: {
+        id: "recompile:oily_rag",
+        count: 1,
+      },
+      dependencies: [
+        "7A55E0BA6E00002C",
+      ],
+      rewards: [
+        {
+          id: "7A55E0BA6E0000E5",
+          type: "xp",
+          xp: 25,
+        },
+      ],
+      tasks: [
+        {
+          id: "7A55E0BA6E0000B2",
+          type: "item",
+          item: {
+            id: "recompile:oily_rag",
+            count: 1,
+          },
+        },
+      ],
+    },
+    {
+      x: 0.0,
+      y: 4.5,
       id: "7A55E0BA6E00002D",
       icon: {
         id: "minecraft:copper_ingot",
         count: 1,
       },
       dependencies: [
-        "7A55E0BA6E00002C",
+        "7A55E0BA6E00002F",
       ],
       rewards: [
         {
@@ -99,8 +128,8 @@
       ],
     },
     {
-      x: 2.0,
-      y: 6.0,
+      x: 0.0,
+      y: 7.5,
       shape: "hexagon",
       size: 1.5,
       id: "7A55E0BA6E00002E",
@@ -110,7 +139,6 @@
       },
       dependencies: [
         "7A55E0BA6E000028",
-        "7A55E0BA6E00002D",
       ],
       rewards: [
         {
@@ -131,7 +159,7 @@
       ],
     },
     {
-      x: -3.0,
+      x: -2.0,
       y: 3.0,
       id: "7A55E0BA6E00002A",
       icon: {
@@ -160,7 +188,7 @@
       ],
     },
     {
-      x: 1.0,
+      x: 2.0,
       y: 3.0,
       id: "7A55E0BA6E000029",
       icon: {
@@ -169,7 +197,7 @@
       },
       dependencies: [
         "7A55E0BA6E000026",
-        "7A55E0BA6E000021",
+        "7A55E0BA6E000023",
       ],
       rewards: [
         {
@@ -218,7 +246,7 @@
       ],
     },
     {
-      x: -3.0,
+      x: -2.0,
       y: 0.0,
       id: "7A55E0BA6E000021",
       icon: {
@@ -244,7 +272,7 @@
       ],
     },
     {
-      x: 5.0,
+      x: -4.0,
       y: 0.0,
       id: "7A55E0BA6E000022",
       icon: {
@@ -270,7 +298,7 @@
       ],
     },
     {
-      x: -3.0,
+      x: -2.0,
       y: 1.5,
       id: "7A55E0BA6E000023",
       icon: {
@@ -295,7 +323,7 @@
       ],
     },
     {
-      x: 5.0,
+      x: -4.0,
       y: 1.5,
       id: "7A55E0BA6E000024",
       icon: {
@@ -332,7 +360,7 @@
       ],
     },
     {
-      x: -1.0,
+      x: 4.0,
       y: 1.5,
       id: "7A55E0BA6E000025",
       icon: {
@@ -361,7 +389,7 @@
       ],
     },
     {
-      x: 1.0,
+      x: 2.0,
       y: 1.5,
       id: "7A55E0BA6E000026",
       icon: {
@@ -390,7 +418,7 @@
       ],
     },
     {
-      x: -1.0,
+      x: 4.0,
       y: 3.0,
       id: "7A55E0BA6E000027",
       icon: {
@@ -419,8 +447,8 @@
       ],
     },
     {
-      x: 3.0,
-      y: 4.5,
+      x: 0.0,
+      y: 6.0,
       shape: "hexagon",
       size: 1.25,
       id: "7A55E0BA6E000028",
