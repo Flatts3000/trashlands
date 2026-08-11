@@ -27,7 +27,9 @@
   ],
   "quest.7A55E0BA6E00002D.title": "Copper",
   "quest.7A55E0BA6E00002D.quest_desc": [
-    "Burn Scrap Metal in the barrel and it comes back as copper nuggets. Nine of those make an ingot, which is a great deal of scrap for a little metal.",
+    "Burn Scrap Metal in the barrel and it comes back as copper nuggets, one for one.",
+    "",
+    "Nuggets are the useful form. Six of them make three Copper Pipes, and the Rain Collector takes one pipe. An ingot is nine nuggets, and nothing you can build yet needs one.",
     "",
     "Copper is what this world runs on. Iron exists, but it is out past the demolition yard behind a furnace you cannot build yet.",
   ],
@@ -113,8 +115,10 @@
   ],
   "quest.7A55E0BA6E000028.title": "The Rain Collector",
   "quest.7A55E0BA6E000028.quest_desc": [
-    "A Water Tank and a copper pipe. The tank is plastic scrap, rebar and scrap metal, so the copper is the only part you had to smelt for.",
+    "Two blocks, stacked. The collector goes down first and the funnel sits on top of it - one without the other collects nothing.",
     "",
-    "Leave it under open sky and it fills when it rains. Break it and the water it holds comes with it, so moving it costs nothing.",
+    "The collector is a Water Tank with a Copper Pipe over it, and the tank is plastic scrap, rebar and scrap metal, so the pipe is the only part you smelted for. The funnel is a Machine Frame and a Plastic Scrap.",
+    "",
+    "Leave it under open sky and it fills when it rains. Break the collector and the water it holds comes with it, so moving it costs nothing.",
   ],
 }
