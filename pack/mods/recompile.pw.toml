@@ -1,13 +1,13 @@
 name = "Recompile"
-filename = "recompile-26.1.2-0.7.0.jar"
+filename = "recompile-26.1.2-0.8.0.jar"
 side = "both"
 
 [download]
 hash-format = "sha1"
-hash = "63b0ecfdec3d6cbecffa2e9bb42b26d682a7c99e"
+hash = "ed7d5028a3ac6e98efb475bf66c3aa72edf91670"
 mode = "metadata:curseforge"
 
 [update]
 [update.curseforge]
-file-id = 8580077
+file-id = 8626031
 project-id = 1625740
