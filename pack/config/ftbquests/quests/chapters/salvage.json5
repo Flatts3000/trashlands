@@ -103,7 +103,7 @@
       y: 4.5,
       id: "7A55E0BA6E00002D",
       icon: {
-        id: "minecraft:copper_ingot",
+        id: "minecraft:copper_nugget",
         count: 1,
       },
       dependencies: [
@@ -121,7 +121,7 @@
           id: "7A55E0BA6E0000AE",
           type: "item",
           item: {
-            id: "minecraft:copper_ingot",
+            id: "minecraft:copper_nugget",
             count: 1,
           },
         },
@@ -472,6 +472,14 @@
           type: "item",
           item: {
             id: "recompile:rain_collector",
+            count: 1,
+          },
+        },
+        {
+          id: "7A55E0BA6E0000B7",
+          type: "item",
+          item: {
+            id: "recompile:rain_collector_funnel",
             count: 1,
           },
         },
