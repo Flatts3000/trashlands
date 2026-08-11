@@ -304,6 +304,39 @@ It refuses to run while that instance's Minecraft is open (loaded jars are locke
 index, serves the working-tree pack, and drives packwiz-installer. It is idempotent - a run where
 every jar is already present and hash-matching downloads nothing.
 
+### Testing an unreleased mod in the pack
+
+CurseForge moderates every file, so pinning a mod there means waiting on a queue before it can be
+played next to the rest of the pack. That is right for shipping and useless for iterating - the
+whole point of a change is to play it.
+
+```sh
+python tools/sync_instance.py --dev ../recompile             # sync the pack, then overlay a local build
+python tools/sync_instance.py --dev ../recompile --dev-only  # rebuild + overlay only (the fast loop)
+python tools/sync_instance.py --dev path/to/some-mod.jar     # a prebuilt jar, no gradle
+```
+
+`--dev` takes a repo (builds it) or a jar (copies it), and is repeatable. `--dev-only` skips packwiz
+entirely, which is what you want while iterating: the rest of the pack has not changed, so rebuilding
+and copying one jar takes seconds instead of a full sync.
+
+Three things make it safe to leave lying around:
+
+- **The pin never moves.** `pack/mods/*.pw.toml` still points at the released CurseForge file, so an
+  overlay cannot leak into an export, a release, or anyone else's install. It is purely local.
+- **Overlaid jars are named `-dev`.** A local build usually carries the same version as the release it
+  came from, so copying it in under its own name would leave a mods folder where nothing tells you
+  whether you are testing the release or whatever you last compiled - and that answer decides whether
+  a bug report is worth anything. NeoForge reads the version from the jar, not the filename, so the
+  suffix costs nothing.
+- **A plain sync puts it back.** Every run sweeps `-dev` jars it is not reinstalling. Without that,
+  packwiz-installer would restore the pinned jar and leave the overlay beside it: two jars, one mod
+  id, and a launch crash that looks nothing like its cause.
+
+For a build somebody *else* needs to test, tag it instead - the mod's release workflow attaches the
+jar to a GitHub release immediately, and GitHub does not moderate. Point them at that jar; only a
+CurseForge release has to wait.
+
 Two guards it runs that bare packwiz does not:
 
 - **Before syncing, it checks the instance's loader against the pack pin.** An instance on a

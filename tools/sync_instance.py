@@ -41,6 +41,7 @@ from __future__ import annotations
 import argparse
 import json
 import re
+import os
 import shutil
 import subprocess
 import sys
@@ -216,6 +217,116 @@ def wait_for_serve(url: str, proc: subprocess.Popen, timeout: float = 30.0) -> s
     return None
 
 
+# ---------------------------------------------------------------------------
+# Dev overlay: a locally built mod, in the pack, without a CurseForge release
+# ---------------------------------------------------------------------------
+#
+# CurseForge moderates every file, so pinning a mod there means waiting on a queue
+# before it can be tested next to the rest of the pack. That is fine for shipping and
+# useless for iterating: the whole point of a change is to play it.
+#
+# packwiz-installer only ever fetches what the pins say, so the overlay runs AFTER the
+# sync and simply replaces that mod's jar in the instance. It is deliberately NOT a pin
+# change - the pack keeps pointing at the released file, so nothing here can leak into
+# an export or a release, and the next plain sync puts the released jar back.
+
+JDK = Path("C:/Program Files/Java/jdk-25")
+
+# Marks an overlaid jar so a mods folder always says which jars are local builds.
+DEV_SUFFIX = "-dev"
+
+
+def build_mod(repo: Path) -> Path | None:
+    """Build a sibling mod repo and hand back the jar it produced."""
+    if not (repo / "gradlew.bat").is_file() and not (repo / "gradlew").is_file():
+        print(f"  {repo} has no gradle wrapper - is that a mod repo?")
+        return None
+    env = dict(os.environ)
+    # The machine's JAVA_HOME points at a JDK that is not there; every gradle call in
+    # these repos overrides it, so do the same rather than failing in a confusing way.
+    if JDK.is_dir():
+        env["JAVA_HOME"] = str(JDK)
+    print(f"  building {repo.name} ...")
+    wrapper = repo / ("gradlew.bat" if os.name == "nt" else "gradlew")
+    done = subprocess.run([str(wrapper), "build", "--console=plain", "-q"],
+                          cwd=repo, env=env)
+    if done.returncode != 0:
+        print(f"  build FAILED ({done.returncode}) - not overlaying a stale jar")
+        return None
+    return newest_jar(repo / "build" / "libs")
+
+
+def newest_jar(libs: Path) -> Path | None:
+    """The mod jar in build/libs, ignoring the sources and javadoc siblings."""
+    if not libs.is_dir():
+        return None
+    jars = [j for j in libs.glob("*.jar")
+            if not j.name.endswith(("-sources.jar", "-javadoc.jar"))]
+    if not jars:
+        return None
+    # Newest by mtime: build/libs keeps older versions around, and picking by name
+    # sorts 0.10 before 0.9. The one just built is the one wanted.
+    return max(jars, key=lambda j: j.stat().st_mtime)
+
+
+def pinned_filename(artifact: str) -> str | None:
+    """What the pack pins this mod's jar as, so the overlay replaces the right file."""
+    for meta in sorted((PACK / "mods").glob("*.pw.toml")):
+        for line in meta.read_text(encoding="utf-8").splitlines():
+            if line.startswith("filename"):
+                name = line.split("=", 1)[1].strip().strip('"')
+                if name.startswith(artifact + "-"):
+                    return name
+    return None
+
+
+def overlay_dev_jar(instance: Path, source: Path) -> bool:
+    """Put a locally built jar into the instance in place of its pinned one."""
+    jar = build_mod(source) if source.is_dir() else source
+    if jar is None or not jar.is_file():
+        print(f"  no jar to overlay from {source}")
+        return False
+
+    # "recompile-26.1.2-0.8.0.jar" -> "recompile". The pin and the build agree on this
+    # prefix, which is what lets the released jar be found and removed.
+    artifact = jar.name.split("-")[0]
+    mods = instance / "mods"
+    mods.mkdir(exist_ok=True)
+
+    # LANDS UNDER A -dev NAME, ON PURPOSE. A local build usually carries the same version
+    # as the release it came from, so copying it in under its own name leaves a mods folder
+    # where nothing distinguishes "the released jar" from "whatever I last compiled" - and
+    # the answer decides whether a bug report is worth anything. NeoForge reads the version
+    # from the jar rather than the filename, so the suffix costs nothing.
+    target = mods / (jar.stem + DEV_SUFFIX + ".jar")
+
+    replaced = pinned_filename(artifact)
+    for stale in mods.glob(artifact + "-*.jar"):
+        if stale != target:
+            stale.unlink()
+            print(f"  removed {stale.name}")
+    shutil.copy2(jar, target)
+    print(f"  installed {target.name}  ({jar.stat().st_size // 1024} KiB)")
+    if replaced:
+        print(f"  (the pack still pins {replaced}; a plain sync restores it)")
+    return True
+
+
+def sweep_dev_overlays(instance: Path, keep: list[Path]) -> None:
+    """Delete dev overlays that this run is not (re)installing.
+
+    Without this the tool is a footgun rather than a convenience. packwiz-installer only
+    manages the files in its own manifest, so a plain sync happily reinstalls the pinned
+    jar and leaves an older -dev overlay sitting beside it - two jars, one mod id, and a
+    crash on launch that looks nothing like its cause.
+    """
+    keeping = {p.name.split("-")[0] for p in keep}
+    for overlay in sorted((instance / "mods").glob("*" + DEV_SUFFIX + ".jar")):
+        if overlay.name.split("-")[0] not in keeping:
+            overlay.unlink()
+            print(f"  removed stale dev overlay {overlay.name}")
+
+
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__,
                                  formatter_class=argparse.RawDescriptionHelpFormatter)
@@ -228,6 +339,13 @@ def main() -> int:
                     help="skip the post-sync check_pack_deps.py audit")
     ap.add_argument("--force", action="store_true",
                     help="sync even if the instance's loader does not match the pack pin")
+    ap.add_argument("--dev", type=Path, action="append", metavar="PATH", default=[],
+                    help="overlay a locally built mod after syncing: a repo to build, or a "
+                         ".jar to copy. Repeatable. Lets an unreleased build be played next "
+                         "to the rest of the pack without a moderated CurseForge release.")
+    ap.add_argument("--dev-only", action="store_true",
+                    help="skip the packwiz sync and only re-overlay --dev mods. The fast loop "
+                         "while iterating on a mod: the rest of the pack has not changed.")
     args = ap.parse_args()
     sys.stdout.reconfigure(line_buffering=True)
 
@@ -242,6 +360,15 @@ def main() -> int:
     if minecraft_running(args.instance):
         sys.exit("ABORT: Minecraft appears to be running this instance. Close it first "
                  "(loaded jars are locked), then retry.")
+
+    if args.dev_only:
+        if not args.dev:
+            sys.exit("--dev-only needs at least one --dev PATH to overlay.")
+        print("dev overlay only - the pack itself is not being synced")
+        sweep_dev_overlays(args.instance, args.dev)
+        ok = all(overlay_dev_jar(args.instance, d) for d in args.dev)
+        print("Relaunch the instance." if ok else "Overlay failed.")
+        return 0 if ok else 1
 
     pack_name, mc_pin, loader_pin = pack_pins()
     if not check_loader(args.instance, mc_pin, loader_pin) and not args.force:
@@ -294,6 +421,13 @@ def main() -> int:
         if rc != 0:
             print("\nThe instance would boot with mods silently absent. Fix before testing.")
             return rc
+
+    if args.dev:
+        print("\noverlaying locally built mods ...")
+        if not all(overlay_dev_jar(args.instance, d) for d in args.dev):
+            return 1
+        print("\n*** This instance is NOT the shipped pack. *** One or more mods are local "
+              "builds.\n    Re-run without --dev to put the released jars back.")
 
     print("\nRelaunch the instance to load the new mods.")
     return 0
