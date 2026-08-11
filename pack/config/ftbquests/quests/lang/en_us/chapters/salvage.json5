@@ -5,9 +5,9 @@
     "",
     "It opens the ordinary chest screen and holds a chest's worth of anything.",
     "",
-    "It is also the first block that can catch what the others put out. Scrap blocks touching face to face are one Scrap Network - no pipes, no wires, nothing to connect - and the barrel is where that network puts things. Set it against the Sorting Tarp and sifted materials land in it rather than on the floor. Against the Burn Barrel or the Recompile Workbench, the same goes for what those turn out.",
+    "It is also the first block that can catch what the others put out. Scrap blocks touching face to face are one Scrap Network. No pipes, no wires, nothing to connect. Set the barrel against the Sorting Tarp and sifted materials land in it rather than on the floor; the same goes for whatever the Burn Barrel and the Recompile Workbench turn out.",
     "",
-    "Touching means sharing a face. Corner to corner does not count, and neither does a block with a gap.",
+    "Touching means sharing a face. A block on the diagonal is a separate network, and so is one with a gap.",
   ],
   "quest.7A55E0BA6E00002C.title": "The Burn Barrel",
   "quest.7A55E0BA6E00002C.quest_desc": [
@@ -15,9 +15,9 @@
     "",
     "It takes refuse and food and nothing else, so Scrap Metal and anything edible will burn where other metals will not. Pipes and hoppers cannot reach it either, so you load it by hand.",
     "",
-    "A Scrap Barrel touching it is the one way out. The two are one Scrap Network then, and finished smelts move across into the barrel as they come, so you are not standing over it waiting to collect.",
+    "Stand a Scrap Barrel against it and the two are one Scrap Network. Finished smelts move across into the barrel as they come, so you are not standing over it to collect.",
     "",
-    "It does not run without fuel, and there is no coal or wood in this world to feed it.",
+    "It needs fuel. There is no coal and no wood in this world.",
   ],
   "quest.7A55E0BA6E00002F.title": "Fuel",
   "quest.7A55E0BA6E00002F.quest_desc": [
@@ -33,9 +33,9 @@
   ],
   "quest.7A55E0BA6E00002E.title": "A Bucket of Water",
   "quest.7A55E0BA6E00002E.quest_desc": [
-    "There is no recipe for a bucket. It is a found item, and a rare one - roughly one pull in fourteen hundred out of household garbage, and nothing else in this world drops one.",
+    "There is no recipe for a bucket. Vanilla's is switched off here, so you find them instead - roughly one pull in fourteen hundred out of household garbage.",
     "",
-    "So this is the long quest of the chapter. Keep a Sorting Tarp running and it will turn up in the sorting you were doing anyway; going looking for it specifically gets you no closer.",
+    "So this is the long one, and nothing hurries it. Keep a Sorting Tarp running and a bucket turns up in the sorting you were already doing.",
     "",
     "Fill it at the Rain Collector and you have water you can carry.",
   ],
@@ -51,7 +51,9 @@
   "quest.7A55E0BA6E000029.quest_desc": [
     "Find a Washing Machine in Bulky Waste and tear it down at the Workbench with a Prybar racked. It gives one Pump, plus scrap and plastic.",
     "",
-    "There is no recipe for a Pump and no other source. It is a component of the Grass Spreader, the machine that waters coarse dirt back into grass, so keep the one you get - washing machines are not common enough to want to go hunting one later.",
+    "The teardown also gives an idea toward the Pump itself. Four of those make a blueprint, and with it you can craft one from three copper, a Scrap Metal and a Plastic Scrap - so the first washing machine is the only one you have to find.",
+    "",
+    "It is a component of the Grass Spreader, the machine that turns coarse dirt back to grass.",
   ],
   "quest.7A55E0BA6E000020.title": "The Scrap Crafting Table",
   "quest.7A55E0BA6E000020.quest_desc": [
@@ -89,7 +91,7 @@
   "quest.7A55E0BA6E000025.quest_desc": [
     "Right-click the tarp with a Block of Garbage, a Trash Bag, or a Compacted Bale in hand and it sifts that one straight out. Hold right-click to keep feeding it.",
     "",
-    "Trash Bags you have already pulled out of a mound work right away. A whole Block of Garbage has to be carried here, and that needs a shovel. A Compacted Bale needs a Scrap Knife to pick up at all.",
+    "A Trash Bag breaks by hand and needs no tool, so you can feed the tarp from the moment you have one. A whole Block of Garbage has to be carried here, and that needs a shovel. A Compacted Bale needs a Scrap Knife to pick up at all.",
     "",
     "Nothing crumbles in your hands this way, which is the point of it. It has no screen and stores nothing, so everything lands on the ground around it - stand somewhere you do not mind covering.",
     "",
