@@ -11,6 +11,81 @@ and ASCII punctuation only.
 ### Added
 - (nothing yet)
 
+## [0.5.0] - 2026-08-12
+
+The quest book stops reading you recipes, and the dump starts handing you objects instead of ingredients.
+
+### Added
+- **Salvage teaches the Scrap Network.** The one thing about Recompile that nothing in the world
+  tells you is that scrap blocks touching face to face are one system - no pipes, no wires, nothing
+  to connect. Four quests now say it where you meet it: the Scrap Barrel catching what the Sorting
+  Tarp throws, the Burn Barrel moving finished smelts across, the Workbench dropping teardown into
+  the barrel instead of onto its own top, and the Scrap Crafting Table's right-hand panel listing
+  what the whole network holds. Touching means sharing a face; a diagonal is a separate network.
+- **A Fuel quest**, because "it needs fuel and there is no coal or wood here" was a sentence with
+  nowhere to go. One Oily Rag burns as long as charcoal does, and Junk burns at two items a piece,
+  which is worth knowing when you are standing in a pile of it.
+- **The Dead Fridge** (Recompile 0.9.0). A two-block appliance in Bulky Waste that replaces the
+  Broken Fan and the Light Fixture. Pry it open and it gives eight pieces of scrap, something out of
+  the freezer, and exactly one of a motor, a pump or a bulb - and whichever you pull is the one you
+  come away knowing. Its freezer is the only ice or snow in this world; nothing here snows and
+  nothing freezes, so if you want either you go looking for fridges.
+- **Leachate** (Recompile 0.8.0). Pools of runoff sit on the open ground between mounds. It looks
+  like water and is not: it will not fill a Rain Collector, it will not water a crop, and standing
+  in it makes you hungry.
+
+### Changed
+- **The quest book stopped reciting recipes.** Quests were listing ingredients JEI already shows -
+  "eight Scrap Metal in a ring", "two Scrap Metal over two Fiber Scrap". They say what the block
+  does now, and what it costs is left to the recipe viewer.
+- **Found, not crafted** (Recompile 0.8.0 and 0.9.0). Anything a person would actually throw away
+  comes out of the dump rather than a grid: buckets, bowls, shears, flint and steel, leads, name
+  tags, paper, books, bundles, glass bottles and all four pieces of leather armour lost their
+  recipes. Materials and what you build out of them are still yours to make. The rule is enforced at
+  load rather than remembered.
+- **Teardowns roll their materials.** A fridge does not hand over a fixed pile; it rolls eight times
+  across metal, plastic and electronics, so no two come apart the same way. The Printer, the Washing
+  Machine, the Dirty Mattress and the Hydroponics Bay all work this way now. Averages are unchanged.
+  What was guaranteed stays guaranteed.
+- **The pull streams are much rarer at the top end.** Buckets, shears, flint and steel and leads now
+  turn up about every half hour each rather than every couple of minutes; name tags about hourly;
+  collectibles 480 times rarer than they were. Bulk material - junk, scrap, plastic, glass shards -
+  is untouched. The rates were derived from measured playtime rather than guessed.
+- **One workstation, not three objects in a row.** The Scrap Crafting Table, the Sorting Tarp and the
+  Teardown Workbench share a bench profile, so a lined-up Scrap Network cluster reads as one
+  continuous work surface. Their tops run the full block width; there used to be a two-pixel gap.
+- **Recompile 0.7.0 -> 0.9.0**, plus JEI, Modonomicon, Sodium and SuperMartijn642's Core Lib.
+
+### Fixed
+- **The bucket quest was reading odds off the wrong tree.** It taught three copper ingots into a
+  bucket. There is no bucket recipe - vanilla's is switched off - and buckets come out of household
+  garbage instead.
+- **Copper is nuggets, not ingots.** Burning Scrap Metal returns one nugget per scrap, and the quest
+  said nine of those make an ingot as though that were the goal. Nothing you can build early takes an
+  ingot; the nuggets go to Copper Pipes.
+- **The Rain Collector is two blocks.** The collector holds water but gathers none without the funnel
+  stacked on top, and no quest said so.
+- **The Pump is not the water gate, copper is.** The quest treated the found Pump as the wall, when
+  the teardown also gives an idea toward the Pump - four of those and you can craft them outright, so
+  the first washing machine is the only one you have to find.
+- **Jade and JEI could not read a single teardown** in a packaged install (Recompile 0.9.0). They
+  read the mod's own recipe files through a lookup that only worked on an unpacked folder, which is a
+  development layout and not one any player has had. Salvage worked the whole time, so the only tell
+  was every viewer quietly insisting your Dirty Mattress was worthless.
+- **The Scrap Crafting Table could not see everything in a connected barrel.** The network reported
+  at most eighteen distinct materials, fewer than one barrel holds, so a barrel of nineteen Rebar
+  would report "Not in your inventory or any connected storage". The cap is gone and multiple barrels
+  aggregate.
+
+### Removed
+- **The Broken Fan and the Light Fixture.** The Dead Fridge carries the weight both had between them.
+  Any you have placed or stored are gone after the update - tear them down for their Motor and Bulb
+  first if you want the value. Everything else in an existing world carries over, and the fridge only
+  appears in Bulky Waste you have not opened yet.
+- **Music discs from the pull streams.** A disc every couple of hours was not worth the slot.
+- **Wool carpets from trash bags.** A rug you find every few minutes is not worth finding. Wool is
+  still a bag pull, so you make carpets the ordinary way again.
+
 ## [0.4.0] - 2026-08-05
 
 A quest book you can follow, and mounds that grow back.
