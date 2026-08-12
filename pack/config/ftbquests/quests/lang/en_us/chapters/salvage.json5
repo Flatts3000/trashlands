@@ -1,7 +1,7 @@
 {
   "quest.7A55E0BA6E00002B.title": "Scrap Barrel",
   "quest.7A55E0BA6E00002B.quest_desc": [
-    "Eight Scrap Metal in a ring. Every vanilla container needs wood, so this is the first storage this world has.",
+    "Every vanilla container needs wood, so this is the first storage this world has.",
     "",
     "It opens the ordinary chest screen and holds a chest's worth of anything.",
     "",
@@ -11,7 +11,7 @@
   ],
   "quest.7A55E0BA6E00002C.title": "The Burn Barrel",
   "quest.7A55E0BA6E00002C.quest_desc": [
-    "Seven Scrap Metal. It is the first smelter in the world and opens the ordinary furnace screen.",
+    "The first smelter in this world. It opens the ordinary furnace screen.",
     "",
     "It takes refuse and food and nothing else, so Scrap Metal and anything edible will burn where other metals will not. Pipes and hoppers cannot reach it either, so you load it by hand.",
     "",
@@ -21,7 +21,7 @@
   ],
   "quest.7A55E0BA6E00002F.title": "Fuel",
   "quest.7A55E0BA6E00002F.quest_desc": [
-    "Fiber Scrap and Organic Muck, in any arrangement. Both come out of the same garbage you are already sorting, so fuel is never the thing that stops you.",
+    "Made from two things you are already pulling out of the garbage, so fuel is never what stops you.",
     "",
     "One rag burns as long as charcoal does - eight items smelted. Junk burns too, at two items a piece, which is worth knowing when you are standing in a pile of it and short of rags.",
   ],
@@ -29,7 +29,7 @@
   "quest.7A55E0BA6E00002D.quest_desc": [
     "Burn Scrap Metal in the barrel and it comes back as copper nuggets, one for one.",
     "",
-    "Nuggets are the useful form. Six of them make three Copper Pipes, and the Rain Collector takes one pipe. An ingot is nine nuggets, and nothing you can build yet needs one.",
+    "Spend them on Copper Pipes - the Rain Collector takes one. Do not press them into ingots; nothing you can build yet uses one.",
     "",
     "Copper is what this world runs on. Iron exists, but it is out past the demolition yard behind a furnace you cannot build yet.",
   ],
@@ -51,7 +51,7 @@
   "quest.7A55E0BA6E000029.quest_desc": [
     "Find a Washing Machine in Bulky Waste and tear it down at the Workbench with a Prybar racked. It gives one Pump, plus scrap and plastic.",
     "",
-    "The teardown also gives an idea toward the Pump itself. Four of those make a blueprint, and with it you can craft one from three copper, a Scrap Metal and a Plastic Scrap - so the first washing machine is the only one you have to find.",
+    "The teardown also gives an idea toward the Pump itself. Four of those make a blueprint, and once you hold it you can craft Pumps outright - so the first washing machine is the only one you have to find.",
     "",
     "It is a component of the Grass Spreader, the machine that turns coarse dirt back to grass.",
   ],
@@ -59,17 +59,17 @@
   "quest.7A55E0BA6E000020.quest_desc": [
     "There is no wood in this world, so there is no vanilla crafting table.",
     "",
-    "This one is two Scrap Metal over two Fiber Scrap, which fits the 2x2 grid in your inventory. Anything with a 3x3 recipe needs it.",
+    "This one replaces it, and it fits the 2x2 grid in your inventory - so you can make the thing you craft on before you have anywhere to craft.",
     "",
     "Put it down somewhere you have room to build around. Scrap blocks set against each other work as one Scrap Network, and this table is where you look at it - the panel down the right of its screen lists what the whole network is holding. Yours is empty so far.",
   ],
   "quest.7A55E0BA6E000021.title": "Prybar",
   "quest.7A55E0BA6E000021.quest_desc": [
-    "Two Scrap Metal and a Rebar, small enough for your inventory grid. It opens Bulky Waste, and nothing else does.",
+    "Small enough to make in your inventory grid. It opens Bulky Waste, and nothing else does.",
   ],
   "quest.7A55E0BA6E000022.title": "Scrap Knife",
   "quest.7A55E0BA6E000022.quest_desc": [
-    "One Scrap Metal over one Rebar, small enough for your inventory grid.",
+    "Another one you can make in your inventory grid.",
     "",
     "It opens sealed Tin Cans, and it is the only thing that will pick up or sort a Compacted Bale.",
   ],
@@ -99,7 +99,7 @@
   ],
   "quest.7A55E0BA6E000026.title": "The Recompile Workbench",
   "quest.7A55E0BA6E000026.quest_desc": [
-    "Rack both tools on it by right-clicking the bench with each in turn. It has a slot for a Scrap Knife and a slot for a Prybar, and different finds want different tools.",
+    "Rack both tools on it by right-clicking the bench with each in turn. It has a slot for a Scrap Knife and a slot for a Prybar, and different finds take different tools.",
     "",
     "Then hold right-click with whatever you want taken apart.",
     "",
@@ -115,10 +115,12 @@
   ],
   "quest.7A55E0BA6E000028.title": "The Rain Collector",
   "quest.7A55E0BA6E000028.quest_desc": [
-    "Two blocks, stacked. The collector goes down first and the funnel sits on top of it - one without the other collects nothing.",
+    "Set the collector down, then stack the funnel on top of it. The collector on its own will hold water but gather none.",
     "",
-    "The collector is a Water Tank with a Copper Pipe over it, and the tank is plastic scrap, rebar and scrap metal, so the pipe is the only part you smelted for. The funnel is a Machine Frame and a Plastic Scrap.",
+    "It needs open sky above the funnel. Under any roof, or in a cave, it stays empty however hard it rains outside.",
     "",
-    "Leave it under open sky and it fills when it rains. Break the collector and the water it holds comes with it, so moving it costs nothing.",
+    "It fills only while rain is actually falling, and takes about a minute of it to go from empty to full. Full is four buckets' worth.",
+    "",
+    "Right-click it with a glass bottle or a bucket to draw water off. Break the collector and it keeps what it is holding, so you can move it without losing what is in it.",
   ],
 }
