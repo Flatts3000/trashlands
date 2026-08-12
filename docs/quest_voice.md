@@ -101,7 +101,15 @@ runs about five pulls a second, so "one pull in fourteen hundred" is roughly fiv
 grind. Either give the number in time a player feels, or give no number - and prefer no number while
 a system is being balanced, because it will be wrong again by the next release.
 
-Two rules that come out of this directly, both now in the canonical spec:
+Three rules that come out of this directly, all now in the canonical spec:
+
+- **Do not recite the recipe.** JEI is one keypress away and the task widget already names the item,
+  so listing ingredients spends the only paragraph on the one thing a player can look up instantly.
+  Answer the four questions nothing in the UI answers: **what it does, where it goes, how it goes
+  together with other blocks, and when you would want it.** "Stack the funnel on the collector; on its
+  own it holds water but gathers none" cannot be looked up. "A Water Tank with a Copper Pipe over it"
+  is JEI read aloud. The carve-out is a recipe fact that is a *mechanic* - fitting the 2x2 inventory
+  grid is a gate, one nugget per scrap is a rate. Gates and rates stay.
 
 - **Do not personify.** Blocks and the world do not want, fight, or take. "Coarse dirt reverts grass
   at the frontier", not "the junkyard takes it back". Beyond register, it misleads: the second one
