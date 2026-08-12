@@ -116,7 +116,7 @@ release -> CurseForge metadata (game-version ids resolved from the API) -> Curse
 - [ ] **The knowledge half of teardown shipped.** Recovering a recipe off a torn-down item is the
       mod's distinct axis. Until it exists, the pack's own pitch is only half true.
 - [ ] **Quest content.** The engine is in and the book is no longer empty - a **Welcome** chapter
-      and a **Salvage** chapter ship as of v0.4.0: 21 quests from the first Block of Garbage to the
+      and a **Salvage** chapter ship as of v0.5.0: 22 quests from the first Block of Garbage to the
       first Bucket of Water. What is missing is the spine: `The Way Home`, parts one to six, per `the_twist.md`. Write it against the
       `quest-voice` spec; the twist means the final chapters are authored against that file directly.
 - [ ] **One balance pass across all loot tables and recipes together** - the standing gate in

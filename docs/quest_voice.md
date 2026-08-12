@@ -137,8 +137,8 @@ Classification decides how much copy each chapter earns (see `quest-voice/review
 | Chapter | Covers | Class | State |
 |---|---|---|---|
 | Welcome | Orientation, the no-trees gotcha, the guidebook handoff | TEACH-heavy | written |
-| Salvage | Everything up to your first Bucket of Water: trash tools, Bulky Waste, food, storage, the Sorting Tarp, the Workbench, the Pump and Rain Collector, the Burn Barrel and copper | TEACH-heavy | written |
-| (network) | The Scrap Network and the storage tier - issue #11 | TEACH-heavy | |
+| Salvage | Everything up to your first Bucket of Water: trash tools, Bulky Waste, food, storage, the Sorting Tarp, the Workbench, the Pump and Rain Collector, the Burn Barrel and copper, fuel, and the Scrap Network adjacency rule | TEACH-heavy | written |
+| (network) | Scrap Bins and binding, the Filing Cabinet, and crafting straight out of the cluster - issue #11. Adjacency itself is already taught inside Salvage as of v0.5.0, so this chapter starts from a player who knows blocks touch | TEACH-heavy | |
 | (the yard) | Demolition yard, rubble and stone, steel piles, Cutting Torch, concrete | PIVOT | |
 | (iron) | Cupola Furnace and iron, blueprints | TEACH-heavy | |
 | (gem tier) | Mechanical Waste, the Separator, power | PIVOT | |
@@ -156,8 +156,13 @@ ending exists; rewriting bodies written to the wrong frame is not.
 
 ## Mechanics
 
-- **Text lives in `pack/config/ftbquests/quests/lang/en_us.snbt`**, keyed by quest id. Structure
-  lives in `chapters/*.snbt`. Inline text in a chapter file does not render and gets wiped on load.
+- **Text lives under `pack/config/ftbquests/quests/lang/en_us/`**, keyed by quest id and split
+  across files: chapter titles in `chapter.json5`, quest bodies in `chapters/<name>.json5`.
+  Structure lives in `chapters/*.json5`, and `data.json5` plus `chapter_groups.json5` sit at the
+  root of `quests/`. Inline text in a chapter file does not render and gets wiped on load.
+- **JSON5, not SNBT.** FTB Quests on MC 26.x reads no `.snbt` at all - there is not a `.snbt` string
+  anywhere in the 26.1.2.3 jar. SNBT belongs to the previous major, which is why Sky Frogs is a
+  voice reference and never a format one.
 - **Quest, chapter, and task ids must be positive longs** - the first hex digit is 0-7. An id leading
   8-F gets silently regenerated on load, which drops dependencies.
 - **ASCII punctuation only.** No em-dashes, no en-dashes, no emoji.
@@ -167,7 +172,7 @@ ending exists; rewriting bodies written to the wrong frame is not.
 
 ```sh
 python tools/validate_quests.py
-python "F:/minecraft-repos/mc-pack-toolkit/quest-voice/lint_quest_voice.py" pack/config/ftbquests/quests/lang/en_us.snbt
+python "F:/minecraft-repos/mc-pack-toolkit/quest-voice/lint_quest_voice.py" pack/config/ftbquests/quests/lang/en_us/chapters/*.json5
 python tools/score_quest_voice.py --check
 python tools/pack_refresh.py      # stage index.toml and pack.toml in the same commit
 ```
