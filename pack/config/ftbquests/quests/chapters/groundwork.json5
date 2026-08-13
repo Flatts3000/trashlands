@@ -306,13 +306,97 @@
         "7A55E0BA6E00003D",
       ],
       rewards: [
-        { id: "7A55E0BA6E00020E", type: "xp", xp: 100 },
+        { id: "7A55E0BA6E00020E", type: "xp", xp: 75 },
       ],
       tasks: [
         {
           id: "7A55E0BA6E00010E",
           type: "item",
           item: { id: "minecraft:crafting_table", count: 1 },
+        },
+      ],
+    },
+    {
+      x: 16.0,
+      y: 3.5,
+      id: "7A55E0BA6E00003F",
+      icon: {
+        id: "recompile:herbivore_bait",
+        count: 1,
+      },
+      dependencies: [
+        "7A55E0BA6E00003E",
+      ],
+      rewards: [
+        { id: "7A55E0BA6E00020F", type: "xp", xp: 50 },
+      ],
+      tasks: [
+        {
+          id: "7A55E0BA6E00010F",
+          type: "item",
+          item: { id: "recompile:herbivore_bait", count: 1 },
+        },
+      ],
+    },
+    {
+      x: 18.0,
+      y: 3.5,
+      id: "7A55E0BA6E000040",
+      icon: {
+        id: "minecraft:cow_spawn_egg",
+        count: 1,
+      },
+      dependencies: [
+        "7A55E0BA6E00003F",
+      ],
+      rewards: [
+        { id: "7A55E0BA6E000210", type: "xp", xp: 50 },
+      ],
+      tasks: [
+        { id: "7A55E0BA6E000110", type: "checkmark" },
+      ],
+    },
+    {
+      x: 18.0,
+      y: 5.5,
+      id: "7A55E0BA6E000041",
+      icon: {
+        id: "recompile:omnivore_bait",
+        count: 1,
+      },
+      dependencies: [
+        "7A55E0BA6E000040",
+      ],
+      rewards: [
+        { id: "7A55E0BA6E000211", type: "xp", xp: 50 },
+      ],
+      tasks: [
+        {
+          id: "7A55E0BA6E000111",
+          type: "item",
+          item: { id: "recompile:omnivore_bait", count: 1 },
+        },
+      ],
+    },
+    {
+      x: 20.0,
+      y: 3.5,
+      id: "7A55E0BA6E000042",
+      icon: {
+        id: "recompile:rich_herbivore_bait",
+        count: 1,
+      },
+      dependencies: [
+        "7A55E0BA6E000040",
+      ],
+      rewards: [
+        { id: "7A55E0BA6E000212", type: "xp", xp: 150 },
+      ],
+      tasks: [
+        {
+          id: "7A55E0BA6E000112",
+          type: "item",
+          item: { id: "recompile:rich_herbivore_bait", count: 1 },
         },
       ],
     },

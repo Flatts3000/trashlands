@@ -84,6 +84,8 @@
     "Pipes cannot load or empty it. Hand-fed.",
     "",
     "It is also the only source of saplings there is. Nothing drops one, including a tree you cut down yourself.",
+    "",
+    "Grow oak at some point. Apples come off oak and dark oak leaves and from nowhere else in this world.",
   ],
   "quest.7A55E0BA6E00003D.title": "Trees Hold It",
   "quest.7A55E0BA6E00003D.quest_desc": [
@@ -96,5 +98,33 @@
     "The vanilla one. Salvage told you why you could not have it.",
     "",
     "Cut what you grew and build it. A felled tree drops no sapling, so the next tree comes out of the nursery the same way this one did.",
+  ],
+  "quest.7A55E0BA6E00003F.title": "Herbivore Bait",
+  "quest.7A55E0BA6E00003F.quest_desc": [
+    "Nothing spawns out here on its own, so any animal in this world is one you put here.",
+    "",
+    "Bait is how. It takes an apple, so you cannot make one until you have grown oak.",
+  ],
+  "quest.7A55E0BA6E000040.title": "Leave It Alone",
+  "quest.7A55E0BA6E000040.quest_desc": [
+    "Set it on grass and walk away. It settles only while no player is near, then spawns one animal and is spent.",
+    "",
+    "Walking back over resets its progress to zero rather than pausing it. Checking on it is the one thing that stops it working.",
+    "",
+    "Two baits close together only hold each other up. Neither loses progress.",
+    "",
+    "Not on grass, nothing happens.",
+  ],
+  "quest.7A55E0BA6E000041.title": "The Other Two Diets",
+  "quest.7A55E0BA6E000041.quest_desc": [
+    "Carnivore bait brings foxes and cats, omnivore brings chickens, pigs and parrots.",
+    "",
+    "Carnivore takes raw meat, and the only meat here walks, so grazers have to come first. Omnivore is one of each of the other two put together.",
+  ],
+  "quest.7A55E0BA6E000042.title": "A Breeding Pair",
+  "quest.7A55E0BA6E000042.quest_desc": [
+    "Two of the same bait make the rich version, and it puts down an adult and its young instead of one animal.",
+    "",
+    "A single animal is a dead end. From a pair, ordinary breeding takes over and the herd keeps itself going without you.",
   ],
 }

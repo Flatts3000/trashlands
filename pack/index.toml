@@ -42,7 +42,7 @@ hash = "0a11b89d5d2a66d384297eba3321fdcbc8e3704e7741172b1e770f4ad189a907"
 
 [[files]]
 file = "config/ftbquests/quests/chapters/groundwork.json5"
-hash = "7722f869293e6aec4be564548069c29e1accc8e8d5d00f8194e49ab22e400b91"
+hash = "ed3d0a81518c220a53658753d1bfe5c11b81727ed09706d75d5ad6d551857cdc"
 
 [[files]]
 file = "config/ftbquests/quests/chapters/salvage.json5"
@@ -62,7 +62,7 @@ hash = "dd320aed75a15a51ab2ddf2f62707653c5e1c2f8c1c825f53ba8544250c99fdf"
 
 [[files]]
 file = "config/ftbquests/quests/lang/en_us/chapters/groundwork.json5"
-hash = "59fd1268087521be2966c8fac9b3ed4e40df003b0710ff78bd1d40742c5eb5aa"
+hash = "239d9282306df329508e6de8fc9bd29981402c8de8ad27256009b3524b480fc6"
 
 [[files]]
 file = "config/ftbquests/quests/lang/en_us/chapters/salvage.json5"
