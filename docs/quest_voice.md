@@ -139,10 +139,11 @@ Classification decides how much copy each chapter earns (see `quest-voice/review
 | Welcome | Orientation, the no-trees gotcha, the guidebook handoff | TEACH-heavy | written |
 | Salvage | Everything up to your first Bucket of Water: trash tools, Bulky Waste, food, storage, the Sorting Tarp, the Workbench, the Pump and Rain Collector, the Burn Barrel and copper, fuel, and the Scrap Network adjacency rule | TEACH-heavy | written |
 | (network) | Scrap Bins and binding, the Filing Cabinet, and crafting straight out of the cluster - issue #11. Adjacency itself is already taught inside Salvage as of v0.5.0, so this chapter starts from a player who knows blocks touch | TEACH-heavy | |
+| Groundwork | The reclamation ladder to rung 4: Grass Spreader, Mound Ground and the quarry-versus-heal trade, the frontier, Compost Heap and Fertilizer, farmland, the Tree Nursery. Ends on the vanilla Crafting Table you could not build in Salvage | TEACH-heavy | written |
 | (the yard) | Demolition yard, rubble and stone, steel piles, Cutting Torch, concrete | PIVOT | |
 | (iron) | Cupola Furnace and iron, blueprints | TEACH-heavy | |
 | (gem tier) | Mechanical Waste, the Separator, power | PIVOT | |
-| (reclamation) | The ladder, Hydroponics Bay | PIVOT | |
+| (reclamation) | Rung 5, the animal baits, plus the Hydroponics Bay. Rungs 1-4 moved into Groundwork | PIVOT | |
 
 TEACH-heavy chapters get full decomposition and a line-by-line read. PIVOT chapters get a
 hand-written opener and templated steps. A pure checklist family gets titles only.
