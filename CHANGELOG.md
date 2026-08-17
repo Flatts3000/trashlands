@@ -11,6 +11,52 @@ and ASCII punctuation only.
 ### Added
 - (nothing yet)
 
+## [0.6.0] - 2026-08-17
+
+A third chapter, and the ground stops being something you only dig.
+
+### Added
+- **Groundwork**, a chapter about turning the dump back into land. Nineteen quests running the whole
+  reclamation ladder: the Grass Spreader that greens coarse dirt and costs nothing to run, the
+  Compost Heap and Fertilizer, farmland you craft because this world has no hoe, the Tree Nursery
+  that is the only source of a sapling anywhere in the game, and the animal baits that put wildlife
+  back on land that was garbage. It ends on a bait that seeds a breeding pair, so the herd keeps
+  itself going.
+- **The chapter is built around the fight rather than the machines.** Each rung answers the one
+  before it. Grass reverts at the border, plants on the border are stripped instead of the soil
+  under them, farmland has to stay wet or it goes back, and trees are the only thing that holds
+  ground for good. Welcome has warned about this since v0.2.0; this is where it starts.
+- **The Trommel** (Recompile 0.10.0). A four-block rotating drum in the demolition yard that sorts
+  while you are elsewhere. It yields exactly what a Sorting Tarp yields per block, so what you buy
+  is not throughput, it is not having to stand there. Drop scrap along it or park a container on it.
+- **The Pulverizer.** A sealed steel box that grinds things finer. You cannot see inside it, which
+  is the point of it, so the roof carries a hatch to show you where material goes in.
+- **Gold, out of circuit boards.** Grind four E-Scrap to Circuit Powder and blast it in a Cupola
+  Furnace. A tonne of boards carries more gold than a tonne of ore, which is why this world has none
+  in the ground and plenty in the rubbish. Burning a board whole gets you nothing.
+- **Clay, out of broken pots.** Crush a pottery sherd for grog, mix three with a Kitty Litter, and
+  right-click the result on a water cauldron at the cost of a level. Sherds and cat litter turn up in
+  the dump now. It unlocks 43 vanilla items: every brick, all sixteen terracotta, all sixteen glazed,
+  the flower pot and the decorated pot.
+
+### Changed
+- **The Separator no longer sorts.** Feeding it a Block of Garbage, Trash Bag, Compacted Bale, Stone
+  Rubble or Mechanical Waste does nothing; that job is the Trommel's. Everything else about the
+  machine is unchanged and one you have already built keeps running. A shear shredder tears things
+  apart, which is the opposite of telling them apart.
+- **Recompile 0.9.0 -> 0.10.0**, plus JEI, Jade, Balm, GraveStone, FancyMenu and Trash Cans.
+
+### Fixed
+- **Breaking a machine gives back every part, including the machine itself.** Breaking a Separator or
+  Trommel core with the wrong tool used to destroy it outright while breaking any other block of it
+  handed it back, so the rule was opt-out and a wrong swing could cost you the build.
+- **Breaking one cell returns the part you put in it.** A Separator's Motor came back as a Machine
+  Frame, and a Trommel's cells came back as pieces with no recipe at all.
+- **Machines wider than three blocks come apart properly.** A cell far enough from its core never
+  found it, so the machine stayed assembled with a hole in it and kept running.
+- The Trommel and Pulverizer accept energy from a generator at all, and the Trommel's drum stops
+  turning when the machine is stopped.
+
 ## [0.5.0] - 2026-08-12
 
 The quest book stops reading you recipes, and the dump starts handing you objects instead of ingredients.
