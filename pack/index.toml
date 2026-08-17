@@ -108,22 +108,22 @@ metafile = true
 
 [[files]]
 file = "mods/controlling.pw.toml"
-hash = "8cd3a3e3f55d69d8fbb6aab75a721aaf7a8c1ec9d1bc64065380dcc9fdc39530"
+hash = "bbc4ab39e1331069171303de5b94321f7ad615bcab498c4b06353e0c72d775e9"
 metafile = true
 
 [[files]]
 file = "mods/defaultworldtype.pw.toml"
-hash = "c4ef0a6503dd9511520d47f8c1938e5910cdcc85ded4040525a47f02f3d8869d"
+hash = "f2c296e1c248a2da992cc843cf5828595e2527ce8efcca71077cbf0f944210e6"
 metafile = true
 
 [[files]]
 file = "mods/extreme-sound-muffler.pw.toml"
-hash = "0b57b31298be758c33b18b2b7a6ef26585a7e6cf917295fa5227a84301485907"
+hash = "ce03e833df49603ccb571e30769c9f795dda1c22faada4fbf4adeddbeeabe436"
 metafile = true
 
 [[files]]
 file = "mods/fancymenu.pw.toml"
-hash = "8c74fe5d15feba9fcdc746620c7158d3887ce8d0662e3e19f40852d2df687760"
+hash = "fa07e78f71917c8375c8b70dbd87df32f040cfde79367a015d8860595550a5b6"
 metafile = true
 
 [[files]]
@@ -208,7 +208,7 @@ metafile = true
 
 [[files]]
 file = "mods/konkrete.pw.toml"
-hash = "01b7b91829fdaa0283035295e022d76a23e5315cdf74c0926f1670c0135c55f1"
+hash = "3929423ce96f2aa2159edd96e4c5da8754ef7a2301dd92d0d9342fc26e8982e6"
 metafile = true
 
 [[files]]
@@ -223,7 +223,7 @@ metafile = true
 
 [[files]]
 file = "mods/melody.pw.toml"
-hash = "95aed3a748b3bb244b11b6a9328d1bf09440a2ed61ff12a3f644a9761610773f"
+hash = "9d908f5908e2fc0eca2d556e36ac71419eeb08db43dda6ff9d06cf138c521e06"
 metafile = true
 
 [[files]]
@@ -243,7 +243,7 @@ metafile = true
 
 [[files]]
 file = "mods/mouse-tweaks.pw.toml"
-hash = "81d8d5d155a09efd87fcf2f06ef76c650313af0a9848175333df78b573782c58"
+hash = "5613063f92427aa41a25bcdc97c65bd2f3111cf44c9d6e7df2626733ccd637e9"
 metafile = true
 
 [[files]]
@@ -268,7 +268,7 @@ metafile = true
 
 [[files]]
 file = "mods/searchables.pw.toml"
-hash = "82e084e5fe83f87a01bc7f030f5ca0d59274122e6d634bdcb5d4c9cb3385dd71"
+hash = "8e8afae1e4ea9e7548f00b8a8db7fc8b04482de7fd77df2d6e8b65226daf90f3"
 metafile = true
 
 [[files]]
@@ -278,7 +278,7 @@ metafile = true
 
 [[files]]
 file = "mods/sodium.pw.toml"
-hash = "b2327412e91caae91500cb1ea0965a579829c15403a9cd897f8eda2d44b8e16a"
+hash = "b2cd2339d2b561584ac68dfea205178b28edf86f249f74cd0765cb5d65300bab"
 metafile = true
 
 [[files]]
@@ -298,7 +298,7 @@ metafile = true
 
 [[files]]
 file = "mods/toast-control.pw.toml"
-hash = "0ea5e6f4152b6cc6556bf25f02e1cbb9d5348a58410c6fc70a77b303577e4890"
+hash = "cbc322ed3c57009eced26bbb4b712756926687c102855603e892effdb75dfd28"
 metafile = true
 
 [[files]]
