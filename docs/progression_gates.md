@@ -136,6 +136,31 @@ Reached by travelling: `RegionBiomeSource` places `demolition_yard` on a distanc
 > became circular the moment iron moved behind the Cupola: the torch would have needed iron in order to cut
 > the steel that is the only source of iron. Copper breaks the circle.
 
+## The sewers (2026-08-17, Recompile #90)
+
+Under the demolition yard, so they inherit its gate: **travel**, plus a **Prybar** to lift the cover.
+Nothing in them skips a tier - that was the acceptance criterion and it is the reason the table is dull
+on purpose.
+
+| Yield | Source | Gated behind |
+|---|---|---|
+| Scrap metal, plastic scrap, e-scrap, rebar, cullet glass | Sewer barrels | Travel + Prybar |
+| String, bone | Sewer barrels, and cobwebs with shears | Travel + Prybar |
+| **Glass bottle** | Sewer barrels | Travel + Prybar. A second source for a `found_only` item |
+| **Cobweb** | Sewer corridors, cut with shears | The only source in the game |
+| **Slimeball** | Slimes, which live only in sewers | A deposit against the redstone tier, worth little now |
+| **Trident, nautilus shell** | Drowned, from the sewer's spawner | Owner call: a prize at this depth, not a spike |
+| Turtles, frogs | Placed, finite | Not renewable - a sewer has the ones it generated with |
+
+**Nothing here is renewable except the mobs the spawner makes.** The barrels roll once, on first
+opening, and the placed animals cannot breed (no seagrass, no sand). That is deliberate: the sewer is
+cleared rather than farmed.
+
+**The one thing worth watching** is the glass bottle. It is `found_only` and its scarcity is what the
+P1.10 water economy leans on; a sewer barrel is now a second route to one. Bounded by travel and a
+finite structure, so it is a reward rather than a tap - but it is a second route, and the balance pass
+(#36) should look at it with that in mind.
+
 ## Tier 4 - the Cupola Furnace
 
 Upgrade from the Burn Barrel using demolition-yard materials (any concrete + copper pipe + the barrel
