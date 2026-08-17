@@ -8,9 +8,15 @@ __pycache__/
 /pack/*.mrpack
 /dist/
 
+# Server-pack install tree written by tools/build_server.py. The zip lands in
+# /dist/ (already ignored above); this is the unpacked staging dir the boot
+# smoke test runs against, and it holds a full copy of every server mod jar.
+/build/
+
 # Release scratch written by .github/workflows/release.yml
 /release_notes.md
 /cf_meta.json
+/cf_server_meta.json
 
 
 # Playwright MCP writes snapshots, console logs, and screenshots into the working

@@ -78,8 +78,14 @@ Two pins drift silently and both ship to every new downloader.
 gh run watch $(gh run list --workflow release.yml --limit 1 --json databaseId --jq '.[0].databaseId') --exit-status
 ```
 
-Steps: version guard -> index guard -> CF export (+ no-jar assertion) -> changelog extract -> GitHub
-release -> CurseForge metadata (game-version ids resolved from the API) -> CurseForge upload.
+Steps: version guard -> index guard -> CF export (+ no-jar assertion) -> **server pack build ->
+client-mod guard -> server boot smoke test** -> changelog extract -> GitHub release -> CurseForge
+metadata (game-version ids resolved from the API) -> CurseForge upload -> **server pack upload as a
+child file**.
+
+The boot test installs NeoForge and waits for `Done (`, so a release takes a few minutes longer than
+it used to. That is the only check that proves the `side` tags are right, and a mistagged mod is
+otherwise found by whoever first runs a server.
 
 ## 3. Verify
 
@@ -87,6 +93,10 @@ release -> CurseForge metadata (game-version ids resolved from the API) -> Curse
 - [ ] CurseForge shows the new file, typed **Alpha** for the `0.x` line.
 - [ ] The CurseForge changelog matches the CHANGELOG section (not the bare "Release X.Y.Z" fallback -
       that string means the regex missed and the heading shape is wrong).
+- [ ] **Type the server pack.** Authors Console -> Files -> the client file -> the attached server
+      file -> Additional File Info -> `Server Pack`. **The API cannot do this**, so it is manual every
+      single release, and an untyped server pack is invisible to host one-click deploys. The release
+      run leaves a warning saying so. Then confirm with `python tools/check_server_pack_flag.py`.
 
 ## Gotchas
 
@@ -125,6 +135,6 @@ release -> CurseForge metadata (game-version ids resolved from the API) -> Curse
       live in the mod's JSON.
 - [ ] **No soft-locks.** A fresh world plays start to finish with no dead ends.
 - [ ] **A real logo.** The current `pack/icon.png` is a screenshot crop.
-- [ ] **Server pack**, if multiplayer is in scope for 1.0. See
-      [`distribution.md`](./distribution.md#not-built-yet) - note the manual Server Pack typing step.
+- [ ] **Server pack playtested.** It builds and boots on every release as of v0.6.0, but nobody has
+      actually played a multiplayer world on it. See [`distribution.md`](./distribution.md#the-server-pack).
 - [ ] **License audit.** Every bundled mod's license permits redistribution in a CurseForge pack.

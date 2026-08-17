@@ -108,6 +108,72 @@ jobs:
             exit 1
           fi
 
+      # The server pack is a REAL bundle: it contains the jars, unlike the client
+      # export which is a manifest CurseForge resolves itself. That is how server
+      # packs work, and it is why the no-jar assertion above is scoped to the
+      # client export only - dist/ is deliberately full of jars.
+      - name: Build server pack
+        id: server
+        run: |
+          python3 tools/build_server.py --out build/server
+          zip=$(ls dist/trashlands-server-*.zip)
+          echo "zip_path=$zip" >> "$GITHUB_OUTPUT"
+          echo "built: $zip"
+
+      # Cheap and deterministic: prove the side tags did what they claim before
+      # spending four minutes booting a JVM. A client mod reaching a server is the
+      # failure this whole side-tag split exists to prevent.
+      - name: Guard - no client-only mods in the server pack
+        run: |
+          cd build/server/mods
+          fail=0
+          for m in sodium fancymenu melody konkrete controlling searchables \
+                   mouse-tweaks toast-control defaultworldtype ExtremeSoundMuffler; do
+            if ls | grep -qi "^$m"; then
+              echo "::error::client-only mod '$m' was installed into the server pack - check side= in pack/mods/$m.pw.toml"
+              fail=1
+            fi
+          done
+          n=$(ls *.jar | wc -l)
+          echo "server mods: $n"
+          if [ "$n" -lt 20 ]; then
+            echo "::error::only $n server mods - the side tags look wrong in the other direction."
+            fail=1
+          fi
+          exit $fail
+
+      # The only thing that actually proves the side split: boot it. A client mod
+      # that slipped through crashes NeoForge at load, and nothing earlier catches
+      # that. This also exercises level-type=recompile:garbage, since the server
+      # generates its world during this boot - a bad preset id would surface here.
+      - name: Smoke test - the server boots
+        run: |
+          cd build/server
+          sed -i 's/^eula=false/eula=true/' eula.txt
+          nf=$(grep -m1 '^NEOFORGE=' setup.sh | cut -d'"' -f2)
+          echo "installing NeoForge $nf ..."
+          curl -fsSL -o installer.jar \
+            "https://maven.neoforged.net/releases/net/neoforged/neoforge/$nf/neoforge-$nf-installer.jar"
+          java -jar installer.jar --installServer > install.log 2>&1 \
+            || { tail -40 install.log; exit 1; }
+          echo "booting ..."
+          bash run.sh nogui > boot.log 2>&1 &
+          pid=$!
+          ok=0
+          for i in $(seq 1 96); do
+            if grep -q 'Done (' boot.log 2>/dev/null; then ok=1; break; fi
+            if ! kill -0 "$pid" 2>/dev/null; then break; fi
+            sleep 5
+          done
+          kill "$pid" 2>/dev/null || true
+          wait "$pid" 2>/dev/null || true
+          if [ "$ok" != "1" ]; then
+            echo "::error::the server did not reach 'Done' - see the log below."
+            tail -120 boot.log
+            exit 1
+          fi
+          echo "server booted and generated its world."
+
       - name: Extract changelog section
         env:
           VERSION: ${{ steps.ver.outputs.version }}
@@ -223,7 +289,8 @@ jobs:
             --title "${GITHUB_REF_NAME}" \
             --notes-file release_notes.md \
             $prerelease \
-            "${{ steps.build.outputs.zip_path }}"
+            "${{ steps.build.outputs.zip_path }}" \
+            "${{ steps.server.outputs.zip_path }}"
 
       - name: Upload to CurseForge
         id: cf
@@ -246,7 +313,74 @@ jobs:
           fi
           fileid=$(printf '%s' "$body" | python3 -c "import sys, json; print(json.load(sys.stdin)['id'])")
           url="https://www.curseforge.com/minecraft/modpacks/trashlands/files/$fileid"
+          echo "fileid=$fileid" >> "$GITHUB_OUTPUT"
           echo "### CurseForge file [$fileid]($url)" >> "$GITHUB_STEP_SUMMARY"
+
+      # The server pack rides along as a CHILD of the client file (parentFileID), which
+      # is what puts it under "Additional Files" on the file page.
+      #
+      # It does NOT make CurseForge treat it as a *Server Pack*. Those are two different
+      # things, and the difference is what host one-click deploys read:
+      #
+      #   additional file -> visible on the file page, downloadable by a human
+      #   server pack     -> the above, PLUS isServerPack/serverPackFileId in CF's Core
+      #                      API, which BisectHosting, Nodecraft, Pterodactyl eggs and
+      #                      itzg/docker-minecraft-server AUTO_CURSEFORGE all read
+      #
+      # The upload API cannot set that flag. `upload-file` accepts only changelog /
+      # changelogType / displayName / parentFileID / gameVersions / releaseType /
+      # isMarkedForManualRelease / relations; sending isServerPack is silently ignored
+      # (henkelmax/upload-curseforge-modpack-action#1, confirmed by CF support). So the
+      # flag is a manual Authors Console step, once per release, and the step below
+      # exists to make sure nobody forgets it. Sky Frogs shipped 29 untyped files.
+      - name: Upload server pack to CurseForge
+        id: cfserver
+        if: steps.cf.outputs.fileid != ''
+        env:
+          CF_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
+          CF_PROJECT_ID: ${{ vars.CF_PROJECT_ID }}
+          VERSION: ${{ steps.ver.outputs.version }}
+          PARENT: ${{ steps.cf.outputs.fileid }}
+        run: |
+          python3 - <<'PY'
+          import json, os
+          json.dump({
+              "changelog": f"Dedicated server pack for Trashlands {os.environ['VERSION']}.",
+              "changelogType": "text",
+              "displayName": f"Trashlands Server {os.environ['VERSION']}",
+              "parentFileID": int(os.environ["PARENT"]),
+              "releaseType": "alpha" if os.environ["VERSION"].startswith("0.") else "release",
+          }, open("cf_server_meta.json", "w", encoding="utf-8"))
+          PY
+          resp=$(curl -s -w '\n%{http_code}' -X POST \
+            -H "X-Api-Token: $CF_API_TOKEN" \
+            -F "metadata=<cf_server_meta.json" \
+            -F "file=@${{ steps.server.outputs.zip_path }}" \
+            "https://minecraft.curseforge.com/api/projects/${CF_PROJECT_ID}/upload-file")
+          body=$(printf '%s' "$resp" | sed '$d')
+          code=$(printf '%s' "$resp" | tail -n1)
+          echo "HTTP $code: $body"
+          if [ "$code" != "200" ]; then
+            echo "::error::server pack upload failed (HTTP $code): $body"
+            exit 1
+          fi
+
+      - name: Remind - type the server pack by hand
+        if: steps.cfserver.outcome == 'success'
+        run: |
+          {
+            echo "## One manual step left"
+            echo
+            echo "The server pack uploaded as an additional file, but CurseForge's upload API"
+            echo "**cannot** mark it as a Server Pack. Until it is typed, host one-click deploys"
+            echo "(BisectHosting, Nodecraft, Pterodactyl, AUTO_CURSEFORGE) cannot see it."
+            echo
+            echo "Authors Console -> Trashlands -> Files -> the \`${GITHUB_REF_NAME}\` file"
+            echo "-> the attached server file -> **Additional File Info** -> \`Server Pack\`."
+            echo
+            echo "Then verify: \`python tools/check_server_pack_flag.py\`"
+          } >> "$GITHUB_STEP_SUMMARY"
+          echo "::warning::Set the server file's type to 'Server Pack' in the Authors Console - the API cannot do it."
 
       # The GitHub release is the real artifact channel until the CurseForge project is
       # approved, so a missing project id is a notice, not a failure. Once CF_PROJECT_ID
