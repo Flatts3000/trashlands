@@ -53,7 +53,7 @@ tools/
 | Mod | CF project | Why it is in |
 |---|---|---|
 | **Recompile** | 1625740 | The pack. Garbage world, teardown, reclamation, machines. |
-| **Just Enough Items** | 238222 | Recompile ships a JEI plugin. At the pinned 0.9.0 it registers ten categories - sorting, cutting, burning, torch_cutting, prying, teardown, separating, assembly, blueprint_crafting, growing - plus the Scrap Crafting Table as a station. (`SalvageRecipe` is the shared recipe class behind them, not a category.) |
+| **Just Enough Items** | 238222 | Recompile ships a JEI plugin. At the pinned 0.10.0 it registers twelve categories - sorting, cutting, burning, torch_cutting, prying, teardown, separating, hydrating, pulverizing, assembly, blueprint_crafting, growing - plus the Scrap Crafting Table as a station. (`SalvageRecipe` is the shared recipe class behind them, not a category.) |
 | **Jade** | 324717 | Recompile ships 15 Jade providers: tool hints, sort progress, machine status, generator rates. |
 | **Modonomicon** | 538392 | The engine the in-game guidebook runs on. The guide is `mod_loaded`-gated data - inert without it. |
 | **Pipez** | 443900 | Recompile's automation policy (`../recompile/docs/automation_policy_spec.md`) is written and tested against it. Which blocks accept pipes and which refuse to even connect is a per-block decision, and Pipez is how it was found and is verified. |
@@ -83,7 +83,7 @@ CurseForge-exclusive**, which is what closes the Modrinth door - see
 | Mod | Why it is in |
 |---|---|
 | **FTB Library** | Required by the rest. Not a choice. |
-| **FTB Quests** | The design's named quest engine, and the vehicle the narrative rides on. **Welcome** and **Salvage** ship as of v0.5.0, 22 quests to the first Bucket of Water. |
+| **FTB Quests** | The design's named quest engine, and the vehicle the narrative rides on. **Welcome**, **Salvage** and **Groundwork** ship as of v0.6.0, 41 quests from the first Block of Garbage to a breeding pair of animals. |
 | **FTB Teams** | Required by Quests for team-scoped progress. |
 | **FTB XMod Compat** | Wires FTB Quests to JEI: the bookmark key works inside the quest book, and an item task can convert to a tag filter. Cut on 2026-08-02 as "glue between FTB mods and mods we do not ship", which was wrong - JEI is core to this pack. Added 2026-08-04; must track the FTB Quests version. |
 | **FTB Chunks** | The minimap is the real reason. An endless coarse-dirt plain where mounds regrow is a world you constantly re-navigate, and there are no natural landmarks to steer by. Chunk claiming matters on servers. |

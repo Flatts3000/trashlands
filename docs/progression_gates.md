@@ -280,6 +280,31 @@ Kept as worked examples, because each was invisible until traced.
 
 ## Changelog
 
+- **2026-08-17** - Recompile 0.10.0. **The Separator stops sorting**; a Block of Garbage, Trash Bag,
+  Compacted Bale, Stone Rubble or Mechanical Waste fed to it now does nothing, and unattended sorting
+  is the **Trommel's** job (demolition yard: a core, four Steel I-Beams, a Motor, two Machine Frames).
+  It yields exactly what a Sorting Tarp yields per block, so the reward is not throughput. The
+  **Pulverizer** (a core, a Motor, two Machine Frames, four Steel I-Beams) opens two gates that had no
+  source at all: **gold**, by grinding four E-Scrap to Circuit Powder and blasting it in a Cupola, and
+  **clay**, by crushing a pottery sherd to grog, mixing three with a Kitty Litter and using the result
+  on a water cauldron. Sherds and kitty litter join the dump's pulls. Clay unlocks 43 vanilla items.
+  Both new machines are gated behind the yard, so gold and clay sit above iron, not below it.
+
+- **2026-08-12** - Recompile 0.9.0. The **Dead Fridge** replaces the Broken Fan and the Light Fixture
+  in Bulky Waste, and a teardown yields exactly one of a motor, a pump or a bulb, with the knowledge
+  following whichever came out. **Its freezer is the only ice or snow in the world**, so those are a
+  Bulky Waste gate rather than a weather one. Teardowns roll their materials instead of paying a fixed
+  pile, averages unchanged. The top of the pull streams got much rarer: buckets, shears, flint and
+  steel and leads about every half hour each, name tags hourly, collectibles 480 times rarer. Bulk
+  material is untouched, so the early loop's pace is unchanged and only the landmark finds moved.
+
+- **2026-08-11** - Recompile 0.8.0. **Found, not crafted**: anything a person would throw away comes
+  out of the dump rather than a grid. Buckets, bowls, shears, flint and steel, leads, name tags,
+  paper, books, bundles, glass bottles and all four pieces of leather armour lost their recipes, and
+  the rule is enforced against every recipe at load rather than remembered. This is the gate behind
+  Salvage ending on a bucket. **Leachate** pools appear on the open ground: it looks like water, will
+  not fill a Rain Collector, will not water a crop, and makes you hungry to stand in.
+
 - **2026-08-05** - Recompile 0.7.0. Mound regrowth and Mound Ground ship, so quarry-versus-heal is a
   live decision. Moving a pile now needs a tool while sorting stays bare-handed, which promotes the
   Junk Shovel from convenience to gate. Recorded that rebar is the scarcest base material at weight

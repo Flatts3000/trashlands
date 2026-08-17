@@ -124,11 +124,24 @@ Write it player-facing: lead with what changed for the player, not the internal 
 
 - **Server pack.** Sky Frogs ships `tools/build_server.py` and treats a client-only release as a
   failed release, with the server zip attached to the GitHub release and uploaded to CurseForge as a
-  `parentFileID` child file. Trashlands has no server pack. It is worth having (a garbage world is a
-  good multiplayer premise) but it needs pack `config/` to exist first, which the alpha does not have.
-  Note for when it lands: CurseForge's upload API **cannot** flag a child file as a Server Pack, so
-  typing it is a manual Authors Console step every release, and untyped server packs are invisible to
-  host one-click deploys. Sky Frogs shipped 29 untyped files before noticing.
+  `parentFileID` child file. Trashlands has no server pack yet.
+
+  **The blocker this entry used to name is gone.** It said the pack needed `config/` to exist first;
+  `pack/config/` has carried the quest book, FancyMenu and Default World Type since v0.4.0. What
+  actually blocks it now is different and worth stating plainly:
+
+  1. **Every mod in `pack/mods/` is tagged `side = "both"`, all 47 of them.** `build_server.py` picks
+     the server's jars by running packwiz-installer with `-s server`, so those tags are what decides
+     what a server gets. As they stand, Sodium, FancyMenu, Controlling, Mouse Tweaks and every other
+     client-only mod would be installed on a dedicated server. The side audit is the real work; the
+     build script is the easy half.
+  2. **CurseForge's upload API cannot flag a child file as a Server Pack.** Typing it is a manual
+     Authors Console step every release, and an untyped server pack is invisible to host one-click
+     deploys. Sky Frogs shipped 29 untyped files before noticing, which is why it also carries
+     `tools/check_server_pack_flag.py` to nag about it.
+
+  A boot smoke test in CI is what proves the side tags are right, and is the only thing that catches
+  a mistagged mod before a host does.
 - **Config validation CI.** Sky Frogs' `validate-pack.yml` enforces that `pack/config/` and
   `pack/defaultconfigs/` stay byte-identical, because `config/` is per-instance state that NeoForge
   can recreate from `defaultconfigs/`. Earns its keep once the pack ships configs.
