@@ -298,6 +298,14 @@ This was raised as a defect and overruled with the consequence stated: *"I know 
 
 Enforcement moved rather than disappeared. Recompile's `no_teardown_hands_out_an_unsanctioned_water_source` fails the build for any teardown that yields a water source **unless it is on an explicit allowlist**, and the list is checked in both directions, so a stale exemption is a failure too. The next water source has to be argued for, not absorbed.
 
+**Amendment (2026-08-17, closing Recompile #186): the vanilla cauldron is a second rain barrel, and it now has a job.** A cauldron fills from rain - `household_sprawl` sets `has_precipitation: true` - and a filled water cauldron fills a bucket, so placing one outdoors and waiting is a water route that needs no Rain Collector, no multiblock and no tarp. The mod did not touch cauldrons anywhere, so nobody had chosen this; it worked because nobody had looked, which is the shape of every gate that has failed in this project.
+
+**Decided by giving it a job rather than by gating it.** The clay chain (Recompile #115, shipped v0.10.0) registers a hydration step on a filled water cauldron: a Dry Clay Body in, a clay ball out, one level of water spent. The cauldron is now a load-bearing part of a shipped chain instead of an unexamined loophole, and a GameTest drives the real interaction so it stays wired.
+
+**The bucket route stands, on the same scale line as the fridge.** It is behind 7 iron, which means the Cupola, the demolition yard, steel and the Cutting Torch - a player who has that has been able to build a Rain Collector for a long time, so the collector keeps its job as the *first* water and nothing is skipped. Bounded twice: by the iron, and by the speed of weather.
+
+Open and unanswered: whether **dripstone** gives a second, un-weather-gated fill route. Pointed dripstone needs a source block above it, so it is probably circular here, but that has not been measured and "probably" is what this amendment exists to remove.
+
 ## P1.11 - Bulky Waste (locked 2026-07-15)
 
 **One block: something big is buried here. Break it to find out what.** Named for the real thing - municipalities run "bulky waste collection" for exactly this category, the stuff too big for the bag, and every single thing we want inside it (mattress, fridge, sofa, car panel) is literally bulky waste. It borrows the same informal-recycling vocabulary as the sorting table and the bulk sacks.
