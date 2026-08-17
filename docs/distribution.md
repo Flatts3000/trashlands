@@ -100,6 +100,45 @@ project is approved.
 
 Manual fallback: `python tools/cf_release.py --zip <path> --project <id> ...`.
 
+## The server pack
+
+`tools/build_server.py` builds `dist/trashlands-server-<version>.zip`, and `release.yml` runs it on
+every tag: the zip is attached to the GitHub release and uploaded to CurseForge as a `parentFileID`
+child of the client file.
+
+**The mod list comes from the `side` tags.** packwiz-installer runs with `-s server`, taking
+`both` and `server` and skipping `client`, so what a server gets is decided entirely by
+`side =` in `pack/mods/*.pw.toml`. Ten mods are `client` today; the other 37 go to servers. A
+client-only mod mistagged `both` reaches a dedicated server and can crash boot, which is why the
+release does three things about it. A guard reads `side =` out of `pack/mods/*.pw.toml` and fails if
+any client-tagged mod's recorded `filename` turns up in `build/server/mods/`, so a client mod added
+later is covered with no edit and the check cannot drift from the jars. `check_pack_deps.py` then
+runs a second time against the installed server set, because its normal pass resolves `-s both` and
+so cannot see a break caused by the split itself. Last, a **boot smoke test** installs NeoForge,
+waits for `Done (`, and asserts `recompile:region` is in the generated `level.dat` - booting alone
+proves nothing about the world type, since an unknown `level-type` falls back to `minecraft:normal`
+without erroring.
+
+**The world type is set here, not by a mod.** Default World Type is client-only, so the server pack
+ships `level-type=recompile:garbage` in `server.properties`. Without that line a server generates an
+ordinary overworld, and because world generation is decided once at creation, the only fix is
+deleting `world/` and starting again.
+
+**Typing it as a Server Pack is manual, every release.** CurseForge's upload API cannot set the flag:
+`upload-file` accepts changelog, changelogType, displayName, parentFileID, gameVersions, releaseType,
+isMarkedForManualRelease and relations, and an `isServerPack` field is silently ignored
+(henkelmax/upload-curseforge-modpack-action#1, confirmed by CF support). Uploading with
+`parentFileID` makes the zip an *additional file*, which is visible and downloadable but is not the
+same thing. Host one-click deploys - BisectHosting, Nodecraft, Pterodactyl eggs,
+itzg/docker-minecraft-server `AUTO_CURSEFORGE` - read `isServerPack`/`serverPackFileId` from the Core
+API and cannot see an untyped file.
+
+So after every release: Authors Console -> Trashlands -> Files -> the client file -> the attached
+server file -> **Additional File Info** -> `Server Pack`. The release run prints this as a warning
+and a step-summary reminder. Verify with `python tools/check_server_pack_flag.py`, which reads the
+website's v1 API and reports any attached-but-untyped file. Sky Frogs shipped 29 untyped files before
+anyone noticed, which is why the checker exists rather than a note in someone's head.
+
 ## Versioning policy
 
 Pre-1.0, so SemVer is not yet strict:
@@ -122,26 +161,6 @@ Write it player-facing: lead with what changed for the player, not the internal 
 
 ## Not built yet
 
-- **Server pack.** Sky Frogs ships `tools/build_server.py` and treats a client-only release as a
-  failed release, with the server zip attached to the GitHub release and uploaded to CurseForge as a
-  `parentFileID` child file. Trashlands has no server pack yet.
-
-  **The blocker this entry used to name is gone.** It said the pack needed `config/` to exist first;
-  `pack/config/` has carried the quest book, FancyMenu and Default World Type since v0.4.0. What
-  actually blocks it now is different and worth stating plainly:
-
-  1. **Every mod in `pack/mods/` is tagged `side = "both"`, all 47 of them.** `build_server.py` picks
-     the server's jars by running packwiz-installer with `-s server`, so those tags are what decides
-     what a server gets. As they stand, Sodium, FancyMenu, Controlling, Mouse Tweaks and every other
-     client-only mod would be installed on a dedicated server. The side audit is the real work; the
-     build script is the easy half.
-  2. **CurseForge's upload API cannot flag a child file as a Server Pack.** Typing it is a manual
-     Authors Console step every release, and an untyped server pack is invisible to host one-click
-     deploys. Sky Frogs shipped 29 untyped files before noticing, which is why it also carries
-     `tools/check_server_pack_flag.py` to nag about it.
-
-  A boot smoke test in CI is what proves the side tags are right, and is the only thing that catches
-  a mistagged mod before a host does.
 - **Config validation CI.** Sky Frogs' `validate-pack.yml` enforces that `pack/config/` and
   `pack/defaultconfigs/` stay byte-identical, because `config/` is per-instance state that NeoForge
   can recreate from `defaultconfigs/`. Earns its keep once the pack ships configs.
