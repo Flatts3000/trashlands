@@ -123,24 +123,38 @@ jobs:
       # Cheap and deterministic: prove the side tags did what they claim before
       # spending four minutes booting a JVM. A client mod reaching a server is the
       # failure this whole side-tag split exists to prevent.
+      # Derived from pack/mods/*.pw.toml rather than a hand-written name list: each
+      # client-tagged mod is checked by the `filename` packwiz already records, so a
+      # newly added client mod is covered with no edit here. A name list would drift
+      # from the jars - "mouse-tweaks" never matches MouseTweaks-neoforge-mc26.1.jar,
+      # which is exactly the false negative this shape removes.
       - name: Guard - no client-only mods in the server pack
         run: |
-          cd build/server/mods
-          fail=0
-          for m in sodium fancymenu melody konkrete controlling searchables \
-                   mouse-tweaks toast-control defaultworldtype ExtremeSoundMuffler; do
-            if ls | grep -qi "^$m"; then
-              echo "::error::client-only mod '$m' was installed into the server pack - check side= in pack/mods/$m.pw.toml"
-              fail=1
-            fi
-          done
-          n=$(ls *.jar | wc -l)
-          echo "server mods: $n"
-          if [ "$n" -lt 20 ]; then
-            echo "::error::only $n server mods - the side tags look wrong in the other direction."
-            fail=1
-          fi
-          exit $fail
+          python3 - <<'PY'
+          import pathlib, re, sys
+
+          installed = {p.name for p in pathlib.Path("build/server/mods").glob("*.jar")}
+          client, leaked = 0, []
+          for toml in sorted(pathlib.Path("pack/mods").glob("*.pw.toml")):
+              text = toml.read_text(encoding="utf-8")
+              side = re.search(r'^side\s*=\s*"([^"]+)"', text, re.M)
+              name = re.search(r'^filename\s*=\s*"([^"]+)"', text, re.M)
+              if not side or side.group(1) != "client":
+                  continue
+              client += 1
+              if name and name.group(1) in installed:
+                  leaked.append(name.group(1))
+
+          print(f"client-tagged mods: {client}, jars installed for the server: {len(installed)}")
+          for f in leaked:
+              print(f"::error::client-only mod '{f}' was installed into the server pack")
+          if leaked:
+              sys.exit(1)
+          if client == 0:
+              sys.exit("::error::no mod is tagged side=client - the side audit has been lost")
+          if len(installed) < 20:
+              sys.exit(f"::error::only {len(installed)} server mods - the side tags look wrong the other way")
+          PY
 
       # The only thing that actually proves the side split: boot it. A client mod
       # that slipped through crashes NeoForge at load, and nothing earlier catches
