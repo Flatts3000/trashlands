@@ -83,7 +83,7 @@ metafile = true
 
 [[files]]
 file = "mods/balm.pw.toml"
-hash = "67bf5dd466a47439b026bb81c8ca53f863fd56f3c104b18dfe5c317c4a8cef3c"
+hash = "625933fb047e7911188c26cd83926bcef80b5700d948fb70122487e864574785"
 metafile = true
 
 [[files]]
@@ -123,7 +123,7 @@ metafile = true
 
 [[files]]
 file = "mods/fancymenu.pw.toml"
-hash = "2dd840e5e71929e083fa01d6601300ffbe24cc29aa15b5699e9ae5a8d6b84057"
+hash = "8c74fe5d15feba9fcdc746620c7158d3887ce8d0662e3e19f40852d2df687760"
 metafile = true
 
 [[files]]
@@ -178,7 +178,7 @@ metafile = true
 
 [[files]]
 file = "mods/gravestone-mod.pw.toml"
-hash = "e83ebef0d099ac46d8a01f95bc8216b23ee14319fb16514bc368d39ea01675de"
+hash = "a3282e349978810d09c1157a24415b862c5534de1ecfa713d867a5b96072b1bb"
 metafile = true
 
 [[files]]
@@ -193,12 +193,12 @@ metafile = true
 
 [[files]]
 file = "mods/jade.pw.toml"
-hash = "eb8caa143023cd8e8ff9cc11510a6d84291f7899446231b57d1dc80f73cdd365"
+hash = "f6966f01757d2a20fbe0284e06d9e37d89bcd8da62eacce859c985a5b3115842"
 metafile = true
 
 [[files]]
 file = "mods/jei.pw.toml"
-hash = "07846cb18e00cc84166f141913da307fc3880d797f38878ae3b38e54dbe4a091"
+hash = "c9ce29be45492fa3aedcfba087085098046d068207220a26522d90a8eaf28514"
 metafile = true
 
 [[files]]
@@ -263,7 +263,7 @@ metafile = true
 
 [[files]]
 file = "mods/recompile.pw.toml"
-hash = "fb5b41018d73c20871d23ca8d9326218ac04f6ff4ac64b85d7e23ae4a8e5f330"
+hash = "7b962d4352c0a95de92759e60bc9b162b78fc4e98a0aa823e93e1f0f49339474"
 metafile = true
 
 [[files]]
@@ -303,7 +303,7 @@ metafile = true
 
 [[files]]
 file = "mods/trash-cans.pw.toml"
-hash = "dde3963c20af19b3128d9fce105a8c36b4dea2fbb79d11578f99441dee0c9024"
+hash = "cb9fb6ad05d1392a68a5024a8e480e544a8342855c12a8913811cea62b185522"
 metafile = true
 
 [[files]]
