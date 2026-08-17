@@ -120,22 +120,29 @@ Two problems surfaced walking the concept: a mesh "sieve/screen" is the wrong re
 3. **Screen dropped entirely (supersedes point 3).** With no sieve there is nothing for a screen to mesh, and any held-item slot reintroduces an automation surface. Player-chosen *what-you-recover* bias moves to a later tier (the powered sorter, or a possible magnet mechanic) - not the tarp. The `metal_screen` / `organics_screen` items are removed.
 
 **Automation matches the tarp's rate, it does not beat it (owner, 2026-08-03 - REVERSES the last
-sentence of the paragraph below).** The Separator sorts garbage at exactly the tarp's rolls per block;
-both read one function (`SortableBlock.sortRolls`), so the two cannot drift apart. The reward for
-building it is that it **runs unattended**, not that it yields more.
+sentence of the paragraph below).** The **Trommel** sorts garbage at exactly the tarp's rolls per
+block; both read one function (`SortableBlock.sortRolls`), so the two cannot drift apart. The reward
+for building it is that it **runs unattended**, not that it yields more.
+
+**The machine changed, the decision did not (2026-08-16, #187/#188).** Automated sorting was the
+Separator's second mode for four releases and is now the Trommel's only job. A shear shredder destroys
+distinctions and sorting requires one, so the machine that sorts is the one that makes a size cut. The
+rate decision above is untouched - both machines always read the same function, and the Trommel still
+does.
 
 The earlier plan had automation clearing the tarp by another 2.0-2.4x. That is wrong for two reasons.
 A third multiplying step floods the late game with scrap at exactly the point the player has least use
 for more of it - the tier above this one is about gems, not about more junk. And it would have made the
 tarp's careful tuning pointless rather than merely superseded; the tarp stays perfectly good at what it
 does, it just cannot be left alone. **The tarp is therefore NOT removed**: the Separator needs the
-demolition yard, steel, iron and power, so deleting it would leave bare hands as the only sorting from
+demolition yard, steel and power, so deleting it would leave bare hands as the only sorting from
 world-start until the yard.
 
 Mechanical Waste became sortable at both stations in the same change (8 rolls, derived: it shares the
 bale's 3-4 crumble window, so it shares the bale's hand average, so it takes the bale's number). The
-Separator sorting the yard's own piles into scrap and then grinding that scrap into gems closes the
-demolition-yard loop inside one machine.
+yard's own piles sort into scrap and that scrap separates into gems, which closes the demolition-yard
+loop - across **two** machines since #187, not inside one. That it took one machine was the argument
+for giving the Separator a second verb, and it is the argument that lost.
 
 **Recovery ladder (tuned 2026-07-15, in play):** the pull table says what is *in* a block; **the method decides how much of it you get out**. The ladder is **hand << tarp << automation**, and the lever is rolls per block, so retuning a table moves every tier together. First playtest exposed the ladder inverted: hand pulls averaged 4.9 / 2.5 / 6.9 (garbage / bag / bale) against a tarp giving 5 / 2 / 12, so the tarp was a wash on garbage blocks and *strictly worse* on bags - the station you crafted was a downgrade, and materials arrived far too fast. Now hand averages **1.9 / 1.5 / 2.9** against a tarp of **5 / 3 / 8**, a consistent **2.0-2.8x**. Hand must stay visibly worse: it needs no station, no hauling, and no cooldown. Automation must clear the tarp by a similar margin when it lands, so the tarp is deliberately not maxed out. (Averages are expected pulls over the crumble curve, not the max.)
 
