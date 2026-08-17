@@ -201,9 +201,22 @@ def write_launchers(out: Path, neoforge: str, mc: str) -> None:
         "  echo Installing NeoForge server ...\r\n"
         '  java -jar "%INSTALLER%" --installServer\r\n'
         ")\r\n"
-        "if exist run.bat call run.bat\r\n"
+        "REM NeoForge's --installServer writes run.bat. If it is missing the install\r\n"
+        "REM failed, and falling through would exit 0 having done nothing.\r\n"
+        "if not exist run.bat (\r\n"
+        "  echo NeoForge install failed - run.bat was never written.\r\n"
+        "  exit /b 1\r\n"
+        ")\r\n"
+        "call run.bat nogui\r\n"
     )
     (out / "setup.bat").write_text(setup_bat, encoding="utf-8", newline="\r\n")
+
+    # POSIX build machines get the real bit too, so `bash setup.sh` works straight
+    # out of build/server without unzipping. make_zip forces it in the archive.
+    try:
+        (out / "setup.sh").chmod(0o755)
+    except (OSError, NotImplementedError):
+        pass  # Windows has no exec bit; the zip carries the mode regardless
 
     (out / "INSTALL.md").write_text(
         f"# Trashlands dedicated server ({mc} / NeoForge {neoforge})\n\n"
@@ -245,6 +258,15 @@ ZIP_EXCLUDE_NAMES = {"packwiz.json", "packwiz-installer.jar",
                      "options.txt", "icon.png"}
 ZIP_EXCLUDE_TOPDIRS = {"world", "libraries", "logs", "crash-reports",
                        "dynamic-data-pack-cache", "versions", "resourcepacks"}
+# Boot-test scratch, matched at the install root ONLY. Matching "boot*" anywhere
+# would quietly drop a config file like config/<mod>/bootstrap.json from the
+# server pack, and nothing compares the zip's config/ against pack/config/.
+ZIP_EXCLUDE_ROOT_PREFIXES = ("boot", "install")
+# Stored with the executable bit set. Zip preserves whatever mode the file has on
+# disk, and Windows cannot set an exec bit at all, so the mode is forced here
+# rather than left to the build machine. Without it INSTALL.md's "run setup.sh"
+# is a permission error on every Linux host.
+EXECUTABLE_NAMES = {"setup.sh"}
 
 
 def make_zip(out: Path, version: str) -> Path:
@@ -260,9 +282,18 @@ def make_zip(out: Path, version: str) -> Path:
             rel = p.relative_to(out)
             if rel.name in ZIP_EXCLUDE_NAMES or rel.parts[0] in ZIP_EXCLUDE_TOPDIRS:
                 continue
-            if rel.suffix == ".log" or rel.name.startswith("boot"):
+            if rel.suffix == ".log":
                 continue
-            zf.write(p, rel)
+            if len(rel.parts) == 1 and rel.name.startswith(ZIP_EXCLUDE_ROOT_PREFIXES):
+                continue
+            info = zipfile.ZipInfo.from_file(p, rel.as_posix())
+            info.compress_type = zipfile.ZIP_DEFLATED
+            if rel.name in EXECUTABLE_NAMES:
+                # 0o100755, not 0o755: the high bits are the full st_mode and must
+                # keep S_IFREG, or the entry has no file type and strict unzip
+                # implementations do not treat it as a regular file.
+                info.external_attr = (0o100755 << 16) | (info.external_attr & 0xFFFF)
+            zf.writestr(info, p.read_bytes())
     print(f"\nbuilt {zip_path}  ({zip_path.stat().st_size // 1024} KiB)")
     return zip_path
 

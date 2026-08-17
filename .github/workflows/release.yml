@@ -156,10 +156,17 @@ jobs:
               sys.exit(f"::error::only {len(installed)} server mods - the side tags look wrong the other way")
           PY
 
+      # The dependency guard above resolves with `-s both`, so it audits the union of
+      # client and server mods and cannot see a server-side break caused by the side
+      # split. This PR demoted searchables, melody and konkrete to client; if a
+      # server mod had required one, the union pass would still find it present. So
+      # audit the ACTUAL server set too - same tool, pointed at what got installed.
+      - name: Guard - the server's own mod set can load
+        run: python3 tools/check_pack_deps.py --mods-dir build/server/mods
+
       # The only thing that actually proves the side split: boot it. A client mod
       # that slipped through crashes NeoForge at load, and nothing earlier catches
-      # that. This also exercises level-type=recompile:garbage, since the server
-      # generates its world during this boot - a bad preset id would surface here.
+      # that.
       - name: Smoke test - the server boots
         run: |
           cd build/server
@@ -186,7 +193,19 @@ jobs:
             tail -120 boot.log
             exit 1
           fi
-          echo "server booted and generated its world."
+          # Booting is NOT proof the world type took. An unknown level-type does not
+          # crash: DedicatedServerProperties resolves it against the WORLD_PRESET
+          # registry and falls back to minecraft:normal, so a renamed or typo'd preset
+          # would give every server a vanilla overworld with CI green. The resolved
+          # generator is baked into level.dat at creation, and recompile:region is the
+          # preset's biome source - the mod adds no biome modifiers, so that string
+          # cannot appear in a vanilla world.
+          if ! zcat world/level.dat | grep -aq 'recompile:region'; then
+            echo "::error::the world was generated WITHOUT the garbage preset - level-type did not take."
+            echo "level-type line was:"; grep '^level-type' server.properties
+            exit 1
+          fi
+          echo "server booted and generated a recompile:garbage world."
 
       - name: Extract changelog section
         env:

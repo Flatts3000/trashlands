@@ -110,9 +110,14 @@ child of the client file.
 `both` and `server` and skipping `client`, so what a server gets is decided entirely by
 `side =` in `pack/mods/*.pw.toml`. Ten mods are `client` today; the other 37 go to servers. A
 client-only mod mistagged `both` reaches a dedicated server and can crash boot, which is why the
-release does two things about it: a name-list guard that fails if any known client mod appears in
-`build/server/mods/`, and a **boot smoke test** that installs NeoForge and waits for `Done (`. The
-boot test is the only check that actually proves the split.
+release does three things about it. A guard reads `side =` out of `pack/mods/*.pw.toml` and fails if
+any client-tagged mod's recorded `filename` turns up in `build/server/mods/`, so a client mod added
+later is covered with no edit and the check cannot drift from the jars. `check_pack_deps.py` then
+runs a second time against the installed server set, because its normal pass resolves `-s both` and
+so cannot see a break caused by the split itself. Last, a **boot smoke test** installs NeoForge,
+waits for `Done (`, and asserts `recompile:region` is in the generated `level.dat` - booting alone
+proves nothing about the world type, since an unknown `level-type` falls back to `minecraft:normal`
+without erroring.
 
 **The world type is set here, not by a mod.** Default World Type is client-only, so the server pack
 ships `level-type=recompile:garbage` in `server.properties`. Without that line a server generates an

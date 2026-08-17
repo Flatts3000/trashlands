@@ -31,9 +31,11 @@ undocumented v1 API - no API key needed:
 
 Each file carries `hasServerPack` (bool) and `additionalServerPackFilesCount` (int)
 alongside `additionalFilesCount`. A correctly-typed release reads
-additionalFilesCount >= 1 AND hasServerPack true. Undocumented, so it could change; if
-the fields disappear, fall back to the file page (the same values are embedded in its
-Next.js payload).
+`additionalServerPackFilesCount >= 1` AND `hasServerPack` true. The all-attachments
+count is deliberately not the signal: a file can carry a typed server pack plus some
+other attachment, and a pre-server-pack release can carry an attachment that was never
+meant to be one. Undocumented, so it could change; if the fields disappear, fall back
+to the file page (the same values are embedded in its Next.js payload).
 
 Usage:
     python tools/check_server_pack_flag.py              # latest 5 files
@@ -86,12 +88,16 @@ def main() -> int:
     for f in files:
         name = (f.get("displayName") or f.get("fileName") or "?")[:33]
         addl = f.get("additionalFilesCount", 0) or 0
+        typed = f.get("additionalServerPackFilesCount", 0) or 0
         has = bool(f.get("hasServerPack"))
-        # A file with no attachment at all is not a failure: releases before the
-        # server pack existed legitimately have none.
+        # Key off the server-pack counter, not the attachment counter. A release can
+        # carry attachments that are not server packs, and a client file with one of
+        # those plus nothing else is not a failure - it is a release from before the
+        # server pack existed. Conversely a file can carry a typed pack AND an
+        # untyped extra, which the all-attachments count cannot tell apart.
         if addl == 0:
             status = "no attachment"
-        elif has:
+        elif typed >= 1 and has:
             status = "OK - typed"
         else:
             status = "NOT TYPED - fix in Authors Console"
