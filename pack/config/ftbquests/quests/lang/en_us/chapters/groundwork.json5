@@ -2,6 +2,8 @@
   "quest.7A55E0BA6E000030.title": "The Water Tank",
   "quest.7A55E0BA6E000030.quest_desc": [
     "You never fill this. There is no fluid to put in or take out, and it does not need to see sky.",
+    "",
+    "You have made one already; it is inside your Rain Collector. The spreader needs its own.",
   ],
   "quest.7A55E0BA6E000031.title": "The Solar Panel",
   "quest.7A55E0BA6E000031.quest_desc": [
@@ -9,11 +11,11 @@
     "",
     "It also makes FE in direct daylight, and it keeps making it once it is part of a spreader, so build where that top block sees open sky if you want the power off it. The spreader runs on nothing and does not care either way.",
   ],
-  "quest.7A55E0BA6E000032.title": "Another Pump",
+  "quest.7A55E0BA6E000032.title": "What the Pump Was For",
   "quest.7A55E0BA6E000032.quest_desc": [
-    "Your first one is inside the Rain Collector and this machine needs its own.",
+    "Salvage had you pull one out of a washing machine. This is the machine it was for.",
     "",
-    "Tearing down a washing machine gives an idea toward the Pump along with the part. Four ideas make the blueprint, and after that you craft them instead of hunting for more machines.",
+    "If you need another, that same teardown also teaches an idea toward the Pump. Four of those make the blueprint, and after that you craft them instead of hunting for more washing machines.",
   ],
   "quest.7A55E0BA6E000033.title": "The Grass Spreader",
   "quest.7A55E0BA6E000033.quest_desc": [
@@ -47,11 +49,11 @@
   ],
   "quest.7A55E0BA6E000037.title": "Fertilizer",
   "quest.7A55E0BA6E000037.quest_desc": [
-    "This world's bonemeal. Use it on reclaimed grass and plants come up over about the patch vanilla bonemeal covers, revealed outward from where you clicked over a few seconds.",
+    "On reclaimed grass it scatters plants across about the patch vanilla bone meal covers, rippling outward from the click. It does nothing on coarse dirt and is not spent there, so grass comes first.",
     "",
-    "On coarse dirt it does nothing and is not spent, so grass has to come first.",
+    "On mycelium it puts up mushrooms instead, which is the food loop rather than ground work.",
     "",
-    "On mycelium it puts up mushrooms instead. That is the food loop, not ground work.",
+    "Anywhere else it works as plain bone meal. That matters more than it sounds: nothing here drops bones, so this is the only thing that will hurry a crop or a sapling along.",
   ],
   "quest.7A55E0BA6E000038.title": "Cover",
   "quest.7A55E0BA6E000038.quest_desc": [
