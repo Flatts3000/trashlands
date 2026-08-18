@@ -349,6 +349,22 @@ Kept as worked examples, because each was invisible until traced.
 
 ## Changelog
 
+- **2026-08-18** - Recompile 0.11.0. **Sewers under the demolition yard**, entered through a manhole
+  whose plate comes up with a Prybar and nothing else, so the yard gates them twice over. They are the
+  only source of three things: a **slimeball** (both vanilla slime routes need something this world
+  lacks), an **echo shard** (one per sewer, in a crate under the sump's standing leachate with a
+  drowned spawner on the walkway), and **suspicious sand and gravel**, which must be brushed before
+  mining - mining a deposit directly gives nothing. A **brush** is a feather, a stick and a copper
+  ingot, so chickens come before brushing, which puts the silt behind the animal rung.
+  Sewer barrels can pay out a Bulb, Pump, Motor or Machine Frame, so a component that was
+  teardown-only has a second source. Turtles and frogs live in dens but **cannot breed there**, so
+  they are not a farmable population and the bait rung remains the only route to a herd.
+  **Leachate can now drown you**, everywhere including the surface pools, checked at the eye - one
+  block is enough while crawling or swimming, and walking through is still safe.
+  The world's rock went from a 7-11 block slab to 59-63 blocks to hold all this; it changes no gate
+  and opens no recipe, and **only affects newly generated land**, so an existing save keeps thin
+  terrain in visited chunks and will never hold a sewer there.
+
 - **2026-08-17** - Recompile 0.10.0. **The Separator stops sorting**; a Block of Garbage, Trash Bag,
   Compacted Bale, Stone Rubble or Mechanical Waste fed to it now does nothing, and unattended sorting
   is the **Trommel's** job (demolition yard: a core, four Steel I-Beams, a Motor, two Machine Frames).

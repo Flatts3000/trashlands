@@ -116,6 +116,16 @@ otherwise found by whoever first runs a server.
   `python tools/cf_release.py` afterwards.
 - **`actions/setup-java` and friends** - keep workflow actions on current Node majors. GitHub
   force-deprecates old ones and the failure is abrupt.
+- **Java 25, not 21.** NeoForge 26.1 is compiled for Java 25 (class file 69). A Java 21 runtime dies
+  with `UnsupportedClassVersionError` before a single mod loads, which is what failed the first
+  v0.7.0 attempt. Both workflows and the server pack's `INSTALL.md` say 25; the dev instance has been
+  on jdk-25 all along. If a boot ever fails instantly with a class-version error, this is it.
+- **`packwiz-installer-bootstrap` calls the GitHub API anonymously** to look up its own latest
+  release, and gets a **403** when the runner's shared IP is rate-limited. It hit PR CI on
+  2026-08-18 and a re-run cleared it. The release now drives that bootstrap three times
+  (`check_pack_deps` twice plus `build_server.py`), so the odds compound. A failure here is safe -
+  every one of those steps runs before the GitHub release - so re-run the job. Pinning the installer
+  jar instead of letting the bootstrap self-update would remove it (issue filed).
 
 ---
 
@@ -135,6 +145,7 @@ otherwise found by whoever first runs a server.
       live in the mod's JSON.
 - [ ] **No soft-locks.** A fresh world plays start to finish with no dead ends.
 - [ ] **A real logo.** The current `pack/icon.png` is a screenshot crop.
-- [ ] **Server pack playtested.** It builds and boots on every release as of v0.6.0, but nobody has
-      actually played a multiplayer world on it. See [`distribution.md`](./distribution.md#the-server-pack).
+- [ ] **Server pack playtested.** It has built, booted and shipped on every release since v0.7.0,
+      but nobody has actually played a multiplayer world on it, and nothing has yet confirmed a
+      server world uses the garbage preset rather than a vanilla overworld. See [`distribution.md`](./distribution.md#the-server-pack).
 - [ ] **License audit.** Every bundled mod's license permits redistribution in a CurseForge pack.

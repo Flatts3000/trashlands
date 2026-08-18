@@ -4,7 +4,7 @@
 
 **Build status (2026-08-02):** the **pack is assembled and released**. `v0.1.0` shipped to CurseForge (project `1636627`) and GitHub Releases: 43 mods on Minecraft 26.1.2 / NeoForge 26.1.2.94, world type locked to the garbage world, a Welcome quest chapter, and a tag-driven release pipeline. See [`pack_setup.md`](pack_setup.md) for the lineup and [`release_checklist.md`](release_checklist.md) for how it ships.
 
-The **Recompile mod** is a playable alpha at v0.10.0 and has shipped the garbage world, the block family, the trash tools, the Sorting Tarp, the food tier and storage, the reclamation ladder, collectibles, and the guidebook (see `../recompile/docs/roadmap.md`). The first playtests (2026-07-15) moved two things from "designed" to "known": the early loop needed retuning against actual play, and **the core question of what makes sifting fun is now open** - see below, and the first entry under Open questions.
+The **Recompile mod** is a playable alpha at v0.11.0 and has shipped the garbage world, the block family, the trash tools, the Sorting Tarp, the food tier and storage, the reclamation ladder, collectibles, and the guidebook (see `../recompile/docs/roadmap.md`). The first playtests (2026-07-15) moved two things from "designed" to "known": the early loop needed retuning against actual play, and **the core question of what makes sifting fun is now open** - see below, and the first entry under Open questions.
 **Relationship:** the showcase modpack for the **Recompile** mod. Garbage + recycling is the core to explore. Magnetism and Superposition are noted as optional, not explored (see the note below). Mod shortlist + design rules: `F:\minecraft-repos\next-mod-concepts.md`.
 
 ---
