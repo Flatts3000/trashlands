@@ -151,6 +151,15 @@ on purpose.
 | **Slimeball** | Slimes, which live only in sewers | A deposit against the redstone tier, worth little now |
 | **Trident, nautilus shell** | Drowned, from the sewer's spawner | Owner call: a prize at this depth, not a spike |
 | **Bulb, Pump, Motor, Machine Frame** | Sewer barrels, own loot pool | Travel + Prybar. All `blueprint_crafting`, so a found one is a single unit that teaches nothing - the blueprint gate is untouched |
+| **Mud** | The frog den's floor | Travel + Prybar. **New material, accepted by owner 2026-08-17.** Nothing else in this world produces it |
+| **Sand** | The turtle den's floor | Travel + Prybar. Not new - sledgehammering Reinforced Concrete already yields it |
+
+**Mud is a deliberate addition, not a leak** (owner, 2026-08-17). The frog den is floored in it because
+`#minecraft:frogs_spawnable_on` is grass block, mud and the two mangrove roots, and mud is the only one
+of those a sewer could plausibly contain - so the substrate is the mob rule rather than decoration.
+What it opens downstream is **packed mud and mud bricks**, a building-block family this world otherwise
+has no route to. Bounded the same way everything else down there is: travel, a prybar, and a finite
+structure that does not regenerate.
 | Turtles, frogs | Placed, finite | Not renewable - a sewer has the ones it generated with |
 
 **Nothing here is renewable except the mobs the spawner makes.** The barrels roll once, on first
