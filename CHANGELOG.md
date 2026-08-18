@@ -11,6 +11,56 @@ and ASCII punctuation only.
 ### Added
 - (nothing yet)
 
+## [0.7.0] - 2026-08-18
+
+Something built, under the yard. And a server pack, so more than one of you can find it.
+
+### Added
+- **A dedicated server pack.** Every release now builds `trashlands-server-<version>.zip`, attaches
+  it to the GitHub release, and uploads it to CurseForge alongside the client file. Unzip it, accept
+  the EULA, run `setup.sh` or `setup.bat`, and it installs NeoForge and boots. It ships with
+  `level-type=recompile:garbage` already set, which is the only thing that makes a server world this
+  world rather than an ordinary one.
+- **Sewers under the demolition yard** (Recompile 0.11.0). Brick corridors running downhill with a
+  leachate channel down the middle, and the first place here that was built rather than dumped. The
+  way in is a square of pale concrete with a rusted plate in it, and the plate comes up with a
+  Prybar and nothing else.
+- **The only slimes in the world** live down there. Both routes vanilla gives a slime need something
+  this world does not have, so a slimeball had no source at all until now. Roaches live there too,
+  rather than only turning up when a garbage block is disturbed, and there are turtles and frogs in
+  dens of their own. A sewer's animals are the animals it was built with; they cannot breed there.
+- **An access chamber with barrels** off one of the runs, holding scrap and sometimes a Bulb, a Pump,
+  a Motor or a Machine Frame. It is somewhere you have to walk to rather than the room you arrive in.
+- **An echo shard in the sump**, one per sewer and the only source of one here. It sits under standing
+  leachate in the dark with a drowned spawner on the walkway, so the hazard the room already had is
+  what guards it.
+- **Suspicious sand and gravel in the silt.** Brush it and mostly you get silt, because that is what
+  silt is, and now and then something that went down a drain a long time ago comes back. Mining a
+  deposit gives nothing: brush it into ordinary sand or gravel first.
+
+### Changed
+- **The ground is deep now.** The world was a coarse-dirt slab 7 to 11 blocks thick over about 120
+  blocks of nothing; it is 59 to 63 blocks thick, with bedrock still underneath and the void still
+  below that. Nothing you can see or stand on changed. **It only affects newly generated land**, so an
+  existing save keeps the thin slab in chunks it has already visited and will never hold a sewer
+  there. The seam is visible where you walk into fresh chunks. A new world avoids both.
+- **Leachate can drown you**, everywhere, including the surface pools out in the sprawl. It is checked
+  at the eye, so one block deep is enough while crawling or swimming; walking through a pool is still
+  fine. It still does no damage on contact and still leaves you hungry.
+- **Ten mods are marked client-only** - Sodium, FancyMenu, Melody, Konkrete, Controlling, Searchables,
+  Mouse Tweaks, Toast Control, Default World Type and Extreme Sound Muffler. No difference to a
+  client install, which still gets all 47. It is what lets the server pack ship the 37 a server
+  actually runs instead of handing it a rendering mod.
+- **Recompile 0.10.0 -> 0.11.0**, plus JEI, FTB Quests and FTB XMod Compat.
+
+### Fixed
+- **A Water Tank, Solar Panel or Rain Collector Funnel placed on its own no longer vanishes when you
+  break it.** The block you place and the block a formed machine uses are the same one for those
+  three, and the rule that stops a formed machine dropping loose parts was taking them too. All three
+  are on the Groundwork build path, so this was losable.
+- **Turtles no longer suffocate in their own den.** A turtle is wider than the block it stands on and
+  three were being placed a block apart, so they spawned inside each other and inside the walls.
+
 ## [0.6.0] - 2026-08-17
 
 A third chapter, and the ground stops being something you only dig.
