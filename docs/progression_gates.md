@@ -151,8 +151,32 @@ on purpose.
 | **Slimeball** | Slimes, which live only in sewers | A deposit against the redstone tier, worth little now |
 | **Trident, nautilus shell** | Drowned, from the sewer's spawner | Owner call: a prize at this depth, not a spike |
 | **Bulb, Pump, Motor, Machine Frame** | Sewer barrels, own loot pool | Travel + Prybar. All `blueprint_crafting`, so a found one is a single unit that teaches nothing - the blueprint gate is untouched |
+| **Echo shard** | The crate settled in the sump's silt, one per sewer | **The only source in the world**, and the one thing a sewer alone gives. See below |
 | **Mud** | The frog den's floor | **Not gated, and not new** - see below |
 | **Sand** | The turtle den's floor | Not new - sledgehammering Reinforced Concrete already yields it |
+
+**The echo shard is the sewer's exclusive, and it was checked against this document before it landed
+rather than after** (2026-08-18, owner's pick from three candidates). Three things had to hold and all
+three were measured:
+
+- **Nothing else in the world produces one.** Vanilla's source is Ancient City loot, which needs a deep
+  dark; no biome this mod registers is in `#minecraft:has_structure/ancient_city`, and that is asserted
+  rather than assumed - it is exactly the shape of the mistake made three times already (the glass bottle,
+  the iron gate, and mud), where scarcity was measured over the mod's own content while vanilla supplied
+  the thing anyway.
+- **It skips no tier.** Its only vanilla use is the recovery compass, which needs a compass: 4 iron and
+  1 redstone. Iron is the Cupola and redstone is 16 Magnet Scrap in a Separator, so the shard's payoff
+  sits *above* the entire gem tier. A player who clears a sewer on day one is holding something they
+  cannot use until they have power, the yard and a Separator. That is a head start, not a shortcut - the
+  same argument the component pool clears, and for the same reason.
+- **It is reachable.** One per sump and one sump per sewer, in a crate rather than a chance roll, so
+  clearing a sewer yields exactly one. Eight make a recovery compass, so the item is priced at eight
+  sewers rather than at a die.
+
+**It is guarded by the hazard that was already there.** The crate sits on the pool floor under two blocks
+of leachate, so recovering it means swimming down into the one place in the mod that drowns you, in the
+dark, with the drowned spawner in the same room. Nothing was added to protect it; the reward was simply
+put where the danger already was.
 
 **Mud was never sewer-gated, and the first version of this row said it was** (corrected 2026-08-17 before
 it could mislead anyone). Measured:
