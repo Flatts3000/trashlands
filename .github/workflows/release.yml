@@ -206,7 +206,9 @@ jobs:
           # evidence and leaves the call to a human until it is.
           echo "--- world type check ---"
           grep '^level-type' server.properties || echo "(no level-type line)"
-          python3 tools/inspect_level_dat.py world/level.dat || true
+          # Absolute: this step ran `cd build/server`, so a repo-relative path
+          # resolves under the server dir and silently misses.
+          python3 "$GITHUB_WORKSPACE/tools/inspect_level_dat.py" world/level.dat || true
           echo "server booted and generated a world."
 
       - name: Extract changelog section
