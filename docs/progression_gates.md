@@ -151,15 +151,25 @@ on purpose.
 | **Slimeball** | Slimes, which live only in sewers | A deposit against the redstone tier, worth little now |
 | **Trident, nautilus shell** | Drowned, from the sewer's spawner | Owner call: a prize at this depth, not a spike |
 | **Bulb, Pump, Motor, Machine Frame** | Sewer barrels, own loot pool | Travel + Prybar. All `blueprint_crafting`, so a found one is a single unit that teaches nothing - the blueprint gate is untouched |
-| **Mud** | The frog den's floor | Travel + Prybar. **New material, accepted by owner 2026-08-17.** Nothing else in this world produces it |
-| **Sand** | The turtle den's floor | Travel + Prybar. Not new - sledgehammering Reinforced Concrete already yields it |
+| **Mud** | The frog den's floor | **Not gated, and not new** - see below |
+| **Sand** | The turtle den's floor | Not new - sledgehammering Reinforced Concrete already yields it |
 
-**Mud is a deliberate addition, not a leak** (owner, 2026-08-17). The frog den is floored in it because
-`#minecraft:frogs_spawnable_on` is grass block, mud and the two mangrove roots, and mud is the only one
-of those a sewer could plausibly contain - so the substrate is the mob rule rather than decoration.
-What it opens downstream is **packed mud and mud bricks**, a building-block family this world otherwise
-has no route to. Bounded the same way everything else down there is: travel, a prybar, and a finite
-structure that does not regenerate.
+**Mud was never sewer-gated, and the first version of this row said it was** (corrected 2026-08-17 before
+it could mislead anyone). Measured:
+
+- `#minecraft:convertable_to_mud` is dirt, **coarse dirt** and rooted dirt. Coarse dirt is the entire
+  surface of this world, and Recompile overrides no vanilla block tag except `mineable`.
+- `PotionItem.useOn` converts any of them to mud with a **water bottle** - no tool, no gate.
+- A water bottle costs no travel: the Rain Collector hands one back for a glass bottle, and glass
+  bottles are a **household** find in the starting biome.
+
+So mud, packed mud and mud bricks have all been available on day one since the Rain Collector shipped.
+The frog den is the first place mud appears as *terrain*, not the first place it exists.
+
+**Third time for this exact mistake**, and the first two are already in this document's neighbourhood:
+the glass-bottle gate that rested on the world having no `minecraft:glass`, and the iron gate (#91) that
+rested on there being no pickaxe. Scarcity measured by reading the mod's own content is not scarcity;
+what decides it is what vanilla does with the world's substrate.
 | Turtles, frogs | Placed, finite | Not renewable - a sewer has the ones it generated with |
 
 **Nothing here is renewable except the mobs the spawner makes.** The barrels roll once, on first
