@@ -150,6 +150,7 @@ on purpose.
 | **Cobweb** | Sewer corridors, cut with shears | The only source in the game |
 | **Slimeball** | Slimes, which live only in sewers | A deposit against the redstone tier, worth little now |
 | **Trident, nautilus shell** | Drowned, from the sewer's spawner | Owner call: a prize at this depth, not a spike |
+| **Bulb, Pump, Motor, Machine Frame** | Sewer barrels, own loot pool | Travel + Prybar. All `blueprint_crafting`, so a found one is a single unit that teaches nothing - the blueprint gate is untouched |
 | Turtles, frogs | Placed, finite | Not renewable - a sewer has the ones it generated with |
 
 **Nothing here is renewable except the mobs the spawner makes.** The barrels roll once, on first
