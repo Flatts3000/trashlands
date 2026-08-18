@@ -163,7 +163,7 @@ metafile = true
 
 [[files]]
 file = "mods/ftb-quests-forge.pw.toml"
-hash = "82b33212cd74a7670abbd249a24df696b3ae2f23ede7a7f5b57246f115b16b5e"
+hash = "c1ad96902b8f5624a1a96ead44bf69dd76b3cc9ab33078c897b0160100fe701c"
 metafile = true
 
 [[files]]
@@ -173,7 +173,7 @@ metafile = true
 
 [[files]]
 file = "mods/ftb-xmod-compat.pw.toml"
-hash = "bc0d71f6578c076e65815d58b56aec73d2f93eb20f71e8fe551e0ecfc64ba7c1"
+hash = "f83f3f562299605eec8ebda3763a7844a7274e61154b47bdde238329c8bc3df2"
 metafile = true
 
 [[files]]
@@ -198,7 +198,7 @@ metafile = true
 
 [[files]]
 file = "mods/jei.pw.toml"
-hash = "c9ce29be45492fa3aedcfba087085098046d068207220a26522d90a8eaf28514"
+hash = "e6b40edce34211ba9869f271561832c35810c8bbc70af871750c6c147489a226"
 metafile = true
 
 [[files]]
@@ -263,7 +263,7 @@ metafile = true
 
 [[files]]
 file = "mods/recompile.pw.toml"
-hash = "7b962d4352c0a95de92759e60bc9b162b78fc4e98a0aa823e93e1f0f49339474"
+hash = "902b0c0f53c5b39c89728ebedd811c88b31e0aff8ebc8d8831e70b512fc0e4f2"
 metafile = true
 
 [[files]]
