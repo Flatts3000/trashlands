@@ -717,6 +717,47 @@ things this entry got wrong, both worth keeping:
    recipe Recompile ships itself, and the glass bottle. Driving the test red and reading what it names
    is the method; guessing the list is not.
 
+## P2.12 - The Slag Furnace, and where obsidian comes from (locked 2026-08-19)
+
+**Obsidian is vitrified slag, and the machine that does it is the gate.** Four owner rulings, taken
+in order over two days, and each one narrowed the last.
+
+**1. Lava is out, and this chain is what replaced it** (2026-08-18). The question that started it was
+how a person makes lava in a dump - the honest answer is that they do not, and the mechanical answer
+was worse: lava plus water is obsidian in one step, which would route around every material tier and
+hand over a portal gate `material_economy.md` says should be earned. Slag is the real-world version of
+the same idea. Melt scrap and the non-metallic fraction floats off; melt *that* hot enough and it
+freezes as an amorphous silicate glass. Plasma-vitrified waste slag genuinely does break with a
+conchoidal fracture, so this is not a metaphor stretched to fit.
+
+**2. The Cupola emits slag; a second machine makes things from it.** The alternative on the table was
+one machine that both smelted and vitrified. Rejected because it collapses two verbs into one block:
+the Cupola *remelts metal* and the slag is its waste, and a machine that also turns its own waste into
+a finished good has no reason to hand any to the player. Two machines means slag is a material you
+carry between them, which is what makes it a chain rather than a subroutine.
+
+**3. Slag separates into concrete powder and pulverizes into Fertilizer, and vitrifies into obsidian.**
+Wool was considered (slag wool is real - it is what rock wool is) and dropped for now: it needs a
+consumer designed before it ships, and an item with no use is clutter whatever its provenance. The
+three exits that shipped each match an existing machine's verb, which is why they needed no new one.
+
+**4. A single block with a furnace screen, not a powered multiblock** (2026-08-19). This is the ruling
+that separates it from the Trommel, Separator and Pulverizer. Those three are conveyor machines: you
+feed them, walk away, and collect. This is one you put a lump into and watch melt, which is exactly
+what a furnace is - so it looks like every other furnace in the game, runs on fuel rather than FE, and
+keeps vanilla's recipe book and JEI transfer button by subclassing `AbstractFurnaceMenu` rather than
+reimplementing one. The Cupola could not do that (it needed a fourth slot for its slag, and that class
+throws on any container size but three) and paid for it; this machine needed nothing extra, so it paid
+nothing.
+
+**What actually enforces "made only" is the recipe type.** `recompile:vitrifying` is an operation no
+other machine performs. Not scarcity: `minecraft:smelting` would hand obsidian to a vanilla furnace,
+and `minecraft:blasting` to a vanilla blast furnace, **which is craftable in this world** because iron
+is reachable through the Cupola. That was measured rather than assumed, because the iron gate's first
+design (Recompile #91) was built from the absence of a material and died the moment something added
+the material - silently, with a player able to make iron on day one. A gate that is a property of a
+machine cannot die that way.
+
 ## P3.1 - Sky dumps - CUT/FOLDED (2026-07-14)
 
 Not a separate feature. Sky dumps ARE the regrowth delivery already locked in P1.6.6: falling blocks spawn at the highest world level and fall into place in the mound. No beacon system, no supply-drop event, no opt-in toggle - it's simply how mounds refill. Technical details (spawn timing, entity handling) worked out at implementation.

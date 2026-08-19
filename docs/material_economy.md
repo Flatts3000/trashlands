@@ -93,6 +93,12 @@ Every vanilla material that has no honest garbage presence gets the same treatme
 | Dyes | **Printer teardown** - toner carries fourteen of the sixteen, cyan/magenta/yellow far more often than the rest. Blue and black are the other two and arrive as their pigment (lapis, ink sac), because vanilla already grinds each into its dye | Vegetation rung flowers (dandelion, poppy, oxeye, cornflower) plus vanilla combination crafting. **White is the bottleneck**: bone meal only, so either demolition-yard skeleton bones or a composter, and gray/pink/light blue/magenta all sit behind it |
 | Coal | NOT found - junk is the early fuel (locked P0.4/P2.2) | Charcoal from recovered wood; carbon black from plastic processing |
 | Obsidian | Not found - made only (melt slag/glass; portal gate is earned) | Slag furnace |
+
+**The row is built (Recompile #236: slag 2026-08-18, the Slag Furnace 2026-08-19).** Slag is a real material - the Cupola rakes one off every eight smelts - and it now has three exits: ground to Fertilizer, set into Reinforced Concrete, or **vitrified into obsidian**, four lumps to a block.
+
+**What enforces "made only" is the recipe type, not a scarcity.** `recompile:vitrifying` is an operation no other machine in the game performs. `minecraft:smelting` would hand obsidian to a vanilla furnace and `minecraft:blasting` to a vanilla blast furnace - and the blast furnace **is** craftable here, because iron is reachable through the Cupola. That was measured rather than assumed, which is the lesson the iron gate cost two designs to learn (Recompile #91): a gate built from the absence of a material dies the moment anything adds the material, and it dies silently.
+
+**This is also why overworld lava stays rejected.** Lava plus water is obsidian in one step, which would route around the whole chain and give away a portal gate the line above says should be earned. The chain was the alternative to lava, and now that it exists the argument is stronger rather than spent.
 | Ender pearls | E-waste rare drop ("eyes of ender from e-waste" - locked in Dimensions bridge) | End access |
 | Wood | Pallet fragments, furniture (mid-tier treasure, locked P1.1) | Tree farms post-reclamation - trees are nearly endgame |
 | Diamond/gems | See gems table | Synthesis press |
