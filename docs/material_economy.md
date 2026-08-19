@@ -94,7 +94,7 @@ Every vanilla material that has no honest garbage presence gets the same treatme
 | Coal | NOT found - junk is the early fuel (locked P0.4/P2.2) | Charcoal from recovered wood; carbon black from plastic processing |
 | Obsidian | Not found - made only (melt slag/glass; portal gate is earned) | Slag furnace |
 
-**The row is built (Recompile #236: slag 2026-08-18, the Slag Furnace 2026-08-19).** Slag is a real material - the Cupola rakes one off every eight smelts - and it now has three exits: ground to Fertilizer, set into Reinforced Concrete, or **vitrified into obsidian**, four lumps to a block.
+**The row is built (Recompile #236: slag 2026-08-18, the Slag Furnace 2026-08-19).** Slag is a real material - the Cupola rakes one off every eight smelts - and it now has three exits: ground to Fertilizer, set into Reinforced Concrete, or **vitrified into obsidian**, one lump to a block over a burn twice the length of a normal smelt. (The cost is upstream, not in the ratio: a vitrifying recipe is a cooking recipe and vanilla cooking consumes exactly one item, so the eight smelts it takes the Cupola to rake one lump ARE the price.)
 
 **What enforces "made only" is the recipe type, not a scarcity.** `recompile:vitrifying` is an operation no other machine in the game performs. `minecraft:smelting` would hand obsidian to a vanilla furnace and `minecraft:blasting` to a vanilla blast furnace - and the blast furnace **is** craftable here, because iron is reachable through the Cupola. That was measured rather than assumed, which is the lesson the iron gate cost two designs to learn (Recompile #91): a gate built from the absence of a material dies the moment anything adds the material, and it dies silently.
 
