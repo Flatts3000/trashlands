@@ -128,13 +128,15 @@ Mekanism's ore needs map to the later regions (decided 2026-07-14):
 | Need | Found source |
 |---|---|
 | Uranium | **Hazmat quarantine** - spent fuel containers, radioactive medical waste, reactor components. The hard-gate region's treasure: the reason to build protection is the fuel of the endgame. |
-| Osmium | **The Nether (compacted depths)** - the dump you mine. Osmium and first RF power both originate here (see P3.5). |
+| Osmium | **The Nether (compacted depths)** - the dump you mine. (An earlier version of this row also claimed first RF power originates here; that was reversed on 2026-07-31, see the energy note below.) |
 | Fluorite | Slag field - industrial flux, water-treatment chemicals. |
 | Lead / Tin | Already in the metals matrix (batteries, pipes / cans, solder). |
 
 Reframe: Mekanism's ore-multiplication machinery reads as ultimate recycling efficiency (purity-as-yield's top tier).
 
-**Energy note:** the first RF power originates in the Nether (P3.5). Tiers 1-2 are fuel/manual only (no energy); RF generation unlocks with Nether access, feeding the mid/late electrical tiers.
+**Energy note (corrected 2026-08-19, stale since 2026-07-31):** RF does **not** originate in the Nether. **P3.5 item 2 reversed that** - the energy tier moved forward and now arrives with the hydroponics tier as a Burner Generator plus a working Solar Panel, both of which have shipped. Recompile only *speaks* Forge Energy (`Capabilities.Energy.BLOCK` is a NeoForge standard), so when the player gets power is a pack decision rather than an engine one. Tiers 1-2 remain fuel/manual.
+
+This note said the opposite for seven weeks, and the osmium row above still carried the same claim - which is how a superseded design keeps recruiting: nothing re-reads the row it was quoted into.
 
 ## Open threads for later tiers
 

@@ -244,7 +244,15 @@ block once decided, or never. Do not build against the knowledge subsection unti
 
 ## P1.8 - Dimension lockout (locked 2026-07-14)
 
-Nether and End portals disabled by config default until each themed dimension ships. Decided within the Dimensions discussion below; nothing further to design here.
+Nether and End portals disabled by config default until each themed dimension ships. Decided within the Dimensions discussion below.
+
+**REVISED 2026-08-19: the Nether is open; only the End is still held.** Owner ruling - *"Nether resources and progression are the reasons to go to the Nether. Portals should be enabled."* `dimensions.netherEnabled` now defaults on (Recompile #246).
+
+That also answers the question **P3.5** has carried since the RF reversal of 2026-07-31, which recorded that the Nether had lost its stated reason to exist and marked it *"open and needs answering before P3.5 is built"*. It is answered: the resources and the progression they gate are reason enough, and no new mechanic has to be invented to justify the trip.
+
+**What it costs until the themed generation ships, stated rather than absorbed.** The world preset's Nether entry is still stock vanilla, so the dimension currently supplies gold ore, quartz, glowstone, ancient debris, blaze rods and piglin bartering directly. Several of those have designed found sources in [`material_economy.md`](material_economy.md), and gold is deliberately gated behind E-Scrap to Circuit Powder to a Cupola blast. The gate is not broken - it is routed around by a dimension nobody has themed yet, and the themed build is what closes it.
+
+**A config default only applies to a config file that does not exist yet.** An existing world keeps `netherEnabled = false` and needs the line edited by hand; only a fresh install picks the new default up. Worth knowing before concluding the flag does not work.
 
 ## P1.9 - Food, foraging, and the dead dump (locked 2026-07-14)
 
