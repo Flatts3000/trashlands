@@ -24,6 +24,9 @@ on:
       - "pack/mods/**"
       - "tools/check_pack_deps.py"
       - "tools/packwiz-installer.jar"
+      - "tools/inspect_world_terrain.py"
+      - "tools/test_inspect_world_terrain.py"
+      - ".github/workflows/release.yml"
       - ".github/workflows/validate-pack.yml"
   push:
     branches: [main]
@@ -32,6 +35,9 @@ on:
       - "pack/mods/**"
       - "tools/check_pack_deps.py"
       - "tools/packwiz-installer.jar"
+      - "tools/inspect_world_terrain.py"
+      - "tools/test_inspect_world_terrain.py"
+      - ".github/workflows/release.yml"
   workflow_dispatch:
 
 jobs:
@@ -58,6 +64,12 @@ jobs:
         run: |
           go install github.com/packwiz/packwiz@latest
           echo "$(go env GOPATH)/bin" >> "$GITHUB_PATH"
+
+      # First, and with no setup: it needs nothing but Python, and it guards the
+      # check that decides whether a release ships at all. A wrong exit code here
+      # either blocks a good release or, worse, waves a vanilla world through.
+      - name: Test the world-type gate
+        run: python tools/test_inspect_world_terrain.py
 
       - name: Audit dependencies and loader pin
         run: python tools/check_pack_deps.py
