@@ -117,6 +117,11 @@ hash = "f2c296e1c248a2da992cc843cf5828595e2527ce8efcca71077cbf0f944210e6"
 metafile = true
 
 [[files]]
+file = "mods/easy-villagers.pw.toml"
+hash = "f0c3ea9f46849f63ac6c031d44dd602f12a719831c383826227f4fe561692b94"
+metafile = true
+
+[[files]]
 file = "mods/extreme-sound-muffler.pw.toml"
 hash = "ce03e833df49603ccb571e30769c9f795dda1c22faada4fbf4adeddbeeabe436"
 metafile = true
