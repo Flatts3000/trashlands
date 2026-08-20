@@ -42,6 +42,7 @@ not run (no java, no packwiz, download failure). Non-zero is the point.
 from __future__ import annotations
 
 import argparse
+import io
 import os
 import re
 import shutil
@@ -122,17 +123,43 @@ def resolve_jars(port: int, dest: Path) -> None:
             serve.kill()
 
 
+def nested_mod_ids(z: zipfile.ZipFile) -> list[str]:
+    """Mod ids shipped INSIDE a jar as jar-in-jar (`META-INF/jarjar/*.jar`).
+
+    NeoForge loads these, so a dependency satisfied by a bundled jar is satisfied
+    for real. Reading only the outer `neoforge.mods.toml` reports it as missing:
+    Ender IO bundles `endercore`, and the audit told us to add a CurseForge
+    project whose newest build is 1.12.2 from 2023.
+    """
+    found = []
+    for entry in z.namelist():
+        if not (entry.startswith("META-INF/jarjar/") and entry.endswith(".jar")):
+            continue
+        try:
+            with zipfile.ZipFile(io.BytesIO(z.read(entry))) as inner:
+                data = tomllib.loads(inner.read("META-INF/neoforge.mods.toml").decode("utf-8"))
+            found += [m["modId"] for m in data.get("mods", [])]
+        except Exception:
+            continue  # a nested jar we cannot read is not evidence of anything
+    return found
+
+
 def read_jars(mods_dir: Path):
-    """Return {jar_name: (mod_ids, dependencies)} for every readable mod jar."""
+    """Return {jar_name: (mod_ids, dependencies)} for every readable mod jar.
+
+    `mod_ids` includes ids provided by bundled jar-in-jar mods, because those
+    count as present.
+    """
     out, unreadable = {}, []
     for jar in sorted(mods_dir.glob("*.jar")):
         try:
             with zipfile.ZipFile(jar) as z:
                 data = tomllib.loads(z.read("META-INF/neoforge.mods.toml").decode("utf-8"))
+                bundled = nested_mod_ids(z)
         except Exception as exc:
             unreadable.append(f"{jar.name}: {exc}")
             continue
-        out[jar.name] = ([m["modId"] for m in data.get("mods", [])],
+        out[jar.name] = ([m["modId"] for m in data.get("mods", [])] + bundled,
                          data.get("dependencies", {}))
     return out, unreadable
 
@@ -146,12 +173,22 @@ def audit(mods_dir: Path) -> int:
         sys.exit(f"2: no readable mod jars in {mods_dir}")
     present = {mid for ids, _ in meta.values() for mid in ids}
 
-    missing, loader_blocks, mc_blocks = [], [], []
+    missing, loader_blocks, mc_blocks, conflicts = [], [], [], []
     for jar, (_ids, deps) in meta.items():
         for _owner, dep_list in deps.items():
             for dep in dep_list:
                 mod_id = dep.get("modId")
                 kind = str(dep.get("type", dep.get("mandatory", ""))).lower()
+                # `discouraged` and `incompatible` name a mod that must NOT be
+                # here. Treating them as required inverts the meaning and tells
+                # you to install the thing that breaks the mod: AE2 declares
+                # `vanillafix` discouraged ("breaks some NeoForge features AE2
+                # depends on"), and this used to report it as a missing require.
+                if kind in ("discouraged", "incompatible"):
+                    if mod_id in present:
+                        why = dep.get("reason") or "declared incompatible"
+                        conflicts.append(f"{jar} does not want '{mod_id}' present: {why}")
+                    continue
                 if kind in ("optional", "false"):
                     continue
                 rng = dep.get("versionRange") or ""
@@ -177,6 +214,8 @@ def audit(mods_dir: Path) -> int:
          "raise [versions] neoforge in pack/pack.toml to the highest bound listed"),
         ("MINECRAFT PIN TOO LOW", mc_blocks,
          "raise [versions] minecraft in pack/pack.toml"),
+        ("INCOMPATIBLE MODS PRESENT", conflicts,
+         "remove one of them - a mod declared this combination broken"),
     ):
         if rows:
             failed = True
