@@ -9,7 +9,25 @@ and ASCII punctuation only.
 ## [Unreleased]
 
 ### Added
-- (nothing yet)
+- **The Nether is open** (Recompile 0.12.0). The compacted depths are solid from the bedrock floor to
+  the bedrock ceiling, and you pick through techno-organic waste down there the same way you pick
+  through a mound up here. Nothing vanilla generates in the rock. Netherrack, basalt, blackstone
+  and both nyliums are crafted from shards you sort out of slag rubble, and soul sand and soul soil
+  from clumps, so the dimension is somewhere to mine rather than somewhere to cross.
+- **Obsidian, and so a portal.** The Cupola Furnace rakes off a lump of slag every eighth smelt, and
+  the Slag Furnace vitrifies one lump into one block over a burn twice the length of a smelt. It is
+  the only obsidian in this world, and those eight smelts are what it actually costs.
+- **Coal.** Lignite comes out of the techno-organic waste down in the depths, and smelting it gives
+  coal. That is the only route to coal in this world, so coal is a Nether material now. Lignite also
+  burns on its own at half a coal, so it is worth something the moment you find it.
+
+### Changed
+- **Circuit Powder now costs one E-Scrap, not four.** Gold got four times cheaper in material, and
+  the Pulverizer's time and power per operation are unchanged. A GUI-less machine cannot take four
+  of anything: it has nothing to open, so a remainder is invisible and you never get it back, and
+  the pull streams hand scrap out one item at a time, which makes a remainder the normal case.
+- **Recompile 0.11.0 -> 0.12.0**, plus FTB Quests. Extreme Sound Muffler is deliberately held on
+  3.58.1; its 4.x line is alpha.
 
 ## [0.7.0] - 2026-08-18
 
