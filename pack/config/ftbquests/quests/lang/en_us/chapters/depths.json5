@@ -1,0 +1,76 @@
+{
+  "quest.7A55E0BA6E000300.title": "Slag",
+  "quest.7A55E0BA6E000300.quest_desc": [
+    "You cannot ask for this one; it has no recipe. The Cupola rakes a lump off every eighth smelt into a fourth slot beside the result.",
+    "",
+    "Counted, not rolled, so eight is always eight. A full slag slot loses nothing: the count carries and pays out when there is room.",
+  ],
+  "quest.7A55E0BA6E000301.title": "The Slag Furnace",
+  "quest.7A55E0BA6E000301.quest_desc": [
+    "Burns fuel. It is a furnace, not a machine, so it wants coal or charcoal in the bottom slot and no power at all.",
+    "",
+    "One lump takes twice as long as an ordinary smelt.",
+  ],
+  "quest.7A55E0BA6E000302.title": "Obsidian, and Nothing Else Makes It",
+  "quest.7A55E0BA6E000302.quest_desc": [
+    "One lump, one block. This is the only obsidian in the world, so a portal is built rather than found, and the price is upstream: eight Cupola smelts bought the lump.",
+    "",
+    "Ten blocks is a portal if you corner it, which is the usual way to spend the first batch.",
+  ],
+  "quest.7A55E0BA6E000303.title": "Or: Concrete Powder",
+  "quest.7A55E0BA6E000303.quest_desc": [
+    "The Separator splits a lump into gray concrete powder and hands back scrap metal as the byproduct. Worth knowing before you commit every lump to the portal.",
+  ],
+  "quest.7A55E0BA6E000304.title": "Or: Fertilizer",
+  "quest.7A55E0BA6E000305.title": "Techno-Organic Waste",
+  "quest.7A55E0BA6E000305.quest_desc": [
+    "Right-click to pick through it, the same as a mound up top. Down here that is most of what there is: the depths are solid from bedrock floor to bedrock ceiling.",
+    "",
+    "&aIt does not fall.&r A dimension of falling blocks would bury you the moment you dug.",
+  ],
+  "quest.7A55E0BA6E000306.title": "Slag Rubble",
+  "quest.7A55E0BA6E000306.quest_desc": [
+    "This one does fall. Sort it rather than stack it.",
+  ],
+  "quest.7A55E0BA6E000307.title": "Terrain You Craft",
+  "quest.7A55E0BA6E000307.quest_desc": [
+    "No vanilla nether block generates down here. Not one. Netherrack, basalt, blackstone and both nyliums come out of slag rubble as shards, four to a block.",
+    "",
+    "Each shard is the only route to its block, which is why the dimension is worth mining rather than worth walking through.",
+  ],
+  "quest.7A55E0BA6E000308.title": "Soul Sand",
+  "quest.7A55E0BA6E000308.quest_desc": [
+    "Soul sand and soul soil arrive as &eClumps&r, not shards. Search JEI for the clump; a shard of sand would read as a mistake.",
+  ],
+  "quest.7A55E0BA6E000309.title": "Nylium, Which Is Worth More Than It Looks",
+  "quest.7A55E0BA6E000309.quest_desc": [
+    "Bone meal on nylium grows a fungus. Bone meal on a fungus standing on its own nylium grows a huge one.",
+    "",
+    "Nothing down here seeds a fungus forest on its own, so these two shards are the only way to start one, and a forest is a renewable source of stems and hyphae rather than a decoration.",
+  ],
+  "quest.7A55E0BA6E00030A.title": "Quartz",
+  "quest.7A55E0BA6E00030B.title": "Glowstone Dust",
+  "quest.7A55E0BA6E00030C.title": "Nether Wart",
+  "quest.7A55E0BA6E00030C.quest_desc": [
+    "Separate Rendered Organics for it. Wart grows on soul sand and nothing else, so it pairs with what the rubble already gives you, and it is the first step of brewing.",
+  ],
+  "quest.7A55E0BA6E00030D.title": "Blaze Powder",
+  "quest.7A55E0BA6E00030E.title": "Netherite Scrap",
+  "quest.7A55E0BA6E00030E.quest_desc": [
+    "Straight out of the waste, uncommonly. There is no ancient debris to look for.",
+  ],
+  "quest.7A55E0BA6E00030F.title": "Lignite",
+  "quest.7A55E0BA6E00030F.quest_desc": [
+    "Brown coal, and a real rank of it: the one below the coal vanilla ships. Buried compacted organics under heat and weight is not like a coal seam forming, it is one.",
+    "",
+    "It burns on its own at half a coal, so it is worth something the moment you find it.",
+  ],
+  "quest.7A55E0BA6E000310.title": "Coal, At Last",
+  "quest.7A55E0BA6E000310.quest_desc": [
+    "Smelt the lignite. Driving off the water and the volatiles leaves denser carbon behind, which is the same operation vanilla already models as log to charcoal.",
+    "",
+    "&aSmelted, not blasted.&r Use the Burn Barrel. Blasting needs the Cupola, and the Cupola needs iron, so blasted coal would cost you a whole tier you have not reached. One lignite spent as fuel smelts four more.",
+    "",
+    "This is the only coal in the world, and it is down here rather than up there.",
+  ],
+}
