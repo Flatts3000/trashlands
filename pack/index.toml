@@ -77,8 +77,33 @@ file = "icon.png"
 hash = "419e177ba000a25bb6e07ff4d0804a42910fa4e6de2727e5344e98b1c1be2368"
 
 [[files]]
+file = "mods/apotheosis.pw.toml"
+hash = "1956282960d8297d3832438e1747771decbb9c4dcf0c8d75d6eb137ddb9323f5"
+metafile = true
+
+[[files]]
+file = "mods/apothic-attributes.pw.toml"
+hash = "c34fc6293e8c8b07dd41f39e7090f55318cb325856e9011761c2b25dd8ed370d"
+metafile = true
+
+[[files]]
+file = "mods/apothic-enchanting.pw.toml"
+hash = "498a71a5477d682f7c51cd001c60b3c93fb382516cf45864e1c0d6fd8dd5c376"
+metafile = true
+
+[[files]]
+file = "mods/apothic-spawners.pw.toml"
+hash = "f3513000e89ed4d14428db2e163187106edea859edd423be7b4f3d043ac33ce1"
+metafile = true
+
+[[files]]
 file = "mods/appleskin.pw.toml"
 hash = "de7c7b5b18ca4d989b40dc3a2d2f6508af2af418558ae4f08af2c2b4635648b1"
+metafile = true
+
+[[files]]
+file = "mods/applied-energistics-2.pw.toml"
+hash = "9fc4084ff27c9da30045f86bed2bad40f1517588ff13556bc64a6dc779528da4"
 metafile = true
 
 [[files]]
@@ -119,6 +144,11 @@ metafile = true
 [[files]]
 file = "mods/easy-villagers.pw.toml"
 hash = "f0c3ea9f46849f63ac6c031d44dd602f12a719831c383826227f4fe561692b94"
+metafile = true
+
+[[files]]
+file = "mods/ender-io.pw.toml"
+hash = "c813f32090ced514247fc479ec803c4b7df12edc8cff41aa1feab171fa91fe31"
 metafile = true
 
 [[files]]
@@ -179,6 +209,11 @@ metafile = true
 [[files]]
 file = "mods/ftb-xmod-compat.pw.toml"
 hash = "f83f3f562299605eec8ebda3763a7844a7274e61154b47bdde238329c8bc3df2"
+metafile = true
+
+[[files]]
+file = "mods/functional-storage.pw.toml"
+hash = "a8d8c89354f5e367ce50ac595ed9068d20951f240df7c9c8e60b8ec1e8baa545"
 metafile = true
 
 [[files]]
@@ -247,8 +282,18 @@ hash = "95753f0c01b2215d656d3cf790c76bcac8fd5ff07a9a232cdf4247bfa9f92c61"
 metafile = true
 
 [[files]]
+file = "mods/modular-routers.pw.toml"
+hash = "0599e58b61792ebd63dc077da3ef5bb118406f45c5d733bcf66ce19edb102041"
+metafile = true
+
+[[files]]
 file = "mods/mouse-tweaks.pw.toml"
 hash = "5613063f92427aa41a25bcdc97c65bd2f3111cf44c9d6e7df2626733ccd637e9"
+metafile = true
+
+[[files]]
+file = "mods/patchouli.pw.toml"
+hash = "58e7bb2c9c496469b36bf02b5a02d34f62b9ef57bb7a613eac1d06bc2e70a4bd"
 metafile = true
 
 [[files]]
@@ -292,6 +337,21 @@ hash = "b2cd2339d2b561584ac68dfea205178b28edf86f249f74cd0765cb5d65300bab"
 metafile = true
 
 [[files]]
+file = "mods/sophisticated-backpacks.pw.toml"
+hash = "c5d1b7e3358dd32bd40533bbf60140ce3b06daa62a863b2933cee8ceca3aa0fb"
+metafile = true
+
+[[files]]
+file = "mods/sophisticated-core.pw.toml"
+hash = "ab866a2963cbd7b1f7b02bc4f01667f4d4bce7fcfc72b9ff5d316c7730e00fcd"
+metafile = true
+
+[[files]]
+file = "mods/sophisticated-storage.pw.toml"
+hash = "6d7f6c8988df205a776b8dc927457eb75c5c8bdee33406c095f55fd887d756c3"
+metafile = true
+
+[[files]]
 file = "mods/spawn-detective.pw.toml"
 hash = "b7d7e6b63461e60c93e92eed0d004e1687c0bc461d2827d392a5326ac6776ffa"
 metafile = true
@@ -304,6 +364,11 @@ metafile = true
 [[files]]
 file = "mods/supermartijn642s-core-lib.pw.toml"
 hash = "788a21fa12d196275b39f5debb1ce6b3efdf4a6881c2ab5aaf04fe207b6e2f98"
+metafile = true
+
+[[files]]
+file = "mods/titanium.pw.toml"
+hash = "fe3b552adaec3cacc49d575290db766809eb4de7ed9c5f51abc4a2f8bd33f723"
 metafile = true
 
 [[files]]
