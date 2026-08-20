@@ -314,8 +314,13 @@ contains none of it; vanilla puts it at `needs_stone_tool` beside iron and coppe
 diamond, so arriving before the yard is where vanilla already has it. It costs no control, because its one
 real job is enchanting and that still needs obsidian.
 
-**Not gated by this tier:** enchanting. It needs obsidian as well as diamond and lapis, and obsidian is
-deliberately out of scope. The gem tier can ship complete with enchanting still unreachable.
+**Enchanting is reachable as of Recompile 0.12.0 (pack v0.8.0).** This paragraph used to say obsidian was
+deliberately out of scope and the gem tier could ship complete with enchanting still unreachable. The Slag
+Furnace closed that: slag comes off the Cupola every eighth smelt and vitrifies one-for-one into obsidian,
+so the table's four blocks have a route. Diamond and lapis were already in this tier, and the book resolves
+too - paper comes from bag pulls and the Printer, leather from cows, which arrive on the animals rung of the
+reclamation ladder. **So enchanting is no longer gated by anything, and nobody designed the point at which
+it arrives.** That is the open question this tier now carries, not obsidian.
 
 **Three circles to not re-open.**
 
@@ -349,6 +354,16 @@ Kept as worked examples, because each was invisible until traced.
 
 ## Changelog
 
+- **2026-08-19** - Recompile 0.12.0, pinned in pack v0.8.0. **Moves three gates at once.** *Obsidian*
+  now exists: the Cupola rakes off a lump of slag every eighth smelt and the Slag Furnace vitrifies one
+  lump into one block, which also makes a Nether portal buildable and enchanting reachable (see the gem
+  tier above, rewritten in the same change). *Coal* now exists, and only in the Nether - lignite comes out
+  of the depths' techno-organic waste and smelts into coal, reversing the note that had coal as an
+  overworld find. *The Nether's own materials* stop being vanilla: the depths generate no vanilla nether
+  blocks at all, and netherrack, basalt, blackstone and both nyliums are crafted from shards sorted out of
+  slag rubble, with soul sand and soul soil from clumps. That closes the leak
+  [`design_decisions.md`](design_decisions.md) P1.8 recorded when the Nether was opened onto stock vanilla
+  generation. Also in this pin: Circuit Powder costs one E-Scrap rather than four.
 - **2026-08-18** - Recompile 0.11.0. **Sewers under the demolition yard**, entered through a manhole
   whose plate comes up with a Prybar and nothing else, so the yard gates them twice over. They are the
   only source of three things: a **slimeball** (both vanilla slime routes need something this world

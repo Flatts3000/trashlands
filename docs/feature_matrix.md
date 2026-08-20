@@ -37,7 +37,7 @@
 | Garbage regions (household / scrapyard / e-waste / slag / hazmat) | Medium | Real biomes, distance-banded from spawn; per-biome garbage blocks. Launch trio: household + scrapyard + e-waste; slag + hazmat in P2. |
 | Mound regrowth (mounds regenerate to original footprint, blocks fall from the sky) | Medium | Renewable quarries, not doom. Falling-block delivery from world top (deorbiting garbage). Original-bounds memory settled as a `mound_bed` blockstate carrying the cell's original height - no SavedData. Blocked on art. |
 | ~~Healed-land immunity (grass + built blocks stop regrowth)~~ -> **Encroachment** | Easy | **Inverted and SHIPPED 2026-07-23** (P1.7-R): healed *surface* is contested, not immune. Coarse earth takes back soil bordering unhealed ground; the rung ladder is the defence (cover absorbs a hit, trees lock a border). Builds untouched, stops while you are away, wet farmland holds. **Mound retirement stays permanent** - only the green is a fight. |
-| Dimension lockout (Nether + End portals disabled by default) | Easy | Config flags. Plugs the vanilla-resource leak until the themed dimensions ship. |
+| Dimension lockout (Nether + End portals disabled by default) | Easy | **Half retired 2026-08-19.** `dimensions.netherEnabled` defaults ON (P1.8 revision); the Nether is themed and shipping, so there is no leak left to plug there. The End flag stands until the themed End ships. An existing world keeps the old value and needs the config edited by hand. |
 
 ## P2 - the full loop (makes it a complete pack)
 
@@ -61,7 +61,7 @@
 | Field Manual (technical reference, no custom book) | Easy | Use whatever guide-book mod is updated for 26.x; NOT a lore vehicle (minimize-prose principle). |
 | ~~Degraded recipes~~ (CUT) | - | Redundant with purity-as-yield + burn-barrel arc; would violate anti-bloat. "Crude first" is a knowledge-unlock content pattern instead. |
 | ~~Blueprint scraps~~ (CUT) | - | Redundant: study points already collect-to-complete; caches drop whole schematics. |
-| Themed Nether (solid techno-organic waste, roof to floor) | Hard | Spec locked. First RF power + osmium originate here; a mid-game resource stop, not parallel progression. |
+| Themed Nether (solid techno-organic waste, roof to floor) | Hard | **SHIPPED 2026-08-19** (Recompile 0.12.0, pinned in pack v0.8.0). Solid floor to ceiling; no vanilla nether blocks generate, terrain is crafted from shards and clumps sorted out of slag rubble. Entry is the slag chain: the Cupola rakes off slag, the Slag Furnace vitrifies it into the world's only obsidian. Coal arrives here too, via lignite. The old "first RF power + osmium originate here" note is dead - the RF claim was reversed 2026-07-31 (`material_economy.md`) and osmium went with Mekanism, which has no 26.1 build. |
 | Themed End (End-style islands of end-themed garbage, vanilla dragon) | Medium-Hard | Spec locked. The found-economy capstone; portal access earned through high-tier recycling. |
 | ~~Frogs return to healed land (Productive Frogs integration)~~ (CUT) | - | Crossover dropped. Life-returns beat stays vanilla. |
 | ~~Win-condition tracking (cleared-land metric, district map)~~ (CUT) | - | Progression is quest-based; no separate metric. |
