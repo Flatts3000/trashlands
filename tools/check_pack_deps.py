@@ -42,6 +42,7 @@ not run (no java, no packwiz, download failure). Non-zero is the point.
 from __future__ import annotations
 
 import argparse
+import io
 import os
 import re
 import shutil
@@ -73,6 +74,38 @@ def lower_bound(version_range: str) -> tuple[int, ...] | None:
     """Lower bound of a Maven range like `[26.1.2.93,)`. None if unparseable."""
     m = re.match(r"^\s*[\[(]\s*([0-9.]+)", version_range or "")
     return version_tuple(m.group(1)) if m else None
+
+
+def in_range(version: str, version_range: str) -> bool:
+    """Is `version` inside the Maven `version_range`?
+
+    An absent, empty or wildcard range means "any version", which is how
+    NeoForge reads it. Anything this cannot parse returns True: for the
+    incompatibility check that is the safe direction, because it keeps the
+    warning rather than dropping it silently.
+    """
+    rng = (version_range or "").strip()
+    if not rng or rng in ("*", "[,)", "(,)"):
+        return True
+    have = version_tuple(version)
+    if not have:
+        return True
+    for clause in re.findall(r"[\[(][^\[\]()]*[\])]", rng):
+        body = clause[1:-1]
+        lo_inc, hi_inc = clause[0] == "[", clause[-1] == "]"
+        lo_s, _, hi_s = body.partition(",")
+        if "," not in body:            # `[1.2.3]` - an exact single version
+            exact = version_tuple(body)
+            if exact and have == exact:
+                return True
+            continue
+        lo, hi = version_tuple(lo_s), version_tuple(hi_s)
+        if lo and (have < lo or (have == lo and not lo_inc)):
+            continue
+        if hi and (have > hi or (have == hi and not hi_inc)):
+            continue
+        return True
+    return False
 
 
 def pack_pins() -> tuple[str, str]:
@@ -122,18 +155,45 @@ def resolve_jars(port: int, dest: Path) -> None:
             serve.kill()
 
 
+def nested_mod_ids(z: zipfile.ZipFile) -> list[str]:
+    """Mod ids shipped INSIDE a jar as jar-in-jar (`META-INF/jarjar/*.jar`).
+
+    NeoForge loads these, so a dependency satisfied by a bundled jar is satisfied
+    for real. Reading only the outer `neoforge.mods.toml` reports it as missing:
+    Ender IO bundles `endercore`, and the audit told us to add a CurseForge
+    project whose newest build is 1.12.2 from 2023.
+    """
+    found = []
+    for entry in z.namelist():
+        if not (entry.startswith("META-INF/jarjar/") and entry.endswith(".jar")):
+            continue
+        try:
+            with zipfile.ZipFile(io.BytesIO(z.read(entry))) as inner:
+                data = tomllib.loads(inner.read("META-INF/neoforge.mods.toml").decode("utf-8"))
+            found += [m["modId"] for m in data.get("mods", [])]
+        except Exception:
+            continue  # a nested jar we cannot read is not evidence of anything
+    return found
+
+
 def read_jars(mods_dir: Path):
-    """Return {jar_name: (mod_ids, dependencies)} for every readable mod jar."""
+    """Return {jar_name: (mod_ids, dependencies)} for every readable mod jar.
+
+    `mod_ids` includes ids provided by bundled jar-in-jar mods, because those
+    count as present.
+    """
     out, unreadable = {}, []
     for jar in sorted(mods_dir.glob("*.jar")):
         try:
             with zipfile.ZipFile(jar) as z:
                 data = tomllib.loads(z.read("META-INF/neoforge.mods.toml").decode("utf-8"))
+                bundled = nested_mod_ids(z)
         except Exception as exc:
             unreadable.append(f"{jar.name}: {exc}")
             continue
-        out[jar.name] = ([m["modId"] for m in data.get("mods", [])],
-                         data.get("dependencies", {}))
+        out[jar.name] = ([m["modId"] for m in data.get("mods", [])] + bundled,
+                         data.get("dependencies", {}),
+                         {m["modId"]: str(m.get("version", "")) for m in data.get("mods", [])})
     return out, unreadable
 
 
@@ -144,14 +204,36 @@ def audit(mods_dir: Path) -> int:
     meta, unreadable = read_jars(mods_dir)
     if not meta:
         sys.exit(f"2: no readable mod jars in {mods_dir}")
-    present = {mid for ids, _ in meta.values() for mid in ids}
+    present = {mid for ids, _, _ in meta.values() for mid in ids}
+    versions = {mid: v for _, _, vers in meta.values() for mid, v in vers.items()}
 
-    missing, loader_blocks, mc_blocks = [], [], []
-    for jar, (_ids, deps) in meta.items():
+    missing, loader_blocks, mc_blocks, conflicts, discouraged = [], [], [], [], []
+    for jar, (_ids, deps, _vers) in meta.items():
         for _owner, dep_list in deps.items():
             for dep in dep_list:
                 mod_id = dep.get("modId")
                 kind = str(dep.get("type", dep.get("mandatory", ""))).lower()
+                # `discouraged` and `incompatible` name a mod that must NOT be
+                # here. Treating them as required inverts the meaning and tells
+                # you to install the thing that breaks the mod: AE2 declares
+                # `vanillafix` discouraged ("breaks some NeoForge features AE2
+                # depends on"), and this used to report it as a missing require.
+                #
+                # Both are scoped by versionRange, so a mod declaring itself
+                # incompatible with `jei` over `[,19)` is describing an old major
+                # line, not the JEI this pack pins. Ignoring the range would hard
+                # -block a release over a combination that is actually fine.
+                #
+                # They differ in severity and are reported separately: NeoForge
+                # refuses to load on INCOMPATIBLE but only logs a warning on
+                # DISCOURAGED, so only the former fails the run.
+                if kind in ("discouraged", "incompatible"):
+                    rng = dep.get("versionRange") or ""
+                    if mod_id in present and in_range(versions.get(mod_id, ""), rng):
+                        why = dep.get("reason") or f"declared {kind}"
+                        row = f"{jar} vs '{mod_id}' {rng}: {why}".replace(" : ", ": ")
+                        (conflicts if kind == "incompatible" else discouraged).append(row)
+                    continue
                 if kind in ("optional", "false"):
                     continue
                 rng = dep.get("versionRange") or ""
@@ -177,6 +259,8 @@ def audit(mods_dir: Path) -> int:
          "raise [versions] neoforge in pack/pack.toml to the highest bound listed"),
         ("MINECRAFT PIN TOO LOW", mc_blocks,
          "raise [versions] minecraft in pack/pack.toml"),
+        ("INCOMPATIBLE MODS PRESENT", conflicts,
+         "remove one of them - a mod declared this combination refuses to load"),
     ):
         if rows:
             failed = True
@@ -184,6 +268,15 @@ def audit(mods_dir: Path) -> int:
             for row in rows:
                 print(f"  {row}")
             print(f"  -> {hint}\n")
+
+    if discouraged:
+        # NeoForge loads a DISCOURAGED combination and logs a warning, so this
+        # is reported and not fatal. Failing here would block a release over a
+        # combination the loader itself allows.
+        print("=== DISCOURAGED COMBINATIONS (not fatal) ===")
+        for row in discouraged:
+            print(f"  {row}")
+        print()
 
     if unreadable:
         # Not fatal: coremods and some libraries legitimately ship without the file.
