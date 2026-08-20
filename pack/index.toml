@@ -282,6 +282,11 @@ hash = "e9d478702b88f597efca337f1e6e14cc870060ae2cbf4f7e1f7dd99cfc604e30"
 metafile = true
 
 [[files]]
+file = "mods/simple-magnets.pw.toml"
+hash = "4078015b4f9cd1fd427f91d9c3cae0ad615b003c1cad2845e2dd395bf95b9c5a"
+metafile = true
+
+[[files]]
 file = "mods/sodium.pw.toml"
 hash = "b2cd2339d2b561584ac68dfea205178b28edf86f249f74cd0765cb5d65300bab"
 metafile = true
