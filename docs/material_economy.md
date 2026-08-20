@@ -93,6 +93,28 @@ Every vanilla material that has no honest garbage presence gets the same treatme
 | Dyes | **Printer teardown** - toner carries fourteen of the sixteen, cyan/magenta/yellow far more often than the rest. Blue and black are the other two and arrive as their pigment (lapis, ink sac), because vanilla already grinds each into its dye | Vegetation rung flowers (dandelion, poppy, oxeye, cornflower) plus vanilla combination crafting. **White is the bottleneck**: bone meal only, so either demolition-yard skeleton bones or a composter, and gray/pink/light blue/magenta all sit behind it |
 | Coal | **Found in the Nether, as lignite** (owner 2026-08-19, Recompile #226 - **this reverses the P0.4/P2.2 lock below**) | Smelt lignite. Charcoal from recovered wood covers every coal recipe except `coal_block` |
 | Obsidian | Not found - made only (melt slag/glass; portal gate is earned) | Slag furnace |
+| Sculk family | **Ancient Sculk** in the compacted depths (Recompile #266), broken with a diamond sledgehammer or better | Sculk powder crafts `sculk`, `sculk_vein`, `sculk_sensor`, `sculk_shrieker` and - expensively - `sculk_catalyst`. `calibrated_sculk_sensor` follows off the sensor plus amethyst |
+
+## Deliberately absent (the register)
+
+**Read this before filing a reachability gap.** Every item below has been decided rather than
+overlooked. A closure over the shipped data will keep surfacing them, because they genuinely have no
+route; what it cannot tell you is that the route was declined on purpose.
+
+| Item | Ruling |
+|---|---|
+| `reinforced_deepslate` | **Not craftable** (owner, 2026-08-20, Recompile #266). Ancient-city only in vanilla and it has no recipe at all, so a route here would be invented rather than unlocked |
+| `disc_fragment_5` | **Not craftable** (same ruling). Ancient-city chest loot only |
+| `music_disc_5` | Follows its parent out - it is nine fragments |
+| `coal_ore`, `deepslate_coal_ore` | This world generates no ore blocks of any kind, by design (Recompile #226) |
+| Badlands as a biome | One block is a poor reason for a region; red sand came from Reinforced Concrete instead (Recompile #232) |
+
+**The distinction that decides these.** Emerald, red sand and coal all had a real chain where only the
+entry point was missing - a mob that did not spawn, a loot entry that did not exist, a rank of coal
+nobody had named. Inventing an entry point for those unlocked something already built. The items above
+have no chain at all, so a route would be fiction rather than recovery, and this mod's standard is that
+a material's story has to be true.
+
 
 ### The coal lock is reversed (owner, 2026-08-19)
 
