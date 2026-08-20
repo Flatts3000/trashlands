@@ -9,7 +9,11 @@ and ASCII punctuation only.
 ## [Unreleased]
 
 ### Added
-- (nothing yet)
+- **Easy Villagers.** Pick a villager up and carry it, check trades without opening the trading
+  screen, and automate trading, breeding and curing with its own blocks. Getting a first villager is
+  the hard part here and that has not changed: no villages generate in this world, so the route is
+  curing a zombie villager, which wants a golden apple and a weakness potion. This makes what happens
+  after that far less tedious.
 
 ## [0.8.0] - 2026-08-19
 

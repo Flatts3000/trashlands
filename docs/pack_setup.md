@@ -45,7 +45,7 @@ tools/
 
 ## The mod lineup
 
-**47 mods**: the core six, a quality-of-life layer, the FTB stack, a tech and gadget layer, world-type enforcement, and six auto-pulled libraries. Locked
+**48 mods**: the core six, a quality-of-life layer, the FTB stack, a tech and gadget layer, world-type enforcement, and six auto-pulled libraries. Locked
 2026-08-02.
 
 ### Core - Recompile, the four it integrates with, and our own diagnostic
@@ -134,6 +134,36 @@ replacing `deepslate_ore_replaceables`, 6 veins per chunk from world bottom to y
 generate in the deepslate band of this world. Powah exposes `uraninite_veins_per_chunk` config keys
 (dense and poor variants too), so setting them to 0 is the likely fix, but the config file does not
 exist until the mod runs once. Resolve after a first launch.
+
+### Villagers
+
+Added 2026-08-20 (owner call). Easy Villagers (`easy-villagers`, project 400514) - pick a villager up
+and carry it, see trades without the trading screen, and automate trading, breeding and curing with
+its own blocks. JEI and Jade are optional dependencies it declares and both are already here, so it
+wires into the pack's existing recipe and tooltip surfaces for free. Nothing else is required: no
+Puzzles Lib on this version.
+
+**The pinned file is an alpha** (1.1.43+26.1.2, 2026-07-21). The newest *release* is 1.1.42+26.1.2
+(2026-05-10) and it is a point release behind, not a major line behind - unlike the Extreme Sound
+Muffler case in the QoL table, where the pack deliberately stays on 3.x. `packwiz update --all` takes
+the newest file regardless of channel, so this will keep tracking alphas unless pinned by hand.
+
+**Concerns raised, recorded so the reasoning survives playtest.**
+
+- **Villager trading is the one economy that does not run on garbage.** This pack's premise is that
+  the trash is your only income. A librarian buying paper for emeralds, or any trade that hands over
+  iron, diamonds or enchanted books, competes directly with the teardown ladder that the whole design
+  exists to make you climb. Easy Villagers does not add trades, but it removes nearly all the friction
+  from farming them, which is the same thing at scale.
+- **It is gated harder here than in a normal world, which is the mitigating half.** No villages
+  generate - the overworld biomes are `recompile:household_sprawl` and `recompile:demolition_yard`,
+  and no vanilla village structure is tagged into either. So the only route to a first villager is
+  curing a zombie villager, which needs a golden apple (gold, via the E-Scrap to Circuit Powder to
+  Cupola chain) and a weakness potion (brewing, so nether wart, so the Nether). That is a deep chain,
+  and Easy Villagers' payoff arrives only after it.
+- **Untested.** Nobody has confirmed a zombie villager actually spawns in this world. If they do not,
+  this mod is dead content rather than an economy risk, and that is worth checking before tuning
+  anything around it.
 
 ### The pack resource pack, and why options.txt ships
 
@@ -285,7 +315,7 @@ install task fail** ("Failed to launch modpack. An unexpected error occurred.").
 3. Name the instance **`Trashlands`** (the default `tools/sync_instance.py` looks for
    `<home>/curseforge/minecraft/Instances/Trashlands`).
 
-The manifest carries `neoforge-26.1.2.94`, so the app installs that loader and all 47 mods itself.
+The manifest carries `neoforge-26.1.2.94`, so the app installs that loader and all 48 mods itself.
 If the app cannot find that NeoForge build in its catalog the import will say so - see the loader
 note below.
 
