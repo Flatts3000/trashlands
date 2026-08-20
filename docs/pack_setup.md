@@ -45,7 +45,7 @@ tools/
 
 ## The mod lineup
 
-**49 mods**: the core six, a quality-of-life layer, the FTB stack, a tech and gadget layer, world-type enforcement, and six auto-pulled libraries. Locked
+**62 mods**: the core six, a quality-of-life layer, the FTB stack, a tech and gadget layer, world-type enforcement, and nine auto-pulled libraries. Locked
 2026-08-02.
 
 ### Core - Recompile, the four it integrates with, and our own diagnostic
@@ -72,7 +72,7 @@ has a 26.1.2 NeoForge build on CurseForge. Nothing here touches the economy.
 | Death and safety | GraveStone, Simple Backups |
 | Audio | Extreme Sound Muffler |
 
-Auto-pulled libraries: Balm, Placebo, SuperMartijn642's Core Lib, SuperMartijn642's Config Lib, Cloth Config, GuideME.
+Auto-pulled libraries (nine): Balm, Placebo, SuperMartijn642's Core Lib, SuperMartijn642's Config Lib, Cloth Config, GuideME, and - from the 2026-08-20 additions - Titanium, Sophisticated Core and Patchouli.
 
 ### FTB stack
 
@@ -134,6 +134,63 @@ replacing `deepslate_ore_replaceables`, 6 veins per chunk from world bottom to y
 generate in the deepslate band of this world. Powah exposes `uraninite_veins_per_chunk` config keys
 (dense and poor variants too), so setting them to 0 is the likely fix, but the config file does not
 exist until the mod runs once. Resolve after a first launch.
+
+### Storage, automation and gear (added 2026-08-20)
+
+Added on owner call, in one pass. The largest single change to the lineup since it was locked on
+2026-08-02: it takes the pack from one storage system to four.
+
+| Mod | Note |
+|---|---|
+| **Sophisticated Backpacks** (+ Sophisticated Core) | Upgradeable backpacks with filters and pickup upgrades. |
+| **Sophisticated Storage** | Upgradeable barrels, chests and shulkers. |
+| **Functional Storage** (+ Titanium) | Drawer-style storage, each drawer bound to one item. |
+| **Applied Energistics 2** | Digital storage and autocrafting. Pulled nothing new; GuideME was already here. |
+| **Ender IO** | Conduits, machines, powered gear. Bundles EnderCore, GraphLib3 and its conduit module jar-in-jar. |
+| **Modular Routers** | One block, many modules, for item movement. |
+| **Apotheosis** (+ Apothic Attributes, Apothic Enchanting, Apothic Spawners, Patchouli) | Affix loot, reworked enchanting, spawner manipulation. |
+
+**Concerns raised and overridden (owner call).** Recorded so the reasoning is not lost in playtest.
+
+- **Three of these replace Recompile's storage tier.** The cut entry for Sophisticated Backpacks and
+  Storage said plainly they are strictly better than Scrap Bins, Scrap Barrels and the Scrap Network
+  and would make the pack's own storage tier dead content. Functional Storage is a fourth take on the
+  same idea, and a drawer bound to one item **is** a Scrap Bin. **Chapter three (issue #11) exists to
+  teach the Scrap Network and would now be teaching the weakest of four options** - re-read that
+  issue before building it.
+- **AE2 is unreachable as pinned, and the fix is planned in Recompile.** Its whole progression hangs
+  off Sky Stone, which comes from meteorites, and meteorites cannot generate here.
+  `data/ae2/worldgen/structure/meteorite.json` gates on `#ae2:has_meteorites`, that tag resolves to
+  only `#minecraft:is_overworld`, and Recompile does not put `recompile:household_sprawl` or
+  `recompile:demolition_yard` in that tag - it ships no `minecraft:is_overworld` entry at all. No
+  meteorite means no Inscriber presses, and presses have only two other sources: inscriber recipes
+  that need an existing press as an input, and a level-4 `fluix_researcher` villager. So digital
+  storage and autocrafting are dead content until something puts presses in the world.
+  **Owner call 2026-08-20: put the presses in sewer loot** - buried infrastructure you dig up suits
+  this pack better than sky rocks ever did. **That is currently unbuildable.** Sewer loot tables
+  belong to Recompile, this repo does not write to Recompile, and the pack has no way to ship data of
+  its own (see the recipe-override section). So the decision is made and the mechanism is missing;
+  until one exists, AE2 is in the pack and unreachable.
+- **Worth noting separately:** Recompile's overworld biomes being absent from `#minecraft:is_overworld`
+  is not an AE2 problem. Any mod that gates worldgen or spawning on that tag silently does nothing
+  here, and nothing reports it. AE2 is just the first case anyone looked at.
+- **Apotheosis generates dungeons and spawners throughout the overworld.** Its six biome modifiers
+  (`boss_dungeon`, `boss_dungeon_2`, both `_deep` variants, `rogue_spawner`, `rogue_spawner_deep`)
+  are `apotheosis:blacklist` type, and the blacklist is oceans plus `deep_dark`. Neither Trashlands
+  biome is on it, so boss dungeons and rogue spawners generate by default, and the pack ships no
+  `config/apotheosis` to stop them. **That is chest loot and mob spawners as income in a pack whose
+  premise is that garbage is the only income**, and it is a larger problem than the enchanting-tier
+  concern below.
+- **AE2 raises the power question rather than answering it.** It was held out because *when* the
+  player gets power was never decided; it is a full storage and automation spine, so that decision is
+  now more load-bearing.
+- **Apotheosis lands on a tier that just opened.** Enchanting became reachable in v0.8.0 when the Slag
+  Furnace shipped obsidian, and nobody has designed the point at which it arrives
+  (`progression_gates.md`, gem tier). Apotheosis reworks enchanting on top of that undesigned arrival.
+- **Ender IO, Modular Routers and LaserIO now sit on top of Pipez**, which
+  `../recompile/docs/automation_policy_spec.md` was written and tested against. That policy decides
+  per block which Recompile blocks accept a pipe and which refuse to connect. It has not been checked
+  against any of these three.
 
 ### Villagers
 
@@ -266,8 +323,11 @@ overrides:
 
 - **Forgiving Void** - Sky Frogs skyblock baggage. It catches void falls, and this world seals the
   void under bedrock, so it would never fire.
-- **Sophisticated Backpacks / Storage** - strictly better than Recompile's Scrap Bins, Scrap Barrels,
-  and Scrap Network, which would make the pack's own storage tier dead content.
+- ~~**Sophisticated Backpacks / Storage**~~ - **REVERSED 2026-08-20 (owner call), now in the pack.**
+  The cut reason was that they are strictly better than Recompile's Scrap Bins, Scrap Barrels and
+  Scrap Network, and would make the pack's own storage tier dead content. **That reason has not been
+  answered, it has been overridden** - see the storage section above, where it is recorded as a live
+  playtest risk rather than a solved problem.
 - **Waystones** - travel cost between mounds is plausibly part of the pacing. Revisit after playtest.
 - **Item Collectors** - mild automation of the pickup loop; overlapped with Simple Magnets.
 - ~~**Simple Magnets**~~ - **REVERSED 2026-08-20 (owner call), now in the pack.** Cut as mild
@@ -279,9 +339,13 @@ overrides:
 - **Create and Mekanism** - not options on 26.1.2, neither has a NeoForge build past 1.21.1. This was
   checked, not assumed (`../recompile/docs/hydroponics_spec.md`). An older version of this file named
   both as the planned lineup; that plan is dead until they port.
-- **AE2 and other FE/energy mods** - they interoperate automatically, because Recompile consumes FE
-  through `Capabilities.Energy.BLOCK` with zero mod dependencies. Powah was in this list until
-  2026-08-02, when power was brought into the alpha; AE2 stays out for now.
+- **Other FE/energy mods** - they interoperate automatically, because Recompile consumes FE through
+  `Capabilities.Energy.BLOCK` with zero mod dependencies. Powah was in this list until 2026-08-02,
+  when power was brought into the alpha.
+- ~~**AE2**~~ - **REVERSED 2026-08-20 (owner call), now in the pack.** It was held on the question of
+  *when* the player gets power, which is still undecided. Bringing it in does not answer that
+  question; it makes answering it more urgent, because AE2 is a full storage and automation spine and
+  the pack now has three other storage systems beside it.
 - **KubeJS - added and removed the same day (2026-08-02). It crashes the game on load.** KubeJS
   `26.1.2-8.0.4` bundles `better-advanced-tooltips-2601.1.0-build.8` as a jar-in-jar, and that
   nested mod's `ItemStackMixin` fails its injection check on this Minecraft build:
@@ -358,7 +422,7 @@ install task fail** ("Failed to launch modpack. An unexpected error occurred.").
 3. Name the instance **`Trashlands`** (the default `tools/sync_instance.py` looks for
    `<home>/curseforge/minecraft/Instances/Trashlands`).
 
-The manifest carries `neoforge-26.1.2.94`, so the app installs that loader and all 49 mods itself.
+The manifest carries `neoforge-26.1.2.94`, so the app installs that loader and all 62 mods itself.
 If the app cannot find that NeoForge build in its catalog the import will say so - see the loader
 note below.
 

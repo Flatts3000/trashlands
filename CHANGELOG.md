@@ -16,6 +16,8 @@ and ASCII punctuation only.
   after that far less tedious.
 - **Simple Magnets.** Items come to you instead of being walked over. Its recipes are the mod's own
   for now.
+- **Storage and automation, all at once.** Sophisticated Backpacks and Storage, Functional Storage,
+  Applied Energistics 2, Ender IO, Modular Routers, and Apotheosis for loot and enchanting.
 
 ## [0.8.0] - 2026-08-19
 
