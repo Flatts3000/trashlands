@@ -73,7 +73,7 @@ frontier. The reclamation ladder determines what survives:
 |---|---|
 | Grass Spreader | Multiblock drip irrigator. Converts coarse dirt to grass within a radius. Consumes nothing once built. |
 | Plant cover | Erodes first, leaving the soil under it intact. A border loses its plants before it loses its grass. |
-| Trees | Stop erosion permanently. The Tree Nursery is the only source; saplings are not obtainable. |
+| Trees | Stop erosion permanently. The Tree Nursery is where saplings come from; none is ever found. |
 
 Erosion rules:
 

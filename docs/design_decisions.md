@@ -445,12 +445,16 @@ The excavated-and-repaired vanilla furnace (the tier's second rung) is still unb
 
 ## P2.4-R2 - Saplings are machine-only (locked 2026-07-23)
 
-**Supersedes the sapling clause of P2.4 item 2.** A **player can never obtain a sapling as an item.** Saplings exist only in an already-planted state, and the tree planter (P2.4-R's nursery rung) is the only thing that can place one.
+**Supersedes the sapling clause of P2.4 item 2.** ~~A **player can never obtain a sapling as an item.**~~ **NARROWED 2026-08-20 (see below): no LOOT ROLL yields a sapling.** Saplings are not found - not from a broken sapling, not from decaying leaves, not from chest loot - and the Tree Nursery (P2.4-R's nursery rung) is the only machine that produces one.
+
+**What narrowed it.** Emeralds arrived with Recompile #227 (zombie villagers in the demolition yard), and a wandering trader sells saplings for emeralds. Trades are not loot rolls, so `StripSaplingsModifier` never sees them; curating vanilla trade tables was considered and declined (Recompile #263, closed not-planned), because trading is accepted as a real alternative route whose price is the cost of getting a villager at all.
+
+**The reason for the rule is untouched, and it is worth separating from the wording.** The failure P2.4-R2 guards against is a sapling in the FIRST HOUR - found in a pull, planted on virgin coarse dirt, anchoring the frontier at rung 3 with no rung 1, no rung 2 and no machine. A sapling bought after curing a zombie villager, brewing a splash potion of weakness and spending eight gold on a golden apple is not that. The half that still binds is the half that ever mattered.
 
 **The hole this closes.** Vanilla lets a sapling be planted *and grown* on raw coarse dirt - `#minecraft:supports_vegetation` reaches coarse dirt through `#minecraft:dirt`, and 26.1's tree feature has no ground-material check at all. So a findable sapling could be planted on virgin garbage-world ground and grown into a tree, which under [P1.7-R](#p17-r---the-junkyard-fights-back-revised-2026-07-23) **permanently anchors the frontier**: rung 3 with no rung 1 or 2, and no machine. That directly contradicts P2.4-R item 3, "every green block is paid for by a machine the player built and feeds."
 
 1. **Gate on placement, not on soil.** Enforcement is "what can place a sapling", not "what soil accepts one". Deliberately *not* a vanilla tag override, so planting behaves normally on every soil the player actually heals.
-2. **The tree planter is the only source of trees in the game.** Wood stays metered by a machine rather than by the scarcity of a findable item - which is what P2.4 item 4's wood-as-treasure wanted, now mechanical rather than conventional.
+2. **The nursery is the only source of trees a player can reach without a villager.** Wood stays metered by a machine rather than by the scarcity of a findable item - which is what P2.4 item 4's wood-as-treasure wanted, now mechanical rather than conventional.
 3. **A tree farm is a planter running, not hand-replanting.** You cannot replant a chopped tree yourself; automated wood means a planter consuming compost + clean water indefinitely.
 4. **Saplings do not protect ground.** They stay strippable cover under P1.7-R, so coarse earth can still take ground with a sapling planted on it. The planter's own placement rules govern where trees can be established (Jason, 2026-07-23).
 5. **Crop seeds are untouched.** P2.4 item 2's seed packets and preserved pits stand; only the sapling clause is superseded.
