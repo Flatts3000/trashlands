@@ -87,12 +87,37 @@ Every vanilla material that has no honest garbage presence gets the same treatme
 | Material | Found source | Made source |
 |---|---|---|
 | Redstone | Electronics teardown (boards, motors, sensors) | E-scrap refinement |
-| Quartz | Circuit oscillators (real!), old clocks, countertops | Slag-field silica processing |
-| Glowstone | Lamps, CRT/fluorescent phosphor coatings | Chemical tier |
+| Quartz | Circuit oscillators (real!), old clocks, countertops | **Shipped**: Fused Circuitry separated (Recompile, 2026-08-19). The oscillator route, not the silica one |
+| Glowstone | Lamps, CRT/fluorescent phosphor coatings | **Shipped**: Phosphor Scrap pulverized (Recompile, 2026-08-19). The lamp-coating route, exactly as written |
 | Lapis | **Printer teardown** (shipped #112) - toner is pigment, and cyan toner is phthalocyanine blue | Chemical tier |
 | Dyes | **Printer teardown** - toner carries fourteen of the sixteen, cyan/magenta/yellow far more often than the rest. Blue and black are the other two and arrive as their pigment (lapis, ink sac), because vanilla already grinds each into its dye | Vegetation rung flowers (dandelion, poppy, oxeye, cornflower) plus vanilla combination crafting. **White is the bottleneck**: bone meal only, so either demolition-yard skeleton bones or a composter, and gray/pink/light blue/magenta all sit behind it |
-| Coal | NOT found - junk is the early fuel (locked P0.4/P2.2) | Charcoal from recovered wood; carbon black from plastic processing |
+| Coal | **Found in the Nether, as lignite** (owner 2026-08-19, Recompile #226 - **this reverses the P0.4/P2.2 lock below**) | Smelt lignite. Charcoal from recovered wood covers every coal recipe except `coal_block` |
 | Obsidian | Not found - made only (melt slag/glass; portal gate is earned) | Slag furnace |
+
+### The coal lock is reversed (owner, 2026-08-19)
+
+P0.4/P2.2 locked coal as **not found**, on the reasoning that junk is the early fuel and a second fuel
+behaving identically to charcoal is vocabulary without mechanics. That reasoning was sound for the
+overworld and is untouched there: **no household mound yields coal, and none will.**
+
+The Nether changed the question rather than the answer. `Lignite` is not a stand-in for coal, it is a
+real rank OF coal - the one between peat and the bituminous coal vanilla simply calls "coal" - and the
+compacted depths are buried compacted organics under heat and weight, which is not *like* a coal seam
+forming, it is one. Refusing to put coal there would have been the fiction.
+
+What keeps it from being the thing P0.4 rejected:
+
+- **It is not a second identical fuel.** Lignite burns at half a coal, so it is worse than what it
+  becomes; upgrading is a visible gain (one lignite of heat smelts four) rather than a formality.
+- **It arrives past the obsidian gate**, so it cannot undercut junk or charcoal as the early fuel. By
+  the time a player reaches it they have had wood for a long while.
+- **The mechanical surface is one recipe.** Measured against the vanilla data: `coal_block` is the only
+  vanilla recipe that requires coal. `torch`, `soul_torch`, `copper_torch` and `fire_charge` all take a
+  `["coal","charcoal"]` either-list, and `campfire` takes `#minecraft:coals` - charcoal has been
+  covering all five all along. So this adds a material and a found fuel, not a wave of recipes.
+
+**Lignite is deliberately out of `#minecraft:coals`**, so the unfinished thing cannot do the finished
+thing's job in a torch.
 
 **The row is built (Recompile #236: slag 2026-08-18, the Slag Furnace 2026-08-19).** Slag is a real material - the Cupola rakes one off every eight smelts - and it now has three exits: ground to Fertilizer, set into Reinforced Concrete, or **vitrified into obsidian**, one lump to a block over a burn twice the length of a normal smelt. (The cost is upstream, not in the ratio: a vitrifying recipe is a cooking recipe and vanilla cooking consumes exactly one item, so the eight smelts it takes the Cupola to rake one lump ARE the price.)
 
