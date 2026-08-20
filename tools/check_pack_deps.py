@@ -60,6 +60,10 @@ sys.stdout.reconfigure(encoding="utf-8")
 REPO = Path(__file__).resolve().parent.parent
 PACK = REPO / "pack"
 BOOTSTRAP = REPO / "tools" / "packwiz-installer-bootstrap.jar"
+# Vendored so the bootstrap never calls the GitHub API. Left to itself it looks up
+# packwiz-installer's latest release anonymously on every run, and a shared Actions
+# runner IP gets 403ed. See tools/README_packwiz_installer.md for how to bump it.
+INSTALLER = REPO / "tools" / "packwiz-installer.jar"
 DEFAULT_PORT = 8603
 
 # Supplied by the loader itself; never separate jars, so never "missing".
@@ -123,6 +127,9 @@ def resolve_jars(port: int, dest: Path) -> None:
             sys.exit(f"2: `{tool}` not on PATH; cannot resolve the pack's jars")
     if not BOOTSTRAP.is_file():
         sys.exit(f"2: packwiz-installer bootstrap not found at {BOOTSTRAP}")
+    if not INSTALLER.is_file():
+        sys.exit(f"2: vendored packwiz-installer not found at {INSTALLER} - "
+                 "see tools/README_packwiz_installer.md")
 
     serve = subprocess.Popen(
         ["packwiz", "serve", "--port", str(port)],
@@ -141,7 +148,9 @@ def resolve_jars(port: int, dest: Path) -> None:
         dest.mkdir(parents=True, exist_ok=True)
         shutil.copy(BOOTSTRAP, dest / BOOTSTRAP.name)
         run = subprocess.run(
-            ["java", "-jar", BOOTSTRAP.name, "-g", "-s", "both", url],
+            ["java", "-jar", BOOTSTRAP.name,
+             "--bootstrap-no-update", "--bootstrap-main-jar", str(INSTALLER),
+             "-g", "-s", "both", url],
             cwd=dest, capture_output=True, text=True, encoding="utf-8", errors="replace")
         if run.returncode != 0:
             print(run.stdout[-3000:])

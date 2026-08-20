@@ -50,6 +50,8 @@ REPO = Path(__file__).resolve().parent.parent
 PACK = REPO / "pack"
 TOOLS = REPO / "tools"
 BOOTSTRAP = TOOLS / "packwiz-installer-bootstrap.jar"
+# Vendored: see the note in check_pack_deps.py. Keeps the bootstrap off the GitHub API.
+INSTALLER = TOOLS / "packwiz-installer.jar"
 BOOTSTRAP_URL = ("https://github.com/packwiz/packwiz-installer-bootstrap/"
                  "releases/latest/download/packwiz-installer-bootstrap.jar")
 UA = "Mozilla/5.0 (trashlands build_server.py)"
@@ -84,6 +86,17 @@ def ensure_bootstrap() -> None:
     BOOTSTRAP.write_bytes(data)
 
 
+def ensure_installer() -> None:
+    """The vendored packwiz-installer must be present; we never fetch it at runtime.
+
+    Fetching is the bug this replaces - the bootstrap's own update check is an
+    anonymous GitHub API call that 403s on a shared runner IP.
+    """
+    if not INSTALLER.is_file() or INSTALLER.stat().st_size < 1024:
+        sys.exit(f"vendored packwiz-installer missing at {INSTALLER} - "
+                 "see tools/README_packwiz_installer.md")
+
+
 def free_port() -> int:
     with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
         s.bind(("127.0.0.1", 0))
@@ -107,6 +120,7 @@ def wait_for_serve(url: str, proc: subprocess.Popen, timeout: float = 30.0):
 def install_mods(out: Path, port: int) -> None:
     """Serve the pack and run packwiz-installer -s server into out/."""
     ensure_bootstrap()
+    ensure_installer()
     expected = read_pack_field("name")
     url = f"http://127.0.0.1:{port}/pack.toml"
     print(f"serving pack on 127.0.0.1:{port} ...")
@@ -120,7 +134,9 @@ def install_mods(out: Path, port: int) -> None:
             sys.exit(f"server on :{port} is not pack '{expected}' - aborting.")
         out.mkdir(parents=True, exist_ok=True)
         print(f"running packwiz-installer (side=server) into {out} ...\n")
-        rc = subprocess.run(["java", "-jar", str(BOOTSTRAP), "-g", "-s", "server", url],
+        rc = subprocess.run(["java", "-jar", str(BOOTSTRAP),
+                             "--bootstrap-no-update", "--bootstrap-main-jar", str(INSTALLER),
+                             "-g", "-s", "server", url],
                             cwd=out).returncode
     finally:
         serve.terminate()
