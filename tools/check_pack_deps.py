@@ -76,6 +76,38 @@ def lower_bound(version_range: str) -> tuple[int, ...] | None:
     return version_tuple(m.group(1)) if m else None
 
 
+def in_range(version: str, version_range: str) -> bool:
+    """Is `version` inside the Maven `version_range`?
+
+    An absent, empty or wildcard range means "any version", which is how
+    NeoForge reads it. Anything this cannot parse returns True: for the
+    incompatibility check that is the safe direction, because it keeps the
+    warning rather than dropping it silently.
+    """
+    rng = (version_range or "").strip()
+    if not rng or rng in ("*", "[,)", "(,)"):
+        return True
+    have = version_tuple(version)
+    if not have:
+        return True
+    for clause in re.findall(r"[\[(][^\[\]()]*[\])]", rng):
+        body = clause[1:-1]
+        lo_inc, hi_inc = clause[0] == "[", clause[-1] == "]"
+        lo_s, _, hi_s = body.partition(",")
+        if "," not in body:            # `[1.2.3]` - an exact single version
+            exact = version_tuple(body)
+            if exact and have == exact:
+                return True
+            continue
+        lo, hi = version_tuple(lo_s), version_tuple(hi_s)
+        if lo and (have < lo or (have == lo and not lo_inc)):
+            continue
+        if hi and (have > hi or (have == hi and not hi_inc)):
+            continue
+        return True
+    return False
+
+
 def pack_pins() -> tuple[str, str]:
     data = tomllib.loads((PACK / "pack.toml").read_text(encoding="utf-8"))
     versions = data.get("versions", {})
@@ -160,7 +192,8 @@ def read_jars(mods_dir: Path):
             unreadable.append(f"{jar.name}: {exc}")
             continue
         out[jar.name] = ([m["modId"] for m in data.get("mods", [])] + bundled,
-                         data.get("dependencies", {}))
+                         data.get("dependencies", {}),
+                         {m["modId"]: str(m.get("version", "")) for m in data.get("mods", [])})
     return out, unreadable
 
 
@@ -171,10 +204,11 @@ def audit(mods_dir: Path) -> int:
     meta, unreadable = read_jars(mods_dir)
     if not meta:
         sys.exit(f"2: no readable mod jars in {mods_dir}")
-    present = {mid for ids, _ in meta.values() for mid in ids}
+    present = {mid for ids, _, _ in meta.values() for mid in ids}
+    versions = {mid: v for _, _, vers in meta.values() for mid, v in vers.items()}
 
-    missing, loader_blocks, mc_blocks, conflicts = [], [], [], []
-    for jar, (_ids, deps) in meta.items():
+    missing, loader_blocks, mc_blocks, conflicts, discouraged = [], [], [], [], []
+    for jar, (_ids, deps, _vers) in meta.items():
         for _owner, dep_list in deps.items():
             for dep in dep_list:
                 mod_id = dep.get("modId")
@@ -184,10 +218,21 @@ def audit(mods_dir: Path) -> int:
                 # you to install the thing that breaks the mod: AE2 declares
                 # `vanillafix` discouraged ("breaks some NeoForge features AE2
                 # depends on"), and this used to report it as a missing require.
+                #
+                # Both are scoped by versionRange, so a mod declaring itself
+                # incompatible with `jei` over `[,19)` is describing an old major
+                # line, not the JEI this pack pins. Ignoring the range would hard
+                # -block a release over a combination that is actually fine.
+                #
+                # They differ in severity and are reported separately: NeoForge
+                # refuses to load on INCOMPATIBLE but only logs a warning on
+                # DISCOURAGED, so only the former fails the run.
                 if kind in ("discouraged", "incompatible"):
-                    if mod_id in present:
-                        why = dep.get("reason") or "declared incompatible"
-                        conflicts.append(f"{jar} does not want '{mod_id}' present: {why}")
+                    rng = dep.get("versionRange") or ""
+                    if mod_id in present and in_range(versions.get(mod_id, ""), rng):
+                        why = dep.get("reason") or f"declared {kind}"
+                        row = f"{jar} vs '{mod_id}' {rng}: {why}".replace(" : ", ": ")
+                        (conflicts if kind == "incompatible" else discouraged).append(row)
                     continue
                 if kind in ("optional", "false"):
                     continue
@@ -215,7 +260,7 @@ def audit(mods_dir: Path) -> int:
         ("MINECRAFT PIN TOO LOW", mc_blocks,
          "raise [versions] minecraft in pack/pack.toml"),
         ("INCOMPATIBLE MODS PRESENT", conflicts,
-         "remove one of them - a mod declared this combination broken"),
+         "remove one of them - a mod declared this combination refuses to load"),
     ):
         if rows:
             failed = True
@@ -223,6 +268,15 @@ def audit(mods_dir: Path) -> int:
             for row in rows:
                 print(f"  {row}")
             print(f"  -> {hint}\n")
+
+    if discouraged:
+        # NeoForge loads a DISCOURAGED combination and logs a warning, so this
+        # is reported and not fatal. Failing here would block a release over a
+        # combination the loader itself allows.
+        print("=== DISCOURAGED COMBINATIONS (not fatal) ===")
+        for row in discouraged:
+            print(f"  {row}")
+        print()
 
     if unreadable:
         # Not fatal: coremods and some libraries legitimately ship without the file.
