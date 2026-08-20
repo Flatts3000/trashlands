@@ -9,6 +9,13 @@ and ASCII punctuation only.
 ## [Unreleased]
 
 ### Added
+- (nothing yet)
+
+## [0.8.0] - 2026-08-19
+
+There is a Nether now, and it is a dump you mine rather than a place you cross.
+
+### Added
 - **The Nether is open** (Recompile 0.12.0). The compacted depths are solid from the bedrock floor to
   the bedrock ceiling, and you pick through techno-organic waste down there the same way you pick
   through a mound up here. Nothing vanilla generates in the rock. Netherrack, basalt, blackstone
