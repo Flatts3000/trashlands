@@ -178,21 +178,48 @@ jobs:
           java -jar installer.jar --installServer > install.log 2>&1 \
             || { tail -40 install.log; exit 1; }
           echo "booting ..."
-          bash run.sh nogui > boot.log 2>&1 &
+          # stdin comes from a FIFO we hold open, so the server can be told to `stop`.
+          # That matters: region files are written on autosave (6000 ticks) or on
+          # shutdown, never at `Done (`. The old `kill "$pid"` could not produce
+          # either - NeoForge's run.sh calls java WITHOUT exec, so $! is the wrapper
+          # shell and killing it orphans the JVM, which then never saves. The world
+          # check below would have found no region files at all and warned forever,
+          # a gate that always passes.
+          mkfifo srv_cmd
+          bash run.sh nogui < srv_cmd > boot.log 2>&1 &
           pid=$!
+          exec 3> srv_cmd
           ok=0
           for i in $(seq 1 96); do
             if grep -q 'Done (' boot.log 2>/dev/null; then ok=1; break; fi
             if ! kill -0 "$pid" 2>/dev/null; then break; fi
             sleep 5
           done
-          kill "$pid" 2>/dev/null || true
-          wait "$pid" 2>/dev/null || true
           if [ "$ok" != "1" ]; then
+            exec 3>&-
+            kill "$pid" 2>/dev/null || true
+            wait "$pid" 2>/dev/null || true
             echo "::error::the server did not reach 'Done' - see the log below."
             tail -120 boot.log
             exit 1
           fi
+          echo "stopping cleanly so the world is flushed to disk ..."
+          echo "stop" >&3
+          for i in $(seq 1 60); do
+            kill -0 "$pid" 2>/dev/null || break
+            sleep 2
+          done
+          exec 3>&-
+          # Belt and braces: if it is somehow still up, do not read files it may be
+          # mid-write on. Kill the whole process group so the JVM goes too.
+          if kill -0 "$pid" 2>/dev/null; then
+            echo "::warning::server did not stop within 120s; killing the process group."
+            pkill -P "$pid" 2>/dev/null || true
+            kill "$pid" 2>/dev/null || true
+            sleep 5
+          fi
+          wait "$pid" 2>/dev/null || true
+          grep -qE "All chunks are saved|Saving chunks for level|ThreadedAnvilChunkStorage" boot.log             && echo "save confirmed in boot.log"             || echo "::warning::no save line in boot.log - the terrain check may find nothing."
           # Booting is NOT proof the world type took. An unknown level-type does not
           # crash: it resolves against the WORLD_PRESET registry and falls back to
           # minecraft:normal, so a renamed preset gives every server an ordinary

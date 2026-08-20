@@ -57,9 +57,18 @@ GZIP, ZLIB, NONE = 1, 2, 3
 
 def chunk_blobs(mca: pathlib.Path):
     """Yield decompressed chunk NBT from one .mca, plus counts of what we could not read."""
-    data = mca.read_bytes()
+    try:
+        data = mca.read_bytes()
+    except OSError as exc:
+        # Locked by a still-running JVM, permissions, a directory named *.mca. A file
+        # we could not open IS an evidence gap, unlike an empty one below.
+        return [], collections.Counter({f"unreadable file: {type(exc).__name__}": 1})
     if len(data) < SECTOR * 2:
-        return [], collections.Counter({"file too small for a header": 1})
+        # An empty or header-less region file is NORMAL - Minecraft leaves a 0-byte
+        # .mca for a region with no saved chunks, and a real save has hundreds. This
+        # must NOT count as an evidence gap: doing so made the tool withhold a verdict
+        # on every real world (591 of them in an ATM10 save).
+        return [], collections.Counter()
     blobs, skipped = [], collections.Counter()
     for i in range(1024):
         off, cnt = struct.unpack_from(">I", data, i * 4)[0] >> 8, data[i * 4 + 3]
@@ -108,18 +117,26 @@ def main() -> int:
             print(f"  {p.relative_to(world).as_posix()}")
         return 2
 
-    blobs, skipped, ids = [], collections.Counter(), collections.Counter()
+    scanned, biome_chunks, skipped, ids = 0, 0, collections.Counter(), collections.Counter()
     for mca in mcas:
-        b, s = chunk_blobs(mca)
-        blobs += b
+        blobs, s = chunk_blobs(mca)
         skipped += s
-    print(f"{len(mcas)} region file(s), {len(blobs)} chunk(s) read")
+        for blob in blobs:
+            scanned += 1
+            # A chunk saved below the `biomes` generation status has no sections and
+            # no biome palette. "No recompile: id" in a pile of proto-chunks is not
+            # evidence of a vanilla world, so only chunks that got as far as biomes
+            # count as evidence at all.
+            if b"biomes" in blob:
+                biome_chunks += 1
+            for m in ID_RE.findall(blob):
+                ids[m.decode("utf-8", "replace")] += 1
+        # blobs is dropped here on purpose: holding every decompressed chunk of a
+        # multi-thousand-chunk save at once is gigabytes, and a MemoryError would
+        # surface as exit 1, which the release reads as "the world is wrong".
+    print(f"{len(mcas)} region file(s), {scanned} chunk(s) read, {biome_chunks} with a biome palette")
 
-    for blob in blobs:
-        for m in ID_RE.findall(blob):
-            ids[m.decode("utf-8", "replace")] += 1
-
-    if not blobs:
+    if not scanned:
         print("::warning::could not read a single chunk, so the world type is UNVERIFIED.")
         for reason, n in skipped.most_common():
             print(f"  {n} x {reason}")
@@ -133,18 +150,40 @@ def main() -> int:
             print(f"  {v:6d}  {k}")
         return 0
 
+    # Everything below is the ABSENCE of our ids, and absence is only evidence when
+    # the evidence was complete. Both guards below downgrade to 2 rather than fail a
+    # release, because "I could not tell" must never be reported as "it failed".
+    if not biome_chunks:
+        print("::warning::no chunk had a biome palette - every one was saved below the")
+        print("`biomes` generation status. Nothing here can say what preset built them.")
+        return 2
+
+    if skipped:
+        print("::warning::some chunks could not be read, and the unread ones are exactly")
+        print("those that might have carried the palette. Verdict withheld.")
+        for reason, n in skipped.most_common():
+            print(f"  {n} x {reason}")
+        return 2
+
     print("::error::no recompile: id anywhere in the terrain.")
     print("This world did NOT come from the garbage preset - level-type did not take, and a")
     print("server built from this pack would hand players an ordinary world.")
     print("most common ids actually present:")
     for k, v in ids.most_common(15):
         print(f"  {v:6d}  {k}")
-    if skipped:
-        print("chunks that could not be read (so this verdict is partial):")
-        for reason, n in skipped.most_common():
-            print(f"  {n} x {reason}")
     return 1
 
 
 if __name__ == "__main__":
-    sys.exit(main())
+    try:
+        sys.exit(main())
+    except Exception as exc:  # noqa: BLE001 - deliberately broad
+        # Python exits 1 on an uncaught exception, and the release reads 1 as "this
+        # world is wrong" and refuses to publish. A crash in this tool is not a
+        # verdict on the world, so it leaves by the same door as every other
+        # could-not-tell: exit 2.
+        import traceback
+        traceback.print_exc()
+        print(f"::warning::{pathlib.Path(__file__).name} crashed ({type(exc).__name__}) - "
+              "world type UNVERIFIED. This is a tool fault, not a world verdict.")
+        sys.exit(2)
