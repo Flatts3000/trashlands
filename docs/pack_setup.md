@@ -239,10 +239,28 @@ Worth stating plainly, because it blocks any plan that starts "just change that 
   for `.jar` and fails the run, which is the rule that keeps the pack redistribution-clean.
 - **A world datapack is per-save**, so it cannot ship with the pack.
 
-That leaves one route: put the recipes in **Recompile**, gated behind `neoforge:mod_loaded`, which is
-the pattern `data/recompile/recipe/guide_book.json` already uses for Modonomicon. It costs a Recompile
-release and a CurseForge moderation wait before the pack can pin it, and it is the reason Simple
-Magnets currently ships with its stock recipes.
+**And Recompile is not a route from here.** It could carry them behind `neoforge:mod_loaded`, the
+pattern `data/recompile/recipe/guide_book.json` already uses for Modonomicon - but this repo does not
+write to the mod repo. So there is currently **no way at all** for this pack to change another mod's
+recipe, and that is why Simple Magnets ships with its stock recipes.
+
+**One correction to the KubeJS entry in the cut list, since this is what unblocks it.** That entry
+says "a jar-in-jar cannot be excluded from a packwiz pin, so the only fix is to drop KubeJS". The
+first half is not quite right: NeoForge resolves a bundled jar against standalone copies of the same
+mod and the highest version wins, so a fixed standalone build of `betteradvancedtooltips` would
+displace the broken bundled one and KubeJS would load. The real blocker is that
+`betteradvancedtooltips` has **no standalone CurseForge project at all** - only the copy bundled
+inside KubeJS - and Modrinth is closed to this pack.
+
+So the recheck condition is wider than the entry states. Any one of these unblocks pack-side recipe
+overrides:
+
+- KubeJS ships a 26.1.2 build whose bundled tooltip mod is fixed (still 8.0.4 as of 2026-08-20, all
+  five 26.1.2 builds beta, no 26.2 build).
+- `betteradvancedtooltips` appears standalone on CurseForge at `2601.1.0-build.8` or higher.
+- Any datapack loader gets a 26.1.2 NeoForge build - Open Loader (354339) and Datapack Loader
+  (309529) are the two to watch.
+- CraftTweaker ports to 26.1.2. It has no build as of 2026-08-20.
 
 ### Considered and cut
 
