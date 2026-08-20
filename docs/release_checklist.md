@@ -120,12 +120,14 @@ otherwise found by whoever first runs a server.
   with `UnsupportedClassVersionError` before a single mod loads, which is what failed the first
   v0.7.0 attempt. Both workflows and the server pack's `INSTALL.md` say 25; the dev instance has been
   on jdk-25 all along. If a boot ever fails instantly with a class-version error, this is it.
-- **`packwiz-installer-bootstrap` calls the GitHub API anonymously** to look up its own latest
-  release, and gets a **403** when the runner's shared IP is rate-limited. It hit PR CI on
-  2026-08-18 and a re-run cleared it. The release now drives that bootstrap three times
-  (`check_pack_deps` twice plus `build_server.py`), so the odds compound. A failure here is safe -
-  every one of those steps runs before the GitHub release - so re-run the job. Pinning the installer
-  jar instead of letting the bootstrap self-update would remove it (issue filed).
+- **`packwiz-installer-bootstrap` used to call the GitHub API anonymously** to look up its own
+  latest release, and got a **403** when the runner's shared IP was rate-limited. It hit PR CI on
+  2026-08-18 and again on PR #33 on 2026-08-20, and the release drives that bootstrap three times, so
+  the odds compounded. **Fixed 2026-08-20 (#31).** `tools/packwiz-installer.jar` is vendored at
+  v0.5.14 and both callers pass `--bootstrap-no-update --bootstrap-main-jar`, so no API call happens
+  at all - in CI or locally. If resolution ever fails now, it is the jar itself: see
+  [`../tools/README_packwiz_installer.md`](../tools/README_packwiz_installer.md). Do not restore the
+  update check.
 
 ---
 

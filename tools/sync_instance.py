@@ -54,6 +54,10 @@ REPO = Path(__file__).resolve().parent.parent
 PACK = REPO / "pack"
 TOOLS = REPO / "tools"
 BOOTSTRAP = TOOLS / "packwiz-installer-bootstrap.jar"
+# Vendored: see tools/README_packwiz_installer.md. Without it the bootstrap makes an
+# anonymous api.github.com call on every sync and self-downloads whatever `latest` is,
+# which also drifts the dev instance off the installer version CI pins.
+INSTALLER = TOOLS / "packwiz-installer.jar"
 BOOTSTRAP_URL = ("https://github.com/packwiz/packwiz-installer-bootstrap/"
                  "releases/latest/download/packwiz-installer-bootstrap.jar")
 
@@ -186,6 +190,13 @@ def check_loader(instance: Path, mc_pin: str, loader_pin: str) -> bool:
               "disagree.\n  The app store is what launches. Set the version in the "
               "CurseForge app, not by editing json.")
     return ok
+
+
+def ensure_installer() -> None:
+    """The vendored packwiz-installer must be present; we never fetch it at runtime."""
+    if not INSTALLER.is_file() or INSTALLER.stat().st_size < 1024:
+        sys.exit(f"vendored packwiz-installer missing or truncated at {INSTALLER} - "
+                 "see tools/README_packwiz_installer.md")
 
 
 def ensure_bootstrap() -> None:
@@ -376,6 +387,7 @@ def main() -> int:
                  "CurseForge app, or pass --force to sync anyway.")
 
     ensure_bootstrap()
+    ensure_installer()
 
     print("\nnormalizing line endings + packwiz refresh ...")
     if subprocess.run([sys.executable, str(TOOLS / "pack_refresh.py")]).returncode != 0:
@@ -397,7 +409,9 @@ def main() -> int:
             sys.exit(f"server on :{args.port} is not pack '{pack_name}' - aborting rather "
                      "than risk syncing the instance to the wrong pack.")
         print(f"running packwiz-installer (side={args.side}) in {args.instance} ...\n")
-        rc = subprocess.run(["java", "-jar", str(BOOTSTRAP), "-g", "-s", args.side, url],
+        rc = subprocess.run(["java", "-jar", str(BOOTSTRAP),
+                             "--bootstrap-no-update", "--bootstrap-main-jar", str(INSTALLER),
+                             "-g", "-s", args.side, url],
                             cwd=args.instance).returncode
     finally:
         serve.terminate()

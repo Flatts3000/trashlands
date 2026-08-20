@@ -23,6 +23,7 @@ on:
       - "pack/pack.toml"
       - "pack/mods/**"
       - "tools/check_pack_deps.py"
+      - "tools/packwiz-installer.jar"
       - ".github/workflows/validate-pack.yml"
   push:
     branches: [main]
@@ -30,6 +31,7 @@ on:
       - "pack/pack.toml"
       - "pack/mods/**"
       - "tools/check_pack_deps.py"
+      - "tools/packwiz-installer.jar"
   workflow_dispatch:
 
 jobs:
