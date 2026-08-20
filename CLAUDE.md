@@ -40,19 +40,12 @@ Cut on purpose: **Waystones** (travel cost may be pacing), **Forgiving Void** (s
 **Never `packwiz modrinth add`** for this pack. Modrinth-sourced mods get inlined into the CurseForge export as real jars, which is a redistribution violation. Use `packwiz curseforge add`; the release workflow greps the export for `.jar` and fails the run.
 
 ## Next actions
-1. **Does a server world actually generate as Trashlands?** (issue #32) The v0.8.0 release log finally
-   produced the evidence and it says the *check* is wrong, not necessarily the pack: `level.dat` holds one
-   namespaced id, `minecraft:overworld`, and no generator id of any namespace - too small to be holding a
-   dimension registry at all. So level.dat is not where 26.1 records the resolved generator, and every
-   attempt so far has read the wrong file. The title question is still open and still worth the most:
-   `level-type` is the only thing making a server world this world, and an unknown preset falls back to
-   vanilla silently. Test the terrain, not the metadata.
-2. **The Nether ships with no quest coverage** (issue #34). v0.8.0 added a whole dimension - slag chain,
+1. **The Nether ships with no quest coverage** (issue #34). v0.8.0 added a whole dimension - slag chain,
    obsidian, lignite, shard-crafted terrain - and the book still has three chapters that never mention it.
-3. **Chapter three** - the Scrap Network and storage (issue #11). **Re-read the issue before starting it.** The adjacency rule is taught inside Salvage as of v0.5.0, so what was left is Scrap Bins bound to one material, the Filing Cabinet, and crafting straight out of the cluster - but the 2026-08-20 storage additions mean that chapter would now teach the weakest of four storage systems. A drawer bound to one item is a Scrap Bin. What this chapter is *for* is an open question, not a writing task.
-4. **Paste the CurseForge description** from `docs/curseforge_page.md` and upload the gallery. The live page is behind the repo copy.
-5. **Design the endgame** (reopened - circular economy cut). Then the postgame/final chapter (against `the_twist.md`). Bookmark in `docs/design_decisions.md` has the three seed directions.
-6. **Toward 1.0:** the knowledge half of teardown, the `The Way Home` quest spine, and one balance pass across all loot tables and recipes together. Gate list in `docs/release_checklist.md`.
+2. **Chapter three** - the Scrap Network and storage (issue #11). **Re-read the issue before starting it.** The adjacency rule is taught inside Salvage as of v0.5.0, so what was left is Scrap Bins bound to one material, the Filing Cabinet, and crafting straight out of the cluster - but the 2026-08-20 storage additions mean that chapter would now teach the weakest of four storage systems. A drawer bound to one item is a Scrap Bin. What this chapter is *for* is an open question, not a writing task.
+3. **Paste the CurseForge description** from `docs/curseforge_page.md` and upload the gallery. The live page is behind the repo copy.
+4. **Design the endgame** (reopened - circular economy cut). Then the postgame/final chapter (against `the_twist.md`). Bookmark in `docs/design_decisions.md` has the three seed directions.
+5. **Toward 1.0:** the knowledge half of teardown, the `The Way Home` quest spine, and one balance pass across all loot tables and recipes together. Gate list in `docs/release_checklist.md`.
 
 ## Conventions (this machine / Jason's mod work)
 - Target **NeoForge / MC 26.1** to match the Productive Frogs 2.x line (siblings: `../productive-frogs`, `../sky-frogs` - the proven pack+mod pattern to mirror).

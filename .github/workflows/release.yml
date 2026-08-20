@@ -197,6 +197,10 @@ jobs:
           done
           if [ "$ok" != "1" ]; then
             exec 3>&-
+            # Same treatment as the success path below: killing only $pid leaves the
+            # JVM running and appending to boot.log while we tail it, and leaves a
+            # live server on the runner.
+            pkill -P "$pid" 2>/dev/null || true
             kill "$pid" 2>/dev/null || true
             wait "$pid" 2>/dev/null || true
             echo "::error::the server did not reach 'Done' - see the log below."
@@ -204,19 +208,32 @@ jobs:
             exit 1
           fi
           echo "stopping cleanly so the world is flushed to disk ..."
-          echo "stop" >&3
+          # If the server died between `Done (` and here, the FIFO has no reader and
+          # this write raises SIGPIPE against THIS shell - under `bash -e` the step
+          # dies at 141 with no annotation and no log tail, which reads as an
+          # unexplained CI failure rather than "the server crashed after Done".
+          if kill -0 "$pid" 2>/dev/null; then
+            echo "stop" >&3 2>/dev/null || echo "::warning::could not send stop (server already gone)."
+          else
+            echo "::warning::server exited on its own before it could be stopped."
+            tail -60 boot.log
+          fi
           for i in $(seq 1 60); do
             kill -0 "$pid" 2>/dev/null || break
             sleep 2
           done
           exec 3>&-
-          # Belt and braces: if it is somehow still up, do not read files it may be
-          # mid-write on. Kill the whole process group so the JVM goes too.
+          # Belt and braces. pkill -P selects java by PARENT pid, which reaches it
+          # because run.sh spawns it directly - this is not a process-group kill and
+          # does not claim to be. A forced kill can interrupt a shutdown save, and a
+          # half-written region file is caught by the tool's truncated-file check,
+          # which withholds the verdict rather than failing the release. That is the
+          # right outcome here: a server we had to kill has not proven anything.
           if kill -0 "$pid" 2>/dev/null; then
-            echo "::warning::server did not stop within 120s; killing the process group."
+            echo "::warning::server did not stop within 120s; forcing it down."
             pkill -P "$pid" 2>/dev/null || true
             kill "$pid" 2>/dev/null || true
-            sleep 5
+            sleep 15
           fi
           wait "$pid" 2>/dev/null || true
           grep -qE "All chunks are saved|Saving chunks for level|ThreadedAnvilChunkStorage" boot.log             && echo "save confirmed in boot.log"             || echo "::warning::no save line in boot.log - the terrain check may find nothing."

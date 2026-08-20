@@ -53,6 +53,15 @@ SECTOR = 4096
 # not have; they are counted and reported rather than silently skipped, because a
 # region we cannot read must not read as a region with no recompile blocks.
 GZIP, ZLIB, NONE = 1, 2, 3
+# Anvil stores any chunk over ~1MB in a sidecar `c.<x>.<z>.mcc` and ORs 0x80 into the
+# compression byte. Missing that made 129/130/131 read as "unsupported scheme", which
+# fed `skipped` - and because a non-empty `skipped` withholds the verdict WORLD-wide,
+# one oversized chunk anywhere disarmed the whole gate: a genuinely wrong world would
+# have downgraded from a fatal exit 1 to a warning, and shipped.
+EXTERNAL = 0x80
+# Region files are 0 bytes when empty, or a bare header. Anything else below a full
+# header is a TRUNCATED file, which is an evidence gap rather than a normal absence.
+NORMAL_SMALL = (0, SECTOR, SECTOR * 2)
 
 
 def chunk_blobs(mca: pathlib.Path):
@@ -64,11 +73,15 @@ def chunk_blobs(mca: pathlib.Path):
         # we could not open IS an evidence gap, unlike an empty one below.
         return [], collections.Counter({f"unreadable file: {type(exc).__name__}": 1})
     if len(data) < SECTOR * 2:
-        # An empty or header-less region file is NORMAL - Minecraft leaves a 0-byte
+        # An empty or header-only region file is NORMAL - Minecraft leaves a 0-byte
         # .mca for a region with no saved chunks, and a real save has hundreds. This
         # must NOT count as an evidence gap: doing so made the tool withhold a verdict
         # on every real world (591 of them in an ATM10 save).
-        return [], collections.Counter()
+        if len(data) in NORMAL_SMALL:
+            return [], collections.Counter()
+        # But a file that is neither empty nor a whole header was caught mid-write,
+        # which IS a gap - and it is exactly what a force-killed server leaves behind.
+        return [], collections.Counter({f"truncated region file ({len(data)} bytes)": 1})
     blobs, skipped = [], collections.Counter()
     for i in range(1024):
         off, cnt = struct.unpack_from(">I", data, i * 4)[0] >> 8, data[i * 4 + 3]
@@ -79,8 +92,26 @@ def chunk_blobs(mca: pathlib.Path):
             skipped["chunk offset past end of file"] += 1
             continue
         length = struct.unpack_from(">I", data, start)[0]
-        scheme = data[start + 4]
-        payload = data[start + 5:start + 4 + length]
+        raw_scheme = data[start + 4]
+        scheme = raw_scheme & ~EXTERNAL
+        if raw_scheme & EXTERNAL:
+            # The payload lives in a sidecar. Read it rather than counting a gap:
+            # an oversized chunk is ordinary, and treating it as unreadable is what
+            # would silently disarm the gate.
+            cx, cz = i % 32, i // 32
+            m = re.match(r"r\.(-?\d+)\.(-?\d+)\.mca$", mca.name)
+            if not m:
+                skipped["external chunk but region filename unparseable"] += 1
+                continue
+            rx, rz = int(m.group(1)), int(m.group(2))
+            mcc = mca.parent / f"c.{rx * 32 + cx}.{rz * 32 + cz}.mcc"
+            try:
+                payload = mcc.read_bytes()
+            except OSError:
+                skipped["external .mcc chunk missing or unreadable"] += 1
+                continue
+        else:
+            payload = data[start + 5:start + 4 + length]
         try:
             if scheme == ZLIB:
                 blobs.append(zlib.decompress(payload))

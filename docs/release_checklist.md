@@ -148,6 +148,8 @@ otherwise found by whoever first runs a server.
 - [ ] **No soft-locks.** A fresh world plays start to finish with no dead ends.
 - [ ] **A real logo.** The current `pack/icon.png` is a screenshot crop.
 - [ ] **Server pack playtested.** It has built, booted and shipped on every release since v0.7.0,
-      but nobody has actually played a multiplayer world on it, and nothing has yet confirmed a
-      server world uses the garbage preset rather than a vanilla overworld. See [`distribution.md`](./distribution.md#the-server-pack).
+      but **nobody has actually played a multiplayer world on it**. The world *type* is no longer in
+      doubt - since #32 the release asserts the generated terrain came from the garbage preset and a
+      wrong world fails the release. What is untested is play: a second person, joining, over time.
+      See [`distribution.md`](./distribution.md#the-server-pack).
 - [ ] **License audit.** Every bundled mod's license permits redistribution in a CurseForge pack.
