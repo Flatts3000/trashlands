@@ -1,7 +1,7 @@
 {
   id: "7A55E0BA6E000004",
   group: "",
-  order_index: 4,
+  order_index: 10,
   filename: "depths",
   icon: {
     id: "recompile:slag",
@@ -339,7 +339,7 @@
       ],
     },
     {
-      x: 0.0,
+      x: 2.0,
       y: 13.0,
       id: "7A55E0BA6E00030F",
       icon: {

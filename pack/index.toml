@@ -42,7 +42,7 @@ hash = "0a11b89d5d2a66d384297eba3321fdcbc8e3704e7741172b1e770f4ad189a907"
 
 [[files]]
 file = "config/ftbquests/quests/chapters/depths.json5"
-hash = "ca746fc1ae5df6fd0eabdb4b9f9e2b5662007a07a8561a7f6ea7761c73146231"
+hash = "127d40557eabfb7a8017b10bcc82b1a4f7be9ee55fdb8be3f732ac0a649e27e5"
 
 [[files]]
 file = "config/ftbquests/quests/chapters/groundwork.json5"
@@ -66,7 +66,7 @@ hash = "f6e7ba4af1a07528f9877960f8036460fd3c35e5c60a0f8b06d23787bc177f2e"
 
 [[files]]
 file = "config/ftbquests/quests/lang/en_us/chapters/depths.json5"
-hash = "731b8c1461047005f9c17b4281128f2d423477ae41f237afe9759b45905333ee"
+hash = "9ce1764586ce6b24f038344ffa1de489f94e26e36d80e2f7e3832e77e020c66c"
 
 [[files]]
 file = "config/ftbquests/quests/lang/en_us/chapters/groundwork.json5"

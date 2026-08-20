@@ -7,15 +7,15 @@
   ],
   "quest.7A55E0BA6E000301.title": "The Slag Furnace",
   "quest.7A55E0BA6E000301.quest_desc": [
-    "Burns fuel. It is a furnace, not a machine, so it wants coal or charcoal in the bottom slot and no power at all.",
+    "Burns fuel. It is a furnace, not a machine, so it wants charcoal in the bottom slot and no power at all. Coal does not exist yet; this chapter ends on the first of it.",
     "",
     "One lump takes twice as long as an ordinary smelt.",
   ],
   "quest.7A55E0BA6E000302.title": "Obsidian, and Nothing Else Makes It",
   "quest.7A55E0BA6E000302.quest_desc": [
-    "One lump, one block. This is the only obsidian in the world, so a portal is built rather than found, and the price is upstream: eight Cupola smelts bought the lump.",
+    "One lump, one block. Nothing else in this world makes obsidian, so the first portal is built rather than found, and the price is upstream: eight Cupola smelts bought the lump.",
     "",
-    "Ten blocks is a portal if you corner it, which is the usual way to spend the first batch.",
+    "A portal needs ten blocks with the corners left out, or fourteen if you fill them. That is the usual way to spend the first batch.",
   ],
   "quest.7A55E0BA6E000303.title": "Or: Concrete Powder",
   "quest.7A55E0BA6E000303.quest_desc": [
@@ -34,9 +34,9 @@
   ],
   "quest.7A55E0BA6E000307.title": "Terrain You Craft",
   "quest.7A55E0BA6E000307.quest_desc": [
-    "No vanilla nether block generates down here. Not one. Netherrack, basalt, blackstone and both nyliums come out of slag rubble as shards, four to a block.",
+    "The rock itself generates no vanilla nether block at all. Netherrack, basalt, blackstone and both nyliums come out of slag rubble as shards, four to a block.",
     "",
-    "Each shard is the only route to its block, which is why the dimension is worth mining rather than worth walking through.",
+    "Fortresses and bastions still generate down here and still contain what they always did, so a few of these blocks can be found in one. Mining for them cannot: the shards are the only route the terrain gives you.",
   ],
   "quest.7A55E0BA6E000308.title": "Soul Sand",
   "quest.7A55E0BA6E000308.quest_desc": [
@@ -57,7 +57,7 @@
   "quest.7A55E0BA6E00030D.title": "Blaze Powder",
   "quest.7A55E0BA6E00030E.title": "Netherite Scrap",
   "quest.7A55E0BA6E00030E.quest_desc": [
-    "Straight out of the waste, uncommonly. There is no ancient debris to look for.",
+    "Straight out of the waste, uncommonly. The rock holds no ancient debris to mine for, though a bastion chest may still have some.",
   ],
   "quest.7A55E0BA6E00030F.title": "Lignite",
   "quest.7A55E0BA6E00030F.quest_desc": [
@@ -69,7 +69,7 @@
   "quest.7A55E0BA6E000310.quest_desc": [
     "Smelt the lignite. Driving off the water and the volatiles leaves denser carbon behind, which is the same operation vanilla already models as log to charcoal.",
     "",
-    "&aSmelted, not blasted.&r Use the Burn Barrel. Blasting needs the Cupola, and the Cupola needs iron, so blasted coal would cost you a whole tier you have not reached. One lignite spent as fuel smelts four more.",
+    "&aSmelted, not blasted.&r The Burn Barrel does it, and lignite is the first new thing it has taken since it shipped. You do not need the Cupola for this one. One lignite spent as fuel smelts four more.",
     "",
     "This is the only coal in the world, and it is down here rather than up there.",
   ],
