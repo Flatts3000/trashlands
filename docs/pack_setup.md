@@ -45,7 +45,7 @@ tools/
 
 ## The mod lineup
 
-**48 mods**: the core six, a quality-of-life layer, the FTB stack, a tech and gadget layer, world-type enforcement, and six auto-pulled libraries. Locked
+**49 mods**: the core six, a quality-of-life layer, the FTB stack, a tech and gadget layer, world-type enforcement, and six auto-pulled libraries. Locked
 2026-08-02.
 
 ### Core - Recompile, the four it integrates with, and our own diagnostic
@@ -224,6 +224,44 @@ of `de/melanx/defaultworldtype/ClientConfig`, keys `world-preset` / `disable-but
 falls back to the default and the World Type button quietly comes back. Open Create New World and
 confirm the button is gone.
 
+### Recipe overrides have nowhere to live (2026-08-20)
+
+Worth stating plainly, because it blocks any plan that starts "just change that mod's recipe".
+
+**This pack cannot override another mod's recipes today.** It ships no data of its own outside
+`config/ftbquests`, and every route is closed on 26.1.2:
+
+- **No datapack loader has a build.** Open Loader (354339) and Datapack Loader (309529) both stop
+  short of 26.1.2 NeoForge.
+- **KubeJS is still the version that crashed us.** Its newest 26.1.2 build is `8.0.4`, the same one
+  removed on 2026-08-02 for the jar-in-jar mixin failure below.
+- **A datapack shipped as a loose jar is not an option** - `release.yml` greps the CurseForge export
+  for `.jar` and fails the run, which is the rule that keeps the pack redistribution-clean.
+- **A world datapack is per-save**, so it cannot ship with the pack.
+
+**And Recompile is not a route from here.** It could carry them behind `neoforge:mod_loaded`, the
+pattern `data/recompile/recipe/guide_book.json` already uses for Modonomicon - but this repo does not
+write to the mod repo. So there is currently **no way at all** for this pack to change another mod's
+recipe, and that is why Simple Magnets ships with its stock recipes.
+
+**One correction to the KubeJS entry in the cut list, since this is what unblocks it.** That entry
+says "a jar-in-jar cannot be excluded from a packwiz pin, so the only fix is to drop KubeJS". The
+first half is not quite right: NeoForge resolves a bundled jar against standalone copies of the same
+mod and the highest version wins, so a fixed standalone build of `betteradvancedtooltips` would
+displace the broken bundled one and KubeJS would load. The real blocker is that
+`betteradvancedtooltips` has **no standalone CurseForge project at all** - only the copy bundled
+inside KubeJS - and Modrinth is closed to this pack.
+
+So the recheck condition is wider than the entry states. Any one of these unblocks pack-side recipe
+overrides:
+
+- KubeJS ships a 26.1.2 build whose bundled tooltip mod is fixed (still 8.0.4 as of 2026-08-20, all
+  five 26.1.2 builds beta, no 26.2 build).
+- `betteradvancedtooltips` appears standalone on CurseForge at `2601.1.0-build.8` or higher.
+- Any datapack loader gets a 26.1.2 NeoForge build - Open Loader (354339) and Datapack Loader
+  (309529) are the two to watch.
+- CraftTweaker ports to 26.1.2. It has no build as of 2026-08-20.
+
 ### Considered and cut
 
 - **Forgiving Void** - Sky Frogs skyblock baggage. It catches void falls, and this world seals the
@@ -231,7 +269,12 @@ confirm the button is gone.
 - **Sophisticated Backpacks / Storage** - strictly better than Recompile's Scrap Bins, Scrap Barrels,
   and Scrap Network, which would make the pack's own storage tier dead content.
 - **Waystones** - travel cost between mounds is plausibly part of the pacing. Revisit after playtest.
-- **Item Collectors, Simple Magnets** - mild automation of the pickup loop, and they overlap.
+- **Item Collectors** - mild automation of the pickup loop; overlapped with Simple Magnets.
+- ~~**Simple Magnets**~~ - **REVERSED 2026-08-20 (owner call), now in the pack.** Cut as mild
+  automation of the pickup loop, and that reason was overridden rather than answered. Pinned at
+  `simplemagnets-1.1.12-neoforge-mc26.1` (file 8370420), a release build covering 26.1 through
+  26.1.2. Its four recipes still run on lapis and ender pearls; re-theming them onto the pack's own
+  materials is wanted and currently has no mechanism, see below.
 - **OpenBlocks Elevator** - mounds are 3 to 15 blocks tall; there is nothing to ride up.
 - **Create and Mekanism** - not options on 26.1.2, neither has a NeoForge build past 1.21.1. This was
   checked, not assumed (`../recompile/docs/hydroponics_spec.md`). An older version of this file named
@@ -315,7 +358,7 @@ install task fail** ("Failed to launch modpack. An unexpected error occurred.").
 3. Name the instance **`Trashlands`** (the default `tools/sync_instance.py` looks for
    `<home>/curseforge/minecraft/Instances/Trashlands`).
 
-The manifest carries `neoforge-26.1.2.94`, so the app installs that loader and all 48 mods itself.
+The manifest carries `neoforge-26.1.2.94`, so the app installs that loader and all 49 mods itself.
 If the app cannot find that NeoForge build in its catalog the import will say so - see the loader
 note below.
 
