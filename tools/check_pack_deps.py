@@ -127,8 +127,11 @@ def resolve_jars(port: int, dest: Path) -> None:
             sys.exit(f"2: `{tool}` not on PATH; cannot resolve the pack's jars")
     if not BOOTSTRAP.is_file():
         sys.exit(f"2: packwiz-installer bootstrap not found at {BOOTSTRAP}")
-    if not INSTALLER.is_file():
-        sys.exit(f"2: vendored packwiz-installer not found at {INSTALLER} - "
+    if not INSTALLER.is_file() or INSTALLER.stat().st_size < 1024:
+        # Size too, not just presence: a bad `curl -o` writes a 404 body to the path
+        # and exits 0, and an HTML "jar" fails as an opaque resolution error instead
+        # of naming the real problem.
+        sys.exit(f"2: vendored packwiz-installer missing or truncated at {INSTALLER} - "
                  "see tools/README_packwiz_installer.md")
 
     serve = subprocess.Popen(

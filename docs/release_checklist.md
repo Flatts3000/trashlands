@@ -128,6 +128,13 @@ otherwise found by whoever first runs a server.
   at all - in CI or locally. If resolution ever fails now, it is the jar itself: see
   [`../tools/README_packwiz_installer.md`](../tools/README_packwiz_installer.md). Do not restore the
   update check.
+
+---
+
+# The 1.0 gate
+
+`1.0.0` is the promise that the pack is finished enough for a broad audience. Not a routine tag.
+
 - [ ] **The knowledge half of teardown shipped.** Recovering a recipe off a torn-down item is the
       mod's distinct axis. Until it exists, the pack's own pitch is only half true.
 - [ ] **Quest content.** The engine is in and the book is no longer empty - a **Welcome** chapter

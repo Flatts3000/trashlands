@@ -40,7 +40,9 @@ tools/
   sync_instance.py   # push the pinned mods into the CurseForge dev instance
   make_logo.py       # rebuild icon.png from the wordmark + backdrop
   cf_release.py      # manual CurseForge upload (the tag-driven workflow is the normal path)
-  packwiz-installer-bootstrap.jar
+  packwiz-installer-bootstrap.jar   # packwiz's launcher
+  packwiz-installer.jar             # the installer itself, PINNED - see README_packwiz_installer.md
+  README_packwiz_installer.md       # why both jars are here and how to bump the pin
 ```
 
 ## The mod lineup
@@ -502,7 +504,12 @@ That app store is a flat JSON list of instance objects, and instances are matche
 
 1. Create a NeoForge 26.1.2 instance in Prism Launcher.
 2. Put `tools/packwiz-installer-bootstrap.jar` in the instance and set it as a pre-launch command
-   pointing at the local `pack/pack.toml` (or a served URL via `packwiz serve`).
+   pointing at the local `pack/pack.toml` (or a served URL via `packwiz serve`). Copy
+   `tools/packwiz-installer.jar` in beside it and add
+   `--bootstrap-no-update --bootstrap-main-jar <path to that jar>` to the command. Without those the
+   bootstrap self-updates over the GitHub API on every launch, which both rate-limits (see the
+   gotcha in [`release_checklist.md`](release_checklist.md)) and drifts this instance off the
+   installer version the repo pins.
 3. Launch. The installer syncs mods and config from the pack.
 
 **B. Export a `.mrpack` (portable):**
