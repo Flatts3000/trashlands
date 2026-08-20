@@ -220,9 +220,13 @@ the newest file regardless of channel, so this will keep tracking alphas unless 
   curing a zombie villager, which needs a golden apple (gold, via the E-Scrap to Circuit Powder to
   Cupola chain) and a weakness potion (brewing, so nether wart, so the Nether). That is a deep chain,
   and Easy Villagers' payoff arrives only after it.
-- **Untested.** Nobody has confirmed a zombie villager actually spawns in this world. If they do not,
-  this mod is dead content rather than an economy risk, and that is worth checking before tuning
-  anything around it.
+- **Answered by Recompile 0.13.0 (2026-08-20).** This entry used to say nobody had confirmed a zombie
+  villager spawns here at all, and that if none did, the mod was dead content rather than an economy
+  risk. They do now, deliberately: 0.13.0 puts zombie villagers among the ordinary zombies in the
+  demolition yard, and swaps the yard's hostile list for vanilla plains' outright so they are no
+  rarer or commoner here than anywhere else. Curing one is the only trade in the game, and both
+  halves of the cure - a splash potion of weakness and a golden apple - are now reachable. **So the
+  economy risk is the live one, not the dead-content one.**
 
 ### The pack resource pack, and why options.txt ships
 

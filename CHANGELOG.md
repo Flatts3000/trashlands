@@ -9,6 +9,11 @@ and ASCII punctuation only.
 ## [Unreleased]
 
 ### Added
+- **Recompile 0.13.0**, which closes three things this world could not reach. The **Sintering Kiln**
+  fires pressed powder back into a solid, and four blaze powder pressed and fired gives a blaze rod,
+  so brewing no longer needs a fortress. A **Worn Forging Die** turns up in the depths and tears down
+  into the netherite smithing template vanilla will only sell you a copy of. And **zombie villagers**
+  now walk the demolition yard, so curing one is the only trade in the world and the only emeralds.
 - **Easy Villagers.** Pick a villager up and carry it, check trades without opening the trading
   screen, and automate trading, breeding and curing with its own blocks. Getting a first villager is
   the hard part here and that has not changed: no villages generate in this world, so the route is
