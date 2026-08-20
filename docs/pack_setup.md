@@ -45,7 +45,7 @@ tools/
 
 ## The mod lineup
 
-**62 mods**: the core six, a quality-of-life layer, the FTB stack, a tech and gadget layer, world-type enforcement, and six auto-pulled libraries. Locked
+**62 mods**: the core six, a quality-of-life layer, the FTB stack, a tech and gadget layer, world-type enforcement, and nine auto-pulled libraries. Locked
 2026-08-02.
 
 ### Core - Recompile, the four it integrates with, and our own diagnostic
@@ -72,7 +72,7 @@ has a 26.1.2 NeoForge build on CurseForge. Nothing here touches the economy.
 | Death and safety | GraveStone, Simple Backups |
 | Audio | Extreme Sound Muffler |
 
-Auto-pulled libraries: Balm, Placebo, SuperMartijn642's Core Lib, SuperMartijn642's Config Lib, Cloth Config, GuideME.
+Auto-pulled libraries (nine): Balm, Placebo, SuperMartijn642's Core Lib, SuperMartijn642's Config Lib, Cloth Config, GuideME, and - from the 2026-08-20 additions - Titanium, Sophisticated Core and Patchouli.
 
 ### FTB stack
 
@@ -158,6 +158,29 @@ Added on owner call, in one pass. The largest single change to the lineup since 
   same idea, and a drawer bound to one item **is** a Scrap Bin. **Chapter three (issue #11) exists to
   teach the Scrap Network and would now be teaching the weakest of four options** - re-read that
   issue before building it.
+- **AE2 is unreachable as pinned, and the fix is planned in Recompile.** Its whole progression hangs
+  off Sky Stone, which comes from meteorites, and meteorites cannot generate here.
+  `data/ae2/worldgen/structure/meteorite.json` gates on `#ae2:has_meteorites`, that tag resolves to
+  only `#minecraft:is_overworld`, and Recompile does not put `recompile:household_sprawl` or
+  `recompile:demolition_yard` in that tag - it ships no `minecraft:is_overworld` entry at all. No
+  meteorite means no Inscriber presses, and presses have only two other sources: inscriber recipes
+  that need an existing press as an input, and a level-4 `fluix_researcher` villager. So digital
+  storage and autocrafting are dead content until something puts presses in the world.
+  **Owner call 2026-08-20: put the presses in sewer loot** - buried infrastructure you dig up suits
+  this pack better than sky rocks ever did. **That is currently unbuildable.** Sewer loot tables
+  belong to Recompile, this repo does not write to Recompile, and the pack has no way to ship data of
+  its own (see the recipe-override section). So the decision is made and the mechanism is missing;
+  until one exists, AE2 is in the pack and unreachable.
+- **Worth noting separately:** Recompile's overworld biomes being absent from `#minecraft:is_overworld`
+  is not an AE2 problem. Any mod that gates worldgen or spawning on that tag silently does nothing
+  here, and nothing reports it. AE2 is just the first case anyone looked at.
+- **Apotheosis generates dungeons and spawners throughout the overworld.** Its six biome modifiers
+  (`boss_dungeon`, `boss_dungeon_2`, both `_deep` variants, `rogue_spawner`, `rogue_spawner_deep`)
+  are `apotheosis:blacklist` type, and the blacklist is oceans plus `deep_dark`. Neither Trashlands
+  biome is on it, so boss dungeons and rogue spawners generate by default, and the pack ships no
+  `config/apotheosis` to stop them. **That is chest loot and mob spawners as income in a pack whose
+  premise is that garbage is the only income**, and it is a larger problem than the enchanting-tier
+  concern below.
 - **AE2 raises the power question rather than answering it.** It was held out because *when* the
   player gets power was never decided; it is a full storage and automation spine, so that decision is
   now more load-bearing.
