@@ -195,20 +195,36 @@ jobs:
           fi
           # Booting is NOT proof the world type took. An unknown level-type does not
           # crash: it resolves against the WORLD_PRESET registry and falls back to
-          # minecraft:normal, so a renamed preset gives every server a vanilla
+          # minecraft:normal, so a renamed preset gives every server an ordinary
           # overworld with CI green.
           #
-          # This WARNS rather than fails, on purpose. The first version asserted
-          # "recompile:region" appears in level.dat and failed a release whose pack was
-          # fine - and it could not say why, because one `zcat | grep` conflates "wrong
-          # preset", "level.dat not written yet" and "could not read the file". Where
-          # 26.1 records the resolved generator is not established, so this prints the
-          # evidence and leaves the call to a human until it is.
+          # This reads the TERRAIN, not level.dat. Three earlier attempts read
+          # level.dat and all three were looking in the wrong file - the v0.8.0 log
+          # settled it: 2436 bytes holding one namespaced id, minecraft:overworld,
+          # and no generator id of any namespace. A vanilla world would have to
+          # record its generator somewhere too, so that absence proved nothing.
+          #
+          # The terrain check looks for any recompile: id in the region files, which
+          # hits the per-section biome palette and so appears in EVERY generated
+          # chunk - not just where a garbage mound happened to spawn.
+          #
+          # exit 1 (world is wrong) is fatal. exit 2 (could not read any chunk) is a
+          # warning, because "I could not tell" must never be reported as "it failed"
+          # - that conflation is what failed a release whose pack was fine.
           echo "--- world type check ---"
           grep '^level-type' server.properties || echo "(no level-type line)"
           # Absolute: this step ran `cd build/server`, so a repo-relative path
           # resolves under the server dir and silently misses.
-          python3 "$GITHUB_WORKSPACE/tools/inspect_level_dat.py" world/level.dat || true
+          set +e
+          python3 "$GITHUB_WORKSPACE/tools/inspect_world_terrain.py" world
+          terrain_rc=$?
+          set -e
+          if [ "$terrain_rc" = "1" ]; then
+            echo "::error::the server world is not a Trashlands world. Refusing to release."
+            exit 1
+          elif [ "$terrain_rc" != "0" ]; then
+            echo "::warning::terrain check could not run (exit $terrain_rc) - world type UNVERIFIED."
+          fi
           echo "server booted and generated a world."
 
       - name: Extract changelog section
