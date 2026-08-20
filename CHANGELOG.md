@@ -9,7 +9,20 @@ and ASCII punctuation only.
 ## [Unreleased]
 
 ### Added
-- (nothing yet)
+- **The Nether is open** (Recompile 0.12.0). The compacted depths are solid from the bedrock floor to
+  the bedrock ceiling, and you pick through techno-organic waste down there the same way you pick
+  through a mound up here. Nothing vanilla generates in the rock. Netherrack, basalt, blackstone,
+  both nyliums and the soul blocks are crafted from shards you sort out of slag rubble, so the
+  dimension is somewhere to mine rather than somewhere to cross.
+- **Obsidian, and so a portal.** The Cupola Furnace rakes off a lump of slag every eighth smelt, and
+  the Slag Furnace vitrifies one lump into one block over a burn twice the length of a smelt. It is
+  the only obsidian in this world, and those eight smelts are what it actually costs.
+- **Coal.** Lignite turns up in the waste and smelts into coal, which is the only route to coal here.
+  It burns on its own at half a coal, so it is worth something the moment you find it.
+
+### Changed
+- **Recompile 0.11.0 -> 0.12.0**, plus FTB Quests. Extreme Sound Muffler is deliberately held on
+  3.58.1; its 4.x line is alpha.
 
 ## [0.7.0] - 2026-08-18
 
