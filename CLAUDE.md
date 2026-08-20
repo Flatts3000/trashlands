@@ -2,7 +2,7 @@
 
 **What this is:** a Minecraft **modpack**, named **Trashlands** (locked 2026-08-02 - the CurseForge slug is claimed, so the name is no longer up for grabs). An endless coarse-dirt plain crowded with mounds of **Blocks of Garbage** that regrow to their original size - renewable quarries raining back down from space, never impending doom. No ore, no trees; everything you build comes out of the trash. Rebuild, and eventually heal, a ruined world from its own garbage - healing a mound's footprint retires it forever, trading the mineral economy for the biological one the healed land produces (P2.4-R). But the junkyard fights back: healed ground erodes from its edge inward until the reclamation ladder locks it (P1.7-R).
 
-**Status: alpha, shipping (v0.7.0, 2026-08-18).** The pack is **assembled and pinned** - 47 mods, MC 26.1.2 / NeoForge 26.1.2.94 - and the tag-driven release pipeline is in (`.github/workflows/release.yml` -> GitHub release + CurseForge upload). CurseForge project **`1636627`**, slug `trashlands`; `CF_PROJECT_ID` and `CF_API_TOKEN` are set on the repo. Recompile is at v0.12.0 and released on CurseForge (project `1625740`), which is where the themed Nether, the slag-to-obsidian chain and lignite-to-coal come from.
+**Status: alpha, shipping (v0.8.0, 2026-08-19).** The pack is **assembled and pinned** - 47 mods, MC 26.1.2 / NeoForge 26.1.2.94 - and the tag-driven release pipeline is in (`.github/workflows/release.yml` -> GitHub release + CurseForge upload). CurseForge project **`1636627`**, slug `trashlands`; `CF_PROJECT_ID` and `CF_API_TOKEN` are set on the repo. Recompile is at v0.12.0 and released on CurseForge (project `1625740`), which is where the themed Nether, the slag-to-obsidian chain and lignite-to-coal come from.
 
 On the design side: walkthrough complete except the parked endgame/postgame cluster (2026-07-14). P0-P2 and most of P3 are fully specified; the endgame is reopened and postgame/final-chapter is parked - see the bookmark in `docs/design_decisions.md`.
 
@@ -40,10 +40,19 @@ Cut on purpose: **Sophisticated Storage** (would make Recompile's Scrap Network 
 **Never `packwiz modrinth add`** for this pack. Modrinth-sourced mods get inlined into the CurseForge export as real jars, which is a redistribution violation. Use `packwiz curseforge add`; the release workflow greps the export for `.jar` and fails the run.
 
 ## Next actions
-1. **Chapter three** - the Scrap Network and storage (issue #11). The adjacency rule itself is taught inside Salvage as of v0.5.0, so what is left is the tier the barrel does not cover: Scrap Bins and binding a bin to one material, the Filing Cabinet, and the payoff of crafting straight out of the cluster.
-2. **Paste the CurseForge description** from `docs/curseforge_page.md` and upload the gallery. The live page is behind the repo copy.
-3. **Design the endgame** (reopened - circular economy cut). Then the postgame/final chapter (against `the_twist.md`). Bookmark in `docs/design_decisions.md` has the three seed directions.
-4. **Toward 1.0:** the knowledge half of teardown, the `The Way Home` quest spine, and one balance pass across all loot tables and recipes together. Gate list in `docs/release_checklist.md`.
+1. **Does a server world actually generate as Trashlands?** (issue #32) The v0.8.0 release log finally
+   produced the evidence and it says the *check* is wrong, not necessarily the pack: `level.dat` holds one
+   namespaced id, `minecraft:overworld`, and no generator id of any namespace - too small to be holding a
+   dimension registry at all. So level.dat is not where 26.1 records the resolved generator, and every
+   attempt so far has read the wrong file. The title question is still open and still worth the most:
+   `level-type` is the only thing making a server world this world, and an unknown preset falls back to
+   vanilla silently. Test the terrain, not the metadata.
+2. **The Nether ships with no quest coverage** (issue #34). v0.8.0 added a whole dimension - slag chain,
+   obsidian, lignite, shard-crafted terrain - and the book still has three chapters that never mention it.
+3. **Chapter three** - the Scrap Network and storage (issue #11). The adjacency rule itself is taught inside Salvage as of v0.5.0, so what is left is the tier the barrel does not cover: Scrap Bins and binding a bin to one material, the Filing Cabinet, and the payoff of crafting straight out of the cluster.
+4. **Paste the CurseForge description** from `docs/curseforge_page.md` and upload the gallery. The live page is behind the repo copy.
+5. **Design the endgame** (reopened - circular economy cut). Then the postgame/final chapter (against `the_twist.md`). Bookmark in `docs/design_decisions.md` has the three seed directions.
+6. **Toward 1.0:** the knowledge half of teardown, the `The Way Home` quest spine, and one balance pass across all loot tables and recipes together. Gate list in `docs/release_checklist.md`.
 
 ## Conventions (this machine / Jason's mod work)
 - Target **NeoForge / MC 26.1** to match the Productive Frogs 2.x line (siblings: `../productive-frogs`, `../sky-frogs` - the proven pack+mod pattern to mirror).
