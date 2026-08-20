@@ -115,13 +115,22 @@ any client-tagged mod's recorded `filename` turns up in `build/server/mods/`, so
 later is covered with no edit and the check cannot drift from the jars. `check_pack_deps.py` then
 runs a second time against the installed server set, because its normal pass resolves `-s both` and
 so cannot see a break caused by the split itself. Last, a **boot smoke test** installs NeoForge,
-waits for `Done (`, and then **reports** what the generated `level.dat` contains via
-`tools/inspect_level_dat.py`. Booting alone proves nothing about the world type, since an unknown
-`level-type` falls back to `minecraft:normal` without erroring - but the first attempt at asserting
-on `level.dat` failed a release whose pack was fine and could not say why, so it reports the
-namespaced ids it finds and leaves the judgement to whoever reads the log. **Nothing has yet
-confirmed a server world actually uses the garbage preset.** Tighten this into a real assertion once
-a release log shows what a correct world looks like.
+waits for `Done (`, and then **asserts the generated terrain actually came from the garbage
+preset**, via `tools/inspect_world_terrain.py`. Booting alone proves nothing about the world type,
+since an unknown `level-type` falls back to `minecraft:normal` without erroring.
+
+That check reads the region files, not `level.dat`. Three earlier attempts read `level.dat` and all
+three were looking in the wrong file: the v0.8.0 release log showed it holding 2436 bytes and a
+single namespaced id, `minecraft:overworld`, with no generator id of any namespace - and a vanilla
+world would have to record its generator somewhere too, so that absence proved nothing either way.
+The terrain check looks for any `recompile:` id in the chunk data, which hits the per-section biome
+palette and therefore appears in **every** generated chunk rather than only where a garbage mound
+happened to spawn. Verified both ways against real worlds on disk before it went in: a Trashlands
+save reports `recompile:household_sprawl` and friends, an unrelated modded save reports none.
+
+**A wrong world now fails the release.** A world it cannot read does not - "I could not tell" exits
+2 and warns, because conflating that with "it failed" is exactly what killed a release whose pack
+was fine (#32).
 
 **The world type is set here, not by a mod.** Default World Type is client-only, so the server pack
 ships `level-type=recompile:garbage` in `server.properties`. Without that line a server generates an
