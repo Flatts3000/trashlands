@@ -55,7 +55,7 @@ tools/
 | Mod | CF project | Why it is in |
 |---|---|---|
 | **Recompile** | 1625740 | The pack. Garbage world, teardown, reclamation, machines. |
-| **Just Enough Items** | 238222 | Recompile ships a JEI plugin. At the pinned 0.12.0 it registers fourteen categories - sorting, cutting, burning, torch_cutting, prying, teardown, separating, pulverizing, cupola, vitrifying, hydrating, assembly, blueprint_crafting, growing - plus the Scrap Crafting Table as a station. (`cupola` and `vitrifying` arrived with 0.12.0's slag chain.) (`SalvageRecipe` is the shared recipe class behind them, not a category.) |
+| **Just Enough Items** | 238222 | Recompile ships a JEI plugin. At the pinned 0.13.0 it registers fifteen categories - sorting, cutting, burning, torch_cutting, prying, teardown, separating, pulverizing, cupola, vitrifying, sintering, hydrating, assembly, blueprint_crafting, growing - plus the Scrap Crafting Table as a station. (`cupola` and `vitrifying` arrived with 0.12.0's slag chain, `sintering` with 0.13.0's kiln.) (`SalvageRecipe` is the shared recipe class behind them, not a category.) |
 | **Jade** | 324717 | Recompile ships 15 Jade providers: tool hints, sort progress, machine status, generator rates. |
 | **Modonomicon** | 538392 | The engine the in-game guidebook runs on. The guide is `mod_loaded`-gated data - inert without it. |
 | **Pipez** | 443900 | Recompile's automation policy (`../recompile/docs/automation_policy_spec.md`) is written and tested against it. Which blocks accept pipes and which refuse to even connect is a per-block decision, and Pipez is how it was found and is verified. |
@@ -217,9 +217,12 @@ the newest file regardless of channel, so this will keep tracking alphas unless 
 - **It is gated harder here than in a normal world, which is the mitigating half.** No villages
   generate - the overworld biomes are `recompile:household_sprawl` and `recompile:demolition_yard`,
   and no vanilla village structure is tagged into either. So the only route to a first villager is
-  curing a zombie villager, which needs a golden apple (gold, via the E-Scrap to Circuit Powder to
-  Cupola chain) and a weakness potion (brewing, so nether wart, so the Nether). That is a deep chain,
-  and Easy Villagers' payoff arrives only after it.
+  curing a zombie villager. **That chain is shorter than it looks, and 0.13.0 made it shorter still.**
+  Vanilla Weakness is a water bottle and a fermented spider eye with no nether wart in it, and the
+  demolition yard now spawns a `minecraft:witch` at weight 5 - the same weight as the zombie villager
+  - so a splash Weakness can simply be thrown at you. No stand, no blaze rod, no Nether. The binding
+  cost is the golden apple: eight gold through the E-Scrap to Circuit Powder to Cupola chain, plus an
+  apple, which wants a Tree Nursery.
 - **Answered by Recompile 0.13.0 (2026-08-20).** This entry used to say nobody had confirmed a zombie
   villager spawns here at all, and that if none did, the mod was dead content rather than an economy
   risk. They do now, deliberately: 0.13.0 puts zombie villagers among the ordinary zombies in the
