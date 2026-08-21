@@ -54,7 +54,7 @@ hash = "2458af1163dd0a4ccbab2bc1cf789ecdf032bb9b70ddbb77a2e7af4ca509cf57"
 
 [[files]]
 file = "config/ftbquests/quests/chapters/welcome.json5"
-hash = "0f8024ba88495baea8799a07c3be2af7c000cf9495b9a6b0720d90be1d32664a"
+hash = "0c68ceaed2ce69b4fb2e9647d90d532b62ff41391c2e19ba5d737c61fb19c779"
 
 [[files]]
 file = "config/ftbquests/quests/data.json5"
@@ -66,19 +66,19 @@ hash = "f6e7ba4af1a07528f9877960f8036460fd3c35e5c60a0f8b06d23787bc177f2e"
 
 [[files]]
 file = "config/ftbquests/quests/lang/en_us/chapters/depths.json5"
-hash = "31556335126fa436178690b7155110df40302f940d6477816df6a44e31549747"
+hash = "2cc7e12af289b9e30936b7ac74be94c44a5988a372bb4946f3d4e334e59ee6c7"
 
 [[files]]
 file = "config/ftbquests/quests/lang/en_us/chapters/groundwork.json5"
-hash = "220dd6de6a0635de260931a62b8e4fdbaed18454477f20839031550d0363a54e"
+hash = "7267ba9342d6865a5612fef2c31bdc5c8504685a51cee72c1047e4d518b62f76"
 
 [[files]]
 file = "config/ftbquests/quests/lang/en_us/chapters/salvage.json5"
-hash = "595b98bda36a36313ae52274500b165823fb03fa1c901f351fb1c7e96a5ebafa"
+hash = "5f697124645c29e060268847f0ede4b899ae6acb3f491fa47449b015326c321b"
 
 [[files]]
 file = "config/ftbquests/quests/lang/en_us/chapters/welcome.json5"
-hash = "35374ee6e89529d46e9fada49fe23315e1ddb651c9e3e14c0451f733acd4809d"
+hash = "60164334e965acc3581a2722e62d08e2daec8f22f65c7c2aa797428e74479036"
 
 [[files]]
 file = "icon.png"
