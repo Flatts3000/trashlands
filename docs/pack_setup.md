@@ -55,7 +55,7 @@ tools/
 | Mod | CF project | Why it is in |
 |---|---|---|
 | **Recompile** | 1625740 | The pack. Garbage world, teardown, reclamation, machines. |
-| **Just Enough Items** | 238222 | Recompile ships a JEI plugin. At the pinned 0.13.0 it registers fifteen categories - sorting, cutting, burning, torch_cutting, prying, teardown, separating, pulverizing, cupola, vitrifying, sintering, hydrating, assembly, blueprint_crafting, growing - plus the Scrap Crafting Table as a station. (`cupola` and `vitrifying` arrived with 0.12.0's slag chain, `sintering` with 0.13.0's kiln.) (`SalvageRecipe` is the shared recipe class behind them, not a category.) |
+| **Just Enough Items** | 238222 | Recompile ships a JEI plugin. At the pinned 0.14.0 it registers fifteen categories - sorting, cutting, burning, torch_cutting, prying, teardown, separating, pulverizing, cupola, vitrifying, sintering, hydrating, assembly, blueprint_crafting, growing - plus the Scrap Crafting Table as a station. (`cupola` and `vitrifying` arrived with 0.12.0's slag chain, `sintering` with 0.13.0's kiln.) (`SalvageRecipe` is the shared recipe class behind them, not a category.) |
 | **Jade** | 324717 | Recompile ships 15 Jade providers: tool hints, sort progress, machine status, generator rates. |
 | **Modonomicon** | 538392 | The engine the in-game guidebook runs on. The guide is `mod_loaded`-gated data - inert without it. |
 | **Pipez** | 443900 | Recompile's automation policy (`../recompile/docs/automation_policy_spec.md`) is written and tested against it. Which blocks accept pipes and which refuse to even connect is a per-block decision, and Pipez is how it was found and is verified. |
@@ -169,8 +169,8 @@ Added on owner call, in one pass. The largest single change to the lineup since 
   only `#minecraft:is_overworld`, and Recompile does not put `recompile:household_sprawl` or
   `recompile:demolition_yard` in that tag - it ships no `minecraft:is_overworld` entry at all. No
   meteorite means no Inscriber presses, and presses have only two other sources: inscriber recipes
-  that need an existing press as an input, and a level-4 `fluix_researcher` villager. So digital
-  storage and autocrafting are dead content until something puts presses in the world.
+  that need an existing press as an input, and a level-4 `fluix_researcher` villager. That is why
+  digital storage and autocrafting were dead content until something put presses in the world.
   **Shipped in Recompile 0.14.0.** A sewer is rarer than a meteorite, and AE2 hands the presses over
   as a set anyway, so one crate matches how the mod already works. AE2's own tooltip used to send
   players after meteorites and now names the real source. This is engine-side pack content and is
