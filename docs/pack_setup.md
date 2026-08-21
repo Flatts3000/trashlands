@@ -55,7 +55,7 @@ tools/
 | Mod | CF project | Why it is in |
 |---|---|---|
 | **Recompile** | 1625740 | The pack. Garbage world, teardown, reclamation, machines. |
-| **Just Enough Items** | 238222 | Recompile ships a JEI plugin. At the pinned 0.13.0 it registers fifteen categories - sorting, cutting, burning, torch_cutting, prying, teardown, separating, pulverizing, cupola, vitrifying, sintering, hydrating, assembly, blueprint_crafting, growing - plus the Scrap Crafting Table as a station. (`cupola` and `vitrifying` arrived with 0.12.0's slag chain, `sintering` with 0.13.0's kiln.) (`SalvageRecipe` is the shared recipe class behind them, not a category.) |
+| **Just Enough Items** | 238222 | Recompile ships a JEI plugin. At the pinned 0.14.0 it registers fifteen categories - sorting, cutting, burning, torch_cutting, prying, teardown, separating, pulverizing, cupola, vitrifying, sintering, hydrating, assembly, blueprint_crafting, growing - plus the Scrap Crafting Table as a station. (`cupola` and `vitrifying` arrived with 0.12.0's slag chain, `sintering` with 0.13.0's kiln.) (`SalvageRecipe` is the shared recipe class behind them, not a category.) |
 | **Jade** | 324717 | Recompile ships 15 Jade providers: tool hints, sort progress, machine status, generator rates. |
 | **Modonomicon** | 538392 | The engine the in-game guidebook runs on. The guide is `mod_loaded`-gated data - inert without it. |
 | **Pipez** | 443900 | Recompile's automation policy (`../recompile/docs/automation_policy_spec.md`) is written and tested against it. Which blocks accept pipes and which refuse to even connect is a per-block decision, and Pipez is how it was found and is verified. |
@@ -160,19 +160,21 @@ Added on owner call, in one pass. The largest single change to the lineup since 
   same idea, and a drawer bound to one item **is** a Scrap Bin. **Chapter three (issue #11) exists to
   teach the Scrap Network and would now be teaching the weakest of four options** - re-read that
   issue before building it.
-- **AE2 is unreachable as pinned, and the fix is planned in Recompile.** Its whole progression hangs
-  off Sky Stone, which comes from meteorites, and meteorites cannot generate here.
+- **AE2 was unreachable, and Recompile 0.14.0 fixed it.** All four Inscriber presses are now in the
+  sump crate at the bottom of a sewer, together and guaranteed, as an `ae2:inscriber_presses` tag
+  entry - so without AE2 installed the tag resolves to nothing and the crate is unchanged. The
+  problem it solved: its whole progression hangs off Sky Stone, which comes from meteorites, and
+  meteorites cannot generate here.
   `data/ae2/worldgen/structure/meteorite.json` gates on `#ae2:has_meteorites`, that tag resolves to
   only `#minecraft:is_overworld`, and Recompile does not put `recompile:household_sprawl` or
   `recompile:demolition_yard` in that tag - it ships no `minecraft:is_overworld` entry at all. No
   meteorite means no Inscriber presses, and presses have only two other sources: inscriber recipes
-  that need an existing press as an input, and a level-4 `fluix_researcher` villager. So digital
-  storage and autocrafting are dead content until something puts presses in the world.
-  **Owner call 2026-08-20: put the presses in sewer loot** - buried infrastructure you dig up suits
-  this pack better than sky rocks ever did. **That is currently unbuildable.** Sewer loot tables
-  belong to Recompile, this repo does not write to Recompile, and the pack has no way to ship data of
-  its own (see the recipe-override section). So the decision is made and the mechanism is missing;
-  until one exists, AE2 is in the pack and unreachable.
+  that need an existing press as an input, and a level-4 `fluix_researcher` villager. That is why
+  digital storage and autocrafting were dead content until something put presses in the world.
+  **Shipped in Recompile 0.14.0.** A sewer is rarer than a meteorite, and AE2 hands the presses over
+  as a set anyway, so one crate matches how the mod already works. AE2's own tooltip used to send
+  players after meteorites and now names the real source. This is engine-side pack content and is
+  tracked for removal in #46, to move back here when the pack can ship data again.
 - **Worth noting separately:** Recompile's overworld biomes being absent from `#minecraft:is_overworld`
   is not an AE2 problem. Any mod that gates worldgen or spawning on that tag silently does nothing
   here, and nothing reports it. AE2 is just the first case anyone looked at.
@@ -308,7 +310,7 @@ Worth stating plainly, because it blocks any plan that starts "just change that 
 **And Recompile is not a route from here.** It could carry them behind `neoforge:mod_loaded`, the
 pattern `data/recompile/recipe/guide_book.json` already uses for Modonomicon - but this repo does not
 write to the mod repo. So there is currently **no way at all** for this pack to change another mod's
-recipe, and that is why Simple Magnets ships with its stock recipes.
+recipe from the pack side. Recompile carries the two that were needed, as engine-side pack content tracked for removal in #46 and #47.
 
 **One correction to the KubeJS entry in the cut list, since this is what unblocks it.** That entry
 says "a jar-in-jar cannot be excluded from a packwiz pin, so the only fix is to drop KubeJS". The
@@ -342,8 +344,10 @@ overrides:
 - ~~**Simple Magnets**~~ - **REVERSED 2026-08-20 (owner call), now in the pack.** Cut as mild
   automation of the pickup loop, and that reason was overridden rather than answered. Pinned at
   `simplemagnets-1.1.12-neoforge-mc26.1` (file 8370420), a release build covering 26.1 through
-  26.1.2. Its four recipes still run on lapis and ender pearls; re-theming them onto the pack's own
-  materials is wanted and currently has no mechanism, see below.
+  26.1.2. **Recompile 0.14.0 re-themed all four recipes** onto Magnet Scrap, scrap metal and copper,
+  with Fused Circuitry standing in for the diamond so the advanced magnet costs a trip to the Nether.
+  Spending Magnet Scrap on magnets means not spending it on redstone, and that tension is the point.
+  Engine-side pack content, tracked for removal in #47.
 - **OpenBlocks Elevator** - mounds are 3 to 15 blocks tall; there is nothing to ride up.
 - **Create and Mekanism** - not options on 26.1.2, neither has a NeoForge build past 1.21.1. This was
   checked, not assumed (`../recompile/docs/hydroponics_spec.md`). An older version of this file named

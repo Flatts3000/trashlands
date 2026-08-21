@@ -151,7 +151,7 @@ on purpose.
 | **Slimeball** | Slimes. **No longer sewers-only as of Recompile 0.13.0** - they spawn in the demolition yard at weight 100, so this stopped being a structure gate | A deposit against the redstone tier, worth little now |
 | **Trident, nautilus shell** | Drowned, from the sewer's spawner | Owner call: a prize at this depth, not a spike |
 | **Bulb, Pump, Motor, Machine Frame** | Sewer barrels, own loot pool | Travel + Prybar. All `blueprint_crafting`, so a found one is a single unit that teaches nothing - the blueprint gate is untouched |
-| **Echo shard** | The crate settled in the sump's silt, one per sewer | **The only source in the world**, and the one thing a sewer alone gives. See below |
+| **Echo shard** | The crate settled in the sump's silt, one per sewer | **The only source in the world.** As of Recompile 0.14.0 the same crate also holds all four AE2 Inscriber presses, so the sewer is now the sole entry to AE2's whole tree as well - worth re-reading the "nothing in them skips a tier" criterion above against that. See below |
 | **Mud** | The frog den's floor | **Not gated, and not new** - see below |
 | **Sand** | The turtle den's floor | Not new - sledgehammering Reinforced Concrete already yields it |
 
@@ -354,6 +354,18 @@ Kept as worked examples, because each was invisible until traced.
 
 ## Changelog
 
+- **2026-08-20** - Recompile 0.14.0, pinned in pack `chore/update-mods-recompile-0.14.0`. **Opens two
+  mods and one vanilla family.** *AE2* stops being dead content: all four Inscriber presses are in the
+  sump crate, so Sky Stone is no longer the entry and the meteorite gate is bypassed rather than fixed.
+  *Simple Magnets* is re-themed onto Magnet Scrap, which puts it on the same scarce item as redstone -
+  the first time those two compete. *The sculk family* becomes reachable at all: rare Ancient Sculk
+  seams in the compacted depths, roughly one block in seven hundred, broken only by a diamond
+  sledgehammer or better, giving Sculk Powder. That is the first block in this world that cares how
+  good the tool is rather than which tool it is, and it makes the netherite sledgehammer worth
+  building. A catalyst costs a sewer echo shard.
+  Both mod-facing changes are engine-side pack content, tracked for removal in #46 and #47.
+  Also fixed: one of the Trommel and the Pulverizer had been uncraftable since v0.10.0 because their
+  recipes were byte-identical.
 - **2026-08-20** - Recompile 0.13.0, pinned in pack `chore/update-mods-2026-08-20`. **Moves four gates
   and one spawn rule.** *The brewing stand* is reachable without a fortress: the Sintering Kiln fires
   four blaze powder, pressed into a briquette, into a blaze rod. *Netherite upgrading* is reachable

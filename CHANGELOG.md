@@ -9,6 +9,20 @@ and ASCII punctuation only.
 ## [Unreleased]
 
 ### Added
+- **Applied Energistics 2 can be started now** (Recompile 0.14.0). AE2 went into the pack after
+  v0.8.0 shipped and has been unreachable the whole time: its tree hangs off Sky Stone, Sky Stone
+  comes from meteorites, and no meteorite can fall here. All four Inscriber presses are now in the
+  crate at the bottom of a sewer, together and guaranteed. A sewer is rarer than a meteorite, and AE2
+  hands the presses over as a set anyway.
+- **Simple Magnets, built out of Magnet Scrap.** Items come to you instead of being walked over. Its
+  stock recipes wanted an ender pearl and lapis; all four are rebuilt on magnet scrap, scrap metal and
+  copper, with Fused Circuitry in place of the diamond, so an advanced magnet costs a trip to the
+  Nether. Magnet scrap is also the only redstone in the world, so spending it on magnets is a real
+  choice.
+- **Ancient Sculk** runs in rare seams through the compacted depths, and a diamond sledgehammer or
+  better is the only thing that breaks it. It gives Sculk Powder, which packs into the whole sculk
+  family - and a catalyst costs the echo shard from a sewer sump. Nine vanilla items had no source at
+  all before this, because there is no deep dark here and no city under one.
 - **Recompile 0.13.0**, which closes four things this world could not reach. The **Sintering Kiln**
   fires pressed powder back into a solid, and four blaze powder pressed and fired gives a blaze rod,
   so brewing no longer needs a fortress. A **Worn Forging Die** turns up in the depths; tearing one
@@ -22,15 +36,20 @@ and ASCII punctuation only.
   the hard part here and that has not changed: no villages generate in this world, so the route is
   curing a zombie villager, which wants a golden apple and a weakness potion. This makes what happens
   after that far less tedious.
-- **Simple Magnets.** Items come to you instead of being walked over. Its recipes are the mod's own
-  for now.
 - **Storage and automation, all at once.** Sophisticated Backpacks and Storage, Functional Storage,
   Applied Energistics 2, Ender IO, Modular Routers, and Apotheosis for loot and enchanting.
-- **The Depths**, a fourth chapter, about the Nether. Seventeen quests: where slag comes from and
+- **The Depths**, a fourth chapter, about the Nether. Nineteen quests: where slag comes from and
   why you cannot ask for it, the Slag Furnace and the only obsidian in the world, picking through
   techno-organic waste, terrain crafted from shards rather than mined, and the machine chains that
-  turn Nether waste into quartz, glowstone, nether wart and blaze powder. It ends on a piece of coal, which v0.8.0 made
-  reachable and nothing in the book had explained since.
+  turn Nether waste into quartz, glowstone, nether wart and blaze powder. It ends on a piece of coal,
+  which v0.8.0 made reachable and nothing in the book had explained since.
+
+### Fixed
+- **One of the Trommel and the Pulverizer could not be crafted, and had not been since Recompile
+  v0.10.0.** Their recipes were byte-identical, and a crafting grid gives one result, so one of the
+  two machines simply came out instead of the other. No error and no log line; JEI showed both as
+  working. The Trommel's motor moves to the end of the drum, which is where a trommel is driven from
+  anyway.
 
 ## [0.8.0] - 2026-08-19
 
