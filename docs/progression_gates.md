@@ -148,7 +148,7 @@ on purpose.
 | String, bone | Sewer barrels, and cobwebs with shears | Travel + Prybar |
 | **Glass bottle** | Sewer barrels | Travel + Prybar. A second source for a `found_only` item |
 | **Cobweb** | Sewer corridors, cut with shears | The only source in the game |
-| **Slimeball** | Slimes, which live only in sewers | A deposit against the redstone tier, worth little now |
+| **Slimeball** | Slimes. **No longer sewers-only as of Recompile 0.13.0** - they spawn in the demolition yard at weight 100, so this stopped being a structure gate | A deposit against the redstone tier, worth little now |
 | **Trident, nautilus shell** | Drowned, from the sewer's spawner | Owner call: a prize at this depth, not a spike |
 | **Bulb, Pump, Motor, Machine Frame** | Sewer barrels, own loot pool | Travel + Prybar. All `blueprint_crafting`, so a found one is a single unit that teaches nothing - the blueprint gate is untouched |
 | **Echo shard** | The crate settled in the sump's silt, one per sewer | **The only source in the world**, and the one thing a sewer alone gives. See below |
@@ -354,6 +354,18 @@ Kept as worked examples, because each was invisible until traced.
 
 ## Changelog
 
+- **2026-08-20** - Recompile 0.13.0, pinned in pack `chore/update-mods-2026-08-20`. **Moves four gates
+  and one spawn rule.** *The brewing stand* is reachable without a fortress: the Sintering Kiln fires
+  four blaze powder, pressed into a briquette, into a blaze rod. *Netherite upgrading* is reachable
+  without a bastion: a Worn Forging Die out of the depths tears down at the Workbench for a Steel
+  Offcut and scrap and teaches a quarter of `recompile:netherite_upgrade`, so four dies buy the
+  blueprint, and the template then costs 7 diamond, 1 netherite scrap and 1 netherrack - deliberately
+  worse than vanilla's duplication. *Emeralds* exist, through the only villager in the world: zombie
+  villagers now spawn in the demolition yard, and the yard's hostile list is vanilla plains' outright
+  so they are no rarer here than anywhere else. *Red sand* comes out of Reinforced Concrete, opening
+  the red sandstone family. And **slimes are no longer sewers-only** - see the Slimeball row above.
+  Note the cure is cheaper than the gem tier assumed: a `minecraft:witch` also spawns in the yard, so
+  splash Weakness needs no brewing stand at all, and the binding cost is the golden apple.
 - **2026-08-19** - Recompile 0.12.0, pinned in pack v0.8.0. **Moves three gates at once.** *Obsidian*
   now exists: the Cupola rakes off a lump of slag every eighth smelt and the Slag Furnace vitrifies one
   lump into one block, which also makes a Nether portal buildable and enchanting reachable (see the gem

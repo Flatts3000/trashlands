@@ -62,7 +62,7 @@ hash = "dd320aed75a15a51ab2ddf2f62707653c5e1c2f8c1c825f53ba8544250c99fdf"
 
 [[files]]
 file = "config/ftbquests/quests/lang/en_us/chapters/groundwork.json5"
-hash = "f315d6fccd84e0d0e4ea5df13c40abe2cd99afe032734ea1e76826efc7a33830"
+hash = "220dd6de6a0635de260931a62b8e4fdbaed18454477f20839031550d0363a54e"
 
 [[files]]
 file = "config/ftbquests/quests/lang/en_us/chapters/salvage.json5"
@@ -313,7 +313,7 @@ metafile = true
 
 [[files]]
 file = "mods/recompile.pw.toml"
-hash = "e23114ebdc5c45771062f954725fa1ce3e882e9bb044d0f71b65028805dd7a34"
+hash = "29dafc1164b2a408634f8418f7c9313ce73a930b6fdb9322583a487f9289c4a4"
 metafile = true
 
 [[files]]
