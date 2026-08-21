@@ -31,9 +31,17 @@
     "",
     "The Salvager's Manual comes with this quest. It goes deeper than this book does."
   ],
+  "quest.7A55E0BA6E000019.title": "The Book Is Not Finished",
+  "quest.7A55E0BA6E000019.quest_desc": [
+    "This pack is an alpha, and the quest book is the least finished part of it.",
+    "",
+    "What is here is a rough guide, not the shape it will take. Most of the work is going into Recompile, the mod this pack is built on, and the book gets rewritten once that settles.",
+    "",
+    "The Salvager's Manual covers more. Use it first.",
+  ],
   "quest.7A55E0BA6E000015.title": "Join the Discord",
   "quest.7A55E0BA6E000015.quest_desc": [
-    "This is an alpha and the numbers are first-pass. Bug reports and balance complaints are both useful.",
+    "The numbers in this pack are first-pass. Bug reports and balance complaints are both useful.",
     "",
     "Click the Discord badge above. It opens the invite in your browser.",
   ],

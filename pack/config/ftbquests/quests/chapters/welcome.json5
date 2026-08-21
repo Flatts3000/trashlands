@@ -165,6 +165,29 @@
       ],
     },
     {
+      x: 3.0,
+      y: 1.5,
+      shape: "diamond",
+      id: "7A55E0BA6E000019",
+      icon: {
+        id: "minecraft:writable_book",
+        count: 1,
+      },
+      rewards: [
+        {
+          id: "7A55E0BA6E0000E6",
+          type: "xp",
+          xp: 10,
+        },
+      ],
+      tasks: [
+        {
+          id: "7A55E0BA6E00008A",
+          type: "checkmark",
+        },
+      ],
+    },
+    {
       x: 0.0,
       y: 1.5,
       id: "7A55E0BA6E000012",
