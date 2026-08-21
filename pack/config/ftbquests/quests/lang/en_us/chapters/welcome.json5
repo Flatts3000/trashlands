@@ -17,7 +17,7 @@
   ],
   "quest.7A55E0BA6E000017.title": "Water",
   "quest.7A55E0BA6E000017.quest_desc": [
-    "There is no water in this world at first. Rain is the only source, and the Rain Collector catches it.",
+    "There is no water in this world at first. Rain is the only source early on, and the Rain Collector catches it.",
     "",
     "Two source blocks will not fill a third. That vanilla trick is off here, so water never multiplies.",
     "",
@@ -49,7 +49,7 @@
   "quest.7A55E0BA6E000012.quest_desc": [
     "Hold right-click on a Block of Garbage where it stands. It gives one item at a time, and after two or three the block is gone.",
     "",
-    "Sorting needs bare hands. Breaking a block to carry it needs a shovel, and without one you get nothing. Trash Bags come up bare-handed.",
+    "Sorting where it stands takes no tool, whatever you are holding. Breaking a block to carry it needs a shovel, and without one you get nothing. Trash Bags are the exception: they break by hand.",
     "",
     "What comes out is random, so this takes a few blocks.",
   ],

@@ -74,11 +74,11 @@ hash = "7267ba9342d6865a5612fef2c31bdc5c8504685a51cee72c1047e4d518b62f76"
 
 [[files]]
 file = "config/ftbquests/quests/lang/en_us/chapters/salvage.json5"
-hash = "80593f5dbe9c271e50cc0f8a081040efb400ea79948e60e1178fc87f3a2de4df"
+hash = "5f697124645c29e060268847f0ede4b899ae6acb3f491fa47449b015326c321b"
 
 [[files]]
 file = "config/ftbquests/quests/lang/en_us/chapters/welcome.json5"
-hash = "7dc125220e41fedddf05173ff8f101be23e6764f7953894efdaeade1ce79dcaa"
+hash = "60164334e965acc3581a2722e62d08e2daec8f22f65c7c2aa797428e74479036"
 
 [[files]]
 file = "icon.png"

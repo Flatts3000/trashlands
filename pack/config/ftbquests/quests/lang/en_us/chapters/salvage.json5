@@ -13,7 +13,7 @@
   "quest.7A55E0BA6E00002C.quest_desc": [
     "The first smelter in this world. It opens the ordinary furnace screen.",
     "",
-    "It takes refuse and food, nothing else. Pipes and hoppers cannot reach it, so load it by hand.",
+    "It burns scrap metal, food, and a few other odds of refuse. Other metals will not go in it. Pipes and hoppers cannot reach it, so load it by hand.",
     "",
     "Stand a Scrap Barrel against it and finished smelts move across as they come.",
     "",
@@ -61,7 +61,7 @@
     "",
     "This one replaces it, and it fits the 2x2 grid in your inventory.",
     "",
-    "Put it down somewhere you have room to build around. The panel down the right of its screen lists what the whole Scrap Network is holding.",
+    "Put it down somewhere you have room to build around. Scrap blocks touching each other are one Scrap Network, and the panel down the right of its screen lists what the whole network is holding.",
   ],
   "quest.7A55E0BA6E000021.title": "Prybar",
   "quest.7A55E0BA6E000021.quest_desc": [
