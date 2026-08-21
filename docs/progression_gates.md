@@ -354,6 +354,18 @@ Kept as worked examples, because each was invisible until traced.
 
 ## Changelog
 
+- **2026-08-21** - Recompile 0.14.0, pinned in pack `chore/update-mods-recompile-0.14.0`. **Opens two
+  mods and one vanilla family.** *AE2* stops being dead content: all four Inscriber presses are in the
+  sump crate, so Sky Stone is no longer the entry and the meteorite gate is bypassed rather than fixed.
+  *Simple Magnets* is re-themed onto Magnet Scrap, which puts it on the same scarce item as redstone -
+  the first time those two compete. *The sculk family* becomes reachable at all: rare Ancient Sculk
+  seams in the compacted depths, roughly one block in seven hundred, broken only by a diamond
+  sledgehammer or better, giving Sculk Powder. That is the first block in this world that cares how
+  good the tool is rather than which tool it is, and it makes the netherite sledgehammer worth
+  building. A catalyst costs a sewer echo shard.
+  Both mod-facing changes are engine-side pack content, tracked for removal in #46 and #47.
+  Also fixed: one of the Trommel and the Pulverizer had been uncraftable since v0.10.0 because their
+  recipes were byte-identical.
 - **2026-08-20** - Recompile 0.13.0, pinned in pack `chore/update-mods-2026-08-20`. **Moves four gates
   and one spawn rule.** *The brewing stand* is reachable without a fortress: the Sintering Kiln fires
   four blaze powder, pressed into a briquette, into a blaze rod. *Netherite upgrading* is reachable

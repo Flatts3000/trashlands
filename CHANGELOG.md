@@ -9,6 +9,25 @@ and ASCII punctuation only.
 ## [Unreleased]
 
 ### Added
+- **Applied Energistics 2 can be started now** (Recompile 0.14.0). It has been in the pack and
+  unreachable since v0.8.0: its tree hangs off Sky Stone, Sky Stone comes from meteorites, and no
+  meteorite can fall here. All four Inscriber presses are now in the crate at the bottom of a sewer,
+  together and guaranteed. A sewer is rarer than a meteorite, and AE2 hands the presses over as a set
+  anyway.
+- **Simple Magnets is built out of Magnet Scrap.** Its stock recipes wanted an ender pearl and lapis.
+  All four are rebuilt on magnet scrap, scrap metal and copper, with Fused Circuitry in place of the
+  diamond, so an advanced magnet costs a trip to the Nether. Magnet scrap is also the only redstone in
+  the world, so spending it on magnets is a real choice.
+- **Ancient Sculk** runs in rare seams through the compacted depths, and a diamond sledgehammer or
+  better is the only thing that breaks it. It gives Sculk Powder, which packs into the whole sculk
+  family - and a catalyst costs the echo shard from a sewer sump. Nine vanilla items had no source at
+  all before this, because there is no deep dark here and no city under one.
+
+### Fixed
+- **One of the Trommel and the Pulverizer could not be crafted, and had not been since v0.10.0.** Their
+  recipes were byte-identical, and a crafting grid gives one result, so one of the two machines simply
+  came out instead of the other. No error and no log line; JEI showed both as working. The Trommel's
+  motor moves to the end of the drum, which is where a trommel is driven from anyway.
 - **Recompile 0.13.0**, which closes four things this world could not reach. The **Sintering Kiln**
   fires pressed powder back into a solid, and four blaze powder pressed and fired gives a blaze rod,
   so brewing no longer needs a fortress. A **Worn Forging Die** turns up in the depths; tearing one
