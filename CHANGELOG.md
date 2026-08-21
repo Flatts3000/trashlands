@@ -9,6 +9,14 @@ and ASCII punctuation only.
 ## [Unreleased]
 
 ### Added
+- (nothing yet)
+
+## [0.9.0] - 2026-08-20
+
+Fifteen more mods, a chapter about the Nether, and two of them that could not be played in this
+world until now.
+
+### Added
 - **Applied Energistics 2 can be started now** (Recompile 0.14.0). AE2 went into the pack after
   v0.8.0 shipped and has been unreachable the whole time: its tree hangs off Sky Stone, Sky Stone
   comes from meteorites, and no meteorite can fall here. All four Inscriber presses are now in the
