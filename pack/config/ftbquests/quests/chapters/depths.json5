@@ -382,5 +382,49 @@
         },
       ],
     },
+    {
+      x: 6.0,
+      y: 9.0,
+      id: "7A55E0BA6E000311",
+      icon: {
+        id: "recompile:worn_forging_die",
+        count: 1,
+      },
+      dependencies: [
+        "7A55E0BA6E00030E",
+      ],
+      rewards: [
+        { id: "7A55E0BA6E000511", type: "xp", xp: 100 },
+      ],
+      tasks: [
+        {
+          id: "7A55E0BA6E000411",
+          type: "item",
+          item: { id: "recompile:worn_forging_die", count: 1 },
+        },
+      ],
+    },
+    {
+      x: -4.0,
+      y: 9.0,
+      id: "7A55E0BA6E000312",
+      icon: {
+        id: "minecraft:blaze_rod",
+        count: 1,
+      },
+      dependencies: [
+        "7A55E0BA6E00030D",
+      ],
+      rewards: [
+        { id: "7A55E0BA6E000512", type: "xp", xp: 100 },
+      ],
+      tasks: [
+        {
+          id: "7A55E0BA6E000412",
+          type: "item",
+          item: { id: "minecraft:blaze_rod", count: 1 },
+        },
+      ],
+    },
   ],
 }

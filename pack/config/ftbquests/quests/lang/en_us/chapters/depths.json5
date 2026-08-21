@@ -59,6 +59,22 @@
   "quest.7A55E0BA6E00030E.quest_desc": [
     "Straight out of the waste, uncommonly. The rock holds no ancient debris to mine for, though a bastion chest may still have some.",
   ],
+  "quest.7A55E0BA6E000311.title": "The Worn Forging Die",
+  "quest.7A55E0BA6E000311.quest_desc": [
+    "You will find these long before you find netherite scrap; they come out of the waste about six times as often.",
+    "",
+    "Tear one down at the Workbench with a Prybar. It gives back almost nothing, because a worn-out die has nothing left but its shape, and the shape is the point: each one teaches a quarter of the netherite upgrade. Four and you have the pattern for good.",
+    "",
+    "A forging die is the block a press shapes metal against, so the pattern lives in the die. That is what a smithing template is, and this is the only way to make one here.",
+  ],
+  "quest.7A55E0BA6E000312.title": "A Blaze Rod, Without a Fortress",
+  "quest.7A55E0BA6E000312.quest_desc": [
+    "Press four blaze powder into a briquette at any bench, then fire the briquette in the Sintering Kiln.",
+    "",
+    "A rod breaks back down into two powder, so four is not arbitrary: at any lower price you could make rods out of nothing by going in circles. It costs four and refunds two.",
+    "",
+    "This is a brewing stand, and every potion behind it, without ever finding a fortress.",
+  ],
   "quest.7A55E0BA6E00030F.title": "Lignite",
   "quest.7A55E0BA6E00030F.quest_desc": [
     "Brown coal, and a real rank of it: the one below the coal vanilla ships. Buried compacted organics under heat and weight is not like a coal seam forming, it is one.",

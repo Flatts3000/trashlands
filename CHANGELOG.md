@@ -29,8 +29,8 @@ and ASCII punctuation only.
 - **The Depths**, a fourth chapter, about the Nether. Seventeen quests: where slag comes from and
   why you cannot ask for it, the Slag Furnace and the only obsidian in the world, picking through
   techno-organic waste, terrain crafted from shards rather than mined, and the machine chains that
-  turn Nether waste into quartz, glowstone, nether wart and blaze powder. It ends on a piece of coal,
-  which this world had no route to at all until now.
+  turn Nether waste into quartz, glowstone, nether wart and blaze powder. It ends on a piece of coal, which v0.8.0 made
+  reachable and nothing in the book had explained since.
 
 ## [0.8.0] - 2026-08-19
 
