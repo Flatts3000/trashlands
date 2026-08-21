@@ -139,7 +139,14 @@ Reached by travelling: `RegionBiomeSource` places `demolition_yard` on a distanc
 ## The sewers (2026-08-17, Recompile #90)
 
 Under the demolition yard, so they inherit its gate: **travel**, plus a **Prybar** to lift the cover.
-Nothing in them skips a tier - that was the acceptance criterion and it is the reason the table is dull
+**That criterion no longer holds, as of Recompile 0.14.0 (pack v0.9.0).** The sump crate now also
+holds all four AE2 Inscriber presses, which is the entry to that mod's entire tree, so a sewer skips
+straight past every tier AE2 would otherwise sit behind. It was a deliberate call - AE2 was
+unreachable otherwise, see #41 - and it is engine-side pack content tracked for removal in #46, so
+the criterion should hold again once that comes back out. Recorded here because a gate table that
+still claims an invariant it lost is worse than one that never had it.
+
+Otherwise nothing in them skips a tier - that was the acceptance criterion and it is the reason the table is dull
 on purpose.
 
 | Yield | Source | Gated behind |

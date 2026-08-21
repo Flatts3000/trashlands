@@ -87,7 +87,7 @@ checked before it ships, against:
 
 **Check the version the pack PINS, not `../recompile/` as it sits.** That sibling repo is a live
 working tree: it runs ahead of the last release, another session may be part-way through an edit in
-it, and neither state is what a player has. Read the pinned tag - `git show v0.8.0:path/to/file` -
+it, and neither state is what a player has. Read the pinned tag - `git show v0.14.0:path/to/file` -
 and only then the working tree, to see what is coming.
 
 _This is not hypothetical. On 2026-08-11 the bucket's drop rate was read out of an uncommitted

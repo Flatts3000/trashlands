@@ -132,6 +132,23 @@ save reports `recompile:household_sprawl` and friends, an unrelated modded save 
 2 and warns, because conflating that with "it failed" is exactly what killed a release whose pack
 was fine (#32).
 
+**It ran for the first time in the v0.9.0 release, and it passed**, which is the answer #32 had been
+after since 2026-08-18 and failed to get three times:
+
+```
+save confirmed in boot.log
+--- world type check ---
+4 region file(s), 529 chunk(s) read, 529 with a biome palette
+the preset applied. recompile: ids in the terrain:
+    1176  recompile:household_sprawl
+     159  recompile:mound_ground
+```
+
+A server world does generate as Trashlands. Note the middle line: every one of the 529 chunks had a
+biome palette, which is what makes the absence of a `recompile:` id meaningful rather than merely
+unobserved. The clean `stop` is load-bearing - `kill` on the wrapper orphans the JVM, no save runs,
+and there would be no region files to read at all.
+
 **The world type is set here, not by a mod.** Default World Type is client-only, so the server pack
 ships `level-type=recompile:garbage` in `server.properties`. Without that line a server generates an
 ordinary overworld, and because world generation is decided once at creation, the only fix is
