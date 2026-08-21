@@ -1,0 +1,430 @@
+{
+  id: "7A55E0BA6E000004",
+  group: "",
+  order_index: 10,
+  filename: "depths",
+  icon: {
+    id: "recompile:slag",
+    count: 1,
+  },
+  default_quest_shape: "",
+  default_hide_dependency_lines: false,
+  autofocus_id: "7A55E0BA6E000300",
+  quests: [
+    {
+      x: 0.0,
+      y: 1.0,
+      id: "7A55E0BA6E000300",
+      icon: {
+        id: "recompile:slag",
+        count: 1,
+      },
+      rewards: [
+        { id: "7A55E0BA6E000500", type: "xp", xp: 25 },
+      ],
+      tasks: [
+        {
+          id: "7A55E0BA6E000400",
+          type: "item",
+          item: { id: "recompile:slag", count: 1 },
+        },
+      ],
+    },
+    {
+      x: 0.0,
+      y: 3.0,
+      id: "7A55E0BA6E000301",
+      icon: {
+        id: "recompile:slag_furnace",
+        count: 1,
+      },
+      dependencies: [
+        "7A55E0BA6E000300",
+      ],
+      rewards: [
+        { id: "7A55E0BA6E000501", type: "xp", xp: 50 },
+      ],
+      tasks: [
+        {
+          id: "7A55E0BA6E000401",
+          type: "item",
+          item: { id: "recompile:slag_furnace", count: 1 },
+        },
+      ],
+    },
+    {
+      x: 0.0,
+      y: 5.0,
+      id: "7A55E0BA6E000302",
+      icon: {
+        id: "minecraft:obsidian",
+        count: 1,
+      },
+      dependencies: [
+        "7A55E0BA6E000301",
+      ],
+      rewards: [
+        { id: "7A55E0BA6E000502", type: "xp", xp: 75 },
+      ],
+      tasks: [
+        {
+          id: "7A55E0BA6E000402",
+          type: "item",
+          item: { id: "minecraft:obsidian", count: 1 },
+        },
+      ],
+    },
+    {
+      x: -2.0,
+      y: 3.0,
+      id: "7A55E0BA6E000303",
+      icon: {
+        id: "minecraft:gray_concrete_powder",
+        count: 1,
+      },
+      dependencies: [
+        "7A55E0BA6E000300",
+      ],
+      rewards: [
+        { id: "7A55E0BA6E000503", type: "xp", xp: 25 },
+      ],
+      tasks: [
+        {
+          id: "7A55E0BA6E000403",
+          type: "item",
+          item: { id: "minecraft:gray_concrete_powder", count: 1 },
+        },
+      ],
+    },
+    {
+      x: -2.0,
+      y: 5.0,
+      id: "7A55E0BA6E000304",
+      icon: {
+        id: "recompile:fertilizer",
+        count: 1,
+      },
+      dependencies: [
+        "7A55E0BA6E000300",
+      ],
+      rewards: [
+        { id: "7A55E0BA6E000504", type: "xp", xp: 25 },
+      ],
+      tasks: [
+        {
+          id: "7A55E0BA6E000404",
+          type: "item",
+          item: { id: "recompile:fertilizer", count: 1 },
+        },
+      ],
+    },
+    {
+      x: 0.0,
+      y: 7.0,
+      id: "7A55E0BA6E000305",
+      icon: {
+        id: "recompile:techno_organic_waste",
+        count: 1,
+      },
+      dependencies: [
+        "7A55E0BA6E000302",
+      ],
+      rewards: [
+        { id: "7A55E0BA6E000505", type: "xp", xp: 75 },
+      ],
+      tasks: [
+        {
+          id: "7A55E0BA6E000405",
+          type: "item",
+          item: { id: "recompile:techno_organic_waste", count: 1 },
+        },
+      ],
+    },
+    {
+      x: 0.0,
+      y: 9.0,
+      id: "7A55E0BA6E000306",
+      icon: {
+        id: "recompile:slag_rubble",
+        count: 1,
+      },
+      dependencies: [
+        "7A55E0BA6E000305",
+      ],
+      rewards: [
+        { id: "7A55E0BA6E000506", type: "xp", xp: 25 },
+      ],
+      tasks: [
+        {
+          id: "7A55E0BA6E000406",
+          type: "item",
+          item: { id: "recompile:slag_rubble", count: 1 },
+        },
+      ],
+    },
+    {
+      x: -2.0,
+      y: 11.0,
+      id: "7A55E0BA6E000307",
+      icon: {
+        id: "minecraft:netherrack",
+        count: 1,
+      },
+      dependencies: [
+        "7A55E0BA6E000306",
+      ],
+      rewards: [
+        { id: "7A55E0BA6E000507", type: "xp", xp: 50 },
+      ],
+      tasks: [
+        {
+          id: "7A55E0BA6E000407",
+          type: "item",
+          item: { id: "minecraft:netherrack", count: 1 },
+        },
+      ],
+    },
+    {
+      x: 0.0,
+      y: 11.0,
+      id: "7A55E0BA6E000308",
+      icon: {
+        id: "minecraft:soul_sand",
+        count: 1,
+      },
+      dependencies: [
+        "7A55E0BA6E000306",
+      ],
+      rewards: [
+        { id: "7A55E0BA6E000508", type: "xp", xp: 50 },
+      ],
+      tasks: [
+        {
+          id: "7A55E0BA6E000408",
+          type: "item",
+          item: { id: "minecraft:soul_sand", count: 1 },
+        },
+      ],
+    },
+    {
+      x: 2.0,
+      y: 11.0,
+      id: "7A55E0BA6E000309",
+      icon: {
+        id: "minecraft:crimson_nylium",
+        count: 1,
+      },
+      dependencies: [
+        "7A55E0BA6E000306",
+      ],
+      rewards: [
+        { id: "7A55E0BA6E000509", type: "xp", xp: 75 },
+      ],
+      tasks: [
+        {
+          id: "7A55E0BA6E000409",
+          type: "item",
+          item: { id: "minecraft:crimson_nylium", count: 1 },
+        },
+      ],
+    },
+    {
+      x: 2.0,
+      y: 7.0,
+      id: "7A55E0BA6E00030A",
+      icon: {
+        id: "minecraft:quartz",
+        count: 1,
+      },
+      dependencies: [
+        "7A55E0BA6E000305",
+      ],
+      rewards: [
+        { id: "7A55E0BA6E00050A", type: "xp", xp: 50 },
+      ],
+      tasks: [
+        {
+          id: "7A55E0BA6E00040A",
+          type: "item",
+          item: { id: "minecraft:quartz", count: 1 },
+        },
+      ],
+    },
+    {
+      x: 2.0,
+      y: 9.0,
+      id: "7A55E0BA6E00030B",
+      icon: {
+        id: "minecraft:glowstone_dust",
+        count: 1,
+      },
+      dependencies: [
+        "7A55E0BA6E000305",
+      ],
+      rewards: [
+        { id: "7A55E0BA6E00050B", type: "xp", xp: 50 },
+      ],
+      tasks: [
+        {
+          id: "7A55E0BA6E00040B",
+          type: "item",
+          item: { id: "minecraft:glowstone_dust", count: 1 },
+        },
+      ],
+    },
+    {
+      x: -2.0,
+      y: 7.0,
+      id: "7A55E0BA6E00030C",
+      icon: {
+        id: "minecraft:nether_wart",
+        count: 1,
+      },
+      dependencies: [
+        "7A55E0BA6E000305",
+      ],
+      rewards: [
+        { id: "7A55E0BA6E00050C", type: "xp", xp: 75 },
+      ],
+      tasks: [
+        {
+          id: "7A55E0BA6E00040C",
+          type: "item",
+          item: { id: "minecraft:nether_wart", count: 1 },
+        },
+      ],
+    },
+    {
+      x: -2.0,
+      y: 9.0,
+      id: "7A55E0BA6E00030D",
+      icon: {
+        id: "minecraft:blaze_powder",
+        count: 1,
+      },
+      dependencies: [
+        "7A55E0BA6E000305",
+      ],
+      rewards: [
+        { id: "7A55E0BA6E00050D", type: "xp", xp: 75 },
+      ],
+      tasks: [
+        {
+          id: "7A55E0BA6E00040D",
+          type: "item",
+          item: { id: "minecraft:blaze_powder", count: 1 },
+        },
+      ],
+    },
+    {
+      x: 4.0,
+      y: 9.0,
+      id: "7A55E0BA6E00030E",
+      icon: {
+        id: "minecraft:netherite_scrap",
+        count: 1,
+      },
+      dependencies: [
+        "7A55E0BA6E000305",
+      ],
+      rewards: [
+        { id: "7A55E0BA6E00050E", type: "xp", xp: 100 },
+      ],
+      tasks: [
+        {
+          id: "7A55E0BA6E00040E",
+          type: "item",
+          item: { id: "minecraft:netherite_scrap", count: 1 },
+        },
+      ],
+    },
+    {
+      x: 2.0,
+      y: 13.0,
+      id: "7A55E0BA6E00030F",
+      icon: {
+        id: "recompile:lignite",
+        count: 1,
+      },
+      dependencies: [
+        "7A55E0BA6E000305",
+      ],
+      rewards: [
+        { id: "7A55E0BA6E00050F", type: "xp", xp: 50 },
+      ],
+      tasks: [
+        {
+          id: "7A55E0BA6E00040F",
+          type: "item",
+          item: { id: "recompile:lignite", count: 1 },
+        },
+      ],
+    },
+    {
+      x: 0.0,
+      y: 15.0,
+      id: "7A55E0BA6E000310",
+      icon: {
+        id: "minecraft:coal",
+        count: 1,
+      },
+      dependencies: [
+        "7A55E0BA6E00030F",
+      ],
+      rewards: [
+        { id: "7A55E0BA6E000510", type: "xp", xp: 150 },
+      ],
+      tasks: [
+        {
+          id: "7A55E0BA6E000410",
+          type: "item",
+          item: { id: "minecraft:coal", count: 1 },
+        },
+      ],
+    },
+    {
+      x: 6.0,
+      y: 9.0,
+      id: "7A55E0BA6E000311",
+      icon: {
+        id: "recompile:worn_forging_die",
+        count: 1,
+      },
+      dependencies: [
+        "7A55E0BA6E00030E",
+      ],
+      rewards: [
+        { id: "7A55E0BA6E000511", type: "xp", xp: 100 },
+      ],
+      tasks: [
+        {
+          id: "7A55E0BA6E000411",
+          type: "item",
+          item: { id: "recompile:worn_forging_die", count: 1 },
+        },
+      ],
+    },
+    {
+      x: -4.0,
+      y: 9.0,
+      id: "7A55E0BA6E000312",
+      icon: {
+        id: "minecraft:blaze_rod",
+        count: 1,
+      },
+      dependencies: [
+        "7A55E0BA6E00030D",
+      ],
+      rewards: [
+        { id: "7A55E0BA6E000512", type: "xp", xp: 100 },
+      ],
+      tasks: [
+        {
+          id: "7A55E0BA6E000412",
+          type: "item",
+          item: { id: "minecraft:blaze_rod", count: 1 },
+        },
+      ],
+    },
+  ],
+}

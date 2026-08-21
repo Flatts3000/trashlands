@@ -138,8 +138,8 @@ otherwise found by whoever first runs a server.
 - [ ] **The knowledge half of teardown shipped.** Recovering a recipe off a torn-down item is the
       mod's distinct axis. Until it exists, the pack's own pitch is only half true.
 - [ ] **Quest content.** The engine is in and the book is no longer empty - a **Welcome** chapter
-      a **Salvage** chapter and a **Groundwork** chapter ship as of v0.6.0: 41 quests from the first
-      Block of Garbage to a breeding pair of animals. What is missing is the spine: `The Way Home`, parts one to six, per `the_twist.md`. Write it against the
+      a **Salvage** and a **Groundwork** chapter ship as of v0.6.0, and **The Depths** is written but unreleased: 58 quests from the first
+      Block of Garbage to a piece of coal. What is missing is the spine: `The Way Home`, parts one to six, per `the_twist.md`. Write it against the
       `quest-voice` spec; the twist means the final chapters are authored against that file directly.
 - [ ] **One balance pass across all loot tables and recipes together** - the standing gate in
       `../recompile/docs/roadmap.md`. Every drop rate and recipe cost shipped so far is a first-pass
