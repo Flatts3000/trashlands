@@ -26,6 +26,13 @@ Two pins drift silently and both ship to every new downloader.
    cd pack && packwiz update recompile -y
    ```
 
+   **Then read the mod's changelog for new content in a dimension the book already documents, and
+   check the chapter still covers it.** This is not hypothetical housekeeping: three releases running
+   added to the compacted depths after The Depths was written. 0.13.0 added the Worn Forging Die,
+   caught in review and folded in before it shipped; 0.14.0 added Ancient Sculk, which was not, and
+   needed #51 afterwards. A chapter documenting a dimension that is still being built goes stale by
+   default, and nothing else in this list would notice.
+
 2. **NeoForge.** Compare `pack/pack.toml`'s `[versions] neoforge` against the latest 26.1.x:
 
    ```sh
