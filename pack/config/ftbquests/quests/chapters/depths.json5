@@ -428,7 +428,7 @@
     },
     {
       x: 4.0,
-      y: 7.0,
+      y: 5.0,
       id: "7A55E0BA6E000313",
       icon: {
         id: "recompile:ancient_sculk",
@@ -450,7 +450,7 @@
     },
     {
       x: 6.0,
-      y: 7.0,
+      y: 5.0,
       id: "7A55E0BA6E000314",
       icon: {
         id: "minecraft:sculk_catalyst",
