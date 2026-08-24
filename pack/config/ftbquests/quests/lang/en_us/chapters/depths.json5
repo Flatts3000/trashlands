@@ -89,4 +89,16 @@
     "",
     "This is the only coal in the world.",
   ],
+  "quest.7A55E0BA6E000313.title": "Ancient Sculk",
+  "quest.7A55E0BA6E000313.quest_desc": [
+    "Seams run through the fill, lit from inside.",
+    "",
+    "&eA diamond sledgehammer, or netherite.&r Copper and iron leave nothing behind however long you swing. The diamond one wants a whole diamond block, so this is gem-tier work however early you find a seam.",
+  ],
+  "quest.7A55E0BA6E000314.title": "A Catalyst Needs a Shard",
+  "quest.7A55E0BA6E000314.quest_desc": [
+    "Three to five powder a block, never the block itself. One packs back into sculk, two make four veins.",
+    "",
+    "Eight around redstone is a sensor, around soul sand a shrieker. Around an &eecho shard&r, the catalyst. The only shard in this world sits in a sewer sump, back up in the yard.",
+  ],
 }

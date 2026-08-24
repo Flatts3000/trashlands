@@ -426,5 +426,49 @@
         },
       ],
     },
+    {
+      x: 4.0,
+      y: 5.0,
+      id: "7A55E0BA6E000313",
+      icon: {
+        id: "recompile:ancient_sculk",
+        count: 1,
+      },
+      dependencies: [
+        "7A55E0BA6E000305",
+      ],
+      rewards: [
+        { id: "7A55E0BA6E000513", type: "xp", xp: 100 },
+      ],
+      tasks: [
+        {
+          id: "7A55E0BA6E000413",
+          type: "item",
+          item: { id: "recompile:sculk_powder", count: 3 },
+        },
+      ],
+    },
+    {
+      x: 6.0,
+      y: 5.0,
+      id: "7A55E0BA6E000314",
+      icon: {
+        id: "minecraft:sculk_catalyst",
+        count: 1,
+      },
+      dependencies: [
+        "7A55E0BA6E000313",
+      ],
+      rewards: [
+        { id: "7A55E0BA6E000514", type: "xp", xp: 150 },
+      ],
+      tasks: [
+        {
+          id: "7A55E0BA6E000414",
+          type: "item",
+          item: { id: "minecraft:sculk_catalyst", count: 1 },
+        },
+      ],
+    },
   ],
 }
