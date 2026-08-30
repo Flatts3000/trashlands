@@ -32,7 +32,7 @@ Usage
     python tools/build_server.py                       # -> dist/trashlands-server-<ver>.zip
     python tools/build_server.py --out build/server    # install dir (kept, for boot tests)
     python tools/build_server.py --no-zip              # install only, skip the zip
-    python tools/build_server.py --neoforge 26.1.2.94  # override the NeoForge version
+    python tools/build_server.py --neoforge 26.1.2.100  # override the NeoForge version
 """
 from __future__ import annotations
 

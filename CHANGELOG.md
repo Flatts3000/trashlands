@@ -8,8 +8,21 @@ and ASCII punctuation only.
 
 ## [Unreleased]
 
-### Added
-- (nothing yet)
+### Changed
+- **Recompile 0.15.0.** Amber turns up in household waste with an insect in it, the Sequencer reads
+  the creature out of it, and four fragments make a Blueprint that crafts a spawn egg - the only
+  spawn eggs in the world, and the only way to put an animal on a plain that has none. A second
+  frontier region, the **radioactive dump**, sits at onset 1024 with mill tailings that drop raw
+  uraninite, so Powah can be started here for the first time. AE2 got four routes to certus, fluix,
+  silicon and sky stone, which is the half that was missing when v0.9.0 shipped the presses. Breeze
+  rods come from four gunpowder pressed and fired in the kiln, with no trial chamber involved.
+- **NeoForge pin raised from 26.1.2.94 to 26.1.2.100.** JEI 29.34.0.90 requires `[26.1.2.99,)` and a
+  mod whose floor sits above the pin does not warn, it just refuses to load. If you keep an instance
+  by hand, change its loader build or you will be playing without JEI.
+- **Eight routine mod bumps:** JEI, FTB Quests, ModernFix, FancyMenu, Functional Storage, Inventory
+  Essentials, Sophisticated Core, SuperMartijn642's Core Lib.
+- **Extreme Sound Muffler stayed at 3.58.1.** The newest file is a 4.x alpha and muffling is not
+  worth an alpha's crash risk.
 
 ## [0.9.0] - 2026-08-20
 

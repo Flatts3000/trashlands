@@ -74,7 +74,7 @@ The web-form fallback, if both of the above fail:
 | Display name | `Trashlands 0.1.0` |
 | Release type | **Alpha** |
 | Game version | `26.1.2` (pick by name; the web form resolves the id for you) |
-| Mod loader | `NeoForge` (`26.1.2.94`) |
+| Mod loader | `NeoForge` (`26.1.2.100`) |
 | Java version | Skip. The modpack class takes no Java selector and the API rejects one. |
 
 ## Step 4 - After approval
