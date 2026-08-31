@@ -66,9 +66,12 @@ Every part of that is already in the design for other reasons, which is why it f
   is buying back your own culture from the company that threw it away. Breadcrumb 1 says the recovered
   schematics are yours *because this civilization was yours* - the market is that same fact, with a
   price on it.
-- **Company scrip** - tokens issued by the company, redeemable only at the company store, worthless
-  everywhere else - is a real and grim piece of industrial history. It is also the exact shape of the
-  relationship: you cannot bank what they pay you, you can only spend it back.
+- **Company scrip**, and the engine's shape for it (owner, 2026-08-30) makes it sharper than tokens
+  would: **the currency is not an item.** There is nothing in your inventory. The company keeps your
+  balance and hands it back as credit against their own stock, which is what company scrip really was -
+  ledger credit at the company store far more often than coins in a hand. **You never hold the money.**
+  You cannot bank it, spend it elsewhere, give it away, or even look at it except by standing at one of
+  their terminals.
 
 ### The breadcrumb, and it is fair play
 
