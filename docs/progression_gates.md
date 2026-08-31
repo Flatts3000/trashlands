@@ -361,6 +361,34 @@ Kept as worked examples, because each was invisible until traced.
 
 ## Changelog
 
+- **2026-08-30** - Recompile 0.15.0, pinned in pack v0.10.0. **Opens one mod, one vanilla family, and
+  a route to animals that does not go through the ladder.** *Powah* stops being unstartable: its
+  uraninite worldgen gates on `#minecraft:is_overworld` and this world ships no entry for that tag, so
+  the ore never generated here at all - the material now comes from mill tailings in the **radioactive
+  dump**, a second frontier region at onset 1024, pulled through `#c:raw_materials/uraninite` rather
+  than by item id. Sixteen Powah recipes consume uraninite and the mod's reachability closure reaches
+  126 of its 133 items once the root exists. It is reactor *fuel*, so it is a running cost, not a
+  one-time unlock. *The resin family* becomes reachable at all: Spent Amber chips plus a tin of
+  turpentine make fresh resin at any bench, and vanilla's own resin recipes are circular in this world
+  (a clump costs a resin block, a creaking heart costs the resin it is the source of). *Breeze rods*
+  get a source with no breeze in the world - four gunpowder press into a briquette and the Sintering
+  Kiln fires it into a rod - which also makes a wind charge cost one gunpowder. *AE2* gets its
+  materials rather than only its presses: silicon out of E-Scrap, certus and fluix out of the
+  demolition yard's granite, Sky Stone Shards riding the slag rubble stream. A playthrough wants four
+  to eight stacks each of certus and fluix, so that is machine-scale production, not a find.
+  Also: Ender IO's Grains of Infinity turn up in Mechanical Waste, and its SAG Mill no longer grinds a
+  blaze rod back into four powder - that recipe made the new gunpowder-to-rod chain break even, and
+  better than break even with a vibrant alloy grinding ball.
+
+  **Open risk - the animals rung now has a bypass.** Amber found in household waste carries the blood
+  of whatever the insect last fed on; the Sequencer reads a stamped piece into an Idea Fragment, four
+  fragments of one creature make a Blueprint, and that sheet crafts the spawn egg. The sheet is not
+  consumed - it is the one recipe in the game where a Blueprint goes into the grid and comes back out
+  - so it makes that egg for as long as glass holds out. The reclamation ladder gates animals behind
+  baits, which need the ground healed first. This does not. Whether that is a shortcut past a designed
+  gate or an intended second route has not been decided; it is the kind of thing this page exists to
+  catch, and it is the reason #56 splits the quest work into a writing half and a ruling half.
+
 - **2026-08-20** - Recompile 0.14.0, pinned in pack `chore/update-mods-recompile-0.14.0`. **Opens two
   mods and one vanilla family.** *AE2* stops being dead content: all four Inscriber presses are in the
   sump crate, so Sky Stone is no longer the entry and the meteorite gate is bypassed rather than fixed.
