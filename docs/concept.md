@@ -179,6 +179,18 @@ Keep internal seams clean so systems can split into their own mods later - candi
 
 **Features are config-gated.** Every major system ships behind a config flag with tunable rates (regrowth rate, region band radii, knowledge odds). This lets playtesting pick winners instead of deciding on paper. Guardrail: flags are for tuning, not for avoiding decisions; the pack ships one opinionated default experience. Defaults are the design.
 
+## Top-down coverage (2026-08-30)
+
+This mod was designed bottom-up, system by system. [`top_down_pass.md`](top_down_pass.md) is the pass
+that was never done first: what a player pictures when they hear "a world buried under its own
+rubbish", organised by axis, against what actually ships.
+
+Two things came out of it worth carrying here. The **time and preservation** axis - Amber, the Snack
+Cake, the paintings, the sherds - is one of the mod's strongest and arrived entirely by accident, one
+idea at a time, with nobody naming it. And the **human trace** axis is the thinnest place on the board
+while carrying the most thematic weight: the finds are objects a person owned, not objects a person can
+be inferred from.
+
 ## Open questions
 
 - **Is sifting the price, or is sifting the game? (opened 2026-07-15 - the big one.)** "Same verb at three speeds" (hand -> tarp -> machines) is a **ladder**, which says sifting is the *price* and the fun is buying your way out of it - Factorio's manual mining. That is a legitimate design, but it means the first hour must carry the whole fantasy and everything after is about escape, so sifting should be made *short*, never deep. The alternative is that sifting **is** the game, in which case it needs judgment back - and "everything found breaks down into materials", the rule that fixed the item-flood problem, has to go, because if every object is worth grabbing there is no decision left and sifting degrades into hoovering. Rarity, blueprints, the knowledge system and the flood all resolve differently depending on this answer. See "Why sifting garbage is fun" above.
