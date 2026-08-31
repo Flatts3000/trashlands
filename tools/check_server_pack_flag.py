@@ -62,7 +62,13 @@ Usage:
     python tools/check_server_pack_flag.py --control 238222
 
 Exit codes: 0 = every attached server pack is typed, 1 = one or more is not,
-2 = could not verify (empty listing, unreachable API, unexpected shape).
+2 = could not verify (empty listing, unreachable API, unexpected shape),
+3 = files listed but NONE carries an attachment at all.
+
+3 is deliberately not 2. A 2 means this script could not see anything; a 3 means it saw
+the files clearly and the server pack was never attached, which points at the release
+workflow rather than at CurseForge. While #55 keeps 2 as the everyday result, folding
+them together would let a real 3 be waved off as the known cosmetic failure.
 """
 from __future__ import annotations
 
@@ -107,23 +113,57 @@ def fetch(project_id: int, count: int) -> list[dict] | None:
     return data
 
 
-def explain_empty(project_id: int, control_id: int) -> int:
-    """Say WHY the listing was empty, using a control project. Never returns 0."""
-    print(f"the v1 listing named no files for project {project_id}.")
+def explain_empty(project_id: int, files: list[dict] | None, control_id: int) -> int:
+    """Say WHY there were no files to check, using a control project. Never returns 0.
+
+    `files` is None when the target listing could not be READ and [] when it answered
+    and named nothing. Those are different findings and the whole point of the control
+    probe is to tell them apart, so neither this function nor its caller may collapse
+    them - an unreadable target reported as "absent from the listing" asserts a fact
+    nobody observed, which is what this script was fixed for in the first place.
+    """
+    unreadable = files is None
+    if unreadable:
+        print(f"could not read the v1 listing for project {project_id}.")
+    else:
+        print(f"the v1 listing answered for project {project_id} and named no files.")
+
+    if control_id == project_id:
+        # Probing a project against itself proves nothing: the second request is
+        # byte-identical to the first. Say so rather than draw a conclusion from it.
+        print(f"control is the same project ({control_id}), so there is nothing to compare "
+              "against.")
+        print("Pass a different --control to get a diagnosis.")
+        print()
+        print("UNVERIFIED - the Server Pack typing was not checked. This is not a pass.")
+        return 2
+
     print(f"probing control project {control_id} to see whether the endpoint answers at all...")
     control = fetch(control_id, 1)
     print()
     if control:
         print(f"  control {control_id}: {len(control)} file(s) -> the endpoint works.")
-        print(f"  project {project_id}: 0 files -> this project is absent from THIS listing.")
-        print()
-        print("That is not the same as having no files. The Core API serves these files by")
-        print("numeric id even while this listing is empty - packwiz resolves them that way -")
-        print("so check the Authors Console. Nothing here can confirm the Server Pack typing.")
-    else:
+        if unreadable:
+            print(f"  project {project_id}: unreadable -> that one request failed while the")
+            print("  endpoint itself is fine. A transient block or rate limit fits; being absent")
+            print("  from the listing does not, because absence answers rather than fails.")
+        else:
+            print(f"  project {project_id}: 0 files -> this project is absent from THIS listing.")
+            print()
+            print("That is not the same as having no files. The Core API serves these files by")
+            print("numeric id even while this listing is empty - packwiz resolves them that way -")
+            print("so check the Authors Console.")
+    elif control is None:
         print(f"  control {control_id}: unreadable too -> the endpoint, or the WAF in front of")
         print("  it, is the problem rather than this project. Nothing can be concluded about")
         print("  the files at all.")
+    else:
+        # Control answered with an empty list. Readable, and empty for a project that
+        # is known to have files - so the listing surface is returning nothing to
+        # anybody. Stronger and different from "unreachable".
+        print(f"  control {control_id}: answered with 0 files -> the endpoint is readable and")
+        print("  is listing nothing for a project that certainly has files. The listing surface")
+        print("  is empty for everyone, not just this project.")
     print()
     print("UNVERIFIED - the Server Pack typing was not checked. This is not a pass.")
     return 2
@@ -140,9 +180,10 @@ def main() -> int:
 
     files = fetch(args.project, 200 if args.all else 5)
     if not files:
-        # Covers both None (unreadable) and [] (answered, named nothing). Neither is a
-        # pass, and the difference between them is the whole diagnosis.
-        return explain_empty(args.project, args.control)
+        # None (unreadable) and [] (answered, named nothing) both land here and both are
+        # failures, but they are DIFFERENT failures - explain_empty is handed the state
+        # rather than a truthiness test so it can say which one happened.
+        return explain_empty(args.project, files, args.control)
 
     bad = 0
     print(f"{'file':<34} {'addl':>4} {'srvpack':>8}  status")
@@ -180,7 +221,9 @@ def main() -> int:
               "so there was nothing to check.")
         print("Every release since v0.7.0 attaches a server pack, so this is a finding, "
               "not a pass.")
-        return 2
+        print("This is exit 3, not 2: the listing was read fine and the attachment is missing,")
+        print("which points at the release workflow rather than at CurseForge.")
+        return 3
     print(f"\nevery attached server pack is typed correctly ({attached} of {len(files)} "
           "file(s) carried one).")
     return 0

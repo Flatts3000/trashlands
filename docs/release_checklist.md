@@ -106,6 +106,9 @@ otherwise found by whoever first runs a server.
       run leaves a warning saying so. Then confirm with `python tools/check_server_pack_flag.py`
       - **which currently exits 2, meaning unverified, not fine.** It cannot confirm the typing
       while the v1 listing has no files for this project; see #55. Do the console step anyway.
+      **A 3 is a different thing and must not be waved off as the known 2:** it means the listing
+      was read fine and no file carries an attachment at all, so the release workflow failed to
+      attach the server pack. 1 means attached but untyped, which is the console step.
 
 ## Gotchas
 
