@@ -18,6 +18,14 @@ What it checks, per jar in the resolved pack:
   1. Every REQUIRED dependency modId is present somewhere in the pack.
   2. No required `neoforge` range has a lower bound above pack.toml's pin.
   3. No required `minecraft` range excludes pack.toml's Minecraft version.
+  4. Every required dependency's bundled VERSION satisfies the declared range.
+
+Check 4 exists because presence is not satisfaction. FancyMenu 3.9.12 requires
+`konkrete [1.10.1,)` and `melody [1.0.16,)`, and the pack sits on exactly those
+two floors - it fits, but until this check nothing proved it. All three are
+`side = "client"`, so the release workflow's server-boot smoke test can never
+load them: a bump that raised a floor would pass the audit, pass the boot test,
+and hard-fail every client at launch.
 
 Optional dependencies are ignored - that is what optional means.
 
@@ -219,7 +227,8 @@ def audit(mods_dir: Path) -> int:
     present = {mid for ids, _, _ in meta.values() for mid in ids}
     versions = {mid: v for _, _, vers in meta.values() for mid, v in vers.items()}
 
-    missing, loader_blocks, mc_blocks, conflicts, discouraged = [], [], [], [], []
+    missing, outdated, loader_blocks, mc_blocks = [], [], [], []
+    conflicts, discouraged = [], []
     for jar, (_ids, deps, _vers) in meta.items():
         for _owner, dep_list in deps.items():
             for dep in dep_list:
@@ -259,6 +268,13 @@ def audit(mods_dir: Path) -> int:
                         mc_blocks.append(f"{jar} needs minecraft {rng}")
                 elif mod_id not in BUILTIN and mod_id not in present:
                     missing.append(f"{jar} requires '{mod_id}' {rng}")
+                elif mod_id not in BUILTIN and not in_range(versions.get(mod_id, ""), rng):
+                    # Present but too old. `versions` only carries top-level
+                    # [[mods]] versions, so a dep satisfied by a jar-in-jar reads
+                    # as "" and in_range passes it - the safe direction, since a
+                    # bundled jar is by definition the version its host wants.
+                    outdated.append(
+                        f"{jar} requires '{mod_id}' {rng}, pack has {versions.get(mod_id, '')}")
 
     print(f"pack pins   : Minecraft {mc_pin}, NeoForge {loader_pin}")
     print(f"jars audited: {len(meta)}   mod ids present: {len(present)}\n")
@@ -267,6 +283,8 @@ def audit(mods_dir: Path) -> int:
     for title, rows, hint in (
         ("MISSING REQUIRED DEPENDENCIES", missing,
          "add the missing mod with `packwiz curseforge add`"),
+        ("REQUIRED DEPENDENCY TOO OLD", outdated,
+         "bump it with `packwiz update <name>` - present is not the same as new enough"),
         ("LOADER PIN TOO LOW", loader_blocks,
          "raise [versions] neoforge in pack/pack.toml to the highest bound listed"),
         ("MINECRAFT PIN TOO LOW", mc_blocks,
@@ -316,6 +334,48 @@ def audit(mods_dir: Path) -> int:
 # cannot be forgotten under deadline.
 DEV_ONLY_MODS = ("devbridge",)
 
+# Mods deliberately held back from `packwiz update --all`, as {file: (file-id, why)}.
+# packwiz always takes the newest file regardless of release channel, so a hold that
+# lives only in a doc survives exactly until the next update pass forgets it. The
+# hold cannot be expressed by deleting [update.curseforge]: the CurseForge export
+# needs that project-id/file-id to emit a manifest reference, and without it packwiz
+# inlines the jar and release.yml's no-jar assertion fails the run. So it is asserted
+# here, which already runs in validate-pack.yml and release.yml.
+#
+# To move a hold ON PURPOSE, change the id here in the same commit as the .pw.toml.
+HELD_PINS = {
+    "extreme-sound-muffler.pw.toml": (
+        8069457,
+        "3.58.1. The newest file is a 4.x ALPHA and muffling is a comfort feature, "
+        "not worth an alpha's crash risk. It is side = \"client\", so the release's "
+        "server-boot smoke test can never catch a bad one.",
+    ),
+}
+
+
+def check_held_pins() -> int:
+    """Prove every deliberately-held mod still points at the file it was held to."""
+    bad = []
+    for name, (want, why) in HELD_PINS.items():
+        path = PACK / "mods" / name
+        if not path.is_file():
+            bad.append(f"{name}: held at file-id {want} but the file is gone")
+            continue
+        data = tomllib.loads(path.read_text(encoding="utf-8"))
+        have = data.get("update", {}).get("curseforge", {}).get("file-id")
+        if have != want:
+            bad.append(f"{name}: held at file-id {want}, found {have}")
+            bad.append(f"     {why}")
+    if bad:
+        print("=== HELD PIN MOVED ===")
+        for row in bad:
+            print(f"  {row}")
+        print("  -> `packwiz update --all` took a file this pack holds back on purpose. "
+              "Revert the .pw.toml and re-run tools/pack_refresh.py, or, if the move is "
+              "intended, update HELD_PINS in this file in the same commit.\n")
+        return 1
+    return 0
+
 
 def check_no_dev_mods() -> int:
     index = PACK / "index.toml"
@@ -341,6 +401,9 @@ def main() -> int:
     args = parser.parse_args()
 
     if check_no_dev_mods() != 0:
+        return 1
+
+    if check_held_pins() != 0:
         return 1
 
     if args.mods_dir:

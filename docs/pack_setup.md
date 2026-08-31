@@ -41,7 +41,7 @@ branding/
   logo.png              # 512 master composite
 tools/
   pack_refresh.py    # LF-normalize + packwiz refresh. Use this, not bare `packwiz refresh`.
-  check_pack_deps.py # prove the pinned pack can actually load (deps + loader pin)
+  check_pack_deps.py # prove the pinned pack can actually load (deps, versions, loader, held pins)
   sync_instance.py   # push the pinned mods into the CurseForge dev instance
   make_logo.py       # rebuild icon.png from the wordmark + backdrop
   cf_release.py      # manual CurseForge upload (the tag-driven workflow is the normal path)
@@ -79,12 +79,24 @@ has a 26.1.2 NeoForge build on CurseForge. Nothing here touches the economy.
 | Death and safety | GraveStone, Simple Backups |
 | Audio | Extreme Sound Muffler |
 
-**Extreme Sound Muffler is held at 3.58.1 by hand.** The newest file on CurseForge is
+**Extreme Sound Muffler is held at 3.58.1.** The newest file on CurseForge is
 `4.02-ALPHA_NeoForge-26.1`, a new major line and an alpha, and muffling is a comfort feature that is
 not worth an alpha's crash risk. `packwiz update --all` takes the newest file regardless of channel,
 so it will offer 4.x on every update pass; revert `pack/mods/extreme-sound-muffler.pw.toml` and
-re-run `python tools/pack_refresh.py` until 4.x has a stable release. Easy Villagers is the mirror
-case (pinned *to* an alpha, one point release ahead of the newest release) - see Villagers below.
+re-run `python tools/pack_refresh.py` until 4.x has a stable release.
+
+**The hold is enforced, not just written down here.** `HELD_PINS` in
+[`tools/check_pack_deps.py`](../tools/check_pack_deps.py) asserts the file-id, and that tool already
+runs in `validate-pack.yml` and as a release guard. It has to be a guard rather than a doc: deleting
+the `[update.curseforge]` block would stop packwiz offering the update but also remove the
+project-id the CurseForge export needs, so packwiz would inline the jar and `release.yml`'s no-jar
+assertion would fail the run. The mod is `side = "client"`, so the server-boot smoke test could
+never catch a bad one either. To move the hold on purpose, change the id in `HELD_PINS` in the same
+commit as the `.pw.toml`.
+
+Easy Villagers is the mirror case (pinned *to* an alpha, one point release ahead of the newest
+release) - see Villagers below. It is not in `HELD_PINS`, because there the newer file is the one
+the pack wants.
 
 Auto-pulled libraries (nine): Balm, Placebo, SuperMartijn642's Core Lib, SuperMartijn642's Config Lib, Cloth Config, GuideME, and - from the 2026-08-20 additions - Titanium, Sophisticated Core and Patchouli.
 
@@ -571,10 +583,17 @@ cd .. && python tools/check_pack_deps.py     # must exit 0
 ```
 
 `check_pack_deps.py` downloads every pinned jar and reads its `neoforge.mods.toml`. It fails if a
-required dependency is absent from the pack, or if any mod needs a loader newer than the pin. That
-second case is the dangerous one: NeoForge does not warn, it declines to load the mod, so the pack
-boots looking correct with a mod silently missing. It runs on every PR
-(`.github/workflows/validate-pack.yml`) and again at release.
+required dependency is absent from the pack, if a dependency is present but older than the range the
+mod that needs it declares, or if any mod needs a loader newer than the pin. That last case is the
+dangerous one: NeoForge does not warn, it declines to load the mod, so the pack boots looking correct
+with a mod silently missing. It also asserts the deliberately held pins (`HELD_PINS`). It runs on
+every PR (`.github/workflows/validate-pack.yml`) and again at release.
+
+**Presence is not satisfaction**, which is why the version-range check is separate. FancyMenu 3.9.12
+requires `konkrete [1.10.1,)` and `melody [1.0.16,)` and the pack sits on exactly those two floors -
+it fits, but nothing proved it until this check existed, and all three of those mods are
+`side = "client"`, so the release's server-boot smoke test can never load them. A bump that raised a
+floor would have passed every gate and hard-failed players at launch.
 
 If Recompile's toolchain moves to a newer Minecraft version, the pack follows - `[versions]
 minecraft` and the mod must never drift apart, because a test on the wrong Minecraft version proves
