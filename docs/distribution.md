@@ -169,6 +169,13 @@ and a step-summary reminder. Verify with `python tools/check_server_pack_flag.py
 website's v1 API and reports any attached-but-untyped file. Sky Frogs shipped 29 untyped files before
 anyone noticed, which is why the checker exists rather than a note in someone's head.
 
+**It exits 2 today, and 2 means unverified rather than fine.** That v1 listing returns no files for
+this project - and none for Recompile either, while returning them for third-party projects through
+the identical call. The files are not missing: the Core API serves them by numeric id, which is how
+packwiz downloads them. It is the listing surface that does not have our projects. Until that is
+sorted out (#55) the server-pack typing cannot be confirmed from here at all, so the manual console
+step has to be done and trusted rather than checked.
+
 ## Versioning policy
 
 Pre-1.0, so SemVer is not yet strict:
