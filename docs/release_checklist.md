@@ -103,7 +103,9 @@ otherwise found by whoever first runs a server.
 - [ ] **Type the server pack.** Authors Console -> Files -> the client file -> the attached server
       file -> Additional File Info -> `Server Pack`. **The API cannot do this**, so it is manual every
       single release, and an untyped server pack is invisible to host one-click deploys. The release
-      run leaves a warning saying so. Then confirm with `python tools/check_server_pack_flag.py`.
+      run leaves a warning saying so. Then confirm with `python tools/check_server_pack_flag.py`
+      - **which currently exits 2, meaning unverified, not fine.** It cannot confirm the typing
+      while the v1 listing has no files for this project; see #55. Do the console step anyway.
 
 ## Gotchas
 

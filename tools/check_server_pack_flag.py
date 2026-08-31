@@ -37,10 +37,32 @@ other attachment, and a pre-server-pack release can carry an attachment that was
 meant to be one. Undocumented, so it could change; if the fields disappear, fall back
 to the file page (the same values are embedded in its Next.js payload).
 
+An empty listing is NOT a pass, which is what this script used to treat it as. On
+2026-08-30 it printed "no files on the project yet." and exited 0 for a project that
+had just taken its tenth release, and `release_checklist.md` step 3 says to confirm the
+manual typing with this script - so the check had been reporting success without ever
+running. The files were not missing: `www.curseforge.com/api/v1/mods/1636627/files`
+returns `totalCount: 0` for both this project and Recompile (1625740) while returning
+real data for JEI (238222) through the identical call, and packwiz resolves Recompile
+by numeric id off the Core API and downloads the file released the same day. So the
+files exist and serve; they are absent from THIS listing surface. Slug lookup on the
+Core API fails for our projects too and succeeds for third-party ones, so it is the
+name-and-listing surfaces that do not have them, not the file store.
+
+That is why an empty result now runs a CONTROL probe against a third-party project
+before saying anything. If the control returns files and the target does not, the
+endpoint works and the target is absent from it. If neither returns files, the endpoint
+or the WAF in front of it is the problem and this script cannot tell you anything. Both
+are exit 2 - unverified - and neither is a pass.
+
 Usage:
     python tools/check_server_pack_flag.py              # latest 5 files
     python tools/check_server_pack_flag.py --all
     python tools/check_server_pack_flag.py --project 1636627
+    python tools/check_server_pack_flag.py --control 238222
+
+Exit codes: 0 = every attached server pack is typed, 1 = one or more is not,
+2 = could not verify (empty listing, unreachable API, unexpected shape).
 """
 from __future__ import annotations
 
@@ -51,37 +73,76 @@ import urllib.error
 import urllib.request
 
 PROJECT_ID = 1636627  # Trashlands on CurseForge
+# A busy third-party project, used only to prove the endpoint answers at all. Any
+# project with files would do; JEI is in this pack and is never going to go quiet.
+CONTROL_ID = 238222   # Just Enough Items
 API = "https://www.curseforge.com/api/v1/mods/{pid}/files?pageIndex=0&pageSize={n}"
 UA = "Mozilla/5.0 (trashlands check_server_pack_flag.py)"
 
 
-def fetch(project_id: int, count: int) -> list[dict]:
+def fetch(project_id: int, count: int) -> list[dict] | None:
+    """The project's files, or None if the endpoint could not be read.
+
+    None and [] mean different things and the caller has to tell them apart: None is
+    "the API did not answer", [] is "the API answered and named no files". Returning
+    None rather than exiting lets the control probe run either way.
+    """
     req = urllib.request.Request(API.format(pid=project_id, n=count),
                                  headers={"User-Agent": UA, "Accept": "application/json"})
     try:
         with urllib.request.urlopen(req, timeout=30) as resp:
             payload = json.load(resp)
     except urllib.error.HTTPError as e:
-        sys.exit(f"CurseForge returned HTTP {e.code}. The undocumented v1 API may have moved.")
+        print(f"CurseForge returned HTTP {e.code} for project {project_id}. "
+              "The undocumented v1 API may have moved.")
+        return None
     except Exception as e:  # noqa: BLE001
-        sys.exit(f"could not reach CurseForge: {e}")
+        print(f"could not reach CurseForge for project {project_id}: {e}")
+        return None
     data = payload.get("data")
     if data is None:
-        sys.exit("unexpected response shape - no 'data' key. The v1 API may have changed.")
+        print(f"unexpected response shape for project {project_id} - no 'data' key. "
+              "The v1 API may have changed.")
+        return None
     return data
+
+
+def explain_empty(project_id: int, control_id: int) -> int:
+    """Say WHY the listing was empty, using a control project. Never returns 0."""
+    print(f"the v1 listing named no files for project {project_id}.")
+    print(f"probing control project {control_id} to see whether the endpoint answers at all...")
+    control = fetch(control_id, 1)
+    print()
+    if control:
+        print(f"  control {control_id}: {len(control)} file(s) -> the endpoint works.")
+        print(f"  project {project_id}: 0 files -> this project is absent from THIS listing.")
+        print()
+        print("That is not the same as having no files. The Core API serves these files by")
+        print("numeric id even while this listing is empty - packwiz resolves them that way -")
+        print("so check the Authors Console. Nothing here can confirm the Server Pack typing.")
+    else:
+        print(f"  control {control_id}: unreadable too -> the endpoint, or the WAF in front of")
+        print("  it, is the problem rather than this project. Nothing can be concluded about")
+        print("  the files at all.")
+    print()
+    print("UNVERIFIED - the Server Pack typing was not checked. This is not a pass.")
+    return 2
 
 
 def main() -> int:
     ap = argparse.ArgumentParser(description="Check the Server Pack flag on CurseForge files.")
     ap.add_argument("--project", type=int, default=PROJECT_ID)
     ap.add_argument("--all", action="store_true", help="check every file, not just the latest 5")
+    ap.add_argument("--control", type=int, default=CONTROL_ID,
+                    help=f"project used to prove the endpoint answers (default {CONTROL_ID})")
     args = ap.parse_args()
     sys.stdout.reconfigure(line_buffering=True)
 
     files = fetch(args.project, 200 if args.all else 5)
     if not files:
-        print("no files on the project yet.")
-        return 0
+        # Covers both None (unreadable) and [] (answered, named nothing). Neither is a
+        # pass, and the difference between them is the whole diagnosis.
+        return explain_empty(args.project, args.control)
 
     bad = 0
     print(f"{'file':<34} {'addl':>4} {'srvpack':>8}  status")
@@ -110,7 +171,18 @@ def main() -> int:
         print("  -> Additional File Info -> Server Pack")
         print("\nUntil that is set, host one-click deploys cannot see the server pack.")
         return 1
-    print("\nevery attached server pack is typed correctly.")
+    attached = sum(1 for f in files if (f.get("additionalFilesCount", 0) or 0) > 0)
+    if attached == 0:
+        # Vacuous truth is the same defect this script was fixed for: "every attached
+        # server pack is typed" is trivially true when nothing is attached, and every
+        # release since v0.7.0 attaches one. Say what was actually seen.
+        print(f"\nnone of the {len(files)} file(s) listed carries an attachment at all, "
+              "so there was nothing to check.")
+        print("Every release since v0.7.0 attaches a server pack, so this is a finding, "
+              "not a pass.")
+        return 2
+    print(f"\nevery attached server pack is typed correctly ({attached} of {len(files)} "
+          "file(s) carried one).")
     return 0
 
 
