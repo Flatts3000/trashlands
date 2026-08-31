@@ -8,11 +8,12 @@ Mine a mound and it grows back. Heal the ground underneath it and it is gone for
 tension the pack runs on: garbage is your only income, and the only way to make the world green is
 to give that income up.
 
-- **Status:** **alpha, released.** Latest is `v0.9.0` (2026-08-20), which brings the pack to 62 mods and adds a chapter about the Nether, on
-  [GitHub Releases](https://github.com/Flatts3000/trashlands/releases) and CurseForge (project
-  `1636627`). The pack is 62 mods on Minecraft 26.1.2; `v0.9.0` declares NeoForge 26.1.2.94 and the
-  current pin on `main` is 26.1.2.100, so build a hand-made instance against the release you actually
-  downloaded. Releases are tag-driven - see
+- **Status:** **alpha, released.** Latest is `v0.10.0` (2026-08-30), which brings in Recompile 0.15.0
+  - spawn eggs found in the rubbish, a second frontier region, and Powah startable for the first time
+  - on [GitHub Releases](https://github.com/Flatts3000/trashlands/releases) and CurseForge (project
+  `1636627`). The pack is 62 mods on Minecraft 26.1.2 / NeoForge 26.1.2.100. If you are hand-building
+  an instance, match the loader to the release you downloaded rather than to this line; `v0.9.0` and
+  earlier declare 26.1.2.94. Releases are tag-driven - see
   [`docs/release_checklist.md`](docs/release_checklist.md).
 - **The engine:** [Recompile](https://github.com/Flatts3000/recompile), a standalone NeoForge mod
   that owns the garbage world, teardown, the machines, and the reclamation ladder. Trashlands is its

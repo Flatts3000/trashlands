@@ -8,6 +8,14 @@ and ASCII punctuation only.
 
 ## [Unreleased]
 
+### Added
+- (nothing yet)
+
+## [0.10.0] - 2026-08-30
+
+Recompile 0.15.0: spawn eggs pulled out of the rubbish, a second frontier region, and Powah startable
+for the first time. The loader pin moved with it.
+
 ### Changed
 - **Recompile 0.15.0.** Amber turns up in household waste with an insect in it, the Sequencer reads
   the creature out of it, and four fragments make a Blueprint that crafts a spawn egg - the only
@@ -23,6 +31,19 @@ and ASCII punctuation only.
   Essentials, Sophisticated Core, SuperMartijn642's Core Lib.
 - **Extreme Sound Muffler stayed at 3.58.1.** The newest file is a 4.x alpha and muffling is not
   worth an alpha's crash risk.
+
+### Known gaps
+- **The quest book does not cover any of this yet.** The four chapters stop where v0.9.0 left them:
+  amber, the Sequencer, spawn eggs, the radioactive dump and the AE2 material routes all ship with no
+  quest pointing at them. JEI and the in-game guidebook do document them.
+- **Nobody has played this.** A Recompile major, eight other mod bumps and a new loader build, none
+  of them launched by a person. The pack builds, boots, generates the right world and validates its
+  book, which is not the same thing.
+
+### Fixed
+- **A held mod pin and a dependency floor are both guarded now.** Extreme Sound Muffler's hold lived
+  in a doc that `packwiz update --all` cannot read, and the dependency audit checked that a required
+  mod was present without checking it was new enough. Both run on every PR and at release.
 
 ## [0.9.0] - 2026-08-20
 
