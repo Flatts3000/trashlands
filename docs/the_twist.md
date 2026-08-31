@@ -49,6 +49,68 @@ A twist that only subtracts the goal deflates the pack. Two design moves prevent
 
 The pack's promise ("get back to the overworld") is kept literally: the overworld comes back.
 
+## The conglomerate (added 2026-08-30)
+
+**The scrap buyer answers breadcrumb 4.** "The garbage falls from space. Someone threw it from
+somewhere" has never had a *who*. The conglomerate is the who, and the market block is how that lands
+mechanically instead of as written lore.
+
+### The loop, stated plainly
+
+You sell the planet's remains back to the people who buried it, and they pay you in tokens that are
+only good with them. Then you spend those tokens buying back the recipes your own civilization wrote.
+
+Every part of that is already in the design for other reasons, which is why it fits:
+
+- **The recipes went in the bin, and somebody owns them now.** Buying Blueprints from the conglomerate
+  is buying back your own culture from the company that threw it away. Breadcrumb 1 says the recovered
+  schematics are yours *because this civilization was yours* - the market is that same fact, with a
+  price on it.
+- **Company scrip** - tokens issued by the company, redeemable only at the company store, worthless
+  everywhere else - is a real and grim piece of industrial history. It is also the exact shape of the
+  relationship: you cannot bank what they pay you, you can only spend it back.
+
+### The breadcrumb, and it is fair play
+
+**The freight goes up.** Garbage falls out of the sky for the entire playthrough; the scrap you sell
+leaves the same way, in the opposite direction. Nothing says so. A player who notices that the outbound
+route and the inbound rain are the same route has the twist in hand, and - exactly like the F3
+dimension ID - will not believe it.
+
+The second one is quieter and better: **the surface fiction says you were dumped here by parties
+unknown, and you have been doing business with them since the first hour.** That is never hinted. In
+hindsight it is the whole game.
+
+### What it does at the reveal
+
+The market does not break; it **inverts**. Before the Gate it is a useful shop. After, it is what you
+have been doing: feeding a dead world to the party that killed it, for scrip.
+
+This is the same move the Gate makes - nothing you built was wasted, it means something else now - so
+the market needs no special handling at the reveal beyond the player understanding it.
+
+### The post-twist payoff, which the rug pull owes
+
+Consistent with the existing epilogue rather than competing with it:
+
+- **Their want-list empties as you heal.** They only ever wanted what they dumped. A cleared region has
+  nothing they will buy, so **the market going quiet is the reclamation metric made visible** - the
+  same job the clearing sky does in payoff 1, on the economic axis instead of the environmental one.
+- **The freight route repurposes rather than shutting down.** The escape infrastructure became the
+  restoration infrastructure; the trade route is the last piece of that pattern. What comes *down* it
+  at the end is the open question, and "people" is the obvious answer given payoff 3.
+
+### Engine and pack split - this is what keeps the spoiler safe
+
+The market block is **Recompile** (a system), the meaning is **Trashlands** (curation and quests). That
+is not only the standing architectural rule, it is the spoiler discipline:
+
+- **The engine's market carries no lore.** It buys scrap, it pays scrip, its destination is "off-site"
+  and nothing more. Recompile ships standalone and a player using the mod alone gets a shop.
+- **The pack supplies the party, the framing and the reveal.** Issue Flatts3000/recompile#311 is the
+  engine half and must stay lore-free - that repo is public and its issues are the most visible surface
+  there is. Rule 2 above permits naming this file, and nothing more.
+
 ## What the twist resolves
 
 - **The pristine-payoff open question** (design_decisions.md, Dimensions section): the green world is not a place you reach; it is the thing you make after the reveal. The final chapter pivots escape -> reclamation: heal the mounds, retire the quarries, life returns. The quarry-vs-heal tension (P1.6) is the epilogue's gameplay.
