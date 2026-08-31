@@ -16,6 +16,12 @@ and ASCII punctuation only.
 Recompile 0.15.0: spawn eggs pulled out of the rubbish, a second frontier region, and Powah startable
 for the first time. The loader pin moved with it.
 
+### Added
+- **Two quests for Ancient Sculk**, in The Depths. Recompile 0.14.0 put it in the compacted depths
+  and the book never mentioned it. The first teaches the rule that is actually new - a diamond
+  sledgehammer or better, and nothing else, however long you swing - and the second covers what Sculk
+  Powder packs back into. The book is 63 quests now (#53).
+
 ### Changed
 - **Recompile 0.15.0.** Amber turns up in household waste with an insect in it, the Sequencer reads
   the creature out of it, and four fragments make a Blueprint that crafts a spawn egg - the only
@@ -33,9 +39,10 @@ for the first time. The loader pin moved with it.
   worth an alpha's crash risk.
 
 ### Known gaps
-- **The quest book does not cover any of this yet.** The four chapters stop where v0.9.0 left them:
-  amber, the Sequencer, spawn eggs, the radioactive dump and the AE2 material routes all ship with no
-  quest pointing at them. JEI and the in-game guidebook do document them.
+- **The quest book does not cover Recompile 0.15.0.** Amber, the Sequencer, spawn eggs, the
+  radioactive dump and the AE2 material routes all ship with no quest pointing at them. JEI and the
+  in-game guidebook do document them. The Ancient Sculk pair above closes the 0.14.0 gap, not this
+  one.
 - **Nobody has played this.** A Recompile major, eight other mod bumps and a new loader build, none
   of them launched by a person. The pack builds, boots, generates the right world and validates its
   book, which is not the same thing.

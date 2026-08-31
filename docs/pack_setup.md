@@ -109,7 +109,7 @@ CurseForge-exclusive**, which is what closes the Modrinth door - see
 | Mod | Why it is in |
 |---|---|
 | **FTB Library** | Required by the rest. Not a choice. |
-| **FTB Quests** | The design's named quest engine, and the vehicle the narrative rides on. **Welcome**, **Salvage**, **Groundwork** and **The Depths** all ship as of v0.9.0, 61 quests, from the first Block of Garbage to a piece of coal. |
+| **FTB Quests** | The design's named quest engine, and the vehicle the narrative rides on. **Welcome** (7), **Salvage** (16), **Groundwork** (19) and **The Depths** (21) all ship, 63 quests, from the first Block of Garbage to a piece of coal. The four shipped at 61 in v0.9.0; the Ancient Sculk pair (#53) took The Depths to 21 in v0.10.0. |
 | **FTB Teams** | Required by Quests for team-scoped progress. |
 | **FTB XMod Compat** | Wires FTB Quests to JEI: the bookmark key works inside the quest book, and an item task can convert to a tag filter. Cut on 2026-08-02 as "glue between FTB mods and mods we do not ship", which was wrong - JEI is core to this pack. Added 2026-08-04; must track the FTB Quests version. |
 | **FTB Chunks** | The minimap is the real reason. An endless coarse-dirt plain where mounds regrow is a world you constantly re-navigate, and there are no natural landmarks to steer by. Chunk claiming matters on servers. |
