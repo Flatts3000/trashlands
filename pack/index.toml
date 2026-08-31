@@ -166,7 +166,7 @@ metafile = true
 
 [[files]]
 file = "mods/fancymenu.pw.toml"
-hash = "fa07e78f71917c8375c8b70dbd87df32f040cfde79367a015d8860595550a5b6"
+hash = "7526efc05bfa87829bb9c89896c68110953925fc60b1daa51b8a09893150c6b7"
 metafile = true
 
 [[files]]
@@ -206,7 +206,7 @@ metafile = true
 
 [[files]]
 file = "mods/ftb-quests-forge.pw.toml"
-hash = "ab8df7166468f5a6a84c87db8a9e35124db3a90056beef12d5f1a6984a22a1e8"
+hash = "9521af1cd60fb0520373c3db4c952fda03755ea13d83678a2afee111210e76de"
 metafile = true
 
 [[files]]
@@ -221,7 +221,7 @@ metafile = true
 
 [[files]]
 file = "mods/functional-storage.pw.toml"
-hash = "a8d8c89354f5e367ce50ac595ed9068d20951f240df7c9c8e60b8ec1e8baa545"
+hash = "e4df41f59f9a54fea9fa57be265de83bc910c54fe2b87d1e6c83c19feeed3fde"
 metafile = true
 
 [[files]]
@@ -236,7 +236,7 @@ metafile = true
 
 [[files]]
 file = "mods/inventory-essentials.pw.toml"
-hash = "55fe94b8a562c2200f5502c37eb1bda44b4b447881e005a45413a0ef7d3a159e"
+hash = "0ce1d228838652cbecdd105833a70e66f7ed3f43e94ea1f954963357d29a0fda"
 metafile = true
 
 [[files]]
@@ -246,7 +246,7 @@ metafile = true
 
 [[files]]
 file = "mods/jei.pw.toml"
-hash = "e6b40edce34211ba9869f271561832c35810c8bbc70af871750c6c147489a226"
+hash = "8c39e373f88438ebdf1d43f9d3559d34efda520b6ee9d41d15c40a1abd626d15"
 metafile = true
 
 [[files]]
@@ -281,7 +281,7 @@ metafile = true
 
 [[files]]
 file = "mods/modernfix.pw.toml"
-hash = "f77005f5ab1ac9093bc780b3eeeece73b7f68acb39ca3edc1bbd16621a879f8d"
+hash = "b4541ad2c775528c34d8ce70a29b5cabc66b8c72046e8953aafaea074602b481"
 metafile = true
 
 [[files]]
@@ -321,7 +321,7 @@ metafile = true
 
 [[files]]
 file = "mods/recompile.pw.toml"
-hash = "cf6d06183a9018e2210ab97f8951db43e94bc6b10d85ff5b005418898c82cd0e"
+hash = "9c001554bea734b49f2c0289979cc185263c130fa579484eda64957f618fbb1c"
 metafile = true
 
 [[files]]
@@ -351,7 +351,7 @@ metafile = true
 
 [[files]]
 file = "mods/sophisticated-core.pw.toml"
-hash = "ab866a2963cbd7b1f7b02bc4f01667f4d4bce7fcfc72b9ff5d316c7730e00fcd"
+hash = "2bd4155be1884ebeabde862bbe1011446fe2d434d79bd6757940888d301b1167"
 metafile = true
 
 [[files]]
@@ -371,7 +371,7 @@ metafile = true
 
 [[files]]
 file = "mods/supermartijn642s-core-lib.pw.toml"
-hash = "788a21fa12d196275b39f5debb1ce6b3efdf4a6881c2ab5aaf04fe207b6e2f98"
+hash = "a1c48672d9126d172ddff8d656131f7013f9a2824b8833278b5f0b93d40864da"
 metafile = true
 
 [[files]]

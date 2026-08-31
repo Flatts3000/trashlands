@@ -66,7 +66,10 @@ python tools/cf_release.py --zip "pack/Trashlands-0.1.0.zip" --project <id> \
 expectations - the quest book covers the first two chapters and stops at your first Bucket of
 Water, and the balance numbers are first-pass.
 
-The web-form fallback, if both of the above fail:
+The web-form fallback, if both of the above fail. **These values are the v0.1.0 submission as it
+shipped, frozen** - the loader there is the one that release's manifest declares, not the pack's
+current pin. Do not sweep it forward with a find-and-replace; the per-release numbers live in
+[`release_checklist.md`](./release_checklist.md).
 
 | Field | Value |
 |---|---|

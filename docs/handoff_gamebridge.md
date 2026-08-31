@@ -44,7 +44,7 @@ Do not rely on that. The rule is simply that it is not part of the pack.
 
 | | Version |
 | --- | --- |
-| Trashlands | MC 26.1.2, NeoForge **26.1.2.94** (`pack/pack.toml`) |
+| Trashlands | MC 26.1.2, NeoForge **26.1.2.100** (`pack/pack.toml`) |
 | devbridge jar as built | MC 26.1.2, NeoForge **26.1.2.76** |
 
 **Same MC and the same NeoForge minor, and the mod declares a loader range of `[4,)`, so it should
