@@ -153,7 +153,7 @@ mod dependency, so they interoperate for free.
 | **Charging Gadgets** | A charging pad for the rest. Pure enabler. |
 | **Mining Gadgets** | Powered mining laser with configurable area. |
 | **LaserIO** | Long-range item, fluid, and energy routing with filters. |
-| **Cable Facades** | Cover a cable or pipe with a facade so it reads as the block around it. Cosmetic only - it moves nothing and creates nothing. Ships built-in support for five mods already here: AE2, Ender IO, LaserIO, Pipez and Powah. |
+| **Cable Facades** | Cover a cable or pipe with a facade so it reads as the block around it. Cosmetic only - it moves nothing and creates nothing. Ships built-in support for five mods already here: AE2, Ender IO, LaserIO, Pipez and Powah. **Its facade recipe needs wool, which arrives far later than the cables do** - see below. |
 | **Just Dire Things** | Direwolf20's kit: powered tool and armor tiers, block breakers/placers/swappers/clickers/droppers, and its own four-material ladder (Ferricore, Blazegold, Celestigem, Eclipse Alloy). |
 
 **Concerns raised and overridden (owner call).** Recorded so the reasoning is not lost if any of
@@ -163,6 +163,20 @@ these turn out badly in playtest:
   Garbage out of mounds *is* the core loop, and this is that with power and an area.
 - **LaserIO** is the objection that retired Sophisticated Storage: it outclasses Pipez and does far
   more than Recompile's Scrap Network, which risks making the pack's own storage tier skippable.
+- **Cable Facades is craftable much later than the cables it covers.** Both facade recipes are
+  shaped and take `#minecraft:wool` in the middle (`facade_item`: wool plus `#c:dyes/red` and
+  `#c:dyes/yellow`, 16 out; `directional_facade_item`: the same with `#c:dyes/green`). **The dyes are
+  not the problem** - yellow is torn down from a printer at the Recompile Workbench, red is crafted
+  from beetroot and green is smelted from cactus, all reachable well before power. **Wool is.** This
+  world ships no garbage source for it on purpose (`design_decisions.md:752` records slag wool as
+  considered and dropped), so every route runs through a sheep: the **animals** rung, which is last
+  in the reclamation ladder's `soil -> vegetation -> nursery -> animals`, an amber spawn egg via the
+  Sequencer, or a Shepherd trade off a cured demolition-yard zombie villager. Meanwhile AE2, Pipez,
+  Powah, Ender IO and LaserIO cable is all reachable much earlier, so a player will see the facade in
+  JEI long before they can make one. **This cannot be tuned from the pack side** - the pack can ship
+  no recipe override at all (#39), so the only levers are the mod's own config or leaving it. Cosmetic
+  content arriving late is a mild version of this problem, which is why it was taken anyway; recorded
+  so a playtester who hits it knows it is understood rather than missed.
 - **Just Dire Things** roots its progression in `Raw <X> Ore` items and ships Ore Miner / Ore Scanner
   / Ore X-Ray upgrades, in a pack with no ore. Wiring its four materials into garbage loot and
   teardown tables would fix that and is arguably good content, since cross-mod teardown is the

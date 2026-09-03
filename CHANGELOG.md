@@ -12,6 +12,9 @@ and ASCII punctuation only.
 - **Cable Facades.** Cover a cable or pipe with a facade and it reads as the block around it, so a
   run of conduit through a wall stops looking like a run of conduit. It moves nothing and creates
   nothing. It covers five of the mods already here: AE2, Ender IO, LaserIO, Pipez and Powah.
+  **The recipe wants wool**, so expect to be running cable for a long time before you can hide any of
+  it - the dyes it also asks for are easy, but there is no wool in the trash and a sheep is not a
+  first-week animal.
 
 ## [0.11.0] - 2026-09-03
 
