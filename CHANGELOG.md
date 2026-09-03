@@ -9,6 +9,14 @@ and ASCII punctuation only.
 ## [Unreleased]
 
 ### Added
+- (nothing yet)
+
+## [0.11.0] - 2026-09-03
+
+Recompile 0.16.0 and 0.17.0: cardboard you can build with on the first day, a cooling tower and
+smoking chimneys on the skyline, and a powered vacuum that clears a mound faster than a pickaxe.
+
+### Added
 - **Jade Addons.** Jade's tooltip reads FTB Chunks claims now, along with several other mods already
   in the pack that it could not see before. Nothing new to craft; it is what the block you are
   looking at tells you.
