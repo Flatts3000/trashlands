@@ -39,7 +39,7 @@ one page, so it stays off until there is real quest content.
 
 # Trashlands
 
-Minecraft 26.1.2, NeoForge 26.1.2.100, 62 mods.
+Minecraft 26.1.2, NeoForge 26.1.2.100, 64 mods.
 
 A coarse-dirt plain covered in garbage mounds. No ore generates, no trees grow, and the world
 contains no water. Materials come from Blocks of Garbage dug out of the mounds.

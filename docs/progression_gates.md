@@ -361,6 +361,41 @@ Kept as worked examples, because each was invisible until traced.
 
 ## Changelog
 
+- **2026-09-03** - Recompile 0.16.0 and 0.17.0, pinned together in pack v0.11.0. **Loosens the
+  earliest tier and adds a powered one on top of it.** *Cardboard* is the first building family in
+  this world that costs nothing to reach: flattened piles sit on top of the mounds, break by hand,
+  four to a block, and the block makes a slab, stairs and a wall. No tool, no station, and nothing to
+  learn first - every other building material here is behind a machine, a tool or a journey. A pile
+  is worth about one block and an average mound carries about four. *The Garbage Vacuum* is the other
+  end of the same release: it pulls garbage blocks out of the ground at about five a second, takes
+  whole blocks rather than their contents (so the sorting step is untouched), and costs power per
+  block, with a bigger block costing more - a Compacted Bale is eight rolls against a Trash Bag's
+  four. Its four tiers gate on the waste they were built for: copper handles household rubbish, iron
+  adds the demolition yard, diamond the tailings and drums, and only netherite touches the depths,
+  each tier also covering everything easier than itself. Range and buffer scale with tier, two blocks
+  and 4,000 FE at copper to five and 24,000 at netherite.
+
+  **Batteries gate that whole upper tier, and they are the interesting gate.** Depleted Batteries turn
+  up loose in household waste at about the rate of a dead bulb, and a dead one builds nothing - it is
+  a teardown subject, cut open at a Teardown Workbench with a Scrap Knife for scrap metal, e-scrap and
+  plastic, with four of them enough to work out what is inside. A live Battery is copper, scrap metal
+  and e-scrap at the Scrap Crafting Table, and it is the only route; nothing in this world hands you a
+  working cell. Both the vacuum and its Charging Station need one, so no cell means no charger and no
+  vacuum.
+
+  **This lands the vacuum on top of the power question that is still undecided.** The Charging Station
+  only fills a vacuum with a generator touching it, so the tool is FE-gated, and *when* the player is
+  meant to get power is the pack decision that 0.15.0's Powah route and AE2 already made more urgent
+  (`pack_setup.md`). The vacuum is the first Recompile tool to depend on that answer.
+
+  **One gate moved back.** 0.16.0 shipped a husk loot override in the demolition yard to stop a
+  spawner farm handing out iron; it only covered the husks at the smokestacks, so the yard's ordinary
+  zombie spawns and any husk you drowned went on dropping it. 0.17.0 removed the override, and zombies
+  in the yard drop iron again - the guarantee it appeared to make was never one.
+
+  *Source: the Recompile changelog for 0.16.0 and 0.17.0, read 2026-09-03. Nothing here has been
+  observed in play; see the standing note that the pack is shipping unplayed content.*
+
 - **2026-08-30** - Recompile 0.15.0, pinned in pack v0.10.0. **Opens one mod, one vanilla family, and
   a route to animals that does not go through the ladder.** *Powah* stops being unstartable: its
   uraninite worldgen gates on `#minecraft:is_overworld` and this world ships no entry for that tag, so
