@@ -9,7 +9,9 @@ and ASCII punctuation only.
 ## [Unreleased]
 
 ### Added
-- (nothing yet)
+- **Cable Facades.** Cover a cable or pipe with a facade and it reads as the block around it, so a
+  run of conduit through a wall stops looking like a run of conduit. It moves nothing and creates
+  nothing. It covers five of the mods already here: AE2, Ender IO, LaserIO, Pipez and Powah.
 
 ## [0.11.0] - 2026-09-03
 

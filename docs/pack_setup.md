@@ -52,8 +52,8 @@ tools/
 
 ## The mod lineup
 
-**64 mods**: the core six, a quality-of-life layer, the FTB stack, a tech and gadget layer, world-type enforcement, and nine auto-pulled libraries. Locked
-2026-08-02, with Jade Addons and Configured added 2026-09-03.
+**65 mods**: the core six, a quality-of-life layer, the FTB stack, a tech and gadget layer, world-type enforcement, and nine auto-pulled libraries. Locked
+2026-08-02, with Jade Addons, Configured and Cable Facades added 2026-09-03.
 
 ### Core - Recompile, the four it integrates with, and our own diagnostic
 
@@ -153,6 +153,7 @@ mod dependency, so they interoperate for free.
 | **Charging Gadgets** | A charging pad for the rest. Pure enabler. |
 | **Mining Gadgets** | Powered mining laser with configurable area. |
 | **LaserIO** | Long-range item, fluid, and energy routing with filters. |
+| **Cable Facades** | Cover a cable or pipe with a facade so it reads as the block around it. Cosmetic only - it moves nothing and creates nothing. Ships built-in support for five mods already here: AE2, Ender IO, LaserIO, Pipez and Powah. |
 | **Just Dire Things** | Direwolf20's kit: powered tool and armor tiers, block breakers/placers/swappers/clickers/droppers, and its own four-material ladder (Ferricore, Blazegold, Celestigem, Eclipse Alloy). |
 
 **Concerns raised and overridden (owner call).** Recorded so the reasoning is not lost if any of
@@ -490,7 +491,7 @@ install task fail** ("Failed to launch modpack. An unexpected error occurred.").
 3. Name the instance **`Trashlands`** (the default `tools/sync_instance.py` looks for
    `<home>/curseforge/minecraft/Instances/Trashlands`).
 
-The manifest carries `neoforge-26.1.2.100`, so the app installs that loader and all 64 mods itself.
+The manifest carries `neoforge-26.1.2.100`, so the app installs that loader and all 65 mods itself.
 If the app cannot find that NeoForge build in its catalog the import will say so - see the loader
 note below.
 
