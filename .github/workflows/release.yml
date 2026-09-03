@@ -45,9 +45,20 @@ jobs:
           go-version: stable
           cache: false # no go.sum in this repo (packwiz is `go install`-ed); skip the cache restore
 
+      # Pinned, NOT @latest. packwiz upstream commit 9066bf8 (#407, 2026-09-02) added a
+      # `replace` directive to its go.mod, and `go install pkg@version` refuses any module
+      # whose go.mod carries one:
+      #
+      #   The go.mod file for the module providing named packages contains one or
+      #   more replace directives.
+      #
+      # That broke this step in both workflows the moment it landed upstream - nothing in
+      # this repo changed. dfd8b68 is the commit immediately before it, and is itself
+      # "Support neoforge for 26.1 and above" (#386), which is the support this pack needs.
+      # Move the pin forward only to a commit whose go.mod has no replace directive.
       - name: Install packwiz
         run: |
-          go install github.com/packwiz/packwiz@latest
+          go install github.com/packwiz/packwiz@v0.0.0-20260218225342-dfd8b68a4796
           echo "$(go env GOPATH)/bin" >> "$GITHUB_PATH"
 
       # packwiz-installer is a jar, and tools/check_pack_deps.py drives it to resolve

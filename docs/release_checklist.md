@@ -132,6 +132,14 @@ otherwise found by whoever first runs a server.
   with `UnsupportedClassVersionError` before a single mod loads, which is what failed the first
   v0.7.0 attempt. Both workflows and the server pack's `INSTALL.md` say 25; the dev instance has been
   on jdk-25 all along. If a boot ever fails instantly with a class-version error, this is it.
+- **`packwiz` in CI is pinned, not `@latest`.** Upstream commit `9066bf8` (#407, 2026-09-02) added
+  a `replace` directive to packwiz's `go.mod`, and `go install pkg@version` refuses any module whose
+  go.mod carries one ("contains one or more replace directives"). Both workflows broke the moment it
+  landed upstream, with nothing in this repo changed - it failed PR #58 before this release. They now
+  pin `v0.0.0-20260218225342-dfd8b68a4796`, the commit immediately before it, which is itself
+  "Support neoforge for 26.1 and above" (#386). **Move the pin only to a commit whose `go.mod` has no
+  replace directive**; check with
+  `gh api "repos/packwiz/packwiz/contents/go.mod?ref=<sha>" --jq .content | base64 -d | grep replace`.
 - **`packwiz-installer-bootstrap` used to call the GitHub API anonymously** to look up its own
   latest release, and got a **403** when the runner's shared IP was rate-limited. It hit PR CI on
   2026-08-18 and again on PR #33 on 2026-08-20, and the release drives that bootstrap three times, so
