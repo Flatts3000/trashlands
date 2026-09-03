@@ -9,7 +9,25 @@ and ASCII punctuation only.
 ## [Unreleased]
 
 ### Added
-- (nothing yet)
+- **Jade Addons.** Jade's tooltip reads FTB Chunks claims now, along with several other mods already
+  in the pack that it could not see before. Nothing new to craft; it is what the block you are
+  looking at tells you.
+- **Configured.** A settings screen for the mods here that ship no GUI of their own, reached from the
+  mod list instead of by editing a file in `config/` and restarting.
+
+### Changed
+- **Recompile 0.15.0 to 0.17.0.** Cardboard sits in flattened piles on top of the mounds and breaks
+  by hand, four to a block, into the first blocks, slabs, stairs and walls you can build with on day
+  one - no tool, no station, nothing to learn first. A decrepit cooling tower and brick smokestacks
+  break the horizon, the standing stacks smoke, and something waits at the foot of each that spawns
+  in daylight. Depleted Batteries turn up loose in household waste; cut four open at a Teardown
+  Workbench and you can build live ones, and those gate the whole tier above them. The Garbage Vacuum
+  pulls about five garbage blocks a second out of the ground, costs power per block, and is rated for
+  the waste it was built for - copper for household rubbish, netherite for the depths. It charges
+  flat on a Charging Station with a generator touching the station.
+- **Six routine mod bumps:** JEI, Balm, FTB Chunks, ModernFix, Modonomicon, and Sodium, which moved
+  off its alpha onto a beta. The NeoForge pin stayed at 26.1.2.100; nothing raised its floor.
+- **Extreme Sound Muffler stayed at 3.58.1.** The newest file is still a 4.x alpha.
 
 ## [0.10.0] - 2026-08-30
 

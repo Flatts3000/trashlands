@@ -116,7 +116,7 @@ metafile = true
 
 [[files]]
 file = "mods/balm.pw.toml"
-hash = "625933fb047e7911188c26cd83926bcef80b5700d948fb70122487e864574785"
+hash = "1a12d7f3d62a1dabcf202856c4b2a26d0cffbf58ecb2c080efe21d96fab79c73"
 metafile = true
 
 [[files]]
@@ -137,6 +137,11 @@ metafile = true
 [[files]]
 file = "mods/clumps.pw.toml"
 hash = "430d0ebb018edf74670f7a2aafb5c02b9907cddfd726dd47ec406b534618c955"
+metafile = true
+
+[[files]]
+file = "mods/configured.pw.toml"
+hash = "1dc23e6188ac7cb4282a418c39dd6d69446172fc12fe3583f46d078dcc4d497e"
 metafile = true
 
 [[files]]
@@ -191,7 +196,7 @@ metafile = true
 
 [[files]]
 file = "mods/ftb-chunks-forge.pw.toml"
-hash = "697b067fd2bc849ef12157ecd2b1ba8a17e289e369d238f709700b4d37c5dc79"
+hash = "6a31e0a2f60397124fc67a0565142aa17929d57341399c30c47cd2de0f23b62b"
 metafile = true
 
 [[files]]
@@ -240,13 +245,18 @@ hash = "0ce1d228838652cbecdd105833a70e66f7ed3f43e94ea1f954963357d29a0fda"
 metafile = true
 
 [[files]]
+file = "mods/jade-addons.pw.toml"
+hash = "75e18578588e43db9344581b7b6fb3fdf0f6e8cddabf5041d9165196a38954eb"
+metafile = true
+
+[[files]]
 file = "mods/jade.pw.toml"
 hash = "f6966f01757d2a20fbe0284e06d9e37d89bcd8da62eacce859c985a5b3115842"
 metafile = true
 
 [[files]]
 file = "mods/jei.pw.toml"
-hash = "8c39e373f88438ebdf1d43f9d3559d34efda520b6ee9d41d15c40a1abd626d15"
+hash = "41a3ec9d357e69cb578a0bdbba397b93818fbd3c06d79a137c847a3aa242824e"
 metafile = true
 
 [[files]]
@@ -281,12 +291,12 @@ metafile = true
 
 [[files]]
 file = "mods/modernfix.pw.toml"
-hash = "b4541ad2c775528c34d8ce70a29b5cabc66b8c72046e8953aafaea074602b481"
+hash = "4b074d2fd85f419e85d9cbf921ca0f7a5ed5dd24158d1a4ec575838b6c7477e4"
 metafile = true
 
 [[files]]
 file = "mods/modonomicon.pw.toml"
-hash = "95753f0c01b2215d656d3cf790c76bcac8fd5ff07a9a232cdf4247bfa9f92c61"
+hash = "afc767d1a90ae2c9afdabea27e973ba6ba7888c71ab86ea72f1e3c0537158f67"
 metafile = true
 
 [[files]]
@@ -321,7 +331,7 @@ metafile = true
 
 [[files]]
 file = "mods/recompile.pw.toml"
-hash = "9c001554bea734b49f2c0289979cc185263c130fa579484eda64957f618fbb1c"
+hash = "b98b62c52134946d85958fd486c3bf01ab906c2bb9ae2825adaddb0ea9744635"
 metafile = true
 
 [[files]]
@@ -341,7 +351,7 @@ metafile = true
 
 [[files]]
 file = "mods/sodium.pw.toml"
-hash = "b2cd2339d2b561584ac68dfea205178b28edf86f249f74cd0765cb5d65300bab"
+hash = "a4c2eac859f5fad975bbcc168f4f90559f06ac2af348a0f25c508998a19b13e7"
 metafile = true
 
 [[files]]
