@@ -125,6 +125,11 @@ hash = "5e63f44ba5113b18ee66c51f06c5e7a56112784130aa9051d9bedaaf64654933"
 metafile = true
 
 [[files]]
+file = "mods/cable-facades.pw.toml"
+hash = "c001576ab9dcad649bb5775ffa470e5fdbf8b08051723dc56f4a14fcaf9433be"
+metafile = true
+
+[[files]]
 file = "mods/charging-gadgets.pw.toml"
 hash = "97fe38c7f7f4405fe493dc933060c0adf3cddfc1252ffc66be5127035bd1d2c4"
 metafile = true
