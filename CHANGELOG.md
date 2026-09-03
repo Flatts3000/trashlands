@@ -9,7 +9,11 @@ and ASCII punctuation only.
 ## [Unreleased]
 
 ### Added
-- (nothing yet)
+- **Jade Addons.** Jade's tooltip reads FTB Chunks claims now, along with several other mods already
+  in the pack that it could not see before. Nothing new to craft; it is what the block you are
+  looking at tells you.
+- **Configured.** A settings screen for the mods here that ship no GUI of their own, reached from the
+  mod list instead of by editing a file in `config/` and restarting.
 
 ### Changed
 - **Recompile 0.15.0 to 0.17.0.** Cardboard sits in flattened piles on top of the mounds and breaks

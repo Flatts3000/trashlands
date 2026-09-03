@@ -140,6 +140,11 @@ hash = "430d0ebb018edf74670f7a2aafb5c02b9907cddfd726dd47ec406b534618c955"
 metafile = true
 
 [[files]]
+file = "mods/configured.pw.toml"
+hash = "1dc23e6188ac7cb4282a418c39dd6d69446172fc12fe3583f46d078dcc4d497e"
+metafile = true
+
+[[files]]
 file = "mods/controlling.pw.toml"
 hash = "bbc4ab39e1331069171303de5b94321f7ad615bcab498c4b06353e0c72d775e9"
 metafile = true
@@ -237,6 +242,11 @@ metafile = true
 [[files]]
 file = "mods/inventory-essentials.pw.toml"
 hash = "0ce1d228838652cbecdd105833a70e66f7ed3f43e94ea1f954963357d29a0fda"
+metafile = true
+
+[[files]]
+file = "mods/jade-addons.pw.toml"
+hash = "75e18578588e43db9344581b7b6fb3fdf0f6e8cddabf5041d9165196a38954eb"
 metafile = true
 
 [[files]]

@@ -52,8 +52,8 @@ tools/
 
 ## The mod lineup
 
-**62 mods**: the core six, a quality-of-life layer, the FTB stack, a tech and gadget layer, world-type enforcement, and nine auto-pulled libraries. Locked
-2026-08-02.
+**64 mods**: the core six, a quality-of-life layer, the FTB stack, a tech and gadget layer, world-type enforcement, and nine auto-pulled libraries. Locked
+2026-08-02, with Jade Addons and Configured added 2026-09-03.
 
 ### Core - Recompile, the four it integrates with, and our own diagnostic
 
@@ -73,11 +73,23 @@ has a 26.1.2 NeoForge build on CurseForge. Nothing here touches the economy.
 
 | Group | Mods |
 |---|---|
-| Inventory and UI | AppleSkin, Mouse Tweaks, Inventory Essentials, Controlling, Searchables, Toast Control, Clumps |
+| Inventory and UI | AppleSkin, Mouse Tweaks, Inventory Essentials, Controlling, Searchables, Toast Control, Clumps, Configured |
+| Tooltips | Jade Addons (Neo/Forge) |
 | Cleanup | TrashSlot, Trash Cans |
 | Performance | FerriteCore, ModernFix, Lithium, FastFurnace, FastWorkbench, FastSuite, Sodium |
 | Death and safety | GraveStone, Simple Backups |
 | Audio | Extreme Sound Muffler |
+
+**Jade Addons and Configured arrived 2026-09-03**, off the recheck list below. Both had no 26.1.2
+build when the lineup was locked and both have one now: `JadeAddons-26.1.2-NeoForge-26.0.1` and
+`configured-neoforge-26.1.2-2.7.5`. Jade Addons extends the core Jade with support for FTB Chunks and
+several other mods already here, so it needs no new dependency; Configured adds an in-game config
+screen for mods that ship no GUI of their own.
+
+**Recheck the list with slugs, not display names.** That list records display names only, and the
+first pass at this recheck read Jade Addons as still-absent because the guessed slug
+`jade-addons-forge` returns no project - the real one is `jade-addons`. A wrong slug is
+indistinguishable from a missing build in the output.
 
 **Extreme Sound Muffler is held at 3.58.1.** The newest file on CurseForge is
 `4.02-ALPHA_NeoForge-26.1`, a new major line and an alpha, and muffling is a comfort feature that is
@@ -412,9 +424,24 @@ overrides:
   economy. Gated off garbage it has almost nothing left to do, because there is no ore and no wood.
 - **FTB Ranks** - server permission ranks. Nothing to permission yet.
 - **FTB Filter System** - smart item filters for routers and AE-style storage. The pack has neither.
-- **No 26.1.2 build on CurseForge** (recheck later): Crafting Tweaks, Jade Addons, Torchmaster,
-  Polymorph, Supplementaries, Chipped, Functional Storage, More Overlays Updated, Fast Leaf Decay,
-  Configured, Bookshelf, Inventory Tweaks Refoxed.
+- **More Overlays Updated** - it *does* have a 26.1.2 build now
+  (`moreoverlays-1.24.4-mc26.1.2-neoforge`, file 7951520), and the pack still cannot ship it. The
+  project is flagged **excluded from the CurseForge API**, so packwiz-installer refuses it with
+  "This mod is excluded from the CurseForge API and must be downloaded manually." That fails
+  `check_pack_deps.py`, which gates every PR and the release. The project page says the opposite -
+  the author's own text permits modpack distribution - and the file is fetchable straight off
+  `edge.forgecdn.net`, so neither the page nor a CDN check falsifies this. Only the installer does.
+  Recheck by adding it and running `check_pack_deps.py`; if that passes, the flag has been lifted.
+- **No 26.1.2 build on CurseForge** (recheck later, and check by **slug** - a wrong slug reads as a
+  missing build): Crafting Tweaks (`crafting-tweaks`), Torchmaster (`torchmaster`), Polymorph
+  (`polymorph`), Supplementaries (`supplementaries`), Chipped (`chipped`), Fast Leaf Decay
+  (`fast-leaf-decay`), Bookshelf (`bookshelf`), Inventory Tweaks Refoxed
+  (`inventory-tweaks-refoxed`). Rechecked 2026-09-03; Create and Mekanism were rechecked across all
+  of 26.x, not just 26.1.2, and still have nothing.
+
+  Jade Addons (`jade-addons`) and Configured (`configured`) came off this list on 2026-09-03 and are
+  in the pack. **Functional Storage should never have been on it** - it was pinned with the
+  2026-08-20 storage additions and is in the lineup table above.
 
 ### Rules for adding one
 
@@ -463,7 +490,7 @@ install task fail** ("Failed to launch modpack. An unexpected error occurred.").
 3. Name the instance **`Trashlands`** (the default `tools/sync_instance.py` looks for
    `<home>/curseforge/minecraft/Instances/Trashlands`).
 
-The manifest carries `neoforge-26.1.2.100`, so the app installs that loader and all 62 mods itself.
+The manifest carries `neoforge-26.1.2.100`, so the app installs that loader and all 64 mods itself.
 If the app cannot find that NeoForge build in its catalog the import will say so - see the loader
 note below.
 
