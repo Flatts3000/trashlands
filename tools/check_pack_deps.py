@@ -82,10 +82,25 @@ def version_tuple(text: str) -> tuple[int, ...]:
     return tuple(int(p) for p in re.findall(r"\d+", text))
 
 
-def lower_bound(version_range: str) -> tuple[int, ...] | None:
-    """Lower bound of a Maven range like `[26.1.2.93,)`. None if unparseable."""
-    m = re.match(r"^\s*[\[(]\s*([0-9.]+)", version_range or "")
-    return version_tuple(m.group(1)) if m else None
+def lower_bound(version_range: str) -> tuple[tuple[int, ...], bool] | None:
+    """Lower bound of a Maven range, as `(version, inclusive)`. None if unparseable.
+
+    `[26.1.2.93,)` is inclusive - .93 itself is allowed. `(26.1.2.93,)` is
+    exclusive and demands strictly more than .93. Returning the number alone
+    lost that distinction and let a pin sitting exactly on an exclusive bound
+    through, which is the silent no-load this whole tool exists to prevent.
+    """
+    m = re.match(r"^\s*([\[(])\s*([0-9.]+)", version_range or "")
+    return (version_tuple(m.group(2)), m.group(1) == "[") if m else None
+
+
+def below_floor(pin: tuple[int, ...], version_range: str) -> bool:
+    """Does `pin` sit below what `version_range` demands as its lower bound?"""
+    lb = lower_bound(version_range)
+    if not lb:
+        return False
+    bound, inclusive = lb
+    return pin < bound or (pin == bound and not inclusive)
 
 
 def in_range(version: str, version_range: str) -> bool:
@@ -102,7 +117,13 @@ def in_range(version: str, version_range: str) -> bool:
     have = version_tuple(version)
     if not have:
         return True
-    for clause in re.findall(r"[\[(][^\[\]()]*[\])]", rng):
+    clauses = re.findall(r"[\[(][^\[\]()]*[\])]", rng)
+    if not clauses:
+        # No bracket syntax at all - a bare version, or junk. Unreadable means
+        # "any version", per the contract above. Falling through to False here
+        # reported a satisfied dependency as too old and failed a good release.
+        return True
+    for clause in clauses:
         body = clause[1:-1]
         lo_inc, hi_inc = clause[0] == "[", clause[-1] == "]"
         lo_s, _, hi_s = body.partition(",")
@@ -259,12 +280,10 @@ def audit(mods_dir: Path) -> int:
                     continue
                 rng = dep.get("versionRange") or ""
                 if mod_id == "neoforge":
-                    bound = lower_bound(rng)
-                    if bound and loader_pin_t < bound:
+                    if below_floor(loader_pin_t, rng):
                         loader_blocks.append(f"{jar} needs neoforge {rng}")
                 elif mod_id == "minecraft":
-                    bound = lower_bound(rng)
-                    if bound and mc_pin_t < bound:
+                    if below_floor(mc_pin_t, rng):
                         mc_blocks.append(f"{jar} needs minecraft {rng}")
                 elif mod_id not in BUILTIN and mod_id not in present:
                     missing.append(f"{jar} requires '{mod_id}' {rng}")

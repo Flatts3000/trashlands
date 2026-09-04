@@ -23,6 +23,7 @@ on:
       - "pack/pack.toml"
       - "pack/mods/**"
       - "tools/check_pack_deps.py"
+      - "tools/test_check_pack_deps.py"
       - "tools/packwiz-installer.jar"
       - "tools/inspect_world_terrain.py"
       - "tools/test_inspect_world_terrain.py"
@@ -34,6 +35,7 @@ on:
       - "pack/pack.toml"
       - "pack/mods/**"
       - "tools/check_pack_deps.py"
+      - "tools/test_check_pack_deps.py"
       - "tools/packwiz-installer.jar"
       - "tools/inspect_world_terrain.py"
       - "tools/test_inspect_world_terrain.py"
@@ -81,6 +83,14 @@ jobs:
       # either blocks a good release or, worse, waves a vanilla world through.
       - name: Test the world-type gate
         run: python tools/test_inspect_world_terrain.py
+
+      # The guard's own version-comparison tests, run before it. Two real bugs
+      # turned up the first time anyone wrote these: an exclusive lower bound
+      # `(x,)` read as inclusive, which let a pin sitting exactly on it through,
+      # and a bare version range reported as "too old", which fails a good
+      # release. Both are one boundary in a tuple comparison that looks right.
+      - name: Test the dependency guard
+        run: python tools/test_check_pack_deps.py
 
       - name: Audit dependencies and loader pin
         run: python tools/check_pack_deps.py

@@ -26,3 +26,8 @@ __pycache__/
 /page-*.yml
 /console-*.log
 
+
+# Coverage data from `python -m coverage run` over tools/. Local only - CI runs
+# the test scripts directly and measures nothing.
+/.coverage
+/htmlcov/
