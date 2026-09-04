@@ -28,6 +28,7 @@ on:
       - "pack/resourcepacks/**"
       - "tools/validate_quests.py"
       - "tools/score_quest_voice.py"
+      - "tools/test_validate_quests.py"
       - "tools/verify_quests.py"
       - ".github/workflows/validate-quests.yml"
   push:
@@ -37,6 +38,7 @@ on:
       - "pack/resourcepacks/**"
       - "tools/validate_quests.py"
       - "tools/score_quest_voice.py"
+      - "tools/test_validate_quests.py"
       - "tools/verify_quests.py"
   workflow_dispatch:
 
@@ -55,6 +57,13 @@ jobs:
       # a syntax error in it reaches main with nothing to say so.
       - name: Compile the quest tools
         run: python -m compileall -q tools/verify_quests.py tools/validate_quests.py tools/score_quest_voice.py
+
+      # The validator's own tests, run before it. A validator nobody has seen
+      # fail is not evidence, and every check it makes is for a failure that is
+      # silent in game - so a validator quietly passing everything looks exactly
+      # like a healthy book.
+      - name: Test the quest validator
+        run: python tools/test_validate_quests.py
 
       - name: Validate quest structure
         run: python tools/validate_quests.py

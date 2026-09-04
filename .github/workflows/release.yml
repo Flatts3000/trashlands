@@ -99,6 +99,15 @@ jobs:
       # fine and missing something. v0.1.0's first lineup pinned 26.1.2.76 with JEI
       # needing [26.1.2.81,) and Balm [26.1.2.93,). Also runs on PRs (validate-pack.yml);
       # repeated here because shipping an unloadable pack is worse than a slow release.
+      # The guard's own tests, ahead of both of its runs below. Release is where
+      # a wrong exit code costs the most: the guard decides whether the pack
+      # ships, and its whole job is one comparison between two version tuples.
+      # Two real bugs lived in that comparison until these cases were written -
+      # an exclusive lower bound `(x,)` read as inclusive, and a bare version
+      # range mishandled in both directions. The step takes about a second.
+      - name: Guard - test the dependency guard itself
+        run: python3 tools/test_check_pack_deps.py
+
       - name: Guard - pinned pack can actually load
         run: python3 tools/check_pack_deps.py
 
