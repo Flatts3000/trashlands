@@ -16,6 +16,46 @@ and ASCII punctuation only.
   it - the dyes it also asks for are easy, but there is no wool in the trash and a sheep is not a
   first-week animal.
 
+### Changed
+- **Recompile 0.18.0.** A drained municipal aquarium stands out in the demolition yard, seven rooms
+  of it, and it is the only prismarine, coral, sponge and sea lantern in the world. One tank still
+  holds water and there is a guardian in it, which is what makes that whole family renewable instead
+  of a fixed stock. A dead coral put in a Hydroponics Bay comes back alive, and the bay never eats
+  its seed. Tires are tipped in heaps across the household sprawl, some of them burning and staying
+  that way whatever the weather; break one by hand for the tire, with a Scrap Knife for the rubber,
+  or carry it home and tear it down for three rubber and the steel belts the knife cannot reach.
+  **The Pump wants Rubber Scrap where it wanted Plastic Scrap**, so check the sheet before you go
+  hunting for plastic. A Dried Bouquet out of household waste rehydrates on a water cauldron into one
+  of the four tall flowers or a large fern, none of which had any source here before. Tree Nurseries
+  take hoppers and pipes on both doors now, which is what makes a tree farm possible at all.
+- **One routine mod bump:** Modonomicon, the guidebook engine. The NeoForge pin stayed at
+  26.1.2.100; nothing raised its floor.
+- **Extreme Sound Muffler stayed at 3.58.1.** The newest file is still a 4.x alpha.
+
+### Fixed
+- **Walls connect to each other.** All five wall blocks - pressed junk, scrap plating, corrugated
+  metal, cardboard and plastic panel - were missing from the tag a wall reads to know its neighbour
+  is a wall, so a row of them stood as separate posts. Reported from playtest.
+
+### Known gaps
+- **The quest book does not cover Recompile 0.18.0.** The aquarium, the guardian tank, tire dumps,
+  rubber and the Dried Bouquet all ship with no quest pointing at them. JEI and the in-game guidebook
+  do document them. No quest text went stale: the book teaches the Pump twice and never names its
+  ingredients, so the Rubber Scrap swap reads correctly as written.
+
+### Heads up if you already have a world
+**The aquarium and the tire dumps only turn up in ground that has not been generated yet.** One is a
+structure and the other is a worldgen feature, so a save made before this update has neither
+anywhere you have already walked. Nothing breaks; you have to travel out past your explored edge.
+
+That matters more than it normally would, because **the Pump recipe changed and rubber only comes
+from tires.** The recipe reaches your existing save the moment you load it: the sheet asks for Rubber
+Scrap in the bottom cell where it asked for Plastic Scrap. Tires are the only source of rubber and
+tire dumps are new terrain, so on an old save you cannot craft a Pump until you have walked out to
+fresh ground. Tearing down a washing machine from Bulky Waste still hands you a whole Pump, which is
+the way around it in the meantime. Plastic Scrap is not orphaned - it still builds the Cutting Torch,
+the Plastic Panel and the Rain Collector Funnel.
+
 ## [0.11.0] - 2026-09-03
 
 Recompile 0.16.0 and 0.17.0: cardboard you can build with on the first day, a cooling tower and

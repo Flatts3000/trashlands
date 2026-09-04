@@ -157,7 +157,7 @@ on purpose.
 | **Cobweb** | Sewer corridors, cut with shears | The only source in the game |
 | **Slimeball** | Slimes. **No longer sewers-only as of Recompile 0.13.0** - they spawn in the demolition yard at weight 100, so this stopped being a structure gate | A deposit against the redstone tier, worth little now |
 | **Trident, nautilus shell** | Drowned, from the sewer's spawner | Owner call: a prize at this depth, not a spike |
-| **Bulb, Pump, Motor, Machine Frame** | Sewer barrels, own loot pool | Travel + Prybar. All `blueprint_crafting`, so a found one is a single unit that teaches nothing - the blueprint gate is untouched |
+| **Bulb, Pump, Motor, Machine Frame** | Sewer barrels, own loot pool | Travel + Prybar. All `blueprint_crafting`, so a found one is a single unit that teaches nothing - the blueprint gate is untouched. **As of Recompile 0.18.0 the crafted Pump also needs Rubber Scrap**, whose only source is a tire dump in the household sprawl; the found one is unaffected, so this row's claim still holds and the *material* gate below it is new |
 | **Echo shard** | The crate settled in the sump's silt, one per sewer | **The only source in the world.** As of Recompile 0.14.0 the same crate also holds all four AE2 Inscriber presses, so the sewer is now the sole entry to AE2's whole tree as well - worth re-reading the "nothing in them skips a tier" criterion above against that. See below |
 | **Mud** | The frog den's floor | **Not gated, and not new** - see below |
 | **Sand** | The turtle den's floor | Not new - sledgehammering Reinforced Concrete already yields it |
@@ -360,6 +360,44 @@ Kept as worked examples, because each was invisible until traced.
 | Cupola needs concrete -> concrete needs Reinforced Concrete -> nothing placed it | **Broken 2026-07-30** by the steel pile. The recipe had been written against materials the biome was *meant* to have; nothing checked it was in the world, and iron was unreachable in survival with every test green |
 
 ## Changelog
+
+- **2026-09-04** - Recompile 0.18.0, pinned on `update-mods-2026-09-04`. **Adds one material gate,
+  opens one vanilla family that had no source at all, and moves an existing recipe underneath a
+  player who already has a world.** *Rubber* is the gate. The Pump recipe moved off Plastic Scrap
+  onto Rubber Scrap in the bottom cell, and rubber comes from one place: tires, hand-broken for the
+  tire, cut with a Scrap Knife for the rubber where they stand, or carried home and torn down at the
+  Teardown Workbench for three rubber plus the steel belts the knife cannot reach. Tire dumps are a
+  placed feature in the household sprawl and nothing regrows one, so the gate sits on a
+  **depletable** resource: the mounds come back, a stripped tire dump does not, the same way the mill
+  tailings behind the radioactive dump do not. A dump you strip is a dump you leave. The
+  found Pump out of a sewer barrel is untouched, so the gate binds on crafting, not on having one.
+
+  **The gate reaches back into existing saves, and that is the part worth watching.** A recipe change
+  applies the moment a save loads, but a placed feature only appears in chunks generated after the
+  update. So a player on v0.11.0 gets the new Pump recipe immediately and has no tires anywhere they
+  have walked. The Grass Spreader is downstream of the Pump, which puts the reclamation ladder behind
+  a walk to fresh terrain on any pre-0.18.0 world. The washing-machine teardown still hands over a
+  whole Pump, which is the only reason this is a detour rather than a wall.
+
+  *The Municipal Aquarium* is the other half: a drained seven-room building in the demolition yard,
+  and **the only prismarine, coral, sponge and sea lantern in the world**. It reads as a fixed stock
+  and is not one - the guardian left in the one tank that still holds water is what makes the
+  prismarine family renewable, since every prismarine block and the sea lantern craft from shards and
+  crystals that drop from exactly one mob. A dead coral in a Hydroponics Bay comes back alive and the
+  bay never eats its seed, so one of each colour is a permanent supply. Prismarine Grit out of Mill
+  Tailings is the manufactured route and the tailings do not grow back. The silt bed is the only
+  archaeology here, holding the nineteen pottery sherds the sewers do not, and pale moss exists in
+  the centrepiece tank and nowhere else. Read the aquarium against the "nothing in them skips a tier"
+  criterion the same way the echo shard was read: it is a second structure holding a world exclusive.
+
+  **A gate that was never real came off.** The Tree Nursery took hoppers and pipes on neither door,
+  which made a tree farm impossible rather than hands-on, and a nursery is the only source of trees
+  here. Both doors are automatable now.
+
+  *Source: the Recompile changelog for 0.18.0 plus its shipped data files - `recipe/pump.json`,
+  `worldgen/structure_set/municipal_aquariums.json`, `worldgen/placed_feature/tire_pile.json` - read
+  2026-09-04. Nothing here has been observed in play; see the standing note that the pack is shipping
+  unplayed content.*
 
 - **2026-09-03** - Recompile 0.16.0 and 0.17.0, pinned together in pack v0.11.0. **Loosens the
   earliest tier and adds a powered one on top of it.** *Cardboard* is the first building family in

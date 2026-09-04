@@ -301,7 +301,7 @@ metafile = true
 
 [[files]]
 file = "mods/modonomicon.pw.toml"
-hash = "afc767d1a90ae2c9afdabea27e973ba6ba7888c71ab86ea72f1e3c0537158f67"
+hash = "fe8aa3e47d807b68fd91b1c59dffb0c2d73b4afd5d0ea5f0bab61cc1ec8596f6"
 metafile = true
 
 [[files]]
@@ -336,7 +336,7 @@ metafile = true
 
 [[files]]
 file = "mods/recompile.pw.toml"
-hash = "b98b62c52134946d85958fd486c3bf01ab906c2bb9ae2825adaddb0ea9744635"
+hash = "b862f7bf06744daa3615b09e1451f67970c5411611485e7a8806b7cbd3e01e7d"
 metafile = true
 
 [[files]]

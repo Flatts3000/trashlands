@@ -123,6 +123,14 @@ achievement per completed trophy; a dedicated "trophy case" or pedestal block to
 
 ## I-4: Mounds of tires
 
+**SHIPPED in Recompile 0.18.0 (pinned here 2026-09-04).** This entry is kept for the reasoning, not
+as backlog. What actually landed: circular tire heaps across the household sprawl, some of them
+permanently burning; hand-break for the tire, Scrap Knife for the rubber, Teardown Workbench for
+three rubber plus the steel belts the knife cannot reach; a Pulverizer shreds them in bulk and loses
+the wire. Nothing regrows a dump, so one you strip is one you leave. **The sink is the Pump**, whose
+recipe moved off Plastic Scrap onto Rubber Scrap - not the Create belt this entry had decided on.
+Neither tires nor rubber are fuel.
+
 **Idea:** worldgen **mounds of tires** - the iconic tire-dump pile.
 
 **Fit / notes:**
@@ -132,13 +140,13 @@ achievement per completed trophy; a dedicated "trophy case" or pedestal block to
 - **It's the found source for `rubber`** - already one of "our intermediates" in
   `material_economy.md` (scrap, cullet, muck, plastic sheet, **rubber**) but with no origin named.
   Tires are the obvious one. This is the strongest hook: it gives an orphaned material a home.
-- **The chain is decided:** a tire **cut with the scrap knife -> `rubber scrap`** (naming matches
-  the scrap family: scrap_metal, plastic_scrap, fiber_scrap), and **rubber scrap -> Create belts**.
-  The Create belt recipe normally uses **dried kelp**, which is nonsense in a treeless dump - so
-  the pack overrides it to eat rubber scrap. This is exactly the locked "pack-tunes Create; its
-  chains route through our material streams" direction (`material_economy.md`, Create-spine). It is
-  **pack content** (a Create recipe override); the mod ships `rubber_scrap` as a real item and does
-  not require Create (standalone fallback use TBD).
+- **The chain was decided as** a tire **cut with the scrap knife -> `rubber scrap`** (naming matches
+  the scrap family: scrap_metal, plastic_scrap, fiber_scrap), and **rubber scrap -> Create belts**,
+  overriding Create's dried-kelp belt recipe, which is nonsense in a treeless dump.
+  **That half is dead and cannot be revived:** Create has no NeoForge build past 1.21.1, so it is not
+  in this pack and will not be (`CLAUDE.md`). The knife-cut half shipped as written. The sink 0.18.0
+  actually used is the Pump, in the mod rather than as pack content, which also answers the
+  Create-free-use question below.
 - **Secondary yields, all real recycling streams:** **steel wire** from steel-belted radials (a
   little scrap metal), and **tire-derived fuel** - tires burn hot and dirty, which ties straight
   into the junk-fuel / burn-barrel line (P2.2). A hotter (dirtier) fuel than junk is a natural
@@ -153,14 +161,16 @@ achievement per completed trophy; a dedicated "trophy case" or pedestal block to
 material once something consumes it (see below).
 
 **Open questions:**
-- ~~What does rubber make?~~ **Decided: Create belts** (rubber scrap overrides the dried-kelp belt
-  recipe). Still open: does `rubber_scrap` earn a **second, Create-free use** so the material isn't
-  a dead-end when Create is absent (seals, tubing, waterproof/hazmat gear)?
-- **Tires as fuel:** hotter than junk but dirty - a flavor/pollution angle, or just a better burn?
-- **Tire fire** as a config-gated hazard/flavor event (the notorious tire-dump fire) - never a
-  threat to builds or cleared land, per the P2 pressure-loop rule. Optional set dressing.
-- **Home:** mound variant now, or part of a **scrapyard / auto-wrecking region** where tires
-  cluster with cars and car batteries (the lead/battery stream)?
+All four were answered by shipping, three of them differently than this entry expected:
+
+- ~~What does rubber make?~~ **The Pump**, in the mod. Create was the decided answer and is not
+  available on this version, so the Create-free use was not optional after all.
+- ~~Tires as fuel?~~ **No.** Neither tires nor rubber burn as fuel.
+- ~~Tire fire as a config-gated hazard?~~ **Shipped, and it is set dressing exactly as the P2
+  pressure-loop rule requires.** It never goes out, in rain or with time, but it does not eat the
+  tires and there is nothing on bare dump ground for it to spread to. Water still puts it out.
+- ~~Home?~~ **Its own placed feature in the household sprawl**, not a mound variant and not a
+  scrapyard region.
 
 ## I-5: Bubble wrap you can actually pop
 
