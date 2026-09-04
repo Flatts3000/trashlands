@@ -27,17 +27,34 @@ and ASCII punctuation only.
   **The Pump wants Rubber Scrap where it wanted Plastic Scrap**, so check the sheet before you go
   hunting for plastic. A Dried Bouquet out of household waste rehydrates on a water cauldron into one
   of the four tall flowers or a large fern, none of which had any source here before. Tree Nurseries
-  take hoppers and pipes on both doors now, which is what makes a tree farm possible at all. Walls
-  connect to each other; all five were missing from the tag that tells a wall its neighbour is one.
+  take hoppers and pipes on both doors now, which is what makes a tree farm possible at all.
 - **One routine mod bump:** Modonomicon, the guidebook engine. The NeoForge pin stayed at
   26.1.2.100; nothing raised its floor.
 - **Extreme Sound Muffler stayed at 3.58.1.** The newest file is still a 4.x alpha.
+
+### Fixed
+- **Walls connect to each other.** All five wall blocks - pressed junk, scrap plating, corrugated
+  metal, cardboard and plastic panel - were missing from the tag a wall reads to know its neighbour
+  is a wall, so a row of them stood as separate posts. Reported from playtest.
 
 ### Known gaps
 - **The quest book does not cover Recompile 0.18.0.** The aquarium, the guardian tank, tire dumps,
   rubber and the Dried Bouquet all ship with no quest pointing at them. JEI and the in-game guidebook
   do document them. No quest text went stale: the book teaches the Pump twice and never names its
   ingredients, so the Rubber Scrap swap reads correctly as written.
+
+### Heads up if you already have a world
+**The aquarium and the tire dumps only turn up in ground that has not been generated yet.** One is a
+structure and the other is a worldgen feature, so a save made before this update has neither
+anywhere you have already walked. Nothing breaks; you have to travel out past your explored edge.
+
+That matters more than it normally would, because **the Pump recipe changed and rubber only comes
+from tires.** The recipe reaches your existing save the moment you load it: the sheet asks for Rubber
+Scrap in the bottom cell where it asked for Plastic Scrap. Tires are the only source of rubber and
+tire dumps are new terrain, so on an old save you cannot craft a Pump until you have walked out to
+fresh ground. Tearing down a washing machine from Bulky Waste still hands you a whole Pump, which is
+the way around it in the meantime. Plastic Scrap is not orphaned - it still builds the Cutting Torch,
+the Plastic Panel and the Rain Collector Funnel.
 
 ## [0.11.0] - 2026-09-03
 
