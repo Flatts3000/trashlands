@@ -8,6 +8,11 @@ and ASCII punctuation only.
 
 ## [Unreleased]
 
+## [0.12.0] - 2026-09-04
+
+Recompile 0.18.0: a drained aquarium with a guardian still in one tank, tire dumps that are the only
+rubber in the world, and a Pump recipe that changed underneath anyone who already has a save.
+
 ### Added
 - **Cable Facades.** Cover a cable or pipe with a facade and it reads as the block around it, so a
   run of conduit through a wall stops looking like a run of conduit. It moves nothing and creates
