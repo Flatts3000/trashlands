@@ -91,7 +91,13 @@ def lower_bound(version_range: str) -> tuple[tuple[int, ...], bool] | None:
     through, which is the silent no-load this whole tool exists to prevent.
     """
     m = re.match(r"^\s*([\[(])\s*([0-9.]+)", version_range or "")
-    return (version_tuple(m.group(2)), m.group(1) == "[") if m else None
+    if m:
+        return version_tuple(m.group(2)), m.group(1) == "["
+    # A bare version with no bracket - `26.1.2.100` - is a soft lower bound, not
+    # junk. Requiring a bracket here made such a floor invisible to the guard,
+    # so a mod asking for a loader newer than the pin passed silently.
+    bare = re.match(r"^\s*([0-9]+(?:\.[0-9]+)*)\s*$", version_range or "")
+    return (version_tuple(bare.group(1)), True) if bare else None
 
 
 def below_floor(pin: tuple[int, ...], version_range: str) -> bool:
@@ -107,9 +113,15 @@ def in_range(version: str, version_range: str) -> bool:
     """Is `version` inside the Maven `version_range`?
 
     An absent, empty or wildcard range means "any version", which is how
-    NeoForge reads it. Anything this cannot parse returns True: for the
-    incompatibility check that is the safe direction, because it keeps the
-    warning rather than dropping it silently.
+    NeoForge reads it. Anything this genuinely cannot parse returns True, so the
+    audit never fails a release over syntax it does not understand.
+
+    A **bare version** is not in that category. `26.1.2.100` with no brackets is
+    a soft lower bound meaning ">= 26.1.2.100", and it has been wrong here in
+    both directions: it used to fall through to False, reporting a satisfied
+    dependency as too old, and then briefly returned True, which passed a
+    genuinely outdated one. It is parsed as an inclusive floor now, which is
+    what it means.
     """
     rng = (version_range or "").strip()
     if not rng or rng in ("*", "[,)", "(,)"):
@@ -119,10 +131,11 @@ def in_range(version: str, version_range: str) -> bool:
         return True
     clauses = re.findall(r"[\[(][^\[\]()]*[\])]", rng)
     if not clauses:
-        # No bracket syntax at all - a bare version, or junk. Unreadable means
-        # "any version", per the contract above. Falling through to False here
-        # reported a satisfied dependency as too old and failed a good release.
-        return True
+        lb = lower_bound(rng)
+        if lb is None:
+            return True                # real junk - `banana`. Never block on it.
+        bound, _inclusive = lb         # a bare version is always inclusive
+        return have >= bound
     for clause in clauses:
         body = clause[1:-1]
         lo_inc, hi_inc = clause[0] == "[", clause[-1] == "]"

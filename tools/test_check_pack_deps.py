@@ -34,7 +34,9 @@ Run:
 """
 from __future__ import annotations
 
+import contextlib
 import importlib.util
+import io
 import pathlib
 import shutil
 import sys
@@ -72,10 +74,34 @@ def version_cases(t):
          lambda: t.lower_bound("[26.1.2.93,)"), ((26, 1, 2, 93), True)),
         ("lower_bound reads an EXCLUSIVE floor as exclusive",
          lambda: t.lower_bound("(26.1.2.100,)"), ((26, 1, 2, 100), False)),
+        ("lower_bound reads a bare version as an inclusive floor",
+         lambda: t.lower_bound("26.1.2.100"), ((26, 1, 2, 100), True)),
         ("lower_bound of an unparseable range is None",
          lambda: t.lower_bound("banana"), None),
         ("lower_bound of an empty range is None",
          lambda: t.lower_bound(""), None),
+
+        # below_floor is the DECISION the shape above exists to make, and the
+        # first draft of this file never called it - so reverting the exclusive
+        # bound fix left every case green. The shape is not the behaviour.
+        ("below_floor: a pin under an inclusive floor is blocked",
+         lambda: t.below_floor((26, 1, 2, 98), "[26.1.2.99,)"), True),
+        ("below_floor: a pin exactly on an inclusive floor is fine",
+         lambda: t.below_floor((26, 1, 2, 99), "[26.1.2.99,)"), False),
+        ("below_floor: a pin exactly on an EXCLUSIVE floor is BLOCKED",
+         lambda: t.below_floor((26, 1, 2, 100), "(26.1.2.100,)"), True),
+        ("below_floor: a pin above an exclusive floor is fine",
+         lambda: t.below_floor((26, 1, 2, 101), "(26.1.2.100,)"), False),
+        ("below_floor: a bare-version floor above the pin is blocked",
+         lambda: t.below_floor((26, 1, 2, 100), "26.1.2.200"), True),
+        ("below_floor: a bare-version floor below the pin is fine",
+         lambda: t.below_floor((26, 1, 2, 100), "26.1.2.50"), False),
+        ("below_floor: an unreadable range never blocks a release",
+         lambda: t.below_floor((26, 1, 2, 100), "banana"), False),
+        ("below_floor: an empty range never blocks a release",
+         lambda: t.below_floor((26, 1, 2, 100), ""), False),
+        ("below_floor is numeric, not lexical",
+         lambda: t.below_floor((26, 1, 2, 9), "[26.1.2.10,)"), True),
 
         # in_range - the satisfied-dependency check.
         ("a version above the floor is in range",
@@ -104,6 +130,18 @@ def version_cases(t):
         ("a multi-clause range still rejects the gap between clauses",
          lambda: t.in_range("2.5", "[1.0,2.0),[3.0,4.0)"), False),
 
+        # A bare version is a soft lower bound - ">= 1.2.3" - not junk. This has
+        # been wrong in both directions: it fell through to False (a satisfied
+        # dependency reported as too old, failing a good release), and then
+        # returned True unconditionally (a genuinely outdated one passing
+        # silently, which is the direction that actually ships a broken pack).
+        ("a bare version range accepts its own version",
+         lambda: t.in_range("1.2.3", "1.2.3"), True),
+        ("a bare version range accepts a newer version",
+         lambda: t.in_range("26.1.2.100", "26.1.2"), True),
+        ("a bare version range REJECTS an older version",
+         lambda: t.in_range("26.1.2.50", "26.1.2.100"), False),
+
         # The documented safe direction: anything unreadable must pass, so the
         # tool never fails a release over a range it simply could not parse.
         ("an empty range means any version",
@@ -112,12 +150,10 @@ def version_cases(t):
          lambda: t.in_range("1.0", "*"), True),
         ("an open range means any version",
          lambda: t.in_range("1.0", "[,)"), True),
-        ("a BARE version range means any version",
-         lambda: t.in_range("1.2.3", "1.2.3"), True),
-        ("a bare version range passes a different version too",
-         lambda: t.in_range("26.1.2.100", "26.1.2"), True),
         ("unparseable junk means any version",
          lambda: t.in_range("1.0", "banana"), True),
+        ("a range of only punctuation means any version",
+         lambda: t.in_range("1.0", "..."), True),
         ("an unknown version passes rather than failing the release",
          lambda: t.in_range("", "[9.9.9,)"), True),
     ]
@@ -148,8 +184,30 @@ def write_pin(mods: pathlib.Path, name: str, file_id: int) -> None:
     (mods / name).write_text(PIN.format(file_id=file_id), encoding="utf-8")
 
 
+def quietly(fn):
+    """Run `fn`, swallowing what it prints.
+
+    The failure-path cases deliberately trip guards that shout - `=== HELD PIN
+    MOVED ===`, `dev-only mod(s) indexed in the pack`. Left on stdout, a
+    perfectly green run reads in an Actions log as though the release guard
+    fired.
+    """
+    buf = io.StringIO()
+    with contextlib.redirect_stdout(buf):
+        return fn()
+
+
 def held_pin_cases(t):
-    """check_held_pins: 0 when every held pin still points where it was held."""
+    """check_held_pins: 0 when every held pin still points where it was held.
+
+    Skipped rather than crashed when HELD_PINS is empty. That is not a
+    hypothetical state: the only hold is Extreme Sound Muffler waiting on a
+    stable 4.x, and the day it is released the entry goes away. An unguarded
+    `next(iter(...))` here runs while the case list is being BUILT, so it takes
+    the whole suite down with a bare StopIteration and no test report at all.
+    """
+    if not t.HELD_PINS:
+        return [("HELD_PINS is empty, so there is nothing to hold", lambda: 0, 0)]
     held_name, (held_id, _why) = next(iter(t.HELD_PINS.items()))
 
     def run(build) -> int:
@@ -158,7 +216,7 @@ def held_pin_cases(t):
         try:
             build(root / "pack" / "mods")
             t.PACK = root / "pack"
-            return t.check_held_pins()
+            return quietly(t.check_held_pins)
         finally:
             t.PACK = saved
             shutil.rmtree(root, ignore_errors=True)
@@ -182,7 +240,15 @@ def dev_mod_cases(t):
     This guard reads `pack/index.toml`, not the pin files - the index is what
     the CurseForge export and packwiz-installer actually walk, so it is the
     right thing to look at.
+
+    Skipped rather than crashed when DEV_ONLY_MODS is empty, for the same reason
+    as the held pins above: this runs while the case list is built, so an
+    IndexError here takes the suite down before a single result is printed.
     """
+    if not t.DEV_ONLY_MODS:
+        return [("DEV_ONLY_MODS is empty, so there is nothing to exclude",
+                 lambda: 0, 0)]
+
     def run(index_body) -> int:
         root = pathlib.Path(tempfile.mkdtemp(prefix="deps-test-"))
         saved = t.PACK
@@ -192,12 +258,13 @@ def dev_mod_cases(t):
             if index_body is not None:
                 (pack / "index.toml").write_text(index_body, encoding="utf-8")
             t.PACK = pack
-            return t.check_no_dev_mods()
+            return quietly(t.check_no_dev_mods)
         finally:
             t.PACK = saved
             shutil.rmtree(root, ignore_errors=True)
 
     dev = t.DEV_ONLY_MODS[0]
+
     def index_for(mod_file: str) -> str:
         return f'[[files]]\nfile = "mods/{mod_file}"\nhash = "abc"\n'
 
