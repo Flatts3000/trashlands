@@ -16,6 +16,11 @@ and ASCII punctuation only.
   it - the dyes it also asks for are easy, but there is no wool in the trash and a sheep is not a
   first-week animal.
 
+### Changed
+- **One routine mod bump:** Modonomicon, the guidebook engine. The NeoForge pin stayed at
+  26.1.2.100; nothing raised its floor.
+- **Extreme Sound Muffler stayed at 3.58.1.** The newest file is still a 4.x alpha.
+
 ## [0.11.0] - 2026-09-03
 
 Recompile 0.16.0 and 0.17.0: cardboard you can build with on the first day, a cooling tower and
