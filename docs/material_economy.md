@@ -14,7 +14,7 @@
 
 ## Metals - real recycling streams, carried by teardown tables
 
-Bulk **scrap metal** smelts to **copper** in a basic furnace (the Burn Barrel) - a **gameplay-gating** call (owner, 2026-07-17) that inverts the old iron-baseline. Copper is the accessible everyman metal; **iron becomes the gated upgrade**, from a better process than the barrel, not basic smelting. The yield ladder (burn barrel lossy -> **Cupola Furnace**) stands and now doubles as a **metal-tier** ladder: copper first, iron later. Reaching iron means **upgrading the Burn Barrel to the Cupola Furnace using materials from the demolition-yard biome** - the metal tier and the region gate are the same step (owner, 2026-07-30). **What sits above the Cupola is deliberately undecided**; the old third rung named an electric machine this world has no grid for. Realism is traded for sequencing - a real dump smelts mostly to iron, but copper-first is a cleaner Create on-ramp (copper feeds the brass/casing side early; iron gates Create's core, since andesite alloy needs an iron nugget).
+Bulk **scrap metal** smelts to **copper** in a basic furnace (the Burn Barrel) - a **gameplay-gating** call (owner, 2026-07-17) that inverts the old iron-baseline. Copper is the accessible everyman metal; **iron becomes the gated upgrade**, from a better process than the barrel, not basic smelting. The yield ladder (burn barrel lossy -> **Cupola Furnace**) stands and now doubles as a **metal-tier** ladder: copper first, iron later. Reaching iron means **upgrading the Burn Barrel to the Cupola Furnace using materials from the demolition-yard biome** - the metal tier and the region gate are the same step (owner, 2026-07-30). **What sits above the Cupola is deliberately undecided**; the old third rung named an electric machine this world has no grid for. Realism is traded for sequencing - a real dump smelts mostly to iron, but copper-first is the cleaner on-ramp. **The stated reason retired 2026-09-04:** it used to read "a cleaner Create on-ramp (copper feeds the brass/casing side early; iron gates Create's core, since andesite alloy needs an iron nugget)". Create has no 26.1.2 build and is not in the pack. The decision stands on its own merits - copper is the accessible everyman metal and iron is the gated upgrade - and it happens to serve the mods that are actually here, since Powah's own tier starts on copper.
 
 Specific metals come from tearing down specific found components - no typed-scrap item bloat, no new mechanics, and adding a metal later is one component item + JSON tables. Real-world streams:
 
@@ -150,9 +150,18 @@ thing's job in a torch.
 | Wood | Pallet fragments, furniture (mid-tier treasure, locked P1.1) | Tree farms post-reclamation - trees are nearly endgame |
 | Diamond/gems | See gems table | Synthesis press |
 
-## The Create spine (belts are Create's job - locked P2.3 direction)
+## The alloy spine (retired premise, kept for the principle - 2026-09-04)
 
-Create's progression chokepoints are andesite alloy and brass. Both resolve inside the framework, plus one new principle:
+**This section was "The Create spine (belts are Create's job - locked P2.3 direction)" and its
+premise is dead.** Create has no NeoForge build past 1.21.1, so it is not in this pack and cannot be;
+logistics is carried by Pipez, AE2, Ender IO, LaserIO and Modular Routers instead. Nothing below
+should be read as a plan.
+
+**What survives is the principle, and it is a good one**, so the table is kept rather than deleted:
+the chokepoints named are Create's, but the sourcing thinking transfers to whichever mod's chain
+actually needs a given alloy.
+
+The old framing: Create's progression chokepoints are andesite alloy and brass. Both resolve inside the framework, plus one new principle:
 
 **Alloys obey found-to-made too - you can FIND an alloy before you can MAKE it.**
 
@@ -164,13 +173,23 @@ Create's progression chokepoints are andesite alloy and brass. Both resolve insi
 | Andesite | **Construction rubble** (C&D debris - the largest real waste stream; currently a gap in our regions): concrete chunks/masonry crush to aggregate = gravel, sand, andesite | - (bulk found is enough) |
 | Copper (bulk) | Wire spools, motors (already in matrix) - must be pull-table commons | Mixed-scrap fine separation |
 
-**Volume principle:** Create-spine materials ride bulk commons (rubble, corrugated sheet, wire, fixtures), never rare extras. If automation materials are slot-machine pulls, the tier dies. Tune pull tables so the spine flows.
+**Volume principle, and this is the part that outlives the mod it was written for:** automation materials ride bulk commons (rubble, corrugated sheet, wire, fixtures), never rare extras. If they are slot-machine pulls, the tier dies. Tune pull tables so the spine flows. This applies to AE2's certus and fluix exactly as it was meant to apply to Create's brass, and 0.15.0's four AE2 material routes were built to it.
 
 **Open:** where construction rubble lives - seeded through scrapyard/slag pulls, or its own minor region (demolition yard) when regions expand.
 
-## The Mekanism spine (Mekanism is in the pack lineup - later-tier processing/chemical endgame)
+## The heavy-metal spine (retired premise, one row of it shipped - 2026-09-04)
 
-Mekanism's ore needs map to the later regions (decided 2026-07-14):
+**This section was "The Mekanism spine (Mekanism is in the pack lineup - later-tier
+processing/chemical endgame)" and that premise is dead.** Mekanism has no NeoForge build past
+1.21.1. There is no chemical or radiation tier in this pack and no mod in the lineup provides one -
+a real hole rather than a substitution (`feature_matrix.md`).
+
+**The uranium row shipped anyway, retargeted.** Recompile 0.15.0 put the radioactive dump in at onset
+1024 and its mill tailings drop raw uraninite, which is what makes **Powah** startable - so the
+found-source thinking below produced real content even though the mod it was aimed at never arrived.
+Osmium and fluorite have no consumer in the pack and are dead rows.
+
+The old framing: Mekanism's ore needs map to the later regions (decided 2026-07-14):
 
 | Need | Found source |
 |---|---|
@@ -179,7 +198,7 @@ Mekanism's ore needs map to the later regions (decided 2026-07-14):
 | Fluorite | Slag field - industrial flux, water-treatment chemicals. |
 | Lead / Tin | Already in the metals matrix (batteries, pipes / cans, solder). |
 
-Reframe: Mekanism's ore-multiplication machinery reads as ultimate recycling efficiency (purity-as-yield's top tier).
+Reframe (**dead - no mod in the pack does ore multiplication**): Mekanism's ore-multiplication machinery reads as ultimate recycling efficiency (purity-as-yield's top tier). Kept because purity-as-yield is still the right frame for whatever eventually fills the top tier.
 
 **Energy note (corrected 2026-08-19, stale since 2026-07-31):** RF does **not** originate in the Nether. **P3.5 item 2 reversed that** - the energy tier moved forward and now arrives with the hydroponics tier as a Burner Generator plus a working Solar Panel, both of which have shipped. Recompile only *speaks* Forge Energy (`Capabilities.Energy.BLOCK` is a NeoForge standard), so when the player gets power is a pack decision rather than an engine one. Tiers 1-2 remain fuel/manual.
 

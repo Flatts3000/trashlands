@@ -39,10 +39,11 @@ one page, so it stays off until there is real quest content.
 
 # Trashlands
 
-Minecraft 26.1.2, NeoForge 26.1.2.100, 64 mods.
+Minecraft 26.1.2, NeoForge 26.1.2.100, 65 mods.
 
-A coarse-dirt plain covered in garbage mounds. No ore generates, no trees grow, and the world
-contains no water. Materials come from Blocks of Garbage dug out of the mounds.
+A coarse-dirt plain covered in garbage mounds. No ore generates, no trees grow, and water is
+something you have to find rather than something that is there. Materials come from Blocks of
+Garbage dug out of the mounds.
 
 Mined mounds regrow toward the footprint and height they had, delivered as garbage falling from the
 sky. Healing the ground a mound stood on retires it permanently, so a regrowing mound is income and
@@ -92,8 +93,18 @@ Erosion rules:
   Cabinet stores blueprint sheets and works from anywhere in the cluster.
 - **Hydroponics Bay** - grows a crop from water and power with no soil. The input crop is not
   consumed. A second slot catches byproducts.
-- **Water** - a Rain Collector is the only source. Water does not spread, so two source blocks will
-  not fill in a third.
+- **Water** - scarce, with three routes. A Rain Collector is the one you build. A Dead Fridge
+  teardown sometimes turns up ice, and ice broken on solid ground leaves a source block. The
+  aquarium's one flooded tank can be bucketed. Water does not spread, so two source blocks will not
+  fill in a third.
+- **Municipal Aquarium** - a drained seven-room public aquarium out in the demolition yard, and the
+  only prismarine, coral, sponge and sea lantern in the world. One tank still holds water and there
+  is a guardian in it, which is what keeps the prismarine family renewable rather than a fixed
+  stock. A dead coral put in a Hydroponics Bay comes back alive. The silt bed is the only
+  archaeology here.
+- **Tire dumps** - heaps tipped across the sprawl, some of them permanently burning. The only rubber
+  in the game. Break one by hand for the tire, with a Scrap Knife for the rubber, or tear it down to
+  reach the steel belts. Nothing regrows a dump, so one you strip is one you leave.
 - **Food** - tin cans, which apply a random effect on eating the way Suspicious Stew does, and
   foraged dump mushrooms. No thirst bar.
 - **Collectibles** - a Puzzle Cube in nine pieces, intact found objects, six recovered paintings
@@ -107,8 +118,9 @@ Erosion rules:
 
 This is an alpha. Two specific gaps:
 
-- **The quest book covers the first two chapters.** Everything past your first Bucket of Water is
-  the guidebook.
+- **The quest book covers four chapters and stops at the Nether.** 63 quests, from the first Block
+  of Garbage to a piece of coal. The most recent Recompile content - the aquarium, the tire dumps -
+  is documented in the guidebook and JEI but has no quests yet.
 - **Balance numbers are first-pass.** Drop rates, recipe costs, and teardown yields were picked to
   prove the mechanics, not tuned against play. Expect them to move.
 
@@ -128,17 +140,26 @@ started with.
 | Mod | Role here |
 |---|---|
 | [Recompile](https://www.curseforge.com/minecraft/mc-mods/recompile) | The world type, the garbage, the machines, teardown, the reclamation ladder. Everything above. |
-| [Just Enough Items](https://www.curseforge.com/minecraft/mc-mods/jei) | Recipes, plus Recompile's own categories for sorting, prying, cutting, burning, and teardown. |
+| [Just Enough Items](https://www.curseforge.com/minecraft/mc-mods/jei) | Recipes, plus the seventeen categories Recompile registers of its own - sorting, prying, cutting, burning, teardown, separating, sintering, vitrifying and the rest. |
 | [Jade](https://www.curseforge.com/minecraft/mc-mods/jade) | Block tooltips: which tool a block requires, and how far a sort has progressed. |
 | [Modonomicon](https://www.curseforge.com/minecraft/mc-mods/modonomicon) | The guidebook engine. |
 | [Pipez](https://www.curseforge.com/minecraft/mc-mods/pipez) | Item, fluid, and energy pipes. Every Recompile block's automation behaviour is written and tested against it. |
 | [Spawn Detective](https://github.com/Flatts3000/spawn-detective) | Reports which rule is blocking a given mob from spawning at a given block. Relevant once you are baiting animals onto reclaimed ground. |
 
-Also in: Powah, Building Gadgets, Mining Gadgets, Charging Gadgets, LaserIO, Just Dire Things, FTB
-Quests, FTB Chunks, FTB Essentials, FTB Teams, AppleSkin, Mouse Tweaks, Inventory Essentials,
-Controlling, Searchables, Toast Control, Clumps, TrashSlot, Trash Cans, GraveStone, Simple Backups,
-Extreme Sound Muffler, FancyMenu, Default World Type, and the performance set (FerriteCore,
-ModernFix, Lithium, Sodium, FastFurnace, FastWorkbench, FastSuite).
+Also in:
+
+- **Tech and storage:** Applied Energistics 2, Ender IO, Powah, Modular Routers, LaserIO,
+  Functional Storage, Sophisticated Storage, Sophisticated Backpacks, Cable Facades, Simple Magnets.
+- **Adventure:** Apotheosis with Apothic Attributes, Enchanting and Spawners; Easy Villagers.
+- **Gadgets:** Building Gadgets, Mining Gadgets, Charging Gadgets, Just Dire Things.
+- **Quests and teams:** FTB Quests, FTB Library, FTB Chunks, FTB Teams, FTB Essentials, FTB XMod
+  Compat.
+- **Quality of life:** AppleSkin, Mouse Tweaks, Inventory Essentials, Controlling, Searchables,
+  Toast Control, Clumps, TrashSlot, Trash Cans, GraveStone, Simple Backups, Extreme Sound Muffler,
+  Jade Addons, Configured, FancyMenu, Default World Type.
+- **Performance:** FerriteCore, ModernFix, Lithium, Sodium, FastFurnace, FastWorkbench, FastSuite.
+
+Plus the libraries those pull in automatically.
 
 ## Links
 

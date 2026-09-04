@@ -24,7 +24,7 @@ get hungry. Gets **its own Curios slot**.
   the right call so it is an always-on utility, not a slot-cost trade-off.
 
 **Depends on:**
-- **Curios API** - a **new dependency**; the lineup so far is Create + Mekanism only. Curios is
+- **Curios API** - a **new dependency**. (**Corrected 2026-09-04:** this said "the lineup so far is Create + Mekanism only". The lineup is 65 mods and neither of those is among them - neither has a NeoForge build past 1.21.1. Whether Curios is already pulled in by something here needs checking before this is treated as a new dependency at all.) Curios is
   light and widely used, but adding it is a pack-level decision (affects every future trinket-style
   item too, so it may be worth it beyond just this one). Flag before committing.
 
@@ -34,8 +34,10 @@ get hungry. Gets **its own Curios slot**.
 - **Does it auto-eat the risky tin cans** (random-effect food)? Auto-eating a gamble can is funny
   and dangerous - a deliberate design lever (maybe it only auto-eats "safe" food, or maybe the risk
   is the point and you curate what you load).
-- **Powered or passive?** Passive fits the food/early tier. If food spoilage ever exists, a
-  Mekanism-energy "keeps it cold" version becomes meaningful; no spoilage today, so passive.
+- **Powered or passive?** Passive fits the food/early tier. If food spoilage ever exists, a powered
+  "keeps it cold" version becomes meaningful; no spoilage today, so passive. (**Corrected
+  2026-09-04:** this said Mekanism-energy. Mekanism is not in the pack and cannot be; FE from Powah
+  is what a powered version would run on.)
 - **Found or crafted (or both)?** Bulky Waste find vs. a scrap recipe - or found broken, repaired
   like the furnace (find-and-fix beat).
 - **Capacity** and whether it feeds from its own inventory only or also the hotbar.

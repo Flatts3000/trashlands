@@ -60,7 +60,7 @@ tools/
 | Mod | CF project | Why it is in |
 |---|---|---|
 | **Recompile** | 1625740 | The pack. Garbage world, teardown, reclamation, machines. |
-| **Just Enough Items** | 238222 | Recompile ships a JEI plugin. At the pinned 0.17.0 it registers seventeen categories - sequencing, spawn_egg, sorting, cutting, burning, torch_cutting, prying, teardown, separating, hydrating, pulverizing, cupola, vitrifying, sintering, assembly, blueprint_crafting, growing - plus the Scrap Crafting Table as a station. (`cupola` and `vitrifying` arrived with 0.12.0's slag chain, `sintering` with 0.13.0's kiln, `sequencing` and `spawn_egg` with 0.15.0's amber chain.) (`SalvageRecipe` is the shared recipe class behind them, not a category.) |
+| **Just Enough Items** | 238222 | Recompile ships a JEI plugin. At the pinned 0.18.0 it registers seventeen categories - sequencing, spawn_egg, sorting, cutting, burning, torch_cutting, prying, teardown, separating, hydrating, pulverizing, cupola, vitrifying, sintering, assembly, blueprint_crafting, growing - plus the Scrap Crafting Table as a station. (`cupola` and `vitrifying` arrived with 0.12.0's slag chain, `sintering` with 0.13.0's kiln, `sequencing` and `spawn_egg` with 0.15.0's amber chain.) (`SalvageRecipe` is the shared recipe class behind them, not a category.) |
 | **Jade** | 324717 | Recompile ships 15 Jade providers: tool hints, sort progress, machine status, generator rates. |
 | **Modonomicon** | 538392 | The engine the in-game guidebook runs on. The guide is `mod_loaded`-gated data - inert without it. |
 | **Pipez** | 443900 | Recompile's automation policy (`../recompile/docs/automation_policy_spec.md`) is written and tested against it. Which blocks accept pipes and which refuse to even connect is a per-block decision, and Pipez is how it was found and is verified. |
@@ -598,9 +598,14 @@ That app store is a flat JSON list of instance objects, and instances are matche
 1. From `pack/`, run `packwiz modrinth export`.
 2. Import the resulting `.mrpack` into Prism Launcher as a new instance.
 
-Note this is for *local testing only*. Every mod in the lineup is on Modrinth as well as CurseForge,
-so the `.mrpack` export is clean - but the pack is not published to Modrinth. See
-[`distribution.md`](./distribution.md#modrinth-is-open-to-us-unlike-sky-frogs).
+**Corrected 2026-09-04.** This said "every mod in the lineup is on Modrinth as well as CurseForge,
+so the `.mrpack` export is clean". That is false and it invites the one command this pack must never
+run. The **FTB stack is CurseForge-exclusive**, so a Modrinth export cannot resolve those mods from
+Modrinth and packwiz inlines them into the archive as **real jars** - a redistribution violation.
+Modrinth is closed to this pack for exactly that reason; see
+[`distribution.md`](./distribution.md#curseforge-only) and the standing ban in `CLAUDE.md`.
+
+If you want a Prism instance, use option A or the CurseForge zip below rather than an `.mrpack`.
 
 **C. CurseForge launcher:** import the zip produced by `packwiz curseforge export`.
 

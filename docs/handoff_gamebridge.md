@@ -2,7 +2,10 @@
 
 **Written 2026-08-04 from the Recompile session that built these.** Everything below is verified on
 Recompile unless it says otherwise. This is a task brief, not a design doc: the design is
-`F:\devbridge\SPEC.md` and `F:\minecraft-repos\mc-pack-toolkit\gamebridge\README.md`.
+`F:\devbridge\SPEC.md` and `F:\devbridge\gamebridge\README.md`.
+
+**Paths corrected 2026-09-04.** This doc pointed at `mc-pack-toolkit\gamebridge`, which does not
+exist - `mc-pack-toolkit\devbridge\` exists but is empty. Both tools live under `F:\devbridge`.
 
 ## What the tools are
 
@@ -16,7 +19,7 @@ do: reach a **singleplayer** world (whose integrated server listens on nothing) 
 **screenshot** (which a dedicated server has no framebuffer for).
 
 ```bash
-pip install -e F:/minecraft-repos/mc-pack-toolkit/gamebridge
+pip install -e F:/devbridge/gamebridge
 
 gamebridge cmd "function trashlands:whatever"          # RCON, default
 gamebridge check "block 6 125 0 recompile:garbage_block"   # exits non-zero when false
@@ -48,7 +51,8 @@ Do not rely on that. The rule is simply that it is not part of the pack.
 | devbridge jar as built | MC 26.1.2, NeoForge **26.1.2.76** |
 
 **Same MC and the same NeoForge minor, and the mod declares a loader range of `[4,)`, so it should
-load - but nobody has run it on .94.** Confirm before building anything on top of it. If it refuses,
+load - but nobody has run it on .100.** (**Corrected 2026-09-04:** this said .94, four lines under a
+table that already said .100. The table was swept forward and the prose was not.) Confirm before building anything on top of it. If it refuses,
 the fix is one line: change `neoforge_version` in `F:\devbridge\gradle.properties` and rebuild with
 
 ```bash

@@ -8,11 +8,11 @@ Mine a mound and it grows back. Heal the ground underneath it and it is gone for
 tension the pack runs on: garbage is your only income, and the only way to make the world green is
 to give that income up.
 
-- **Status:** **alpha, released.** Latest is `v0.11.0` (2026-09-03), which brings in Recompile 0.16.0
-  and 0.17.0 - cardboard you can build with on the first day, a cooling tower and smoking chimneys on
-  the skyline, and a powered vacuum that clears a mound faster than a pickaxe
+- **Status:** **alpha, released.** Latest is `v0.12.0` (2026-09-04), which brings in Recompile 0.18.0
+  - a drained municipal aquarium with a guardian still in one flooded tank, and tire dumps that are
+  the only rubber in the world
   - on [GitHub Releases](https://github.com/Flatts3000/trashlands/releases) and CurseForge (project
-  `1636627`). The pack is 64 mods on Minecraft 26.1.2 / NeoForge 26.1.2.100. If you are hand-building
+  `1636627`). The pack is 65 mods on Minecraft 26.1.2 / NeoForge 26.1.2.100. If you are hand-building
   an instance, match the loader to the release you downloaded rather than to this line; `v0.9.0` and
   earlier declare 26.1.2.94. Releases are tag-driven - see
   [`docs/release_checklist.md`](docs/release_checklist.md).

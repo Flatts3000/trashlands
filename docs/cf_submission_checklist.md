@@ -1,5 +1,10 @@
 # CurseForge submission checklist
 
+**DONE - this doc is now a historical record (marked 2026-09-04).** The slug was claimed 2026-08-02
+and project `1636627` is live; releases have shipped automatically since v0.1.0. The version numbers
+and the `26.1.2.94` loader below are what was submitted at the time and are deliberately left as they
+were. For a live release, use [`release_checklist.md`](./release_checklist.md).
+
 One-time guide for the first Trashlands project submission. Once the slug is claimed and the project
 is approved, releases ship automatically via [`.github/workflows/release.yml`](../.github/workflows/release.yml)
 and this doc goes quiet.
@@ -82,7 +87,7 @@ current pin. Do not sweep it forward with a find-and-replace; the per-release nu
 
 ## Step 4 - After approval
 
-- [ ] **Gallery** - the shots already exist at `../recompile/docs/cf image gallery/` (garbage world,
+- [ ] **Gallery** - the shots already exist at `../recompile/docs/cf_image_gallery/` (garbage world,
   Bulky Waste finds, scrap bins, machines on reclaimed grass, tree nursery, compost heap, demolition
   yard, cutting torch, reinforced concrete, cupola furnace, collectibles). They were captured for the
   mod's page and show the same content the pack ships.

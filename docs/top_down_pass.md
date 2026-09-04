@@ -20,10 +20,12 @@ same as `ideas.md`.
 ### 1. Objects - what is physically in a dump
 
 **Ships:** dirty mattress, fridge, washing machine, printer, filing cabinet, broken hydroponics bay,
-bin bags, broken glass, rebar, reinforced concrete, e-scrap, kitty litter, oily rags, waste drums.
+bin bags, broken glass, rebar, reinforced concrete, e-scrap, kitty litter, oily rags, waste drums,
+**tyres** (Recompile 0.18.0 - whole dumps of them, and the only rubber in the game), **cardboard**
+(0.16.0, in flattened piles).
 
-**Missing:** tyres (issue #155), shopping trolley, wrecked car, furniture, shoes, cardboard bales, a
-television as an *object* rather than as e-scrap, a bicycle, a pram.
+**Missing:** shopping trolley, wrecked car, furniture, shoes, a television as an *object* rather than
+as e-scrap, a bicycle, a pram. (**Updated 2026-09-04:** tyres and cardboard bales moved to Ships.)
 
 This axis is the best covered and the least interesting to extend. Another object is another loot entry.
 
@@ -68,7 +70,12 @@ cannot be healed, techno-organic waste.
 **Missing:**
 - **Subsidence.** Old fill settles. Standing on a mound that has not been cleared could be genuinely
   unreliable, and it is the one hazard that would make *clearing* a dump feel like making it safe.
-- Sharps. A dump fire that spreads and will not go out. Gas pockets that ignite (see issue #305).
+- Sharps. Gas pockets that ignite (see issue #305).
+- ~~A dump fire that spreads and will not go out.~~ **Half shipped, half ruled against (0.18.0).** Tire
+  dumps burn and the fire never goes out - not in rain, not with time. It deliberately does **not**
+  spread, and does not consume the tires, so it is a hazard you walk around rather than a loss. That
+  is the P2 pressure-loop rule applied on purpose, not a gap: the spreading half was decided against
+  rather than left undone.
 
 ### 6. The human trace - who lived here
 
