@@ -336,7 +336,7 @@ metafile = true
 
 [[files]]
 file = "mods/recompile.pw.toml"
-hash = "b98b62c52134946d85958fd486c3bf01ab906c2bb9ae2825adaddb0ea9744635"
+hash = "b862f7bf06744daa3615b09e1451f67970c5411611485e7a8806b7cbd3e01e7d"
 metafile = true
 
 [[files]]

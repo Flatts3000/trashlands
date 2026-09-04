@@ -17,9 +17,27 @@ and ASCII punctuation only.
   first-week animal.
 
 ### Changed
+- **Recompile 0.18.0.** A drained municipal aquarium stands out in the demolition yard, seven rooms
+  of it, and it is the only prismarine, coral, sponge and sea lantern in the world. One tank still
+  holds water and there is a guardian in it, which is what makes that whole family renewable instead
+  of a fixed stock. A dead coral put in a Hydroponics Bay comes back alive, and the bay never eats
+  its seed. Tires are tipped in heaps across the household sprawl, some of them burning and staying
+  that way whatever the weather; break one by hand for the tire, with a Scrap Knife for the rubber,
+  or carry it home and tear it down for three rubber and the steel belts the knife cannot reach.
+  **The Pump wants Rubber Scrap where it wanted Plastic Scrap**, so check the sheet before you go
+  hunting for plastic. A Dried Bouquet out of household waste rehydrates on a water cauldron into one
+  of the four tall flowers or a large fern, none of which had any source here before. Tree Nurseries
+  take hoppers and pipes on both doors now, which is what makes a tree farm possible at all. Walls
+  connect to each other; all five were missing from the tag that tells a wall its neighbour is one.
 - **One routine mod bump:** Modonomicon, the guidebook engine. The NeoForge pin stayed at
   26.1.2.100; nothing raised its floor.
 - **Extreme Sound Muffler stayed at 3.58.1.** The newest file is still a 4.x alpha.
+
+### Known gaps
+- **The quest book does not cover Recompile 0.18.0.** The aquarium, the guardian tank, tire dumps,
+  rubber and the Dried Bouquet all ship with no quest pointing at them. JEI and the in-game guidebook
+  do document them. No quest text went stale: the book teaches the Pump twice and never names its
+  ingredients, so the Rubber Scrap swap reads correctly as written.
 
 ## [0.11.0] - 2026-09-03
 
