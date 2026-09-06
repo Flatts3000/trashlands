@@ -943,6 +943,22 @@ Network, the machines process, the Network routes to the Freight Terminal, the t
 logistics feature shipped in the last month gains a terminus it did not previously have, which is the
 Satisfactory shape: build a factory that feeds the elevator.
 
+**Four more rulings, 2026-09-06**, closing the open questions the spec left:
+
+1. **Eight freight phases, two per region.** Sprawl, yard, dump, depths. Roughly Satisfactory's
+   cadence. The first of each pair is satisfiable from that region's ordinary output; the second wants
+   something it only yields once you have built for it.
+2. **Late phases require GROWN goods** - wood, crops, animal products - so the ladder cannot be
+   finished without healing land. **This is the important one.** It closes the gap the build spec
+   admitted to ("nothing here creates a reason to heal the land"), it closes it in the *engine* so it
+   works standalone, and it converts quarry-versus-heal from a deferred tension into a live one:
+   healing retires mounds and removes garbage supply while creating the only supply of grown goods, so
+   late in the ladder both economies have to run at once. See the amendment in `the_twist.md`, which
+   the first draft of got half wrong.
+3. **The domestic-skeleton worldgen is sequenced AFTER the conversion**, not beside it.
+4. **Encroachment is accepted as flavour** and stops being audited. It stays mild on purpose. The
+   pressure on reclamation now comes from the economy in ruling 2 rather than from an eroding frontier.
+
 **What this costs, stated plainly.** Recompile's most distinctive family was knowledge-recovery
 (Subnautica's scanner with a workbench), and buying blueprints from a counter is not that - purchase is
 not discovery. The mod trades its most unusual mechanic for coherence. The trade is judged worth it:

@@ -127,11 +127,16 @@ route, and nothing ever says so. A player who works that out has the whole twist
 dimension id - will not believe it. **Do not add a line of text pointing at it.** The strength of this
 breadcrumb is that it is a mechanic the player drives rather than a detail they observe.
 
-**Quarry-vs-heal is resolved by SEQUENCING, which is why the public doc can only state half of it.**
-Under freight tiers, healing a region removes its garbage and therefore removes its freight supply, so
-healing directly costs you progress. That reads as a design flaw right up until the reveal, and then it
-is the point: before the Gate you are optimising for shipment, after it you are optimising for the
-land, and the same economy runs backwards. The market's want-list emptying as you heal is the
+**Quarry-vs-heal is resolved TWICE, and the second one arrived later the same day.** The first draft
+of this paragraph said it was resolved by sequencing alone, and that is now only half of it.
+
+*Mechanically* (public, and in the build spec): late freight phases require grown goods, so healing is
+a required input rather than a sacrifice. Healing removes a region's garbage supply and creates its
+only grown supply, so late in the ladder both economies run at once. That works standalone and needs no
+reveal.
+
+*Narratively* (here): before the Gate you are optimising for shipment, after it you are optimising for
+the land, and the same economy runs backwards. The market's want-list emptying as you heal is the
 reclamation progress bar (already recorded above). So P3.9 dependency 2 is not answered by making
 healing affordable during act one. **It is answered by act two changing what you are optimising for.**
 The tension is real, deliberate, and load-bearing.
