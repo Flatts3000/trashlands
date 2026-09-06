@@ -114,6 +114,38 @@ is not only the standing architectural rule, it is the spoiler discipline:
   engine half and must stay lore-free - that repo is public and its issues are the most visible surface
   there is. Rule 2 above permits naming this file, and nothing more.
 
+## The freight ladder (added 2026-09-06, P3.10)
+
+The endgame was chosen and it is the freight ladder: each tier opens by shipping named processed goods
+to the conglomerate, and the last phase completes the Gate. `design_decisions.md` carries the public
+half. Three things belong only here.
+
+**The gate mechanism IS breadcrumb 4, promoted.** "The garbage falls from space. Someone threw it from
+somewhere" was a visual a player could miss. Now the outbound freight is the thing they operate for the
+entire game, every tier, for twenty hours. The inbound rain and the outbound pallets are the same
+route, and nothing ever says so. A player who works that out has the whole twist, and - like the F3
+dimension id - will not believe it. **Do not add a line of text pointing at it.** The strength of this
+breadcrumb is that it is a mechanic the player drives rather than a detail they observe.
+
+**Quarry-vs-heal is resolved by SEQUENCING, which is why the public doc can only state half of it.**
+Under freight tiers, healing a region removes its garbage and therefore removes its freight supply, so
+healing directly costs you progress. That reads as a design flaw right up until the reveal, and then it
+is the point: before the Gate you are optimising for shipment, after it you are optimising for the
+land, and the same economy runs backwards. The market's want-list emptying as you heal is the
+reclamation progress bar (already recorded above). So P3.9 dependency 2 is not answered by making
+healing affordable during act one. **It is answered by act two changing what you are optimising for.**
+The tension is real, deliberate, and load-bearing.
+
+**Teardown had to survive, and this is the reason it was not deleted.** The proposal on the table was
+that the market replaces teardown outright. That would have cut breadcrumb 1 at the root: recovered
+schematics being for ordinary vanilla items is what tells the player this civilization was theirs, and
+it does that mechanically, with no prose, which is the constraint this whole file works under. A
+counter that sells you recipes reads as a shop. You cannot feel robbed of something you never
+recognised as yours, so the buying-back-your-own-culture beat needs the player to have recovered some
+of it by hand first. **The two halves are load-bearing together**: you find some, you buy some back,
+and only the second one stings. Teardown is therefore demoted to an optional discovery track rather
+than removed, and the discovery track is where breadcrumb 1 lives.
+
 ## What the twist resolves
 
 - **The pristine-payoff open question** (design_decisions.md, Dimensions section): the green world is not a place you reach; it is the thing you make after the reveal. The final chapter pivots escape -> reclamation: heal the mounds, retire the quarries, life returns. The quarry-vs-heal tension (P1.6) is the epilogue's gameplay.

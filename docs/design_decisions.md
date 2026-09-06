@@ -13,8 +13,8 @@ Running log of locked per-feature decisions from the feature-by-feature walkthro
 P3 results: P3.2 Field Manual locked; P3.5 Nether, P3.6 End DONE; P3.1 sky dumps, P3.3 degraded recipes, P3.4 blueprint scraps, P3.7 frogs, P3.8 win-tracking, P3.9 circular-economy all CUT.
 
 **Parked for a future session (do not resume until Jason reopens):**
-1. **Endgame redesign** - circular economy cut (P3.9); needs a new mechanical endgame that leads into the Overworld Gate. Three seed directions captured in chat: Gate-as-megaproject (throughput), Gate-as-one-of-everything (completion), Gate-as-power-problem (energy). Not chosen. **The quarry-vs-heal affordability half of this is CLOSED (2026-07-23, P2.4-R): healed land is a second economy, so reclamation trades income rather than sacrificing it.** What remains parked is the mechanical endgame itself.
-2. **The final chapter / postgame** - narrative frame + staged payoff, authored against the_twist.md. Depends on the endgame being chosen first.
+1. **Endgame redesign - CLOSED 2026-09-06, see P3.10.** Gate-as-megaproject (throughput) chosen. The tech tree is a freight ladder: each tier opens by shipping named processed goods to the off-site buyer, and the last phase completes the Gate. Delivery quotas rather than a scrip balance, because a currency gate is fungible and collapses every region into one payout number. Teardown demoted off the critical path rather than deleted. **The quarry-vs-heal affordability half of this is CLOSED (2026-07-23, P2.4-R): healed land is a second economy, so reclamation trades income rather than sacrificing it.** What remains parked is the mechanical endgame itself.
+2. **The final chapter / postgame** - narrative frame + staged payoff, authored against the_twist.md. **UNBLOCKED 2026-09-06**: its stated dependency (the endgame being chosen) is closed by P3.10, so this is workable whenever Jason reopens it.
 
 Everything upstream of the endgame (P0, P1, P2, the material economy, dimensions, knowledge, regrowth, the twist framing) is locked and ready to prototype.
 
@@ -148,6 +148,14 @@ for giving the Separator a second verb, and it is the argument that lost.
 
 ## P1.4 - Recompile Workbench + teardown-as-knowledge (locked 2026-07-14; UNDER REVIEW 2026-07-15)
 
+> **Partly resolved 2026-09-06 by P3.10.** Teardown is demoted off the critical path to an
+> optional discovery track, which dissolves problem 1 outright: a gate nobody must pass does not
+> need to be leak-proof against AE2 autocrafting, so the player-scoped-enforcement hole stops
+> mattering. Problem 2 (scope) is answered the same way - the arc no longer moves the whole
+> catalog across the line, because the catalog moves through freight tiers instead. **The open
+> identity question at the foot of this block still stands**: knowledge or function is untouched
+> by the demotion.
+>
 > **Under review - do not build against this section yet.** Nothing below is retracted, but two problems surfaced walking it before implementation, and the second is the serious one.
 >
 > **1. The gate is at the wrong layer, and it cannot be fixed by effort.** The locked plan leans on `doLimitedCrafting` + recipe-book grants. That is real and it works - verified in the 26.1.2 source: `CraftingMenu.slotChangedCraftingGrid` only assembles a result if `resultSlots.setRecipeUsed(serverPlayer, recipe)` passes, which returns false when the rule is on and the player has not learned it. But look at the signature: `setRecipeUsed(**ServerPlayer**, ...)`. The gate is **player-scoped**, bolted on at the menu layer. A machine has no player, so Create's mechanical crafters, AE2 and Refined Storage do not bypass it by oversight - that gate structurally cannot see them. **The conclusion holds; its stated evidence changed (2026-09-04).** This used to say "Create is in this pack's lineup, so the hole is real, not theoretical." Create is not in the lineup and cannot be on 26.1.2. **AE2 is**, added 2026-08-20, and its autocrafting is the same structural hole, so the argument is unchanged and the example simply moved to a mod that is actually here.
@@ -827,6 +835,62 @@ Dependencies this cut leaves OPEN (the circular economy was quietly carrying the
 3. **The Gate-completion trigger** - completing the Overworld Gate triggers the twist. The Gate is still a big materials sink / final quest, but its "what you must achieve to build it" content is now open.
 
 The twist, the final-chapter payoff, and the Gate-as-trigger all still stand (the_twist.md); what's open is the mechanical endgame that leads INTO the Gate.
+
+**CLOSED 2026-09-06 by P3.10 below**, which picks *Gate-as-megaproject (throughput)* from the three
+seed directions and answers all three dependencies.
+
+## P3.10 - The freight ladder, and the endgame chosen (locked 2026-09-06)
+
+**The economy is the spine.** Progression is a ladder of tiers, each opened by shipping goods to the
+off-site buyer, culminating in the Overworld Gate. This is P3.9's *Gate-as-megaproject (throughput)*
+seed, chosen over *one-of-everything* and *power-problem*.
+
+**Why the pack needed this at all** (Jason, 2026-09-05): *"I feel like we have a lot of distinct
+features but it's not a 'game' yet. Theme is the only thing holding these features together."* The
+diagnosis held up: five candidate spines existed at roughly twenty percent each and none had ever been
+promoted, so theme was the only connective tissue left. The survey behind that is
+[`../../recompile/docs/structural_analogs.md`](../../recompile/docs/structural_analogs.md).
+
+**The gate is a DELIVERY, not a balance, and that distinction is the whole decision.** The first
+proposal was that scrip buys the blueprints that open the next tier. That fails on fungibility: a
+currency gate means the optimal play is to find the best scrip-per-hour source and farm only that,
+which makes every other system a worse way to get the same number and flattens the regions and
+structures into interchangeable payout piles. That is the "everything is materials" complaint with a
+universal solvent added, not removed.
+
+**Satisfactory is the reference and it does not gate on money.** Every tier past 2 is gated behind a
+Space Elevator phase demanding specific manufactured parts. Its currency (AWESOME Sink coupons) is
+deliberately off the critical path: optional, for convenience, existing to consume overproduction. We
+take the same split. Tier gates are shipments of named processed goods. Scrip stays what it already is:
+the optional counter for the Totem, the heavy core, and convenience Blueprints.
+
+**Consequences that fall out of it:**
+
+- **Regions become non-substitutable.** A tier that wants Reinforced Concrete *and* Circuit Powder
+  *and* Rubber Scrap cannot be satisfied from one biome, so travel is enforced by the recipe rather
+  than by a distance number.
+- **The production graph becomes the game.** You ship processed goods, never raw scrap, so every
+  machine in the chain is on the critical path instead of being an optional convenience.
+- **The freight has a narrative job as well as a mechanical one.** See `the_twist.md`.
+
+**P3.9's three open dependencies, answered:**
+
+1. *The mechanical climax* - the final freight phase completes the Gate.
+2. *The quarry-vs-heal resolution* - resolved. The resolution is spoiler-side; see `the_twist.md`.
+   What is safe to say here is that the tension is deliberate and is not designed away.
+3. *The Gate-completion trigger* - the Gate completes when the last phase is delivered.
+
+**Teardown is DEMOTED, not deleted** (P1.4). It moves off the critical path to an optional
+discovery track, the role Satisfactory gives the MAM and its hard drives: you find an object, take it
+apart, and it teaches you something the counter does not sell. Deleting it was the original proposal
+and was rejected for two reasons. It is the mod's namesake and its only mechanic nothing else on
+CurseForge has, where a purchased tech ladder is well-trodden. And it carries a load-bearing job in
+`the_twist.md` that a shop counter structurally cannot do.
+
+**What this does NOT resolve.** P1.4's identity question - whether the axis is teardown-as-*knowledge*
+or teardown-as-*function* - is still open. Demotion dissolves P1.4's *enforcement* problem (a gate that
+is optional does not need to be leak-proof against AE2 autocrafting) but says nothing about which axis
+teardown should express.
 
 ## Dimensions - Nether and End (locked 2026-07-13, specs revised same day)
 
