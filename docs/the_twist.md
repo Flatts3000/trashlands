@@ -136,15 +136,31 @@ reclamation progress bar (already recorded above). So P3.9 dependency 2 is not a
 healing affordable during act one. **It is answered by act two changing what you are optimising for.**
 The tension is real, deliberate, and load-bearing.
 
-**Teardown had to survive, and this is the reason it was not deleted.** The proposal on the table was
-that the market replaces teardown outright. That would have cut breadcrumb 1 at the root: recovered
-schematics being for ordinary vanilla items is what tells the player this civilization was theirs, and
-it does that mechanically, with no prose, which is the constraint this whole file works under. A
-counter that sells you recipes reads as a shop. You cannot feel robbed of something you never
-recognised as yours, so the buying-back-your-own-culture beat needs the player to have recovered some
-of it by hand first. **The two halves are load-bearing together**: you find some, you buy some back,
-and only the second one stings. Teardown is therefore demoted to an optional discovery track rather
-than removed, and the discovery track is where breadcrumb 1 lives.
+**Breadcrumb 1 moves to the market, and it is stronger there. Corrected 2026-09-06.**
+
+The first draft of this section argued the opposite and it was wrong, so the reasoning is left visible
+rather than swapped out. It said teardown had to keep teaching, because recovered schematics being for
+ordinary vanilla items is what tells the player this civilization was theirs, and a counter selling you
+recipes just reads as a shop. Jason's refinement the same day - teardown yields function, the market is
+the only source of knowledge - forced the question again, and the objection does not survive it.
+
+**The tell is sharper when you buy it.** Finding a bed schematic in a fridge is a curiosity. Buying the
+blueprint for a *vanilla bed* from the company that dumped you here is the same fact with a price on
+it, and the price is what makes it land: you are paying a stranger for something you already knew how
+to do. Every purchase is the twist stated plainly and never noticed. The conglomerate's catalogue
+should therefore stay conspicuously, boringly **human** - beds, buckets, bottles - because an alien
+buyer stocking human domestic recipes is the whole thing, and no line of text is allowed to point at
+it.
+
+**What is genuinely lost is worth naming.** The player never has an unpurchased relationship with the
+old world's knowledge. Everything they know, they bought. That was the objection; on reflection it is
+the better version. *You bought all of it back and never once found it free* is bleaker and more
+coherent than a mix, and it means the reveal recontextualises every transaction in the save rather than
+just the ones after the halfway point.
+
+**Teardown keeps a job here anyway**, just not this one. It yields function - the working motor, the
+live bulb - which is breadcrumb 2's argument in mechanical form: the buried world's *objects* still
+work, because they were built for people. The evidence moved from the paper to the parts.
 
 ## What the twist resolves
 

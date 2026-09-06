@@ -153,8 +153,8 @@ for giving the Separator a second verb, and it is the argument that lost.
 > need to be leak-proof against AE2 autocrafting, so the player-scoped-enforcement hole stops
 > mattering. Problem 2 (scope) is answered the same way - the arc no longer moves the whole
 > catalog across the line, because the catalog moves through freight tiers instead. **The open
-> identity question at the foot of this block still stands**: knowledge or function is untouched
-> by the demotion.
+> identity question at the foot of this block is CLOSED 2026-09-06, also by P3.10**: the axis is
+> **function**. Teardown stops teaching and yields working components instead.
 >
 > **Under review - do not build against this section yet.** Nothing below is retracted, but two problems surfaced walking it before implementation, and the second is the serious one.
 >
@@ -880,17 +880,46 @@ the optional counter for the Totem, the heavy core, and convenience Blueprints.
    What is safe to say here is that the tension is deliberate and is not designed away.
 3. *The Gate-completion trigger* - the Gate completes when the last phase is delivered.
 
-**Teardown is DEMOTED, not deleted** (P1.4). It moves off the critical path to an optional
-discovery track, the role Satisfactory gives the MAM and its hard drives: you find an object, take it
-apart, and it teaches you something the counter does not sell. Deleting it was the original proposal
-and was rejected for two reasons. It is the mod's namesake and its only mechanic nothing else on
-CurseForge has, where a purchased tech ladder is well-trodden. And it carries a load-bearing job in
-`the_twist.md` that a shop counter structurally cannot do.
+**Teardown stops teaching and starts yielding FUNCTION** (Jason, 2026-09-06, refining this entry
+the same day). This is the fourth and final shape, and it closes P1.4's identity question.
 
-**What this does NOT resolve.** P1.4's identity question - whether the axis is teardown-as-*knowledge*
-or teardown-as-*function* - is still open. Demotion dissolves P1.4's *enforcement* problem (a gate that
-is optional does not need to be leak-proof against AE2 autocrafting) but says nothing about which axis
-teardown should express.
+| System | Job |
+|---|---|
+| **Market** | Knowledge. Every Blueprint is bought with scrip. One source, no second route. |
+| **Freight quotas** | Tier progression. Delivery of named processed goods. |
+| **Teardown** | **Function.** Working components you cannot forge from any amount of scrap. |
+| **Sorting** | Bulk materials. The base economy. |
+
+Four systems, four jobs, no overlap. That is the cohesion the whole exercise was for.
+
+**Why teardown yields function and not materials.** The first version of this refinement was "teardown
+for materials, market for knowledge", and materials is the wrong output: sorting a garbage block
+already pulls materials off a loot table, so teardown-for-materials is the same verb with a different
+animation. P1.4's own open question names the sharper axis and it is the best line in that section -
+*in an infinite dump materials are worthless and function is precious. There is infinite scrap; there
+is not an infinite supply of working motors.* You tear down a washing machine for the motor. It also
+inherits a property the knowledge gate never had: **"do you have a motor" is mod-proof**, where the
+player-scoped recipe gate structurally could not see AE2 autocrafting.
+
+**This REVERSES #228 narrowly, and the reversal is deliberate.** #228 (2026-08-18, from playtest) locked
+*"a component needs to be craftable even if it also comes out of the garbage - an input you cannot
+manufacture is a rate limit on everything downstream of it."* Teardown-as-function requires the
+opposite for the components that gate tiers. The reconciliation: #228's worry is a player stuck behind
+something **unobtainable**, and mounds regrow and Bulky Waste comes out of mounds, so a find-only
+component is **renewable and merely rate-limited**. A rate limit is what a progression gate is. So the
+reversal is scoped to *tier-gating components only*; every other component keeps both routes and #228
+still binds on them.
+
+**What dies:** Idea Fragments and the fragment-to-Blueprint crafting step. Nine of Recompile's thirteen
+teardown recipes currently carry `teaches`; those lose it and gain component outputs. **What survives:**
+Blueprints as items, the Filing Cabinet (you still hold sheets, they now come from a counter), and the
+Scrap Crafting Table.
+
+**What this costs, stated plainly.** Recompile's most distinctive family was knowledge-recovery
+(Subnautica's scanner with a workbench), and buying blueprints from a counter is not that - purchase is
+not discovery. The mod trades its most unusual mechanic for coherence. The trade is judged worth it:
+teardown-for-function is still uncommon, the twist supplies the distinctiveness, and five systems at
+twenty percent was the actual complaint.
 
 ## Dimensions - Nether and End (locked 2026-07-13, specs revised same day)
 
