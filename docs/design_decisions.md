@@ -959,6 +959,25 @@ Satisfactory shape: build a factory that feeds the elevator.
 4. **Encroachment is accepted as flavour** and stops being audited. It stays mild on purpose. The
    pressure on reclamation now comes from the economy in ruling 2 rather than from an eroding frontier.
 
+**A third pass of rulings, 2026-09-06**, taken after steps 1 and 2 shipped:
+
+- **Blueprint tiers are assigned by IMPACT, not by materials.** The Hauler and the Hydroponics Bay sit
+  late as rewards regardless of what they are made of. Not derivable, so it is drafted and signed off
+  rather than generated.
+- **The Scrap Network gains a conditional third sink**, accepting a route only for what the current
+  freight phase wants. It is the first thing in that system to read live world state, and that cost is
+  accepted rather than hidden.
+- **Eight advancements, one per freight tier, under a root** - a plain named advancement rather than a
+  custom criterion, because FTB Quests can already watch those and it adds no API surface.
+- **Teardown yields a signature component plus ordinary salvage**, so a teardown is never a total loss
+  once you already have the part.
+- **Find-only is the Motor alone**, the smallest reversal of #228 that proves the mechanic.
+  Deliberately narrow rather than a first instalment.
+- **Family 5 (the structures as finishable places) is PARKED rather than written off.** It was recorded
+  as a deliberate loss of the spine choice; it is now a candidate to revisit once the ladder is
+  playable, since restoration was one of the three things named as the mod's pull.
+- **v0.20.0 waits for all five steps**, so no release ever shows a half-converted state.
+
 **What this costs, stated plainly.** Recompile's most distinctive family was knowledge-recovery
 (Subnautica's scanner with a workbench), and buying blueprints from a counter is not that - purchase is
 not discovery. The mod trades its most unusual mechanic for coherence. The trade is judged worth it:
