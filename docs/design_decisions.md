@@ -978,6 +978,23 @@ Satisfactory shape: build a factory that feeds the elevator.
   playable, since restoration was one of the three things named as the mod's pull.
 - **v0.20.0 waits for all five steps**, so no release ever shows a half-converted state.
 
+**A fourth pass, 2026-09-06, unblocking step 3:**
+
+- **The two market terminals become plain craftable**, dropping the Blueprint gate entirely. This
+  resolves a deadlock the plan had: `broken_terminal` teaches both, so once teardown stopped teaching
+  you would have needed the Buy Terminal to buy the Buy Terminal, and the Sell Terminal to earn any
+  scrip at all. A fresh world could never have reached the economy. Craftable rather than a teardown
+  carve-out, so the market rule keeps no exceptions.
+- **The tier curve is approved as drafted**: mattress 1, battery and bulb 2, pump and motor 3,
+  hydroponics 5, netherite 6, spawner 7, Hauler and Depot 8.
+- **The eight-rung ladder is NOT final, and the Hauler's tier is provisional.** Jason: *"We still have
+  the end dimension and plenty of progression after that tier. We will rebalance the tier as we add new
+  later game content."* So tier 8 is the top of the ladder as it exists today rather than the end of
+  the game, and the Hauler sitting there is a statement about the current content set, not a permanent
+  ruling. Anything reasoning from "tier 8 is the finale" is reasoning from a temporary fact.
+- **The phase manifests are reworked in step 3**, alongside the tiers, so the ladder's shape and its
+  content land together.
+
 **What this costs, stated plainly.** Recompile's most distinctive family was knowledge-recovery
 (Subnautica's scanner with a workbench), and buying blueprints from a counter is not that - purchase is
 not discovery. The mod trades its most unusual mechanic for coherence. The trade is judged worth it:
