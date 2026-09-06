@@ -915,6 +915,34 @@ teardown recipes currently carry `teaches`; those lose it and gain component out
 Blueprints as items, the Filing Cabinet (you still hold sheets, they now come from a counter), and the
 Scrap Crafting Table.
 
+**Two rulings off the spine audit** (`../../recompile/docs/spine_audit.md`, Jason, 2026-09-06):
+
+**The Sequencer is a sanctioned exception, and the knowledge rule narrows to TIER knowledge.** The
+market is the only source of *progression* Blueprints. The Sequencer keeps producing creature
+Blueprints from stamped amber, because those gate nothing, buy nothing, and sit off the ladder
+entirely. The rule loses its absoluteness and keeps its job, which is that nothing on the critical path
+has a second route. The amber chain and the Spent Amber that feeds the resin family both survive
+untouched.
+
+**Freight and selling are SEPARATE blocks, and automation is what separates them.** The audit's worry
+was that two blocks which both take goods and send them off-site are indistinguishable to a player, so
+a load in the wrong one is a silent mistake. The split is mechanical rather than cosmetic:
+
+- **The Sell Terminal takes no pipe input.** Manual only. You walk up, put goods in, take scrip. It
+  stays what it is now - no block entity, no container, a menu-local grid - which is already exactly
+  this behaviour rather than a change.
+- **The Freight Terminal takes pipe input.** Hoppers, AE2, and the Scrap Network can all push into it,
+  because tier quotas are bulk and sustained and are meant to be fed by a factory rather than by hand.
+
+This is already an idiom in the engine rather than a new rule: the Burn Barrel returns an empty
+`getSlotsForFace` to be manual-only, and the Charging Station stays out of `#recompile:scrap_connectable`
+because that tag routes items. Membership in that tag is the switch.
+
+**It also completes a chain that had no end.** Scrap Hauler collects, Depot pushes into the Scrap
+Network, the machines process, the Network routes to the Freight Terminal, the tier advances. Every
+logistics feature shipped in the last month gains a terminus it did not previously have, which is the
+Satisfactory shape: build a factory that feeds the elevator.
+
 **What this costs, stated plainly.** Recompile's most distinctive family was knowledge-recovery
 (Subnautica's scanner with a workbench), and buying blueprints from a counter is not that - purchase is
 not discovery. The mod trades its most unusual mechanic for coherence. The trade is judged worth it:
