@@ -1,6 +1,10 @@
 hash-format = "sha256"
 
 [[files]]
+file = "config/bcc-common.json"
+hash = "d4e88f7d493f26db3de14876753ee158588249ebf43125796325676b5c5450da"
+
+[[files]]
 file = "config/defaultworldtype/client-config.toml"
 hash = "647ebef0a380431fc5d1fd993ce77bc9e2bb483d862e6778fe0a2b1b8542f0ed"
 
@@ -129,6 +133,11 @@ hash = "7a529047843ae51f3068a44d279ce807e48acd8fff268516c0c9fb2715ddd9aa"
 metafile = true
 
 [[files]]
+file = "mods/better-compatibility-checker.pw.toml"
+hash = "4ea15966a79cc4c31102fd8abc730a27cba2089da292193f03f5cd3352d03ce2"
+metafile = true
+
+[[files]]
 file = "mods/building-gadgets.pw.toml"
 hash = "5e63f44ba5113b18ee66c51f06c5e7a56112784130aa9051d9bedaaf64654933"
 metafile = true
@@ -161,6 +170,21 @@ metafile = true
 [[files]]
 file = "mods/controlling.pw.toml"
 hash = "bbc4ab39e1331069171303de5b94321f7ad615bcab498c4b06353e0c72d775e9"
+metafile = true
+
+[[files]]
+file = "mods/crash-assistant.pw.toml"
+hash = "f33077d101a9759612016f6c54465fef11b293a3392fb53a4b0c542f21636dc2"
+metafile = true
+
+[[files]]
+file = "mods/crash-utilities.pw.toml"
+hash = "0d2124ab67fe9db994a2a17cfaf2760836cf40e741b69e84235695f742cf00e0"
+metafile = true
+
+[[files]]
+file = "mods/default-options.pw.toml"
+hash = "e0556dac7ce9c253ee49d8a98fef37535bfba3f0f68e3f103c1a62408b0893b6"
 metafile = true
 
 [[files]]
@@ -206,6 +230,16 @@ metafile = true
 [[files]]
 file = "mods/ferritecore.pw.toml"
 hash = "c2d1674a4d1466e09946819d58436b555256613d2cbcb8f12e26d950bd76d8ef"
+metafile = true
+
+[[files]]
+file = "mods/flattss-things.pw.toml"
+hash = "b425aeee181fce0019be0507ec387a125a5f49d6abb59d4ca452cf1d8879d603"
+metafile = true
+
+[[files]]
+file = "mods/framedblocks.pw.toml"
+hash = "251363ba098c943081743958b9f8042b4ff10c3f74b07d7f40465c3bc37b6b68"
 metafile = true
 
 [[files]]
@@ -304,6 +338,11 @@ hash = "f132cefe224931138a7cf95a03dd30e8986329aa8d13d809e0e8129033fa7e9f"
 metafile = true
 
 [[files]]
+file = "mods/lootr.pw.toml"
+hash = "39e450d1502d0c475325c4b64f20d98be0c16262b9e249ec5fca94b9dac3d5ed"
+metafile = true
+
+[[files]]
 file = "mods/melody.pw.toml"
 hash = "9d908f5908e2fc0eca2d556e36ac71419eeb08db43dda6ff9d06cf138c521e06"
 metafile = true
@@ -399,6 +438,11 @@ hash = "6d7f6c8988df205a776b8dc927457eb75c5c8bdee33406c095f55fd887d756c3"
 metafile = true
 
 [[files]]
+file = "mods/spark.pw.toml"
+hash = "b9a34b8452ac5255fbae43d7c243778b3355a7dd6fe2e4b377c6de04f4da7116"
+metafile = true
+
+[[files]]
 file = "mods/spawn-detective.pw.toml"
 hash = "b7d7e6b63461e60c93e92eed0d004e1687c0bc461d2827d392a5326ac6776ffa"
 metafile = true
@@ -431,6 +475,11 @@ metafile = true
 [[files]]
 file = "mods/trashslot.pw.toml"
 hash = "71c920bbbf7464754a2e7beb48e8dae545795cc6c36206623a45188a8072e03b"
+metafile = true
+
+[[files]]
+file = "mods/wits.pw.toml"
+hash = "a6731499ebea1b1c82bea66e091eb1375e6fc3fab3d10f458d21936d473a613d"
 metafile = true
 
 [[files]]

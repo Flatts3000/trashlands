@@ -51,6 +51,7 @@ from __future__ import annotations
 
 import argparse
 import io
+import json
 import os
 import re
 import shutil
@@ -419,6 +420,50 @@ def check_held_pins() -> int:
     return 0
 
 
+def check_bcc_version() -> int:
+    """Prove Better Compatibility Checker advertises the version the pack actually is.
+
+    BCC's whole job is to tell a joining client the server is on a different pack
+    version. It reads `config/bcc-common.json`, which is a hand-written file, while
+    the real version lives in `pack.toml`. Nothing else couples them, so the two
+    drift the first time a release bumps one and forgets the other - and the failure
+    is silent in the worst direction: every version compares equal and the warning
+    the mod exists to give never fires.
+    """
+    cfg = PACK / "config" / "bcc-common.json"
+    meta = PACK / "pack.toml"
+    if not cfg.is_file() or not meta.is_file():
+        return 0
+    want = re.search(r'^version = "([^"]+)"', meta.read_text(encoding="utf-8"), re.M)
+    if not want:
+        return 0
+    want = want.group(1)
+    try:
+        got = json.loads(cfg.read_text(encoding="utf-8"))["modpackVersion"]["value"]
+    except (ValueError, KeyError, TypeError) as exc:
+        print("")
+        print("=== BCC CONFIG UNREADABLE ===")
+        print(f"  {cfg}: {exc}")
+        print("")
+        return 1
+    if got == "CHANGE_ME":
+        print("")
+        print("=== BCC CONFIG NOT FILLED IN ===")
+        print("  pack/config/bcc-common.json still says CHANGE_ME, so every version "
+              "comparison matches and the mod is inert.")
+        print("")
+        return 1
+    if got != want:
+        print("")
+        print("=== BCC VERSION DRIFT ===")
+        print(f"  pack.toml is {want}, pack/config/bcc-common.json says {got}")
+        print("  -> Better Compatibility Checker would advertise the wrong pack version "
+              "to joining clients. Update the config in the same commit as the bump.")
+        print("")
+        return 1
+    return 0
+
+
 def check_no_dev_mods() -> int:
     index = PACK / "index.toml"
     if not index.is_file():
@@ -446,6 +491,9 @@ def main() -> int:
         return 1
 
     if check_held_pins() != 0:
+        return 1
+
+    if check_bcc_version() != 0:
         return 1
 
     if args.mods_dir:
