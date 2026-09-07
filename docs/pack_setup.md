@@ -52,9 +52,10 @@ tools/
 
 ## The mod lineup
 
-**69 mods**: the core six, a quality-of-life layer, the FTB stack, a tech and gadget layer, world-type enforcement, scripting, and ten auto-pulled libraries. Locked
+**78 mods**: the core six, a quality-of-life layer, the FTB stack, a tech and gadget layer, world-type enforcement, scripting, diagnostics, and ten auto-pulled libraries. Locked
 2026-08-02, with Jade Addons, Configured and Cable Facades added 2026-09-03, and FTB Ultimine plus
-KubeJS (with Rhino and standalone Better Advanced Tooltips) added 2026-09-07.
+KubeJS (with Rhino and standalone Better Advanced Tooltips) added 2026-09-07, followed the same
+day by eight borrowed from ATM 11 and by **Flatts's Things** (1683375, ours).
 
 ### Core - Recompile, the four it integrates with, and our own diagnostic
 
@@ -329,6 +330,56 @@ Added on owner call, in one pass. The largest single change to the lineup since 
   per block which Recompile blocks accept a pipe and which refuse to connect. It has not been checked
   against any of these three.
 
+### Borrowed from ATM 11 (added 2026-09-07)
+
+All The Mods 11 is on **26.1.2**, the same version as this pack, and ships 268 mods. Reading its
+lineup is the cheapest available sanity check on curation, and it is what turned up the KubeJS fix
+above. Most of what ATM ships this pack already had; these eight are the ones worth taking.
+
+| Mod | Why it is in |
+|---|---|
+| **Default Options** | Ships client defaults as a mod instead of as a raw `options.txt` override. It handles options, keybinds, **resource pack selection** and server list separately, which is the exact problem this pack has - see the options.txt section above. **Not wired up yet**, see below. Pinned `side = "client"`: its entrypoint is `@Mod("defaultoptions", dist = [Dist.CLIENT])`, so on `side = "both"` it would ship into every server pack and never load. |
+| **Lootr** | Per-player loot containers. Sewer crates, the Municipal Aquarium and the demolition yard are all one-shot loot, so on a server the first player to arrive takes the only copy. This is the fix and it is a server-play blocker without it. |
+| **WITS (What Is This Structure?)** | Names the structure you are standing in. This pack has landmarks now - cooling tower, smokestacks, aquarium, demolition yard, radioactive dump - and no way to tell a player which one they found. |
+| **FramedBlocks** | Camo blocks that take the appearance of another block. A pack about building out of trash has an obvious use for it. See the concern below. |
+| **spark** | Profiler. `/spark profiler` on a server that is chugging, which mound regrowth and encroachment make plausible. |
+| **Crash Assistant** | Reads a crash report and names the mod responsible. |
+| **Crash Utilities** | Diagnostics and a mod-conflict view alongside it. |
+| **Better Compatibility Checker** | Warns when a client joins a server on the wrong pack version. Needs `pack/config/bcc-common.json`, shipped here - without it both sides read the built-in `CHANGE_ME` defaults, every comparison matches and the mod is silently inert. Its `modpackVersion` is asserted against `pack.toml` by `check_pack_deps.py`, so the two cannot drift. |
+
+**Default Options is added but not yet wired up.** The mod's intended workflow is to configure the
+client in game and run its save command, which writes the files itself; guessing the filenames from
+the outside is how you ship a `defaultoptions` folder that silently does nothing. `pack/options.txt`
+stays as-is until someone launches and runs `saveAll`, tracked in
+[#65](https://github.com/Flatts3000/trashlands/issues/65). The mod is inert until then,
+which is why it is safe to add now.
+
+**A concern was raised about FramedBlocks and it does not survive checking.** The worry was that a
+camo block able to imitate cardboard, pressed junk, scrap plating, corrugated metal or plastic panel
+turns five earned building families into decoration - the same shape as the Sophisticated Storage and
+LaserIO objections. It is inverted. `framedblocks:framed_cube` is `4x #minecraft:planks + 4x
+minecraft:stick`, and **this world has no wood except the Tree Nursery**, rung 4 of the reclamation
+ladder's 5, with the sapling lockout (P2.4-R2) shipped so no loot roll yields one. So FramedBlocks is
+unreachable for most of a run, arriving long after the salvage building families have carried the
+whole early and middle game. It is a late-game finishing tool, not an early substitute, and it needs
+no override. Recorded because the objection reads plausible and someone will raise it again.
+
+**Considered and not taken:**
+
+- **More Overlays Updated** - tried again on 2026-09-07 and it still fails. `check_pack_deps.py`
+  stops with "Update cancelled by user", the CurseForge API exclusion surfacing through
+  packwiz-installer exactly as the cut-list entry describes. ATM 11 ships it, so the flag is
+  evidently not universal, but it blocks this pack's tooling and the tooling gates the release.
+  **A CurseForge export check does not catch this** - the export is clean and the manifest entry is
+  correct; only the installer refuses. Use the dep check, not the export, to recheck.
+- **Oracle Index** - its only 26.1.2 build is `2.0.0-exp1`. The pack already refuses an alpha for
+  Extreme Sound Muffler on the grounds that a comfort feature is not worth a crash risk, and the same
+  reasoning applies harder to an experimental build.
+- **Chisel 3** and **Yeetus Experimentus** - no 26.1.2 build. Recheck by slug.
+- **FTB Ranks** and **FTB Filter System** - ATM ships both and they stay cut here. ATM has server
+  ranks worth permissioning and an item-routing spine that wants filters; this pack has neither, and
+  "a bigger pack ships it" is not a reason on its own.
+
 ### Villagers
 
 Added 2026-08-20 (owner call). Easy Villagers (`easy-villagers`, project 400514) - pick a villager up
@@ -562,6 +613,7 @@ and #47.
   the author's own text permits modpack distribution - and the file is fetchable straight off
   `edge.forgecdn.net`, so neither the page nor a CDN check falsifies this. Only the installer does.
   Recheck by adding it and running `check_pack_deps.py`; if that passes, the flag has been lifted.
+  **Rechecked 2026-09-07: still excluded**, and ATM 11 shipping it does not change that.
 - **No 26.1.2 build on CurseForge** (recheck later, and check by **slug** - a wrong slug reads as a
   missing build): Crafting Tweaks (`crafting-tweaks`), Torchmaster (`torchmaster`), Polymorph
   (`polymorph`), Supplementaries (`supplementaries`), Chipped (`chipped`), Fast Leaf Decay
@@ -620,7 +672,7 @@ install task fail** ("Failed to launch modpack. An unexpected error occurred.").
 3. Name the instance **`Trashlands`** (the default `tools/sync_instance.py` looks for
    `<home>/curseforge/minecraft/Instances/Trashlands`).
 
-The manifest carries `neoforge-26.1.2.100`, so the app installs that loader and all 69 mods itself.
+The manifest carries `neoforge-26.1.2.100`, so the app installs that loader and all 78 mods itself.
 If the app cannot find that NeoForge build in its catalog the import will say so - see the loader
 note below.
 
