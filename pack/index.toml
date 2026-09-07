@@ -1,6 +1,10 @@
 hash-format = "sha256"
 
 [[files]]
+file = "config/bcc-common.json"
+hash = "d4e88f7d493f26db3de14876753ee158588249ebf43125796325676b5c5450da"
+
+[[files]]
 file = "config/defaultworldtype/client-config.toml"
 hash = "647ebef0a380431fc5d1fd993ce77bc9e2bb483d862e6778fe0a2b1b8542f0ed"
 

@@ -39,7 +39,7 @@ one page, so it stays off until there is real quest content.
 
 # Trashlands
 
-Minecraft 26.1.2, NeoForge 26.1.2.100, 77 mods.
+Minecraft 26.1.2, NeoForge 26.1.2.100, 78 mods.
 
 A coarse-dirt plain covered in garbage mounds. No ore generates, no trees grow, and water is
 something you have to find rather than something that is there. Materials come from Blocks of
@@ -160,7 +160,10 @@ Also in:
 - **Quality of life:** AppleSkin, Mouse Tweaks, Inventory Essentials, Controlling, Searchables,
   Toast Control, Clumps, TrashSlot, Trash Cans, GraveStone, Simple Backups, Extreme Sound Muffler,
   Jade Addons, Configured, FancyMenu, Default World Type.
-- **Performance:** FerriteCore, ModernFix, Lithium, Sodium, FastFurnace, FastWorkbench, FastSuite.
+- **Performance and diagnostics:** FerriteCore, ModernFix, Lithium, Sodium, FastFurnace,
+  FastWorkbench, FastSuite, spark, Crash Assistant, Crash Utilities, Better Compatibility Checker.
+- **Building and loot:** FramedBlocks, Lootr (loot containers are per-player, so nobody loses a
+  sewer crate to whoever got there first), WITS, Default Options, Flatts's Things.
 
 Plus the libraries those pull in automatically.
 

@@ -52,10 +52,10 @@ tools/
 
 ## The mod lineup
 
-**77 mods**: the core six, a quality-of-life layer, the FTB stack, a tech and gadget layer, world-type enforcement, scripting, diagnostics, and ten auto-pulled libraries. Locked
+**78 mods**: the core six, a quality-of-life layer, the FTB stack, a tech and gadget layer, world-type enforcement, scripting, diagnostics, and ten auto-pulled libraries. Locked
 2026-08-02, with Jade Addons, Configured and Cable Facades added 2026-09-03, and FTB Ultimine plus
 KubeJS (with Rhino and standalone Better Advanced Tooltips) added 2026-09-07, followed the same
-day by eight borrowed from ATM 11.
+day by eight borrowed from ATM 11 and by **Flatts's Things** (1683375, ours).
 
 ### Core - Recompile, the four it integrates with, and our own diagnostic
 
@@ -338,14 +338,14 @@ above. Most of what ATM ships this pack already had; these eight are the ones wo
 
 | Mod | Why it is in |
 |---|---|
-| **Default Options** | Ships client defaults as a mod instead of as a raw `options.txt` override. It handles options, keybinds, **resource pack selection** and server list separately, which is the exact problem this pack has - see the options.txt section above. **Not wired up yet**, see below. |
+| **Default Options** | Ships client defaults as a mod instead of as a raw `options.txt` override. It handles options, keybinds, **resource pack selection** and server list separately, which is the exact problem this pack has - see the options.txt section above. **Not wired up yet**, see below. Pinned `side = "client"`: its entrypoint is `@Mod("defaultoptions", dist = [Dist.CLIENT])`, so on `side = "both"` it would ship into every server pack and never load. |
 | **Lootr** | Per-player loot containers. Sewer crates, the Municipal Aquarium and the demolition yard are all one-shot loot, so on a server the first player to arrive takes the only copy. This is the fix and it is a server-play blocker without it. |
 | **WITS (What Is This Structure?)** | Names the structure you are standing in. This pack has landmarks now - cooling tower, smokestacks, aquarium, demolition yard, radioactive dump - and no way to tell a player which one they found. |
 | **FramedBlocks** | Camo blocks that take the appearance of another block. A pack about building out of trash has an obvious use for it. See the concern below. |
 | **spark** | Profiler. `/spark profiler` on a server that is chugging, which mound regrowth and encroachment make plausible. |
 | **Crash Assistant** | Reads a crash report and names the mod responsible. |
 | **Crash Utilities** | Diagnostics and a mod-conflict view alongside it. |
-| **Better Compatibility Checker** | Warns when a client joins a server on the wrong pack version. |
+| **Better Compatibility Checker** | Warns when a client joins a server on the wrong pack version. Needs `pack/config/bcc-common.json`, shipped here - without it both sides read the built-in `CHANGE_ME` defaults, every comparison matches and the mod is silently inert. Its `modpackVersion` is asserted against `pack.toml` by `check_pack_deps.py`, so the two cannot drift. |
 
 **Default Options is added but not yet wired up.** The mod's intended workflow is to configure the
 client in game and run its save command, which writes the files itself; guessing the filenames from
@@ -354,13 +354,15 @@ stays as-is until someone launches and runs `saveAll`, tracked in
 [#65](https://github.com/Flatts3000/trashlands/issues/65). The mod is inert until then,
 which is why it is safe to add now.
 
-**Concern raised and taken anyway (owner call).** **FramedBlocks overlaps Recompile's building
-families.** This world already has cardboard, pressed junk, scrap plating, corrugated metal and
-plastic panel, each a full stairs/slab/wall set, and each earned through a different part of the
-salvage chain. A camo block that can look like any of them risks turning that progression into
-decoration. It is the same shape of objection that was recorded for Sophisticated Storage and
-LaserIO, and it is recorded here for the same reason: so a playtester who finds the building tier
-hollow knows it was foreseen.
+**A concern was raised about FramedBlocks and it does not survive checking.** The worry was that a
+camo block able to imitate cardboard, pressed junk, scrap plating, corrugated metal or plastic panel
+turns five earned building families into decoration - the same shape as the Sophisticated Storage and
+LaserIO objections. It is inverted. `framedblocks:framed_cube` is `4x #minecraft:planks + 4x
+minecraft:stick`, and **this world has no wood except the Tree Nursery**, rung 4 of the reclamation
+ladder's 5, with the sapling lockout (P2.4-R2) shipped so no loot roll yields one. So FramedBlocks is
+unreachable for most of a run, arriving long after the salvage building families have carried the
+whole early and middle game. It is a late-game finishing tool, not an early substitute, and it needs
+no override. Recorded because the objection reads plausible and someone will raise it again.
 
 **Considered and not taken:**
 
@@ -670,7 +672,7 @@ install task fail** ("Failed to launch modpack. An unexpected error occurred.").
 3. Name the instance **`Trashlands`** (the default `tools/sync_instance.py` looks for
    `<home>/curseforge/minecraft/Instances/Trashlands`).
 
-The manifest carries `neoforge-26.1.2.100`, so the app installs that loader and all 77 mods itself.
+The manifest carries `neoforge-26.1.2.100`, so the app installs that loader and all 78 mods itself.
 If the app cannot find that NeoForge build in its catalog the import will say so - see the loader
 note below.
 
