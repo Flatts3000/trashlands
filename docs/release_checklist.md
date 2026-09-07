@@ -33,6 +33,16 @@ Two pins drift silently and both ship to every new downloader.
    needed #51 afterwards. A chapter documenting a dimension that is still being built goes stale by
    default, and nothing else in this list would notice.
 
+   **In the same read, check whether any dimension has gained amethyst geodes.** Recompile owns every
+   dimension in this pack, so it owns this risk. `flattsthings:silk_touch_budding_amethyst` is pinned
+   **on** in `pack/config/flattsthings-common.toml`, and it is safe only because no geode generates
+   anywhere - the four biomes carry explicit feature lists and the mod contains no `geode` reference
+   at all. The day one does, silk touch takes budding amethyst, amethyst becomes renewable, and that
+   walks around the Separator chain `../recompile/docs/gem_tier_spec.md` calls "the proving material"
+   for the whole gem tier. **Turn that switch off in the same commit that takes the pin.** The
+   Flatts's Things check in step 3 will not catch this: the feature lives in that mod, but the
+   condition that makes it safe lives in this one.
+
 2. **NeoForge.** Compare `pack/pack.toml`'s `[versions] neoforge` against the latest 26.1.x:
 
    ```sh
@@ -63,6 +73,19 @@ Two pins drift silently and both ship to every new downloader.
    The same check runs on every PR (`validate-pack.yml`) and as a release guard, so this step is
    belt-and-braces rather than the only line of defence.
 
+   **When the Flatts's Things pin moves, diff its feature list against
+   `pack/config/flattsthings-common.toml`.** Every feature in that mod ships ON, and NeoForge's
+   `ModConfigSpec.correct()` writes any *missing* key with its spec default - so a feature added
+   upstream arrives switched on in this pack no matter what that config lists. The pin bump is the
+   only moment anyone would notice. Read the mod's changelog, add the new keys, and decide each one
+   rather than inheriting it. Same trap as the Recompile changelog check in step 1, and for the same
+   reason: a mod that is still being built goes stale against the pack by default.
+
+   **Do not read that config out of an instance to see what the pack set.** Correction also fires on
+   a comment mismatch alone, and it rewrites and saves the whole file, replacing every pack-authored
+   comment with the mod's own. An instance copy tells you the values and nothing else. The repo copy
+   and `pack_setup.md` are the record.
+
 4. **Things this list cannot check. All of them need a client launch.**
 
    The Better Advanced Tooltips pin is **not** one of them any more: it is registered in
@@ -81,6 +104,12 @@ Two pins drift silently and both ship to every new downloader.
      Ultimine key on a Block of Garbage and confirm only the block under the crosshair highlights,
      then on a grown tree and confirm the whole trunk does, then on deepslate underground and
      confirm it *does* chain - that one is meant to.
+   - **Settle whether `enchanted_golden_apple` is live or dead content.** Flatts's Things pins it on,
+     and it hooks `PlayerEnchantItemEvent` from the vanilla enchanting table - which Apothic
+     Enchanting replaces. Put a golden apple in a table and see whether the offer appears. If it
+     does, it is a live route to a vanilla loot-only item in a world that gates gold and apples, and
+     it wants pricing. If it does not, it is dead content and should be pinned off rather than left
+     looking supported.
    - **Decide the right-click question while you are in there.** `excluded_blocks` governs breaking
      only. Ultimine's area hoe and shovel read `ftbultimine:farmland_tillable` and
      `ftbultimine:shovel_flattenable`, which ship containing `minecraft:coarse_dirt` and are not

@@ -1,0 +1,20 @@
+# Flatts's Things: every feature pinned on.
+#
+# READ THIS IN THE REPO, NOT IN AN INSTANCE. NeoForge rewrites the comments in this
+# file on first load. ModConfigSpec.correct() compares each key's comment against the
+# mod's own and calls setComment() with the mod's version when they differ, then saves
+# - so in a running instance every line below is replaced by FTConfig's text. The
+# VALUES survive, because a valid value passes ValueSpec.test() and is never corrected.
+#
+# So this file pins behaviour and cannot carry reasoning. The reasoning is in
+# docs/pack_setup.md, under "Flatts's Things", and the checks that keep it true are in
+# docs/release_checklist.md steps 0.5.1 and 0.5.3.
+
+[features]
+    player_pressure_plates = true
+    tool_slots = true
+    tool_auto_swap = true
+    enchanted_golden_apple = true
+    silk_touch_budding_amethyst = true
+    gravel_to_flint = true
+    cauldron_transforms = true

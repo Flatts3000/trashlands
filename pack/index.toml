@@ -41,6 +41,10 @@ file = "config/fancymenu/options.txt"
 hash = "6975be9194248b1c650cdf3a2d038e5e9628abcece1b95767196f82086fdab8f"
 
 [[files]]
+file = "config/flattsthings-common.toml"
+hash = "03518fad0975040729bccd026a4bc65ee400eca2e2fd5def1acef4bda67c293a"
+
+[[files]]
 file = "config/ftbquests/quests/chapter_groups.json5"
 hash = "0a11b89d5d2a66d384297eba3321fdcbc8e3704e7741172b1e770f4ad189a907"
 
@@ -234,7 +238,7 @@ metafile = true
 
 [[files]]
 file = "mods/flattss-things.pw.toml"
-hash = "b425aeee181fce0019be0507ec387a125a5f49d6abb59d4ca452cf1d8879d603"
+hash = "4fb156e7d4ba6372396b1a488bd862bfce26e5294c95ed1a05b8118bbf654c60"
 metafile = true
 
 [[files]]
