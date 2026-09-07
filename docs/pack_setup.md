@@ -159,37 +159,50 @@ while empty), then excluded, then the shape's own matcher. The tag ships **empty
 There is no config-side block blacklist - `FTBUltimineServerConfig` carries features, costs and
 limits only. Established by disassembling the jar, not from the mod's docs.
 
-**What goes in it,** owner call 2026-09-07 - fifteen entries:
-`minecraft:coarse_dirt`, `recompile:garbage_block`, `recompile:trash_bag`, `recompile:compacted_bale`,
+**What goes in it,** owner call 2026-09-07 - sixteen entries:
+`minecraft:coarse_dirt`, `minecraft:deepslate`, `recompile:garbage_block`, `recompile:trash_bag`, `recompile:compacted_bale`,
 `recompile:cardboard_pile`, `recompile:bulky_waste`, `recompile:mound_ground`,
 `recompile:stained_ground`, `recompile:stone_rubble`, `recompile:mechanical_waste`,
 `recompile:mill_tailings`, `recompile:waste_drum`, `recompile:slag_rubble`,
 `recompile:ancient_sculk`, `recompile:tire`.
 
 **The rule is narrower than "everything worldgen places", and stating it loosely is how the first
-draft got it wrong.** Two kinds of block are in the tag:
+draft got it wrong.** Three kinds of block are in the tag:
 
 1. **Scrap piles** - what a worldgen feature heaps up as a dig-for-scrap target. Excluding these is
    the whole point: they are the core loop.
 2. **Surface ground** - `coarse_dirt`, `mound_ground`, `stained_ground`. The surface is the board
    reclamation and encroachment are played on, so taking it down in one hold is terraforming, not
    salvage.
+3. **Overworld bulk stone** - `minecraft:deepslate`, which `garbage.json` sets as the `default_block`
+   with a surface rule laying coarse dirt over only the top two blocks. So from two down to bedrock
+   the plain is deepslate. **Owner call 2026-09-07**, reversing the position the first pass took: the
+   starting plain is where this pack's scarcity is designed, and an infinite quarry two blocks under
+   it undoes that whatever the surface says.
 
-**Bulk stone is deliberately left vein-mineable, and both omissions are load-bearing:**
+   The first pass argued deepslate was harmless because it yields no salvage. That reading was too
+   narrow. `progression_gates.md:242` already records that plain `deepslate` sits in
+   `mineable/pickaxe` and in **no** `needs_*_tool` tag, so a wooden pickaxe drops cobbled deepslate,
+   which is in `#minecraft:stone_crafting_materials` - and that "world deepslate two blocks down"
+   was one of three routes that silently opened the iron gate in Recompile #91. Deepslate is not
+   inert bulk here; it is an early, tool-ungated stone-crafting stream. A vein-miner on it multiplies
+   exactly the thing that already broke a gate once.
 
-- **`minecraft:deepslate`** is `garbage.json`'s `default_block`, with a surface rule laying coarse
-  dirt over only the top two blocks. So from two down to bedrock the overworld is deepslate, and it
-  stays ultiminable.
-- **`recompile:techno_organic_waste`** is `compacted_depths.json`'s `default_block` - the Depths'
-  bulk stone, which drops itself and is a building material rather than a scrap pile. It was in the
-  first draft, pulled on review: with `slag_rubble` and `ancient_sculk` also excluded it would have
-  made Ultimine **inert in the entire dimension**, which falsifies the "there is stone in the Nether
-  now" half of the argument for taking the mod.
+**One block of bulk stone is still deliberately left vein-mineable, and it is load-bearing:**
+**`recompile:techno_organic_waste`**, `compacted_depths.json`'s `default_block`. It drops itself, so
+it is a building material rather than a scrap pile, and with `slag_rubble` and `ancient_sculk`
+already excluded, adding it would leave **nothing** vein-mineable in that dimension. Excluding
+deepslate does not do that to the overworld - trees, crops, farmland and player builds all remain -
+which is the difference between the two cases, and why the outcome rather than the principle decides
+it. The Depths is an earned region where fast quarrying is a reward; the starting plain is not.
 
-Bulk stone underground yields no salvage, and quarrying it fast is exactly what a vein-miner is for.
-What is left ultiminable is the **rebuilt** world plus the rock under it: trees and crops off the
-reclamation ladder, farmland, deepslate, Depths stone, shard-crafted terrain, player builds. The
-junkyard is dug by hand; the world you make out of it is not.
+Note the entry is `minecraft:deepslate` only. Cobbled deepslate, deepslate bricks and the rest are
+player-made and stay ultiminable, which is the intent: this stops quarrying the world, not building
+with what you quarried.
+
+What is left ultiminable is the **rebuilt** world: trees and crops off the reclamation ladder,
+farmland, Depths stone, shard-crafted terrain, player builds. The junkyard is dug by hand; the world
+you make out of it is not.
 
 **This governs breaking only.** Ultimine's right-click features (area hoe, shovel, axe, crop harvest)
 read `ftbultimine:farmland_tillable` and `ftbultimine:shovel_flattenable`, which ship containing
