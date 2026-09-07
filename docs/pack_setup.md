@@ -52,8 +52,9 @@ tools/
 
 ## The mod lineup
 
-**65 mods**: the core six, a quality-of-life layer, the FTB stack, a tech and gadget layer, world-type enforcement, and nine auto-pulled libraries. Locked
-2026-08-02, with Jade Addons, Configured and Cable Facades added 2026-09-03.
+**66 mods**: the core six, a quality-of-life layer, the FTB stack, a tech and gadget layer, world-type enforcement, and nine auto-pulled libraries. Locked
+2026-08-02, with Jade Addons, Configured and Cable Facades added 2026-09-03, and FTB Ultimine
+added 2026-09-07.
 
 ### Core - Recompile, the four it integrates with, and our own diagnostic
 
@@ -126,6 +127,7 @@ CurseForge-exclusive**, which is what closes the Modrinth door - see
 | **FTB XMod Compat** | Wires FTB Quests to JEI: the bookmark key works inside the quest book, and an item task can convert to a tag filter. Cut on 2026-08-02 as "glue between FTB mods and mods we do not ship", which was wrong - JEI is core to this pack. Added 2026-08-04; must track the FTB Quests version. |
 | **FTB Chunks** | The minimap is the real reason. An endless coarse-dirt plain where mounds regrow is a world you constantly re-navigate, and there are no natural landmarks to steer by. Chunk claiming matters on servers. |
 | **FTB Essentials** | `/home`, `/tpa`, `/back`. `/back` pairs with GraveStone on a death run. |
+| **FTB Ultimine** | Added 2026-09-07, reversing the 2026-08-02 cut. Hold a key to break a whole vein - but **the salvage terrain is excluded from it**, so it never touches the garbage economy. See below. |
 
 **Quest content** lives in `pack/config/ftbquests/quests/`: chapters in `chapters/*.snbt`, all text in
 `lang/en_us.snbt` keyed by quest id (`quest.<ID>.title`, `.quest_subtitle`, `.quest_desc`). Written
@@ -139,6 +141,42 @@ shipping no book at all. The chapter spine proper (`The Way Home`, parts one to 
 **The Discord link is a clickable image on the chapter canvas**, copied from how Sky Frogs does it.
 Sky Frogs stores the icon under `pack/kubejs/assets/kubejs/...` and lets KubeJS provide the
 namespace; this pack has no KubeJS, so the icon ships in a resource pack instead - see below.
+
+### FTB Ultimine, and the tag that keeps it off the garbage
+
+Added 2026-09-07 (issue [#62](https://github.com/Flatts3000/trashlands/issues/62)),
+`ftb-ultimine-neoforge-26.1.2.5` (CF project 386134, file 8231335). It was cut on 2026-08-02 and the
+cut was right at the time; what changed is that the mod turns out to have an exclusion hook, and that
+the world grew things worth vein-mining that are not garbage.
+
+**The hook.** `dev.ftb.mods.ftbultimine.shape.BlockMatcher.check` rejects any block in the block tag
+`ftbultimine:excluded_blocks` before the shape matcher ever runs. Order is: block whitelist (skipped
+while empty), then excluded, then the shape's own matcher. The tag ships **empty** inside the jar at
+`data/ftbultimine/tags/block/excluded_blocks.json`, so appending to it is the intended override.
+There is no config-side block blacklist - `FTBUltimineServerConfig` carries features, costs and
+limits only. Established by disassembling the jar, not from the mod's docs.
+
+**What goes in it,** owner call 2026-09-07 - the scrap set plus coarse dirt, fourteen entries:
+`minecraft:coarse_dirt`, `recompile:garbage_block`, `recompile:trash_bag`, `recompile:compacted_bale`,
+`recompile:cardboard_pile`, `recompile:bulky_waste`, `recompile:mound_ground`,
+`recompile:stone_rubble`, `recompile:mechanical_waste`, `recompile:mill_tailings`,
+`recompile:waste_drum`, `recompile:techno_organic_waste`, `recompile:slag_rubble`, `recompile:tire`.
+
+That is every block a worldgen feature piles up as a salvage target, across all four regions, plus
+the ground itself. What is left ultiminable is the **rebuilt** world: trees and crops off the
+reclamation ladder, farmland, Nether stone, shard-crafted terrain, player builds. The junkyard is dug
+by hand; the world you make out of it is not. That line is the reason to take the mod at all.
+
+**The tag cannot ship from here.** The pack cannot ship data of its own on 26.1.2 - see "Recipe
+overrides have nowhere to live" below, which is the same wall that put the Simple Magnets and Ender
+IO overrides into Recompile. So it is requested from the engine in
+`../recompile/docs/handoff_ftbultimine_excluded_blocks.md`, on the same terms as those two: one
+deletable file, nothing allowed to depend on it, taken back the moment a datapack route opens here.
+
+**Release gate: Ultimine must not ship in a pack release before a Recompile build carrying that
+tag.** Nothing in the pack enforces this - `check_pack_deps.py` cannot see a tag - so it is a human
+check on the release. Shipping the mod without the tag ships a vein-miner pointed straight at the
+garbage economy, which is the exact failure the 2026-08-02 cut existed to avoid.
 
 ### Tech and gadgets
 
@@ -160,7 +198,11 @@ mod dependency, so they interoperate for free.
 these turn out badly in playtest:
 
 - **Mining Gadgets** is the objection that retired FTB Ultimine, with more force: digging Blocks of
-  Garbage out of mounds *is* the core loop, and this is that with power and an area.
+  Garbage out of mounds *is* the core loop, and this is that with power and an area. **Still open
+  as of 2026-09-07**, and now the odd one out: Ultimine came back the same day with the salvage
+  terrain excluded by tag, and Mining Gadgets has no equivalent hook found yet. If it has one, the
+  same exclusion should go in it; if it does not, this concern is the only unanswered way to strip
+  a mound without touching it.
 - **LaserIO** is the objection that retired Sophisticated Storage: it outclasses Pipez and does far
   more than Recompile's Scrap Network, which risks making the pack's own storage tier skippable.
 - **Cable Facades is craftable much later than the cables it covers.** Both facade recipes are
@@ -434,9 +476,13 @@ overrides:
   build, or one whose bundled tooltip mod is fixed.** Verify by launching, not by the pack audit:
   `check_pack_deps.py` passed cleanly with KubeJS in, because a jar-in-jar mixin failure is a
   runtime fault, not a dependency or loader-range problem.
-- **FTB Ultimine** - hold a key to break a whole vein. Digging Blocks of Garbage out of mounds *is*
-  the core loop here, so ungated it takes a mound down in one hold and rewrites the pick-through
-  economy. Gated off garbage it has almost nothing left to do, because there is no ore and no wood.
+- ~~**FTB Ultimine**~~ - **REVERSED 2026-09-07, now in the pack.** The cut reason was that digging
+  Blocks of Garbage out of mounds *is* the core loop, so ungated it takes a mound down in one hold
+  and rewrites the pick-through economy. **That reason is answered rather than overridden** - the
+  mod ships a block-tag exclusion hook, and the salvage terrain goes in it. The cut's second half,
+  "gated off garbage it has almost nothing left to do, because there is no ore and no wood", has
+  simply aged out: the reclamation ladder grows trees and crops, and the Nether and shard-crafted
+  terrain have stone. See the Ultimine section above.
 - **FTB Ranks** - server permission ranks. Nothing to permission yet.
 - **FTB Filter System** - smart item filters for routers and AE-style storage. The pack has neither.
 - **More Overlays Updated** - it *does* have a 26.1.2 build now
@@ -505,7 +551,7 @@ install task fail** ("Failed to launch modpack. An unexpected error occurred.").
 3. Name the instance **`Trashlands`** (the default `tools/sync_instance.py` looks for
    `<home>/curseforge/minecraft/Instances/Trashlands`).
 
-The manifest carries `neoforge-26.1.2.100`, so the app installs that loader and all 65 mods itself.
+The manifest carries `neoforge-26.1.2.100`, so the app installs that loader and all 66 mods itself.
 If the app cannot find that NeoForge build in its catalog the import will say so - see the loader
 note below.
 

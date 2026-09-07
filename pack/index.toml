@@ -225,6 +225,11 @@ hash = "cb69112ea7c492ee73426fb503af2d834c8bafcd8341188c99ea6dc56d38de6f"
 metafile = true
 
 [[files]]
+file = "mods/ftb-ultimine-forge.pw.toml"
+hash = "ca3e218e3a3c347537b9c2e6eefa6fb6c07614095759d09a56cd52398c5f10a4"
+metafile = true
+
+[[files]]
 file = "mods/ftb-xmod-compat.pw.toml"
 hash = "f83f3f562299605eec8ebda3763a7844a7274e61154b47bdde238329c8bc3df2"
 metafile = true
