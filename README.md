@@ -12,7 +12,7 @@ to give that income up.
   - a drained municipal aquarium with a guardian still in one flooded tank, and tire dumps that are
   the only rubber in the world
   - on [GitHub Releases](https://github.com/Flatts3000/trashlands/releases) and CurseForge (project
-  `1636627`). The pack is 65 mods on Minecraft 26.1.2 / NeoForge 26.1.2.100. If you are hand-building
+  `1636627`). The pack is 69 mods on Minecraft 26.1.2 / NeoForge 26.1.2.100. If you are hand-building
   an instance, match the loader to the release you downloaded rather than to this line; `v0.9.0` and
   earlier declare 26.1.2.94. Releases are tag-driven - see
   [`docs/release_checklist.md`](docs/release_checklist.md).

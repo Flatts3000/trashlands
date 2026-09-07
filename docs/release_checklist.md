@@ -63,6 +63,20 @@ Two pins drift silently and both ship to every new downloader.
    The same check runs on every PR (`validate-pack.yml`) and as a release guard, so this step is
    belt-and-braces rather than the only line of defence.
 
+4. **Two things this list cannot check, because no tool can see them. Both need a client launch.**
+
+   - **KubeJS must not crash at bootstrap.** It ships pinned against standalone
+     `better-advanced-tooltips-2601.1.0-build.9`, which displaces the broken `build.8` bundled
+     inside KubeJS. If `packwiz update --all` ever moves or drops that pin, the client dies on
+     load with `Scanned 0 target(s)` and `check_pack_deps.py` still exits 0 - it did exactly that
+     the last time KubeJS was in the pack. Launch once and reach the title screen.
+   - **FTB Ultimine must not vein-mine the garbage.** The exclusion lives in a tag at
+     `pack/kubejs/data/ftbultimine/tags/block/excluded_blocks.json`, and a tag is invisible to the
+     dep check. If KubeJS fails to load, the tag silently does not apply and the mod becomes a
+     vein-miner pointed at the core loop. In game: hold the Ultimine key on a Block of Garbage and
+     confirm only the block under the crosshair highlights, then on a grown tree and confirm the
+     whole trunk does.
+
 ## 1. Cut the release (on `main`, clean tree)
 
 1. `git checkout main && git pull` - working tree clean.

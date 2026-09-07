@@ -1,0 +1,29 @@
+{
+  "_comment": [
+    "Trashlands: keep FTB Ultimine off the salvage terrain. Every block here is something a",
+    "worldgen feature piles up as a dig-for-scrap target, plus the ground those features sit on.",
+    "What stays vein-mineable is the rebuilt world - trees and crops off the reclamation ladder,",
+    "farmland, Nether stone, shard-crafted terrain, player builds.",
+    "Ultimine ships this tag empty, so replace:false appends rather than overwrites.",
+    "Add any new Recompile garbage block here when one lands."
+  ],
+  "replace": false,
+  "values": [
+    "minecraft:coarse_dirt",
+    "recompile:garbage_block",
+    "recompile:trash_bag",
+    "recompile:compacted_bale",
+    "recompile:cardboard_pile",
+    "recompile:bulky_waste",
+    "recompile:mound_ground",
+    "recompile:stained_ground",
+    "recompile:stone_rubble",
+    "recompile:mechanical_waste",
+    "recompile:mill_tailings",
+    "recompile:waste_drum",
+    "recompile:techno_organic_waste",
+    "recompile:slag_rubble",
+    "recompile:ancient_sculk",
+    "recompile:tire"
+  ]
+}
