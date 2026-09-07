@@ -364,6 +364,21 @@ unreachable for most of a run, arriving long after the salvage building families
 whole early and middle game. It is a late-game finishing tool, not an early substitute, and it needs
 no override. Recorded because the objection reads plausible and someone will raise it again.
 
+**Flatts's Things** (1683375, ours) came in the same day, and its 0.2.0 bump on 2026-09-07 is worth
+a note because two of its features touch this world's economy. Both are config-gated behind
+`flattsthings:feature_enabled`, so either can be switched off if playtest says so.
+
+- **`silk_touch_budding_amethyst`** makes budding amethyst silk-touchable, which in vanilla is
+  deliberately impossible and would make amethyst renewable. **Inert here**, and checked rather than
+  assumed: Recompile defines its own four biomes with explicit feature lists and there is no `geode`
+  reference anywhere in the mod, so vanilla geode generation never runs and no budding amethyst
+  exists to break. If a future dimension ever carries geodes this stops being inert, and it matters -
+  `../recompile/docs/gem_tier_spec.md` has amethyst refined from Mechanical Waste through the
+  Separator and calls it "the proving material" for that whole tier.
+- **`gravel_to_flint`** is 3 gravel to 1 flint. This world's gravel comes off the `reinforced_concrete`
+  loot roll, and flint is not a gated resource in the gem tier, so this is a determinism improvement
+  over vanilla's 10% gravel drop rather than a new source.
+
 **Considered and not taken:**
 
 - **More Overlays Updated** - tried again on 2026-09-07 and it still fails. `check_pack_deps.py`
