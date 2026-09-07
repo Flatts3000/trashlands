@@ -322,7 +322,8 @@ above. Most of what ATM ships this pack already had; these eight are the ones wo
 **Default Options is added but not yet wired up.** The mod's intended workflow is to configure the
 client in game and run its save command, which writes the files itself; guessing the filenames from
 the outside is how you ship a `defaultoptions` folder that silently does nothing. `pack/options.txt`
-stays as-is until someone launches and runs `saveAll`, tracked in #64. The mod is inert until then,
+stays as-is until someone launches and runs `saveAll`, tracked in
+[#65](https://github.com/Flatts3000/trashlands/issues/65). The mod is inert until then,
 which is why it is safe to add now.
 
 **Concern raised and taken anyway (owner call).** **FramedBlocks overlaps Recompile's building
