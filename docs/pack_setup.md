@@ -379,6 +379,14 @@ a note because two of its features touch this world's economy. Both are config-g
   loot roll, and flint is not a gated resource in the gem tier, so this is a determinism improvement
   over vanilla's 10% gravel drop rather than a new source.
 
+**The pack pins all seven features on** in `pack/config/flattsthings-common.toml`. That changes
+nothing today - they are all on by default - and it is there so the pack keeps the behaviour it was
+tested with if a default ever flips upstream. **It does not hold back features added later.**
+NeoForge's `ModConfigSpec` corrects a config by writing any missing key with its spec default, so a
+new feature arrives switched on whatever that file lists. The only lever for that is the mod's own
+default, and the only moment anyone would notice is the pin bump - which is why the check lives in
+`release_checklist.md` step 0.5 rather than in a config file that cannot enforce it.
+
 **Considered and not taken:**
 
 - **More Overlays Updated** - tried again on 2026-09-07 and it still fails. `check_pack_deps.py`

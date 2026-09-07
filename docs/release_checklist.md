@@ -63,6 +63,14 @@ Two pins drift silently and both ship to every new downloader.
    The same check runs on every PR (`validate-pack.yml`) and as a release guard, so this step is
    belt-and-braces rather than the only line of defence.
 
+   **When the Flatts's Things pin moves, diff its feature list against
+   `pack/config/flattsthings-common.toml`.** Every feature in that mod ships ON, and NeoForge's
+   `ModConfigSpec` backfills a missing key with its spec default when it corrects the file - so a
+   feature added upstream arrives switched on in this pack no matter what that config lists. The pin
+   bump is the only moment anyone would notice. Read the mod's changelog, add the new keys, and
+   decide each one rather than inheriting it. Same trap as the Recompile changelog check in step 1,
+   and for the same reason: a mod that is still being built goes stale against the pack by default.
+
 4. **Things this list cannot check. All of them need a client launch.**
 
    The Better Advanced Tooltips pin is **not** one of them any more: it is registered in
