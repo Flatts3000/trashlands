@@ -63,19 +63,33 @@ Two pins drift silently and both ship to every new downloader.
    The same check runs on every PR (`validate-pack.yml`) and as a release guard, so this step is
    belt-and-braces rather than the only line of defence.
 
-4. **Two things this list cannot check, because no tool can see them. Both need a client launch.**
+4. **Things this list cannot check. All of them need a client launch.**
 
-   - **KubeJS must not crash at bootstrap.** It ships pinned against standalone
-     `better-advanced-tooltips-2601.1.0-build.9`, which displaces the broken `build.8` bundled
-     inside KubeJS. If `packwiz update --all` ever moves or drops that pin, the client dies on
-     load with `Scanned 0 target(s)` and `check_pack_deps.py` still exits 0 - it did exactly that
-     the last time KubeJS was in the pack. Launch once and reach the title screen.
+   The Better Advanced Tooltips pin is **not** one of them any more: it is registered in
+   `HELD_PINS` in `check_pack_deps.py`, so moving or deleting it fails `validate-pack.yml` on every
+   PR. That is the pin the whole KubeJS reintroduction rests on, and it now has automated cover.
+
+   What still needs eyes:
+
+   - **KubeJS must reach the title screen.** It is a **beta** build, and it is the mod that crashed
+     this pack on 2026-08-02. The held pin proves the right *file* is present; it cannot prove the
+     game boots.
    - **FTB Ultimine must not vein-mine the garbage.** The exclusion lives in a tag at
      `pack/kubejs/data/ftbultimine/tags/block/excluded_blocks.json`, and a tag is invisible to the
-     dep check. If KubeJS fails to load, the tag silently does not apply and the mod becomes a
-     vein-miner pointed at the core loop. In game: hold the Ultimine key on a Block of Garbage and
-     confirm only the block under the crosshair highlights, then on a grown tree and confirm the
-     whole trunk does.
+     dep check. **If KubeJS fails to load for any reason, the tag silently does not apply** and the
+     mod becomes a vein-miner pointed at the core loop, with no error anywhere. In game: hold the
+     Ultimine key on a Block of Garbage and confirm only the block under the crosshair highlights,
+     then on a grown tree and confirm the whole trunk does, then on deepslate underground and
+     confirm it *does* chain - that one is meant to.
+   - **Decide the right-click question while you are in there.** `excluded_blocks` governs breaking
+     only. Ultimine's area hoe and shovel read `ftbultimine:farmland_tillable` and
+     `ftbultimine:shovel_flattenable`, which ship containing `minecraft:coarse_dirt` and are not
+     overridden. Mass-tilling the plain may be fine, or even wanted for the reclamation ladder. Try
+     it and rule.
+
+   **Sequencing.** Consider not shipping Ultimine in the same release that reintroduces KubeJS. One
+   playtest miss hands players an unguarded vein-miner aimed at the core loop, and the two changes
+   are independent. If they do ship together, the two checks above are mandatory, not optional.
 
 ## 1. Cut the release (on `main`, clean tree)
 

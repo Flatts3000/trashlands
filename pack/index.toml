@@ -86,7 +86,7 @@ hash = "419e177ba000a25bb6e07ff4d0804a42910fa4e6de2727e5344e98b1c1be2368"
 
 [[files]]
 file = "kubejs/data/ftbultimine/tags/block/excluded_blocks.json"
-hash = "313193515aee8d399a56d0ad845a9bf912f90cb08d44dd006a3fc8d30423a817"
+hash = "4a0c55b353a3c5d87bd4734cd1cb7e4cabf0eb8451984314c3d59d119eec371a"
 
 [[files]]
 file = "mods/apotheosis.pw.toml"
