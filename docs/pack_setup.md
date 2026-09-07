@@ -159,27 +159,55 @@ while empty), then excluded, then the shape's own matcher. The tag ships **empty
 There is no config-side block blacklist - `FTBUltimineServerConfig` carries features, costs and
 limits only. Established by disassembling the jar, not from the mod's docs.
 
-**What goes in it,** owner call 2026-09-07 - the scrap set plus coarse dirt, sixteen entries:
+**What goes in it,** owner call 2026-09-07 - fifteen entries:
 `minecraft:coarse_dirt`, `recompile:garbage_block`, `recompile:trash_bag`, `recompile:compacted_bale`,
 `recompile:cardboard_pile`, `recompile:bulky_waste`, `recompile:mound_ground`,
 `recompile:stained_ground`, `recompile:stone_rubble`, `recompile:mechanical_waste`,
-`recompile:mill_tailings`, `recompile:waste_drum`, `recompile:techno_organic_waste`,
-`recompile:slag_rubble`, `recompile:ancient_sculk`, `recompile:tire`.
+`recompile:mill_tailings`, `recompile:waste_drum`, `recompile:slag_rubble`,
+`recompile:ancient_sculk`, `recompile:tire`.
 
-That is every block a worldgen feature piles up as a **dig-for-scrap target**, across all four
-regions, plus the ground those features sit on. What is left ultiminable is the **rebuilt** world:
-trees and crops off the reclamation ladder, farmland, Nether stone, shard-crafted terrain, player
-builds. The junkyard is dug by hand; the world you make out of it is not. That line is the reason to
-take the mod at all.
+**The rule is narrower than "everything worldgen places", and stating it loosely is how the first
+draft got it wrong.** Two kinds of block are in the tag:
 
-**It is not every Recompile block that worldgen places, and that is deliberate.**
-`reinforced_concrete`, `steel_i_beam`, `copper_pipe` and `manhole` are placed by the building husk
-and steel stack features and are excluded from the exclusion: they are craftable building blocks, so
-tagging them would also block vein-mining a player's own walls. A landmark can be stripped fast; a
-mound cannot. `ancient_sculk` went in on the second pass precisely because it is the opposite case -
-diamond-tier gated, drops sculk powder, and is the closest thing this world has to an ore seam, which
-is exactly what a vein-miner is for. `stained_ground` went in for symmetry with `mound_ground`: both
-are the ground a region's features sit on, and splitting them made no sense.
+1. **Scrap piles** - what a worldgen feature heaps up as a dig-for-scrap target. Excluding these is
+   the whole point: they are the core loop.
+2. **Surface ground** - `coarse_dirt`, `mound_ground`, `stained_ground`. The surface is the board
+   reclamation and encroachment are played on, so taking it down in one hold is terraforming, not
+   salvage.
+
+**Bulk stone is deliberately left vein-mineable, and both omissions are load-bearing:**
+
+- **`minecraft:deepslate`** is `garbage.json`'s `default_block`, with a surface rule laying coarse
+  dirt over only the top two blocks. So from two down to bedrock the overworld is deepslate, and it
+  stays ultiminable.
+- **`recompile:techno_organic_waste`** is `compacted_depths.json`'s `default_block` - the Depths'
+  bulk stone, which drops itself and is a building material rather than a scrap pile. It was in the
+  first draft, pulled on review: with `slag_rubble` and `ancient_sculk` also excluded it would have
+  made Ultimine **inert in the entire dimension**, which falsifies the "there is stone in the Nether
+  now" half of the argument for taking the mod.
+
+Bulk stone underground yields no salvage, and quarrying it fast is exactly what a vein-miner is for.
+What is left ultiminable is the **rebuilt** world plus the rock under it: trees and crops off the
+reclamation ladder, farmland, deepslate, Depths stone, shard-crafted terrain, player builds. The
+junkyard is dug by hand; the world you make out of it is not.
+
+**This governs breaking only.** Ultimine's right-click features (area hoe, shovel, axe, crop harvest)
+read `ftbultimine:farmland_tillable` and `ftbultimine:shovel_flattenable`, which ship containing
+`minecraft:coarse_dirt` and are **not** overridden here. So an area hoe or shovel still applies to
+the plain's surface block. Left alone on purpose: neither path yields an item or skips the salvage
+economy, and closing it needs either a `replace: true` tag override that would have to re-enumerate
+the vanilla dirt set without `#c:dirt` (which contains coarse dirt), or turning the features off
+wholesale, which would also cost the mass farmland tilling the reclamation ladder actually wants.
+It is a playtest question, not a code one - see the release checklist.
+
+**Craftable building blocks stay out too.** `reinforced_concrete`, `steel_i_beam`, `copper_pipe`
+and `manhole` are placed by the building husk and steel stack features, and tagging them would also
+block vein-mining a player's own walls. A landmark can be stripped fast; a mound cannot.
+`ancient_sculk` went in on the second pass precisely because it is the opposite case - diamond-tier
+gated, drops sculk powder, and is the closest thing this world has to an ore seam, which is exactly
+what a vein-miner is *for*, so it is the one thing that must not be. `stained_ground` went in for
+symmetry with `mound_ground`: both are the ground a region's features sit on, and splitting them made
+no sense.
 
 **The tag ships from the pack**, at
 `pack/kubejs/data/ftbultimine/tags/block/excluded_blocks.json`. That path is a plain datapack tree

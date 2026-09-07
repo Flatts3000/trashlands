@@ -154,6 +154,9 @@ Also in:
 - **Gadgets:** Building Gadgets, Mining Gadgets, Charging Gadgets, Just Dire Things.
 - **Quests and teams:** FTB Quests, FTB Library, FTB Chunks, FTB Teams, FTB Essentials, FTB XMod
   Compat.
+- **Vein mining:** FTB Ultimine. Blocks of Garbage, the mound ground and every other salvage pile
+  are excluded from it on purpose - the junkyard is dug by hand. Stone, trees and crops are not.
+- **Scripting:** KubeJS.
 - **Quality of life:** AppleSkin, Mouse Tweaks, Inventory Essentials, Controlling, Searchables,
   Toast Control, Clumps, TrashSlot, Trash Cans, GraveStone, Simple Backups, Extreme Sound Muffler,
   Jade Addons, Configured, FancyMenu, Default World Type.
