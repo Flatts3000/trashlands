@@ -229,6 +229,11 @@ hash = "c2d1674a4d1466e09946819d58436b555256613d2cbcb8f12e26d950bd76d8ef"
 metafile = true
 
 [[files]]
+file = "mods/flattss-things.pw.toml"
+hash = "b425aeee181fce0019be0507ec387a125a5f49d6abb59d4ca452cf1d8879d603"
+metafile = true
+
+[[files]]
 file = "mods/framedblocks.pw.toml"
 hash = "251363ba098c943081743958b9f8042b4ff10c3f74b07d7f40465c3bc37b6b68"
 metafile = true
