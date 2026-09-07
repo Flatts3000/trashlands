@@ -1,7 +1,7 @@
 {
   "_comment": [
     "Trashlands: keep FTB Ultimine off the salvage economy.",
-    "The rule is narrower than 'everything worldgen places'. Two kinds of block are here:",
+    "The rule is narrower than 'everything worldgen places'. Three kinds of block are here:",
     "  1. Scrap piles - what a worldgen feature heaps up as a dig-for-scrap target.",
     "  2. Surface ground - coarse dirt, mound ground, stained ground. The surface is the board",
     "     reclamation and encroachment are played on, so stripping it in one hold is terraforming.",

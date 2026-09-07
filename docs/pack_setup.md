@@ -196,9 +196,14 @@ deepslate does not do that to the overworld - trees, crops, farmland and player 
 which is the difference between the two cases, and why the outcome rather than the principle decides
 it. The Depths is an earned region where fast quarrying is a reward; the starting plain is not.
 
-Note the entry is `minecraft:deepslate` only. Cobbled deepslate, deepslate bricks and the rest are
-player-made and stay ultiminable, which is the intent: this stops quarrying the world, not building
-with what you quarried.
+Note the entry is `minecraft:deepslate` only, so cobbled deepslate, deepslate bricks, tiles and the
+polished set all stay ultiminable. **One case does not come out the way that sentence implies, and it
+is worth knowing before someone reports it as a bug.** Vanilla smelts `cobbled_deepslate` back into
+`minecraft:deepslate`, and the pack ships no recipe override removing that. A player who smelts a
+stack and builds a wall out of it cannot vein-mine their own wall, because a block tag cannot tell
+worldgen-placed from player-placed. The exclusion is still right - the alternative is an infinite
+early quarry - but "this stops quarrying the world, not building with what you quarried" is true of
+every deepslate variant except the raw block itself.
 
 What is left ultiminable is the **rebuilt** world: trees and crops off the reclamation ladder,
 farmland, Depths stone, shard-crafted terrain, player builds. The junkyard is dug by hand; the world
