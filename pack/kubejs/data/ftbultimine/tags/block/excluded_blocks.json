@@ -1,0 +1,37 @@
+{
+  "_comment": [
+    "Trashlands: keep FTB Ultimine off the salvage economy.",
+    "The rule is narrower than 'everything worldgen places'. Two kinds of block are here:",
+    "  1. Scrap piles - what a worldgen feature heaps up as a dig-for-scrap target.",
+    "  2. Surface ground - coarse dirt, mound ground, stained ground. The surface is the board",
+    "     reclamation and encroachment are played on, so stripping it in one hold is terraforming.",
+    "Deliberately NOT here, and both are load-bearing omissions:",
+    "  - minecraft:deepslate, the overworld bulk stone from 2 blocks down to bedrock.",
+    "  - recompile:techno_organic_waste, the Compacted Depths' bulk stone (its noise_settings",
+    "    default_block). It drops itself, so it is a building material, not a scrap pile.",
+    "  Bulk stone underground is exactly what a vein-miner is for, it yields no salvage, and",
+    "  excluding the Depths' default block would make Ultimine inert in that whole dimension.",
+    "Ultimine ships this tag empty, so replace:false appends rather than overwrites.",
+    "This governs BREAKING only. The right-click hoe/shovel paths read ftbultimine:farmland_tillable",
+    "and ftbultimine:shovel_flattenable, which ship containing coarse dirt and are NOT overridden.",
+    "Add any new Recompile scrap-pile block here when one lands."
+  ],
+  "replace": false,
+  "values": [
+    "minecraft:coarse_dirt",
+    "recompile:garbage_block",
+    "recompile:trash_bag",
+    "recompile:compacted_bale",
+    "recompile:cardboard_pile",
+    "recompile:bulky_waste",
+    "recompile:mound_ground",
+    "recompile:stained_ground",
+    "recompile:stone_rubble",
+    "recompile:mechanical_waste",
+    "recompile:mill_tailings",
+    "recompile:waste_drum",
+    "recompile:slag_rubble",
+    "recompile:ancient_sculk",
+    "recompile:tire"
+  ]
+}

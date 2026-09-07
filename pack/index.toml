@@ -85,6 +85,10 @@ file = "icon.png"
 hash = "419e177ba000a25bb6e07ff4d0804a42910fa4e6de2727e5344e98b1c1be2368"
 
 [[files]]
+file = "kubejs/data/ftbultimine/tags/block/excluded_blocks.json"
+hash = "4a0c55b353a3c5d87bd4734cd1cb7e4cabf0eb8451984314c3d59d119eec371a"
+
+[[files]]
 file = "mods/apotheosis.pw.toml"
 hash = "1956282960d8297d3832438e1747771decbb9c4dcf0c8d75d6eb137ddb9323f5"
 metafile = true
@@ -117,6 +121,11 @@ metafile = true
 [[files]]
 file = "mods/balm.pw.toml"
 hash = "1a12d7f3d62a1dabcf202856c4b2a26d0cffbf58ecb2c080efe21d96fab79c73"
+metafile = true
+
+[[files]]
+file = "mods/better-advanced-tooltips.pw.toml"
+hash = "7a529047843ae51f3068a44d279ce807e48acd8fff268516c0c9fb2715ddd9aa"
 metafile = true
 
 [[files]]
@@ -225,6 +234,11 @@ hash = "cb69112ea7c492ee73426fb503af2d834c8bafcd8341188c99ea6dc56d38de6f"
 metafile = true
 
 [[files]]
+file = "mods/ftb-ultimine-forge.pw.toml"
+hash = "ca3e218e3a3c347537b9c2e6eefa6fb6c07614095759d09a56cd52398c5f10a4"
+metafile = true
+
+[[files]]
 file = "mods/ftb-xmod-compat.pw.toml"
 hash = "f83f3f562299605eec8ebda3763a7844a7274e61154b47bdde238329c8bc3df2"
 metafile = true
@@ -272,6 +286,11 @@ metafile = true
 [[files]]
 file = "mods/konkrete.pw.toml"
 hash = "3929423ce96f2aa2159edd96e4c5da8754ef7a2301dd92d0d9342fc26e8982e6"
+metafile = true
+
+[[files]]
+file = "mods/kubejs.pw.toml"
+hash = "04b9bc450a5cd1f4d687a1d937c5f0de62c568063405a793e7f3596849785f7e"
 metafile = true
 
 [[files]]
@@ -337,6 +356,11 @@ metafile = true
 [[files]]
 file = "mods/recompile.pw.toml"
 hash = "b862f7bf06744daa3615b09e1451f67970c5411611485e7a8806b7cbd3e01e7d"
+metafile = true
+
+[[files]]
+file = "mods/rhino.pw.toml"
+hash = "985a99f7465b68e43b98f3dbe1081b7113d957c7926a8caab163503528910f42"
 metafile = true
 
 [[files]]

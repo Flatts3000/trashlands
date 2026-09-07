@@ -208,7 +208,18 @@ def held_pin_cases(t):
     """
     if not t.HELD_PINS:
         return [("HELD_PINS is empty, so there is nothing to hold", lambda: 0, 0)]
+    # check_held_pins() asserts EVERY hold, so the passing case has to lay down
+    # every pin, not just the one under test. Writing only the first entry was
+    # fine while there was exactly one hold and silently became a false failure
+    # the moment a second was added.
     held_name, (held_id, _why) = next(iter(t.HELD_PINS.items()))
+
+    def write_all(mods, skip=None, bump=None) -> None:
+        mods.mkdir(parents=True, exist_ok=True)
+        for name, (file_id, _reason) in t.HELD_PINS.items():
+            if name == skip:
+                continue
+            write_pin(mods, name, file_id + 1 if name == bump else file_id)
 
     def run(build) -> int:
         root = pathlib.Path(tempfile.mkdtemp(prefix="deps-test-"))
@@ -221,17 +232,25 @@ def held_pin_cases(t):
             t.PACK = saved
             shutil.rmtree(root, ignore_errors=True)
 
-    return [
-        ("a held pin still on its file passes",
-         lambda: run(lambda m: write_pin(m, held_name, held_id)), 0),
+    cases = [
+        ("every held pin still on its file passes",
+         lambda: run(lambda m: write_all(m)), 0),
         # This is the case that matters: `packwiz update --all` takes the newest
-        # file regardless of channel, so it offers the 4.x alpha every single
+        # file regardless of channel, so it offers a newer file every single
         # pass and a distracted revert is one keystroke away.
         ("a held pin moved by an update FAILS",
-         lambda: run(lambda m: write_pin(m, held_name, held_id + 1)), 1),
+         lambda: run(lambda m: write_all(m, bump=held_name)), 1),
         ("a held pin whose file was deleted FAILS",
+         lambda: run(lambda m: write_all(m, skip=held_name)), 1),
+        ("an empty mods dir FAILS while any pin is held",
          lambda: run(lambda m: m.mkdir(parents=True, exist_ok=True)), 1),
     ]
+    # Every hold gets its own moved-pin case. A hold that is never exercised is a
+    # hold nobody notices going stale.
+    for name in list(t.HELD_PINS)[1:]:
+        cases.append((f"held pin {name} moved by an update FAILS",
+                      lambda n=name: run(lambda m: write_all(m, bump=n)), 1))
+    return cases
 
 
 def dev_mod_cases(t):

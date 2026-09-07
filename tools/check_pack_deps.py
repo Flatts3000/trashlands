@@ -376,6 +376,16 @@ DEV_ONLY_MODS = ("devbridge",)
 #
 # To move a hold ON PURPOSE, change the id here in the same commit as the .pw.toml.
 HELD_PINS = {
+    "better-advanced-tooltips.pw.toml": (
+        8568911,
+        "2601.1.0-build.9, and the whole KubeJS reintroduction rests on it. KubeJS "
+        "8.0.4 bundles build.8, whose ItemStackMixin targets addDetailsToTooltip - a "
+        "method renamed on 26.1.2 - so it scans zero targets and, being required, "
+        "kills the client at bootstrap. build.9 targets addDetailsToTooltipTail and, "
+        "being the higher version, displaces the bundled copy. Move or drop this pin "
+        "and the pack stops booting, with nothing else in this tool able to see it: a "
+        "jar-in-jar mixin failure is a runtime fault, not a dependency problem.",
+    ),
     "extreme-sound-muffler.pw.toml": (
         8069457,
         "3.58.1. The newest file is a 4.x ALPHA and muffling is a comfort feature, "

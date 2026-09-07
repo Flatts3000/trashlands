@@ -52,8 +52,9 @@ tools/
 
 ## The mod lineup
 
-**65 mods**: the core six, a quality-of-life layer, the FTB stack, a tech and gadget layer, world-type enforcement, and nine auto-pulled libraries. Locked
-2026-08-02, with Jade Addons, Configured and Cable Facades added 2026-09-03.
+**69 mods**: the core six, a quality-of-life layer, the FTB stack, a tech and gadget layer, world-type enforcement, scripting, and ten auto-pulled libraries. Locked
+2026-08-02, with Jade Addons, Configured and Cable Facades added 2026-09-03, and FTB Ultimine plus
+KubeJS (with Rhino and standalone Better Advanced Tooltips) added 2026-09-07.
 
 ### Core - Recompile, the four it integrates with, and our own diagnostic
 
@@ -110,7 +111,7 @@ Easy Villagers is the mirror case (pinned *to* an alpha, one point release ahead
 release) - see Villagers below. It is not in `HELD_PINS`, because there the newer file is the one
 the pack wants.
 
-Auto-pulled libraries (nine): Balm, Placebo, SuperMartijn642's Core Lib, SuperMartijn642's Config Lib, Cloth Config, GuideME, and - from the 2026-08-20 additions - Titanium, Sophisticated Core and Patchouli.
+Auto-pulled libraries (ten): Balm, Placebo, SuperMartijn642's Core Lib, SuperMartijn642's Config Lib, Cloth Config, GuideME, and - from the 2026-08-20 additions - Titanium, Sophisticated Core and Patchouli, plus Rhino from the 2026-09-07 KubeJS addition.
 
 ### FTB stack
 
@@ -126,6 +127,7 @@ CurseForge-exclusive**, which is what closes the Modrinth door - see
 | **FTB XMod Compat** | Wires FTB Quests to JEI: the bookmark key works inside the quest book, and an item task can convert to a tag filter. Cut on 2026-08-02 as "glue between FTB mods and mods we do not ship", which was wrong - JEI is core to this pack. Added 2026-08-04; must track the FTB Quests version. |
 | **FTB Chunks** | The minimap is the real reason. An endless coarse-dirt plain where mounds regrow is a world you constantly re-navigate, and there are no natural landmarks to steer by. Chunk claiming matters on servers. |
 | **FTB Essentials** | `/home`, `/tpa`, `/back`. `/back` pairs with GraveStone on a death run. |
+| **FTB Ultimine** | Added 2026-09-07, reversing the 2026-08-02 cut. Hold a key to break a whole vein - but **the salvage terrain is excluded from it**, so it never touches the garbage economy. See below. |
 
 **Quest content** lives in `pack/config/ftbquests/quests/`: chapters in `chapters/*.snbt`, all text in
 `lang/en_us.snbt` keyed by quest id (`quest.<ID>.title`, `.quest_subtitle`, `.quest_desc`). Written
@@ -138,7 +140,79 @@ shipping no book at all. The chapter spine proper (`The Way Home`, parts one to 
 
 **The Discord link is a clickable image on the chapter canvas**, copied from how Sky Frogs does it.
 Sky Frogs stores the icon under `pack/kubejs/assets/kubejs/...` and lets KubeJS provide the
-namespace; this pack has no KubeJS, so the icon ships in a resource pack instead - see below.
+namespace; this pack shipped the icon in a resource pack instead, because it had no KubeJS - see
+below. **KubeJS arrived 2026-09-07**, so the Sky Frogs route is available now, but the resource
+pack works and moving it would be churn for its own sake.
+
+### FTB Ultimine, and the tag that keeps it off the garbage
+
+Added 2026-09-07 (issue [#62](https://github.com/Flatts3000/trashlands/issues/62)),
+`ftb-ultimine-neoforge-26.1.2.5` (CF project 386134, file 8231335). It was cut on 2026-08-02 and the
+cut was right at the time; what changed is that the mod turns out to have an exclusion hook, and that
+the world grew things worth vein-mining that are not garbage.
+
+**The hook.** `dev.ftb.mods.ftbultimine.shape.BlockMatcher.check` rejects any block in the block tag
+`ftbultimine:excluded_blocks` before the shape matcher ever runs. Order is: block whitelist (skipped
+while empty), then excluded, then the shape's own matcher. The tag ships **empty** inside the jar at
+`data/ftbultimine/tags/block/excluded_blocks.json`, so appending to it is the intended override.
+There is no config-side block blacklist - `FTBUltimineServerConfig` carries features, costs and
+limits only. Established by disassembling the jar, not from the mod's docs.
+
+**What goes in it,** owner call 2026-09-07 - fifteen entries:
+`minecraft:coarse_dirt`, `recompile:garbage_block`, `recompile:trash_bag`, `recompile:compacted_bale`,
+`recompile:cardboard_pile`, `recompile:bulky_waste`, `recompile:mound_ground`,
+`recompile:stained_ground`, `recompile:stone_rubble`, `recompile:mechanical_waste`,
+`recompile:mill_tailings`, `recompile:waste_drum`, `recompile:slag_rubble`,
+`recompile:ancient_sculk`, `recompile:tire`.
+
+**The rule is narrower than "everything worldgen places", and stating it loosely is how the first
+draft got it wrong.** Two kinds of block are in the tag:
+
+1. **Scrap piles** - what a worldgen feature heaps up as a dig-for-scrap target. Excluding these is
+   the whole point: they are the core loop.
+2. **Surface ground** - `coarse_dirt`, `mound_ground`, `stained_ground`. The surface is the board
+   reclamation and encroachment are played on, so taking it down in one hold is terraforming, not
+   salvage.
+
+**Bulk stone is deliberately left vein-mineable, and both omissions are load-bearing:**
+
+- **`minecraft:deepslate`** is `garbage.json`'s `default_block`, with a surface rule laying coarse
+  dirt over only the top two blocks. So from two down to bedrock the overworld is deepslate, and it
+  stays ultiminable.
+- **`recompile:techno_organic_waste`** is `compacted_depths.json`'s `default_block` - the Depths'
+  bulk stone, which drops itself and is a building material rather than a scrap pile. It was in the
+  first draft, pulled on review: with `slag_rubble` and `ancient_sculk` also excluded it would have
+  made Ultimine **inert in the entire dimension**, which falsifies the "there is stone in the Nether
+  now" half of the argument for taking the mod.
+
+Bulk stone underground yields no salvage, and quarrying it fast is exactly what a vein-miner is for.
+What is left ultiminable is the **rebuilt** world plus the rock under it: trees and crops off the
+reclamation ladder, farmland, deepslate, Depths stone, shard-crafted terrain, player builds. The
+junkyard is dug by hand; the world you make out of it is not.
+
+**This governs breaking only.** Ultimine's right-click features (area hoe, shovel, axe, crop harvest)
+read `ftbultimine:farmland_tillable` and `ftbultimine:shovel_flattenable`, which ship containing
+`minecraft:coarse_dirt` and are **not** overridden here. So an area hoe or shovel still applies to
+the plain's surface block. Left alone on purpose: neither path yields an item or skips the salvage
+economy, and closing it needs either a `replace: true` tag override that would have to re-enumerate
+the vanilla dirt set without `#c:dirt` (which contains coarse dirt), or turning the features off
+wholesale, which would also cost the mass farmland tilling the reclamation ladder actually wants.
+It is a playtest question, not a code one - see the release checklist.
+
+**Craftable building blocks stay out too.** `reinforced_concrete`, `steel_i_beam`, `copper_pipe`
+and `manhole` are placed by the building husk and steel stack features, and tagging them would also
+block vein-mining a player's own walls. A landmark can be stripped fast; a mound cannot.
+`ancient_sculk` went in on the second pass precisely because it is the opposite case - diamond-tier
+gated, drops sculk powder, and is the closest thing this world has to an ore seam, which is exactly
+what a vein-miner is *for*, so it is the one thing that must not be. `stained_ground` went in for
+symmetry with `mound_ground`: both are the ground a region's features sit on, and splitting them made
+no sense.
+
+**The tag ships from the pack**, at
+`pack/kubejs/data/ftbultimine/tags/block/excluded_blocks.json`. That path is a plain datapack tree
+that KubeJS mounts, so it is portable: if KubeJS is ever swapped for a real datapack loader the file
+moves unchanged, minus the prefix. See "Recipe overrides have nowhere to live" below, which is now
+history rather than a live constraint.
 
 ### Tech and gadgets
 
@@ -160,7 +234,11 @@ mod dependency, so they interoperate for free.
 these turn out badly in playtest:
 
 - **Mining Gadgets** is the objection that retired FTB Ultimine, with more force: digging Blocks of
-  Garbage out of mounds *is* the core loop, and this is that with power and an area.
+  Garbage out of mounds *is* the core loop, and this is that with power and an area. **Still open
+  as of 2026-09-07**, and now the odd one out: Ultimine came back the same day with the salvage
+  terrain excluded by tag, and Mining Gadgets has no equivalent hook found yet. If it has one, the
+  same exclusion should go in it; if it does not, this concern is the only unanswered way to strip
+  a mound without touching it.
 - **LaserIO** is the objection that retired Sophisticated Storage: it outclasses Pipez and does far
   more than Recompile's Scrap Network, which risks making the pack's own storage tier skippable.
 - **Cable Facades is craftable much later than the cables it covers.** Both facade recipes are
@@ -347,12 +425,14 @@ of `de/melanx/defaultworldtype/ClientConfig`, keys `world-preset` / `disable-but
 falls back to the default and the World Type button quietly comes back. Open Create New World and
 confirm the button is gone.
 
-### Recipe overrides have nowhere to live (2026-08-20)
+### Recipe overrides had nowhere to live - RESOLVED 2026-09-07
 
-Worth stating plainly, because it blocks any plan that starts "just change that mod's recipe".
+**This is history now. KubeJS is in the pack and the wall is down** - skip to "How it was
+unblocked" at the end. The rest is kept because three pieces of engine-side content were placed
+on this reasoning and have to be unwound in the same terms they were argued in.
 
-**This pack cannot override another mod's recipes today.** It ships no data of its own outside
-`config/ftbquests`, and every route is closed on 26.1.2:
+**The state until 2026-09-07: this pack could not override another mod's recipes.** It shipped no
+data of its own outside `config/ftbquests`, and every route was closed on 26.1.2:
 
 - **No datapack loader has a build.** Open Loader (354339) and Datapack Loader (309529) both stop
   short of 26.1.2 NeoForge.
@@ -375,15 +455,43 @@ displace the broken bundled one and KubeJS would load. The real blocker is that
 `betteradvancedtooltips` has **no standalone CurseForge project at all** - only the copy bundled
 inside KubeJS - and Modrinth is closed to this pack.
 
-So the recheck condition is wider than the entry states. Any one of these unblocks pack-side recipe
-overrides:
+So the recheck condition was wider than the entry stated. Any one of these would unblock pack-side
+recipe overrides:
 
-- KubeJS ships a 26.1.2 build whose bundled tooltip mod is fixed (still 8.0.4 as of 2026-08-20, all
-  five 26.1.2 builds beta, no 26.2 build).
+- KubeJS ships a 26.1.2 build whose bundled tooltip mod is fixed.
 - `betteradvancedtooltips` appears standalone on CurseForge at `2601.1.0-build.8` or higher.
 - Any datapack loader gets a 26.1.2 NeoForge build - Open Loader (354339) and Datapack Loader
   (309529) are the two to watch.
-- CraftTweaker ports to 26.1.2. It has no build as of 2026-08-20.
+- CraftTweaker ports to 26.1.2.
+
+#### How it was unblocked (2026-09-07)
+
+**The second condition came true, and the fourth route also opened.** Both were found by checking
+what All The Mods 11 ships - it is on 26.1.2, the same version as this pack.
+
+- **`betteradvancedtooltips` now has a standalone CurseForge project**: `1637623`,
+  `better-advanced-tooltips-2601.1.0-build.9`, file 8568911. Being newer than the bundled
+  `build.8`, NeoForge prefers it and the broken copy never loads.
+- **build.9 is the fix, not merely a newer number.** Diffing the two jars, one thing differs:
+  `ItemStackMixin`'s injector targets `addDetailsToTooltip` in build.8 and
+  `addDetailsToTooltipTail` in build.9. That method was renamed on 26.1.2, which is exactly why
+  build.8 scanned zero targets and, with `"required": true`, crashed at bootstrap.
+- **ATM 11 ships KubeJS and standalone Better Advanced Tooltips together**, which is the same
+  pairing, running in production in a 268-mod pack on this Minecraft version.
+- **Separately, a datapack loader does have a 26.1.2 build**, and it is neither of the two being
+  watched: **Global Packs** (project `317134`, `globalpacks-neoforge-26.1-26.1.0`, file 7819553),
+  `lowcodefml`, Minecraft `[26.1, 26.2)`, no dependencies, loads datapacks from
+  `global_packs/required_data/` into every world. Not taken, because KubeJS covers data *and*
+  recipes, but it is the fallback if KubeJS misbehaves in playtest.
+
+**KubeJS is still a beta build, and `check_pack_deps.py` cannot see a bootstrap crash** - it
+passed cleanly the last time KubeJS was in the pack. The proof is a client launch, which is a
+release-checklist item, not a CI one.
+
+**Three pieces of engine-side content can now come home**: the Simple Magnets overrides (#40), the
+Ender IO grains, and the Ultimine tag that was requested from Recompile a few hours before this
+was found. Their handoff docs all say to take them back the moment a route opened. Tracked in #46
+and #47.
 
 ### Considered and cut
 
@@ -414,7 +522,10 @@ overrides:
   *when* the player gets power, which is still undecided. Bringing it in does not answer that
   question; it makes answering it more urgent, because AE2 is a full storage and automation spine and
   the pack now has three other storage systems beside it.
-- **KubeJS - added and removed the same day (2026-08-02). It crashes the game on load.** KubeJS
+- ~~**KubeJS**~~ - **REVERSED 2026-09-07, now in the pack**, pinned alongside standalone
+  `better-advanced-tooltips-2601.1.0-build.9`, which displaces the broken bundled copy. The
+  original entry follows, because the crash is real and will come back if that pin is ever
+  dropped. **KubeJS - added and removed the same day (2026-08-02). It crashes the game on load.** KubeJS
   `26.1.2-8.0.4` bundles `better-advanced-tooltips-2601.1.0-build.8` as a jar-in-jar, and that
   nested mod's `ItemStackMixin` fails its injection check on this Minecraft build:
 
@@ -434,9 +545,13 @@ overrides:
   build, or one whose bundled tooltip mod is fixed.** Verify by launching, not by the pack audit:
   `check_pack_deps.py` passed cleanly with KubeJS in, because a jar-in-jar mixin failure is a
   runtime fault, not a dependency or loader-range problem.
-- **FTB Ultimine** - hold a key to break a whole vein. Digging Blocks of Garbage out of mounds *is*
-  the core loop here, so ungated it takes a mound down in one hold and rewrites the pick-through
-  economy. Gated off garbage it has almost nothing left to do, because there is no ore and no wood.
+- ~~**FTB Ultimine**~~ - **REVERSED 2026-09-07, now in the pack.** The cut reason was that digging
+  Blocks of Garbage out of mounds *is* the core loop, so ungated it takes a mound down in one hold
+  and rewrites the pick-through economy. **That reason is answered rather than overridden** - the
+  mod ships a block-tag exclusion hook, and the salvage terrain goes in it. The cut's second half,
+  "gated off garbage it has almost nothing left to do, because there is no ore and no wood", has
+  simply aged out: the reclamation ladder grows trees and crops, and the Nether and shard-crafted
+  terrain have stone. See the Ultimine section above.
 - **FTB Ranks** - server permission ranks. Nothing to permission yet.
 - **FTB Filter System** - smart item filters for routers and AE-style storage. The pack has neither.
 - **More Overlays Updated** - it *does* have a 26.1.2 build now
@@ -505,7 +620,7 @@ install task fail** ("Failed to launch modpack. An unexpected error occurred.").
 3. Name the instance **`Trashlands`** (the default `tools/sync_instance.py` looks for
    `<home>/curseforge/minecraft/Instances/Trashlands`).
 
-The manifest carries `neoforge-26.1.2.100`, so the app installs that loader and all 65 mods itself.
+The manifest carries `neoforge-26.1.2.100`, so the app installs that loader and all 69 mods itself.
 If the app cannot find that NeoForge build in its catalog the import will say so - see the loader
 note below.
 
