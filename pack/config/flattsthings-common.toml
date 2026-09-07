@@ -1,52 +1,20 @@
-# Flatts's Things, pinned by the pack.
+# Flatts's Things: every feature pinned on.
 #
-# Every feature in this mod ships ON by default, so this file changes nothing today.
-# It exists to make the pack's position explicit rather than inherited: if a default
-# ever flips upstream, the pack keeps the behaviour it was tested with instead of
-# silently following.
+# READ THIS IN THE REPO, NOT IN AN INSTANCE. NeoForge rewrites the comments in this
+# file on first load. ModConfigSpec.correct() compares each key's comment against the
+# mod's own and calls setComment() with the mod's version when they differ, then saves
+# - so in a running instance every line below is replaced by FTConfig's text. The
+# VALUES survive, because a valid value passes ValueSpec.test() and is never corrected.
 #
-# WHAT THIS DOES NOT DO: it does not hold back features added later. NeoForge's
-# ModConfigSpec corrects a config on load by writing any MISSING key with its spec
-# default, so a new feature arrives switched on regardless of what is listed here.
-# The only real lever for that is the mod's own default - FTConfig has a four-argument
-# define() for exactly that case - and the place to notice it is the pin bump, which
-# release_checklist.md section 0.5 now covers.
-#
-# Turning one off stops NEW ones: no recipe, nothing in the creative tab, behaviour
-# stops. It never deletes anything already placed or stored.
+# So this file pins behaviour and cannot carry reasoning. The reasoning is in
+# docs/pack_setup.md, under "Flatts's Things", and the checks that keep it true are in
+# docs/release_checklist.md steps 0.5.1 and 0.5.3.
 
 [features]
-    # One per vanilla plate, crafted from that plate plus redstone. Senses players only.
     player_pressure_plates = true
-
-    # Five tool slots on the inventory screen that do not consume inventory space.
     tool_slots = true
-
-    # Swaps the right tool into your hand while breaking, and puts your item back.
-    # Implies tool_slots - with those off this is off whatever this says.
     tool_auto_swap = true
-
-    # Enchant a golden apple at a full bookshelf ring to get an enchanted one.
     enchanted_golden_apple = true
-
-    # Silk touch picks up budding amethyst, which vanilla never drops.
-    #
-    # Left ON, and it is the one entry here that deserved a decision rather than a
-    # default. Vanilla's restriction is what stops an amethyst farm being picked up and
-    # moved, and this world gates amethyst hard: ../recompile/docs/gem_tier_spec.md
-    # refines it from Mechanical Waste through the Separator and calls it the proving
-    # material for that whole tier. A renewable source would walk around it.
-    #
-    # It stays on because it cannot fire here. Recompile defines its own four biomes
-    # with explicit feature lists and there is no geode reference anywhere in the mod,
-    # so no budding amethyst exists in this world to break. THE DAY A DIMENSION CARRIES
-    # GEODES, TURN THIS OFF.
     silk_touch_budding_amethyst = true
-
-    # Three gravel to one flint. Gravel comes off the reinforced_concrete loot roll, and
-    # flint is not gated in the gem tier, so this is determinism rather than a new source.
     gravel_to_flint = true
-
-    # Dip a stack in a water cauldron: concrete powder sets, dirt becomes mud. Vanilla
-    # dye washing and bottle filling are untouched either way.
     cauldron_transforms = true

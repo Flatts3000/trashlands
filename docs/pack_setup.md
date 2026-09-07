@@ -375,17 +375,41 @@ a note because two of its features touch this world's economy. Both are config-g
   exists to break. If a future dimension ever carries geodes this stops being inert, and it matters -
   `../recompile/docs/gem_tier_spec.md` has amethyst refined from Mechanical Waste through the
   Separator and calls it "the proving material" for that whole tier.
-- **`gravel_to_flint`** is 3 gravel to 1 flint. This world's gravel comes off the `reinforced_concrete`
-  loot roll, and flint is not a gated resource in the gem tier, so this is a determinism improvement
-  over vanilla's 10% gravel drop rather than a new source.
+- **`gravel_to_flint`** is 3 gravel to 1 flint. **It is a duplicate in this pack, and the first
+  version of this note got that wrong.** It was justified as "determinism over vanilla's 10% gravel
+  drop", but Recompile already ships `recompile:flint_from_gravel` at
+  `data/recompile/recipe/flint_from_gravel.json` - the same shapeless three-gravel-to-one-flint
+  recipe, byte for byte. The determinism was already here. So the feature adds nothing except a
+  second identical entry when a player looks up flint in JEI. **Left on** because the pack pins every
+  feature on by owner call, and a duplicate JEI row is cosmetic rather than an economy problem; it is
+  the one entry with a standing argument for `false`, and flipping that one line is the whole fix.
+- **`enchanted_golden_apple`** is a third feature touching the economy, and it was pinned on without
+  being examined. Enchanting a golden apple at a table turns it into an enchanted one, an item
+  vanilla has kept loot-only since 1.9. Two things are unresolved. It may be **dead content**:
+  `BlessedApples` hooks `PlayerEnchantItemEvent`, which the mod's own comment notes nothing posts
+  outside the vanilla enchanting table, and this pack ships **Apothic Enchanting**, which replaces
+  that table with its own eterna/quanta/arcana model. Or it may be a **live route**, in which case it
+  wants pricing against a world where gold is gated behind the iron tier and apples behind the Tree
+  Nursery. One client launch settles which, and it is on the playtest list.
 
 **The pack pins all seven features on** in `pack/config/flattsthings-common.toml`. That changes
 nothing today - they are all on by default - and it is there so the pack keeps the behaviour it was
-tested with if a default ever flips upstream. **It does not hold back features added later.**
-NeoForge's `ModConfigSpec` corrects a config by writing any missing key with its spec default, so a
-new feature arrives switched on whatever that file lists. The only lever for that is the mod's own
-default, and the only moment anyone would notice is the pin bump - which is why the check lives in
-`release_checklist.md` step 0.5 rather than in a config file that cannot enforce it.
+tested with if a default ever flips upstream.
+
+**Two limits on that file, both verified against NeoForge 26.1.2.76's `ModConfigSpec` rather than
+assumed:**
+
+1. **It cannot carry reasoning.** `correct()` compares every key's comment against the mod's own and
+   calls `setComment()` with the mod's version when they differ, then saves - and the `dryRun` early
+   return that decides "this config is not correct" sits outside the comment-listener guard, so a
+   comment mismatch alone triggers the rewrite. Pack-authored comments in that file are gone after
+   one boot. The **values** survive, because a valid value passes `ValueSpec.test()` and is never
+   corrected. That is why the reasoning lives here and the file is bare.
+2. **It does not hold back features added later.** The same correction writes any *missing* key with
+   its spec default, so a feature added upstream arrives switched on whatever that file lists. The
+   only lever is the mod's own default - `FTConfig` has a four-argument `define()` for exactly that
+   case - and the only moment anyone would notice is the pin bump, which is why the check lives in
+   `release_checklist.md` step 0.5 rather than in a config file that cannot enforce it.
 
 **Considered and not taken:**
 

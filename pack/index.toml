@@ -42,7 +42,7 @@ hash = "6975be9194248b1c650cdf3a2d038e5e9628abcece1b95767196f82086fdab8f"
 
 [[files]]
 file = "config/flattsthings-common.toml"
-hash = "48df4bfbc12bb11f7a1e1c0592b3d76c77c6a0a0207b8f8348d76c2e08c9b5fa"
+hash = "03518fad0975040729bccd026a4bc65ee400eca2e2fd5def1acef4bda67c293a"
 
 [[files]]
 file = "config/ftbquests/quests/chapter_groups.json5"
