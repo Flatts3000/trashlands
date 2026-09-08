@@ -142,6 +142,11 @@ hash = "4ea15966a79cc4c31102fd8abc730a27cba2089da292193f03f5cd3352d03ce2"
 metafile = true
 
 [[files]]
+file = "mods/blocks-previewer.pw.toml"
+hash = "d8120d6b13dbad02c9c7156ca4a26f00a9cf17e4a76ced8a8108e7605a70e324"
+metafile = true
+
+[[files]]
 file = "mods/building-gadgets.pw.toml"
 hash = "5e63f44ba5113b18ee66c51f06c5e7a56112784130aa9051d9bedaaf64654933"
 metafile = true
@@ -174,6 +179,11 @@ metafile = true
 [[files]]
 file = "mods/controlling.pw.toml"
 hash = "bbc4ab39e1331069171303de5b94321f7ad615bcab498c4b06353e0c72d775e9"
+metafile = true
+
+[[files]]
+file = "mods/craft-config.pw.toml"
+hash = "79a10470e8898ad2eb9db7f60cbaa89944db17e98cb86aff1724c72bcf0bdaa0"
 metafile = true
 
 [[files]]

@@ -52,7 +52,7 @@ tools/
 
 ## The mod lineup
 
-**78 mods**: the core six, a quality-of-life layer, the FTB stack, a tech and gadget layer, world-type enforcement, scripting, diagnostics, and ten auto-pulled libraries. Locked
+**80 mods**: the core six, a quality-of-life layer, the FTB stack, a tech and gadget layer, world-type enforcement, scripting, diagnostics, and eleven auto-pulled libraries. Locked
 2026-08-02, with Jade Addons, Configured and Cable Facades added 2026-09-03, and FTB Ultimine plus
 KubeJS (with Rhino and standalone Better Advanced Tooltips) added 2026-09-07, followed the same
 day by eight borrowed from ATM 11 and by **Flatts's Things** (1683375, ours).
@@ -78,9 +78,20 @@ has a 26.1.2 NeoForge build on CurseForge. Nothing here touches the economy.
 | Inventory and UI | AppleSkin, Mouse Tweaks, Inventory Essentials, Controlling, Searchables, Toast Control, Clumps, Configured |
 | Tooltips | Jade Addons (Neo/Forge) |
 | Cleanup | TrashSlot, Trash Cans |
+| Building aids | Blocks Previewer (+ Craft Config Lib) |
 | Performance | FerriteCore, ModernFix, Lithium, FastFurnace, FastWorkbench, FastSuite, Sodium |
 | Death and safety | GraveStone, Simple Backups |
 | Audio | Extreme Sound Muffler |
+
+**Blocks Previewer arrived 2026-09-08** (project `1424300`, `2.1.1+26.1`), on request, with **Craft Config Lib** (`1530219`) as its dependency. It draws a preview outline of where a block will land.
+
+**Both are pinned `side = "client"`, and that is not cosmetic tidiness.** `blocks_previewer.mixins.json`
+lists `BlockOutlineMixin` in its **common** `mixins` array as well as its `client` array, and that
+mixin targets `net.minecraft.client.renderer.LevelRenderer` - a class a dedicated server does not
+have. With `"required": true` and `defaultRequire: 1`, shipping it server-side is a load failure,
+not a no-op. `build_server.py` now reports `Skipped Blocks Previewer (wrong side)`, which is what
+keeps it out of the server pack and out of the release's boot smoke test. Same class of tagging bug
+as Default Options, found the same way: read the jar before trusting packwiz's `both` default.
 
 **Jade Addons and Configured arrived 2026-09-03**, off the recheck list below. Both had no 26.1.2
 build when the lineup was locked and both have one now: `JadeAddons-26.1.2-NeoForge-26.0.1` and
@@ -808,7 +819,7 @@ install task fail** ("Failed to launch modpack. An unexpected error occurred.").
 3. Name the instance **`Trashlands`** (the default `tools/sync_instance.py` looks for
    `<home>/curseforge/minecraft/Instances/Trashlands`).
 
-The manifest carries `neoforge-26.1.2.100`, so the app installs that loader and all 78 mods itself.
+The manifest carries `neoforge-26.1.2.100`, so the app installs that loader and all 80 mods itself.
 If the app cannot find that NeoForge build in its catalog the import will say so - see the loader
 note below.
 

@@ -1,0 +1,13 @@
+name = "Craft Config Lib"
+filename = "craft_config-1.1.12+26.1-neoforge.jar"
+side = "client"
+
+[download]
+hash-format = "sha1"
+hash = "4469f068c971f13248978ba00375851580ff7a21"
+mode = "metadata:curseforge"
+
+[update]
+[update.curseforge]
+file-id = 8300354
+project-id = 1530219

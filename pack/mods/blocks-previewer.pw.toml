@@ -1,0 +1,13 @@
+name = "Blocks Previewer"
+filename = "blocks_previewer-2.1.1+26.1-neoforge.jar"
+side = "client"
+
+[download]
+hash-format = "sha1"
+hash = "1658f70e2e083e73d2dfb8b8f8d26c84b47ad78a"
+mode = "metadata:curseforge"
+
+[update]
+[update.curseforge]
+file-id = 8173793
+project-id = 1424300
