@@ -13,6 +13,10 @@ file = "config/blocks_previewer/default.json"
 hash = "cd0625f028b9c9108109f62c8184ad25bfb43db882426e255a0dea322fb08215"
 
 [[files]]
+file = "config/defaultoptions-common.toml"
+hash = "a4f22fdbdfd2566349537a58eb9f74b6a89e88f543e1c6a7797c3b13d810cbea"
+
+[[files]]
 file = "config/defaultworldtype/client-config.toml"
 hash = "647ebef0a380431fc5d1fd993ce77bc9e2bb483d862e6778fe0a2b1b8542f0ed"
 
@@ -519,10 +523,6 @@ metafile = true
 file = "mods/wits.pw.toml"
 hash = "a6731499ebea1b1c82bea66e091eb1375e6fc3fab3d10f458d21936d473a613d"
 metafile = true
-
-[[files]]
-file = "options.txt"
-hash = "eb15a0f4657e8f36b955dfeca5114ce1ea30b336323c15485b2ec9d1ddc951c5"
 
 [[files]]
 file = "resourcepacks/trashlands/assets/trashlands/textures/quests/discord.png"

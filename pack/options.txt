@@ -1,1 +1,0 @@
-resourcePacks:["vanilla","file/trashlands"]
