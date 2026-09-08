@@ -16,10 +16,15 @@ making the import refuse rather than guess, on every axis:
   * **Structure must match exactly.** Same chapters, same quests, same order.
     A missing or extra heading aborts the whole run rather than importing the
     part that lined up.
-  * **Titles are a checksum.** Matching is by position in the same reading order
-    the export used; titles are then compared and any mismatch is reported by
-    name. A title is copy and can legitimately be edited, so this asks rather
-    than silently trusting position.
+  * **Titles are a checksum that actually stops things.** Matching is by position
+    in the same reading order the export used, and the title is the only check on
+    that. A mismatch ABORTS. It used to print and continue, which was the most
+    dangerous thing here: reorder two sections and the counts still agree, so
+    each body is written onto the other quest's id. --titles-may-differ is the
+    deliberate override.
+  * **The full export is refused.** It shares heading depths with the prose one,
+    and its <sub> tags and id/tasks bullets parse as ordinary paragraphs, so
+    importing it wrote metadata into player-facing copy.
   * **Colour codes are never destroyed.** Four bodies carry `&a`/`&e`/`&r`,
     which the prose export strips. If such a body comes back changed, the import
     refuses it and names it for hand-editing; if it comes back identical to the
@@ -29,6 +34,10 @@ making the import refuse rather than guess, on every axis:
   * **Minimal diff.** Changed bodies are spliced in place; every other byte of
     the file is left exactly as it was, so the git diff shows the copy edits and
     nothing else.
+
+Exit codes: 0 clean, 2 aborted before any change, 3 applied but something was
+refused or skipped - so a scripted `import && validate` cannot read a partial
+run as a success.
 
 Usage:
     python tools/import_quests.py docs/quest_prose.md            # show the diff
@@ -76,6 +85,17 @@ def normalise_punctuation(s: str) -> str:
     return s
 
 
+def count_substitutions(s: str) -> int:
+    """How many characters normalise_punctuation would replace.
+
+    Counted on the input, not by zipping input against output: an ellipsis
+    becomes three dots, every later character shifts, and a positional compare
+    then reports about twenty substitutions for one. A wrong number in the line
+    announcing a silent mutation of shipped copy is worse than no number.
+    """
+    return sum(s.count(bad) for bad in PUNCTUATION)
+
+
 class Abort(RuntimeError):
     pass
 
@@ -120,6 +140,22 @@ def heading_levels(lines):
     if len(levels) == 2:
         return levels[0], levels[1]
     return (2, 3)
+
+
+# Markers that appear only in the FULL export, never in a prose one.
+FULL_EXPORT_MARKERS = ("<sub>", "- id `", "- after:", "- tasks:", "- rewards:")
+
+
+def looks_like_full_export(lines) -> bool:
+    """Is this docs/quest_book.md rather than a prose export?
+
+    Both use the same heading depths, so heading detection cannot separate them,
+    and the full export's metadata parses as ordinary paragraphs. Feeding it in
+    appends "<sub>46 words</sub>" and a raw id/shape/tasks line into
+    player-facing copy, silently, exit 0. Today it aborts only by accident: The
+    Depths has four bodiless quests, so the counts happen to disagree.
+    """
+    return any(line.lstrip().startswith(FULL_EXPORT_MARKERS) for line in lines)
 
 
 def parse_prose(path: pathlib.Path):
@@ -270,9 +306,22 @@ def main(argv=None) -> int:
     ap = argparse.ArgumentParser(description="Import an edited prose export.")
     ap.add_argument("path", help="the edited --prose-only markdown")
     ap.add_argument("--apply", action="store_true", help="write the changes")
+    ap.add_argument("--titles-may-differ", action="store_true",
+                    help="proceed when a quest title was edited in the document; "
+                         "positions are then trusted, so check the diff carefully")
     args = ap.parse_args(argv)
 
-    edited = parse_prose(pathlib.Path(args.path))
+    doc = pathlib.Path(args.path)
+    if looks_like_full_export(doc.read_text(encoding="utf-8").splitlines()):
+        print("ABORT: this looks like the FULL export, not a prose one.")
+        print("It carries <sub> tags and id/tasks/rewards bullets, and those parse")
+        print("as ordinary paragraphs, so importing it writes metadata into")
+        print("player-facing copy. Use:")
+        print("  python tools/export_quests.py --prose-only --out docs/quest_prose.md")
+        print("  python tools/export_quests.py --split docs/quest_prose/")
+        return 2
+
+    edited = parse_prose(doc)
     book = current_book()
 
     # ---- structure must match, or nothing happens ------------------------
@@ -336,9 +385,8 @@ def main(argv=None) -> int:
 
             new_paras = []
             for p in raw_new:
-                fixed = normalise_punctuation(p)
-                normalised += sum(1 for a, b in zip(p, fixed) if a != b)
-                new_paras.append(fixed)
+                normalised += count_substitutions(p)
+                new_paras.append(normalise_punctuation(p))
 
             if old_paras == new_paras:
                 continue
@@ -378,10 +426,28 @@ def main(argv=None) -> int:
             print("  {}  {}  ({} paragraphs -> {})".format(qid, title, was, now))
         print()
 
+    if renamed and not args.titles_may_differ:
+        # This used to print and continue, which was the single most dangerous
+        # thing the tool did. Quests are matched by POSITION within a chapter and
+        # the title is the only check on that; reorder two sections in the
+        # document and the counts still agree, so each body is written onto the
+        # other quest's id. Reproduced on 2026-09-08: the body of "The Book Is
+        # Not Finished" landed on "Join the Discord", with a notice printed and
+        # exit 0. A checksum that does not stop anything is not a checksum.
+        print("ABORT: titles differ between the document and the book.")
+        print("Quests are matched by position and the title is the only check on")
+        print("that, so a reordered or retitled section would write a body onto")
+        print("the wrong quest. Nothing has been changed.")
+        for qid, was, now in renamed:
+            print("  {}  {!r} -> {!r}".format(qid, was, now))
+        print()
+        print("Either restore the titles in the document, or pass")
+        print("--titles-may-differ if you edited them deliberately and have")
+        print("checked that the order is unchanged.")
+        return 2
     if renamed:
-        print("Titles differ between the document and the book.")
-        print("Titles are copy and can be edited, but this tool only writes bodies,")
-        print("so these are reported and not applied:")
+        print("Titles differ and --titles-may-differ was given, so position is")
+        print("trusted. This tool never writes titles; edit those in the json5:")
         for qid, was, now in renamed:
             print("  {}  {!r} -> {!r}".format(qid, was, now))
         print()
@@ -394,9 +460,11 @@ def main(argv=None) -> int:
             print("  {}  {}".format(qid, title))
         print()
 
+    skipped = len(refused) + len(dashed)
+
     if not changes:
         print("No body changes to import.")
-        return 0
+        return 3 if skipped else 0
 
     for qid, title, old, new in changes:
         print("{}  {}".format(qid, title))
@@ -409,7 +477,7 @@ def main(argv=None) -> int:
     print("{} body change(s)".format(len(changes)))
     if not args.apply:
         print("Dry run. Nothing written. Pass --apply to write.")
-        return 0
+        return 3 if skipped else 0
 
     touched = {}
     for qid, _title, _old, new in changes:
@@ -425,6 +493,10 @@ def main(argv=None) -> int:
         print("wrote {}".format(path))
 
     print("\nNow run: python tools/validate_quests.py")
+    if skipped:
+        print("{} quest(s) were NOT written; see the refusals above."
+              .format(skipped))
+        return 3
     return 0
 
 

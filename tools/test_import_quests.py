@@ -140,6 +140,35 @@ def cases():
     out.append(("both banned dashes are known",
                 sorted(iq.DASHES), sorted(["—", "–"])))
 
+    # ------------------------------------------------- full-export detection
+    # Both exports use the same heading depths, so heading detection cannot tell
+    # them apart. Feeding the full one in appended "<sub>46 words</sub>" and a
+    # raw id/shape/tasks line into player-facing copy, silently, exit 0. It
+    # aborted only by accident, because The Depths has four bodiless quests and
+    # the counts happened to disagree.
+    out.append(("a <sub> tag marks the full export",
+                iq.looks_like_full_export(["## Welcome", "<sub>46 words</sub>"]), True))
+    out.append(("an id bullet marks the full export",
+                iq.looks_like_full_export(["- id `7A55E0BA6E000010`, shape `hexagon`"]), True))
+    out.append(("a tasks bullet marks the full export",
+                iq.looks_like_full_export(["- tasks: checkmark"]), True))
+    out.append(("prose is not mistaken for the full export",
+                iq.looks_like_full_export(
+                    ["# Welcome", "## One", "A coarse dirt plain, no trees on it."]), False))
+    out.append(("an ordinary dash bullet is not a marker",
+                iq.looks_like_full_export(["- a normal markdown list item"]), False))
+
+    # ------------------------------------------------- substitution counting
+    # zip(input, output) misaligns the moment a substitution changes length, so
+    # one ellipsis reported about twenty normalisations. The number appears in
+    # the line announcing a silent mutation of shipped copy.
+    out.append(("one ellipsis counts as one substitution",
+                iq.count_substitutions("wait… for it"), 1))
+    out.append(("three apostrophes count as three",
+                iq.count_substitutions("it’s a can’t won’t"), 3))
+    out.append(("clean ASCII counts zero",
+                iq.count_substitutions("plain text"), 0))
+
     # ----------------------------------------------------------------- splice
     spliced = iq.splice(SAMPLE, "7A55E0BA6E000010", ["Only line."])
     out.append(("splice replaces the target body",

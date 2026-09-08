@@ -78,7 +78,7 @@ hash = "0c68ceaed2ce69b4fb2e9647d90d532b62ff41391c2e19ba5d737c61fb19c779"
 
 [[files]]
 file = "config/ftbquests/quests/data.json5"
-hash = "0a8c1bcc472ab3202fb2bafcb49e17cbf23ae35164cd6edfde6f5efec662b2b3"
+hash = "e0f206762b14e972b04801f50dcb4461581bf076fd6ea7bc5d2f72b7f7a48e6e"
 
 [[files]]
 file = "config/ftbquests/quests/lang/en_us/chapter.json5"
