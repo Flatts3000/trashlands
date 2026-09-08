@@ -1,0 +1,117 @@
+{
+  id: "7A55E0BA6E000006",
+  group: "7A55E0BA6E000A00",
+  order_index: 2,
+  filename: "the_sprawl",
+  icon: {
+    id: "recompile:stained_ground",
+    count: 1,
+  },
+  default_quest_shape: "",
+  default_hide_dependency_lines: false,
+  autofocus_id: "7A55E0BA6E000121",
+  quests: [
+    {
+      x: 0.0,
+      y: 0.0,
+      shape: "rsquare",
+      size: 1.5,
+      id: "7A55E0BA6E000121",
+      icon: {
+        id: "recompile:stained_ground",
+        count: 1,
+      },
+      rewards: [
+        {
+          id: "7A55E0BA6E000141",
+          type: "xp",
+          xp: 10,
+        },
+      ],
+      tasks: [
+        {
+          id: "7A55E0BA6E000131",
+          type: "checkmark",
+        },
+      ],
+    },
+    {
+      x: -1.5,
+      y: 1.5,
+      shape: "gear",
+      id: "7A55E0BA6E000113",
+      icon: {
+        id: "recompile:leachate_bucket",
+        count: 1,
+      },
+      dependencies: [
+        "7A55E0BA6E000121",
+      ],
+      rewards: [
+        {
+          id: "7A55E0BA6E000117",
+          type: "xp",
+          xp: 10,
+        },
+      ],
+      tasks: [
+        {
+          id: "7A55E0BA6E00011B",
+          type: "checkmark",
+        },
+      ],
+    },
+    {
+      x: 0.0,
+      y: 1.5,
+      shape: "gear",
+      id: "7A55E0BA6E000115",
+      icon: {
+        id: "recompile:tire",
+        count: 1,
+      },
+      dependencies: [
+        "7A55E0BA6E000121",
+      ],
+      rewards: [
+        {
+          id: "7A55E0BA6E000119",
+          type: "xp",
+          xp: 10,
+        },
+      ],
+      tasks: [
+        {
+          id: "7A55E0BA6E00011D",
+          type: "checkmark",
+        },
+      ],
+    },
+    {
+      x: 1.5,
+      y: 1.5,
+      shape: "gear",
+      id: "7A55E0BA6E000116",
+      icon: {
+        id: "recompile:cardboard",
+        count: 1,
+      },
+      dependencies: [
+        "7A55E0BA6E000121",
+      ],
+      rewards: [
+        {
+          id: "7A55E0BA6E00011A",
+          type: "xp",
+          xp: 10,
+        },
+      ],
+      tasks: [
+        {
+          id: "7A55E0BA6E00011E",
+          type: "checkmark",
+        },
+      ],
+    },
+  ],
+}

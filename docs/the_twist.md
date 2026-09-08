@@ -173,7 +173,7 @@ The open thread from P2.7 item 4 - who wrote the quest book - is closed, and the
 party that dumped you here.** The book is the operator's induction material for a worker it has
 never met.
 
-The public half of this decision (`design_decisions.md` P2.7-R, `quest_voice.md`) argues it purely on
+The public half of this decision (`design_decisions.md` P2.7-R, `quest_format.md`) argues it purely on
 register: site documentation is naturally flat, so the narrator costs no voice drift. That argument
 is true and is the entire reason given anywhere else. This is the rest of it.
 
@@ -197,7 +197,7 @@ instance of the pattern, which is deliberate.
    it turns out to have been lying, the reveal is a cheat and the player is entitled to feel
    manipulated rather than complicit. Its only wrongness is about how hard the work is, and that
    reads as ordinary corporate detachment rather than deception. This also keeps it inside
-   `quest_voice.md`'s accuracy rule, which forbids a false mechanic regardless of who is speaking.
+   `quest_format.md`'s accuracy rule, which forbids a false mechanic regardless of who is speaking.
 2. **It never comments on itself.** No knowing aside, no ominous pause, no line that invites the
    player to wonder who is talking. The moment the book seems to be hinting, the breadcrumb is spent.
 3. **It never mentions the overworld as a destination.** The escape framing belongs to the chapter
@@ -209,11 +209,29 @@ instance of the pattern, which is deliberate.
 
 ### Two open threads this creates
 
-**The site designation.** The narrator needs to call this place something, and the reveal is that the
-designation resolves to Overworld. So the working name must be bureaucratic rather than evocative -
-a cell reference or a site number, the sort of label a company gives a landfill. "The Heap" was the
-old quest-voice placeholder and is the wrong register for this narrator: too colourful, and a name
-with personality cannot resolve to a designation later. Not decided.
+**The world is never named. CLOSED 2026-09-08, owner's call.** This thread asked what the operator
+should call the place. The answer is nothing. No designation, no cell reference, no number, in the
+handbook or in any quest text, for the whole of the run up to the Gate.
+
+That is worth more than any name would have been. **The readout at the Gate becomes the first and
+only time the world is ever named**, and a name that appears once, at the end, as a machine printing
+a fact, lands harder than a name a player has read for twenty hours. It also removes the risk that a
+chosen designation acquires personality through repetition and then cannot resolve into a
+bureaucratic one.
+
+It is characterisation as well. The company does not name it because it has enough of these that
+this one is not distinguished - which is why the handbook's welcome reads "assignment to *a*
+disposal world" rather than *this* one. The indefinite article is the whole tell, and nothing points
+at it.
+
+"The Heap", the old quest-voice placeholder, is retired and not replaced.
+
+**Scale, corrected the same day.** The first handbook draft called it a facility and gave it a
+perimeter, an office and a horizon. That was too small, and this file already said so: "deorbiting
+trash", "falls from space", "you sell the planet's remains back to the people who buried it". It is
+a disposal *world*, and the surface is the tip end to end. Player-facing copy says "world" rather
+than "planet" because the shipped quest text already uses it ten times and Recompile's own guidebook
+says "raises the world's tier"; "planet" is a register the flat operator voice does not need.
 
 **Whose voice runs the final chapter.** The narrator is the operator, and after the Gate the operator
 is not a party the player is still taking instructions from. The market inverts rather than breaks

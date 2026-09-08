@@ -7,7 +7,7 @@ The book's copy is split across two directory trees on purpose: structure in
 `chapters/*.json5`, text in `lang/en_us/chapters/*.json5`, joined only by a
 16-digit hex id. That split is right for the game and useless for reading. There
 is no way to sit down with the pack's writing and read it as writing, which is
-exactly what a voice pass needs - `docs/quest_voice.md` says a clean lint is
+exactly what a voice pass needs - `docs/quest_format.md` says a clean lint is
 "necessary and not sufficient" and that the remaining read is human.
 
 This walks both trees, rejoins them, and writes the whole book in reading order
@@ -207,7 +207,7 @@ def build(prose_only: bool = False) -> str:
         _dt.date.today().isoformat(), len(chapters), total, described, pct))
     add("")
     add("`[no description]` marks an empty body. The pack's rule is that bare is normal and")
-    add("correct (`docs/quest_voice.md` rule 1), so a low count there is not a gap to fill.")
+    add("correct (`docs/quest_format.md` rule 1), so a low count there is not a gap to fill.")
     add("")
     add("---")
     add("")
@@ -292,7 +292,7 @@ def write_split(out_dir: str) -> int:
     d = pathlib.Path(out_dir)
     d.mkdir(parents=True, exist_ok=True)
 
-    written = 0
+    written, expected = 0, set()
     for ch in chapters:
         cid = str(ch.data.get("id", "")).upper()
         title = strip_codes(chlang.get(cid, {}).get("title") or ch.name)
@@ -319,8 +319,24 @@ def write_split(out_dir: str) -> int:
         path.write_text("\n".join(lines).rstrip() + "\n",
                         encoding="utf-8", newline="\n")
         print("wrote {} ({} bodies)".format(path, bodies))
+        expected.add(path.name)
         written += 1
     print("{} chapter file(s)".format(written))
+
+    # A renamed or removed chapter leaves its old file behind, and a stale file
+    # is not harmless here: it gets pasted into a reviewer's editor like any
+    # other, and the import then aborts because no chapter answers to its title.
+    # Splitting Welcome into the Welcome to the Dump group left exactly this.
+    # Reported rather than deleted, because this is a path the caller chose and
+    # a tool that removes files from it should be asked to, not assumed.
+    stale = sorted(f for f in d.glob("*.md") if f.name not in expected)
+    if stale:
+        print("")
+        print("STALE: {} file(s) here do not match any chapter. Delete them, or a"
+              .format(len(stale)))
+        print("reviewer will edit copy that no longer exists:")
+        for f in stale:
+            print("  {}".format(f))
     return 0
 
 

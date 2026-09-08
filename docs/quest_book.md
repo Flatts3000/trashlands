@@ -6,16 +6,16 @@ structure lives in `pack/config/ftbquests/quests/chapters/*.json5`. Edit those a
 regenerate. This document exists so the writing can be read as writing, which is the
 one check the linter and the scorer cannot make for you.
 
-Exported 2026-09-08 from 4 chapters and 63 quests, 59 of them with a description (93.7%).
+Exported 2026-09-08 from 7 chapters and 69 quests, 65 of them with a description (94.2%).
 
 `[no description]` marks an empty body. The pack's rule is that bare is normal and
 correct (`docs/quest_voice.md` rule 1), so a low count there is not a gap to fill.
 
 ---
 
-## Welcome
+## Start Here
 
-<sub>`welcome.json5` | order_index 0 | 7 quests | 1 image(s)</sub>
+<sub>`welcome.json5` | order_index 0 | 3 quests | group `7A55E0BA6E000A00` | 1 image(s)</sub>
 
 ### Welcome to Trashlands
 
@@ -32,19 +32,6 @@ The Salvager's Manual comes with this quest. It goes deeper than this book does.
 - tasks: checkmark
 - rewards: xp 10; item modonomicon:modonomicon
 
-### Join the Discord
-
-The numbers in this pack are first-pass. Bug reports and balance complaints are both useful.
-
-Click the Discord badge above. It opens the invite in your browser.
-
-<sub>27 words</sub>
-
-- id `7A55E0BA6E000015`, shape `diamond`, icon `minecraft:paper`
-- after: none
-- tasks: checkmark
-- rewards: xp 10
-
 ### The Book Is Not Finished
 
 This pack is an alpha, and the quest book is the least finished part of it.
@@ -60,63 +47,16 @@ The Salvager's Manual covers more. Use it first.
 - tasks: checkmark
 - rewards: xp 10
 
-### What Spawns Here
+### Join the Discord
 
-Nothing hostile spawns on the dump, so you do not need a shelter. A few friendly mobs turn up, rarely, and none of them are food.
+The numbers in this pack are first-pass. Bug reports and balance complaints are both useful.
 
-Sleep anyway. Phantoms still come after a few nights without it.
+Click the Discord badge above. It opens the invite in your browser.
 
-The demolition yard is different. Things spawn there in numbers, so bring a weapon.
+<sub>27 words</sub>
 
-<sub>51 words</sub>
-
-- id `7A55E0BA6E000016`, shape `gear`, icon `minecraft:torch`
-- after: Welcome to Trashlands
-- tasks: checkmark
-- rewards: xp 10
-
-### Water
-
-There is no water in this world at first. Rain is the only source early on, and the Rain Collector catches it.
-
-Two source blocks will not fill a third. That vanilla trick is off here, so water never multiplies.
-
-There is no thirst bar, so going without costs you nothing until you build something that drinks.
-
-<sub>57 words</sub>
-
-- id `7A55E0BA6E000017`, shape `gear`, icon `minecraft:water_bucket`
-- after: Welcome to Trashlands
-- tasks: checkmark
-- rewards: xp 10
-
-### Pick Through the Garbage
-
-Hold right-click on a Block of Garbage where it stands. It gives one item at a time, and after two or three the block is gone.
-
-Sorting where it stands takes no tool, whatever you are holding. Breaking a block to carry it needs a shovel, and without one you get nothing. Trash Bags are the exception: they break by hand.
-
-What comes out is random, so this takes a few blocks.
-
-<sub>72 words</sub>
-
-- id `7A55E0BA6E000012`, icon `recompile:garbage_block`
-- after: Welcome to Trashlands
-- tasks: item: recompile:junk; item: recompile:scrap_metal; item: recompile:plastic_scrap; item: recompile:glass_shards; item: recompile:fiber_scrap; item: recompile:organic_muck
-- rewards: xp 50
-
-### Green Ground Erodes
-
-Grass does not spread here, and coarse dirt reverts it at the edge. Green ground erodes inward.
-
-Only soil touching unhealed ground goes. The interior holds until the edge reaches it, blocks you placed are never touched, and none of it runs while you are logged off.
-
-This is a long way off. It matters once you start reclaiming ground, and the machines that heal it also hold it.
-
-<sub>69 words</sub>
-
-- id `7A55E0BA6E000018`, shape `gear`, icon `minecraft:coarse_dirt`
-- after: Welcome to Trashlands
+- id `7A55E0BA6E000015`, shape `diamond`, icon `minecraft:paper`
+- after: none
 - tasks: checkmark
 - rewards: xp 10
 
@@ -361,6 +301,57 @@ Fill it at the Rain Collector.
 - after: The Rain Collector
 - tasks: item: minecraft:water_bucket
 - rewards: xp 100
+
+---
+
+## The Ground
+
+<sub>`the_ground.json5` | order_index 1 | 3 quests | group `7A55E0BA6E000A00`</sub>
+
+### Site Induction
+
+Recovery at this site is self-directed. What you take off the tip face is yours, and the terminals price what you bring in.
+
+Deliveries arrive on their own schedule and are not announced.
+
+No personnel are stationed here. The posting is not expected to be difficult.
+
+<sub>46 words</sub>
+
+- id `7A55E0BA6E000120`, shape `rsquare`, icon `recompile:garbage_block`
+- after: none
+- tasks: checkmark
+- rewards: xp 10
+
+### Mounds Come Back
+
+Dig a mound out and it comes back. Garbage falls from the sky over the footprint until it is roughly the size it was.
+
+It only grows while you are near it. Walk away and it waits; the mound you abandoned will be exactly as you left it.
+
+Mounds are the renewable part of this world. Tire dumps are not.
+
+<sub>60 words</sub>
+
+- id `7A55E0BA6E000114`, shape `gear`, icon `minecraft:coarse_dirt`
+- after: Site Induction
+- tasks: checkmark
+- rewards: xp 10
+
+### Pick Through the Garbage
+
+Hold right-click on a Block of Garbage where it stands. It gives one item at a time, and after two or three the block is gone.
+
+Sorting where it stands takes no tool, whatever you are holding. Breaking a block to carry it needs a shovel, and without one you get nothing. Trash Bags are the exception: they break by hand.
+
+What comes out is random, so this takes a few blocks.
+
+<sub>72 words</sub>
+
+- id `7A55E0BA6E000012`, icon `recompile:garbage_block`
+- after: Site Induction
+- tasks: item: recompile:junk; item: recompile:scrap_metal; item: recompile:plastic_scrap; item: recompile:glass_shards; item: recompile:fiber_scrap; item: recompile:organic_muck
+- rewards: xp 50
 
 ---
 
@@ -620,6 +611,72 @@ That blueprint is the only smithing template you can make here.
 - after: Netherite Scrap
 - tasks: item: recompile:worn_forging_die
 - rewards: xp 100
+
+---
+
+## The Sprawl
+
+<sub>`the_sprawl.json5` | order_index 2 | 4 quests | group `7A55E0BA6E000A00`</sub>
+
+### Household Waste
+
+Domestic collections were tipped here without sorting, so what lies on the surface is what came off the trucks.
+
+Three things recur often enough to plan around, and each has its own page.
+
+Nothing here is under guard. Take what you can carry.
+
+<sub>43 words</sub>
+
+- id `7A55E0BA6E000121`, shape `rsquare`, icon `recompile:stained_ground`
+- after: none
+- tasks: checkmark
+- rewards: xp 10
+
+### Leachate
+
+The standing liquid out here is leachate. It is not water, and nothing that wants water will take it.
+
+Wading gives you Hunger for a few seconds, refreshed while you stay in it, and costs you nothing else. It is not poison and it does no damage.
+
+It drowns you over your head.
+
+<sub>53 words</sub>
+
+- id `7A55E0BA6E000113`, shape `gear`, icon `recompile:leachate_bucket`
+- after: Household Waste
+- tasks: checkmark
+- rewards: xp 10
+
+### Tire Piles
+
+Break a tire by hand and you get the tire. Break it holding a Scrap Knife and you get one Rubber Scrap instead, not as well.
+
+Carry it home. Torn down at the Workbench with a knife racked, one tire gives three rubber and often the steel belt out of the carcass, which the knife in the field never recovers.
+
+Nothing else in this world gives rubber, and a dump does not grow back. Take the tires, not the scrap.
+
+A full-height tire is two of them and drops double either way.
+
+<sub>92 words</sub>
+
+- id `7A55E0BA6E000115`, shape `gear`, icon `recompile:tire`
+- after: Household Waste
+- tasks: checkmark
+- rewards: xp 10
+
+### Cardboard
+
+Cardboard piles need no tool at all. Three to five cardboard each.
+
+Four of it makes a block in your own 2x2 grid, so you can build something before you have a crafting table.
+
+<sub>34 words</sub>
+
+- id `7A55E0BA6E000116`, shape `gear`, icon `recompile:cardboard`
+- after: Household Waste
+- tasks: checkmark
+- rewards: xp 10
 
 ---
 
@@ -893,5 +950,54 @@ Carnivore takes two apples and raw meat, and the only meat here walks, so grazer
 - after: Leave It Alone
 - tasks: item: recompile:omnivore_bait
 - rewards: xp 50
+
+---
+
+## Living Here
+
+<sub>`living_here.json5` | order_index 3 | 3 quests | group `7A55E0BA6E000A00`</sub>
+
+### Accommodation
+
+The site has no accommodation, no potable supply and no catering. Personnel make their own arrangements.
+
+There is no shift pattern. Work when you like.
+
+<sub>25 words</sub>
+
+- id `7A55E0BA6E000122`, shape `rsquare`, icon `recompile:mattress`
+- after: none
+- tasks: checkmark
+- rewards: xp 10
+
+### Water
+
+There is no water in this world at first. Rain is the only source early on, and the Rain Collector catches it.
+
+Two source blocks will not fill a third. That vanilla trick is off here, so water never multiplies.
+
+There is no thirst bar, so going without costs you nothing until you build something that drinks.
+
+<sub>57 words</sub>
+
+- id `7A55E0BA6E000017`, shape `gear`, icon `minecraft:water_bucket`
+- after: Accommodation
+- tasks: checkmark
+- rewards: xp 10
+
+### What Spawns Here
+
+Nothing hostile spawns on the dump, so you do not need a shelter. A few friendly mobs turn up, rarely, and none of them are food.
+
+Sleep anyway. Phantoms still come after a few nights without it.
+
+The demolition yard is different. Things spawn there in numbers, so bring a weapon.
+
+<sub>51 words</sub>
+
+- id `7A55E0BA6E000016`, shape `gear`, icon `minecraft:torch`
+- after: Accommodation
+- tasks: checkmark
+- rewards: xp 10
 
 ---

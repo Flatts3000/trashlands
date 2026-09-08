@@ -1,0 +1,91 @@
+{
+  id: "7A55E0BA6E000007",
+  group: "7A55E0BA6E000A00",
+  order_index: 3,
+  filename: "living_here",
+  icon: {
+    id: "recompile:mattress",
+    count: 1,
+  },
+  default_quest_shape: "",
+  default_hide_dependency_lines: false,
+  autofocus_id: "7A55E0BA6E000122",
+  quests: [
+    {
+      x: 0.0,
+      y: 0.0,
+      shape: "rsquare",
+      size: 1.5,
+      id: "7A55E0BA6E000122",
+      icon: {
+        id: "recompile:mattress",
+        count: 1,
+      },
+      rewards: [
+        {
+          id: "7A55E0BA6E000142",
+          type: "xp",
+          xp: 10,
+        },
+      ],
+      tasks: [
+        {
+          id: "7A55E0BA6E000132",
+          type: "checkmark",
+        },
+      ],
+    },
+    {
+      x: -1.0,
+      y: 1.5,
+      shape: "gear",
+      id: "7A55E0BA6E000017",
+      icon: {
+        id: "minecraft:water_bucket",
+        count: 1,
+      },
+      dependencies: [
+        "7A55E0BA6E000122",
+      ],
+      rewards: [
+        {
+          id: "7A55E0BA6E0000D3",
+          type: "xp",
+          xp: 10,
+        },
+      ],
+      tasks: [
+        {
+          id: "7A55E0BA6E000088",
+          type: "checkmark",
+        },
+      ],
+    },
+    {
+      x: 1.0,
+      y: 1.5,
+      shape: "gear",
+      id: "7A55E0BA6E000016",
+      icon: {
+        id: "minecraft:torch",
+        count: 1,
+      },
+      dependencies: [
+        "7A55E0BA6E000122",
+      ],
+      rewards: [
+        {
+          id: "7A55E0BA6E0000D2",
+          type: "xp",
+          xp: 10,
+        },
+      ],
+      tasks: [
+        {
+          id: "7A55E0BA6E000087",
+          type: "checkmark",
+        },
+      ],
+    },
+  ],
+}
