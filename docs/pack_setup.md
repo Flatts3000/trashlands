@@ -159,7 +159,7 @@ while empty), then excluded, then the shape's own matcher. The tag ships **empty
 There is no config-side block blacklist - `FTBUltimineServerConfig` carries features, costs and
 limits only. Established by disassembling the jar, not from the mod's docs.
 
-**What goes in it,** owner call 2026-09-07 - sixteen entries:
+**What goes in it,** owner call 2026-09-07 - seventeen entries:
 `minecraft:coarse_dirt`, `minecraft:deepslate`, `recompile:garbage_block`, `recompile:trash_bag`, `recompile:compacted_bale`,
 `recompile:cardboard_pile`, `recompile:bulky_waste`, `recompile:mound_ground`,
 `recompile:stained_ground`, `recompile:stone_rubble`, `recompile:mechanical_waste`,
@@ -174,11 +174,10 @@ draft got it wrong.** Three kinds of block are in the tag:
 2. **Surface ground** - `coarse_dirt`, `mound_ground`, `stained_ground`. The surface is the board
    reclamation and encroachment are played on, so taking it down in one hold is terraforming, not
    salvage.
-3. **Overworld bulk stone** - `minecraft:deepslate`, which `garbage.json` sets as the `default_block`
-   with a surface rule laying coarse dirt over only the top two blocks. So from two down to bedrock
-   the plain is deepslate. **Owner call 2026-09-07**, reversing the position the first pass took: the
-   starting plain is where this pack's scarcity is designed, and an infinite quarry two blocks under
-   it undoes that whatever the surface says.
+3. **Bulk stone** - `minecraft:deepslate` in the overworld and `recompile:techno_organic_waste` in
+   the Compacted Depths, each its dimension's `noise_settings` `default_block`. **Owner call
+   2026-09-07**, reversing the position the first pass took: a dimension's bulk block is an infinite
+   quarry, and leaving one ultiminable undoes the scarcity the surface rules are there to create.
 
    The first pass argued deepslate was harmless because it yields no salvage. That reading was too
    narrow. `progression_gates.md:242` already records that plain `deepslate` sits in
@@ -188,13 +187,29 @@ draft got it wrong.** Three kinds of block are in the tag:
    inert bulk here; it is an early, tool-ungated stone-crafting stream. A vein-miner on it multiplies
    exactly the thing that already broke a gate once.
 
-**One block of bulk stone is still deliberately left vein-mineable, and it is load-bearing:**
-**`recompile:techno_organic_waste`**, `compacted_depths.json`'s `default_block`. It drops itself, so
-it is a building material rather than a scrap pile, and with `slag_rubble` and `ancient_sculk`
-already excluded, adding it would leave **nothing** vein-mineable in that dimension. Excluding
-deepslate does not do that to the overworld - trees, crops, farmland and player builds all remain -
-which is the difference between the two cases, and why the outcome rather than the principle decides
-it. The Depths is an earned region where fast quarrying is a reward; the starting plain is not.
+**What decides membership of kind 1 is the sort table, not judgement.** A Recompile block is
+sortable when its block class names a `gameplay/*_pulls` loot table, and all eight that do are in
+this tag: `garbage_block` (`household_pulls`), `trash_bag` (`bag_pulls`), `stone_rubble`
+(`rubble_pulls`), `mechanical_waste` (`mechanical_pulls`), `mill_tailings` (`tailings_pulls`),
+`waste_drum` (`waste_drum_pulls`), `slag_rubble` (`slag_rubble_pulls`) and `techno_organic_waste`
+(`depths_pulls`). **If a new Recompile block gets a pull table, it belongs here** - that is a
+mechanical check anyone can run, and it is a better rule than the two earlier passes reasoned their
+way to.
+
+**`recompile:techno_organic_waste` was left out twice and both reasons were wrong.** The first pass
+called it a scrap pile and excluded it; review pulled it back out on the grounds that it is
+`compacted_depths.json`'s `default_block`, drops itself, and is therefore bulk building material
+rather than salvage - and that excluding it would leave nothing vein-mineable in the dimension. Both
+halves of that are answered by `TechnoOrganicWasteBlock.java:47`, which points at
+`gameplay/depths_pulls`: **it is sortable.** It is the Depths' bulk stone *and* a garbage block, and
+a vein-miner on it is a pick-through skip exactly like one on a Block of Garbage.
+
+**Ultimine therefore does nothing at all in the Compacted Depths, and that is correct rather than a
+gap.** The dimension's noise settings and biome between them place only `techno_organic_waste`,
+`slag_rubble`, `ancient_sculk`, lava and bedrock - so every solid block down there is either
+sortable garbage or the gated sculk seam. The Depths is not a quarry with garbage in it; the whole
+place is the pick-through. The overworld is the case where exclusion leaves something behind, since
+trees, crops, farmland and player builds all remain.
 
 Note the entry is `minecraft:deepslate` only, so cobbled deepslate, deepslate bricks, tiles and the
 polished set all stay ultiminable. **One case does not come out the way that sentence implies, and it
@@ -206,8 +221,8 @@ early quarry - but "this stops quarrying the world, not building with what you q
 every deepslate variant except the raw block itself.
 
 What is left ultiminable is the **rebuilt** world: trees and crops off the reclamation ladder,
-farmland, Depths stone, shard-crafted terrain, player builds. The junkyard is dug by hand; the world
-you make out of it is not.
+farmland, shard-crafted terrain, player builds. The junkyard is dug by hand; the world you make out
+of it is not.
 
 **This governs breaking only.** Ultimine's right-click features (area hoe, shovel, axe, crop harvest)
 read `ftbultimine:farmland_tillable` and `ftbultimine:shovel_flattenable`, which ship containing
