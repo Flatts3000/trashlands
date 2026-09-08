@@ -53,6 +53,28 @@ if hasattr(sys.stdout, "reconfigure"):
 
 COLOUR_RE = re.compile(r"&[0-9a-fk-or]")
 
+# Banned outright by the house rule, and there is no safe automatic fix: the
+# right replacement may be a comma, a colon, a full stop, or a rewrite.
+DASHES = ("—", "–")
+
+# Word processors substitute these silently and the author never typed them, so
+# folding them back to ASCII is a correction rather than an edit. Grammarly
+# returned 16 curly apostrophes in the first real review pass.
+PUNCTUATION = {
+    "‘": "'", "’": "'",
+    "“": '"', "”": '"',
+    "…": "...",
+    " ": " ",
+    "′": "'", "″": '"',
+    "−": "-",
+}
+
+
+def normalise_punctuation(s: str) -> str:
+    for bad, good in PUNCTUATION.items():
+        s = s.replace(bad, good)
+    return s
+
 
 class Abort(RuntimeError):
     pass
@@ -302,6 +324,7 @@ def main(argv=None) -> int:
     print()
 
     changes, refused, renamed = [], [], []
+    dashed, shrunk, normalised = [], [], 0
     for (etitle, equests), (btitle, bquests) in pairs:
         for (eq_title, eq_paras), (qid, bq_title, bq_desc) in zip(equests, bquests):
             plain_title = ex.strip_codes(bq_title)
@@ -309,13 +332,51 @@ def main(argv=None) -> int:
                 renamed.append((qid, plain_title, eq_title))
 
             old_paras = [p for p in (ex.strip_codes(x) for x in bq_desc) if p.strip()]
-            new_paras = [p for p in eq_paras if p.strip()]
+            raw_new = [p for p in eq_paras if p.strip()]
+
+            new_paras = []
+            for p in raw_new:
+                fixed = normalise_punctuation(p)
+                normalised += sum(1 for a, b in zip(p, fixed) if a != b)
+                new_paras.append(fixed)
+
             if old_paras == new_paras:
                 continue
             if any(COLOUR_RE.search(x) for x in bq_desc):
                 refused.append((qid, plain_title))
                 continue
+            bad = [d for d in DASHES if any(d in p for p in new_paras)]
+            if bad:
+                dashed.append((qid, plain_title))
+                continue
+            if len(new_paras) < len(old_paras):
+                shrunk.append((qid, plain_title, len(old_paras), len(new_paras)))
             changes.append((qid, plain_title, old_paras, new_paras))
+
+    if normalised:
+        print("Normalised {} smart quote(s) and apostrophe(s) to ASCII."
+              .format(normalised))
+        print("Word processors substitute these silently; the house rule is ASCII")
+        print("punctuation only, and this is a safe transformation so it is applied.")
+        print()
+
+    if dashed:
+        print("REFUSED: these bodies contain an em-dash or en-dash, which is a hard")
+        print("house rule. Unlike smart quotes there is no safe automatic fix - the")
+        print("replacement may be a comma, a colon, a full stop, or a rewrite - so")
+        print("change it in the document and run again:")
+        for qid, title in dashed:
+            print("  {}  {}".format(qid, title))
+        print()
+
+    if shrunk:
+        print("CONTENT LOSS: these bodies came back with fewer paragraphs than they")
+        print("went out with. Sometimes that is the intent. Sometimes an editor")
+        print("dropped a sentence nobody noticed, which is the exact failure this")
+        print("tool was built to avoid, so read these diffs before applying:")
+        for qid, title, was, now in shrunk:
+            print("  {}  {}  ({} paragraphs -> {})".format(qid, title, was, now))
+        print()
 
     if renamed:
         print("Titles differ between the document and the book.")

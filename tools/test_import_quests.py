@@ -122,6 +122,24 @@ def cases():
                 iq.render_array(["a\\b"], "  ", "    "),
                 '[\n    "a\\\\b",\n  ]'))
 
+    # ------------------------------------------------------ punctuation guard
+    # From the first real review pass: 16 curly apostrophes and one em-dash came
+    # back from the editor. The author typed neither.
+    out.append(("curly apostrophes fold to ASCII",
+                iq.normalise_punctuation("You’ll need it"), "You'll need it"))
+    out.append(("curly quotes fold to ASCII",
+                iq.normalise_punctuation("“no”"), '"no"'))
+    out.append(("an ellipsis folds to three dots",
+                iq.normalise_punctuation("wait…"), "wait..."))
+    out.append(("a non-breaking space folds to a space",
+                iq.normalise_punctuation("a b"), "a b"))
+    out.append(("ASCII text is left alone",
+                iq.normalise_punctuation("plain 'text' here"), "plain 'text' here"))
+    out.append(("an em-dash is NOT auto-fixed, because no fix is safe",
+                iq.normalise_punctuation("a—b"), "a—b"))
+    out.append(("both banned dashes are known",
+                sorted(iq.DASHES), sorted(["—", "–"])))
+
     # ----------------------------------------------------------------- splice
     spliced = iq.splice(SAMPLE, "7A55E0BA6E000010", ["Only line."])
     out.append(("splice replaces the target body",
