@@ -58,7 +58,7 @@ hash = "a1b950d141ceac08fdf06763db9133ead1a3f16916dcce2a9d8bd0e9efdda279"
 
 [[files]]
 file = "config/ftbquests/quests/chapter_groups.json5"
-hash = "0a11b89d5d2a66d384297eba3321fdcbc8e3704e7741172b1e770f4ad189a907"
+hash = "e620a6633c4f3112720cc04a9ccbbb3fc7ab01c4fd69d403157f33be8a5d69f9"
 
 [[files]]
 file = "config/ftbquests/quests/chapters/depths.json5"
@@ -69,12 +69,24 @@ file = "config/ftbquests/quests/chapters/groundwork.json5"
 hash = "ed3d0a81518c220a53658753d1bfe5c11b81727ed09706d75d5ad6d551857cdc"
 
 [[files]]
+file = "config/ftbquests/quests/chapters/living_here.json5"
+hash = "8c1de8ff971e9adc2958c6a0b61ac523bfa3c1ed231ad0ff4eac1729c9e03f57"
+
+[[files]]
 file = "config/ftbquests/quests/chapters/salvage.json5"
 hash = "2458af1163dd0a4ccbab2bc1cf789ecdf032bb9b70ddbb77a2e7af4ca509cf57"
 
 [[files]]
+file = "config/ftbquests/quests/chapters/the_ground.json5"
+hash = "e64336a7ee0114150ee01047d6ff2dcc1a068402f46e0a5b6d3ffc3da81f5101"
+
+[[files]]
+file = "config/ftbquests/quests/chapters/the_sprawl.json5"
+hash = "e2d7ea54313353c8cf0f85af5005b67cd589a0c1acc813261f7533502d115f1b"
+
+[[files]]
 file = "config/ftbquests/quests/chapters/welcome.json5"
-hash = "f56a62984aac9d14abe466a102ac73093bd104860b93cba84530e587bb02ce67"
+hash = "9215c855a7ef50a8a2a494a13f9b809e484c769e2aad71f52eb085b10db1d0a4"
 
 [[files]]
 file = "config/ftbquests/quests/data.json5"
@@ -82,7 +94,7 @@ hash = "e0f206762b14e972b04801f50dcb4461581bf076fd6ea7bc5d2f72b7f7a48e6e"
 
 [[files]]
 file = "config/ftbquests/quests/lang/en_us/chapter.json5"
-hash = "f6e7ba4af1a07528f9877960f8036460fd3c35e5c60a0f8b06d23787bc177f2e"
+hash = "05f80b2916dd5af3b9006531e19309b43f4ad560348be227ab15817816ac94c9"
 
 [[files]]
 file = "config/ftbquests/quests/lang/en_us/chapters/depths.json5"
@@ -93,12 +105,24 @@ file = "config/ftbquests/quests/lang/en_us/chapters/groundwork.json5"
 hash = "7267ba9342d6865a5612fef2c31bdc5c8504685a51cee72c1047e4d518b62f76"
 
 [[files]]
+file = "config/ftbquests/quests/lang/en_us/chapters/living_here.json5"
+hash = "e5d14f3997d570bb2bacc62dd4d1f1f4cb6815550a511f27e803751ffb511b88"
+
+[[files]]
 file = "config/ftbquests/quests/lang/en_us/chapters/salvage.json5"
 hash = "5f697124645c29e060268847f0ede4b899ae6acb3f491fa47449b015326c321b"
 
 [[files]]
+file = "config/ftbquests/quests/lang/en_us/chapters/the_ground.json5"
+hash = "3d46c66322da1f0115a18e9a5680cd1d89cd78df8da94b62174c610f4ed7bbab"
+
+[[files]]
+file = "config/ftbquests/quests/lang/en_us/chapters/the_sprawl.json5"
+hash = "984d1f8e8c1e2c91bc5b5e4cf8180da72f4451627d0082e4ce4790d644a3ccce"
+
+[[files]]
 file = "config/ftbquests/quests/lang/en_us/chapters/welcome.json5"
-hash = "94da7b1fcfa3afa31772b44bb938bc79a0c25568954c06cbca67de718a4d4283"
+hash = "709df814f18d2c2d7a41563b1df6997a838487a25174feebacfdc95b246d5144"
 
 [[files]]
 file = "icon.png"

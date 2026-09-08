@@ -218,7 +218,11 @@ Classification decides how much copy each chapter earns. (This used to cite `que
 
 | Chapter | Covers | Class | State |
 |---|---|---|---|
-| Welcome | Orientation and the household sprawl: the no-trees gotcha, the guidebook handoff, picking through garbage, no water, what spawns, and (2026-09-08) mound regrowth, leachate, tire piles and cardboard | TEACH-heavy | written |
+| **Welcome to the Dump** (group) | Split from the single Welcome chapter on 2026-09-08 per P2.7-R2 | | |
+| - Start Here | The pack out of character: the premise, the guidebook handoff, the alpha notice, Discord. The only chapter that speaks as the pack | META | written |
+| - The Ground | Operator. Site induction, mounds coming back, picking through garbage | TEACH-heavy | written |
+| - The Sprawl | Operator. Leachate, tire piles, cardboard | TEACH-heavy | written |
+| - Living Here | Operator. Water, what spawns | TEACH-heavy | written |
 | Salvage | Everything up to your first Bucket of Water: trash tools, Bulky Waste, food, storage, the Sorting Tarp, the Workbench, the Pump and Rain Collector, the Burn Barrel and copper, fuel, and the Scrap Network adjacency rule | TEACH-heavy | written |
 | (network) | Scrap Bins and binding, the Filing Cabinet, and crafting straight out of the cluster - issue #11. Adjacency itself is already taught inside Salvage as of v0.5.0, so this chapter starts from a player who knows blocks touch | TEACH-heavy | |
 | Groundwork | The whole reclamation ladder: Grass Spreader, Mound Ground and the quarry-versus-heal trade, the frontier, Compost Heap and Fertilizer, farmland, the Tree Nursery, and the animal baits. Ends on a rich bait, so the herd breeds without you | TEACH-heavy | written |

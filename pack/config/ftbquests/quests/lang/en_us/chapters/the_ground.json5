@@ -1,0 +1,26 @@
+{
+  "quest.7A55E0BA6E000120.title": "Site Induction",
+  "quest.7A55E0BA6E000120.quest_desc": [
+    "Recovery at this site is self-directed. What you take off the tip face is yours, and the terminals price what you bring in.",
+    "",
+    "Deliveries arrive on their own schedule and are not announced.",
+    "",
+    "No personnel are stationed here. The posting is not expected to be difficult.",
+  ],
+  "quest.7A55E0BA6E000114.title": "Mounds Come Back",
+  "quest.7A55E0BA6E000114.quest_desc": [
+    "Dig a mound out and it comes back. Garbage falls from the sky over the footprint until it is roughly the size it was.",
+    "",
+    "It only grows while you are near it. Walk away and it waits; the mound you abandoned will be exactly as you left it.",
+    "",
+    "Mounds are the renewable part of this world. Tire dumps are not.",
+  ],
+  "quest.7A55E0BA6E000012.title": "Pick Through the Garbage",
+  "quest.7A55E0BA6E000012.quest_desc": [
+    "Hold right-click on a Block of Garbage where it stands. It gives one item at a time, and after two or three the block is gone.",
+    "",
+    "Sorting where it stands takes no tool, whatever you are holding. Breaking a block to carry it needs a shovel, and without one you get nothing. Trash Bags are the exception: they break by hand.",
+    "",
+    "What comes out is random, so this takes a few blocks.",
+  ],
+}

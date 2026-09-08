@@ -47,8 +47,10 @@ def load_tool():
     return mod
 
 
-def chapter(quests: str, chapter_id: str = CH_ID) -> str:
-    return "{\n" + f'  id: "{chapter_id}"\n' + "  quests: [\n" + quests + "  ]\n}\n"
+def chapter(quests: str, chapter_id: str = CH_ID, group: str | None = None) -> str:
+    grp = f'  group: "{group}"\n' if group is not None else ""
+    return ("{\n" + f'  id: "{chapter_id}"\n' + grp
+            + "  quests: [\n" + quests + "  ]\n}\n")
 
 
 def quest(qid: str, deps: str = "", task_id: str = TASK) -> str:
@@ -101,7 +103,8 @@ def titles_for(*quest_ids: str) -> str:
 
 def build_tree(root: pathlib.Path, *, chapters: str | None = None,
                data_file: bool = True, groups_file: bool = True,
-               lang: str | None = None, titles: tuple[str, ...] = ()) -> None:
+               lang: str | None = None, titles: tuple[str, ...] = (),
+               groups: str = "{ chapter_groups: [] }\n") -> None:
     """Lay out the minimum FTB Quests tree the validator walks."""
     quests = root / "pack" / "config" / "ftbquests" / "quests"
     (quests / "chapters").mkdir(parents=True, exist_ok=True)
@@ -115,8 +118,7 @@ def build_tree(root: pathlib.Path, *, chapters: str | None = None,
     if data_file:
         (quests / "data.json5").write_text("{ title: \"Trashlands\" }\n", encoding="utf-8")
     if groups_file:
-        (quests / "chapter_groups.json5").write_text("{ chapter_groups: [] }\n",
-                                                     encoding="utf-8")
+        (quests / "chapter_groups.json5").write_text(groups, encoding="utf-8")
     if lang is not None:
         (quests / "lang" / "en_us" / "chapter.json5").write_text(lang, encoding="utf-8")
 
@@ -143,6 +145,7 @@ def codes_from(t, build) -> set:
         t.check_ids(chapters, out)
         t.check_dependencies(chapters, out)
         t.check_inline_text(chapters, out)
+        t.check_groups(chapters, out)
         t.check_lang(chapters, lang, out)
         t.check_images(chapters, out)
         t.check_dashes(out)
@@ -258,6 +261,32 @@ def cases(t):
          E("DASH") | {("WARN", "LANG-KEY-SHAPE")}),
         ("a plain hyphen is not a dash violation",
          run(lang='{ "x": "a - b" }'), {("WARN", "LANG-KEY-SHAPE")}),
+
+        # Chapter groups. The lang-key regex accepted chapter_group.<id>.title
+        # from the start, but the ids were never loaded, so a valid group title
+        # reported as LANG-ORPHAN ("it will never render"). The pack's first real
+        # group tripped it on 2026-09-08.
+        ("a declared group's title is not an orphan",
+         run(groups='{ chapter_groups: [ { id: "7A55E0BA6E000A00" } ] }\n',
+             lang='{ "chapter_group.7A55E0BA6E000A00.title": "Welcome to the Dump" }'),
+         set()),
+        ("an undeclared group's title is still an orphan",
+         run(lang='{ "chapter_group.7A55E0BA6E000A00.title": "Nope" }'),
+         E("LANG-ORPHAN")),
+
+        # A chapter pointing at a group that does not exist is the silent-failure
+        # shape: FTB Quests says nothing and the chapter appears under no heading.
+        ("a chapter in a declared group is fine",
+         run(chapters=chapter(quest(Q1), group="7A55E0BA6E000A00"),
+             groups='{ chapter_groups: [ { id: "7A55E0BA6E000A00" } ] }\n',
+             titles=(Q1,)),
+         set()),
+        ("a chapter in an undeclared group is an error",
+         run(chapters=chapter(quest(Q1), group="7A55E0BA6E000B99"),
+             titles=(Q1,)),
+         E("BAD-GROUP")),
+        ("an ungrouped chapter is fine",
+         run(chapters=chapter(quest(Q1)), titles=(Q1,)), set()),
 
         # No chapters at all is not a crash - load_chapters returns [].
         ("an empty chapters dir does not crash the validator",

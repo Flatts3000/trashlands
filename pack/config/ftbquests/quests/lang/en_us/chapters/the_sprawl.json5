@@ -1,0 +1,34 @@
+{
+  "quest.7A55E0BA6E000121.title": "Household Waste",
+  "quest.7A55E0BA6E000121.quest_desc": [
+    "Domestic collections were tipped here without sorting, so what lies on the surface is what came off the trucks.",
+    "",
+    "Three things recur often enough to plan around, and each has its own page.",
+    "",
+    "Nothing here is under guard. Take what you can carry.",
+  ],
+  "quest.7A55E0BA6E000113.title": "Leachate",
+  "quest.7A55E0BA6E000113.quest_desc": [
+    "The standing liquid out here is leachate. It is not water, and nothing that wants water will take it.",
+    "",
+    "Wading gives you Hunger for a few seconds, refreshed while you stay in it, and costs you nothing else. It is not poison and it does no damage.",
+    "",
+    "It drowns you over your head.",
+  ],
+  "quest.7A55E0BA6E000115.title": "Tire Piles",
+  "quest.7A55E0BA6E000115.quest_desc": [
+    "Break a tire by hand and you get the tire. Break it holding a Scrap Knife and you get one Rubber Scrap instead, not as well.",
+    "",
+    "Carry it home. Torn down at the Workbench with a knife racked, one tire gives three rubber and often the steel belt out of the carcass, which the knife in the field never recovers.",
+    "",
+    "Nothing else in this world gives rubber, and a dump does not grow back. Take the tires, not the scrap.",
+    "",
+    "A full-height tire is two of them and drops double either way.",
+  ],
+  "quest.7A55E0BA6E000116.title": "Cardboard",
+  "quest.7A55E0BA6E000116.quest_desc": [
+    "Cardboard piles need no tool at all. Three to five cardboard each.",
+    "",
+    "Four of it makes a block in your own 2x2 grid, so you can build something before you have a crafting table.",
+  ],
+}

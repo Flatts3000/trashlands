@@ -324,6 +324,40 @@ def check_inline_text(chapters, out):
                                 f"author it in lang/en_us/chapters/{ch.name}"))
 
 
+def load_group_ids() -> set:
+    """Ids declared in chapter_groups.json5.
+
+    The lang-key regex below has always accepted `chapter_group.<id>.title`, so
+    groups were meant to be supported, but their ids were never loaded - which
+    made a perfectly valid group title report as LANG-ORPHAN, "it will never
+    render". The first real group in this pack tripped it on 2026-09-08.
+    """
+    if not GROUPS_FILE.is_file():
+        return set()
+    try:
+        data = SNBT(GROUPS_FILE.read_text(encoding="utf-8")).parse()
+    except SNBTError:
+        return set()      # the parse error is reported by check_root_files
+    groups = data.get("chapter_groups") if isinstance(data, dict) else None
+    return {g.get("id") for g in (groups or []) if isinstance(g, dict) and g.get("id")}
+
+
+def check_groups(chapters, out):
+    """Every chapter's `group` must name a declared group.
+
+    A chapter pointing at a group that does not exist is the silent-failure
+    shape this validator exists for: FTB Quests does not complain, the chapter
+    simply does not appear under any heading and a player never sees it.
+    """
+    declared = load_group_ids()
+    for ch in chapters:
+        gid = ch.data.get("group")
+        if gid and gid not in declared:
+            out.append((ERROR, "BAD-GROUP", f"{ch.name}:{ch.line_of('group')}",
+                        f"chapter {ch.data.get('id')} sets group {gid!r}, which "
+                        f"chapter_groups.json5 does not declare"))
+
+
 def check_lang(chapters, lang, out):
     """Lang keys must point at something real, and every quest wants a title.
 
@@ -333,6 +367,7 @@ def check_lang(chapters, lang, out):
     """
     known = {ch.data.get("id") for ch in chapters}
     known |= {q.get("id") for ch in chapters for q in ch.quests}
+    known |= load_group_ids()
 
     titled = set()
     for key in lang:
@@ -418,6 +453,7 @@ def main() -> int:
     check_ids(chapters, out)
     check_dependencies(chapters, out)
     check_inline_text(chapters, out)
+    check_groups(chapters, out)
     check_lang(chapters, lang, out)
     check_dashes(out)
     check_images(chapters, out)
