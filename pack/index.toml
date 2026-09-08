@@ -13,8 +13,8 @@ file = "config/blocks_previewer/default.json"
 hash = "cd0625f028b9c9108109f62c8184ad25bfb43db882426e255a0dea322fb08215"
 
 [[files]]
-file = "config/defaultoptions/options.txt"
-hash = "e5dd68f994e420923cf49fe07369ce34ac2edf5d486f422080e2d88c22438df8"
+file = "config/defaultoptions-common.toml"
+hash = "a4f22fdbdfd2566349537a58eb9f74b6a89e88f543e1c6a7797c3b13d810cbea"
 
 [[files]]
 file = "config/defaultworldtype/client-config.toml"
