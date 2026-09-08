@@ -59,7 +59,7 @@
       shape: "gear",
       id: "7A55E0BA6E000114",
       icon: {
-        id: "recompile:mound_ground",
+        id: "minecraft:coarse_dirt",
         count: 1,
       },
       dependencies: [

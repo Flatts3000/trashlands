@@ -49,7 +49,9 @@
   "quest.7A55E0BA6E000114.quest_desc": [
     "Dig a mound out and it comes back. Garbage falls from the sky over the footprint until it is roughly the size it was.",
     "",
-    "So nothing you take is spent for good. Work whichever mound is nearest.",
+    "It only grows while you are near it. Walk away and it waits; the mound you abandoned will be exactly as you left it.",
+    "",
+    "Mounds are the renewable part of this world. Tire dumps are not.",
   ],
   "quest.7A55E0BA6E000113.title": "Leachate",
   "quest.7A55E0BA6E000113.quest_desc": [
@@ -61,9 +63,11 @@
   ],
   "quest.7A55E0BA6E000115.title": "Tire Piles",
   "quest.7A55E0BA6E000115.quest_desc": [
-    "Break a tire by hand and you get the tire.",
+    "Break a tire by hand and you get the tire. Break it holding a Scrap Knife and you get one Rubber Scrap instead, not as well.",
     "",
-    "Break it holding a Scrap Knife and you get Rubber Scrap instead, not as well. Nothing else in this world gives rubber.",
+    "Carry it home. Torn down at the Workbench with a knife racked, one tire gives three rubber and often the steel belt out of the carcass, which the knife in the field never recovers.",
+    "",
+    "Nothing else in this world gives rubber, and a dump does not grow back. Take the tires, not the scrap.",
     "",
     "A full-height tire is two of them and drops double either way.",
   ],
