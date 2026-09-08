@@ -8,6 +8,46 @@ and ASCII punctuation only.
 
 ## [Unreleased]
 
+## [0.13.0] - 2026-09-08
+
+Thirteen mods in, a vein-miner that refuses to touch the garbage, and the pack can finally ship data
+of its own.
+
+### Added
+- **FTB Ultimine, with the salvage economy walled off.** Hold a key and break a whole vein - but not
+  a Block of Garbage, not a trash bag, not rubble, tailings, a waste drum, slag, a tire, or the
+  ground any of it sits on. The junkyard is dug by hand, and so is the rock under it: deepslate and
+  the Compacted Depths' bulk are both excluded too, because an infinite quarry two blocks under the
+  plain is the same problem wearing a different hat. What is left is the world you build - trees off
+  the reclamation ladder, crops, farmland, and anything you placed yourself.
+- **KubeJS.** Not for you, exactly: it is what lets the pack ship data of its own for the first time
+  on this Minecraft version, which is how the Ultimine exclusions get to you at all. Pinned next to a
+  standalone Better Advanced Tooltips build, which is the specific thing that stops it crashing on
+  load.
+- **Lootr.** Loot containers are per-player now. The sewer crate, the aquarium, the demolition yard -
+  one-shot finds that used to go to whoever walked in first, which on a server meant nobody else ever
+  saw them.
+- **WITS.** Tells you which structure you are standing in. There are landmarks out there now and the
+  pack had no way to name them.
+- **FramedBlocks.** Camo blocks. Late, since the recipe wants planks and this world has no wood until
+  the Tree Nursery, but it is a finishing tool for a pack built out of scrap.
+- **Flatts's Things.** Player-only pressure plates, tool slots with auto-swap, a woodcutter, cauldron
+  transforms, armoured elytra, and a few other small things vanilla never shipped.
+- **Default Options, spark, Crash Assistant, Crash Utilities, Better Compatibility Checker.** Plumbing
+  - a profiler, two crash readers, and a warning when you join a server on the wrong pack version.
+
+### Changed
+- **Recompile 0.20.0. The dump stopped teaching you.** Tearing something apart no longer gives you
+  recipes; it gives you the working part that made the object what it was - a motor out of a washing
+  machine, a solar panel out of a dead Hauler, a cage out of a broken spawner. Nothing in this world
+  manufactures a motor, so it is salvage or nothing. Knowledge is bought instead, from a Buy Terminal
+  repaired out of a Broken Terminal you found, and a Freight Terminal takes eight delivery quotas
+  that are the only thing moving your tier. **The quest book has not caught up with this yet and
+  still mentions Idea Fragments in a few places - ignore those lines.**
+- **Routine bumps:** JEI, Ender IO, Sophisticated Core and Sophisticated Backpacks. The NeoForge pin
+  stayed at 26.1.2.100.
+- **Extreme Sound Muffler stayed at 3.58.1.** The newest file is still a 4.x alpha.
+
 ## [0.12.0] - 2026-09-04
 
 Recompile 0.18.0: a drained aquarium with a guardian still in one tank, tire dumps that are the only

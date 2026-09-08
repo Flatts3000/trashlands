@@ -1,12 +1,12 @@
 name = "Trashlands"
 author = "Flatts3000"
-version = "0.12.0"
+version = "0.13.0"
 pack-format = "packwiz:1.1.0"
 
 [index]
 file = "index.toml"
 hash-format = "sha256"
-hash = "672e32fbabe460572bf794db39a7b8c6ff1767639203c102eb4b0d0c16bf4cdc"
+hash = "b0163ac29937f31ded4b616a304d720739362f3f2ac2e84a4130d59b3e07de49"
 
 [versions]
 minecraft = "26.1.2"
