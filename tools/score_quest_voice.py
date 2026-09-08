@@ -13,7 +13,8 @@ them up. The uniformity block is what would have made that visible while it was 
 6 quests instead of 245.
 
 Neither number judges register, personification, or whether a line teaches anything.
-A human does that (docs/quest_voice.md).
+A human does that. NOTE: this tool is kept and unused; the pack started
+from zero voice rules on 2026-09-08 (docs/quest_format.md).
 
   Per-quest scoring
   -----------------

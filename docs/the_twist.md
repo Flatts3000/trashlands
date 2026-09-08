@@ -173,7 +173,7 @@ The open thread from P2.7 item 4 - who wrote the quest book - is closed, and the
 party that dumped you here.** The book is the operator's induction material for a worker it has
 never met.
 
-The public half of this decision (`design_decisions.md` P2.7-R, `quest_voice.md`) argues it purely on
+The public half of this decision (`design_decisions.md` P2.7-R, `quest_format.md`) argues it purely on
 register: site documentation is naturally flat, so the narrator costs no voice drift. That argument
 is true and is the entire reason given anywhere else. This is the rest of it.
 
@@ -197,7 +197,7 @@ instance of the pattern, which is deliberate.
    it turns out to have been lying, the reveal is a cheat and the player is entitled to feel
    manipulated rather than complicit. Its only wrongness is about how hard the work is, and that
    reads as ordinary corporate detachment rather than deception. This also keeps it inside
-   `quest_voice.md`'s accuracy rule, which forbids a false mechanic regardless of who is speaking.
+   `quest_format.md`'s accuracy rule, which forbids a false mechanic regardless of who is speaking.
 2. **It never comments on itself.** No knowing aside, no ominous pause, no line that invites the
    player to wonder who is talking. The moment the book seems to be hinting, the breadcrumb is spent.
 3. **It never mentions the overworld as a destination.** The escape framing belongs to the chapter

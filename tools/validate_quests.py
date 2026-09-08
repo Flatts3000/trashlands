@@ -3,7 +3,7 @@
 
 Catches the authoring/data class of quest bug - the ones that are silent in game,
 where the book simply renders wrong or a dependency quietly vanishes. It does not
-verify FTB's runtime behaviour; that needs the game (see docs/quest_voice.md).
+verify FTB's runtime behaviour; that needs the game (see docs/quest_format.md).
 
 Every check below encodes a failure that actually happened on Sky Frogs. This is a
 deliberately small subset of that pack's validator (tools/validate_quests.py there,
@@ -361,7 +361,7 @@ def check_groups(chapters, out):
 def check_lang(chapters, lang, out):
     """Lang keys must point at something real, and every quest wants a title.
 
-    A description is optional and often correct to omit (docs/quest_voice.md: most
+    A description is optional and often correct to omit (docs/quest_format.md: most
     quests earn no prose). A missing title is different - the book falls back to
     the raw task name.
     """

@@ -18,7 +18,7 @@ name: Validate Quests
 #
 # NOT run here: the voice linter. It lives in the mc-pack-toolkit sibling repo,
 # which is local-only with no git remote, so Actions cannot reach it. Voice
-# linting is a local step until that repo is published - see docs/quest_voice.md
+# linting is a local step until that repo is published - see docs/quest_format.md
 # for the command. The scorer below is self-contained and does run.
 
 on:

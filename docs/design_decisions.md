@@ -20,7 +20,7 @@ Everything upstream of the endgame (P0, P1, P2, the material economy, dimensions
 
 **Open threads not on the matrix:** pack name (working: Trashlands), Nether theme name ("compacted depths" placeholder), the quest-narrator question CLOSED 2026-09-08 - the narrator is the site operator, see P2.7-R, where construction rubble lives (see material_economy.md).
 
-**Governing principle - minimize authored prose (2026-07-14):** only two sanctioned writing surfaces - quests (quest-voice skill) and technical guidance (terse, functional). No ambient lore documents, archivist notes, or readable flavor text. Players distrust AI writing; every prose surface is a liability. Carry meaning through environment and mechanics, not writing.
+**Governing principle - minimize authored prose (2026-07-14) - OBSOLETED 2026-09-08.** See P2.7-R3. What replaces it is narrower and stands on its own footing: nothing ships as an in-game readable, lore document or found text, because `the_twist.md` requires breadcrumbs to be environmental or mechanical. There is no longer a general hostility to prose, and no per-line test on quest copy.
 
 ---
 
@@ -550,7 +550,7 @@ first one is the only one that needed a person.
 
 **1. The narrator is the site operator - the conglomerate.** Not the previous scavenger and not the
 last archivist, the two other candidates P2.7 floated. The reason is register rather than story:
-this pack mandates flat and practical copy (`quest_voice.md`), a scavenger persona wants to be wry
+this pack mandates flat and practical copy (`quest_format.md`), a scavenger persona wants to be wry
 and an archivist persona wants to be elegiac, and losing that fight on every line is precisely the
 Sky Frogs failure the register rule exists to prevent. Site documentation is flat because site
 documentation is flat, so this narrator costs no drift. What the choice is worth narratively is in
@@ -558,7 +558,7 @@ documentation is flat, so this narrator costs no drift. What the choice is worth
 
 The persona's rules (never teaches, never funny, never menacing, indifferent rather than upbeat,
 wrong about the difficulty of the work and never notices, administrative second person) are in
-`quest_voice.md`. They are tight on purpose: corporate satire is a worn seam and the failure mode is
+`quest_format.md`. They are tight on purpose: corporate satire is a worn seam and the failure mode is
 a joke, not a wrong fact.
 
 **2. Two node types, never blended.** Teaching nodes carry mechanics in the existing impersonal
@@ -607,14 +607,14 @@ or player state, and it automates style while the failure that actually reached 
 
 **The replacement is deliberately not designed yet.** Chapters get written by hand with no automated
 voice check, and tooling gets built against observed failures rather than predicted ones. Predicting
-them is what produced gates that sit permanently below their own sample-size floor. `quest_voice.md`
+them is what produced gates that sit permanently below their own sample-size floor. `quest_format.md`
 carries the detail.
 
 **Chapter groups stay empty for now.** `chapter_groups.json5` is the act structure and the cheap,
 reversible half of the escape framing in `the_twist.md`: a group carries an act name without
 committing to the `Part I..VI` count that four unwritten chapters make unknowable. Building one
 group around the current four would be a container, not a structure. Naming waits for the chapter
-set to be final; `quest_voice.md` carries the corrected reasoning, including that the previously
+set to be final; `quest_format.md` carries the corrected reasoning, including that the previously
 stated blocker (no chosen endgame) expired with P3.10 on 2026-09-06.
 
 ## P2.7-R2 - voice is per chapter, and the narrator teaches (locked 2026-09-08)
@@ -675,6 +675,46 @@ The Depths' 0%, with a maximum dependency depth of 1. It is a preface wearing qu
 Making it a four-chapter group makes that a deliberate property of the whole group rather than an
 anomaly of one chapter, and it means the player reads four chapters before doing anything. Whether
 an orientation chapter should end on an errand is open.
+
+## P2.7-R3 - zero voice rules (locked 2026-09-08)
+
+`docs/quest_voice.md` is **deleted**. This pack has no voice rules. The technical half moved
+to `quest_format.md`, which also carries the record of what was thrown out.
+
+**Why, and it is the same argument that stood the tooling down two hours earlier.** The
+shared quest-voice toolkit was stood down because it was remediation for a failure that
+happened in Sky Frogs. The *rules* it enforced came from the same postmortem and were kept
+anyway, with the standing-down note saying "those are the standards" as though that were
+principled. It was not. The rule list's own introduction read **"What that costs this pack,
+in rules"** - it said out loud that it was another pack's scar tissue.
+
+**What replaces the rules is the handbook.** A rule list is a lossy summary of a voice; once
+an exemplar exists, the summary is redundant and worse, because it is a slot that rules
+accrete back into. `handbook.md` is 1,847 words of the operator sounding like itself, and
+"read the handbook" is a better instruction than any description of it.
+
+**There is no per-line test.** The old one - teach or guide, and if neither, cut - could not
+distinguish flavour that informs from flavour that performs, so it banned both. "You are not
+insured" teaches no mechanic and states the company's entire posture toward the reader in
+four words; the old rule deletes it. Copy is judged as a document, and quest bodies as
+extracts from it.
+
+**Also obsoleted: minimize authored prose.** Its stated reason was "players distrust AI
+writing; every prose surface is a liability", which is a hedge against bad writing rather
+than a design position, and it predates this pack having a narrator, a voice, or a source
+document. **What survives is not derived from it:** nothing ships as an in-game readable or
+found text, because `the_twist.md` independently requires every breadcrumb to be
+environmental or mechanical. The handbook complies by never shipping. That decision was made
+before this one and is unaffected by it.
+
+**Rules that survive are correctness, not voice**, and every one is this pack's own: check
+mechanics against the version the pack pins (two shipped errors say why), never name the
+world, ASCII punctuation, spoiler discipline. None of them describe how a sentence should
+sound.
+
+**Casualties worth naming.** The ~30-passage budget from P2.7-R2 is gone - there is no cap,
+and a chapter has as much copy as the handbook gives it. So are the TEACH-heavy and PIVOT
+chapter classes, which came from the shared review protocol.
 
 ## P2.8 - Cross-mod teardown tables at scale (locked 2026-07-14)
 

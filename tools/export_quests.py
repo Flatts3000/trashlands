@@ -7,7 +7,7 @@ The book's copy is split across two directory trees on purpose: structure in
 `chapters/*.json5`, text in `lang/en_us/chapters/*.json5`, joined only by a
 16-digit hex id. That split is right for the game and useless for reading. There
 is no way to sit down with the pack's writing and read it as writing, which is
-exactly what a voice pass needs - `docs/quest_voice.md` says a clean lint is
+exactly what a voice pass needs - `docs/quest_format.md` says a clean lint is
 "necessary and not sufficient" and that the remaining read is human.
 
 This walks both trees, rejoins them, and writes the whole book in reading order
@@ -207,7 +207,7 @@ def build(prose_only: bool = False) -> str:
         _dt.date.today().isoformat(), len(chapters), total, described, pct))
     add("")
     add("`[no description]` marks an empty body. The pack's rule is that bare is normal and")
-    add("correct (`docs/quest_voice.md` rule 1), so a low count there is not a gap to fill.")
+    add("correct (`docs/quest_format.md` rule 1), so a low count there is not a gap to fill.")
     add("")
     add("---")
     add("")
