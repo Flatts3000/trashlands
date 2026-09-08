@@ -53,6 +53,32 @@ Every one of these fails silently. That is why the validator exists.
 - **Dict keys containing a colon must be quoted**, or the file does not parse. The
   Modonomicon reward carries `"modonomicon:book_id"`.
 
+## What the book is allowed to say
+
+The book teaches and guides. It also spends discovery every time it does, and
+[`discoverability.md`](discoverability.md) prices that: Koster's fun-is-learning, Loewenstein's
+information-gap theory, and the finding that unclosed gaps produce frustration as readily as
+curiosity.
+
+The resolution is structural rather than stylistic. **The Salvager's Manual guarantees
+discoverability - 190 entries, handed over at quest one - which frees the book to preserve
+discovery.** Anything the book omits is one keypress away, not lost. Most packs have one book and
+must choose; this one does not.
+
+**Tell it only when not knowing it is unrecoverable or invisible.**
+
+| | Verdict |
+|---|---|
+| **Unrecoverable** - tire dumps do not regrow, the field cut pays a third | tell |
+| **Invisible** - four cardboard makes a block in the 2x2 grid | tell |
+| **Discoverable** - water puts out a burning heap | make the gap salient, do not close it |
+| **Already shown** - "some heaps are alight", when they are visibly alight | never |
+
+The last row is "do not recite the recipe" generalised. Do not recite the world either.
+
+This is not a licence to be terse: three of the four still say tell, and a body has as much copy
+as its facts earn.
+
 ## Correctness
 
 Not a style matter. A wrong mechanic is a bug that ships.
