@@ -8,9 +8,9 @@ Mine a mound and it grows back. Heal the ground underneath it and it is gone for
 tension the pack runs on: garbage is your only income, and the only way to make the world green is
 to give that income up.
 
-- **Status:** **alpha, released.** Latest is `v0.12.0` (2026-09-04), which brings in Recompile 0.18.0
-  - a drained municipal aquarium with a guardian still in one flooded tank, and tire dumps that are
-  the only rubber in the world
+- **Status:** **alpha, released.** Latest is `v0.13.0` (2026-09-08), which adds FTB Ultimine with
+  the whole salvage economy walled off from it, twelve other mods, and Recompile 0.20.0 - where
+  teardown stops teaching you recipes and starts handing you the working part instead
   - on [GitHub Releases](https://github.com/Flatts3000/trashlands/releases) and CurseForge (project
   `1636627`). The pack is 78 mods on Minecraft 26.1.2 / NeoForge 26.1.2.100. If you are hand-building
   an instance, match the loader to the release you downloaded rather than to this line; `v0.9.0` and
@@ -19,10 +19,13 @@ to give that income up.
 - **The engine:** [Recompile](https://github.com/Flatts3000/recompile), a standalone NeoForge mod
   that owns the garbage world, teardown, the machines, and the reclamation ladder. Trashlands is its
   showcase pack (the Productive Frogs -> Sky Frogs pattern).
-- **The distinct hook:** teardown-as-knowledge - recover *recipes*, not just materials - on a world
-  of regrowing garbage mounds. Keep a mound as a renewable quarry, or heal its footprint and retire
-  it forever. The endgame is not beating a tide; it is no longer needing the dump. Both halves are built: teardown returns materials and Idea Fragments, and mounds regrow so the
-  quarry-versus-heal choice is a real one.
+- **The distinct hook:** four systems, four jobs, no overlap. **Sorting** a garbage block gives you
+  materials. **Teardown** gives you *function* - the working component nothing here can forge, like
+  the motor out of a washing machine. **The market** is the only place knowledge lives: every
+  Blueprint is bought from a terminal you repaired out of a broken one you found. **Freight** moves
+  your tier, eight delivery quotas at a time. All of it on a world of regrowing garbage mounds, where
+  you keep a mound as a renewable quarry or heal its footprint and retire it forever. The endgame is
+  not beating a tide; it is no longer needing the dump.
 
 ## Docs
 
