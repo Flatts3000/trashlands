@@ -617,6 +617,65 @@ group around the current four would be a container, not a structure. Naming wait
 set to be final; `quest_voice.md` carries the corrected reasoning, including that the previously
 stated blocker (no chosen endgame) expired with P3.10 on 2026-09-06.
 
+## P2.7-R2 - voice is per chapter, and the narrator teaches (locked 2026-09-08)
+
+P2.7-R, locked earlier the same day, put three voices inside one chapter and marked them with
+quest shape. This replaces that with a **chapter group**, and drops two of the six persona rules.
+Both changes come from the same source: the shape scheme did not survive being described out loud.
+
+**1. The Welcome material becomes a chapter group, not a chapter.**
+
+```
+Welcome to the Dump                    (chapter group)
+├── the modpack, out of character      Discord, the alpha notice, how the book works
+├── the narrator                       arrival: where you are, the mounds, that they come back
+├── the narrator                       the sprawl: leachate, tire piles, cardboard, mycelium
+└── the narrator                       living here: water, what spawns, sleep
+```
+
+**The reader never switches voice inside a chapter.** That is the whole gain, and it is worth more
+than the node-type scheme it replaces. P2.7-R marked voice with `shape`, which the engine treats as
+decoration, which nothing validates, and which was applied to 9 quests of 63. A group boundary is
+visible in the UI, needs no convention, and cannot be silently violated by forgetting a field.
+
+The shape convention is not thrown away, it is demoted. `diamond` for out-of-character and `gear`
+for a world-fact are still correct and still used; they are now a courtesy to the reader rather than
+the mechanism.
+
+**2. There is a third voice, and P2.7-R missed it.** That decision named two node types, teaching
+and operator, while **two out-of-character quests were already shipping** - `Join the Discord` and
+`The Book Is Not Finished`, both marked `diamond`, a convention nobody had written down and which is
+100% consistent. A pack must sometimes speak as itself; pretending the site operator says "this pack
+is an alpha" would be worse than the unlabelled mix it was meant to fix. That voice now gets a
+chapter of its own, and the honesty about alpha state lives there and nowhere else.
+
+**3. The narrator teaches. P2.7-R rules 1 and 6 are dropped.**
+
+Rule 1 said the narrator never teaches, never gives a mechanic or a number. Rule 6 said it never
+addresses the player as a person, only administrative second person. Neither survives a chapter that
+is narrator-voiced and also explains how to break a tire.
+
+That is the right trade rather than a concession, and there was already evidence. The first operator
+specimen written against P2.7-R broke rule 1 immediately and was the best of the three, because the
+operator is most itself when stating a game consequence flatly. The rule was wrong, not the line.
+**A site induction packet is instructions**; that is what induction material is for. It also
+sharpens what `the_twist.md` records: every instruction the player ever followed came from the party
+that dumped them there, and nothing has to say so.
+
+**What survives, and is the load-bearing set:** never funny, never menacing, indifferent rather than
+upbeat, and wrong about how hard the job is without ever noticing.
+
+**The cost is small, which is why this is affordable.** The existing bodies are already flat and
+practical - "Hold right-click on a Block of Garbage where it stands. It gives one item at a time" is
+what an operator would write almost verbatim. Chapters 2 and up are a reframing and a light pass,
+not 59 rewrites.
+
+**4. One property to decide with eyes open.** Welcome is 86% statements (checkmark tasks) against
+The Depths' 0%, with a maximum dependency depth of 1. It is a preface wearing questline clothes.
+Making it a four-chapter group makes that a deliberate property of the whole group rather than an
+anomaly of one chapter, and it means the player reads four chapters before doing anything. Whether
+an orientation chapter should end on an errand is open.
+
 ## P2.8 - Cross-mod teardown tables at scale (locked 2026-07-14)
 
 Content and process, not new mechanics.
