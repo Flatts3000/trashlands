@@ -18,7 +18,7 @@ P3 results: P3.2 Field Manual locked; P3.5 Nether, P3.6 End DONE; P3.1 sky dumps
 
 Everything upstream of the endgame (P0, P1, P2, the material economy, dimensions, knowledge, regrowth, the twist framing) is locked and ready to prototype.
 
-**Open threads not on the matrix:** pack name (working: Trashlands), Nether theme name ("compacted depths" placeholder), the quest-narrator question (who wrote the quest book - see the_twist.md), where construction rubble lives (see material_economy.md).
+**Open threads not on the matrix:** pack name (working: Trashlands), Nether theme name ("compacted depths" placeholder), the quest-narrator question CLOSED 2026-09-08 - the narrator is the site operator, see P2.7-R, where construction rubble lives (see material_economy.md).
 
 **Governing principle - minimize authored prose (2026-07-14):** only two sanctioned writing surfaces - quests (quest-voice skill) and technical guidance (terse, functional). No ambient lore documents, archivist notes, or readable flavor text. Players distrust AI writing; every prose surface is a liability. Carry meaning through environment and mechanics, not writing.
 
@@ -541,6 +541,81 @@ Post-twist quests exist in the datapack but stay hidden until the reveal, using 
 - **Gate at the content layer too, not just the visibility flag.** FTBQ hiding leaks via reward-item names in inventory, advancement toasts, JEI recipes for post-twist blocks, and quest-book search. So post-twist content (reclamation-scale blocks, villager-return triggers, final materials) is locked behind the Gate event itself - nothing to stumble on early.
 - **The Gate activation is the single reveal switch** - one event unlocks the whole post-twist chapter tree at once.
 - **The book should LOOK complete before the twist.** "The Way Home, Part VI" reads as the final chapter and clearly builds a Gate; a savvy player expects Gate-completion to end the pack. The existence of more chapters is itself the surprise - design intent for the quest writer.
+
+## P2.7-R - The narrator, the node split, and the shape of the book (locked 2026-09-08)
+
+P2.7 item 4 locked that quests HAVE a narrator and left the identity "a twist-adjacent open thread
+for the quest-writing phase." That phase started, so the thread closes here. Four decisions, and the
+first one is the only one that needed a person.
+
+**1. The narrator is the site operator - the conglomerate.** Not the previous scavenger and not the
+last archivist, the two other candidates P2.7 floated. The reason is register rather than story:
+this pack mandates flat and practical copy (`quest_voice.md`), a scavenger persona wants to be wry
+and an archivist persona wants to be elegiac, and losing that fight on every line is precisely the
+Sky Frogs failure the register rule exists to prevent. Site documentation is flat because site
+documentation is flat, so this narrator costs no drift. What the choice is worth narratively is in
+`the_twist.md` and is not restated anywhere else, per that file's process rule 2.
+
+The persona's rules (never teaches, never funny, never menacing, indifferent rather than upbeat,
+wrong about the difficulty of the work and never notices, administrative second person) are in
+`quest_voice.md`. They are tight on purpose: corporate satire is a worn seam and the failure mode is
+a joke, not a wrong fact.
+
+**2. Two node types, never blended.** Teaching nodes carry mechanics in the existing impersonal
+voice; operator nodes carry the narrative and contain no mechanic and no number. A quest is one or
+the other. This is Prominence II's structure, which is the corpus's only heavy-narrative pack and
+separates lore nodes from tutorial nodes without ever mixing them in a line.
+
+The consequence that made this affordable: **every body written before today is a teaching node and
+none of them change.** The narrative layer is added alongside 66 existing quests rather than folded
+into them, so adopting a narrator costs no rewrite. Had the frame been settled after the copy, it
+would have cost the whole book.
+
+**3. The narrative budget is roughly 30 short passages for the entire pack** - a chapter opener and
+a `hide_text_until_complete` chapter close per chapter, one transition per chapter group, and the
+reveal cluster. It is a ceiling, not a quota; a chapter with nothing to say gets no opener. This is
+the number that keeps "quests drive the narrative" compatible with the minimize-authored-prose
+principle, and it is small enough to be hand-edited line by line, which is how it gets written.
+
+**4. Progression is flexible, not linear.** `data.json5` shipped `progression_mode: "linear"`,
+inherited from the Sky Frogs scaffolding in the original quest-book commit and never revisited.
+Sky Frogs is a skyblock and earned it; across the thirteen packs installed on this machine the
+setting splits almost cleanly along skyblock (linear) versus open world (flexible). Trashlands is an
+open plain the player wanders, so Linear was actively wrong: it withholds task progress on a quest
+until its parent is complete, meaning a player who already found rubber gets no credit for it. Under
+Flexible, progress accumulates whenever and completion still respects the dependency, which is the
+behaviour this world wants. The tier spine is unaffected because the freight quotas gate it, not the
+progression mode.
+
+**The graph is the other half of the linearity question and is not addressed here.** Welcome is a
+star with eight of ten quests hanging off one node, and nothing in the pack uses
+`dependency_requirement: one_completed` or `optional: true`. The freight ladder gives the shape
+those primitives are for - parallel supply lines converging on one delivery quota per tier, branch
+freely inside a chapter, the quota as the only gate between them - but that is a chapter-design job
+per chapter, not a global setting, so it is recorded as the intended shape and built as chapters
+land.
+
+**5. The inherited voice tooling is stood down, and nothing is deleted.** The shared spec, the
+AI-tell linter, the 13-pack corpus and `tools/score_quest_voice.py` stay exactly where they are and
+may be updated later; they are no longer the authority on this pack's copy and no writing pass is
+gated on them. All of it is remediation for a failure that happened in Sky Frogs: the corpus was
+assembled to find what that pack was not, the linter catalogs the tells it shipped, and the scorer
+measures the 245-of-245 subtitle shape it had. This pack has zero subtitles. It is also entirely
+prohibitive (nothing in it helps produce a line), it has no model of narrator, node type, chapter arc
+or player state, and it automates style while the failure that actually reached players was accuracy
+- a drop rate that shipped as three different numbers, none matching the pinned build.
+
+**The replacement is deliberately not designed yet.** Chapters get written by hand with no automated
+voice check, and tooling gets built against observed failures rather than predicted ones. Predicting
+them is what produced gates that sit permanently below their own sample-size floor. `quest_voice.md`
+carries the detail.
+
+**Chapter groups stay empty for now.** `chapter_groups.json5` is the act structure and the cheap,
+reversible half of the escape framing in `the_twist.md`: a group carries an act name without
+committing to the `Part I..VI` count that four unwritten chapters make unknowable. Building one
+group around the current four would be a container, not a structure. Naming waits for the chapter
+set to be final; `quest_voice.md` carries the corrected reasoning, including that the previously
+stated blocker (no chosen endgame) expired with P3.10 on 2026-09-06.
 
 ## P2.8 - Cross-mod teardown tables at scale (locked 2026-07-14)
 
