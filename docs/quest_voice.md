@@ -256,12 +256,45 @@ one group around the current four would be a container, not a structure.
 - **ASCII punctuation only.** No em-dashes, no en-dashes, no emoji.
 - **FTB Quests colour codes** (`&a`, `&e`) sparingly, on key nouns, never as decoration.
 
+## The review loop
+
+Copy is reviewed in a real editor, by a person, and walked back into the json5. Grammarly is
+the checker (2026-09-08); nothing about the loop is specific to it.
+
+```sh
+python tools/export_quests.py --prose-only --out docs/quest_prose.md   # whole book
+python tools/export_quests.py --split docs/quest_prose/                # one file per chapter
+#   ... paste into Grammarly / Coda, review, edit there ...
+python tools/import_quests.py docs/quest_prose.md                      # show the diff
+python tools/import_quests.py docs/quest_prose.md --apply              # write it
+python tools/validate_quests.py
+```
+
+**Export prose, never the full book.** `quest_book.md` is 60% metadata by non-blank line:
+`<sub>` tags, code spans, and id/tasks/rewards bullets under every quest. Pasted into a
+checker that dominates the document, so it proofreads `recompile:garbage_block`, reports
+"Add a space" on `minecraft:paper`, and folds all of it into a writing-quality score that
+is mostly scoring markdown. `--prose-only` takes it to zero. This was diagnosed as a
+vendor problem before it was diagnosed as ours.
+
+**Split by chapter for anything scored.** A whole-book AI-detection or quality number
+averages 63 quests into one figure that moves for reasons nobody can locate.
+
+**The import refuses rather than guesses**, on every axis: dry run by default, exact
+structure match or it aborts entirely, titles compared as a checksum and reported rather
+than trusted, only `quest_desc` ever written, nothing created or deleted, and changed
+bodies spliced in place so the diff shows copy edits and nothing else.
+
+**Four bodies carry colour codes** (`&a`, `&e`, `&r`) and the prose export strips them. If
+one of those comes back changed the import refuses it by name and you edit it by hand. If
+it comes back unchanged the original is left alone with its codes intact.
+
 ## Checks
 
 ```sh
-python tools/export_quests.py     # rebuild docs/quest_book.md, then read it
 python tools/validate_quests.py
-python tools/pack_refresh.py      # stage index.toml and pack.toml in the same commit
+python tools/test_import_quests.py   # the importer writes to shipped copy
+python tools/pack_refresh.py         # stage index.toml and pack.toml in the same commit
 ```
 
 `validate_quests.py` is structural and stays mandatory: every failure it catches is silent in game,

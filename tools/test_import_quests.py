@@ -1,0 +1,168 @@
+#!/usr/bin/env python3
+"""Tests for `import_quests.py`, which writes to shipped player-facing copy.
+
+This is the most dangerous tool in the repo. Everything else here reads, reports
+or validates; this one rewrites the quest book from a document that has been
+round-tripped through a word processor. `export_quests.py` argues in its own
+docstring that the export should stay one-way because the failure mode of an
+importer is *silent text loss* in a book that has already shipped empty twice.
+That objection was not withdrawn when the importer was written, it was turned
+into requirements, and these are the tests for those requirements.
+
+The two that matter most:
+
+  * **An unedited round trip must be a no-op.** Export, import, zero changes. If
+    that ever fails, the tool is rewriting bodies nobody touched and the git
+    diff of a real review becomes unreadable.
+  * **Colour codes must survive.** Four bodies carry `&a`/`&e`/`&r`, the prose
+    export strips them, and a naive import would delete them permanently with
+    nothing to say so.
+
+`splice` is tested directly because it edits JSON5 by text rather than by
+reparsing, to keep the diff local. That is the right call for reviewability and
+the wrong call for safety unless the bracket scan is correct, so the scan gets
+its own cases including a string containing a bracket.
+"""
+
+from __future__ import annotations
+
+import os
+import pathlib
+import sys
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import import_quests as iq  # noqa: E402
+
+if hasattr(sys.stdout, "reconfigure"):
+    sys.stdout.reconfigure(encoding="utf-8")
+
+SAMPLE = '''{
+  "quest.7A55E0BA6E000010.title": "Welcome",
+  "quest.7A55E0BA6E000010.quest_desc": [
+    "First line.",
+    "",
+    "Second line."
+  ],
+  "quest.7A55E0BA6E000011.quest_desc": [
+    "Untouched [not an array end] body."
+  ],
+}
+'''
+
+
+def parse(text: str):
+    import tempfile
+    fd, p = tempfile.mkstemp(suffix=".md")
+    with os.fdopen(fd, "w", encoding="utf-8") as fh:
+        fh.write(text)
+    try:
+        return iq.parse_prose(pathlib.Path(p))
+    finally:
+        os.unlink(p)
+
+
+def cases():
+    out = []
+
+    # ---------------------------------------------------------------- parsing
+    doc = "# Title\n\npreamble text\n\n## Welcome\n\n### One\n\nAlpha.\n\nBeta.\n\n### Two\n\nGamma.\n"
+    got = parse(doc)
+    out.append(("chapters and quests are found",
+                [(c[0], [q[0] for q in c[1]]) for c in got],
+                [("Welcome", ["One", "Two"])]))
+    out.append(("blank lines separate paragraphs",
+                got[0][1][0][1], ["Alpha.", "Beta."]))
+    out.append(("preamble under the H1 is not copy",
+                len(got[0][1]), 2))
+
+    wrapped = "## C\n\n### Q\n\nA line that was\nsoft wrapped by the editor.\n"
+    out.append(("a soft-wrapped paragraph rejoins into one",
+                parse(wrapped)[0][1][0][1],
+                ["A line that was soft wrapped by the editor."]))
+
+    out.append(("a document with no chapters parses to nothing",
+                parse("# Just a title\n\nsome text\n"), []))
+
+    # ----------------------------------------------------------------- render
+    out.append(("paragraphs render with a blank separator",
+                iq.render_array(["A.", "B."], "  ", "    "),
+                '[\n    "A.",\n    "",\n    "B.",\n  ]'))
+    out.append(("a quote is escaped",
+                iq.render_array(['He said "no".'], "  ", "    "),
+                '[\n    "He said \\"no\\".",\n  ]'))
+    out.append(("a backslash is escaped",
+                iq.render_array(["a\\b"], "  ", "    "),
+                '[\n    "a\\\\b",\n  ]'))
+
+    # ----------------------------------------------------------------- splice
+    spliced = iq.splice(SAMPLE, "7A55E0BA6E000010", ["Only line."])
+    out.append(("splice replaces the target body",
+                '"Only line.",' in spliced, True))
+    out.append(("splice removes the old body",
+                "First line." in spliced, False))
+    out.append(("splice leaves the neighbouring quest alone",
+                "Untouched [not an array end] body." in spliced, True))
+    out.append(("splice leaves the title alone",
+                '"quest.7A55E0BA6E000010.title": "Welcome",' in spliced, True))
+    out.append(("a bracket inside a string does not end the array",
+                iq.splice(SAMPLE, "7A55E0BA6E000011", ["New."]).count("["),
+                SAMPLE.count("[") - 1))
+
+    try:
+        iq.splice(SAMPLE, "DEADBEEFDEADBEEF", ["x"])
+        got = "no error"
+    except iq.Abort:
+        got = "Abort"
+    out.append(("splicing an absent quest aborts", got, "Abort"))
+
+    not_array = '{\n  "quest.7A55E0BA6E000010.quest_desc": "a plain string",\n}\n'
+    try:
+        iq.splice(not_array, "7A55E0BA6E000010", ["x"])
+        got = "no error"
+    except iq.Abort:
+        got = "Abort"
+    out.append(("refusing to rewrite a non-array body", got, "Abort"))
+
+    # ------------------------------------------------- the live round trip
+    # The real book, exported and reparsed. This is the no-op guarantee.
+    import export_quests as ex
+    text = ex.build(prose_only=True)
+    reparsed = parse(text)
+    book = iq.current_book()
+    out.append(("round trip preserves the chapter count",
+                len(reparsed), len(book)))
+    out.append(("round trip preserves every quest count",
+                [len(c[1]) for c in reparsed], [len(c[1]) for c in book]))
+
+    mismatched = []
+    for (etitle, equests), (btitle, bquests) in zip(reparsed, book):
+        for (eq_title, eq_paras), (qid, bq_title, bq_desc) in zip(equests, bquests):
+            old = [p for p in (ex.strip_codes(x) for x in bq_desc) if p.strip()]
+            new = [p for p in eq_paras if p.strip()]
+            if old != new:
+                mismatched.append(qid)
+    out.append(("round trip changes no body at all", mismatched, []))
+
+    coded = [qid for _c, qs in book for qid, _t, d in qs
+             if any(iq.COLOUR_RE.search(x) for x in d)]
+    out.append(("the colour-coded bodies are still there to protect",
+                len(coded) > 0, True))
+
+    return out
+
+
+def main() -> int:
+    failures = 0
+    all_cases = cases()
+    for name, got, want in all_cases:
+        ok = got == want
+        failures += not ok
+        print("  {}  {}".format("ok  " if ok else "FAIL", name))
+        if not ok:
+            print("          got {!r}\n          want {!r}".format(got, want))
+    print("\n{} case(s), {} failure(s)".format(len(all_cases), failures))
+    return 1 if failures else 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())

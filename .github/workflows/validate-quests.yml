@@ -29,6 +29,9 @@ on:
       - "tools/validate_quests.py"
       - "tools/score_quest_voice.py"
       - "tools/test_validate_quests.py"
+      - "tools/import_quests.py"
+      - "tools/export_quests.py"
+      - "tools/test_import_quests.py"
       - "tools/verify_quests.py"
       - ".github/workflows/validate-quests.yml"
   push:
@@ -39,6 +42,9 @@ on:
       - "tools/validate_quests.py"
       - "tools/score_quest_voice.py"
       - "tools/test_validate_quests.py"
+      - "tools/import_quests.py"
+      - "tools/export_quests.py"
+      - "tools/test_import_quests.py"
       - "tools/verify_quests.py"
   workflow_dispatch:
 
@@ -56,7 +62,7 @@ jobs:
       # is still worth doing: without this the file is in no path filter at all, and
       # a syntax error in it reaches main with nothing to say so.
       - name: Compile the quest tools
-        run: python -m compileall -q tools/verify_quests.py tools/validate_quests.py tools/score_quest_voice.py
+        run: python -m compileall -q tools/verify_quests.py tools/validate_quests.py tools/score_quest_voice.py tools/export_quests.py tools/import_quests.py
 
       # The validator's own tests, run before it. A validator nobody has seen
       # fail is not evidence, and every check it makes is for a failure that is
@@ -64,6 +70,13 @@ jobs:
       # like a healthy book.
       - name: Test the quest validator
         run: python tools/test_validate_quests.py
+
+      # import_quests.py rewrites shipped player-facing copy from a document that
+      # has been round-tripped through a word processor. The failure mode is
+      # silent text loss, so the no-op guarantee (export then import changes
+      # nothing) and the colour-code refusal are both covered here.
+      - name: Test the quest importer
+        run: python tools/test_import_quests.py
 
       - name: Validate quest structure
         run: python tools/validate_quests.py

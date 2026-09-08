@@ -1,0 +1,55 @@
+# Welcome
+
+## Welcome to Trashlands
+
+A coarse dirt plain covered in mounds of garbage. No ore under it, no trees on it.
+
+Everything you build starts as a Block of Garbage you dug out of a mound.
+
+The Salvager's Manual comes with this quest. It goes deeper than this book does.
+
+## Join the Discord
+
+The numbers in this pack are first-pass. Bug reports and balance complaints are both useful.
+
+Click the Discord badge above. It opens the invite in your browser.
+
+## The Book Is Not Finished
+
+This pack is an alpha, and the quest book is the least finished part of it.
+
+What is here is a rough guide, not the shape it will take. Most of the work is going into Recompile, the mod this pack is built on, and the book gets rewritten once that settles.
+
+The Salvager's Manual covers more. Use it first.
+
+## What Spawns Here
+
+Nothing hostile spawns on the dump, so you do not need a shelter. A few friendly mobs turn up, rarely, and none of them are food.
+
+Sleep anyway. Phantoms still come after a few nights without it.
+
+The demolition yard is different. Things spawn there in numbers, so bring a weapon.
+
+## Water
+
+There is no water in this world at first. Rain is the only source early on, and the Rain Collector catches it.
+
+Two source blocks will not fill a third. That vanilla trick is off here, so water never multiplies.
+
+There is no thirst bar, so going without costs you nothing until you build something that drinks.
+
+## Pick Through the Garbage
+
+Hold right-click on a Block of Garbage where it stands. It gives one item at a time, and after two or three the block is gone.
+
+Sorting where it stands takes no tool, whatever you are holding. Breaking a block to carry it needs a shovel, and without one you get nothing. Trash Bags are the exception: they break by hand.
+
+What comes out is random, so this takes a few blocks.
+
+## Green Ground Erodes
+
+Grass does not spread here, and coarse dirt reverts it at the edge. Green ground erodes inward.
+
+Only soil touching unhealed ground goes. The interior holds until the edge reaches it, blocks you placed are never touched, and none of it runs while you are logged off.
+
+This is a long way off. It matters once you start reclaiming ground, and the machines that heal it also hold it.

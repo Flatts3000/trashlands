@@ -29,6 +29,7 @@ from __future__ import annotations
 import argparse
 import datetime as _dt
 import os
+import pathlib
 import re
 import sys
 
@@ -274,14 +275,65 @@ def build(prose_only: bool = False) -> str:
     return "\n".join(out).rstrip() + "\n"
 
 
+def write_split(out_dir: str) -> int:
+    """One prose file per chapter.
+
+    Review happens a chapter at a time, and Grammarly's own AI-detection and
+    writing-quality scores are per document: run against the whole book they
+    average 63 quests into one number that moves for reasons nobody can locate.
+    Per chapter the number points somewhere.
+    """
+    import unicodedata
+
+    chapters = sorted(vq.load_chapters(),
+                      key=lambda c: (c.data.get("order_index", 0), c.name))
+    qlang, chlang = lang_maps(vq.load_lang())
+    d = pathlib.Path(out_dir)
+    d.mkdir(parents=True, exist_ok=True)
+
+    written = 0
+    for ch in chapters:
+        cid = str(ch.data.get("id", "")).upper()
+        title = strip_codes(chlang.get(cid, {}).get("title") or ch.name)
+        lines = ["# " + title, ""]
+        bodies = 0
+        for q in reading_order(ch):
+            meta = qlang.get(str(q.get("id", "")).upper(), {})
+            desc = meta.get("desc", [])
+            if not any(s.strip() for s in desc):
+                continue
+            lines.append("## " + strip_codes(meta.get("title") or "(untitled)"))
+            lines.append("")
+            for line in desc:
+                lines.append(strip_codes(line) if line.strip() else "")
+            lines.append("")
+            bodies += 1
+        slug = unicodedata.normalize("NFKD", title).encode("ascii", "ignore").decode()
+        slug = re.sub(r"[^a-z0-9]+", "_", slug.lower()).strip("_") or ch.name
+        path = d / (slug + ".md")
+        path.write_text("\n".join(lines).rstrip() + "\n",
+                        encoding="utf-8", newline="\n")
+        print("wrote {} ({} bodies)".format(path, bodies))
+        written += 1
+    print("{} chapter file(s)".format(written))
+    return 0
+
+
 def main() -> int:
     ap = argparse.ArgumentParser(
         description="Export the quest book to readable markdown.")
+    ap.add_argument("--split", metavar="DIR",
+                    help="write one prose file per chapter into DIR; a whole-book "
+                         "AI-detection score is diluted across 63 quests, a "
+                         "chapter-sized one is readable and reviewable in a sitting")
     ap.add_argument("--prose-only", action="store_true",
                     help="titles and bodies only, for a human or a grammar checker")
     ap.add_argument("--out", default=DEFAULT_OUT,
                     help="output path, or - for stdout (default: " + DEFAULT_OUT + ")")
     args = ap.parse_args()
+
+    if args.split:
+        return write_split(args.split)
 
     text = build(prose_only=args.prose_only)
     if args.out == "-":
