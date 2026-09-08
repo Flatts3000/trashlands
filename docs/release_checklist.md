@@ -114,7 +114,27 @@ Two pins drift silently and both ship to every new downloader.
      mod becomes a vein-miner pointed at the core loop, with no error anywhere. In game: hold the
      Ultimine key on a Block of Garbage and confirm only the block under the crosshair highlights,
      then on deepslate two blocks under the plain and confirm it does not chain either, then on a
-     grown tree and confirm the whole trunk *does*. That last one is the positive control: without it
+     grown tree and confirm the whole trunk *does*.
+
+     **The tag half of that is scriptable and no longer needs eyes**, which matters because it is the
+     half that fails silently. Launch with devbridge and ask the game directly:
+
+     ```sh
+     cd F:/devbridge/gamebridge
+     python -c "from gamebridge.cli import main; import sys; sys.argv=['gamebridge','launch','--instance','C:/Users/User/curseforge/minecraft/Instances/Trashlands','--port','8604','--world','New World']; sys.exit(main())"
+     # then, per block:
+     #   setblock ~2 ~-1 ~ <block>
+     #   execute if block ~2 ~-1 ~ #ftbultimine:excluded_blocks
+     ```
+
+     `result: 1` means the tag matched. **Place on supported ground, not in mid-air**: several of
+     these blocks have gravity, so a block set at `~ ~3 ~` falls before the test runs and reports a
+     false negative that looks exactly like a broken tag. Verified this way on 2026-09-08 for
+     `garbage_block`, `trash_bag`, `slag_rubble`, `ancient_sculk`, `stained_ground`, `tire`,
+     `techno_organic_waste` and `deepslate`, with `oak_log` and `cobbled_deepslate` as negative
+     controls. **devbridge only opens its socket on world load** (`DevBridge.java`: started on
+     `ServerStarted`, because `cmd` needs a `MinecraftServer`), so `--world` is required - a launch to
+     the main menu leaves nothing listening. That last one is the positive control: without it
      a totally unloaded tag looks identical to a working one. **In the Compacted Depths the terrain
      should not chain** - techno_organic_waste, slag_rubble and ancient_sculk are all excluded.
      Do not write that test as "nothing chains in the Depths": vanilla fortresses and bastions
