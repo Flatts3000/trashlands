@@ -11,6 +11,7 @@ On the design side: walkthrough complete except the parked endgame/postgame clus
 - [`docs/feature_matrix.md`](docs/feature_matrix.md) - every feature by priority (P0 slice -> P3 polish) and feasibility. The build order.
 - [`docs/design_decisions.md`](docs/design_decisions.md) - the per-feature locked-decisions log + **the session bookmark** (walkthrough status, what to resume next).
 - `docs/the_twist.md` - **FULL SPOILERS.** The hidden narrative layer. Read before writing any quest text or player-facing copy; never reference its contents anywhere else.
+- [`docs/handbook.md`](docs/handbook.md) - the operator's personnel handbook. Quest copy is extracted from it; it never ships.
 - [`docs/quest_voice.md`](docs/quest_voice.md) - how quest text is written here, and the Sky Frogs failure it exists to avoid. Read before authoring any player-facing copy.
 - [`docs/pack_setup.md`](docs/pack_setup.md) - the locked mod lineup, packwiz commands, and how to stand up a test instance.
 - [`docs/distribution.md`](docs/distribution.md) + [`docs/release_checklist.md`](docs/release_checklist.md) - how releases ship, and the CurseForge API traps (game-version ids are resolved, never hardcoded).

@@ -109,6 +109,18 @@ Rules, and they are tight:
 6. **It does not address the player as a person.** Administrative second person and passive
    construction: "personnel", "recovery is permitted", "the assignment". It has never met you.
 
+## The handbook is the source
+
+Quest copy is **extracted from [`handbook.md`](handbook.md)**, not written per quest. Writing 65
+bodies in isolation against the same rules manufactures the uniformity it is trying to avoid; a
+handbook is one document with an argument, so variation comes free and the extracts inherit it.
+
+It never ships. It is a source document, and a section that starts explaining what a Scrap Knife
+*is* has drifted into the Salvager's Manual's job.
+
+**The world is never named**, in the handbook or in any quest text. The readout at the Gate is the
+first and only naming. See `the_twist.md`.
+
 ## Two node types, never blended
 
 Prominence II is the corpus's only heavy-narrative pack, and what makes it work is not that it

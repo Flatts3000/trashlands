@@ -1,4 +1,4 @@
-# Site handbook
+# Personnel handbook
 
 **Source document. This never ships.** No part of it becomes an in-game readable, a
 Modonomicon book, or a found item. Quest copy is *extracted* from it; players see the
@@ -20,16 +20,22 @@ covers the half the Manual does not: terms, conditions, orientation, what is and
 provided. If a section here starts explaining what a Scrap Knife *is*, it has drifted into
 the Manual's job and should be cut.
 
-**Voice.** The site operator, per `design_decisions.md` P2.7-R2. Never funny, never
+**Voice.** The operator, per `design_decisions.md` P2.7-R2, which calls it "the site
+operator" - written before the scale was corrected from a landfill to a disposal world. The
+company is the same; the site was never a site. Never funny, never
 menacing, indifferent rather than upbeat, and wrong about how hard the work is without ever
 noticing. It teaches directly; rules 1 and 6 of P2.7-R were dropped. It never lies: every
 factual claim must hold at the pinned Recompile version, because a narrator caught lying
 turns the reveal into a cheat.
 
-**Open thread.** The site's designation is undecided (`the_twist.md`). It must be
-bureaucratic rather than evocative, because the reveal resolves it to a designation. "The
-Heap" is the wrong register and is retired. Below it is written as *the facility* wherever
-a name would otherwise appear.
+**The world is never named. Locked 2026-09-08, owner's call, and it closes the open thread
+rather than answering it.** No designation, no code, no number, in the handbook or in any
+quest text. This is not squeamishness about picking one: an unnamed world means the
+readout at the Gate is the first and only time it is ever named, and a name that appears
+once at the end lands harder than a name repeated for twenty hours. It is also
+characterisation. The company does not name it because it has enough of these that this one
+is not distinguished, which is why the welcome says *a* disposal world rather than *this*
+one. See `the_twist.md`.
 
 **Budget.** This document may be longer than what ships, and should be. The ~30-passage cap
 in P2.7-R2 governs extracts, not the source. Excerpting from a larger body is what makes an
@@ -37,19 +43,34 @@ excerpt read like one.
 
 ---
 
-## 1. The facility
+## Welcome
 
-The facility is an active disposal site. It receives domestic and industrial waste on a
-continuous basis and has done so without interruption for the whole of its operating life.
+Welcome to the company.
 
-Deliveries arrive from above, on their own schedule, and are not announced. Personnel
+This handbook is issued to all personnel on assignment to a disposal world. It applies in
+full from the date of arrival and sets out what the work involves, what is provided, and
+what is expected of you.
+
+Read it before beginning work. Retain it.
+
+We are pleased to have you with us.
+
+## 1. The world
+
+This world is in active disposal use. It has been in continuous receipt for the whole of
+its service life and is not scheduled to come out of it.
+
+The whole surface is the tip. There is no boundary to the working area because there is no
+part of the world that is not the working area, and there is nothing here that is not waste
+or under waste.
+
+Deliveries come down from orbit on their own schedule and are not announced. Personnel
 working the surface should expect material to land near them and should not stand under a
 descending load.
 
-There is no perimeter, no gate and no office. There is no supervisor on site. The facility
-extends past the horizon in every direction and there is no part of it that is not in use.
-
-Ground here is compacted dirt. There is no ore beneath it and nothing grows on it.
+There is no perimeter, no gate, no office and no supervisor, none of which a body of this
+class requires. Ground is compacted dirt. There is no ore beneath it and nothing grows on
+it.
 
 ## 2. Your arrangement
 
@@ -81,21 +102,21 @@ hand and are not worth breaking. Take them to a bench.
 to a bench and cut apart properly it gives roughly three times as much, and the steel belt
 inside it, which the field cut destroys. Carry them.
 
-**Cardboard** is baled and needs no tool at all. It is the one material on site that can be
+**Cardboard** is baled and needs no tool at all. It is the one material here that can be
 made into something without a station.
 
 **Standing liquid** collects in the low ground. See section 5.
 
 ## 4. What is not provided
 
-The facility provides no accommodation, no potable supply, no catering, no lighting and no
+This world provides no accommodation, no potable supply, no catering, no lighting and no
 transport.
 
 There is no shift pattern and no rest period, because there is no shift. Personnel make
 their own arrangements for shelter, water and food, and are expected to do so from material
-recovered on site. This is not usually a difficulty.
+recovered here. This is not usually a difficulty.
 
-**Water.** There is no supply and no natural source. Rain is the only water the facility
+**Water.** There is no supply and no natural source. Rain is the only water this world
 receives, and it must be caught as it falls. Standing liquid is not water and cannot be
 substituted for it.
 
@@ -123,7 +144,7 @@ ground rather than a security measure, and it does not extend past the working a
 demolition yard beyond the tip is not covered by it, and personnel entering the yard should
 be equipped accordingly.
 
-The facility does not restrict movement. Anything a person encounters past the tip is
+Movement is not restricted. Anything a person encounters past the tip is
 outside the scope of this handbook.
 
 **Rest.** Personnel who go without rest for several days will attract attention from above.
@@ -132,7 +153,7 @@ serviceable.
 
 ## 6. Outbound
 
-Terminals are the only point of contact with the company on site. There are three, they do
+Terminals are the only point of contact with the company on the surface. There are three, they do
 different jobs, and none of them is built from new. A dead terminal pried out of bulk waste
 is repaired into whichever one you choose, and the choice is made once.
 
@@ -149,7 +170,7 @@ themselves; the specification is not the item, and every material is still your 
 concern. Everything the company holds is available this way and nothing is available in any
 other. Prices are fixed per item rather than by scarcity.
 
-**The Freight Terminal** is separate and takes goods, not payment. The facility's schedule
+**The Freight Terminal** is separate and takes goods, not payment. The disposal schedule
 runs in eight consignments, each naming specific goods in specific quantities:
 
 1. Household clearance
@@ -162,14 +183,14 @@ runs in eight consignments, each naming specific goods in specific quantities:
 8. Final consignment
 
 Each requires more processing than the one before it. Completing a consignment advances the
-facility's operating grade, and the grade is what determines the stock the Buy Terminal will
+world's operating grade, and the grade is what determines the stock the Buy Terminal will
 release. **Account balance does not advance the grade.** No quantity of trading substitutes
 for a consignment, and this is deliberate.
 
-The grade belongs to the facility rather than to the individual. Where more than one person
-works a site, a consignment completed by any of them advances it for all.
+The grade belongs to the world rather than to the individual. Where more than one person
+works it, a consignment completed by any of them advances it for all.
 
-Freight leaves the way deliveries arrive.
+Freight goes up the way deliveries come down.
 
 ## 7. Ground condition
 
@@ -182,13 +203,13 @@ restored, and will be found as it was left.
 
 **Not every deposit is replaced.** Tire stacks, in particular, are not, and a stripped stack
 stays stripped. Personnel should not assume that what holds for household waste holds for
-the rest of the site.
+the rest of the world.
 
 Ground that has been brought back into biological condition ceases to receive deliveries
 over that footprint and is removed from the working inventory. The company has no
 requirement in either direction and expresses no preference.
 
-The facility has capacity for the foreseeable future.
+The world has capacity for the foreseeable future.
 
 ---
 
@@ -199,7 +220,8 @@ into the book, and so a body that came from nowhere is visible.
 
 | Section | Feeds | Status |
 |---|---|---|
-| 1 The facility | The Ground: Site Induction | drafted |
+| Welcome | The Ground: chapter opener | to extract |
+| 1 The world | The Ground: Site Induction | redraft, was site-scale |
 | 2 Your arrangement | The Ground: Site Induction | drafted |
 | 3 What is here | The Sprawl: Household Waste, Tire Piles, Cardboard | partly |
 | 4 What is not provided | Living Here: Accommodation, Water | partly |
