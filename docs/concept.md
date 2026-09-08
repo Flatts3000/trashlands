@@ -195,7 +195,7 @@ be inferred from.
 
 - **Is sifting the price, or is sifting the game? (opened 2026-07-15 - the big one.)** "Same verb at three speeds" (hand -> tarp -> machines) is a **ladder**, which says sifting is the *price* and the fun is buying your way out of it - Factorio's manual mining. That is a legitimate design, but it means the first hour must carry the whole fantasy and everything after is about escape, so sifting should be made *short*, never deep. The alternative is that sifting **is** the game, in which case it needs judgment back - and "everything found breaks down into materials", the rule that fixed the item-flood problem, has to go, because if every object is worth grabbing there is no decision left and sifting degrades into hoovering. Rarity, blueprints, the knowledge system and the flood all resolve differently depending on this answer. See "Why sifting garbage is fun" above.
 - **Pack name** (working: Trashlands) and the Nether theme's name ("compacted depths" placeholder).
-- **The quest-narrator question:** who wrote the quest book (see `the_twist.md` - spoilers).
+- **The quest-narrator question: CLOSED 2026-09-08.** The quest book is written by the site operator. See `design_decisions.md` P2.7-R for the decision and `docs/quest_voice.md` for the persona rules.
 - P2/P3 features not yet walked through - see the bookmark in [`design_decisions.md`](design_decisions.md).
 
 ## Next actions

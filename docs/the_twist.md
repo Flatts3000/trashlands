@@ -167,6 +167,61 @@ just the ones after the halfway point.
 live bulb - which is breadcrumb 2's argument in mechanical form: the buried world's *objects* still
 work, because they were built for people. The evidence moved from the paper to the parts.
 
+## The narrator is the conglomerate (added 2026-09-08, P2.7-R)
+
+The open thread from P2.7 item 4 - who wrote the quest book - is closed, and the answer is **the
+party that dumped you here.** The book is the operator's induction material for a worker it has
+never met.
+
+The public half of this decision (`design_decisions.md` P2.7-R, `quest_voice.md`) argues it purely on
+register: site documentation is naturally flat, so the narrator costs no voice drift. That argument
+is true and is the entire reason given anywhere else. This is the rest of it.
+
+### What it does
+
+**It is the market move applied to the book itself.** The conglomerate section above already says the
+sharpest unhinted thing in the design is that *the surface fiction says you were dumped here by
+parties unknown, and you have been doing business with them since the first hour.* The narrator
+extends that from the economy to the instructions. Every quest the player followed, every piece of
+orientation they trusted, came from them. Not a single line of it has to be a lie for that to land.
+
+**The player is told, and it does not help.** The narrator is openly the site operator from the first
+screen. Nothing is concealed and nothing needs to be, which is what makes it fair play: the fact is
+in plain sight for twenty hours and means nothing until the Gate opens, at which point it means
+everything. This is the same shape as the F3 dimension id and the freight route, and it is the third
+instance of the pattern, which is deliberate.
+
+### The rules this imposes
+
+1. **The narrator never lies.** Every factual claim it makes must be true at the pinned version. If
+   it turns out to have been lying, the reveal is a cheat and the player is entitled to feel
+   manipulated rather than complicit. Its only wrongness is about how hard the work is, and that
+   reads as ordinary corporate detachment rather than deception. This also keeps it inside
+   `quest_voice.md`'s accuracy rule, which forbids a false mechanic regardless of who is speaking.
+2. **It never comments on itself.** No knowing aside, no ominous pause, no line that invites the
+   player to wonder who is talking. The moment the book seems to be hinting, the breadcrumb is spent.
+3. **It never mentions the overworld as a destination.** The escape framing belongs to the chapter
+   titles and the Gate; an operator would have no reason to discuss where a worker imagines they are
+   going. Keeping the narrator silent on it is what stops the two fictions colliding.
+4. **The reveal is not delivered by the narrator.** The Gate opening onto garbage carries it. The
+   single confirmation beat is the destination readout resolving to `Site designation: Overworld`,
+   which is a machine printing a fact, not a character explaining one.
+
+### Two open threads this creates
+
+**The site designation.** The narrator needs to call this place something, and the reveal is that the
+designation resolves to Overworld. So the working name must be bureaucratic rather than evocative -
+a cell reference or a site number, the sort of label a company gives a landfill. "The Heap" was the
+old quest-voice placeholder and is the wrong register for this narrator: too colourful, and a name
+with personality cannot resolve to a designation later. Not decided.
+
+**Whose voice runs the final chapter.** The narrator is the operator, and after the Gate the operator
+is not a party the player is still taking instructions from. The market inverts rather than breaks
+(above); the narrator cannot do the same trick, because a voice that keeps talking after the reveal
+has to acknowledge it, and rule 2 says it never acknowledges anything. The likely answer is that the
+operator simply stops and the epilogue has no narrator at all, which would make the quiet itself the
+last beat. Not decided, and it is a genuine authoring question rather than a detail.
+
 ## What the twist resolves
 
 - **The pristine-payoff open question** (design_decisions.md, Dimensions section): the green world is not a place you reach; it is the thing you make after the reveal. The final chapter pivots escape -> reclamation: heal the mounds, retire the quarries, life returns. The quarry-vs-heal tension (P1.6) is the epilogue's gameplay.
