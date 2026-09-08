@@ -1,12 +1,4 @@
 {
-  "quest.7A55E0BA6E000018.title": "Green Ground Erodes",
-  "quest.7A55E0BA6E000018.quest_desc": [
-    "Grass does not spread here, and coarse dirt reverts it at the edge. Green ground erodes inward.",
-    "",
-    "Only soil touching unhealed ground goes. The interior holds until the edge reaches it, blocks you placed are never touched, and none of it runs while you are logged off.",
-    "",
-    "This is a long way off. It matters once you start reclaiming ground, and the machines that heal it also hold it.",
-  ],
   "quest.7A55E0BA6E000016.title": "What Spawns Here",
   "quest.7A55E0BA6E000016.quest_desc": [
     "Nothing hostile spawns on the dump, so you do not need a shelter. A few friendly mobs turn up, rarely, and none of them are food.",
@@ -52,5 +44,33 @@
     "Sorting where it stands takes no tool, whatever you are holding. Breaking a block to carry it needs a shovel, and without one you get nothing. Trash Bags are the exception: they break by hand.",
     "",
     "What comes out is random, so this takes a few blocks.",
+  ],
+  "quest.7A55E0BA6E000114.title": "Mounds Come Back",
+  "quest.7A55E0BA6E000114.quest_desc": [
+    "Dig a mound out and it comes back. Garbage falls from the sky over the footprint until it is roughly the size it was.",
+    "",
+    "So nothing you take is spent for good. Work whichever mound is nearest.",
+  ],
+  "quest.7A55E0BA6E000113.title": "Leachate",
+  "quest.7A55E0BA6E000113.quest_desc": [
+    "The standing liquid out here is leachate. It is not water, and nothing that wants water will take it.",
+    "",
+    "Wading gives you Hunger for a few seconds, refreshed while you stay in it, and costs you nothing else. It is not poison and it does no damage.",
+    "",
+    "It drowns you over your head.",
+  ],
+  "quest.7A55E0BA6E000115.title": "Tire Piles",
+  "quest.7A55E0BA6E000115.quest_desc": [
+    "Break a tire by hand and you get the tire.",
+    "",
+    "Break it holding a Scrap Knife and you get Rubber Scrap instead, not as well. Nothing else in this world gives rubber.",
+    "",
+    "A full-height tire is two of them and drops double either way.",
+  ],
+  "quest.7A55E0BA6E000116.title": "Cardboard",
+  "quest.7A55E0BA6E000116.quest_desc": [
+    "Cardboard piles need no tool at all. Three to five cardboard each.",
+    "",
+    "Four of it makes a block in your own 2x2 grid, so you can build something before you have a crafting table.",
   ],
 }
