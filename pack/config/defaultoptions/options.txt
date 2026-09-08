@@ -1,1 +1,2 @@
 resourcePacks:["vanilla","file/trashlands"]
+incompatibleResourcePacks:[]
