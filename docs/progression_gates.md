@@ -157,7 +157,7 @@ on purpose.
 | **Cobweb** | Sewer corridors, cut with shears | The only source in the game |
 | **Slimeball** | Slimes. **No longer sewers-only as of Recompile 0.13.0** - they spawn in the demolition yard at weight 100, so this stopped being a structure gate | A deposit against the redstone tier, worth little now |
 | **Trident, nautilus shell** | Drowned, from the sewer's spawner | Owner call: a prize at this depth, not a spike |
-| **Bulb, Pump, Motor, Machine Frame** | Sewer barrels, own loot pool | Travel + Prybar. All `blueprint_crafting`, so a found one is a single unit that teaches nothing - the blueprint gate is untouched. **As of Recompile 0.18.0 the crafted Pump also needs Rubber Scrap**, whose only source is a tire dump in the household sprawl; the found one is unaffected, so this row's claim still holds and the *material* gate below it is new |
+| **Bulb, Pump, Motor, Machine Frame** | Sewer barrels, own loot pool | Travel + Prybar. **The `blueprint_crafting` framing is dead as of Recompile 0.20.0** - see the changelog - but the row's conclusion survives it: a found one is still a single unit that teaches nothing, and now nothing teaches anything. **As of Recompile 0.18.0 the crafted Pump also needs Rubber Scrap**, whose only source is a tire dump in the household sprawl; the found one is unaffected, so this row's claim still holds and the *material* gate below it is new |
 | **Echo shard** | The crate settled in the sump's silt, one per sewer | **The only source in the world.** As of Recompile 0.14.0 the same crate also holds all four AE2 Inscriber presses, so the sewer is now the sole entry to AE2's whole tree as well - worth re-reading the "nothing in them skips a tier" criterion above against that. See below |
 | **Mud** | The frog den's floor | **Not gated, and not new** - see below |
 | **Sand** | The turtle den's floor | Not new - sledgehammering Reinforced Concrete already yields it |
@@ -260,6 +260,14 @@ rung can be added if a real power system justifies one.
 
 ## The bed, and the blueprint gate
 
+> **SUPERSEDED BY RECOMPILE 0.20.0 (pinned 2026-09-08). Read the changelog entry before trusting any
+> row below.** This section describes knowledge arriving through Idea Fragments earned by teardown.
+> `recompile:idea_fragment` **no longer exists** in the registry, no recipe carries `teaches`, and
+> there are no `blueprint_crafting` recipes at all. Every Blueprint is now bought from a Buy Terminal
+> that is itself repaired from a found Broken Terminal, which is a *tighter* gate than anything here.
+> The section is kept because the bed is still gated on a Blueprint and the shape of the argument
+> still holds; the mechanism named throughout is gone.
+
 **Shipped 2026-08-02 (Recompile #95).** Beds are the first thing in this world gated on *knowledge*
 rather than on materials, so they do not sit on the metal ladder above and are recorded separately.
 
@@ -361,6 +369,23 @@ Kept as worked examples, because each was invisible until traced.
 
 ## Changelog
 
+- **2026-09-08** - Recompile 0.20.0, pinned on `chore/update-all-mods`. **Deletes the mechanism this
+  page called the blueprint gate, and replaces it with a tighter one.** `recompile:idea_fragment` is
+  gone from the registry, no recipe carries `teaches`, and there are no `blueprint_crafting` recipes:
+  teardown teaches nothing at all and now yields *function* instead, the working components nothing in
+  this world can forge. Knowledge comes from one place only - a Blueprint bought from a **Buy
+  Terminal**, which is itself repaired from a found **Broken Terminal**, with a **Freight Terminal**
+  taking eight delivery quotas that move your tier. So the gate did not loosen; it moved from "tear
+  down enough mattresses" to "find a terminal and fill quotas", and a found-unit row like the sewer
+  barrels is unaffected because nothing teaches any more.
+
+  This is not upstream drift - it is this repo's own **P3.10** decision (`08b252a`, 2026-09-06,
+  "strip knowledge from teardown entirely and make the market the sole source"), landed in the mod
+  two days later. `design_decisions.md` is the authority for the new shape; **this page has not yet
+  been re-traced against it**, so every row above that names an Idea Fragment is describing a dead
+  item. Tracked with the rest of the copy in
+  [#70](https://github.com/Flatts3000/trashlands/issues/70).
+
 - **2026-09-04** - Recompile 0.18.0, pinned on `update-mods-2026-09-04`. **Adds one material gate,
   opens one vanilla family that had no source at all, and moves an existing recipe underneath a
   player who already has a world.** *Rubber* is the gate. The Pump recipe moved off Plastic Scrap
@@ -453,9 +478,11 @@ Kept as worked examples, because each was invisible until traced.
   blaze rod back into four powder - that recipe made the new gunpowder-to-rod chain break even, and
   better than break even with a vibrant alloy grinding ball.
 
-  **Open risk - the animals rung now has a bypass.** Amber found in household waste carries the blood
-  of whatever the insect last fed on; the Sequencer reads a stamped piece into an Idea Fragment, four
-  fragments of one creature make a Blueprint, and that sheet crafts the spawn egg. The sheet is not
+  **Open risk - the animals rung now has a bypass.** *(Mechanism renamed by Recompile 0.20.0: the
+  Sequencer's output is a `spawn_egg_fragment`, not an Idea Fragment, which that release deleted. The
+  bypass itself is unchanged, which is why this stays an open risk.)* Amber found in household waste
+  carries the blood of whatever the insect last fed on; the Sequencer reads a stamped piece into a
+  fragment, four fragments of one creature make a Blueprint, and that sheet crafts the spawn egg. The sheet is not
   consumed - it is the one recipe in the game where a Blueprint goes into the grid and comes back out
   - so it makes that egg for as long as glass holds out. The reclamation ladder gates animals behind
   baits, which need the ground healed first. This does not. Whether that is a shortcut past a designed
