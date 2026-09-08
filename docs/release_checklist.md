@@ -103,8 +103,14 @@ Two pins drift silently and both ship to every new downloader.
      mod becomes a vein-miner pointed at the core loop, with no error anywhere. In game: hold the
      Ultimine key on a Block of Garbage and confirm only the block under the crosshair highlights,
      then on deepslate two blocks under the plain and confirm it does not chain either, then on a
-     grown tree and confirm the whole trunk *does*. Deepslate was left chaining in the first pass and
-     excluded on owner call; a test written against the old position would pass on a broken tag.
+     grown tree and confirm the whole trunk *does*. That last one is the positive control: without it
+     a totally unloaded tag looks identical to a working one. **In the Compacted Depths the terrain
+     should not chain** - techno_organic_waste, slag_rubble and ancient_sculk are all excluded.
+     Do not write that test as "nothing chains in the Depths": vanilla fortresses and bastions
+     generate there, and their nether brick and blackstone are not excluded and will chain, so a
+     tester standing in a fortress would report a correctly loaded tag as broken. Both bulk blocks
+     were left chaining by earlier passes and excluded on owner call, so a test written against
+     either old position would pass on a broken tag.
    - **Settle whether `enchanted_golden_apple` is live or dead content.** Flatts's Things pins it on,
      and it hooks `PlayerEnchantItemEvent` from the vanilla enchanting table - which Apothic
      Enchanting replaces. Put a golden apple in a table and see whether the offer appears. If it
