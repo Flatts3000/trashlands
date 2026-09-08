@@ -709,8 +709,17 @@ release-checklist item, not a CI one.
 
 **Three pieces of engine-side content can now come home**: the Simple Magnets overrides (#40), the
 Ender IO grains, and the Ultimine tag that was requested from Recompile a few hours before this
-was found. Their handoff docs all say to take them back the moment a route opened. Tracked in #46
-and #47.
+was found. Their handoff docs all say to take them back the moment a route opened.
+
+**One of the three has moved; the other two cannot yet, and the reason is mechanical rather than
+scheduling.** The Simple Magnets overrides are pack data as of 2026-09-08 (#47), at
+`pack/kubejs/data/simplemagnets/recipe/` - all four sit at that mod's own recipe ids, where only one
+copy can ever win, so the pack taking over is safe even while Recompile still ships an identical set.
+**#46 (AE2) and #52 (Ender IO) are `blocked`**: their content is *entries inside Recompile's own loot
+tables* - `chests/sump.json` for the presses, `gameplay/slag_rubble_pulls.json` for sky stone,
+`gameplay/mechanical_pulls.json` for the grains. A pack datapack can add an entry to a table but
+cannot remove one, so shipping the pack copy before Recompile deletes its own would **double** those
+drops, and the presses are the sole gate on AE2's whole tree.
 
 ### Considered and cut
 

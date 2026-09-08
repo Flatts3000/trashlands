@@ -1,0 +1,35 @@
+{
+  "_comment": [
+    "OVERRIDE. This file sits at simplemagnets' OWN recipe id, which is how an override works and",
+    "also how it fails: load order decides who wins and the loser is silent. Landing it at the wrong",
+    "id would not override anything - it would add a second recipe with the same grid, one of them",
+    "dead, with no error. Nothing automated catches that, here or in Recompile.",
+    "Moved out of Recompile into the pack on 2026-09-08 (trashlands#47), where re-theming another",
+    "mod's recipes belongs. Recompile still ships an identical copy until its next release; the two",
+    "agree, so whichever wins the race the player sees the same recipe.",
+    "",
+    "As the basic coil, one tier up."
+  ],
+  "type": "minecraft:crafting_shaped",
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "simplemagnets"
+    }
+  ],
+  "category": "misc",
+  "pattern": [
+    " G ",
+    "RCR",
+    "CBC"
+  ],
+  "key": {
+    "G": "minecraft:glowstone_dust",
+    "R": "minecraft:redstone",
+    "C": "minecraft:copper_ingot",
+    "B": "simplemagnets:basic_demagnetization_coil"
+  },
+  "result": {
+    "id": "simplemagnets:advanced_demagnetization_coil"
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "_comment": [
+    "OVERRIDE. This file sits at simplemagnets' OWN recipe id, which is how an override works and",
+    "also how it fails: load order decides who wins and the loser is silent. Landing it at the wrong",
+    "id would not override anything - it would add a second recipe with the same grid, one of them",
+    "dead, with no error. Nothing automated catches that, here or in Recompile.",
+    "Moved out of Recompile into the pack on 2026-09-08 (trashlands#47), where re-theming another",
+    "mod's recipes belongs. Recompile still ships an identical copy until its next release; the two",
+    "agree, so whichever wins the race the player sees the same recipe.",
+    "",
+    "A salvaged permanent magnet in a scrap housing. Horseshoe on purpose.",
+    "Stock recipe was 5 iron, lapis, an ENDER PEARL and redstone. The pearl is a placeholder rather",
+    "than a recipe - nothing about a magnet is made of one. Magnet Scrap is: neodymium is recovered",
+    "from hard drive actuators and speaker voice coils, which is exactly what the item is.",
+    "Four scrap is deliberately steep. Magnet Scrap is ALSO the world's only redstone, so this",
+    "competes with the one thing it already does. That tension is the point."
+  ],
+  "type": "minecraft:crafting_shaped",
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "simplemagnets"
+    }
+  ],
+  "category": "misc",
+  "pattern": [
+    "M M",
+    "M M",
+    "SCS"
+  ],
+  "key": {
+    "M": "recompile:magnet_scrap",
+    "S": "recompile:scrap_metal",
+    "C": "minecraft:copper_ingot"
+  },
+  "result": {
+    "id": "simplemagnets:basicmagnet"
+  }
+}
