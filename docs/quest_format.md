@@ -10,6 +10,11 @@ describing how the operator sounds is a lossy summary of a document that already
 a slot that rules accrete back into. If you want to know how a quest body should read, read
 the handbook.
 
+The handbook opens with **who is writing it** - one paragraph naming the company rather than
+listing prohibitions. That is deliberate: a rule list is what you write when you cannot name
+the character, and every rule the old document carried falls out of the characterisation.
+Read that before writing a line the company has not written yet.
+
 What was thrown out, and why, is at the bottom.
 
 ---

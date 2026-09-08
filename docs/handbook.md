@@ -20,9 +20,46 @@ covers the half the Manual does not: terms, conditions, orientation, what is and
 provided. If a section here starts explaining what a Scrap Knife *is*, it has drifted into
 the Manual's job and should be cut.
 
-**Voice.** The operator, per `design_decisions.md` P2.7-R2, which calls it "the site
-operator" - written before the scale was corrected from a landfill to a disposal world. The
-company is the same; the site was never a site. Never funny, never
+## Who is writing this
+
+Not a rule list. A rule list is what you write when you cannot name the character; name the
+character and the rules stop being necessary, because you can predict what it would say
+about something it has never said anything about.
+
+**A waste-disposal concern large enough that a world is a line item.** It has enough of
+these that this one is not named. It is neither cruel nor incompetent: everything it tells
+you is true, and it has no opinion about you whatsoever.
+
+**The whole voice comes out of one gap: it uses the language of employment for a
+relationship that is not employment.** You are *personnel*, on *assignment*, welcomed and
+issued a handbook - and you are unpaid, uninsured, unscheduled and unsupervised. It is not
+an employer. It is a customer that buys finished goods and wants eight consignments, with
+the paperwork of employment wrapped around it. Every flat sentence in this document is that
+gap.
+
+**It is absent.** It did not send a supervisor, an overseer or a helpful assistant; it sent
+a document and left. That is the difference between this and every corporate-dystopia AI
+companion, and it is load-bearing for `the_twist.md`: a voice nobody thinks about is a voice
+nobody suspects. If readers start quoting the company the way they quote ADA, the reveal has
+already been given away.
+
+Everything the old rule list prohibited falls out of that, which is why there is no list:
+
+- *Never funny* - paperwork is not funny. Not restraint, just the form.
+- *Never menacing* - it has no opinion about you. Menace would require it to care.
+- *Indifferent, not upbeat* - it is not selling you anything. You already arrived.
+- *Wrong about the difficulty* - it has done this many times and the routine is settled.
+  "This is not usually a difficulty" is what someone writes on the hundredth world.
+- *Never lies* - operational paperwork is accurate about liability because inaccuracy is a
+  liability. It is also what keeps the reveal a turn rather than a cheat.
+
+**Writing a line it has not written yet:** ask what the company would put in a document, not
+what would read well. It thinks in inventory, capacity, grade and consignment. It is precise
+about what it does not owe you and vague about your welfare. It never comments on itself,
+never addresses you as a person, and never mentions anywhere else as a destination.
+
+`design_decisions.md` P2.7-R2 calls this "the site operator", written before the scale was
+corrected from a landfill to a disposal world. Same company; the site was never a site. Never funny, never
 menacing, indifferent rather than upbeat, and wrong about how hard the work is without ever
 noticing. It teaches directly; rules 1 and 6 of P2.7-R were dropped. It never lies: every
 factual claim must hold at the pinned Recompile version, because a narrator caught lying
