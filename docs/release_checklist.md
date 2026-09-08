@@ -81,6 +81,12 @@ Two pins drift silently and both ship to every new downloader.
    rather than inheriting it. Same trap as the Recompile changelog check in step 1, and for the same
    reason: a mod that is still being built goes stale against the pack by default.
 
+   **2026-09-08: this check fired the first time it was run.** `packwiz update --all` took Flatts's
+   Things 0.2.0 to 0.3.0, which added `armored_elytra` and `wood_cutting`. Both were absent from the
+   pack config and would have arrived switched on unnoticed. `wood_cutting` also turned out to ship a
+   **new `woodcutter` block** rather than the stonecutter recipes the mod's own dev-branch config
+   comment described, so read the shipped jar rather than the source.
+
    **Do not read that config out of an instance to see what the pack set.** Correction also fires on
    a comment mismatch alone, and it rewrites and saves the whole file, replacing every pack-authored
    comment with the mod's own. An instance copy tells you the values and nothing else. The repo copy

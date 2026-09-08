@@ -42,7 +42,7 @@ hash = "6975be9194248b1c650cdf3a2d038e5e9628abcece1b95767196f82086fdab8f"
 
 [[files]]
 file = "config/flattsthings-common.toml"
-hash = "03518fad0975040729bccd026a4bc65ee400eca2e2fd5def1acef4bda67c293a"
+hash = "a1b950d141ceac08fdf06763db9133ead1a3f16916dcce2a9d8bd0e9efdda279"
 
 [[files]]
 file = "config/ftbquests/quests/chapter_groups.json5"
@@ -203,7 +203,7 @@ metafile = true
 
 [[files]]
 file = "mods/ender-io.pw.toml"
-hash = "c813f32090ced514247fc479ec803c4b7df12edc8cff41aa1feab171fa91fe31"
+hash = "370628cbe49d8bf052d93f42f40c95a8fd2e246b762301f2b8545795527b7147"
 metafile = true
 
 [[files]]
@@ -238,7 +238,7 @@ metafile = true
 
 [[files]]
 file = "mods/flattss-things.pw.toml"
-hash = "4fb156e7d4ba6372396b1a488bd862bfce26e5294c95ed1a05b8118bbf654c60"
+hash = "4cff55d8c7dc82e34e6a2ee064068d3065adea05003c84094aecb18366b74e91"
 metafile = true
 
 [[files]]
@@ -313,7 +313,7 @@ metafile = true
 
 [[files]]
 file = "mods/jei.pw.toml"
-hash = "41a3ec9d357e69cb578a0bdbba397b93818fbd3c06d79a137c847a3aa242824e"
+hash = "31cd05d21afc883f7018a9be288e26936b56f6928d3ba41f6d78bdda11de88ff"
 metafile = true
 
 [[files]]
@@ -398,7 +398,7 @@ metafile = true
 
 [[files]]
 file = "mods/recompile.pw.toml"
-hash = "b862f7bf06744daa3615b09e1451f67970c5411611485e7a8806b7cbd3e01e7d"
+hash = "1905f45c2292f013b0fb16671a0f0116f2e2db3b03f84e85f40b814e421393dd"
 metafile = true
 
 [[files]]
@@ -428,12 +428,12 @@ metafile = true
 
 [[files]]
 file = "mods/sophisticated-backpacks.pw.toml"
-hash = "c5d1b7e3358dd32bd40533bbf60140ce3b06daa62a863b2933cee8ceca3aa0fb"
+hash = "0e22042801dc2fd4b038036ef71155f88bfcefd8fb33bec0070703f60d8fad91"
 metafile = true
 
 [[files]]
 file = "mods/sophisticated-core.pw.toml"
-hash = "2bd4155be1884ebeabde862bbe1011446fe2d434d79bd6757940888d301b1167"
+hash = "45e08c47341a8e4b7f48995cd9ba557a2319f5fa037e77795ec293ac7dccc97f"
 metafile = true
 
 [[files]]

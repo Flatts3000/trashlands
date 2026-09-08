@@ -1,13 +1,13 @@
 name = "Flatts's Things"
-filename = "flattsthings-26.1.2-0.2.0.jar"
+filename = "flattsthings-26.1.2-0.3.0.jar"
 side = "both"
 
 [download]
 hash-format = "sha1"
-hash = "cef293061bd704be31f4ff48f58b1845e824517d"
+hash = "c9e007dc66bc961a9f642f00cbab8cb21df1b312"
 mode = "metadata:curseforge"
 
 [update]
 [update.curseforge]
-file-id = 8833186
+file-id = 8834293
 project-id = 1683375

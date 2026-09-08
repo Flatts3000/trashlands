@@ -145,6 +145,26 @@ namespace; this pack shipped the icon in a resource pack instead, because it had
 below. **KubeJS arrived 2026-09-07**, so the Sky Frogs route is available now, but the resource
 pack works and moving it would be churn for its own sake.
 
+### Mod update pass, 2026-09-08
+
+`packwiz update --all` moved seven pins: Sophisticated Backpacks, Sophisticated Core, JEI
+(29.35.0.94 -> 29.37.0.97, still under the `.100` loader pin), Ender IO, **Recompile 0.18.0 ->
+0.20.0** and **Flatts's Things 0.2.0 -> 0.3.0**. Extreme Sound Muffler was offered 4.02-ALPHA again
+and reverted, as `HELD_PINS` requires.
+
+**Recompile 0.20.0 is not a routine bump and the pack is not ready to release on it.** It replaces
+teardown-as-knowledge with a bought-blueprint market: teardown now yields the part that makes an
+object what it is, a Freight Terminal takes eight delivery quotas that move your tier, and every
+Blueprint is bought. The pack's listing copy, README, `CLAUDE.md` core description and three quest
+chapters all still describe the old economy. Tracked in
+[#70](https://github.com/Flatts3000/trashlands/issues/70) with a release gate: the pin may sit on
+`main`, but no release ships until the copy matches.
+
+**The Ultimine tag needed no change, and that was checked rather than assumed.** 0.20.0 has the same
+nine `SortableBlock` subclasses as 0.18.0 and the same eight `gameplay/*_pulls` tables, so no new
+sortable block appeared. That is the audit the tag section below describes, run for the first time in
+anger.
+
 ### FTB Ultimine, and the tag that keeps it off the garbage
 
 Added 2026-09-07 (issue [#62](https://github.com/Flatts3000/trashlands/issues/62)),
@@ -447,7 +467,20 @@ a note because two of its features touch this world's economy. Both are config-g
   wants pricing against a world where gold is gated behind the iron tier and apples behind the Tree
   Nursery. One client launch settles which, and it is on the playtest list.
 
-**The pack pins all seven features on** in `pack/config/flattsthings-common.toml`. That changes
+**The pack pins all nine features on** in `pack/config/flattsthings-common.toml`. `armored_elytra`
+and `wood_cutting` arrived with 0.3.0 on 2026-09-08 and were added by the release-checklist diff that
+exists for exactly that. Two notes on them:
+
+- **`armored_elytra` is not inert here, unlike the amethyst case.** It combines a chestplate and an
+  elytra so one slot does both jobs, removing a trade Mojang has kept deliberately - and the mod's own
+  config comment says as much. This world **does** have an End: `world_preset/garbage.json` defines
+  `minecraft:the_end` with vanilla generation, and `design_decisions.md:814` makes it the late-game
+  materials capstone whose keystone reward is the elytra, reached "by having mastered recycling". So
+  this lands squarely on a tier that is currently being redesigned. On per the standing "everything
+  on" call; it is one line to flip if the endgame work wants the vanilla trade back.
+- **`wood_cutting` ships a `woodcutter` block**, not the stonecutter recipes the mod's dev-branch
+  config comment described. It is gated behind wood, which here means the Tree Nursery at rung 4 of 5
+  with the sapling lockout, so it arrives late and craftable rather than early and free. That changes
 nothing today - they are all on by default - and it is there so the pack keeps the behaviour it was
 tested with if a default ever flips upstream.
 
