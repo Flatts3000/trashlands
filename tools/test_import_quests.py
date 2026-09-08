@@ -83,6 +83,34 @@ def cases():
     out.append(("a document with no chapters parses to nothing",
                 parse("# Just a title\n\nsome text\n"), []))
 
+    # ------------------------------------------------- heading-level detection
+    # The two export shapes differ only in whether a document title is present,
+    # and the first detection rule got the whole-book case backwards: it picked
+    # the "# Trashlands quest copy" title as the chapter level, so every real
+    # chapter parsed as a quest. --split then could not be read by the importer
+    # at all, which is the shape a reviewer is actually handed.
+    whole = ["# Doc title", "## Chapter", "### Quest", "### Quest Two"]
+    split = ["# Chapter", "## Quest", "## Quest Two"]
+    out.append(("three heading depths: the shallowest is a title",
+                iq.heading_levels(whole), (2, 3)))
+    out.append(("two heading depths: the shallowest is a chapter",
+                iq.heading_levels(split), (1, 2)))
+    out.append(("no headings at all falls back",
+                iq.heading_levels(["just text"]), (2, 3)))
+    out.append(("one heading depth falls back rather than guessing",
+                iq.heading_levels(["# A", "# B"]), (2, 3)))
+
+    split_doc = "# Welcome\n\n## One\n\nAlpha.\n\n## Two\n\nBeta.\n"
+    out.append(("a split-shaped document parses as one chapter",
+                [(c[0], [q[0] for q in c[1]]) for c in parse(split_doc)],
+                [("Welcome", ["One", "Two"])]))
+
+    whole_doc = ("# Book\n\n## Welcome\n\n### One\n\nAlpha.\n\n"
+                 "## Salvage\n\n### Two\n\nBeta.\n")
+    out.append(("a whole-book document parses as two chapters",
+                [(c[0], [q[0] for q in c[1]]) for c in parse(whole_doc)],
+                [("Welcome", ["One"]), ("Salvage", ["Two"])]))
+
     # ----------------------------------------------------------------- render
     out.append(("paragraphs render with a blank separator",
                 iq.render_array(["A.", "B."], "  ", "    "),

@@ -2,54 +2,50 @@
 
 ## Welcome to Trashlands
 
-A coarse dirt plain covered in mounds of garbage. No ore under it, no trees on it.
+The land here is a Coarse Dirt plain, covered with mounds of garbage. There is no ore beneath the surface and no trees growing anywhere.
 
-Everything you build starts as a Block of Garbage you dug out of a mound.
+Everything you make begins with a Block of Garbage that you dig out from a mound.
 
-The Salvager's Manual comes with this quest. It goes deeper than this book does.
+You’ll get the Salvager’s Manual with this quest. It explains things in more detail than this book.
 
 ## Join the Discord
 
-The numbers in this pack are first-pass. Bug reports and balance complaints are both useful.
+The numbers in this pack are just the first version. If you find bugs or have feedback about balance, please let us know.
 
-Click the Discord badge above. It opens the invite in your browser.
+Click the Discord badge above to open the invite in your browser.
 
 ## The Book Is Not Finished
 
-This pack is an alpha, and the quest book is the least finished part of it.
+This pack is still in alpha, and the quest book is the part that’s least finished.
 
-What is here is a rough guide, not the shape it will take. Most of the work is going into Recompile, the mod this pack is built on, and the book gets rewritten once that settles.
+What you see here is just a rough guide and not the final version. Most of the work is focused on Recompile, the mod this pack uses, and the book will be updated once that’s done.
 
-The Salvager's Manual covers more. Use it first.
+The Salvager’s Manual has more information, so start with that.
 
 ## What Spawns Here
 
-Nothing hostile spawns on the dump, so you do not need a shelter. A few friendly mobs turn up, rarely, and none of them are food.
+No hostile mobs spawn on the dump, so you don’t need to build a shelter. Occasionally, a few friendly mobs appear, but none can be used for food.
 
-Sleep anyway. Phantoms still come after a few nights without it.
+Still, make sure to sleep. If you go a few nights without it, phantoms will show up.
 
-The demolition yard is different. Things spawn there in numbers, so bring a weapon.
+The demolition yard is different. Many mobs spawn there, so be sure to bring a weapon.
 
 ## Water
 
-There is no water in this world at first. Rain is the only source early on, and the Rain Collector catches it.
+At first, there’s no water in this world. Rain is your only source early on, and you’ll need a Rain Collector to gather it.
 
-Two source blocks will not fill a third. That vanilla trick is off here, so water never multiplies.
-
-There is no thirst bar, so going without costs you nothing until you build something that drinks.
+You can’t use two source blocks to create a third one. That usual trick doesn’t work here, so water never multiplies.
 
 ## Pick Through the Garbage
 
-Hold right-click on a Block of Garbage where it stands. It gives one item at a time, and after two or three the block is gone.
+Hold right-click on a Block of Garbage where it is. You’ll get one item at a time, and after two or three items, the block disappears.
 
-Sorting where it stands takes no tool, whatever you are holding. Breaking a block to carry it needs a shovel, and without one you get nothing. Trash Bags are the exception: they break by hand.
+You don’t need any tools to sort garbage where it stands, no matter what you’re holding. If you want to break a block and carry it, you’ll need a shovel. Without one, you get nothing. Trash Bags are the only exception—you can break them by hand.
 
-What comes out is random, so this takes a few blocks.
+The items you get are random, so you’ll need to go through several blocks.
 
 ## Green Ground Erodes
 
-Grass does not spread here, and coarse dirt reverts it at the edge. Green ground erodes inward.
+Grass won’t spread in this world, and coarse dirt will take over at the edges. The green ground slowly erodes inward.
 
-Only soil touching unhealed ground goes. The interior holds until the edge reaches it, blocks you placed are never touched, and none of it runs while you are logged off.
-
-This is a long way off. It matters once you start reclaiming ground, and the machines that heal it also hold it.
+Only soil that touches unhealed ground will erode. The inside stays safe until the edge reaches it.

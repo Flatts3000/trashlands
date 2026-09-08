@@ -1,12 +1,14 @@
-# Salvage
+# Trashlands quest copy: Salvage
 
-## Scrap Knife
+## Salvage
+
+### Scrap Knife
 
 Another one you can make in your inventory grid.
 
 It opens sealed Tin Cans, and it is the only thing that picks up or sorts a Compacted Bale.
 
-## The Scrap Crafting Table
+### The Scrap Crafting Table
 
 There is no wood in this world, so there is no vanilla crafting table.
 
@@ -14,11 +16,11 @@ This one replaces it, and it fits the 2x2 grid in your inventory.
 
 Put it down somewhere you have room to build around. Scrap blocks touching each other are one Scrap Network, and the panel down the right of its screen lists what the whole network is holding.
 
-## Prybar
+### Prybar
 
 Small enough to make in your inventory grid. It opens Bulky Waste, and nothing else does.
 
-## Something to Eat
+### Something to Eat
 
 Nothing spawns in the garbage biome, so there is nothing to hunt.
 
@@ -26,7 +28,7 @@ A sealed can is not food yet. Hold the can and right-click with a Scrap Knife an
 
 Dump Mushrooms grow on the mycelium between mounds and place back down, so you can replant a patch.
 
-## The Sorting Tarp
+### The Sorting Tarp
 
 Right-click the tarp with a Block of Garbage, a Trash Bag, or a Compacted Bale in hand and it sifts that one straight out. Hold right-click to keep feeding it.
 
@@ -36,7 +38,7 @@ Nothing crumbles in your hands this way. It has no screen and stores nothing, so
 
 A Scrap Barrel touching the tarp catches all of it instead.
 
-## The Burn Barrel
+### The Burn Barrel
 
 The first smelter in this world. It opens the ordinary furnace screen.
 
@@ -46,7 +48,7 @@ Stand a Scrap Barrel against it and finished smelts move across as they come.
 
 It needs fuel. There is no coal and no wood in this world.
 
-## The Recompile Workbench
+### The Recompile Workbench
 
 Rack both tools on it by right-clicking the bench with each in turn. It has a slot for a Scrap Knife and a slot for a Prybar, and different finds take different tools.
 
@@ -56,25 +58,25 @@ The racked tool wears down as it works. When it breaks, nothing comes apart unti
 
 What comes off lands on top of the bench. Stand the bench against a Scrap Barrel and it goes into the barrel instead.
 
-## Open Bulky Waste
+### Open Bulky Waste
 
 Right-click it with a Prybar. It opens in one action, drops a single find, and breaks. Mining it by hand gives nothing.
 
 Most finds are ordinary. About one in ten comes from a better pool.
 
-## Junk Shovel
+### Junk Shovel
 
 A Block of Garbage or a pile of Stone Rubble breaks to nothing without a shovel in hand. Any shovel will do.
 
 It digs the coarse dirt faster too.
 
-## Fuel
+### Fuel
 
 Made from two things you are already pulling out of the garbage.
 
 One rag burns as long as charcoal: eight items. Junk burns at two.
 
-## The Pump
+### The Pump
 
 Find a Washing Machine in Bulky Waste and tear it down at the Workbench with a Prybar racked. It gives one Pump, plus scrap and plastic.
 
@@ -82,7 +84,7 @@ The teardown also gives an idea toward the Pump. Four make a blueprint, and afte
 
 It is a component of the Grass Spreader, the machine that turns coarse dirt back to grass.
 
-## Dirty Mattress
+### Dirty Mattress
 
 The commonest thing in Bulky Waste, and the only bed until you can make a clean one.
 
@@ -90,7 +92,7 @@ Sleeping on it breaks it when you get up. Sneak-right-click to set spawn instead
 
 Tearing one down at the Workbench with a Scrap Knife gives an idea toward the Clean Mattress. Four and you can make the clean one.
 
-## Scrap Barrel
+### Scrap Barrel
 
 Every vanilla container needs wood, so this is the first storage this world has.
 
@@ -100,7 +102,7 @@ It is also the first block that can catch what the others put out. Scrap blocks 
 
 Touching means sharing a face. A diagonal is a separate network, and so is a gap.
 
-## Copper
+### Copper
 
 Burn Scrap Metal in the barrel and it comes back as copper nuggets, one for one.
 
@@ -108,7 +110,7 @@ Spend them on Copper Pipes; the Rain Collector takes one. Do not press them into
 
 Copper is what this world runs on. Iron is out past the demolition yard, behind a furnace you cannot build yet.
 
-## The Rain Collector
+### The Rain Collector
 
 Set the collector down, then stack the funnel on top of it. The collector on its own will hold water but gather none.
 
@@ -118,7 +120,7 @@ It fills only while rain is falling, about a minute from empty to full. Full is 
 
 Right-click with a glass bottle or a bucket to draw water off. Breaking it keeps the water, so you can move it.
 
-## A Bucket of Water
+### A Bucket of Water
 
 There is no recipe for a bucket; vanilla's is switched off. They come out of household garbage, so keep sorting.
 

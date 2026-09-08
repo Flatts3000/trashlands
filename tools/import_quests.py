@@ -60,11 +60,55 @@ class Abort(RuntimeError):
 
 # --------------------------------------------------------------------- parsing
 
+def heading_levels(lines):
+    """Work out which heading depth is a chapter and which is a quest.
+
+    Two shapes are in circulation and both are ours: the whole-book export uses
+    `## Chapter` / `### Quest` under a single `# ` title, and `--split` writes one
+    file per chapter as `# Chapter` / `## Quest`. Hardcoding the first meant the
+    split files - the ones actually handed to a reviewer - parsed every quest
+    heading as a chapter and aborted on a structure mismatch. It failed safe and
+    it still failed.
+
+    The rule counts distinct heading depths, because the two shapes differ only
+    in whether a document title is present:
+
+      three or more depths -> the shallowest is a document title, so the chapter
+        is the second depth and the quest the third (the whole-book export)
+      exactly two depths   -> chapter then quest, no title (a --split file)
+
+    A first attempt used "shallowest heading that has a deeper one after it",
+    which is wrong: in the whole-book export that picks the `# Trashlands quest
+    copy` title as the chapter level and every real chapter becomes a quest.
+
+    --split now emits the same depths as the whole-book export, so this only has
+    to cope with older files and hand-made documents. It is kept anyway, because
+    a reviewer pasting copy into a fresh document is a normal thing to do.
+    """
+    depths = []
+    for line in lines:
+        s = line.strip()
+        if s.startswith("#"):
+            d = len(s) - len(s.lstrip("#"))
+            if s[d:d + 1] == " ":
+                depths.append(d)
+    levels = sorted(set(depths))
+    if len(levels) >= 3:
+        return levels[1], levels[2]
+    if len(levels) == 2:
+        return levels[0], levels[1]
+    return (2, 3)
+
+
 def parse_prose(path: pathlib.Path):
-    """The --prose-only format: '## Chapter', '### Quest', blank-line paragraphs.
+    """Parse either export shape into chapters and quests.
 
     Returns [(chapter_title, [(quest_title, [paragraph, ...]), ...]), ...].
     """
+    raw_lines = path.read_text(encoding="utf-8").splitlines()
+    ch_level, q_level = heading_levels(raw_lines)
+    ch_mark, q_mark = "#" * ch_level + " ", "#" * q_level + " "
+
     chapters, cur_ch, cur_q, buf = [], None, None, []
 
     def flush_para():
@@ -77,19 +121,19 @@ def parse_prose(path: pathlib.Path):
         if cur_ch is not None and cur_q is not None:
             cur_ch[1].append(cur_q)
 
-    for line in path.read_text(encoding="utf-8").splitlines():
+    for line in raw_lines:
         s = line.strip()
-        if s.startswith("### "):
+        if s.startswith(q_mark):
             flush_quest()
-            cur_q = (s[4:].strip(), [])
+            cur_q = (s[len(q_mark):].strip(), [])
             continue
-        if s.startswith("## "):
+        if s.startswith(ch_mark):
             flush_quest()
             cur_q = None
-            cur_ch = (s[3:].strip(), [])
+            cur_ch = (s[len(ch_mark):].strip(), [])
             chapters.append(cur_ch)
             continue
-        if s.startswith("# "):
+        if s.startswith("#"):
             continue
         if not s:
             flush_para()
@@ -210,25 +254,55 @@ def main(argv=None) -> int:
     book = current_book()
 
     # ---- structure must match, or nothing happens ------------------------
-    if len(edited) != len(book):
-        print("ABORT: {} chapters in the document, {} in the book"
-              .format(len(edited), len(book)))
+    #
+    # Chapters are matched BY TITLE, not by position, so a single-chapter file
+    # from --split is a legitimate partial import rather than a mismatch.
+    # Reviewing one chapter at a time is the recommended workflow, so refusing
+    # the shape it produces would make the tool useless for its main use.
+    #
+    # Within a matched chapter the rule is unchanged and strict: the quest count
+    # must be identical, and any problem aborts the entire run rather than
+    # importing whichever chapters happened to line up. Partial is allowed at
+    # the granularity a reviewer works at, never at the granularity of whatever
+    # survived parsing.
+    if not edited:
+        print("ABORT: no chapters found in the document.")
+        print("Expected chapter headings with quest headings one level deeper,")
+        print("as written by --prose-only or --split.")
         return 2
-    problems = []
-    for (etitle, equests), (btitle, bquests) in zip(edited, book):
+
+    by_title = {}
+    for btitle, bquests in book:
+        by_title.setdefault(btitle, (btitle, bquests))
+
+    pairs, problems = [], []
+    for etitle, equests in edited:
+        match = by_title.get(etitle)
+        if match is None:
+            problems.append("chapter {!r} is not in the book (have: {})"
+                            .format(etitle, ", ".join(sorted(by_title))))
+            continue
+        btitle, bquests = match
         if len(equests) != len(bquests):
             problems.append("chapter {!r}: {} quests in the document, {} in the book"
                             .format(btitle, len(equests), len(bquests)))
+            continue
+        pairs.append(((etitle, equests), (btitle, bquests)))
+
     if problems:
         print("ABORT: structure does not match.")
-        for p in problems:
-            print("  " + p)
-        print("\nRegenerate with --prose-only, redo the edits, and try again.")
+        for msg in problems:
+            print("  " + msg)
+        print("\nRegenerate the export, redo the edits, and try again.")
         print("Adding or removing quests is not something this tool will do.")
         return 2
 
+    print("Importing {} of {} chapter(s): {}".format(
+        len(pairs), len(book), ", ".join(p[1][0] for p in pairs)))
+    print()
+
     changes, refused, renamed = [], [], []
-    for (etitle, equests), (btitle, bquests) in zip(edited, book):
+    for (etitle, equests), (btitle, bquests) in pairs:
         for (eq_title, eq_paras), (qid, bq_title, bq_desc) in zip(equests, bquests):
             plain_title = ex.strip_codes(bq_title)
             if eq_title != plain_title:

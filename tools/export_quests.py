@@ -295,14 +295,18 @@ def write_split(out_dir: str) -> int:
     for ch in chapters:
         cid = str(ch.data.get("id", "")).upper()
         title = strip_codes(chlang.get(cid, {}).get("title") or ch.name)
-        lines = ["# " + title, ""]
+        # Same heading depths as the whole-book export (H1 title, H2 chapter,
+        # H3 quest) so both shapes parse identically on the way back in. The
+        # first version of --split used H1/H2 and the importer could not read
+        # its own output.
+        lines = ["# Trashlands quest copy: " + title, "", "## " + title, ""]
         bodies = 0
         for q in reading_order(ch):
             meta = qlang.get(str(q.get("id", "")).upper(), {})
             desc = meta.get("desc", [])
             if not any(s.strip() for s in desc):
                 continue
-            lines.append("## " + strip_codes(meta.get("title") or "(untitled)"))
+            lines.append("### " + strip_codes(meta.get("title") or "(untitled)"))
             lines.append("")
             for line in desc:
                 lines.append(strip_codes(line) if line.strip() else "")
