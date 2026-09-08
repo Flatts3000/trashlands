@@ -252,6 +252,61 @@ def read_jars(mods_dir: Path):
     return out, unreadable
 
 
+def check_pack_shadows_engine(mods_dir: Path) -> int:
+    """Prove a pack file that overrides an engine file still agrees with it.
+
+    While a piece of cross-mod content is being moved out of Recompile and into the
+    pack, BOTH ship the same resource location for a while - the pack's copy wins on
+    load order and the engine's is inert. The whole safety argument for shipping the
+    pack half early is that the two are identical, and nothing enforced that: the
+    Recompile pin is bumped by editing one `.pw.toml`, which never touches
+    `pack/kubejs/`. Recompile changes a recipe, the pin moves, the pack keeps serving
+    the old text, and the divergence is silent in exactly the way an override always
+    is.
+
+    `_comment` is ignored, because the pack rewrites those for its own context.
+    """
+    shadow_root = PACK / "kubejs" / "data"
+    if not shadow_root.is_dir():
+        return 0
+    engine = mods_dir.glob("recompile-*.jar")
+    engine = next(iter(sorted(engine)), None)
+    if engine is None:
+        return 0
+
+    def strip(raw: bytes):
+        doc = json.loads(raw.decode("utf-8"))
+        doc.pop("_comment", None)
+        return doc
+
+    drift, missing = [], []
+    with zipfile.ZipFile(engine) as zf:
+        names = set(zf.namelist())
+        for path in sorted(shadow_root.rglob("*.json")):
+            inner = "data/" + path.relative_to(shadow_root).as_posix()
+            if inner not in names:
+                continue  # pack-only content, nothing to agree with
+            try:
+                if strip(path.read_bytes()) != strip(zf.read(inner)):
+                    drift.append(inner)
+            except ValueError as exc:
+                missing.append(f"{inner}: {exc}")
+
+    if drift or missing:
+        print("")
+        print("=== PACK OVERRIDE HAS DRIFTED FROM THE ENGINE ===")
+        for row in drift:
+            print(f"  {row}: pack/kubejs/data differs from {engine.name}")
+        for row in missing:
+            print(f"  {row}")
+        print("  -> Both copies of this resource location ship today and the pack's wins on load "
+              "order, so the engine's change is silently discarded. Re-copy from the pinned jar, "
+              "or finish the move by deleting the engine's copy.")
+        print("")
+        return 1
+    return 0
+
+
 def audit(mods_dir: Path) -> int:
     mc_pin, loader_pin = pack_pins()
     loader_pin_t, mc_pin_t = version_tuple(loader_pin), version_tuple(mc_pin)
@@ -259,6 +314,8 @@ def audit(mods_dir: Path) -> int:
     meta, unreadable = read_jars(mods_dir)
     if not meta:
         sys.exit(f"2: no readable mod jars in {mods_dir}")
+    if check_pack_shadows_engine(mods_dir) != 0:
+        return 1
     present = {mid for ids, _, _ in meta.values() for mid in ids}
     versions = {mid: v for _, _, vers in meta.values() for mid, v in vers.items()}
 
