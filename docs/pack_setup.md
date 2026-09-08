@@ -62,7 +62,7 @@ day by eight borrowed from ATM 11 and by **Flatts's Things** (1683375, ours).
 | Mod | CF project | Why it is in |
 |---|---|---|
 | **Recompile** | 1625740 | The pack. Garbage world, teardown, reclamation, machines. |
-| **Just Enough Items** | 238222 | Recompile ships a JEI plugin. At the pinned 0.18.0 it registers seventeen categories - sequencing, spawn_egg, sorting, cutting, burning, torch_cutting, prying, teardown, separating, hydrating, pulverizing, cupola, vitrifying, sintering, assembly, blueprint_crafting, growing - plus the Scrap Crafting Table as a station. (`cupola` and `vitrifying` arrived with 0.12.0's slag chain, `sintering` with 0.13.0's kiln, `sequencing` and `spawn_egg` with 0.15.0's amber chain.) (`SalvageRecipe` is the shared recipe class behind them, not a category.) |
+| **Just Enough Items** | 238222 | Recompile ships a JEI plugin. At the pinned 0.20.0 it registers seventeen categories - sequencing, spawn_egg, sorting, cutting, burning, torch_cutting, prying, teardown, separating, hydrating, pulverizing, cupola, vitrifying, sintering, assembly, blueprint_crafting, growing - plus the Scrap Crafting Table as a station. (`cupola` and `vitrifying` arrived with 0.12.0's slag chain, `sintering` with 0.13.0's kiln, `sequencing` and `spawn_egg` with 0.15.0's amber chain.) (`SalvageRecipe` is the shared recipe class behind them, not a category.) |
 | **Jade** | 324717 | Recompile ships 15 Jade providers: tool hints, sort progress, machine status, generator rates. |
 | **Modonomicon** | 538392 | The engine the in-game guidebook runs on. The guide is `mod_loaded`-gated data - inert without it. |
 | **Pipez** | 443900 | Recompile's automation policy (`../recompile/docs/automation_policy_spec.md`) is written and tested against it. Which blocks accept pipes and which refuse to even connect is a per-block decision, and Pipez is how it was found and is verified. |
@@ -480,9 +480,10 @@ exists for exactly that. Two notes on them:
   on" call; it is one line to flip if the endgame work wants the vanilla trade back.
 - **`wood_cutting` ships a `woodcutter` block**, not the stonecutter recipes the mod's dev-branch
   config comment described. It is gated behind wood, which here means the Tree Nursery at rung 4 of 5
-  with the sapling lockout, so it arrives late and craftable rather than early and free. That changes
-nothing today - they are all on by default - and it is there so the pack keeps the behaviour it was
-tested with if a default ever flips upstream.
+  with the sapling lockout, so it arrives late and craftable rather than early and free.
+
+Pinning them changes nothing today, since all nine are on by default upstream too. The file is there
+so the pack keeps the behaviour it was tested with if a default ever flips.
 
 **Two limits on that file, both verified against NeoForge 26.1.2.76's `ModConfigSpec` rather than
 assumed:**
