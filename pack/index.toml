@@ -5,6 +5,14 @@ file = "config/bcc-common.json"
 hash = "203d810eb840e3453f841fead0e41d1e44a64a6847f0b809bba00a64aab5bca1"
 
 [[files]]
+file = "config/blocks_previewer/_presets.json"
+hash = "6f6002c17d7a7b1e20772f47783f9790eb126f2091d228115385df16dc73e8f3"
+
+[[files]]
+file = "config/blocks_previewer/default.json"
+hash = "cd0625f028b9c9108109f62c8184ad25bfb43db882426e255a0dea322fb08215"
+
+[[files]]
 file = "config/defaultworldtype/client-config.toml"
 hash = "647ebef0a380431fc5d1fd993ce77bc9e2bb483d862e6778fe0a2b1b8542f0ed"
 
@@ -142,6 +150,11 @@ hash = "4ea15966a79cc4c31102fd8abc730a27cba2089da292193f03f5cd3352d03ce2"
 metafile = true
 
 [[files]]
+file = "mods/blocks-previewer.pw.toml"
+hash = "d8120d6b13dbad02c9c7156ca4a26f00a9cf17e4a76ced8a8108e7605a70e324"
+metafile = true
+
+[[files]]
 file = "mods/building-gadgets.pw.toml"
 hash = "5e63f44ba5113b18ee66c51f06c5e7a56112784130aa9051d9bedaaf64654933"
 metafile = true
@@ -174,6 +187,11 @@ metafile = true
 [[files]]
 file = "mods/controlling.pw.toml"
 hash = "bbc4ab39e1331069171303de5b94321f7ad615bcab498c4b06353e0c72d775e9"
+metafile = true
+
+[[files]]
+file = "mods/craft-config.pw.toml"
+hash = "79a10470e8898ad2eb9db7f60cbaa89944db17e98cb86aff1724c72bcf0bdaa0"
 metafile = true
 
 [[files]]

@@ -12,7 +12,7 @@ to give that income up.
   the whole salvage economy walled off from it, twelve other mods, and Recompile 0.20.0 - where
   teardown stops teaching you recipes and starts handing you the working part instead
   - on [GitHub Releases](https://github.com/Flatts3000/trashlands/releases) and CurseForge (project
-  `1636627`). The pack is 78 mods on Minecraft 26.1.2 / NeoForge 26.1.2.100. If you are hand-building
+  `1636627`). The pack is 80 mods on Minecraft 26.1.2 / NeoForge 26.1.2.100. If you are hand-building
   an instance, match the loader to the release you downloaded rather than to this line; `v0.9.0` and
   earlier declare 26.1.2.94. Releases are tag-driven - see
   [`docs/release_checklist.md`](docs/release_checklist.md).

@@ -52,10 +52,11 @@ tools/
 
 ## The mod lineup
 
-**78 mods**: the core six, a quality-of-life layer, the FTB stack, a tech and gadget layer, world-type enforcement, scripting, diagnostics, and ten auto-pulled libraries. Locked
+**80 mods**: the core six, a quality-of-life layer, the FTB stack, a tech and gadget layer, world-type enforcement, scripting, diagnostics, and eleven auto-pulled libraries. Locked
 2026-08-02, with Jade Addons, Configured and Cable Facades added 2026-09-03, and FTB Ultimine plus
 KubeJS (with Rhino and standalone Better Advanced Tooltips) added 2026-09-07, followed the same
-day by eight borrowed from ATM 11 and by **Flatts's Things** (1683375, ours).
+day by eight borrowed from ATM 11 and by **Flatts's Things** (1683375, ours), then **Blocks
+Previewer** (with Craft Config Lib) on 2026-09-08.
 
 ### Core - Recompile, the four it integrates with, and our own diagnostic
 
@@ -78,9 +79,40 @@ has a 26.1.2 NeoForge build on CurseForge. Nothing here touches the economy.
 | Inventory and UI | AppleSkin, Mouse Tweaks, Inventory Essentials, Controlling, Searchables, Toast Control, Clumps, Configured |
 | Tooltips | Jade Addons (Neo/Forge) |
 | Cleanup | TrashSlot, Trash Cans |
+| Building aids | Blocks Previewer |
 | Performance | FerriteCore, ModernFix, Lithium, FastFurnace, FastWorkbench, FastSuite, Sodium |
 | Death and safety | GraveStone, Simple Backups |
 | Audio | Extreme Sound Muffler |
+
+**Blocks Previewer arrived 2026-09-08** (project `1424300`, `2.1.1+26.1`), on request, with **Craft Config Lib** (`1530219`) as its dependency. It draws a preview outline of where a block will land.
+
+**Both are pinned `side = "client"`, and each earns it independently.** Both mixin configs list a
+mixin in the **common** `mixins` array as well as the `client` one, and both of those target
+client-only classes: `blocks_previewer.mixins.json` has `BlockOutlineMixin` on
+`net.minecraft.client.renderer.LevelRenderer`, and `craft_config.mixins.json` has `EmptyMixin` on
+`net.minecraft.client.renderer.GameRenderer`. Both configs are `"required": true` with
+`defaultRequire: 1`, so shipping either server-side is a load failure, not a no-op - the library
+would fail on its own even if the mod it serves were absent. `build_server.py` now reports `Skipped Blocks Previewer (wrong side)`, which is what
+keeps it out of the server pack and out of the release's boot smoke test. Same class of tagging bug
+as Default Options, found the same way: read the jar before trusting packwiz's `both` default.
+
+**The pack pins Preview Mode to Outline**, in `pack/config/blocks_previewer/`. **Two files, and both
+are required** - that was established by launching, not by reading the jar:
+
+- `default.json` holds the values, keyed by snake_case ids under `general.rendering`
+  (`"preview_mode": "OUTLINE"`, default `TRANSPARENT`).
+- `_presets.json` is CraftConfig's preset index. **Ship `default.json` alone and it is silently
+  reset**: `PresetManager.load()` finds no index, calls `createDefaultAndSave()`, and rewrites the
+  values back to defaults. Verified by removing the index and relaunching - `preview_mode` came back
+  `TRANSPARENT`.
+
+**Reverse-engineering this from the jar would have produced a file that did nothing.** `PresetManager`
+keys a JsonObject by `Component.getString()`, which reads like the values are keyed by display text
+("Preview Mode"); the generated file is keyed by id (`preview_mode`) in a second file the class layout
+does not hint at. The file was obtained by running the game through
+`gamebridge launch --instance ... --port 8604`, which is the same generate-then-copy pattern
+`config/defaultworldtype/client-config.toml` uses and the reason Default Options is still unwired
+(#65).
 
 **Jade Addons and Configured arrived 2026-09-03**, off the recheck list below. Both had no 26.1.2
 build when the lineup was locked and both have one now: `JadeAddons-26.1.2-NeoForge-26.0.1` and
@@ -112,7 +144,7 @@ Easy Villagers is the mirror case (pinned *to* an alpha, one point release ahead
 release) - see Villagers below. It is not in `HELD_PINS`, because there the newer file is the one
 the pack wants.
 
-Auto-pulled libraries (ten): Balm, Placebo, SuperMartijn642's Core Lib, SuperMartijn642's Config Lib, Cloth Config, GuideME, and - from the 2026-08-20 additions - Titanium, Sophisticated Core and Patchouli, plus Rhino from the 2026-09-07 KubeJS addition.
+Auto-pulled libraries (eleven): Balm, Placebo, SuperMartijn642's Core Lib, SuperMartijn642's Config Lib, Cloth Config, GuideME, and - from the 2026-08-20 additions - Titanium, Sophisticated Core and Patchouli, plus Rhino from the 2026-09-07 KubeJS addition and Craft Config Lib from the 2026-09-08 Blocks Previewer addition.
 
 ### FTB stack
 
@@ -808,7 +840,7 @@ install task fail** ("Failed to launch modpack. An unexpected error occurred.").
 3. Name the instance **`Trashlands`** (the default `tools/sync_instance.py` looks for
    `<home>/curseforge/minecraft/Instances/Trashlands`).
 
-The manifest carries `neoforge-26.1.2.100`, so the app installs that loader and all 78 mods itself.
+The manifest carries `neoforge-26.1.2.100`, so the app installs that loader and all 80 mods itself.
 If the app cannot find that NeoForge build in its catalog the import will say so - see the loader
 note below.
 
