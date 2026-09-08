@@ -709,8 +709,32 @@ release-checklist item, not a CI one.
 
 **Three pieces of engine-side content can now come home**: the Simple Magnets overrides (#40), the
 Ender IO grains, and the Ultimine tag that was requested from Recompile a few hours before this
-was found. Their handoff docs all say to take them back the moment a route opened. Tracked in #46
-and #47.
+was found. Their handoff docs all say to take them back the moment a route opened.
+
+**Two of the three have moved.** The Ultimine tag came home in #63, and the Simple Magnets overrides
+followed on 2026-09-08 (#47) at `pack/kubejs/data/simplemagnets/recipe/`. Both were safe to ship while
+Recompile still ships its copy, for the same reason: each is a **single resource location with one
+winner** - a tag that merges, and four recipe ids whose two candidates are identical.
+
+**The Ender IO grains (#52) are not, and neither is the AE2 stopgap (#46) - which is a fourth piece
+rather than one of the three.** Both are `blocked`, and the reason is worth stating carefully because
+the first version of this note stated it wrongly.
+
+**Loot tables do not merge.** Unlike a tag, a same-id loot table in a higher-priority pack *replaces*
+the whole file. So the hazard is not a doubled drop, as this paragraph originally claimed - it is that
+the pack would **fork engine content**. Each of the three entries sits inside a table that is mostly
+Recompile's own:
+
+| Table | What the pack would be taking over wholesale |
+|---|---|
+| `chests/sump.json` | 3 pools. The presses are pool 2; pools 0 and 1 are the echo shard and seven engine entries |
+| `gameplay/slag_rubble_pulls.json` | 2 pools. Sky stone is pool 1; pool 0 is the seven Nether shards |
+| `gameplay/mechanical_pulls.json` | a single pool of 8, of which `enderio:grains_of_infinity` is one entry |
+
+Copy any of those under `pack/kubejs/data/recompile/loot_table/` and the pack silently owns the whole
+table, including content the engine keeps changing, with nothing to report the fork going stale. That
+is why the Recompile deletion has to land first for these two, and why the recipe-shaped and
+tag-shaped moves did not have to wait.
 
 ### Considered and cut
 
@@ -729,7 +753,9 @@ and #47.
   26.1.2. **Recompile 0.14.0 re-themed all four recipes** onto Magnet Scrap, scrap metal and copper,
   with Fused Circuitry standing in for the diamond so the advanced magnet costs a trip to the Nether.
   Spending Magnet Scrap on magnets means not spending it on redstone, and that tension is the point.
-  Engine-side pack content, tracked for removal in #47.
+  **Moved into the pack 2026-09-08 (#47)** - the four overrides now live at
+  `pack/kubejs/data/simplemagnets/recipe/`. What is left in Recompile is a redundant identical
+  copy plus its optional `simplemagnets` dependency, which only that repo can delete.
 - **OpenBlocks Elevator** - mounds are 3 to 15 blocks tall; there is nothing to ride up.
 - **Create and Mekanism** - not options on 26.1.2, neither has a NeoForge build past 1.21.1. This was
   checked, not assumed (`../recompile/docs/hydroponics_spec.md`). An older version of this file named
