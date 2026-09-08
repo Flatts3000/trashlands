@@ -87,6 +87,11 @@ Two pins drift silently and both ship to every new downloader.
    **new `woodcutter` block** rather than the stonecutter recipes the mod's own dev-branch config
    comment described, so read the shipped jar rather than the source.
 
+   **Blocks Previewer is the same shape of check.** `pack/config/blocks_previewer/` pins
+   `preview_mode` to `OUTLINE`, and it needs **both** `default.json` and `_presets.json` - without the
+   index, CraftConfig regenerates the values from defaults on load. If that mod's option ids ever
+   change, the pinned file goes stale silently.
+
    **Do not read that config out of an instance to see what the pack set.** Correction also fires on
    a comment mismatch alone, and it rewrites and saves the whole file, replacing every pack-authored
    comment with the mod's own. An instance copy tells you the values and nothing else. The repo copy

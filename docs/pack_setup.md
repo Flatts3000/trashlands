@@ -96,6 +96,24 @@ would fail on its own even if the mod it serves were absent. `build_server.py` n
 keeps it out of the server pack and out of the release's boot smoke test. Same class of tagging bug
 as Default Options, found the same way: read the jar before trusting packwiz's `both` default.
 
+**The pack pins Preview Mode to Outline**, in `pack/config/blocks_previewer/`. **Two files, and both
+are required** - that was established by launching, not by reading the jar:
+
+- `default.json` holds the values, keyed by snake_case ids under `general.rendering`
+  (`"preview_mode": "OUTLINE"`, default `TRANSPARENT`).
+- `_presets.json` is CraftConfig's preset index. **Ship `default.json` alone and it is silently
+  reset**: `PresetManager.load()` finds no index, calls `createDefaultAndSave()`, and rewrites the
+  values back to defaults. Verified by removing the index and relaunching - `preview_mode` came back
+  `TRANSPARENT`.
+
+**Reverse-engineering this from the jar would have produced a file that did nothing.** `PresetManager`
+keys a JsonObject by `Component.getString()`, which reads like the values are keyed by display text
+("Preview Mode"); the generated file is keyed by id (`preview_mode`) in a second file the class layout
+does not hint at. The file was obtained by running the game through
+`gamebridge launch --instance ... --port 8604`, which is the same generate-then-copy pattern
+`config/defaultworldtype/client-config.toml` uses and the reason Default Options is still unwired
+(#65).
+
 **Jade Addons and Configured arrived 2026-09-03**, off the recheck list below. Both had no 26.1.2
 build when the lineup was locked and both have one now: `JadeAddons-26.1.2-NeoForge-26.0.1` and
 `configured-neoforge-26.1.2-2.7.5`. Jade Addons extends the core Jade with support for FTB Chunks and
