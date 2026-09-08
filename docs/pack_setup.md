@@ -164,7 +164,7 @@ limits only. Established by disassembling the jar, not from the mod's docs.
 `recompile:cardboard_pile`, `recompile:bulky_waste`, `recompile:mound_ground`,
 `recompile:stained_ground`, `recompile:stone_rubble`, `recompile:mechanical_waste`,
 `recompile:mill_tailings`, `recompile:waste_drum`, `recompile:slag_rubble`,
-`recompile:ancient_sculk`, `recompile:tire`.
+`recompile:techno_organic_waste`, `recompile:ancient_sculk`, `recompile:tire`.
 
 **The rule is narrower than "everything worldgen places", and stating it loosely is how the first
 draft got it wrong.** Three kinds of block are in the tag:
@@ -187,14 +187,25 @@ draft got it wrong.** Three kinds of block are in the tag:
    inert bulk here; it is an early, tool-ungated stone-crafting stream. A vein-miner on it multiplies
    exactly the thing that already broke a gate once.
 
-**What decides membership of kind 1 is the sort table, not judgement.** A Recompile block is
-sortable when its block class names a `gameplay/*_pulls` loot table, and all eight that do are in
-this tag: `garbage_block` (`household_pulls`), `trash_bag` (`bag_pulls`), `stone_rubble`
-(`rubble_pulls`), `mechanical_waste` (`mechanical_pulls`), `mill_tailings` (`tailings_pulls`),
-`waste_drum` (`waste_drum_pulls`), `slag_rubble` (`slag_rubble_pulls`) and `techno_organic_waste`
-(`depths_pulls`). **If a new Recompile block gets a pull table, it belongs here** - that is a
-mechanical check anyone can run, and it is a better rule than the two earlier passes reasoned their
-way to.
+**There is a mechanical check for part of kind 1, and it is worth more than the two passes of
+reasoning that preceded it - but it is a floor, not the definition.**
+
+**The check: a Recompile block that `extends SortableBlock` is sortable and belongs in this tag.**
+Nine classes do, and all nine are here: `GarbageBlock`, `TrashBagBlock`, `CompactedBaleBlock`,
+`RubbleBlock` (`stone_rubble`), `MechanicalWasteBlock`, `MillTailingsBlock`, `WasteDrumBlock`,
+`SlagRubbleBlock` and `TechnoOrganicWasteBlock`.
+
+**Grep for `gameplay/*_pulls` instead and you will miss one.** `CompactedBaleBlock` overrides
+`pullTable()` to return `GarbageBlock.HOUSEHOLD_PULLS`, so it is sortable without ever naming a table
+id. The first version of this note used that grep, counted eight, and would have let any future block
+written on the same pattern pass the audit and stay vein-mineable - which is the exact failure the
+note was added to close. Use the superclass.
+
+**And sortability is sufficient, not necessary.** `cardboard_pile`, `bulky_waste` and `tire` are in
+kind 1 with no pull table at all: they are dug for materials rather than sorted, and they are still
+salvage. Anyone auditing tag membership by the `SortableBlock` list alone would argue those three out
+and re-open vein-mining on three scrap piles. The rule reads one way only - **if it is sortable it
+belongs here** - and the rest is still a judgement call.
 
 **`recompile:techno_organic_waste` was left out twice and both reasons were wrong.** The first pass
 called it a scrap pile and excluded it; review pulled it back out on the grounds that it is
@@ -204,12 +215,23 @@ halves of that are answered by `TechnoOrganicWasteBlock.java:47`, which points a
 `gameplay/depths_pulls`: **it is sortable.** It is the Depths' bulk stone *and* a garbage block, and
 a vein-miner on it is a pick-through skip exactly like one on a Block of Garbage.
 
-**Ultimine therefore does nothing at all in the Compacted Depths, and that is correct rather than a
-gap.** The dimension's noise settings and biome between them place only `techno_organic_waste`,
-`slag_rubble`, `ancient_sculk`, lava and bedrock - so every solid block down there is either
-sortable garbage or the gated sculk seam. The Depths is not a quarry with garbage in it; the whole
-place is the pick-through. The overworld is the case where exclusion leaves something behind, since
-trees, crops, farmland and player builds all remain.
+**So Ultimine does nothing on the Depths' terrain, and that is correct rather than a gap.** The
+dimension's noise settings and its biome's three features between them place only
+`techno_organic_waste`, `slag_rubble`, `ancient_sculk`, lava and bedrock - every solid block the
+world generator lays down there is sortable garbage or the gated sculk seam. That terrain is not a
+quarry with garbage in it; it is the pick-through.
+
+**Terrain is not everything down there, though, and a release test written as "nothing chains in the
+Depths" would be wrong.** `world_preset/garbage.json` makes `recompile:compacted_depths` the sole
+biome of `minecraft:the_nether`, and Recompile ships `has_structure/nether_fortress.json` and
+`has_structure/bastion_remnant.json` both naming it - so **vanilla fortresses and bastions still
+generate**, and their nether brick, blackstone, polished and gilded blackstone and basalt are not in
+this tag and do chain. That is currently unexamined rather than decided: those are finite hand-placed
+structures rather than an infinite seam, which is the argument for leaving them, but bastion
+blackstone is a real bulk source in a world with no other. Flagged, not settled.
+
+The overworld is the case where exclusion plainly leaves something behind, since trees, crops,
+farmland and player builds all remain.
 
 Note the entry is `minecraft:deepslate` only, so cobbled deepslate, deepslate bricks, tiles and the
 polished set all stay ultiminable. **One case does not come out the way that sentence implies, and it
