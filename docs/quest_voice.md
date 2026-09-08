@@ -202,6 +202,13 @@ the book. Read that file before writing any chapter; never restate its contents 
 
 Structure follows [`progression_gates.md`](progression_gates.md), which is already the traced order.
 
+**Erosion belongs to Groundwork, not Welcome.** A "Green Ground Erodes" quest sat in Welcome until
+2026-09-08 and was removed rather than moved: Groundwork's "The Frontier" already teaches it, in the
+place where the player can act on it, and the two disagreed. Welcome claimed "blocks you placed are
+never touched"; The Frontier says soil reverts regardless of who placed it and only buildings are
+safe. The rule that falls out: orientation teaches what the player will hit in the first hour, and a
+mechanic that is "a long way off" by its own admission is in the wrong chapter.
+
 **A chapter ends on an object the player can hold, not on a tier boundary.** Salvage
 runs to a Bucket of Water because that is one thing that required both halves of the
 chapter - scrap smelted into copper on one side, a found Pump and collected rain on
@@ -211,7 +218,7 @@ Classification decides how much copy each chapter earns. (This used to cite `que
 
 | Chapter | Covers | Class | State |
 |---|---|---|---|
-| Welcome | Orientation, the no-trees gotcha, the guidebook handoff | TEACH-heavy | written |
+| Welcome | Orientation and the household sprawl: the no-trees gotcha, the guidebook handoff, picking through garbage, no water, what spawns, and (2026-09-08) mound regrowth, leachate, tire piles and cardboard | TEACH-heavy | written |
 | Salvage | Everything up to your first Bucket of Water: trash tools, Bulky Waste, food, storage, the Sorting Tarp, the Workbench, the Pump and Rain Collector, the Burn Barrel and copper, fuel, and the Scrap Network adjacency rule | TEACH-heavy | written |
 | (network) | Scrap Bins and binding, the Filing Cabinet, and crafting straight out of the cluster - issue #11. Adjacency itself is already taught inside Salvage as of v0.5.0, so this chapter starts from a player who knows blocks touch | TEACH-heavy | |
 | Groundwork | The whole reclamation ladder: Grass Spreader, Mound Ground and the quarry-versus-heal trade, the frontier, Compost Heap and Fertilizer, farmland, the Tree Nursery, and the animal baits. Ends on a rich bait, so the herd breeds without you | TEACH-heavy | written |
