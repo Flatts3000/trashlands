@@ -292,7 +292,7 @@ def write_split(out_dir: str) -> int:
     d = pathlib.Path(out_dir)
     d.mkdir(parents=True, exist_ok=True)
 
-    written = 0
+    written, expected = 0, set()
     for ch in chapters:
         cid = str(ch.data.get("id", "")).upper()
         title = strip_codes(chlang.get(cid, {}).get("title") or ch.name)
@@ -319,8 +319,24 @@ def write_split(out_dir: str) -> int:
         path.write_text("\n".join(lines).rstrip() + "\n",
                         encoding="utf-8", newline="\n")
         print("wrote {} ({} bodies)".format(path, bodies))
+        expected.add(path.name)
         written += 1
     print("{} chapter file(s)".format(written))
+
+    # A renamed or removed chapter leaves its old file behind, and a stale file
+    # is not harmless here: it gets pasted into a reviewer's editor like any
+    # other, and the import then aborts because no chapter answers to its title.
+    # Splitting Welcome into the Welcome to the Dump group left exactly this.
+    # Reported rather than deleted, because this is a path the caller chose and
+    # a tool that removes files from it should be asked to, not assumed.
+    stale = sorted(f for f in d.glob("*.md") if f.name not in expected)
+    if stale:
+        print("")
+        print("STALE: {} file(s) here do not match any chapter. Delete them, or a"
+              .format(len(stale)))
+        print("reviewer will edit copy that no longer exists:")
+        for f in stale:
+            print("  {}".format(f))
     return 0
 
 
