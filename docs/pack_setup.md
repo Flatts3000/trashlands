@@ -55,7 +55,8 @@ tools/
 **80 mods**: the core six, a quality-of-life layer, the FTB stack, a tech and gadget layer, world-type enforcement, scripting, diagnostics, and eleven auto-pulled libraries. Locked
 2026-08-02, with Jade Addons, Configured and Cable Facades added 2026-09-03, and FTB Ultimine plus
 KubeJS (with Rhino and standalone Better Advanced Tooltips) added 2026-09-07, followed the same
-day by eight borrowed from ATM 11 and by **Flatts's Things** (1683375, ours).
+day by eight borrowed from ATM 11 and by **Flatts's Things** (1683375, ours), then **Blocks
+Previewer** (with Craft Config Lib) on 2026-09-08.
 
 ### Core - Recompile, the four it integrates with, and our own diagnostic
 
@@ -78,18 +79,20 @@ has a 26.1.2 NeoForge build on CurseForge. Nothing here touches the economy.
 | Inventory and UI | AppleSkin, Mouse Tweaks, Inventory Essentials, Controlling, Searchables, Toast Control, Clumps, Configured |
 | Tooltips | Jade Addons (Neo/Forge) |
 | Cleanup | TrashSlot, Trash Cans |
-| Building aids | Blocks Previewer (+ Craft Config Lib) |
+| Building aids | Blocks Previewer |
 | Performance | FerriteCore, ModernFix, Lithium, FastFurnace, FastWorkbench, FastSuite, Sodium |
 | Death and safety | GraveStone, Simple Backups |
 | Audio | Extreme Sound Muffler |
 
 **Blocks Previewer arrived 2026-09-08** (project `1424300`, `2.1.1+26.1`), on request, with **Craft Config Lib** (`1530219`) as its dependency. It draws a preview outline of where a block will land.
 
-**Both are pinned `side = "client"`, and that is not cosmetic tidiness.** `blocks_previewer.mixins.json`
-lists `BlockOutlineMixin` in its **common** `mixins` array as well as its `client` array, and that
-mixin targets `net.minecraft.client.renderer.LevelRenderer` - a class a dedicated server does not
-have. With `"required": true` and `defaultRequire: 1`, shipping it server-side is a load failure,
-not a no-op. `build_server.py` now reports `Skipped Blocks Previewer (wrong side)`, which is what
+**Both are pinned `side = "client"`, and each earns it independently.** Both mixin configs list a
+mixin in the **common** `mixins` array as well as the `client` one, and both of those target
+client-only classes: `blocks_previewer.mixins.json` has `BlockOutlineMixin` on
+`net.minecraft.client.renderer.LevelRenderer`, and `craft_config.mixins.json` has `EmptyMixin` on
+`net.minecraft.client.renderer.GameRenderer`. Both configs are `"required": true` with
+`defaultRequire: 1`, so shipping either server-side is a load failure, not a no-op - the library
+would fail on its own even if the mod it serves were absent. `build_server.py` now reports `Skipped Blocks Previewer (wrong side)`, which is what
 keeps it out of the server pack and out of the release's boot smoke test. Same class of tagging bug
 as Default Options, found the same way: read the jar before trusting packwiz's `both` default.
 
@@ -123,7 +126,7 @@ Easy Villagers is the mirror case (pinned *to* an alpha, one point release ahead
 release) - see Villagers below. It is not in `HELD_PINS`, because there the newer file is the one
 the pack wants.
 
-Auto-pulled libraries (ten): Balm, Placebo, SuperMartijn642's Core Lib, SuperMartijn642's Config Lib, Cloth Config, GuideME, and - from the 2026-08-20 additions - Titanium, Sophisticated Core and Patchouli, plus Rhino from the 2026-09-07 KubeJS addition.
+Auto-pulled libraries (eleven): Balm, Placebo, SuperMartijn642's Core Lib, SuperMartijn642's Config Lib, Cloth Config, GuideME, and - from the 2026-08-20 additions - Titanium, Sophisticated Core and Patchouli, plus Rhino from the 2026-09-07 KubeJS addition and Craft Config Lib from the 2026-09-08 Blocks Previewer addition.
 
 ### FTB stack
 

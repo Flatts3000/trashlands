@@ -35,8 +35,9 @@ broken bundled `build.8` that crashed the client, which **ends the "this pack ca
 constraint**: the Ultimine tag ships from `pack/kubejs/data/`, and the three cross-mod overrides
 parked in Recompile can come home), **eight borrowed from ATM 11** (added 2026-09-07 after reading
 that pack's 26.1.2 lineup - Default Options, Lootr, WITS, FramedBlocks, spark, Crash Assistant,
-Crash Utilities, Better Compatibility Checker), **Flatts's Things** (1683375, ours), and the
-auto-pulled libraries. Full table and the considered-but-cut list are in `docs/pack_setup.md`.
+Crash Utilities, Better Compatibility Checker), **Flatts's Things** (1683375, ours), **Blocks Previewer** (1424300, added 2026-09-08 on request - a
+placement preview outline; pinned client-side because its mixin config declares a client-only render
+mixin as common), and the auto-pulled libraries. Full table and the considered-but-cut list are in `docs/pack_setup.md`.
 
 **One consequence of the FTB stack.** It is CurseForge-exclusive, so **Modrinth is closed to this pack** (`docs/distribution.md`).
 
