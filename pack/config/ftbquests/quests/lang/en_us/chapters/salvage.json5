@@ -5,7 +5,7 @@
     "",
     "It opens the ordinary chest screen and holds a chest's worth of anything.",
     "",
-    "It is also the first block that can catch what the others put out. Scrap blocks touching face to face are one Scrap Network, with no pipes or wires. Set the barrel against the Sorting Tarp and sifted materials land in it rather than on the floor. The Burn Barrel and the Recompile Workbench feed it the same way.",
+    "It is also the first block that can catch what the others put out. Scrap blocks touching face to face are one Scrap Network, with no pipes or wires. Set the barrel against the Sorting Tarp and sifted materials land in it rather than on the floor. The Burn Barrel and the Teardown Workbench feed it the same way.",
     "",
     "Touching means sharing a face. A diagonal is a separate network, and so is a gap.",
   ],
@@ -97,7 +97,7 @@
     "",
     "A Scrap Barrel touching the tarp catches all of it instead.",
   ],
-  "quest.7A55E0BA6E000026.title": "The Recompile Workbench",
+  "quest.7A55E0BA6E000026.title": "The Teardown Workbench",
   "quest.7A55E0BA6E000026.quest_desc": [
     "Rack both tools on it by right-clicking the bench with each in turn. It has a slot for a Scrap Knife and a slot for a Prybar, and different finds take different tools.",
     "",
