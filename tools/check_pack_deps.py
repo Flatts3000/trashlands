@@ -264,10 +264,20 @@ def check_pack_shadows_engine(mods_dir: Path) -> int:
     the old text, and the divergence is silent in exactly the way an override always
     is.
 
+    Two pack trees are read, each against the same prefix inside the jar: the pack's
+    data (`kubejs/data/`, recipes, loot, tags) and its client assets
+    (`resourcepacks/trashlands/assets/`, where the AE2 move's lang key lives, #46). A
+    lang key is not replaced the way a recipe is - lang files merge and the higher
+    pack wins per key - but two copies of one key still resolve to a single silent
+    winner, so the argument is the same.
+
     `_comment` is ignored, because the pack rewrites those for its own context.
     """
-    shadow_root = PACK / "kubejs" / "data"
-    if not shadow_root.is_dir():
+    trees = [(root, prefix) for root, prefix in (
+        (PACK / "kubejs" / "data", "data"),
+        (PACK / "resourcepacks" / "trashlands" / "assets", "assets"),
+    ) if root.is_dir()]
+    if not trees:
         return 0
     engine = mods_dir.glob("recompile-*.jar")
     engine = next(iter(sorted(engine)), None)
@@ -282,26 +292,27 @@ def check_pack_shadows_engine(mods_dir: Path) -> int:
     drift, missing = [], []
     with zipfile.ZipFile(engine) as zf:
         names = set(zf.namelist())
-        for path in sorted(shadow_root.rglob("*.json")):
-            inner = "data/" + path.relative_to(shadow_root).as_posix()
-            if inner not in names:
-                continue  # pack-only content, nothing to agree with
-            try:
-                if strip(path.read_bytes()) != strip(zf.read(inner)):
-                    drift.append(inner)
-            except ValueError as exc:
-                missing.append(f"{inner}: {exc}")
+        for root, prefix in trees:
+            for path in sorted(root.rglob("*.json")):
+                inner = f"{prefix}/" + path.relative_to(root).as_posix()
+                if inner not in names:
+                    continue  # pack-only content, nothing to agree with
+                try:
+                    if strip(path.read_bytes()) != strip(zf.read(inner)):
+                        drift.append(inner)
+                except ValueError as exc:
+                    missing.append(f"{inner}: {exc}")
 
     if drift or missing:
         print("")
         print("=== PACK OVERRIDE HAS DRIFTED FROM THE ENGINE ===")
         for row in drift:
-            print(f"  {row}: pack/kubejs/data differs from {engine.name}")
+            print(f"  {row}: the pack's copy differs from {engine.name}")
         for row in missing:
             print(f"  {row}")
-        print("  -> Both copies of this resource location ship today and the pack's wins on load "
-              "order, so the engine's change is silently discarded. Re-copy from the pinned jar, "
-              "or finish the move by deleting the engine's copy.")
+        print("  -> Both copies of this resource location ship today and only one of them wins, "
+              "with nothing logged, so one side's change is silently discarded. Re-copy from the "
+              "pinned jar, or finish the move by deleting the engine's copy.")
         print("")
         return 1
     return 0

@@ -1,0 +1,25 @@
+{
+  "_comment": [
+    "AE2's four Inscriber presses, added to the sump crate from the pack rather than shipped by the",
+    "engine (#46). The presses gate AE2's whole tree: no meteorite falls on this world, and AE2's own",
+    "press recipes need a press to make a press.",
+    "",
+    "ADDED, NOT OVERRIDDEN. A pack file at recompile:chests/sump would replace the whole table, echo",
+    "shard pool included, and serve a stale copy every time Recompile retuned it. neoforge:add_table",
+    "rolls one more table on top of the sump instead, so the pack owns only the pool it cares about.",
+    "",
+    "AIMED by neoforge:loot_table_id. Recompile's docs said that condition never matches its tables;",
+    "it does. Measured 2026-09-10 on a dedicated server with this pack: one marker modifier per target,",
+    "each fired on every roll of its own table (10/10 sump, 30/30 mechanical_pulls, 3/3 on a vanilla",
+    "dungeon chest as a control) and on none of the others.",
+    "",
+    "WHILE RECOMPILE STILL SHIPS ITS OWN PRESS POOL (pool 2 of chests/sump, through 0.20.0), a sump",
+    "yields two sets. Presses are stamps, not ingredients - nothing consumes one - so the second set",
+    "is inert. That window closes when Recompile deletes its pool (Flatts3000/recompile#420)."
+  ],
+  "type": "neoforge:add_table",
+  "conditions": [
+    { "condition": "neoforge:loot_table_id", "loot_table_id": "recompile:chests/sump" }
+  ],
+  "table": "trashlands:chests/sump_inscriber_presses"
+}

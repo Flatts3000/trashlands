@@ -94,7 +94,7 @@ hash = "7267ba9342d6865a5612fef2c31bdc5c8504685a51cee72c1047e4d518b62f76"
 
 [[files]]
 file = "config/ftbquests/quests/lang/en_us/chapters/salvage.json5"
-hash = "5f697124645c29e060268847f0ede4b899ae6acb3f491fa47449b015326c321b"
+hash = "da8641fd3f05a9ca9c42e0ca3910f616545591bd672ee2f38a0d574fea94bc93"
 
 [[files]]
 file = "config/ftbquests/quests/lang/en_us/chapters/welcome.json5"
@@ -123,6 +123,14 @@ hash = "81fd2af6c9198542f0b538cefc8682243b9162cd3d690cd244f88aca5fe02a2c"
 [[files]]
 file = "kubejs/data/simplemagnets/recipe/basicmagnet.json"
 hash = "7c417bbdcc68734e5ec55fd95a69c9ba5644b876dac7926087661866beb8bb01"
+
+[[files]]
+file = "kubejs/data/trashlands/loot_modifiers/sump_inscriber_presses.json"
+hash = "1f6c93ff77300cd2147c264463ac7853b3f7841505ebc350c3bec163b0a83033"
+
+[[files]]
+file = "kubejs/data/trashlands/loot_table/chests/sump_inscriber_presses.json"
+hash = "ba66f009c017b5f77ce3d54a208cb175ca8b26a70c782d0ee53e122b040153e0"
 
 [[files]]
 file = "mods/apotheosis.pw.toml"
@@ -523,6 +531,10 @@ metafile = true
 file = "mods/wits.pw.toml"
 hash = "a6731499ebea1b1c82bea66e091eb1375e6fc3fab3d10f458d21936d473a613d"
 metafile = true
+
+[[files]]
+file = "resourcepacks/trashlands/assets/ae2/lang/en_us.json"
+hash = "927e70948d8602d0361489c22bce61c5f91d752b11bb5c6d995374342f4a32a2"
 
 [[files]]
 file = "resourcepacks/trashlands/assets/trashlands/textures/quests/discord.png"
