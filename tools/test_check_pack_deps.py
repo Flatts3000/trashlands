@@ -41,6 +41,7 @@ import pathlib
 import shutil
 import sys
 import tempfile
+import zipfile
 
 HERE = pathlib.Path(__file__).resolve().parent
 
@@ -302,9 +303,75 @@ def dev_mod_cases(t):
     ]
 
 
+def shadow_cases(t):
+    """check_pack_shadows_engine: a pack copy of an engine file must stay a copy.
+
+    While a cross-mod override is mid-move, the pack and the pinned Recompile jar
+    ship the same resource location and only one wins, with nothing logged. This
+    guard is the whole reason shipping the pack half first is safe, and it had no
+    cases at all until #46 widened it from the pack's data to its resource pack too.
+
+    Keys are paths under `pack/`; each maps to the same path under `data/` or
+    `assets/` inside the jar.
+    """
+    recipe = "kubejs/data/simplemagnets/recipe/basicmagnet.json"
+    lang = "resourcepacks/trashlands/assets/ae2/lang/en_us.json"
+    in_jar = {
+        recipe: "data/simplemagnets/recipe/basicmagnet.json",
+        lang: "assets/ae2/lang/en_us.json",
+    }
+    engine_files = {
+        recipe: '{"_comment": "engine", "type": "minecraft:crafting_shaped", "n": 1}',
+        lang: '{"gui.ae2.inWorldCraftingPresses": "In the sump."}',
+    }
+
+    def run(pack_files, jar=True) -> int:
+        root = pathlib.Path(tempfile.mkdtemp(prefix="deps-test-"))
+        saved = t.PACK
+        try:
+            mods = root / "mods"
+            mods.mkdir()
+            if jar:
+                with zipfile.ZipFile(mods / "recompile-26.1.2-9.9.9.jar", "w") as zf:
+                    for name, body in engine_files.items():
+                        zf.writestr(in_jar[name], body)
+            for rel, body in pack_files.items():
+                path = root / "pack" / rel
+                path.parent.mkdir(parents=True, exist_ok=True)
+                path.write_text(body, encoding="utf-8")
+            t.PACK = root / "pack"
+            return quietly(lambda: t.check_pack_shadows_engine(mods))
+        finally:
+            t.PACK = saved
+            shutil.rmtree(root, ignore_errors=True)
+
+    same_recipe = {recipe: engine_files[recipe]}
+    same_lang = {lang: engine_files[lang]}
+    return [
+        ("an identical data copy passes", lambda: run(same_recipe), 0),
+        ("a drifted data copy FAILS",
+         lambda: run({recipe: '{"type": "minecraft:crafting_shaped", "n": 2}'}), 1),
+        ("a copy differing only in _comment passes",
+         lambda: run({recipe: '{"_comment": "pack", "type": "minecraft:crafting_shaped", "n": 1}'}), 0),
+        ("an identical assets copy passes", lambda: run(same_lang), 0),
+        # The case #46 exists for: before it, assets/ was never read, so this passed.
+        ("a drifted assets copy FAILS",
+         lambda: run({lang: '{"gui.ae2.inWorldCraftingPresses": "Find a meteorite."}'}), 1),
+        ("pack-only files are nothing to agree with",
+         lambda: run({"kubejs/data/trashlands/loot_table/x.json": '{"pools": []}'}), 0),
+        # A kubejs/assets copy is not a route the pack uses, so it is not read.
+        ("an assets copy outside the pack resource pack is not read",
+         lambda: run({"kubejs/assets/ae2/lang/en_us.json": '{"k": "drifted"}'}), 0),
+        ("unparseable pack JSON FAILS rather than passing",
+         lambda: run({recipe: "{not json"}), 1),
+        ("no Recompile jar means the guard abstains",
+         lambda: run(same_recipe, jar=False), 0),
+    ]
+
+
 def main() -> int:
     t = load_tool()
-    cases = version_cases(t) + held_pin_cases(t) + dev_mod_cases(t)
+    cases = version_cases(t) + held_pin_cases(t) + dev_mod_cases(t) + shadow_cases(t)
     failures = 0
     for name, thunk, want in cases:
         try:

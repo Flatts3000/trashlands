@@ -35,7 +35,7 @@ pack/
   .packwizignore     # keep tool caches out of the index
   mods/              # one *.pw.toml per mod
   config/            # mod config overrides, shipped as export overrides (world-type lock lives here)
-  kubejs/data/       # pack data KubeJS mounts: ftbultimine/tags/... and simplemagnets/recipe/
+  kubejs/data/       # pack data KubeJS mounts: ftbultimine/tags/..., simplemagnets/recipe/, trashlands/loot_modifiers/
   resourcepacks/     # pack-owned client assets (trashlands/, see below)
 branding/
   wordmark_two_row.png     # the Minecraft Title Generator render (see docs/branding.md)
@@ -431,11 +431,11 @@ Added on owner call, in one pass. The largest single change to the lineup since 
   digital storage and autocrafting were dead content until something put presses in the world.
   **Shipped in Recompile 0.14.0.** A sewer is rarer than a meteorite, and AE2 hands the presses over
   as a set anyway, so one crate matches how the mod already works. AE2's own tooltip used to send
-  players after meteorites and now names the real source. This is engine-side pack content tracked in
-  #46. The pack can ship data again since #63, but only the press pool and the one-key tooltip
-  correction move here; the four AE2 sourcing recipes stay in Recompile (owner ruling 2026-09-08 on
-  Flatts3000/recompile#420). The press pool is held because a pack loot table replaces the whole
-  table - see the end of "Recipe overrides had nowhere to live" below.
+  players after meteorites and now names the real source. **The pack ships both halves itself as of
+  #46:** the presses through an aimed loot modifier on the sump, and the tooltip key in the pack
+  resource pack - see the end of "Recipe overrides had nowhere to live" below. Recompile still ships
+  its copies until it deletes them (Flatts3000/recompile#420). The four AE2 sourcing recipes stay in
+  Recompile by owner ruling (2026-09-08, same issue).
 - **Worth noting separately:** Recompile's overworld biomes being absent from `#minecraft:is_overworld`
   is not an AE2 problem. Any mod that gates worldgen or spawning on that tag silently does nothing
   here, and nothing reports it. AE2 is just the first case anyone looked at.
@@ -786,12 +786,31 @@ table, including content the engine keeps changing, with nothing to report the f
 is why the loot halves of these two cannot simply be copied across, and why the recipe-shaped and
 tag-shaped moves did not have to wait.
 
-**Where the two stand (2026-09-10, per the SCRUB comments on #52 and #46).** The same-id halves are
-ready to move now: the blaze disable at Ender IO's own recipe id, and the AE2 lang key, since lang
-files merge. The loot halves wait on a mechanism that adds to Recompile's table without owning it. A
-pack-side `neoforge:add_table` modifier aimed with `neoforge:loot_table_id` is the candidate.
-Recompile's docs say that aim cannot work on its tables, NeoForge 26.1.2.76's source says it should,
-and it has not been measured.
+**The way to add without owning: an aimed global loot modifier.** A `neoforge:add_table` modifier in
+`pack/kubejs/data/<ns>/loot_modifiers/` rolls a pack-owned table on top of Recompile's, and a
+`neoforge:loot_table_id` condition restricts it to one table. Recompile's docs say that condition
+never matches its tables. **It does, measured 2026-09-10** on a dedicated server built from this pack
+(NeoForge 26.1.2.100): an aimed marker modifier fired on 10 of 10 `/loot` rolls of `chests/sump`, 30
+of 30 of `gameplay/mechanical_pulls`, and 3 of 3 of a vanilla dungeon chest used as a control. `/loot`
+calls the same `LootTable.getRandomItems(LootParams)` that Recompile's roll sites call, on the same
+registry object. The folder is plural and has no index file: NeoForge scans every JSON in it.
+
+Two consequences worth knowing before copying it:
+
+- **A modifier rides along; it does not displace.** It adds its roll on top of the table's own. For a
+  pool that is already its own roll (the sump's presses) that is identical. For one weighted entry
+  inside a single pool (the grains) it is not: an added roll gives grains *as well as* a pull, where
+  the entry gives grains *instead of* one. That is a balance change, and it is why #52's grains wait on
+  a ruling rather than on a mechanism.
+- **While the engine still ships its copy, both roll.** A sump yields two press sets until Recompile
+  deletes its pool. Presses are stamps nothing consumes, so the second set is inert. A consumable would
+  not be, so this is not a general licence to ship first.
+
+**Where the two stand.** #46 shipped: `pack/kubejs/data/trashlands/loot_modifiers/sump_inscriber_presses.json`
+and its table, measured at 20 of each press from 10 sump rolls (10 engine, 10 pack) and none from the
+sewer barrels, plus the tooltip key at `pack/resourcepacks/trashlands/assets/ae2/lang/en_us.json`, which
+`check_pack_deps.py` now holds equal to the engine's copy. #52's blaze disable is a same-id recipe and
+can move the way #47 did; its grains wait on the ride-along ruling above.
 
 ### Considered and cut
 

@@ -1,0 +1,25 @@
+{
+  "_comment": [
+    "Rolled on top of recompile:chests/sump by loot_modifiers/sump_inscriber_presses.json (#46).",
+    "The pool is Recompile 0.20.0's pool 2 of that table, moved here unchanged.",
+    "",
+    "A TAG ENTRY, NOT FOUR ITEM ENTRIES. An item id resolves when the file is parsed, so naming",
+    "ae2:silicon_press without AE2 fails the table. A tag does not, and an absent tag rolls nothing.",
+    "",
+    "expand:false yields EVERY press in the tag per roll, which is AE2's own mysterious_cube mechanism",
+    "and what its guide describes: all four from one find. A fifth processor press is carried the day",
+    "AE2 adds one, and name_press stays out because AE2's tag leaves it out.",
+    "",
+    "GUARANTEED, once per sump crate, like the echo shard beside it. A sewer is behind a Prybar under",
+    "the demolition yard, which is already stricter than AE2's 'fairly common' meteorites."
+  ],
+  "type": "minecraft:chest",
+  "pools": [
+    {
+      "rolls": 1,
+      "entries": [
+        { "type": "minecraft:tag", "name": "ae2:inscriber_presses", "expand": false }
+      ]
+    }
+  ]
+}
