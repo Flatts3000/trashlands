@@ -16,7 +16,7 @@ world. "Coarse dirt reverts grass at the frontier" - not "the junkyard takes it 
 | **Project name** | `Trashlands` |
 | **Summary** | `There is no ore and no wood. You dig garbage mounds, sort what comes out, and build from that.` |
 | **Class** | `Modpacks` |
-| **Main category** | `Small / Light` (5 mods, no kitchen sink) |
+| **Main category** | `Small / Light` (picked when the lineup was 5 mods; it is 80 now, so this pick wants a second look) |
 | **Additional categories** | `Tech` |
 | **Allow Comments** | on |
 | **Unlisted project** | off (leave public; it needs to be findable to get playtesters) |
@@ -30,8 +30,9 @@ so it does not say "Minecraft" or "modpack".
 **Category caveat:** CurseForge's modpack category list is only visible in the dropdown (the public
 categories API needs a Core API key, which is separate from the upload token). `Small / Light` and
 `Tech` are the intended picks; if the dropdown names them differently, match the closest and update
-this table. `Quests` now applies as far as the mod list goes (FTB Quests is in), but the book holds
-one page, so it stays off until there is real quest content.
+this table. `Quests` applies as far as the mod list goes (FTB Quests is in). It was held off while the book
+held one page, "until there is real quest content"; v0.13.0 shipped four chapters and 63 quests, so
+that condition is met.
 
 ---
 
@@ -58,7 +59,7 @@ New worlds always use the Garbage world type. The world-type button is removed f
    the crumbling, and later machines sort unattended.
 3. Sorting returns base materials plus what was buried in the block: bags, bales, Bulky Waste, and
    intact found items.
-4. Take found items apart at the Recompile Workbench. Rack a Scrap Knife or Prybar on the bench
+4. Take found items apart at the Teardown Workbench. Rack a Scrap Knife or Prybar on the bench
    first by right-clicking it with the tool, then hold right-click with the item. You get the
    materials it was made of.
 5. Teardown also returns Idea Fragments. Enough fragments toward one recipe craft into a blueprint

@@ -21,7 +21,7 @@ Specific metals come from tearing down specific found components - no typed-scra
 | Metal | Garbage stream (found source) | Made source (late tier) |
 |---|---|---|
 | Copper | Bulk scrap in a basic furnace (the everyman metal, copper-first); wire spools, motors, pipes, transformers | Mixed-scrap fine separation |
-| Iron/steel | **Gated** - a better smelter than the burn barrel (upper rungs of the ladder, or teardown finds; open) | - |
+| Iron/steel | **Gated** - Steel Offcut cut from demolition-yard Steel I-Beams, blasted to iron in the Cupola Furnace (`iron_from_steel_offcut.json`; settled 2026-07-30, see below) | - |
 
 > **How steel recycling actually works** (researched 2026-07-30, while deciding what a cut Steel I-Beam should
 > drop). Recorded because it constrains the Makeshift Forge (#50) and the beam's drop, and both were about to
@@ -86,13 +86,13 @@ Every vanilla material that has no honest garbage presence gets the same treatme
 
 | Material | Found source | Made source |
 |---|---|---|
-| Redstone | Electronics teardown (boards, motors, sensors) | E-scrap refinement |
+| Redstone | **Magnet Scrap** in Mechanical Waste (`mechanical_pulls`). No teardown yields redstone | **Shipped**: Magnet Scrap separated one-for-one in a Separator (`separating_redstone.json`) |
 | Quartz | Circuit oscillators (real!), old clocks, countertops | **Shipped**: Fused Circuitry separated (Recompile, 2026-08-19). The oscillator route, not the silica one |
 | Glowstone | Lamps, CRT/fluorescent phosphor coatings | **Shipped**: Phosphor Scrap pulverized (Recompile, 2026-08-19). The lamp-coating route, exactly as written |
 | Lapis | **Printer teardown** (shipped #112) - toner is pigment, and cyan toner is phthalocyanine blue | Chemical tier |
-| Dyes | **Printer teardown** - toner carries fourteen of the sixteen, cyan/magenta/yellow far more often than the rest. Blue and black are the other two and arrive as their pigment (lapis, ink sac), because vanilla already grinds each into its dye | Vegetation rung flowers (dandelion, poppy, oxeye, cornflower) plus vanilla combination crafting. **White is the bottleneck**: bone meal only, so either demolition-yard skeleton bones or a composter, and gray/pink/light blue/magenta all sit behind it |
+| Dyes | **Printer teardown** - toner carries fourteen of the sixteen, cyan/magenta/yellow far more often than the rest. Blue and black are the other two and arrive as their pigment (lapis, ink sac), because vanilla already grinds each into its dye | Vegetation rung flowers (dandelion, poppy, oxeye, cornflower) plus vanilla combination crafting. **White is not a bottleneck**: the Printer's toner pool drops white, gray, pink, light blue and magenta directly (`printer.json`), so none of them waits on bone meal |
 | Coal | **Found in the Nether, as lignite** (owner 2026-08-19, Recompile #226 - **this reverses the P0.4/P2.2 lock below**) | Smelt lignite. Charcoal from recovered wood covers every coal recipe except `coal_block` |
-| Obsidian | Not found - made only (melt slag/glass; portal gate is earned) | Slag furnace |
+| Obsidian | Not found - made only (vitrify slag, the only obsidian recipe; portal gate is earned) | Slag furnace |
 | Sculk family | **Ancient Sculk** in the compacted depths (Recompile #266), broken with a diamond sledgehammer or better | Sculk powder crafts `sculk`, `sculk_vein`, `sculk_sensor`, `sculk_shrieker` and - expensively - `sculk_catalyst`. `calibrated_sculk_sensor` follows off the sensor plus amethyst |
 
 ## Deliberately absent (the register)
@@ -146,8 +146,8 @@ thing's job in a torch.
 **What enforces "made only" is the recipe type, not a scarcity.** `recompile:vitrifying` is an operation no other machine in the game performs. `minecraft:smelting` would hand obsidian to a vanilla furnace and `minecraft:blasting` to a vanilla blast furnace - and the blast furnace **is** craftable here, because iron is reachable through the Cupola. That was measured rather than assumed, which is the lesson the iron gate cost two designs to learn (Recompile #91): a gate built from the absence of a material dies the moment anything adds the material, and it dies silently.
 
 **This is also why overworld lava stays rejected.** Lava plus water is obsidian in one step, which would route around the whole chain and give away a portal gate the line above says should be earned. The chain was the alternative to lava, and now that it exists the argument is stronger rather than spent.
-| Ender pearls | E-waste rare drop ("eyes of ender from e-waste" - locked in Dimensions bridge) | End access |
-| Wood | Pallet fragments, furniture (mid-tier treasure, locked P1.1) | Tree farms post-reclamation - trees are nearly endgame |
+| Ender pearls | **Endermen**, not e-waste: no loot table or recipe yields a pearl, so the "eyes of ender from e-waste" lock never shipped. They spawn in the demolition yard (weight 10), the radioactive dump (10) and the compacted depths (1) | End access |
+| Wood | None found: no pallet item exists, and no loot table, teardown or other recipe yields a log or plank, so the P1.1 lock never shipped | The **Tree Nursery**, the only source of wood. Tree farms post-reclamation - trees are nearly endgame |
 | Diamond/gems | See gems table | Synthesis press |
 
 ## The alloy spine (retired premise, kept for the principle - 2026-09-04)

@@ -35,13 +35,25 @@ pack/
   .packwizignore     # keep tool caches out of the index
   mods/              # one *.pw.toml per mod
   config/            # mod config overrides, shipped as export overrides (world-type lock lives here)
+  kubejs/data/       # pack data KubeJS mounts: ftbultimine/tags/... and simplemagnets/recipe/
+  resourcepacks/     # pack-owned client assets (trashlands/, see below)
 branding/
-  wordmark_two_row.png  # the Minecraft Title Generator render (see docs/branding.md)
-  backdrop.jpg          # in-game screenshot the logo sits on
-  logo.png              # 512 master composite
+  wordmark_two_row.png     # the Minecraft Title Generator render (see docs/branding.md)
+  wordmark_single_row.png  # single-row render; FancyMenu's title wordmark is a copy of it
+  backdrop.jpg             # in-game screenshot the logo sits on
+  logo.png                 # 512 master composite
 tools/
   pack_refresh.py    # LF-normalize + packwiz refresh. Use this, not bare `packwiz refresh`.
   check_pack_deps.py # prove the pinned pack can actually load (deps, versions, loader, held pins)
+  build_server.py    # build the dedicated-server pack zip
+  check_server_pack_flag.py  # audit whether the CurseForge files are typed as Server Packs
+  inspect_world_terrain.py   # assert a generated world's terrain came from the garbage preset
+  validate_quests.py # static validator for the quest book
+  verify_quests.py   # assert every item the quest book references exists in game
+  export_quests.py   # export the quest book to one readable markdown document
+  import_quests.py   # read an edited prose export back into the quest lang files
+  score_quest_voice.py  # score quest copy for mechanical AI-tells (kept, unused here)
+  test_*.py          # tests for the tools above
   sync_instance.py   # push the pinned mods into the CurseForge dev instance
   make_logo.py       # rebuild icon.png from the wordmark + backdrop
   cf_release.py      # manual CurseForge upload (the tag-driven workflow is the normal path)
@@ -52,8 +64,8 @@ tools/
 
 ## The mod lineup
 
-**80 mods**: the core six, a quality-of-life layer, the FTB stack, a tech and gadget layer, world-type enforcement, scripting, diagnostics, and eleven auto-pulled libraries. Locked
-2026-08-02, with Jade Addons, Configured and Cable Facades added 2026-09-03, and FTB Ultimine plus
+**80 mods**: the core six, a quality-of-life layer, the FTB stack, a tech and gadget layer, a storage, automation and gear layer (Sophisticated Storage and Backpacks, Functional Storage, AE2 and more), Easy Villagers, world-type enforcement, a custom title screen, scripting, diagnostics, and thirteen auto-pulled libraries. Locked
+2026-08-02, with the storage layer and Easy Villagers added 2026-08-20, Jade Addons, Configured and Cable Facades added 2026-09-03, and FTB Ultimine plus
 KubeJS (with Rhino and standalone Better Advanced Tooltips) added 2026-09-07, followed the same
 day by eight borrowed from ATM 11 and by **Flatts's Things** (1683375, ours), then **Blocks
 Previewer** (with Craft Config Lib) on 2026-09-08.
@@ -64,7 +76,7 @@ Previewer** (with Craft Config Lib) on 2026-09-08.
 |---|---|---|
 | **Recompile** | 1625740 | The pack. Garbage world, teardown, reclamation, machines. |
 | **Just Enough Items** | 238222 | Recompile ships a JEI plugin. At the pinned 0.20.0 it registers seventeen categories - sequencing, spawn_egg, sorting, cutting, burning, torch_cutting, prying, teardown, separating, hydrating, pulverizing, cupola, vitrifying, sintering, assembly, blueprint_crafting, growing - plus the Scrap Crafting Table as a station. (`cupola` and `vitrifying` arrived with 0.12.0's slag chain, `sintering` with 0.13.0's kiln, `sequencing` and `spawn_egg` with 0.15.0's amber chain.) (`SalvageRecipe` is the shared recipe class behind them, not a category.) |
-| **Jade** | 324717 | Recompile ships 15 Jade providers: tool hints, sort progress, machine status, generator rates. |
+| **Jade** | 324717 | At the pinned 0.20.0 Recompile ships 33 Jade provider classes plus its plugin: tool hints, sort progress, machine status, generator rates. |
 | **Modonomicon** | 538392 | The engine the in-game guidebook runs on. The guide is `mod_loaded`-gated data - inert without it. |
 | **Pipez** | 443900 | Recompile's automation policy (`../recompile/docs/automation_policy_spec.md`) is written and tested against it. Which blocks accept pipes and which refuse to even connect is a per-block decision, and Pipez is how it was found and is verified. |
 | **Spawn Detective** | 1621450 | Ours (`../spawn-detective`). Answers "why won't this mob spawn here" by replaying the real natural-spawn pipeline against one block and one mob and naming the rule that rejected it. Directly relevant to the reclamation ladder's animals rung, where baits only settle a mob once the ground, spacing, and player-distance gates all pass - Recompile's Jade provider names that blocker for baits, and this answers the same question for anything else. One item, one command, no world content. |
@@ -80,6 +92,7 @@ has a 26.1.2 NeoForge build on CurseForge. Nothing here touches the economy.
 | Tooltips | Jade Addons (Neo/Forge) |
 | Cleanup | TrashSlot, Trash Cans |
 | Building aids | Blocks Previewer |
+| Title screen | FancyMenu (added 2026-08-02, #8; see [`branding.md`](./branding.md#the-title-screen)) |
 | Performance | FerriteCore, ModernFix, Lithium, FastFurnace, FastWorkbench, FastSuite, Sodium |
 | Death and safety | GraveStone, Simple Backups |
 | Audio | Extreme Sound Muffler |
@@ -111,8 +124,8 @@ keys a JsonObject by `Component.getString()`, which reads like the values are ke
 ("Preview Mode"); the generated file is keyed by id (`preview_mode`) in a second file the class layout
 does not hint at. The file was obtained by running the game through
 `gamebridge launch --instance ... --port 8604`, which is the same generate-then-copy pattern
-`config/defaultworldtype/client-config.toml` uses and the reason Default Options is still unwired
-(#65).
+`config/defaultworldtype/client-config.toml` uses, and it was the reason Default Options stayed
+unwired until #74 wired it.
 
 **Jade Addons and Configured arrived 2026-09-03**, off the recheck list below. Both had no 26.1.2
 build when the lineup was locked and both have one now: `JadeAddons-26.1.2-NeoForge-26.0.1` and
@@ -144,7 +157,7 @@ Easy Villagers is the mirror case (pinned *to* an alpha, one point release ahead
 release) - see Villagers below. It is not in `HELD_PINS`, because there the newer file is the one
 the pack wants.
 
-Auto-pulled libraries (eleven): Balm, Placebo, SuperMartijn642's Core Lib, SuperMartijn642's Config Lib, Cloth Config, GuideME, and - from the 2026-08-20 additions - Titanium, Sophisticated Core and Patchouli, plus Rhino from the 2026-09-07 KubeJS addition and Craft Config Lib from the 2026-09-08 Blocks Previewer addition.
+Auto-pulled libraries (thirteen): Balm, Placebo, SuperMartijn642's Core Lib, SuperMartijn642's Config Lib, Cloth Config, GuideME, Konkrete and Melody (FancyMenu's, both `side = "client"`), and - from the 2026-08-20 additions - Titanium, Sophisticated Core and Patchouli, plus Rhino from the 2026-09-07 KubeJS addition and Craft Config Lib from the 2026-09-08 Blocks Previewer addition.
 
 ### FTB stack
 
@@ -162,12 +175,15 @@ CurseForge-exclusive**, which is what closes the Modrinth door - see
 | **FTB Essentials** | `/home`, `/tpa`, `/back`. `/back` pairs with GraveStone on a death run. |
 | **FTB Ultimine** | Added 2026-09-07, reversing the 2026-08-02 cut. Hold a key to break a whole vein - but **the salvage terrain is excluded from it**, so it never touches the garbage economy. See below. |
 
-**Quest content** lives in `pack/config/ftbquests/quests/`: chapters in `chapters/*.snbt`, all text in
-`lang/en_us.snbt` keyed by quest id (`quest.<ID>.title`, `.quest_subtitle`, `.quest_desc`). Written
-against the `quest-voice` spec in `../mc-pack-toolkit`.
+**Quest content** lives in `pack/config/ftbquests/quests/`, and it is **JSON5, not SNBT** - FTB
+Quests on MC 26.x reads no `.snbt` at all. Chapters are in `chapters/*.json5`; text is in
+`lang/en_us/`, with chapter titles in `chapter.json5` and quest text in `chapters/<name>.json5`, keyed
+by quest id (`quest.<ID>.title`, `.quest_subtitle`, `.quest_desc`). `data.json5` and
+`chapter_groups.json5` sit at the root. Written against the voice source `CLAUDE.md` names.
 
-Today that is one chapter, **Welcome**, with a single quest and the Discord link. It exists so the
-book is not empty - an empty quest book reads as broken rather than unfinished, which is worse than
+As of 2026-09-10 that is four chapters: **Welcome** (10), **Salvage** (16), **Groundwork** (19) and
+**The Depths** (21), 66 quests. Welcome started as a single quest and the Discord link, there so the
+book was not empty - an empty quest book reads as broken rather than unfinished, which is worse than
 shipping no book at all. The chapter spine proper (`The Way Home`, parts one to six, per
 `the_twist.md`) is unwritten.
 
@@ -179,18 +195,17 @@ pack works and moving it would be churn for its own sake.
 
 ### Mod update pass, 2026-09-08
 
-`packwiz update --all` moved seven pins: Sophisticated Backpacks, Sophisticated Core, JEI
+`packwiz update --all` moved six pins: Sophisticated Backpacks, Sophisticated Core, JEI
 (29.35.0.94 -> 29.37.0.97, still under the `.100` loader pin), Ender IO, **Recompile 0.18.0 ->
 0.20.0** and **Flatts's Things 0.2.0 -> 0.3.0**. Extreme Sound Muffler was offered 4.02-ALPHA again
 and reverted, as `HELD_PINS` requires.
 
-**Recompile 0.20.0 is not a routine bump and the pack is not ready to release on it.** It replaces
-teardown-as-knowledge with a bought-blueprint market: teardown now yields the part that makes an
-object what it is, a Freight Terminal takes eight delivery quotas that move your tier, and every
-Blueprint is bought. The pack's listing copy, README, `CLAUDE.md` core description and three quest
-chapters all still describe the old economy. Tracked in
-[#70](https://github.com/Flatts3000/trashlands/issues/70) with a release gate: the pin may sit on
-`main`, but no release ships until the copy matches.
+**Recompile 0.20.0 is not a routine bump, and v0.13.0 shipped on it with the copy still behind.** It
+replaces teardown-as-knowledge with a bought-blueprint market: teardown now yields the part that
+makes an object what it is, a Freight Terminal takes eight delivery quotas that move your tier, and
+every Blueprint is bought. README and the `CLAUDE.md` core description were corrected in `1af2cca`;
+the listing copy (`docs/curseforge_page.md`) and four quest lines still describe the old economy.
+Tracked in [#70](https://github.com/Flatts3000/trashlands/issues/70).
 
 **The Ultimine tag needed no change, and that was checked rather than assumed.** 0.20.0 has the same
 nine `SortableBlock` subclasses as 0.18.0 and the same eight `gameplay/*_pulls` tables, so no new
@@ -359,8 +374,10 @@ these turn out badly in playtest:
   in the reclamation ladder's `soil -> vegetation -> nursery -> animals`, an amber spawn egg via the
   Sequencer, or a Shepherd trade off a cured demolition-yard zombie villager. Meanwhile AE2, Pipez,
   Powah, Ender IO and LaserIO cable is all reachable much earlier, so a player will see the facade in
-  JEI long before they can make one. **This cannot be tuned from the pack side** - the pack can ship
-  no recipe override at all (#39), so the only levers are the mod's own config or leaving it. Cosmetic
+  JEI long before they can make one. **This can now be tuned from the pack side.** When this was
+  written the pack could ship no recipe override at all (#39); since #63 brought in KubeJS it ships
+  data, including four recipe overrides under `pack/kubejs/data/simplemagnets/recipe/`, so a facade
+  recipe override is a lever alongside the mod's own config or leaving it. Cosmetic
   content arriving late is a mild version of this problem, which is why it was taken anyway; recorded
   so a playtester who hits it knows it is understood rather than missed.
 - **Just Dire Things** roots its progression in `Raw <X> Ore` items and ships Ore Miner / Ore Scanner
@@ -414,8 +431,11 @@ Added on owner call, in one pass. The largest single change to the lineup since 
   digital storage and autocrafting were dead content until something put presses in the world.
   **Shipped in Recompile 0.14.0.** A sewer is rarer than a meteorite, and AE2 hands the presses over
   as a set anyway, so one crate matches how the mod already works. AE2's own tooltip used to send
-  players after meteorites and now names the real source. This is engine-side pack content and is
-  tracked for removal in #46, to move back here when the pack can ship data again.
+  players after meteorites and now names the real source. This is engine-side pack content tracked in
+  #46. The pack can ship data again since #63, but only the press pool and the one-key tooltip
+  correction move here; the four AE2 sourcing recipes stay in Recompile (owner ruling 2026-09-08 on
+  Flatts3000/recompile#420). The press pool is held because a pack loot table replaces the whole
+  table - see the end of "Recipe overrides had nowhere to live" below.
 - **Worth noting separately:** Recompile's overworld biomes being absent from `#minecraft:is_overworld`
   is not an AE2 problem. Any mod that gates worldgen or spawning on that tag silently does nothing
   here, and nothing reports it. AE2 is just the first case anyone looked at.
@@ -663,8 +683,9 @@ generator from `server.properties` instead:
 level-type=recompile:garbage
 ```
 
-That line has to go into the server pack when one is built - see
-[`distribution.md`](./distribution.md#not-built-yet).
+The server pack carries that line. `tools/build_server.py` writes `level-type=recompile:garbage`
+into its `server.properties`, and `release.yml` builds and boot-tests that server pack on every
+release tag - see [`distribution.md`](./distribution.md#the-server-pack).
 
 **Verify in game after any change here.** The config is written from the mod's own schema (read out
 of `de/melanx/defaultworldtype/ClientConfig`, keys `world-preset` / `disable-button` /
@@ -745,8 +766,9 @@ Recompile still ships its copy, for the same reason: each is a **single resource
 winner** - a tag that merges, and four recipe ids whose two candidates are identical.
 
 **The Ender IO grains (#52) are not, and neither is the AE2 stopgap (#46) - which is a fourth piece
-rather than one of the three.** Both are `blocked`, and the reason is worth stating carefully because
-the first version of this note stated it wrongly.
+rather than one of the three.** Neither carries the `blocked` label since 2026-09-08, and each has
+split in two. The reason is worth stating carefully because the first version of this note stated
+it wrongly.
 
 **Loot tables do not merge.** Unlike a tag, a same-id loot table in a higher-priority pack *replaces*
 the whole file. So the hazard is not a doubled drop, as this paragraph originally claimed - it is that
@@ -757,12 +779,19 @@ Recompile's own:
 |---|---|
 | `chests/sump.json` | 3 pools. The presses are pool 2; pools 0 and 1 are the echo shard and seven engine entries |
 | `gameplay/slag_rubble_pulls.json` | 2 pools. Sky stone is pool 1; pool 0 is the seven Nether shards |
-| `gameplay/mechanical_pulls.json` | a single pool of 8, of which `enderio:grains_of_infinity` is one entry |
+| `gameplay/mechanical_pulls.json` | a single pool of 8, of which grains of infinity is one entry: the tag `c:dusts/grains_of_infinity` with `expand: true`, weight 20 of 247 (naming the item id directly would break the whole table without Ender IO) |
 
 Copy any of those under `pack/kubejs/data/recompile/loot_table/` and the pack silently owns the whole
 table, including content the engine keeps changing, with nothing to report the fork going stale. That
-is why the Recompile deletion has to land first for these two, and why the recipe-shaped and
+is why the loot halves of these two cannot simply be copied across, and why the recipe-shaped and
 tag-shaped moves did not have to wait.
+
+**Where the two stand (2026-09-10, per the SCRUB comments on #52 and #46).** The same-id halves are
+ready to move now: the blaze disable at Ender IO's own recipe id, and the AE2 lang key, since lang
+files merge. The loot halves wait on a mechanism that adds to Recompile's table without owning it. A
+pack-side `neoforge:add_table` modifier aimed with `neoforge:loot_table_id` is the candidate.
+Recompile's docs say that aim cannot work on its tables, NeoForge 26.1.2.76's source says it should,
+and it has not been measured.
 
 ### Considered and cut
 
@@ -782,8 +811,10 @@ tag-shaped moves did not have to wait.
   with Fused Circuitry standing in for the diamond so the advanced magnet costs a trip to the Nether.
   Spending Magnet Scrap on magnets means not spending it on redstone, and that tension is the point.
   **Moved into the pack 2026-09-08 (#47)** - the four overrides now live at
-  `pack/kubejs/data/simplemagnets/recipe/`. What is left in Recompile is a redundant identical
-  copy plus its optional `simplemagnets` dependency, which only that repo can delete.
+  `pack/kubejs/data/simplemagnets/recipe/`. Recompile deleted its redundant identical copy in
+  Flatts3000/recompile#421 (`10c7426`, 2026-09-08), but no Recompile release contains that yet -
+  v0.20.0 is the newest tag - so the pinned jar still ships the copy. #47 is `blocked` on that
+  release.
 - **OpenBlocks Elevator** - mounds are 3 to 15 blocks tall; there is nothing to ride up.
 - **Create and Mekanism** - not options on 26.1.2, neither has a NeoForge build past 1.21.1. This was
   checked, not assumed (`../recompile/docs/hydroponics_spec.md`). An older version of this file named
@@ -853,11 +884,14 @@ tag-shaped moves did not have to wait.
 gets inlined into the CurseForge export as a real jar, which CurseForge rejects on redistribution
 grounds. The release workflow greps the export for `.jar` and fails the run.
 
-**Side tags are unreliable.** CurseForge does not report client/server split, so packwiz marks every
-mod `side = "both"`. Several here are client-only in practice (Sodium, Mouse Tweaks, Controlling,
-AppleSkin, Extreme Sound Muffler, TrashSlot). That costs nothing today, but a server pack resolves
-jars by `side` - so the tags in `pack/mods/*.pw.toml` have to be corrected by hand before one is
-built, or the server ships client mods and crashes on boot.
+**Side tags are hand-maintained.** CurseForge does not report client/server split, so packwiz marks
+every mod `side = "both"` and the client-only ones have to be corrected by hand in
+`pack/mods/*.pw.toml`. 13 are tagged `side = "client"` today, among them Sodium, Mouse Tweaks,
+Controlling and Extreme Sound Muffler; AppleSkin and TrashSlot are still `both`. It matters because
+`release.yml` builds a server pack from these tags on every release, and a client mod left on `both`
+ships to the server and can crash it on boot. The release checks both halves: "Guard - no
+client-only mods in the server pack" fails if a client-tagged jar reaches the server set, and a boot
+smoke test catches a mistagged one that breaks startup.
 
 ## Everyday commands
 

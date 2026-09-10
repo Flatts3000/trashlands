@@ -103,7 +103,7 @@ save made before 0.7.0 has none and its mounds stay finite.
 
 ## Tier 2 - the Burn Barrel (first smelter)
 
-The Burn Barrel burns **refuse only** - food, plus `#recompile:burn_barrel_smeltable` (scrap metal, kelp).
+The Burn Barrel burns **refuse only** - food, plus `#recompile:burn_barrel_smeltable` (scrap metal, kelp, lignite).
 Food is matched by the `FOOD` data component, so every edible works without being listed.
 
 | Material | Source | Gated behind |
@@ -157,7 +157,7 @@ on purpose.
 | **Cobweb** | Sewer corridors, cut with shears | The only source in the game |
 | **Slimeball** | Slimes. **No longer sewers-only as of Recompile 0.13.0** - they spawn in the demolition yard at weight 100, so this stopped being a structure gate | A deposit against the redstone tier, worth little now |
 | **Trident, nautilus shell** | Drowned, from the sewer's spawner | Owner call: a prize at this depth, not a spike |
-| **Bulb, Pump, Motor, Machine Frame** | Sewer barrels, own loot pool | Travel + Prybar. **The `blueprint_crafting` framing is dead as of Recompile 0.20.0** - see the changelog - but the row's conclusion survives it: a found one is still a single unit that teaches nothing, and now nothing teaches anything. **As of Recompile 0.18.0 the crafted Pump also needs Rubber Scrap**, whose only source is a tire dump in the household sprawl; the found one is unaffected, so this row's claim still holds and the *material* gate below it is new |
+| **Bulb, Pump, Motor, Machine Frame** | Sewer barrels, own loot pool | Travel + Prybar. **As of Recompile 0.20.0 the crafted Bulb and Pump are still `blueprint_crafting` recipes, but the Blueprint is bought from a Buy Terminal rather than taught by teardown** - see the changelog. The row's conclusion survives it: a found one is still a single unit that teaches nothing, and now nothing teaches anything. **As of Recompile 0.18.0 the crafted Pump also needs Rubber Scrap**, whose only source is a tire dump in the household sprawl; the found one is unaffected, so this row's claim still holds and the *material* gate below it is new |
 | **Echo shard** | The crate settled in the sump's silt, one per sewer | **The only source in the world.** As of Recompile 0.14.0 the same crate also holds all four AE2 Inscriber presses, so the sewer is now the sole entry to AE2's whole tree as well - worth re-reading the "nothing in them skips a tier" criterion above against that. See below |
 | **Mud** | The frog den's floor | **Not gated, and not new** - see below |
 | **Sand** | The turtle den's floor | Not new - sledgehammering Reinforced Concrete already yields it |
@@ -172,7 +172,7 @@ three were measured:
   the iron gate, and mud), where scarcity was measured over the mod's own content while vanilla supplied
   the thing anyway.
 - **It skips no tier.** Its only vanilla use is the recovery compass, which needs a compass: 4 iron and
-  1 redstone. Iron is the Cupola and redstone is 16 Magnet Scrap in a Separator, so the shard's payoff
+  1 redstone. Iron is the Cupola and redstone is one Magnet Scrap in a Separator, so the shard's payoff
   sits *above* the entire gem tier. A player who clears a sewer on day one is holding something they
   cannot use until they have power, the yard and a Separator. That is a head start, not a shortcut - the
   same argument the component pool clears, and for the same reason.
@@ -253,8 +253,9 @@ automates, which the barrel deliberately does not, so upgrading buys a metal tie
 ## Above the Cupola
 
 **Deliberately undecided** (owner, 2026-07-30). The yield ladder previously ended at an "induction recycler",
-which named an electric machine this world has no grid for - the only power source is solar panels. A further
-rung can be added if a real power system justifies one.
+which named an electric machine this world had no grid for. Power exists now - Recompile ships a Burner
+Generator and a Solar Panel, and Powah is in the pack - but *when* the player gets it is still an open pack
+decision. A further rung can be added if a real power system justifies one.
 
 ---
 
@@ -262,11 +263,13 @@ rung can be added if a real power system justifies one.
 
 > **SUPERSEDED BY RECOMPILE 0.20.0 (pinned 2026-09-08). Read the changelog entry before trusting any
 > row below.** This section describes knowledge arriving through Idea Fragments earned by teardown.
-> `recompile:idea_fragment` **no longer exists** in the registry, no recipe carries `teaches`, and
-> there are no `blueprint_crafting` recipes at all. Every Blueprint is now bought from a Buy Terminal
-> that is itself repaired from a found Broken Terminal, which is a *tighter* gate than anything here.
-> The section is kept because the bed is still gated on a Blueprint and the shape of the argument
-> still holds; the mechanism named throughout is gone.
+> `recompile:idea_fragment` **no longer exists** in the registry (it is aliased to `spawn_egg_fragment`)
+> and no recipe carries `teaches`, so teardown teaches nothing. **`blueprint_crafting` is still live:**
+> ten recipes use it, the Clean Mattress and the Hydroponics Bay among them. What changed is where the
+> sheet comes from. Every Blueprint is now bought from a Buy Terminal (twelve `recompile:market_offer`
+> recipes) that is itself repaired from a found Broken Terminal, which is a *tighter* gate than anything
+> here. The section is kept because the bed is still gated on a Blueprint and the shape of the argument
+> still holds; the fragment mechanism named throughout is gone.
 
 **Shipped 2026-08-02 (Recompile #95).** Beds are the first thing in this world gated on *knowledge*
 rather than on materials, so they do not sit on the metal ladder above and are recorded separately.
@@ -286,7 +289,7 @@ rather than on materials, so they do not sit on the metal ladder above and are r
 | Want | Source | Gated by |
 |---|---|---|
 | **Hydroponics Bay blueprint** | 6 Idea Fragments from tearing down broken washing machines | Prybar (the find and the teardown) |
-| **Hydroponics Bay** | 6 glass + 2 copper pipe + 1 Machine Frame, **blueprint in reach** | The blueprint, **and glass** - so the demolition yard for sand |
+| **Hydroponics Bay** | 5 glass + 2 Bulb + 2 copper pipe + 1 Machine Frame, **blueprint in reach** | The blueprint, **and glass** - so the demolition yard for sand |
 
 That is two gates on one machine and it is deliberate: the yard supplies the sand, the dump supplies
 the knowledge, and neither substitutes for the other. Worth watching in playtest - it is the deepest
@@ -300,15 +303,15 @@ worldgen carries no ores. This is the first thing above iron. Spec: `../recompil
 | Want | Source | Gated by |
 |---|---|---|
 | **Industrial scrap** | Picking a Mechanical Waste pile bare-hand | **The demolition yard**, so travel. Nothing else |
-| **Amethyst** | 12 Quartz Grit in a Separator | The Separator, and power |
-| **Diamond** | 16 Spent Abrasive in a Separator | The Separator, and power |
-| **Redstone** | 16 Magnet Scrap in a Separator | The Separator, power, **and the pull weights** - magnet scrap is the rare entry |
-| **The Separator** | 4 iron + 2 Steel I-Beam + 1 Machine Frame, plus 3 beams and 8 frames to build | **Iron**, so the Cupola |
+| **Amethyst** | 1 Quartz Grit in a Separator, one-for-one | The Separator, and power |
+| **Diamond** | 1 Spent Abrasive in a Separator, one-for-one | The Separator, power, and the pull weights - spent abrasive is weight 5 in `mechanical_pulls`, the rarest of the three |
+| **Redstone** | 1 Magnet Scrap in a Separator, one-for-one | The Separator, power, **and the pull weights** - magnet scrap is weight 15, against quartz grit's 30 |
+| **The Separator** | 4 iron + 1 Steel I-Beam + 1 Machine Frame, plus 4 beams, 6 frames and 1 Motor to build | **Iron**, so the Cupola |
 | **Lapis** | Tearing down a **Printer** at the Recompile Workbench (about half of them carry one) | Nothing but finding one. A Bulky Waste spine find, so it arrives long before the yard |
 | **Ink, so black and grey dye** | The same Printer teardown, every time | The same. This is the only ink in the world |
 
-**The gate is arithmetic, and that is the whole point.** It is not "you cannot get diamond", it is "one
-piece of scrap is worth nothing". A ratio has no failure mode that an absence has: if another mod floods
+**The gate is arithmetic, and that is the whole point.** It is not "you cannot get diamond", it is "the
+scrap that makes one is a rare pull". A weight has no failure mode that an absence has: if another mod floods
 the player with circuit boards, they reach the gem using that mod's boards, which is correct rather than
 a leak. This is the direct answer to how the first iron gate died (#91), and it is why **this gate must
 never be re-expressed as a missing item or an uncraftable machine.**
@@ -347,8 +350,8 @@ it arrives.** That is the open question this tier now carries, not obsidian.
   **coloured** bed. The colour ladder came back by dyeing the Clean Mattress; if the dye recipes are
   ever cut, the world has exactly one bed colour.
 - *A vanilla crafting table would bypass the blueprint.* **Cannot**, and needs no guard: blueprint
-  recipes are their own recipe type, so a vanilla table does not resolve them at all. This is a
-  stronger gate than the Cupola's, which the table above still lists as fragile.
+  recipes are their own recipe type, so a vanilla table does not resolve them at all. It is the same
+  kind of gate the Cupola's became in #91: a recipe type, not an absence.
 
 **One thing that is NOT a gate and looks like one.** Fiber Scrap now makes string, which makes wool.
 Wool is therefore day-one cheap. That was fine to do only because wool no longer makes a bed - under
@@ -361,23 +364,28 @@ Kept as worked examples, because each was invisible until traced.
 | Circle | Status |
 |---|---|
 | Torch needs iron -> iron needs beams -> beams need torch | **Broken 2026-07-30** by costing the torch copper |
-| Cupola refines iron -> Cupola recipe needs iron | **Open risk.** Must be avoided when #50 is specced |
+| Cupola refines iron -> Cupola recipe needs iron | **Resolved.** The Cupola shipped with no iron in its recipe: `cupola_furnace.json` is concrete, copper pipe and the Burn Barrel. See Tier 4 |
 | Burn Barrel gates iron -> Burn Barrel is the only smelter | **Broken 2026-07-30** by shipping the Cupola in the same change |
-| Cupola gates iron -> a vanilla furnace would bypass it | **Holds today** only because no cobblestone and no pickaxe exist. Fragile; see Tier 4 |
+| Cupola gates iron -> a vanilla furnace would bypass it | **Holds, by recipe type.** Both iron recipes are `minecraft:blasting` (`iron_from_steel_offcut.json`, `iron_nugget_from_rebar.json`), which a vanilla furnace cannot run, and a vanilla blast furnace costs 5 iron. The old gate, no cobblestone and no pickaxe, died in #91; see Tier 4 |
 | Bed needs a blueprint -> blueprint needs mattress teardowns -> mattresses are a day-one find | **Holds by design.** The knowledge arrives early and the planks arrive late; the wait is the shape, not a bug |
 | Cupola needs concrete -> concrete needs Reinforced Concrete -> nothing placed it | **Broken 2026-07-30** by the steel pile. The recipe had been written against materials the biome was *meant* to have; nothing checked it was in the world, and iron was unreachable in survival with every test green |
 
 ## Changelog
 
+- **2026-09-10** - SCRUB against the Recompile 0.20.0 data. Fixed the superseded banner (the ten
+  `blueprint_crafting` recipes still ship; only the Blueprint's source moved to the Buy Terminal), the
+  gem costs (each separation is one-for-one), the Separator and Hydroponics Bay recipes, and the power note.
+
 - **2026-09-08** - Recompile 0.20.0, pinned on `chore/update-all-mods`. **Deletes the mechanism this
   page called the blueprint gate, and replaces it with a tighter one.** `recompile:idea_fragment` is
-  gone from the registry, no recipe carries `teaches`, and there are no `blueprint_crafting` recipes:
-  teardown teaches nothing at all and now yields *function* instead, the working components nothing in
-  this world can forge. Knowledge comes from one place only - a Blueprint bought from a **Buy
-  Terminal**, which is itself repaired from a found **Broken Terminal**, with a **Freight Terminal**
-  taking eight delivery quotas that move your tier. So the gate did not loosen; it moved from "tear
-  down enough mattresses" to "find a terminal and fill quotas", and a found-unit row like the sewer
-  barrels is unaffected because nothing teaches any more.
+  gone from the registry and no recipe carries `teaches`: teardown teaches nothing at all and now
+  yields *function* instead, the working components nothing in this world can forge. Knowledge comes
+  from one place only - a Blueprint bought from a **Buy Terminal** (twelve `recompile:market_offer`
+  recipes), which is itself repaired from a found **Broken Terminal**, with a **Freight Terminal**
+  taking eight delivery quotas that move your tier. The ten `blueprint_crafting` recipes still ship and
+  still want the sheet in reach; only where the sheet comes from changed. So the gate did not loosen;
+  it moved from "tear down enough mattresses" to "find a terminal and fill quotas", and a found-unit
+  row like the sewer barrels is unaffected because nothing teaches any more.
 
   This is not upstream drift - it is this repo's own **P3.10** decision (`08b252a`, 2026-09-06,
   "strip knowledge from teardown entirely and make the market the sole source"), landed in the mod

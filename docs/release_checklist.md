@@ -180,10 +180,12 @@ Two pins drift silently and both ship to every new downloader.
 gh run watch $(gh run list --workflow release.yml --limit 1 --json databaseId --jq '.[0].databaseId') --exit-status
 ```
 
-Steps: version guard -> index guard -> CF export (+ no-jar assertion) -> **server pack build ->
-client-mod guard -> server boot smoke test** -> changelog extract -> GitHub release -> CurseForge
-metadata (game-version ids resolved from the API) -> CurseForge upload -> **server pack upload as a
-child file**.
+Steps, in `release.yml` order: version guard -> index guard -> dependency guard self-test ->
+pinned-pack load guard (`check_pack_deps.py`) -> CF export (+ no-jar assertion) -> **server pack
+build -> client-mod guard -> server mod-set load guard -> server boot smoke test** -> changelog
+extract -> CurseForge metadata (game-version ids resolved from the API) -> GitHub release ->
+CurseForge upload -> **server pack upload as a child file** -> type-the-server-pack reminder ->
+Discord changelog post.
 
 The boot test installs NeoForge and waits for `Done (`, so a release takes a few minutes longer than
 it used to. That is the only check that proves the `side` tags are right, and a mistagged mod is
@@ -191,7 +193,8 @@ otherwise found by whoever first runs a server.
 
 ## 3. Verify
 
-- [ ] GitHub release `vX.Y.Z` exists with `Trashlands-X.Y.Z.zip` attached.
+- [ ] GitHub release `vX.Y.Z` exists with both `Trashlands-X.Y.Z.zip` and
+      `trashlands-server-X.Y.Z.zip` attached.
 - [ ] CurseForge shows the new file, typed **Alpha** for the `0.x` line.
 - [ ] The CurseForge changelog matches the CHANGELOG section (not the bare "Release X.Y.Z" fallback -
       that string means the regex missed and the heading shape is wrong).
@@ -220,7 +223,8 @@ otherwise found by whoever first runs a server.
   [`distribution.md`](./distribution.md#curseforge-upload-api-quirks).
 - **Secrets.** `CF_API_TOKEN` (secret) and `CF_PROJECT_ID` (variable). If either is unset the
   CurseForge steps warn-and-skip and the GitHub release still ships; upload with
-  `python tools/cf_release.py` afterwards.
+  `python tools/cf_release.py` afterwards. `DISCORD_CHANGELOG_WEBHOOK` (secret) drives the last
+  step; unset, it warns and skips the Discord post and nothing else.
 - **`actions/setup-java` and friends** - keep workflow actions on current Node majors. GitHub
   force-deprecates old ones and the failure is abrupt.
 - **Java 25, not 21.** NeoForge 26.1 is compiled for Java 25 (class file 69). A Java 21 runtime dies
@@ -239,7 +243,7 @@ otherwise found by whoever first runs a server.
   latest release, and got a **403** when the runner's shared IP was rate-limited. It hit PR CI on
   2026-08-18 and again on PR #33 on 2026-08-20, and the release drives that bootstrap three times, so
   the odds compounded. **Fixed 2026-08-20 (#31).** `tools/packwiz-installer.jar` is vendored at
-  v0.5.14 and both callers pass `--bootstrap-no-update --bootstrap-main-jar`, so no API call happens
+  v0.5.14 and all three callers (`build_server.py`, `check_pack_deps.py`, `sync_instance.py`) pass `--bootstrap-no-update --bootstrap-main-jar`, so no API call happens
   at all - in CI or locally. If resolution ever fails now, it is the jar itself: see
   [`../tools/README_packwiz_installer.md`](../tools/README_packwiz_installer.md). Do not restore the
   update check.
@@ -250,18 +254,22 @@ otherwise found by whoever first runs a server.
 
 `1.0.0` is the promise that the pack is finished enough for a broad audience. Not a routine tag.
 
-- [ ] **The knowledge half of teardown shipped.** Recovering a recipe off a torn-down item is the
-      mod's distinct axis. Until it exists, the pack's own pitch is only half true.
+- ~~**The knowledge half of teardown shipped.**~~ **Retired, not done.** P3.10 (2026-09-06) took
+      knowledge out of teardown entirely, and Recompile 0.20.0 shipped that: teardown yields the
+      working component and every Blueprint is bought at a Buy Terminal. There is no knowledge half
+      left to build. What the pitch still owes is copy that describes the new economy (#70).
 - [ ] **Quest content.** The engine is in and the book is no longer empty - a **Welcome** chapter
       a **Salvage**, a **Groundwork** and a **The Depths** chapter all ship: 66 quests from the first
       Block of Garbage to a piece of coal. What is missing is the spine: `The Way Home`, parts one to six, per `the_twist.md`. Write it against the
-      `quest-voice` spec; the twist means the final chapters are authored against that file directly.
+      voice source `CLAUDE.md` names; the twist means the final chapters are authored against that file directly.
 - [ ] **One balance pass across all loot tables and recipes together** - the standing gate in
       `../recompile/docs/roadmap.md`. Every drop rate and recipe cost shipped so far is a first-pass
       placeholder chosen to prove a mechanic. Tuning is pack responsibility even though the numbers
       live in the mod's JSON.
 - [ ] **No soft-locks.** A fresh world plays start to finish with no dead ends.
-- [ ] **A real logo.** The current `pack/icon.png` is a screenshot crop.
+- [ ] **A real logo.** `pack/icon.png` has been the TRASH / LANDS wordmark over an in-game shot since
+      #3, remade by `tools/make_logo.py` (see [`branding.md`](./branding.md)). It is no longer a
+      screenshot crop. Tick this when that wordmark is judged final rather than first-pass.
 - [ ] **Server pack playtested.** It has built, booted and shipped on every release since v0.7.0,
       but **nobody has actually played a multiplayer world on it**. The world *type* is no longer in
       doubt - since #32 the release asserts the generated terrain came from the garbage preset and a

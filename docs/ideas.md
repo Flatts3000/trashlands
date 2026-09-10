@@ -24,7 +24,7 @@ get hungry. Gets **its own Curios slot**.
   the right call so it is an always-on utility, not a slot-cost trade-off.
 
 **Depends on:**
-- **Curios API** - a **new dependency**. (**Corrected 2026-09-04:** this said "the lineup so far is Create + Mekanism only". The lineup is 65 mods and neither of those is among them - neither has a NeoForge build past 1.21.1. Whether Curios is already pulled in by something here needs checking before this is treated as a new dependency at all.) Curios is
+- **Curios API** - a **new dependency**. (**Corrected 2026-09-04:** this said "the lineup so far is Create + Mekanism only". The lineup is 80 mods and neither of those is among them - neither has a NeoForge build past 1.21.1. Curios is not in the lineup either, so it is a genuinely new dependency; tracked as trashlands #78.) Curios is
   light and widely used, but adding it is a pack-level decision (affects every future trinket-style
   item too, so it may be worth it beyond just this one). Flag before committing.
 
@@ -90,6 +90,11 @@ achievement per completed trophy; a dedicated "trophy case" or pedestal block to
   materials instead of trophying) - probably not; the trophy *is* the point.
 
 ## I-3: Mounds of vanilla concrete
+
+**Status (2026-09-10):** the gap this names is filled. The demolition yard ships as a region, with
+Recompile's own reinforced concrete and stone rubble; four stone shards craft vanilla stone; and
+pickaxes exist once the Tree Nursery ships wood (a wooden pickaxe is vanilla). Vanilla concrete
+mounds themselves have not been built.
 
 **Idea:** worldgen **mounds made of vanilla concrete** - dig concrete out of the dump.
 
@@ -264,7 +269,8 @@ embankments, the residue of a power station that is no longer there.
   on is the wall holding the pond back is a strong place to stand.
 - **Coal is deliberately not found in this world** (locked P0.4/P2.2 - junk is the early fuel). An
   ash region is the residue of coal without ever handing the player coal, which fits that lock
-  rather than fighting it.
+  rather than fighting it. **Status (2026-09-10):** that lock was reversed 2026-08-19 - lignite smelts
+  to coal in Recompile.
 
 **Depends on:** the region system (shipped, Phase 4). A pond needs a water-like fill that is not
 water, or shallow water over an ash bed.
@@ -279,6 +285,10 @@ water, or shallow water over an ash bed.
 - Relationship to I-3 concrete: does ash *replace* part of that chain or feed it?
 
 ## I-8: Leachate pools
+
+**Status (2026-09-10): shipped in Recompile 0.8.0** (Recompile #156, closed completed). A custom
+`leachate` fluid with its own bucket, in sparse pools; contact effects are config-gated
+(`leachateSickens`, `leachateDrowns`, both on by default). Kept for the reasoning.
 
 **Idea:** **pools of leachate** - the liquid that drains out of a dump - as terrain.
 

@@ -38,7 +38,8 @@ So:
 
 - devbridge goes in the **test instance's** `mods/` folder, by hand.
 - It never goes in `pack/mods/`, and it never gets a `packwiz` index entry.
-- Check before any release that `pack/index.toml` has no devbridge line.
+- `tools/check_pack_deps.py` fails the build if devbridge is ever indexed in the pack; it runs in
+  both `validate-pack.yml` and `release.yml`.
 
 It binds loopback only and is inert without `-Ddevbridge.port`, so the realistic worst case is small.
 Do not rely on that. The rule is simply that it is not part of the pack.
@@ -72,8 +73,9 @@ the ones a command can answer and a screenshot cannot.
   crafting, assert the output exists. A gate that quietly broke because a mod updated is the failure
   mode this catches.
 - **Quest verification.** FTB Quests tasks reference item ids. An id that no longer resolves fails
-  silently and leaves a quest nobody can complete. `gamebridge check` over the quest item list would
-  catch a whole class of that.
+  silently and leaves a quest nobody can complete. **Done:** `tools/verify_quests.py` hands every
+  quest item id to the command parser over devbridge, against the singleplayer test instance. It
+  catches a bad item id or component key, not a wrong component value.
 - **Screenshots for quests and the CurseForge page**, reproducibly, via devbridge. The pack page and the
   quest book both want images that stay current as the mod's textures change, and they change often.
 
@@ -84,7 +86,8 @@ the ones a command can answer and a screenshot cannot.
 2. **A `tools/verify_gates.sh`**, modelled on `F:\minecraft-repos\recompile\tools\verify_showcase.sh`.
    Start with two or three gates from `progression_gates.md` that you would actually be upset to see
    break.
-3. **devbridge in the test instance**, only once 1 and 2 are useful, and only if you want screenshots.
+3. **devbridge in the test instance.** Done, for quest verification rather than screenshots: `tools/verify_quests.py` runs over it, and `tools/check_pack_deps.py` keeps it out of
+   the pack index.
 
 ## Four things that will bite
 
@@ -106,7 +109,7 @@ verification, not yet fine for a gallery image.
 
 | Thing | Path |
 | --- | --- |
-| CLI source and README | `F:\minecraft-repos\mc-pack-toolkit\gamebridge\` |
+| CLI source and README | `F:\devbridge\gamebridge\` |
 | devbridge mod, spec, own repo | `F:\devbridge\` |
 | A worked verification script | `F:\minecraft-repos\recompile\tools\verify_showcase.sh` |
 | How Recompile wires its dev run | `F:\minecraft-repos\recompile\build.gradle`, the `client` run block |

@@ -129,7 +129,7 @@ at different depths from the camera, so cutting one out warps its perspective.
 - **CurseForge banner** (512x288) and a **hero shot** (1280x720) are not made. The CF page currently
   runs on the logo plus the gallery screenshots.
 - **Title-screen background** - the layout has no custom background, so the vanilla panorama shows
-  through. `branding.md` lists a proper panorama as a v1.x item; a static background is the cheaper
-  first pass.
-- The gallery shots live in the mod's repo (`../recompile/docs/cf image gallery/`). The pack borrows
+  through. A proper panorama is a v1.x item (this line used to say `branding.md` listed one, but
+  no such entry was ever written); a static background is the cheaper first pass.
+- The gallery shots live in the mod's repo (`../recompile/docs/cf_image_gallery/`). The pack borrows
   them; it does not own a gallery of its own yet.

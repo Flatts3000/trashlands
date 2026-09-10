@@ -87,16 +87,25 @@ git push origin v0.1.0
 2. Asserts the committed `index.toml` is current (runs `packwiz refresh` and fails on any diff) - a
    stale index ships hashes no committed file has, and packwiz-installer rejects the jars it just
    downloaded.
-3. Runs `packwiz curseforge export`, then greps the zip for `.jar` and fails if it finds one. A jar
+3. Self-tests the dependency guard, then runs `tools/check_pack_deps.py` to prove the pinned pack can
+   load (loader floors, held pins, and pack overrides still matching the pinned Recompile jar).
+4. Runs `packwiz curseforge export`, then greps the zip for `.jar` and fails if it finds one. A jar
    in the export means a mod was added from a non-CurseForge source and got inlined into
    `overrides/`, which is a redistribution violation CurseForge would bounce.
-4. Extracts the matching `## [x.y.z]` section of `CHANGELOG.md`.
-5. Creates a GitHub release with the zip attached, marked prerelease for `0.x`.
-6. Resolves the CurseForge game-version ids and uploads, with `releaseType: alpha` for `0.x`.
+5. Builds the server pack, guards it against client-only mods and an unloadable mod set, and boots
+   it (see [The server pack](#the-server-pack)).
+6. Extracts the matching `## [x.y.z]` section of `CHANGELOG.md`.
+7. Resolves the CurseForge game-version ids.
+8. Creates a GitHub release with **both zips** attached (client and server), marked prerelease for
+   `0.x`.
+9. Uploads the client zip to CurseForge with `releaseType: alpha` for `0.x`, then the server zip as
+   its child file, and leaves a reminder to type the server pack by hand.
+10. Posts the changelog section to Discord.
 
-Steps 6 is skipped with a job-summary notice if `CF_PROJECT_ID` (variable) or `CF_API_TOKEN`
-(secret) is unset. The GitHub release still ships. That is the intended state until the CurseForge
-project is approved.
+Steps 7 and 9 are skipped with a job-summary notice if `CF_PROJECT_ID` (variable) or `CF_API_TOKEN`
+(secret) is unset, and step 10 if `DISCORD_CHANGELOG_WEBHOOK` (secret) is. The GitHub release still
+ships. All three are set today (`gh secret list`, `gh variable list`), so every release uploads to
+CurseForge project `1636627`.
 
 Manual fallback: `python tools/cf_release.py --zip <path> --project <id> ...`.
 
@@ -108,7 +117,7 @@ child of the client file.
 
 **The mod list comes from the `side` tags.** packwiz-installer runs with `-s server`, taking
 `both` and `server` and skipping `client`, so what a server gets is decided entirely by
-`side =` in `pack/mods/*.pw.toml`. Ten mods are `client` today; the other 37 go to servers. A
+`side =` in `pack/mods/*.pw.toml`. 13 mods are `client` today; the other 67 go to servers. A
 client-only mod mistagged `both` reaches a dedicated server and can crash boot, which is why the
 release does three things about it. A guard reads `side =` out of `pack/mods/*.pw.toml` and fails if
 any client-tagged mod's recorded `filename` turns up in `build/server/mods/`, so a client mod added
@@ -181,8 +190,10 @@ step has to be done and trusted rather than checked.
 Pre-1.0, so SemVer is not yet strict:
 
 - **`v0.x.y`** - alpha. `x` for content milestones or a mod-lineup change, `y` for fixes and tuning.
-- **`v1.0.0`** - the launch release, out of alpha. Gate on: the knowledge half of teardown shipped,
-  a quest book, and one full balance pass across all loot tables and recipes together.
+- **`v1.0.0`** - the launch release, out of alpha. Gate on: a quest book with its spine, and one
+  full balance pass across all loot tables and recipes together. (It also named "the knowledge half
+  of teardown shipped" until P3.10 retired that axis; the full list is in
+  [`release_checklist.md`](./release_checklist.md#the-10-gate).)
 - **Post-1.0** - major = world-breaking, minor = new content, patch = fixes.
 
 `releaseType` on CurseForge is derived from the version: `0.x` uploads as **alpha**, `1.x+` as
@@ -201,9 +212,6 @@ Write it player-facing: lead with what changed for the player, not the internal 
 - **Config validation CI.** Sky Frogs' `validate-pack.yml` enforces that `pack/config/` and
   `pack/defaultconfigs/` stay byte-identical, because `config/` is per-instance state that NeoForge
   can recreate from `defaultconfigs/`. Earns its keep once the pack ships configs.
-- **Dev instance sync.** Sky Frogs' `tools/sync_instance.py` drives packwiz-installer into a
-  junction-linked CurseForge instance for playtesting. Recompile's own `run/` covers mod-side
-  iteration today; port this when pack-side tuning starts.
 
 ## Issue reporting
 

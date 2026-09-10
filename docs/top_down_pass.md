@@ -59,7 +59,7 @@ visibly working. Decay is currently a material you collect rather than a process
 **Ships:** roaches, pigeons, dump mushrooms, mycelium, fireweed, slimes, sewer turtles and frogs,
 Animal Bait with terrain-weighted draws.
 
-**Missing:** rats (issue #306). Gulls, declined - not meaningfully different from pigeons. Crows,
+**Missing:** rats, declined (Recompile #306, closed as not planned 2026-08-31). Gulls, declined - not meaningfully different from pigeons. Crows,
 foxes, nesting birds. Weeds cracking concrete, which fireweed half-covers.
 
 ### 5. Hazard and contamination
@@ -103,9 +103,11 @@ electromagnet (Magnet Scrap already exists as an item), conveyors, the idea of a
 
 ### 9. Economy - what junk is worth
 
-**Ships:** found-not-crafted as a rule, the Scrap Network, emeralds via a cured zombie villager.
+**Ships:** found-not-crafted as a rule, the Scrap Network, emeralds via a cured zombie villager. Since
+0.19.0, a market: the Sell Terminal pays scrip for components and finished goods (`#recompile:sellable`),
+and every Buy Terminal offer carries a price. Junk has a price once it is a component or a finished good.
 
-**Missing:** deposit return. A buyer for scrap. Any sense that junk has a *price* rather than a use.
+**Missing:** deposit return. A buyer for raw scrap - the Sell Terminal deliberately refuses it.
 
 ### 10. Atmosphere
 
@@ -124,7 +126,8 @@ Ranked by how much they add that nothing else does, not by cost.
 1. **Obsolete media, and a reader for it.** A cassette or a floppy disk is data you cannot use until you
    build the machine that reads it - which is the mod's own thesis, stated in an object. It is the
    Sequencer pattern applied to media instead of amber, and it lands on axis 2, the strongest axis the
-   mod has, while reinforcing teardown-as-knowledge rather than sitting beside it.
+   mod has. (It was pitched as reinforcing teardown-as-knowledge, which Recompile 0.20.0 retired:
+   teardown now yields function and knowledge is bought.)
 2. **Strata.** Depth means age. Digging a mound deeper finds older things. This costs a loot change and
    a depth check rather than a system, and it turns the mounds from a resource into a timeline.
 3. **Subsidence.** The one hazard that makes clearing the dump feel like making the ground safe.
