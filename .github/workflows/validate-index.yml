@@ -1,0 +1,67 @@
+name: Validate Index
+
+# Proves pack/index.toml matches the pack files committed next to it.
+#
+# packwiz-installer checks every file it downloads against the hash in
+# pack/index.toml, and rejects a mismatch. So a pack file edited without running
+# tools/pack_refresh.py ships an index that no committed file matches, and the
+# installer refuses the pack.
+#
+# release.yml has always guarded this, but only on a tag, which is the most
+# expensive place to find out: the fix is a re-tag. Every PR check stayed green
+# in the meantime, because validate-pack.yml only triggers on the pinned set and
+# validate-quests.yml checks the quest book, not the index. #80 merged exactly
+# that way on 2026-09-10 - two quest strings changed, the salvage.json5 hash did
+# not (#82).
+#
+# This is the release guard, unchanged, on every change under pack/. It needs
+# packwiz and nothing else: no Java and no mod downloads, so it is cheap enough to
+# run on a one-line quest edit.
+
+on:
+  pull_request:
+    paths:
+      - "pack/**"
+      - ".github/workflows/validate-index.yml"
+  push:
+    branches: [main]
+    paths:
+      - "pack/**"
+  workflow_dispatch:
+
+jobs:
+  index:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-go@v6
+        with:
+          go-version: stable
+          cache: false
+
+      # Pinned, NOT @latest, for the same reason as validate-pack.yml and release.yml:
+      # packwiz upstream 9066bf8 (#407) added a go.mod `replace` directive, which
+      # `go install pkg@version` refuses. Move all three pins together, and only to a
+      # commit whose go.mod has no replace directive.
+      - name: Install packwiz
+        run: |
+          go install github.com/packwiz/packwiz@v0.0.0-20260218225342-dfd8b68a4796
+          echo "$(go env GOPATH)/bin" >> "$GITHUB_PATH"
+
+      # Identical to release.yml's "Guard - committed index.toml is current".
+      # The checkout is LF (.gitattributes), which is what the committed index must
+      # have been hashed from - tools/pack_refresh.py normalizes to LF for exactly
+      # that reason. `packwiz refresh` is idempotent on a current index, so any
+      # diff means a pack file changed without a refresh.
+      - name: Guard - committed index.toml is current
+        run: |
+          cd pack
+          packwiz refresh
+          cd ..
+          if ! git diff --quiet -- pack/index.toml pack/pack.toml; then
+            echo "::error::pack/index.toml (or pack.toml's index hash) is stale. Run 'python tools/pack_refresh.py' and commit the result."
+            git --no-pager diff -- pack/index.toml pack/pack.toml
+            exit 1
+          fi
+          echo "index is current."

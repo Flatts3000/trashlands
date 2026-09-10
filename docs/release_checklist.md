@@ -212,8 +212,9 @@ otherwise found by whoever first runs a server.
 
 - **Version must match the tag.** Bump `pack.toml` before tagging; the guard fails otherwise.
 - **Stage index.toml and pack.toml together** after `pack_refresh.py`. A stale index ships hashes no
-  committed file has, and packwiz-installer then rejects the very jars it just downloaded. The
-  workflow's index guard catches this, but it costs you a re-tag.
+  committed file has, and packwiz-installer then rejects the very jars it just downloaded.
+  `validate-index.yml` catches it on the PR that caused it (#82); `release.yml` runs the same guard
+  as a backstop, where it costs a re-tag.
 - **CHANGELOG heading format is load-bearing.** `## [X.Y.Z]` exactly.
 - **Never add a mod with `packwiz modrinth add`** for a pack that ships to CurseForge. Modrinth-added
   mods get inlined into the export as real jars, which is a redistribution violation. Use
