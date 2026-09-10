@@ -105,6 +105,10 @@ file = "icon.png"
 hash = "419e177ba000a25bb6e07ff4d0804a42910fa4e6de2727e5344e98b1c1be2368"
 
 [[files]]
+file = "kubejs/data/enderio/recipe/sag_milling/blaze_powder.json"
+hash = "676663a69ffb1a6d960e257cb5f68dca8b806a0e18ab9ce356fdd8c074f09db4"
+
+[[files]]
 file = "kubejs/data/ftbultimine/tags/block/excluded_blocks.json"
 hash = "0a638ec4f8ece80f478c071827f3e2ce77193798ccb9cb47ed8dc1cf01c7e33e"
 

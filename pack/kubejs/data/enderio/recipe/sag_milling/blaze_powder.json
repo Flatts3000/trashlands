@@ -1,0 +1,39 @@
+{
+  "_comment": [
+    "DISABLED: Ender IO's SAG Mill must not grind a blaze rod back into powder (owner, 2026-08-21).",
+    "This file sits at Ender IO's OWN recipe id, replaces it, and never loads, so the recipe is absent.",
+    "Moved out of Recompile into the pack (trashlands#52), where curating another mod's recipes belongs.",
+    "",
+    "WHY. Ender IO grinds one rod into FOUR powder. Recompile runs the other way - four powder press into",
+    "a Blaze Briquette and the Sintering Kiln fires it into one rod - so this recipe makes the round trip",
+    "break even, and with a grinding ball's output multiplier (up to 1.75 on the vibrant alloy ball) a rod",
+    "returns up to SEVEN powder: a 75 percent automatable gain. Blaze rods gate brewing here.",
+    "",
+    "DISABLED RATHER THAN REBALANCED (owner ruling): no number to re-check when Ender IO retunes its balls.",
+    "",
+    "HOW A DISABLE WORKS, since there is no remove-recipe primitive. A file at another mod's recipe id",
+    "replaces it wholesale, and a neoforge:never condition means the replacement never loads either. The",
+    "body is valid only so the file is well-formed; it is never decoded.",
+    "",
+    "LOAD ORDER. An override only wins if it is read after the mod's own data. KubeJS data does: measured",
+    "2026-09-10 on a dedicated server, a pack file at enderio:blocks/alloy_smelter replaced Ender IO's own",
+    "table outright. Recompile still ships an identical copy until its next release; the two agree, and",
+    "check_pack_deps.py fails CI if they stop agreeing."
+  ],
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:never"
+    }
+  ],
+  "type": "enderio:sag_milling",
+  "energy": 2400,
+  "input": "#c:rods/blaze",
+  "outputs": [
+    {
+      "item": {
+        "count": 1,
+        "id": "minecraft:blaze_powder"
+      }
+    }
+  ]
+}
