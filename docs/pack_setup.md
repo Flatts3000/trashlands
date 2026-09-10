@@ -35,7 +35,8 @@ pack/
   .packwizignore     # keep tool caches out of the index
   mods/              # one *.pw.toml per mod
   config/            # mod config overrides, shipped as export overrides (world-type lock lives here)
-  kubejs/data/       # pack data KubeJS mounts: ftbultimine/tags/..., simplemagnets/recipe/, trashlands/loot_modifiers/ + loot_table/
+  kubejs/data/       # pack data KubeJS mounts: enderio/recipe/, ftbultimine/tags/, simplemagnets/recipe/,
+                     # trashlands/loot_modifiers/ + loot_table/
   resourcepacks/     # pack-owned client assets (trashlands/, see below)
 branding/
   wordmark_two_row.png     # the Minecraft Title Generator render (see docs/branding.md)
@@ -809,8 +810,14 @@ Two consequences worth knowing before copying it:
 **Where the two stand.** #46 shipped: `pack/kubejs/data/trashlands/loot_modifiers/sump_inscriber_presses.json`
 and its table, measured at 20 of each press from 10 sump rolls (10 engine, 10 pack) and none from the
 sewer barrels, plus the tooltip key at `pack/resourcepacks/trashlands/assets/ae2/lang/en_us.json`, which
-`check_pack_deps.py` now holds equal to the engine's copy. #52's blaze disable is a same-id recipe and
-can move the way #47 did; its grains wait on the ride-along ruling above.
+`check_pack_deps.py` now holds equal to the engine's copy. #52's blaze disable moved the way #47 did, to
+`pack/kubejs/data/enderio/recipe/sag_milling/blaze_powder.json`, identical to Recompile's copy and held
+there by the drift guard. Measured on the same server with a scratch copy of the Recompile jar that had
+its `data/enderio/` stripped: KubeJS reports 5,327 recipes and 149 skipped with no override (Ender IO's
+grinding recipe is live), and 5,326 and 150 with only the pack's copy (the recipe is gone, as it is
+today). KubeJS data outranks every mod's: a pack file at `enderio:blocks/alloy_smelter` replaced Ender
+IO's own table outright, and one at `recompile:chests/sewer` replaced Recompile's. #52's grains wait on
+the ride-along ruling above.
 
 ### Considered and cut
 
