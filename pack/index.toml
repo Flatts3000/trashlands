@@ -126,7 +126,7 @@ hash = "7c417bbdcc68734e5ec55fd95a69c9ba5644b876dac7926087661866beb8bb01"
 
 [[files]]
 file = "kubejs/data/trashlands/loot_modifiers/sump_inscriber_presses.json"
-hash = "feb72ff8533cfc5bab91eb4a26c0ab3aad0b3b4911cc7ddb4860f7c1806dcdac"
+hash = "1f6c93ff77300cd2147c264463ac7853b3f7841505ebc350c3bec163b0a83033"
 
 [[files]]
 file = "kubejs/data/trashlands/loot_table/chests/sump_inscriber_presses.json"

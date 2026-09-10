@@ -35,7 +35,7 @@ pack/
   .packwizignore     # keep tool caches out of the index
   mods/              # one *.pw.toml per mod
   config/            # mod config overrides, shipped as export overrides (world-type lock lives here)
-  kubejs/data/       # pack data KubeJS mounts: ftbultimine/tags/..., simplemagnets/recipe/, trashlands/loot_modifiers/
+  kubejs/data/       # pack data KubeJS mounts: ftbultimine/tags/..., simplemagnets/recipe/, trashlands/loot_modifiers/ + loot_table/
   resourcepacks/     # pack-owned client assets (trashlands/, see below)
 branding/
   wordmark_two_row.png     # the Minecraft Title Generator render (see docs/branding.md)
