@@ -176,7 +176,7 @@ metafile = true
 
 [[files]]
 file = "mods/balm.pw.toml"
-hash = "1a12d7f3d62a1dabcf202856c4b2a26d0cffbf58ecb2c080efe21d96fab79c73"
+hash = "8be50c4e769f3c0da36c64ebe7e590283fe9cdfd571d2aa7341988c299f792a9"
 metafile = true
 
 [[files]]
@@ -366,12 +366,12 @@ metafile = true
 
 [[files]]
 file = "mods/jade.pw.toml"
-hash = "f6966f01757d2a20fbe0284e06d9e37d89bcd8da62eacce859c985a5b3115842"
+hash = "9543270834d71a4718a34af7798a6c132e0854a95572ae5e5ea4ccf8bf1ce725"
 metafile = true
 
 [[files]]
 file = "mods/jei.pw.toml"
-hash = "31cd05d21afc883f7018a9be288e26936b56f6928d3ba41f6d78bdda11de88ff"
+hash = "faae5789dc62eab56e6e1f9b3200c109d535e54305ac2ea9627eaf9828d85fb5"
 metafile = true
 
 [[files]]
@@ -486,12 +486,12 @@ metafile = true
 
 [[files]]
 file = "mods/sophisticated-backpacks.pw.toml"
-hash = "0e22042801dc2fd4b038036ef71155f88bfcefd8fb33bec0070703f60d8fad91"
+hash = "37c090a0cce35fc898d2a4eda6e0381317a940923dac1afd712808f748ba1079"
 metafile = true
 
 [[files]]
 file = "mods/sophisticated-core.pw.toml"
-hash = "45e08c47341a8e4b7f48995cd9ba557a2319f5fa037e77795ec293ac7dccc97f"
+hash = "58a04d7f9184b5c7f848150cfb563085b21251d66a2c3e4a97b42e8bfa40c0dc"
 metafile = true
 
 [[files]]

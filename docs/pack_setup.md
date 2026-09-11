@@ -223,6 +223,23 @@ lists the two together), so it joins kind 2 below. The sortable-block check foun
 same nine `SortableBlock` subclasses as 0.20.0. The quest book needed no change: nothing in it claims
 the tailings pond is water.
 
+**The v0.14.0 `packwiz update --all` (2026-09-11) offered eight pins and five were taken:** Balm
+26.1.2.14, JEI 29.37.0.98 (still under the `.100` loader pin), Jade 26.1.11, Sophisticated Backpacks
+3.26.2.2156 and Sophisticated Core 1.5.0.2334. `check_pack_deps.py` passes on all 80. **Three were held
+on purpose:**
+
+- **Extreme Sound Muffler 4.02-ALPHA**, as `HELD_PINS` requires.
+- **KubeJS 8.0.6.** It no longer bundles Better Advanced Tooltips at all (its jar-in-jar is down to an
+  animated-GIF library and a small HTTP server), which should retire the crash `HELD_PINS` guards
+  against. But this is the mod that crashed the pack, and step 4 of `release_checklist.md` makes a
+  client launch mandatory for it, which a headless release pass cannot do. Take it after a launch
+  reaches the title screen.
+- **Flatts's Things 0.5.0.** 0.4.0 adds grass and mycelium slabs that **spread**: uncovered grass creeps
+  onto nearby dirt. Grass does not spread on this world, which is what makes the Grass Spreader the
+  reclamation ladder's gate, and every Flatts's Things feature arrives switched on. That needs a ruling
+  before the pin moves, plus the usual diff of `pack/config/flattsthings-common.toml` against the new
+  feature list (0.5.0 also adds copper powered rails and tool-slot entries for Recompile's tools).
+
 ### FTB Ultimine, and the tag that keeps it off the garbage
 
 Added 2026-09-07 (issue [#62](https://github.com/Flatts3000/trashlands/issues/62)),
