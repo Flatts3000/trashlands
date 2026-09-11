@@ -1,0 +1,22 @@
+{
+  "_comment": [
+    "Rolled on top of recompile:gameplay/mechanical_pulls by",
+    "loot_modifiers/mechanical_grains_of_infinity.json (#52).",
+    "",
+    "0.081 is Recompile's old weight, 20 of 247, as a chance: about one pull in twelve.",
+    "",
+    "A TAG, NOT enderio:grains_of_infinity. An item id resolves at parse, so naming it without Ender IO",
+    "fails the table. A tag does not, and without Ender IO it is empty and the roll yields nothing.",
+    "expand:true rolls one member per hit, as the engine entry did."
+  ],
+  "type": "minecraft:chest",
+  "pools": [
+    {
+      "rolls": 1,
+      "conditions": [ { "condition": "minecraft:random_chance", "chance": 0.081 } ],
+      "entries": [
+        { "type": "minecraft:tag", "name": "c:dusts/grains_of_infinity", "expand": true }
+      ]
+    }
+  ]
+}
