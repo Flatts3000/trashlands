@@ -76,8 +76,8 @@ Previewer** (with Craft Config Lib) on 2026-09-08.
 | Mod | CF project | Why it is in |
 |---|---|---|
 | **Recompile** | 1625740 | The pack. Garbage world, teardown, reclamation, machines. |
-| **Just Enough Items** | 238222 | Recompile ships a JEI plugin. At the pinned 0.20.0 it registers seventeen categories - sequencing, spawn_egg, sorting, cutting, burning, torch_cutting, prying, teardown, separating, hydrating, pulverizing, cupola, vitrifying, sintering, assembly, blueprint_crafting, growing - plus the Scrap Crafting Table as a station. (`cupola` and `vitrifying` arrived with 0.12.0's slag chain, `sintering` with 0.13.0's kiln, `sequencing` and `spawn_egg` with 0.15.0's amber chain.) (`SalvageRecipe` is the shared recipe class behind them, not a category.) |
-| **Jade** | 324717 | At the pinned 0.20.0 Recompile ships 33 Jade provider classes plus its plugin: tool hints, sort progress, machine status, generator rates. |
+| **Just Enough Items** | 238222 | Recompile ships a JEI plugin. At the pinned 0.21.0 (unchanged from 0.20.0) it registers seventeen categories - sequencing, spawn_egg, sorting, cutting, burning, torch_cutting, prying, teardown, separating, hydrating, pulverizing, cupola, vitrifying, sintering, assembly, blueprint_crafting, growing - plus the Scrap Crafting Table as a station. (`cupola` and `vitrifying` arrived with 0.12.0's slag chain, `sintering` with 0.13.0's kiln, `sequencing` and `spawn_egg` with 0.15.0's amber chain.) (`SalvageRecipe` is the shared recipe class behind them, not a category.) |
+| **Jade** | 324717 | At the pinned 0.21.0 Recompile ships 33 Jade provider classes plus its plugin: tool hints, sort progress, machine status, generator rates. |
 | **Modonomicon** | 538392 | The engine the in-game guidebook runs on. The guide is `mod_loaded`-gated data - inert without it. |
 | **Pipez** | 443900 | Recompile's automation policy (`../recompile/docs/automation_policy_spec.md`) is written and tested against it. Which blocks accept pipes and which refuse to even connect is a per-block decision, and Pipez is how it was found and is verified. |
 | **Spawn Detective** | 1621450 | Ours (`../spawn-detective`). Answers "why won't this mob spawn here" by replaying the real natural-spawn pipeline against one block and one mob and naming the rule that rejected it. Directly relevant to the reclamation ladder's animals rung, where baits only settle a mob once the ground, spacing, and player-distance gates all pass - Recompile's Jade provider names that blocker for baits, and this answers the same question for anything else. One item, one command, no world content. |
@@ -213,6 +213,16 @@ nine `SortableBlock` subclasses as 0.18.0 and the same eight `gameplay/*_pulls` 
 sortable block appeared. That is the audit the tag section below describes, run for the first time in
 anger.
 
+**Recompile 0.21.0 (pinned 2026-09-11) is the release that took the cross-mod content back out.** It
+deletes Recompile's copies of everything #46, #47 and #52 moved into the pack, so from this pin the
+pack's copies are the only ones (measured, see "Recipe overrides had nowhere to live"). It also adds
+freight-rung advancements, a tailings-pond liquid that is not water, and regrowing rubble piles and
+tailings heaps in new worlds. **The Ultimine audit found one addition:** rubble piles now sit on
+`recompile:rubble_ground`, the frontier's twin of `mound_ground` (Recompile's own `hostile_ground` tag
+lists the two together), so it joins kind 2 below. The sortable-block check found nothing new: the
+same nine `SortableBlock` subclasses as 0.20.0. The quest book needed no change: nothing in it claims
+the tailings pond is water.
+
 ### FTB Ultimine, and the tag that keeps it off the garbage
 
 Added 2026-09-07 (issue [#62](https://github.com/Flatts3000/trashlands/issues/62)),
@@ -227,10 +237,10 @@ while empty), then excluded, then the shape's own matcher. The tag ships **empty
 There is no config-side block blacklist - `FTBUltimineServerConfig` carries features, costs and
 limits only. Established by disassembling the jar, not from the mod's docs.
 
-**What goes in it,** owner call 2026-09-07 - seventeen entries:
+**What goes in it,** owner call 2026-09-07 - seventeen entries, eighteen since `rubble_ground` joined on 2026-09-11:
 `minecraft:coarse_dirt`, `minecraft:deepslate`, `recompile:garbage_block`, `recompile:trash_bag`, `recompile:compacted_bale`,
 `recompile:cardboard_pile`, `recompile:bulky_waste`, `recompile:mound_ground`,
-`recompile:stained_ground`, `recompile:stone_rubble`, `recompile:mechanical_waste`,
+`recompile:stained_ground`, `recompile:rubble_ground`, `recompile:stone_rubble`, `recompile:mechanical_waste`,
 `recompile:mill_tailings`, `recompile:waste_drum`, `recompile:slag_rubble`,
 `recompile:techno_organic_waste`, `recompile:ancient_sculk`, `recompile:tire`.
 
@@ -239,7 +249,7 @@ draft got it wrong.** Three kinds of block are in the tag:
 
 1. **Scrap piles** - what a worldgen feature heaps up as a dig-for-scrap target. Excluding these is
    the whole point: they are the core loop.
-2. **Surface ground** - `coarse_dirt`, `mound_ground`, `stained_ground`. The surface is the board
+2. **Surface ground** - `coarse_dirt`, `mound_ground`, `rubble_ground`, `stained_ground`. The surface is the board
    reclamation and encroachment are played on, so taking it down in one hold is terraforming, not
    salvage.
 3. **Bulk stone** - `minecraft:deepslate` in the overworld and `recompile:techno_organic_waste` in
@@ -763,7 +773,7 @@ was found. Their handoff docs all say to take them back the moment a route opene
 
 **Two of the three have moved.** The Ultimine tag came home in #63, and the Simple Magnets overrides
 followed on 2026-09-08 (#47) at `pack/kubejs/data/simplemagnets/recipe/`. Both were safe to ship while
-Recompile still ships its copy, for the same reason: each is a **single resource location with one
+Recompile still shipped its copy, for the same reason: each is a **single resource location with one
 winner** - a tag that merges, and four recipe ids whose two candidates are identical.
 
 **The Ender IO grains (#52) are not, and neither is the AE2 stopgap (#46) - which is a fourth piece
@@ -803,8 +813,8 @@ Two consequences worth knowing before copying it:
   inside a single pool (the grains) it is not: an added roll gives grains *as well as* a pull, where
   the entry gives grains *instead of* one. That is a balance change, and **the owner ruled for riding
   along on 2026-09-10** (#52): same rate, added rather than displacing.
-- **While the engine still ships its copy, both roll.** A sump yields two press sets until Recompile
-  deletes its pool. Presses are stamps nothing consumes, so the second set is inert. A consumable would
+- **While the engine still ships its copy, both roll.** Through Recompile 0.20.0 a sump yielded two
+  press sets. Presses are stamps nothing consumes, so the second set is inert. A consumable would
   not be, so this is not a general licence to ship first.
 
 **Where the two stand.** #46 shipped: `pack/kubejs/data/trashlands/loot_modifiers/sump_inscriber_presses.json`
@@ -822,10 +832,13 @@ rolling `c:dusts/grains_of_infinity` at a 0.081 chance (Recompile's old 20 of 24
 pulls each: 88 grains with Recompile's entry stripped from a scratch jar and the pack's roll in place,
 alongside all 1,000 normal items; 0 with neither; 154 with both.
 
-**That last figure is the overlap, and grains are not presses.** Grains are consumed, so while the
-Recompile pin still carries its weighted entry the pack yields about double. **Do not cut a pack
-release until the pin moves to a Recompile release without the entry** (Flatts3000/recompile#420),
-or accept the doubled rate for that release knowingly.
+**That last figure was the overlap, and grains are not presses.** Grains are consumed, so while the
+pin carried Recompile's weighted entry the pack yielded about double. **The pin moved to Recompile
+0.21.0 on 2026-09-11, which deletes every engine copy and ends both overlaps.** Re-measured on 0.21.0
+with nothing stripped: 84 grains in 1,000 Mechanical Waste pulls; exactly 10 of each press from 10 sump
+rolls; 70 Ender IO SAG milling recipes and no blaze grinding (71, blaze included, with the pack's file
+removed); and a Crafter given the pack's Simple Magnets grid made a Basic Magnet while one given the
+stock grid made nothing. Every piece of #46, #47 and #52 now ships from the pack alone.
 
 ### Considered and cut
 
@@ -846,9 +859,8 @@ or accept the doubled rate for that release knowingly.
   Spending Magnet Scrap on magnets means not spending it on redstone, and that tension is the point.
   **Moved into the pack 2026-09-08 (#47)** - the four overrides now live at
   `pack/kubejs/data/simplemagnets/recipe/`. Recompile deleted its redundant identical copy in
-  Flatts3000/recompile#421 (`10c7426`, 2026-09-08), but no Recompile release contains that yet -
-  v0.20.0 is the newest tag - so the pinned jar still ships the copy. #47 is `blocked` on that
-  release.
+  Flatts3000/recompile#421 (`10c7426`), released in 0.21.0, so since the 2026-09-11 pin bump the pack's
+  copy is the only one. A Crafter check on 0.21.0 confirms it wins over the stock recipe.
 - **OpenBlocks Elevator** - mounds are 3 to 15 blocks tall; there is nothing to ride up.
 - **Create and Mekanism** - not options on 26.1.2, neither has a NeoForge build past 1.21.1. This was
   checked, not assumed (`../recompile/docs/hydroponics_spec.md`). An older version of this file named

@@ -13,9 +13,8 @@
     "each fired on every roll of its own table (10/10 sump, 30/30 mechanical_pulls, 3/3 on a vanilla",
     "dungeon chest as a control) and on none of the others.",
     "",
-    "WHILE RECOMPILE STILL SHIPS ITS OWN PRESS POOL (pool 2 of chests/sump, through 0.20.0), a sump",
-    "yields two sets. Presses are stamps, not ingredients - nothing consumes one - so the second set",
-    "is inert. That window closes when Recompile deletes its pool (Flatts3000/recompile#420)."
+    "RECOMPILE SHIPPED ITS OWN PRESS POOL through 0.20.0 (pool 2 of chests/sump) and deleted it in",
+    "0.21.0. From 0.21.0 this is the only source: 10 sump rolls, 10 of each press."
   ],
   "type": "neoforge:add_table",
   "conditions": [

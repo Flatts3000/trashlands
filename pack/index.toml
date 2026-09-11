@@ -106,27 +106,27 @@ hash = "419e177ba000a25bb6e07ff4d0804a42910fa4e6de2727e5344e98b1c1be2368"
 
 [[files]]
 file = "kubejs/data/enderio/recipe/sag_milling/blaze_powder.json"
-hash = "676663a69ffb1a6d960e257cb5f68dca8b806a0e18ab9ce356fdd8c074f09db4"
+hash = "2d236e02df0d77bccee5de1f84330b8f178aad5fac2234dff91cdf6ae758263b"
 
 [[files]]
 file = "kubejs/data/ftbultimine/tags/block/excluded_blocks.json"
-hash = "0a638ec4f8ece80f478c071827f3e2ce77193798ccb9cb47ed8dc1cf01c7e33e"
+hash = "1784aebc6f5bd36a447920e7cc6974c8e2c07e7e0aa2a0adcadd1db64ced6cd3"
 
 [[files]]
 file = "kubejs/data/simplemagnets/recipe/advanced_demagnetization_coil.json"
-hash = "b683fb39eb94d0f20c96ee1b57c61e6fda7ed9d026f80181cf65c8ea43633ace"
+hash = "5ef68df3b4610b059b57064e6aacafedff3269f84e9874ad64953479ba2504c4"
 
 [[files]]
 file = "kubejs/data/simplemagnets/recipe/advancedmagnet.json"
-hash = "233b2e12bae7ff249f714b48dd31cefddc0e7cfed8d581a2e3a92da8afe5bace"
+hash = "c26aa03fe74cddd493d4f598a036b5c2fd47a2d81064ead9f0ec04415515d8ad"
 
 [[files]]
 file = "kubejs/data/simplemagnets/recipe/basic_demagnetization_coil.json"
-hash = "81fd2af6c9198542f0b538cefc8682243b9162cd3d690cd244f88aca5fe02a2c"
+hash = "c31351e3fdc6a1042a573eb7ad231f10edea4e3e31427bca6e1aa61c4b153852"
 
 [[files]]
 file = "kubejs/data/simplemagnets/recipe/basicmagnet.json"
-hash = "7c417bbdcc68734e5ec55fd95a69c9ba5644b876dac7926087661866beb8bb01"
+hash = "a37cd7607003661d23c0e19bfa85105f8917227b49d21378e265991091b56a8e"
 
 [[files]]
 file = "kubejs/data/trashlands/loot_modifiers/mechanical_grains_of_infinity.json"
@@ -134,7 +134,7 @@ hash = "bdf55d54d2a308c6cd1cfc1b1c1c9ea5e463ca20135d38e28dd1860b5d22035b"
 
 [[files]]
 file = "kubejs/data/trashlands/loot_modifiers/sump_inscriber_presses.json"
-hash = "1f6c93ff77300cd2147c264463ac7853b3f7841505ebc350c3bec163b0a83033"
+hash = "8f0be8f7d5e303f993932105f91fd9c9b304ff436cffdf9c30675db1ae10703c"
 
 [[files]]
 file = "kubejs/data/trashlands/loot_table/chests/sump_inscriber_presses.json"
@@ -456,7 +456,7 @@ metafile = true
 
 [[files]]
 file = "mods/recompile.pw.toml"
-hash = "1905f45c2292f013b0fb16671a0f0116f2e2db3b03f84e85f40b814e421393dd"
+hash = "f21b44c12a9ede90f024e5722f5ec17aff08b4cc9166fdffda27bd8c375d8b21"
 metafile = true
 
 [[files]]
