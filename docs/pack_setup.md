@@ -801,8 +801,8 @@ Two consequences worth knowing before copying it:
 - **A modifier rides along; it does not displace.** It adds its roll on top of the table's own. For a
   pool that is already its own roll (the sump's presses) that is identical. For one weighted entry
   inside a single pool (the grains) it is not: an added roll gives grains *as well as* a pull, where
-  the entry gives grains *instead of* one. That is a balance change, and it is why #52's grains wait on
-  a ruling rather than on a mechanism.
+  the entry gives grains *instead of* one. That is a balance change, and **the owner ruled for riding
+  along on 2026-09-10** (#52): same rate, added rather than displacing.
 - **While the engine still ships its copy, both roll.** A sump yields two press sets until Recompile
   deletes its pool. Presses are stamps nothing consumes, so the second set is inert. A consumable would
   not be, so this is not a general licence to ship first.
@@ -816,8 +816,16 @@ there by the drift guard. Measured on the same server with a scratch copy of the
 its `data/enderio/` stripped: KubeJS reports 5,327 recipes and 149 skipped with no override (Ender IO's
 grinding recipe is live), and 5,326 and 150 with only the pack's copy (the recipe is gone, as it is
 today). KubeJS data outranks every mod's: a pack file at `enderio:blocks/alloy_smelter` replaced Ender
-IO's own table outright, and one at `recompile:chests/sewer` replaced Recompile's. #52's grains wait on
-the ride-along ruling above.
+IO's own table outright, and one at `recompile:chests/sewer` replaced Recompile's. #52's grains shipped the
+same way as the presses, at `pack/kubejs/data/trashlands/loot_modifiers/mechanical_grains_of_infinity.json`,
+rolling `c:dusts/grains_of_infinity` at a 0.081 chance (Recompile's old 20 of 247). Measured over 1,000
+pulls each: 88 grains with Recompile's entry stripped from a scratch jar and the pack's roll in place,
+alongside all 1,000 normal items; 0 with neither; 154 with both.
+
+**That last figure is the overlap, and grains are not presses.** Grains are consumed, so while the
+Recompile pin still carries its weighted entry the pack yields about double. **Do not cut a pack
+release until the pin moves to a Recompile release without the entry** (Flatts3000/recompile#420),
+or accept the doubled rate for that release knowingly.
 
 ### Considered and cut
 

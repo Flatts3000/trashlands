@@ -1,0 +1,21 @@
+{
+  "_comment": [
+    "Grains of Infinity as a find in Mechanical Waste, added from the pack rather than shipped by the",
+    "engine (#52). Ender IO's own fire crafting on deepslate and bedrock stays the bulk supply; this is",
+    "so the material also comes out of the waste, in the yard, before the Nether.",
+    "",
+    "RIDES ALONG (owner ruling, 2026-09-10). In Recompile this was one weighted entry, 20 of 247, so a",
+    "pull gave grains INSTEAD of something else. From the pack it is an added roll, so a pull gives",
+    "grains AS WELL AS its normal item, at the same 20/247 rate. The seven engine entries go back to",
+    "their pre-grains odds. Owning the whole table to keep displacement was rejected: it forks eight",
+    "engine entries.",
+    "",
+    "AIMED by neoforge:loot_table_id, measured working on this exact table: see",
+    "sump_inscriber_presses.json for the method and numbers."
+  ],
+  "type": "neoforge:add_table",
+  "conditions": [
+    { "condition": "neoforge:loot_table_id", "loot_table_id": "recompile:gameplay/mechanical_pulls" }
+  ],
+  "table": "trashlands:gameplay/mechanical_grains_of_infinity"
+}

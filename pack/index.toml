@@ -129,12 +129,20 @@ file = "kubejs/data/simplemagnets/recipe/basicmagnet.json"
 hash = "7c417bbdcc68734e5ec55fd95a69c9ba5644b876dac7926087661866beb8bb01"
 
 [[files]]
+file = "kubejs/data/trashlands/loot_modifiers/mechanical_grains_of_infinity.json"
+hash = "bdf55d54d2a308c6cd1cfc1b1c1c9ea5e463ca20135d38e28dd1860b5d22035b"
+
+[[files]]
 file = "kubejs/data/trashlands/loot_modifiers/sump_inscriber_presses.json"
 hash = "1f6c93ff77300cd2147c264463ac7853b3f7841505ebc350c3bec163b0a83033"
 
 [[files]]
 file = "kubejs/data/trashlands/loot_table/chests/sump_inscriber_presses.json"
 hash = "ba66f009c017b5f77ce3d54a208cb175ca8b26a70c782d0ee53e122b040153e0"
+
+[[files]]
+file = "kubejs/data/trashlands/loot_table/gameplay/mechanical_grains_of_infinity.json"
+hash = "93525f6960b8bad40875d1cab3b38f175bf90f6b65f0d5107579a8ce765175d2"
 
 [[files]]
 file = "mods/apotheosis.pw.toml"
