@@ -8,6 +8,50 @@ and ASCII punctuation only.
 
 ## [Unreleased]
 
+## [0.14.0] - 2026-09-11
+
+The frontier grows back, the tailings pond is not water, and the pack carries its own tweaks to other
+mods instead of leaving them in Recompile.
+
+### Added
+- **Welcome covers the household sprawl.** Four new quests for what you meet on day one: mounds grow
+  back, so digging one flat is not spending it; leachate looks like water and is not; a tire pile
+  gives rubber only to a Scrap Knife and never grows back; and cardboard piles need no tool at all.
+- **Blocks Previewer.** An outline of where a block will land before you place it.
+
+### Changed
+- **Recompile 0.21.0. The frontier rebuilds too.** Rubble piles and tailings heaps grow back the way
+  garbage mounds do, one block falling from the sky at a time. Rubble piles sit on Rubble Ground now,
+  the way mounds sit on Mound Ground. The radioactive dump never cleans up, and that is its trade:
+  green the land and the pile retires, but stained ground will not take grass. **New worlds only** -
+  a yard or dump you have already been to stays as finite as it was.
+- **The pond on a tailings heap is its own liquid now.** Same pale turquoise, but it was never water:
+  it will not fill a Rain Collector or water a crop, and standing in it makes you hungry and poisons
+  you, down to half a heart and no further. Bucket it to drain a pond for good. Also new worlds only.
+- **Every freight rung is an advancement**, and a finished phase is announced to the whole server.
+  Buttons on the terminals make a sound, long lists show which way they scroll, the Buy Terminal opens
+  on the first freight rung, and hovering an Animal Bait tells you which animals the land around it
+  is drawing.
+- **The pack ships its own tweaks to other mods now**, instead of Recompile carrying them: AE2's
+  Inscriber presses in the sewer's sump crate and the tooltip that tells you so, Ender IO's SAG Mill
+  refusing to grind blaze rods back into powder, and the scrap-built Simple Magnets recipes. In play
+  one thing changes: **Grains of Infinity come on top of a Mechanical Waste pull now, rather than
+  instead of one**, at the same rate of about one pull in twelve.
+- **Default Options turns the pack's resource pack on**, including once for an existing install. It
+  shipped in 0.13.0 but did nothing. The resource pack matters more than it did: it now carries AE2's
+  corrected tooltip, the one that stops sending you after meteorites.
+- **The quest book calls it the Teardown Workbench**, which is what the game has called it since
+  Recompile 0.10.0.
+- **FTB Ultimine leaves Rubble Ground alone**, as it already does Mound Ground.
+- **Routine bumps:** Balm, JEI, Jade, Sophisticated Core and Sophisticated Backpacks. The NeoForge pin
+  stayed at 26.1.2.100.
+- **Held back on purpose:** Extreme Sound Muffler (the newest file is still a 4.x alpha), KubeJS 8.0.6
+  (not yet launched on a client), and Flatts's Things 0.5.0 (its new grass slabs spread onto dirt, in
+  a world where grass not spreading is the whole reclamation ladder).
+- **Still true from 0.13.0:** a few quest lines mention Idea Fragments and learning a recipe by tearing
+  something down. Teardown no longer teaches; every Blueprint is bought. Ignore those lines until the
+  book catches up.
+
 ## [0.13.0] - 2026-09-08
 
 Thirteen mods in, a vein-miner that refuses to touch the garbage, and the pack can finally ship data
