@@ -2,7 +2,7 @@ hash-format = "sha256"
 
 [[files]]
 file = "config/bcc-common.json"
-hash = "203d810eb840e3453f841fead0e41d1e44a64a6847f0b809bba00a64aab5bca1"
+hash = "39f9da93764c382a92da7b86f3e6590d8296bce29affe1a93a46ec3ad02562e1"
 
 [[files]]
 file = "config/blocks_previewer/_presets.json"

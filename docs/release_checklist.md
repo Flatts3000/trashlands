@@ -167,12 +167,17 @@ Two pins drift silently and both ship to every new downloader.
    the CurseForge changelog. ASCII punctuation only.
 3. **pack/pack.toml**: bump `version = "X.Y.Z"`. It MUST equal the tag; the workflow's guard step
    fails the release otherwise.
-4. `python tools/pack_refresh.py` - LF-normalizes, regenerates `index.toml`, and updates pack.toml's
+   **Bump `pack/config/bcc-common.json`'s `modpackVersion` to the same value, in the same commit.**
+   Better Compatibility Checker advertises it to joining clients, and `check_pack_deps.py` fails the
+   release on any drift. v0.14.0's first tag failed exactly there, because this line was missing.
+4. **Re-run `python tools/check_pack_deps.py` after the bump**, not only in step 0.5. Its version-drift
+   check can only see a mismatch once `pack.toml` has the new number.
+5. `python tools/pack_refresh.py` - LF-normalizes, regenerates `index.toml`, and updates pack.toml's
    `[index]` hash. **Stage `pack/index.toml` AND `pack/pack.toml` in the SAME commit** as the
    version bump. Nothing else catches a stale index until the workflow's guard rejects it.
-5. Commit on `main`: `commit "chore: release vX.Y.Z" "<one-line body>"`.
-6. `git push`
-7. `git tag vX.Y.Z && git push origin vX.Y.Z`
+6. Commit on `main`: `commit "chore: release vX.Y.Z" "<one-line body>"`.
+7. `git push`
+8. `git tag vX.Y.Z && git push origin vX.Y.Z`
 
 ## 2. Watch the pipeline
 

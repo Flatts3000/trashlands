@@ -6,7 +6,7 @@
     ]
   },
   "modpackVersion": {
-    "value": "0.13.0",
+    "value": "0.14.0",
     "comments": [
       "The version of the modpack",
       "Kept in step with pack/pack.toml by check_pack_deps.py - do not edit by hand alone."
