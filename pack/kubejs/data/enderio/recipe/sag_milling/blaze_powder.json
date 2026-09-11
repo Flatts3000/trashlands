@@ -17,8 +17,8 @@
     "",
     "LOAD ORDER. An override only wins if it is read after the mod's own data. KubeJS data does: measured",
     "2026-09-10 on a dedicated server, a pack file at enderio:blocks/alloy_smelter replaced Ender IO's own",
-    "table outright. Recompile still ships an identical copy until its next release; the two agree, and",
-    "check_pack_deps.py fails CI if they stop agreeing."
+    "table outright. Recompile shipped an identical copy through 0.20.0 and deleted it in 0.21.0; on",
+    "0.21.0 this file alone keeps the recipe out (71 SAG milling recipes without it, 70 with it)."
   ],
   "neoforge:conditions": [
     {
